@@ -6,7 +6,7 @@ class HomeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: const Color(0xFFDBEDF5),
+      backgroundColor: Colors.white,
       leading: IconButton(
           onPressed: () {},
           icon: const Icon(
@@ -16,10 +16,12 @@ class HomeAppBar extends StatelessWidget {
           )),
       title: Container(
         height: screenSize.height / 21,
-        width: screenSize.width / 2,
-        decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 82, 170, 161),
-            borderRadius: BorderRadius.all(Radius.circular(60))),
+        width: screenSize.width / 1.5,
+        decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 82, 170, 161),
+            // color: Colors.white10,
+            border: Border.all(width: .5,color: const Color.fromARGB(179, 109, 109, 109)),
+            borderRadius: const BorderRadius.all(Radius.circular(60))),
         child: Row(
           children: [
             SizedBox(
@@ -57,14 +59,14 @@ class HomeAppBar extends StatelessWidget {
                 right: 11,
                 top: 14,
                 child: CircleAvatar(
-                  radius: 10,
+                  radius: 8,
                   backgroundColor: Color.fromARGB(255, 0, 112, 248),
                 )),
             const Positioned(
                 right: 13,
                 top: 16,
                 child: CircleAvatar(
-                  radius: 8,
+                  radius: 6,
                   backgroundColor: Colors.green,
                 ))
           ],

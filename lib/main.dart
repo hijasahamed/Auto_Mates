@@ -1,4 +1,5 @@
-import 'package:auto_mates/homescreentab/home_screen.dart';
+
+import 'package:auto_mates/screens/bottomtabswitch/bottom_tab_switch.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,      
-      home: HomeScreen()
+      home: BottomTabSwitchScreen()
     );
   }
 }

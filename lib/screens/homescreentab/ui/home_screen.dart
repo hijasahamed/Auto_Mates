@@ -1,7 +1,7 @@
-import 'package:auto_mates/homescreentab/best_sellers_widget.dart';
-import 'package:auto_mates/homescreentab/carousal_widget.dart';
-import 'package:auto_mates/homescreentab/fetured_cars_widget.dart';
-import 'package:auto_mates/homescreentab/home_appbar_widget.dart';
+import 'package:auto_mates/screens/homescreentab/ui/best_sellers_widget.dart';
+import 'package:auto_mates/screens/homescreentab/ui/carousal_widget.dart';
+import 'package:auto_mates/screens/homescreentab/ui/fetured_cars_widget.dart';
+import 'package:auto_mates/screens/homescreentab/ui/home_appbar_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,7 +16,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      // backgroundColor: const Color(0xFFDBEDF5),
       backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(85),

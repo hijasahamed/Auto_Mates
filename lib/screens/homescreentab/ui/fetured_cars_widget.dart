@@ -14,6 +14,7 @@ return Column(
             Row(
               children: [
                 const Text('Featured cars',style: TextStyle(fontSize: 25,color: Color(0xFF424141),fontWeight: FontWeight.bold),),
+                SizedBox(width: screenSize.width/40,),
                 Container(
                 height: 20,
                 width: 50,
@@ -50,11 +51,11 @@ return Column(
                     ),
                   ),
                   Positioned(
-                  bottom: 0,
+                  bottom: 1,
                   right: 0,
                     child: Container(
                       height: 30,
-                      width: screenSize.width/2.15,
+                      width: screenSize.width/2.16,
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(50),color: Color(0xFFDBEDF5)),
                       child: const Center(child: Text('₹16.25 Lakh',style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xFF424141)),)),
                     )
