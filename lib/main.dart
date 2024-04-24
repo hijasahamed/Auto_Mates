@@ -1,5 +1,5 @@
 
-import 'package:auto_mates/screens/bottomtabswitch/bottom_tab_switch.dart';
+import 'package:auto_mates/screens/bottomtabswitch_appbar/bottom_tab_switch.dart';
 import 'package:flutter/material.dart';
 
 void main() {

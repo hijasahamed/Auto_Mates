@@ -1,7 +1,8 @@
-import 'package:auto_mates/screens/homescreentab/ui/best_sellers_widget.dart';
+import 'package:auto_mates/screens/homescreentab/ui/latest_car_updates_widget.dart';
+import 'package:auto_mates/screens/homescreentab/ui/top_sellers_widget.dart';
 import 'package:auto_mates/screens/homescreentab/ui/carousal_widget.dart';
 import 'package:auto_mates/screens/homescreentab/ui/fetured_cars_widget.dart';
-import 'package:auto_mates/screens/homescreentab/ui/home_appbar_widget.dart';
+import 'package:auto_mates/screens/bottomtabswitch_appbar/app_bar_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,31 +18,58 @@ class _HomeScreenState extends State<HomeScreen> {
     final screenSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(85),
-        child:HomeAppBar(screenSize: screenSize)
-      ),
+      // appBar: PreferredSize(
+      //   preferredSize: const Size.fromHeight(85),
+      //   child:HomeAppBar(screenSize: screenSize)
+      // ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              Container(
-                height: screenSize.height/4.8,
-                width: screenSize.width,
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white),
-                child: CarouselSliderWidget(screenSize: screenSize)
+              Card(
+                elevation: 5,
+                child: Container(
+                  height: screenSize.height/4.8,
+                  width: screenSize.width,
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white),
+                  child: CarouselSliderWidget(screenSize: screenSize)
+                ),
               ),
-              Container(
-                height: screenSize.height/4,
-                width: screenSize.width,                          
-                child: BestSellersWidget(screenSize: screenSize),
+              Card(
+                elevation: 5,
+                color: const Color(0xFFDBEDF5),
+                child: Padding(
+                  padding: const EdgeInsets.all(3),
+                  child: Container(
+                    height: screenSize.height/4,
+                    width: screenSize.width,                          
+                    child: TopSellersWidget(screenSize: screenSize),
+                  ),
+                ),
               ),
-              Container(
-                height: screenSize.height/4,
-                width: screenSize.width,                         
-                child: FeaturedCarsWidget(screenSize: screenSize),
+              Card(
+                elevation: 5,
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(3),
+                  child: Container(
+                    height: screenSize.height/4,
+                    width: screenSize.width,                         
+                    child: FeaturedCarsWidget(screenSize: screenSize),
+                  ),
+                ),
               ),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(3),
+                  child: Container(
+                    height: screenSize.height/2.9,
+                    width: screenSize.width,
+                    child: LatestCarUpdatesWidget(screenSize: screenSize),
+                  ),
+                ),
+              )
             ],
           ),
         ),

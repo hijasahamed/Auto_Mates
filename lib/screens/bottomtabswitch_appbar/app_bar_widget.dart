@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
-class HomeAppBar extends StatelessWidget {
-  const HomeAppBar({super.key, required this.screenSize});
+class AppBarWidget extends StatelessWidget {
+  const AppBarWidget({super.key, required this.screenSize});
   final Size screenSize;
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.white,
       leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Scaffold.of(context).openDrawer();
+          },
           icon: const Icon(
             Icons.menu_outlined,
             color: Colors.white,
@@ -19,7 +21,6 @@ class HomeAppBar extends StatelessWidget {
         width: screenSize.width / 1.5,
         decoration: BoxDecoration(
             color: const Color.fromARGB(255, 82, 170, 161),
-            // color: Colors.white10,
             border: Border.all(width: .5,color: const Color.fromARGB(179, 109, 109, 109)),
             borderRadius: const BorderRadius.all(Radius.circular(60))),
         child: Row(

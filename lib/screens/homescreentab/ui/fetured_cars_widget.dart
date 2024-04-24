@@ -19,7 +19,7 @@ return Column(
                 height: 20,
                 width: 50,
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.green),
-                child: const Center(child: Text('Promoted',style: TextStyle(fontSize: 10,color: Colors.white,fontWeight: FontWeight.bold),))
+                child: const Center(child: Text('Promoted',style: TextStyle(fontSize: 9,color: Colors.white,fontWeight: FontWeight.bold),))
               ),
               ],
             ),
@@ -44,7 +44,7 @@ return Column(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         image: const DecorationImage(
-                          image: NetworkImage('https://cdni.autocarindia.com/Utils/ImageResizer.ashx?n=https://cdni.autocarindia.com/ExtraImages/20230703022329_Virtus.jpg'),
+                          image: NetworkImage('https://www.topgear.com/sites/default/files/cars-car/carousel/2021/05/210302sclassjl_0084.jpg'),
                           fit: BoxFit.cover
                         )
                       ),
@@ -57,7 +57,7 @@ return Column(
                       height: 30,
                       width: screenSize.width/2.16,
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(50),color: Color(0xFFDBEDF5)),
-                      child: const Center(child: Text('₹16.25 Lakh',style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xFF424141)),)),
+                      child: const Center(child: Text('₹1.65 Cr',style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xFF424141)),)),
                     )
                   ),
                   Positioned(    
@@ -68,7 +68,7 @@ return Column(
                         borderRadius: BorderRadius.circular(5),
                         color: Colors.black45,
                       ),
-                      child: const Text("volkswagen Virtus Gt",style: TextStyle(fontSize: 15,color: Colors.white,fontWeight: FontWeight.bold),)
+                      child: const Text("Mercedes-Benz S-Class",style: TextStyle(fontSize: 15,color: Colors.white,fontWeight: FontWeight.bold),)
                     ),
                   ),
                 ],
