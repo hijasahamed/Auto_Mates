@@ -3,7 +3,6 @@ import 'package:auto_mates/screens/homescreentab/ui/latest_car_updates_widget.da
 import 'package:auto_mates/screens/homescreentab/ui/top_sellers_widget.dart';
 import 'package:auto_mates/screens/homescreentab/ui/carousal_widget.dart';
 import 'package:auto_mates/screens/homescreentab/ui/fetured_cars_widget.dart';
-import 'package:auto_mates/screens/bottomtabswitch_appbar/app_bar_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
