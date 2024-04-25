@@ -54,7 +54,7 @@ class TopSellersWidget extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: const Color(0xFF1888FE),
                           borderRadius: BorderRadius.circular(2)
-                        ),
+                        ),                        
                         child: const Row(
                           children: [
                             Icon(Icons.star,color: Colors.white,),

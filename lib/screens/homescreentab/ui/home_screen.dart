@@ -17,11 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.white,
-      // appBar: PreferredSize(
-      //   preferredSize: const Size.fromHeight(85),
-      //   child:HomeAppBar(screenSize: screenSize)
-      // ),
+      backgroundColor: Colors.white,     
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),

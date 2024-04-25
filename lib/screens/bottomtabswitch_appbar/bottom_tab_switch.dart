@@ -1,4 +1,5 @@
 import 'package:auto_mates/screens/bottomtabswitch_appbar/app_bar_widget.dart';
+import 'package:auto_mates/screens/bottomtabswitch_appbar/drawer_listtile_widget.dart';
 import 'package:auto_mates/screens/homescreentab/ui/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -61,57 +62,7 @@ class _BottomTabSwitchScreenState extends State<BottomTabSwitchScreen> {
         unselectedItemColor: const Color(0xFF424141),
         unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),              
       ),
-      body: tabs[tabIndex],
-      // drawer: Drawer(
-      //   backgroundColor: Colors.white,          
-      //   width: screenSize.width/1.22,
-      //   child: SafeArea(
-      //     child: Container(
-      //       color: const Color(0xFFDBEDF5),
-      //       child:  Column(
-      //         crossAxisAlignment: CrossAxisAlignment.start,
-      //         children: [
-      //           Container(
-      //             color: const Color.fromARGB(255, 76, 207, 239),
-      //             child:  Padding(
-      //               padding: const EdgeInsets.all(8.0),
-      //               child: Row(
-      //                 children: [
-      //                   CircleAvatar(
-      //                     radius: 25,
-                          
-      //                   ),
-      //                   SizedBox(width: screenSize.width/30,),
-      //                   Column(
-      //                     crossAxisAlignment: CrossAxisAlignment.start,
-      //                     children: [
-      //                       Text('Hello',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),),
-      //                       Text('Sinina Sihabudheen',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),),
-      //                     ],
-      //                   ),
-      //                   Spacer()
-      //                 ],
-      //               ),
-      //             ),
-      //           ),
-      //           GestureDetector(
-      //             child: Container(
-      //               height: 50,
-      //               width: 300,
-      //               color: Colors.yellow,
-      //               child: const Row(
-      //                 children: [
-      //                   Icon(Icons.home_rounded,color: Color(0xFF424141),size: 40,),
-      //                   Text('Home',style: TextStyle(),)
-      //                 ],
-      //               ),
-      //             ),
-      //           )
-      //         ],
-      //       ),
-      //     )
-      //   ),
-      // ),
+      body: tabs[tabIndex],      
       drawer: Drawer(
         width: screenSize.width/1.22,
         child: ListView(
@@ -142,6 +93,23 @@ class _BottomTabSwitchScreenState extends State<BottomTabSwitchScreen> {
                   const Spacer(),
                   const Icon(Icons.arrow_forward_ios_rounded,color: Colors.white,),                  
                 ],
+              ),
+            ),
+            const DrawerListtileWidget(leadingIcon: Icons.home_rounded, title: 'Home'),
+            const DrawerListtileWidget(leadingIcon: Icons.favorite_border, title: 'Favourite Sellers'),
+            const DrawerListtileWidget(leadingIcon: Icons.favorite_border, title: 'Favourite Cars'),
+            const DrawerListtileWidget(leadingIcon: Icons.car_rental, title: 'Buy a Car'),
+            const DrawerListtileWidget(leadingIcon: Icons.calculate_outlined, title: 'EMI Calculator'),
+            const DrawerListtileWidget(leadingIcon: Icons.newspaper, title: 'News'),
+            const DrawerListtileWidget(leadingIcon: Icons.rule_sharp, title: 'Terms & Conditions'),
+            const DrawerListtileWidget(leadingIcon: Icons.privacy_tip_outlined, title: 'Privacy Policy'),
+            const DrawerListtileWidget(leadingIcon: Icons.info_outline, title: 'About'),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 50,
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),),
+                child: const Center(child: Text('Version 1.0.0',style: TextStyle(fontWeight: FontWeight.w600),),),
               ),
             )
           ],
