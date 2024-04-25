@@ -22,7 +22,7 @@ class LatestCarUpdatesWidget extends StatelessWidget {
               width: screenSize.width/2.3,
               decoration:  BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
-                border: Border.all(width: 1,color: const Color.fromARGB(255, 125, 126, 126))                
+                color: Colors.white               
               ),
               child: Padding(
                 padding: const EdgeInsets.all(2),
@@ -41,7 +41,8 @@ class LatestCarUpdatesWidget extends StatelessWidget {
                     const Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text('Read more >',style: TextStyle(color: Colors.blue,fontWeight: FontWeight.w600),),                        
+                        Text('Read more',style: TextStyle(color: Colors.blue,fontWeight: FontWeight.w600),),
+                        Icon(Icons.arrow_forward_ios,color: Colors.blue,size: 18,)                         
                       ],
                     )
                   ],
@@ -53,7 +54,7 @@ class LatestCarUpdatesWidget extends StatelessWidget {
               width: screenSize.width/2.3,
               decoration:  BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
-                border: Border.all(width: 1,color: const Color.fromARGB(255, 125, 126, 126))                
+                color: Colors.white                
               ),
               child: Padding(
                 padding: const EdgeInsets.all(2),
@@ -72,7 +73,8 @@ class LatestCarUpdatesWidget extends StatelessWidget {
                     const Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text('Read more >',style: TextStyle(color: Colors.blue,fontWeight: FontWeight.w600),),                        
+                        Text('Read more',style: TextStyle(color: Colors.blue,fontWeight: FontWeight.w600),),
+                        Icon(Icons.arrow_forward_ios,color: Colors.blue,size: 18,)                        
                       ],
                     )
                   ],

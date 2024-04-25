@@ -1,3 +1,4 @@
+import 'package:auto_mates/screens/homescreentab/ui/favourite_cars_widget.dart';
 import 'package:auto_mates/screens/homescreentab/ui/latest_car_updates_widget.dart';
 import 'package:auto_mates/screens/homescreentab/ui/top_sellers_widget.dart';
 import 'package:auto_mates/screens/homescreentab/ui/carousal_widget.dart';
@@ -37,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: const Color(0xFFDBEDF5),
                 child: Padding(
                   padding: const EdgeInsets.all(3),
-                  child: Container(
+                  child: SizedBox(
                     height: screenSize.height/4,
                     width: screenSize.width,                          
                     child: TopSellersWidget(screenSize: screenSize),
@@ -46,10 +47,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Card(
                 elevation: 5,
-                color: Colors.white,
+                color: const Color(0xFFDBEDF5),
                 child: Padding(
                   padding: const EdgeInsets.all(3),
-                  child: Container(
+                  child: SizedBox(
                     height: screenSize.height/4,
                     width: screenSize.width,                         
                     child: FeaturedCarsWidget(screenSize: screenSize),
@@ -57,15 +58,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Card(
+                elevation: 5,
+                color: const Color(0xFFDBEDF5),
+                child: SizedBox(
+                  height: screenSize.height/4,
+                  width: screenSize.width,
+                  child:  FavouriteCarsWidget(screenSize: screenSize),
+                ),
+              ),
+              Card(
+                elevation: 5,
+                color: const Color(0xFFDBEDF5),
                 child: Padding(
                   padding: const EdgeInsets.all(3),
-                  child: Container(
+                  child: SizedBox(
                     height: screenSize.height/2.9,
                     width: screenSize.width,
                     child: LatestCarUpdatesWidget(screenSize: screenSize),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),

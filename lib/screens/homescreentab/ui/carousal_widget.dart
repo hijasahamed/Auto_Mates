@@ -27,10 +27,10 @@ class CarouselSliderWidget extends StatelessWidget {
             bottom: 5,
             right: 5,         
               child: Container(
-                height: 25,
+                height: 20,
                 width: 50,
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.green),
-                child: const Center(child: Text('Promoted',style: TextStyle(fontSize: 10,color: Colors.white,fontWeight: FontWeight.bold),))
+                child: const Center(child: Text('Promoted',style: TextStyle(fontSize: 9,color: Colors.white,fontWeight: FontWeight.bold),))
               ),
             ),
           ]

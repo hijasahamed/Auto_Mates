@@ -1,5 +1,6 @@
 import 'package:auto_mates/screens/bottomtabswitch_appbar/app_bar_widget.dart';
-import 'package:auto_mates/screens/bottomtabswitch_appbar/drawer_listtile_widget.dart';
+import 'package:auto_mates/screens/bottomtabswitch_appbar/drawer_list_tile_widget.dart';
+import 'package:auto_mates/screens/buyscreentab/buy_screen.dart';
 import 'package:auto_mates/screens/homescreentab/ui/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -15,9 +16,9 @@ class _BottomTabSwitchScreenState extends State<BottomTabSwitchScreen> {
   int tabIndex=0;
   List tabs=[
     const HomeScreen(),
-    const HomeScreen(),
-    const HomeScreen(),
-    const HomeScreen(),
+    const BuyScreen(),
+    const BuyScreen(),
+    const BuyScreen(),
   ];
 
   @override

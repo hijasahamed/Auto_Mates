@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget {
@@ -21,7 +22,8 @@ class AppBarWidget extends StatelessWidget {
         width: screenSize.width / 1.5,
         decoration: BoxDecoration(
             color: const Color.fromARGB(255, 82, 170, 161),
-            border: Border.all(width: .5,color: const Color.fromARGB(179, 109, 109, 109)),
+            border: Border.all(
+                width: .5, color: const Color.fromARGB(179, 109, 109, 109)),
             borderRadius: const BorderRadius.all(Radius.circular(60))),
         child: Row(
           children: [
@@ -36,12 +38,21 @@ class AppBarWidget extends StatelessWidget {
             SizedBox(
               width: screenSize.width / 22,
             ),
-            const Text(
-              'Search',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
+            AnimatedTextKit(
+              animatedTexts: [
+                TypewriterAnimatedText(
+                  'Search...',
+                  textStyle: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  speed: const Duration(milliseconds: 300),
+                  cursor: ''
+                ),
+              ],
+              isRepeatingAnimation: true,
+              repeatForever: true,              
             )
           ],
         ),
@@ -60,14 +71,14 @@ class AppBarWidget extends StatelessWidget {
                 right: 11,
                 top: 14,
                 child: CircleAvatar(
-                  radius: 8,
+                  radius: 6,
                   backgroundColor: Color.fromARGB(255, 0, 112, 248),
                 )),
             const Positioned(
                 right: 13,
                 top: 16,
                 child: CircleAvatar(
-                  radius: 6,
+                  radius: 4,
                   backgroundColor: Colors.green,
                 ))
           ],
