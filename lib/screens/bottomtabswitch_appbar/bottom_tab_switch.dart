@@ -1,6 +1,6 @@
 import 'package:auto_mates/screens/bottomtabswitch_appbar/app_bar_widget.dart';
 import 'package:auto_mates/screens/bottomtabswitch_appbar/drawer_list_tile_widget.dart';
-import 'package:auto_mates/screens/buyscreentab/buy_screen.dart';
+import 'package:auto_mates/screens/buyscreentab/ui/buy_screen.dart';
 import 'package:auto_mates/screens/homescreentab/ui/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -26,8 +26,8 @@ class _BottomTabSwitchScreenState extends State<BottomTabSwitchScreen> {
     final screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(85),
-        child:AppBarWidget(screenSize: screenSize)
+        preferredSize: tabIndex==1? const Size.fromHeight(110) : const Size.fromHeight(85), 
+        child: AppBarWidget(screenSize: screenSize,tabIndex: tabIndex,)
       ),
       bottomNavigationBar: BottomNavigationBar(
         elevation: 10,
@@ -48,7 +48,7 @@ class _BottomTabSwitchScreenState extends State<BottomTabSwitchScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.sell_outlined),
-            label: 'Home',
+            label: 'Sell',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.newspaper),
@@ -70,7 +70,7 @@ class _BottomTabSwitchScreenState extends State<BottomTabSwitchScreen> {
           children: [
             DrawerHeader(
               decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 82, 170, 161),
+                color: Color.fromARGB(255, 22, 190, 118)
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,

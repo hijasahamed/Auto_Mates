@@ -2,8 +2,9 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget {
-  const AppBarWidget({super.key, required this.screenSize});
+  const AppBarWidget({super.key, required this.screenSize,required this.tabIndex});
   final Size screenSize;
+  final int tabIndex;
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -20,11 +21,9 @@ class AppBarWidget extends StatelessWidget {
       title: Container(
         height: screenSize.height / 21,
         width: screenSize.width / 1.5,
-        decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 82, 170, 161),
-            border: Border.all(
-                width: .5, color: const Color.fromARGB(179, 109, 109, 109)),
-            borderRadius: const BorderRadius.all(Radius.circular(60))),
+        decoration: const BoxDecoration(
+            color: Color.fromARGB(255, 22, 190, 118),            
+            borderRadius: BorderRadius.all(Radius.circular(60))),
         child: Row(
           children: [
             SizedBox(
@@ -41,7 +40,7 @@ class AppBarWidget extends StatelessWidget {
             AnimatedTextKit(
               animatedTexts: [
                 TypewriterAnimatedText(
-                  'Search...',
+                  'Search',
                   textStyle: const TextStyle(
                     color: Colors.white,
                     fontSize: 20,
@@ -99,6 +98,14 @@ class AppBarWidget extends StatelessWidget {
           ),
         ),
       ),
+      bottom: tabIndex==1?
+      const PreferredSize(
+        preferredSize: Size.fromHeight(150), 
+        child: Padding(
+          padding: EdgeInsets.only(bottom: 13),
+          child: Text('FIND THE RIGHT USED CAR',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 20),),
+        )
+      ) : null,
     );
   }
 }
