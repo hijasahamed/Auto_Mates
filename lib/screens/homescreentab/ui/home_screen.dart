@@ -1,3 +1,4 @@
+import 'package:auto_mates/screens/homescreentab/ui/emi_card_widget.dart';
 import 'package:auto_mates/screens/homescreentab/ui/favourite_cars_widget.dart';
 import 'package:auto_mates/screens/homescreentab/ui/latest_car_updates_widget.dart';
 import 'package:auto_mates/screens/homescreentab/ui/top_sellers_widget.dart';
@@ -64,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: screenSize.width,
                   child:  FavouriteCarsWidget(screenSize: screenSize),
                 ),
-              ),
+              ),              
               Card(
                 elevation: 5,
                 color: const Color(0xFFDBEDF5),
@@ -76,6 +77,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: LatestCarUpdatesWidget(screenSize: screenSize),
                   ),
                 ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(6),
+                child: EmiCardWidget(screenSize: screenSize),
               ),
             ],
           ),
