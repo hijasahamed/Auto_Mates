@@ -1,3 +1,4 @@
+import 'package:auto_mates/screens/buyscreentab/ui/seller_details_screen.dart';
 import 'package:flutter/material.dart';
 
 class BuyScreen extends StatelessWidget {
@@ -157,7 +158,11 @@ class BuyScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 4, bottom: 4),
                             child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                                    return SellerDetailsScreen(screenSize: screenSize,data: carDetails[index],);
+                                  },));
+                                },
                                 child: const Text(
                                   'Seller Details',
                                   style: TextStyle(

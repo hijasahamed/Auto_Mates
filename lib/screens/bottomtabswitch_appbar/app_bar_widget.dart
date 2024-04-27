@@ -16,13 +16,13 @@ class AppBarWidget extends StatelessWidget {
           icon: const Icon(
             Icons.menu_outlined,
             color: Colors.white,
-            size: 40,
+            size: 35,
           )),
       title: Container(
         height: screenSize.height / 21,
         width: screenSize.width / 1.5,
         decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 22, 190, 118),            
+            color: Color(0xFF143A42),            
             borderRadius: BorderRadius.all(Radius.circular(60))),
         child: Row(
           children: [
@@ -64,7 +64,7 @@ class AppBarWidget extends StatelessWidget {
                 icon: const Icon(
                   Icons.notifications,
                   color: Colors.white,
-                  size: 40,
+                  size: 30,
                 )),
             const Positioned(
                 right: 11,
