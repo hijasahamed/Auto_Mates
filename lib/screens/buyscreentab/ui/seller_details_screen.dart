@@ -1,7 +1,7 @@
-import 'dart:async';
 
 import 'package:auto_mates/screens/buyscreentab/ui/buy_screen.dart';
 import 'package:auto_mates/screens/buyscreentab/ui/car_details_widget.dart';
+import 'package:auto_mates/screens/buyscreentab/ui/custom_alert_dialoge_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -87,7 +87,7 @@ class SellerDetailsScreen extends StatelessWidget {
                 context: context,
                 barrierDismissible: false,
                 builder: (BuildContext context) {
-                  return const CustomAlertDialog();
+                  return const CustomAlertDialogeWidget();
                 },
               );
               },
@@ -110,6 +110,7 @@ class SellerDetailsScreen extends StatelessWidget {
   }
 }
 
+
 class CarMoreDetails extends StatelessWidget {
   const CarMoreDetails({super.key,required this.text,required this.icon});
   final String text;
@@ -122,66 +123,6 @@ class CarMoreDetails extends StatelessWidget {
         Text(text,style: const TextStyle(color:Color.fromARGB(255, 118, 118, 118),fontWeight: FontWeight.w500 ),)
       ],
     );
-  }
-}
-
-
-class CustomAlertDialog extends StatefulWidget {
-  const CustomAlertDialog({super.key});
-
-  @override
-  _CustomAlertDialogState createState() => _CustomAlertDialogState();
-}
-
-class _CustomAlertDialogState extends State
-{
-  late int _secondsLeft;
-  late Timer _timer;
-
-  @override
-  void initState() {
-    super.initState();
-    _secondsLeft = 5; 
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        if (_secondsLeft > 0) {
-          _secondsLeft--;
-        } else {
-          Navigator.of(context).pop();
-          _timer.cancel();
-        }
-      });
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      backgroundColor: const Color(0xFFDBEDF5),
-      title: const Text('Interest Marked',style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xFF424141)),),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text('Thank you for showing interest in this car. The seller will contact you shortly to discuss the deal.',style: TextStyle(fontWeight: FontWeight.w500),),
-          Text('This dialog will close in $_secondsLeft seconds.'),
-        ],
-      ),
-      actions: <Widget>[
-        TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: const Text('Close Now'),
-        ),
-      ],
-    );
-  }
-
-  @override
-  void dispose() {
-    _timer.cancel();
-    super.dispose();
   }
 }
 
