@@ -2,6 +2,7 @@
 import 'package:auto_mates/screens/buyscreentab/ui/buy_screen.dart';
 import 'package:auto_mates/screens/buyscreentab/ui/car_details_widget.dart';
 import 'package:auto_mates/screens/buyscreentab/ui/custom_alert_dialoge_widget.dart';
+import 'package:auto_mates/screens/buyscreentab/ui/seller_details_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -42,12 +43,20 @@ class SellerDetailsScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(6),
-        child: Column(
-          children: [
-            CarDetailsWidget(screenSize: screenSize, data: data),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(6),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [              
+              SellerDetailsWidget(screenSize: screenSize),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text('Car Details',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Color(0xFF424141)),),
+              ),
+              CarDetailsWidget(screenSize: screenSize, data: data),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomAppBar(
@@ -69,12 +78,12 @@ class SellerDetailsScreen extends StatelessWidget {
                   color: Colors.blue
                 ),
                 child: const Padding(
-                  padding: EdgeInsets.only(left: 25,right: 25),
+                  padding: EdgeInsets.only(left: 35,right: 35),
                   child: Row(
                     children: [
-                      Icon(Icons.chat_outlined,size: 40,color: Colors.white,),
+                      Icon(Icons.chat_outlined,size: 25,color: Colors.white,),
                       Spacer(),
-                      Text('Chat',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),)
+                      Text('Chat',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),)
                     ],
                   ),
                 ),
@@ -87,7 +96,7 @@ class SellerDetailsScreen extends StatelessWidget {
                 context: context,
                 barrierDismissible: false,
                 builder: (BuildContext context) {
-                  return const CustomAlertDialogeWidget();
+                  return CustomAlertDialogeWidget(screenSize: screenSize,);
                 },
               );
               },
@@ -99,7 +108,7 @@ class SellerDetailsScreen extends StatelessWidget {
                   color: Colors.green
                 ),
                 child: const Center(
-                  child: Text('Interested',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),),
+                  child: Text('Interested',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),),
                 ),
               ),
             )
