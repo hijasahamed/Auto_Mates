@@ -57,18 +57,23 @@ class SellerDetailsWidget extends StatelessWidget {
                         SellersDetail(icon: Icons.place, data: "Malappuram"),
                       ],
                     ),
-                    Container(
-                      height: screenSize.height/7.5,
-                      width: screenSize.width/2,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: Colors.yellow,
-                        image: const DecorationImage(image: AssetImage('assets/images/news.webp'),fit: BoxFit.cover)
+                    Card(
+                      elevation: 2,
+                      child: Container(
+                        height: screenSize.height/7.5,
+                        width: screenSize.width/2,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: Colors.yellow,
+                          image: const DecorationImage(image: AssetImage('assets/images/gmap.png'),fit: BoxFit.cover,opacity: 1)
+                        ),
+                        child: const Center(
+                          child: Icon(Icons.place,size: 60,color: Colors.blueGrey,),
+                        ),
                       ),
-                    )
+                    ),
                   ],
                 ),
-                const Divider(color: Colors.white,thickness: 2,), 
               ],
             ),
           )
