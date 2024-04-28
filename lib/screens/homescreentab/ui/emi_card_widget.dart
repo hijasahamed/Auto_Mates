@@ -9,7 +9,7 @@ class EmiCardWidget extends StatelessWidget {
       height: screenSize.height/4.5,
       width: screenSize.width,
       decoration: BoxDecoration(
-        color: Colors.blue,
+        color: const Color.fromARGB(255, 0, 140, 255),
         borderRadius: BorderRadius.circular(15)
       ),
       child: Padding(
@@ -17,8 +17,8 @@ class EmiCardWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Ready to drive your dream?',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 18),),
-            const Text("Choose your preferred EMI frequency\nand hit the road hassle-free!\n*T&C applied",style: TextStyle(fontWeight: FontWeight.normal,color: Colors.white,fontSize: 10),),
+            const Text('Ready to drive your dream?',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 19),),
+            const Text("Choose your preferred EMI frequency\nand hit the road hassle-free!\n*T&C applied",style: TextStyle(fontWeight: FontWeight.w500,color: Colors.white,fontSize: 10),),
             const Spacer(),
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -27,21 +27,21 @@ class EmiCardWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text('0',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 23),),
-                    Text('Down payment',style: TextStyle(fontWeight: FontWeight.w600,color: Colors.white,fontSize: 13),)
+                    Text('Down payment',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 13),)
                   ],
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text('9%',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 23),),
-                    Text('Interest rate',style: TextStyle(fontWeight: FontWeight.w600,color: Colors.white,fontSize: 13),)
+                    Text('Interest rate',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 13),)
                   ],
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text('32',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 23),),
-                    Text('Months EMI',style: TextStyle(fontWeight: FontWeight.w600,color: Colors.white,fontSize: 13),)
+                    Text('Months EMI',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 13),)
                   ],
                 ),
               ],
@@ -51,7 +51,7 @@ class EmiCardWidget extends StatelessWidget {
               width: screenSize.width,
               child: ElevatedButton(
                 onPressed: (){},
-                child: const Text('CALCULATE & GET OFFERS',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),)
+                child: const Text('CALCULATE & GET OFFERS',style: TextStyle(color: Color(0xFF424141),fontWeight: FontWeight.bold),)
               ),
             )
           ],

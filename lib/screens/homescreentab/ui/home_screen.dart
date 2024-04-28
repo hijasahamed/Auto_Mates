@@ -78,9 +78,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(6),
-                child: EmiCardWidget(screenSize: screenSize),
+              Card(
+                elevation: 5,
+                color: const Color(0xFFDBEDF5),
+                child: Padding(
+                  padding: const EdgeInsets.all(6),
+                  child: EmiCardWidget(screenSize: screenSize),
+                ),
               ),
             ],
           ),

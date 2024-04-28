@@ -9,7 +9,7 @@ class SellerDetailsWidget extends StatelessWidget {
       color: Colors.white,
       elevation: 5,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        
         children: [
           Stack(
             children: [
@@ -25,34 +25,50 @@ class SellerDetailsWidget extends StatelessWidget {
                             'https://67cdn.co.uk/90/6/167300977163b81a6bc69c9_ccs-revisedhome.jpg?width=479&height=251&crop=auto'),
                         fit: BoxFit.cover)),
               ),
-              Positioned(
+              const Positioned(
                   top: 5,
                   right: 5,
                   child: CircleAvatar(
                     backgroundColor: Colors.white,
                     radius: 15,
-                    child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.favorite_outline_rounded,
-                          size: 15,
-                          color: Colors.red,
-                        )),
+                    child: Icon(Icons.favorite_outline_rounded,
+                          size: 20,
+                          color: Colors.red,),
                   ))
             ],
           ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Seller information',style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xFF424141)),),
-                Divider(color: Colors.white,thickness: 2,),
-                SellersDetail(icon: Icons.person, data: "CCS Car Sales"),
-                SellersDetail(icon: Icons.call, data: "7907721095"),
-                SellersDetail(icon: Icons.star, data: "4.2"),
-                SellersDetail(icon: Icons.place, data: "Malappuram"),
-                Divider(color: Colors.white,thickness: 2,),
+                const Text('Seller information',style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xFF424141)),),
+                const Divider(color: Colors.white,thickness: 2,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SellersDetail(icon: Icons.person, data: "CCS Car Sales"),
+                        SellersDetail(icon: Icons.call, data: "7907721095"),
+                        SellersDetail(icon: Icons.star, data: "4.2"),
+                        SellersDetail(icon: Icons.place, data: "Malappuram"),
+                      ],
+                    ),
+                    Container(
+                      height: screenSize.height/7.5,
+                      width: screenSize.width/2,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.yellow,
+                        image: const DecorationImage(image: AssetImage('assets/images/news.webp'),fit: BoxFit.cover)
+                      ),
+                    )
+                  ],
+                ),
+                const Divider(color: Colors.white,thickness: 2,), 
               ],
             ),
           )

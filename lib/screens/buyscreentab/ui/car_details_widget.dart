@@ -27,19 +27,15 @@ class CarDetailsWidget extends StatelessWidget {
                     image: DecorationImage(
                         image: NetworkImage(data.imageurl), fit: BoxFit.cover)),
               ),
-              Positioned(
+              const Positioned(
                   top: 5,
                   right: 5,
                   child: CircleAvatar(
                     backgroundColor: Colors.white,
                     radius: 15,
-                    child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.favorite_outline_rounded,
-                          size: 15,
-                          color: Colors.red,
-                        )),
+                    child: Icon(Icons.favorite_outline_rounded,
+                          size: 20,
+                          color: Colors.red,),
                   ))
             ],
           ),

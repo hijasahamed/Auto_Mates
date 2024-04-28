@@ -39,11 +39,11 @@ class TopSellersWidget extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemBuilder: (context,index) {
               return Padding(
-                padding: const EdgeInsets.all(4),
+                padding: const EdgeInsets.all(2.5),
                 child: Stack(
                   children: [
                     Container(                   
-                      width: screenSize.width/1.7,
+                      width: screenSize.width/2.2,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         image: DecorationImage(
@@ -53,13 +53,14 @@ class TopSellersWidget extends StatelessWidget {
                       ),
                     ),
                      Positioned(
-                      bottom: 3,
+                      bottom: 0,
                       child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.black54,
+                        width: screenSize.width/2.2,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(5),bottomRight: Radius.circular(5)),
+                          color: Colors.white,
                         ),
-                        child: Text(topSellers[index].name,style: const TextStyle(fontSize: 15,color: Colors.white,fontWeight: FontWeight.bold),)
+                        child: Center(child: Text(topSellers[index].name,style: const TextStyle(fontSize: 15,color: Colors.black,fontWeight: FontWeight.bold),))
                       ),
                     ),
                     Positioned(
