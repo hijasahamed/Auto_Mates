@@ -1,6 +1,5 @@
 
 import 'package:auto_mates/screens/authentications/user_login_screen.dart';
-import 'package:auto_mates/screens/bottomtabswitch/bottom_tab_switch.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +13,6 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,      
-      // home: BottomTabSwitchScreen()
       home: UserLoginScreen(),
     );
   }
