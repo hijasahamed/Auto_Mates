@@ -1,5 +1,5 @@
-import 'package:auto_mates/screens/bottomtabswitch_appbar/app_bar_widget.dart';
-import 'package:auto_mates/screens/bottomtabswitch_appbar/drawer_list_tile_widget.dart';
+import 'package:auto_mates/screens/appbar/app_bar_widget.dart';
+import 'package:auto_mates/screens/appbar/drawer_list_tile_widget.dart';
 import 'package:auto_mates/screens/buyscreentab/ui/buy_screen.dart';
 import 'package:auto_mates/screens/homescreentab/ui/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -47,12 +47,12 @@ class _BottomTabSwitchScreenState extends State<BottomTabSwitchScreen> {
             label: 'Buy',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.sell_outlined),
-            label: 'Sell',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.newspaper),
             label: 'News',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
           ),
         ],
         selectedItemColor: const Color.fromARGB(255, 76, 207, 239),

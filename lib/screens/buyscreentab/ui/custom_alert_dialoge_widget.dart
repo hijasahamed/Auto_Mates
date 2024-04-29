@@ -61,7 +61,7 @@ class _CustomAlertDialogeWidgetState extends State<CustomAlertDialogeWidget> {
                 children: [
                   const Icon(Icons.call,color: Colors.green,),
                   SizedBox(width: widget.screenSize.width/35,),
-                  const Text('Call Seller'),                  
+                  const Text('Call Seller',style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xFF424141)),),                  
                 ],
               ), 
             ),
@@ -72,7 +72,7 @@ class _CustomAlertDialogeWidgetState extends State<CustomAlertDialogeWidget> {
               child:Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Text('Back',style: TextStyle(fontWeight: FontWeight.bold),),
+                  const Text('Back',style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xFF424141)),),
                   SizedBox(width: widget.screenSize.width/35,),
                   CircleAvatar(
                     backgroundColor: Colors.red,

@@ -64,7 +64,6 @@ class SellerDetailsWidget extends StatelessWidget {
                         width: screenSize.width/2,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
-                          color: Colors.yellow,
                           image: const DecorationImage(image: AssetImage('assets/images/gmap.png'),fit: BoxFit.cover,opacity: 1)
                         ),
                         child: const Center(
