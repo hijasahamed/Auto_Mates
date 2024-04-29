@@ -12,9 +12,9 @@ class TextFormFieldWidget extends StatelessWidget {
         style: const TextStyle(color: Color(0xFF424141),fontWeight: FontWeight.normal),
         decoration: InputDecoration(
               hintText: hintText,
-              hintStyle: const TextStyle(color: Colors.blue,fontWeight: FontWeight.normal),
+              hintStyle: const TextStyle(color: Color.fromARGB(255, 86, 86, 86),fontWeight: FontWeight.normal),
               suffixIcon: icon,
-              fillColor: Colors.white,
+              fillColor: const Color(0xFFDBEDF5),
               filled: true,
               enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.white),

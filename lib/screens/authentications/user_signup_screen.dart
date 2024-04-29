@@ -85,11 +85,11 @@ class UserSignupScreen extends StatelessWidget {
                   child: ClipPath(
                     clipper: Customshape(),
                     child: Container(
-                      color: const Color.fromARGB(255, 9, 75, 104),
+                      color: const Color(0xFF284845),
                       height: screenSize.height/10,
                       child: const Center(
                           child: Text(
-                        'SIGNUP',
+                        'Signup',
                         style: TextStyle(
                             fontSize: 28,
                             fontWeight: FontWeight.w600,

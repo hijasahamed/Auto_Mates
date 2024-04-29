@@ -1,5 +1,6 @@
 import 'package:auto_mates/screens/buyscreentab/ui/buy_screen.dart';
 import 'package:auto_mates/screens/buyscreentab/ui/seller_details_screen.dart';
+import 'package:auto_mates/screens/buyscreentab/ui/specification_features_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -18,7 +19,7 @@ class CarDetailsWidget extends StatelessWidget {
           Stack(
             children: [
               Container(
-                height: screenSize.height / 5,
+                height: screenSize.height / 6,
                 width: screenSize.width,
                 decoration: BoxDecoration(
                     borderRadius: const BorderRadius.only(
@@ -114,6 +115,20 @@ class CarDetailsWidget extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(
+                  height: screenSize.height / 90,
+                ),
+                Container(
+                  width: screenSize.width,
+                  color: Colors.white,
+                  child: const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Specifications & Features',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Color(0xFF424141)),),
+                      SpecificationFeaturesWidget()
+                    ],
+                  ),
+                )
               ],
             ),
           ),
