@@ -1,7 +1,5 @@
-
 import 'package:auto_mates/screens/authentication/bloc/authentication_bloc.dart';
-import 'package:auto_mates/screens/authentication/ui/user_login_screen.dart';
-import 'package:auto_mates/screens/homescreen/bloc/homescreen_bloc.dart';
+import 'package:auto_mates/screens/authentication/ui/view/user_login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

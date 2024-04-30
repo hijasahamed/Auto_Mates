@@ -2,10 +2,11 @@ part of 'authentication_bloc.dart';
 
 @immutable
 abstract class AuthenticationEvent {}
-class AuthenticationInitialEvent extends AuthenticationEvent {}
 
 
-class DontHaveAccountEvent extends AuthenticationEvent {}
+class NavigateToSignupPageEvent extends AuthenticationEvent {}
 
-class LoginButtonEvent extends AuthenticationEvent {}
+class NavigateToDealerLoginPageEvent extends AuthenticationEvent{}
+
+class LoginButtonClickedEvent extends AuthenticationEvent {}
 
