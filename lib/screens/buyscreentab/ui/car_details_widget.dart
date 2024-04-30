@@ -83,7 +83,10 @@ class CarDetailsWidget extends StatelessWidget {
                 Container(
                   height: screenSize.height / 12,
                   width: screenSize.width,
-                  color: Colors.white,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5)
+                  ),
                   child: const Padding(
                     padding: EdgeInsets.only(top: 8, left: 8, right: 8),
                     child: Row(
@@ -119,13 +122,20 @@ class CarDetailsWidget extends StatelessWidget {
                   height: screenSize.height / 90,
                 ),
                 Container(
+                  height: screenSize.height/2,
                   width: screenSize.width,
-                  color: Colors.white,
-                  child: const Column(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5)
+                  ),
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Specifications & Features',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Color(0xFF424141)),),
-                      SpecificationFeaturesWidget()
+                      const Padding(
+                        padding: EdgeInsets.only(left: 10,top: 5),
+                        child: Text('Specifications & Features',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Color(0xFF424141)),),
+                      ),
+                      SpecificationFeaturesWidget(screenSize: screenSize,)
                     ],
                   ),
                 )

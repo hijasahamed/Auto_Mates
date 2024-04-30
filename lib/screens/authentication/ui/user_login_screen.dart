@@ -1,5 +1,5 @@
-import 'package:auto_mates/screens/authentications/text_form_field_widget.dart';
-import 'package:auto_mates/screens/authentications/user_signup_screen.dart';
+import 'package:auto_mates/screens/authentication/ui/text_form_field_widget.dart';
+import 'package:auto_mates/screens/authentication/ui/user_signup_screen.dart';
 import 'package:auto_mates/screens/bottomtabswitch/bottom_tab_switch.dart';
 import 'package:flutter/material.dart';
 
@@ -78,6 +78,7 @@ class UserLoginScreen extends StatelessWidget {
                 Column(
                   children: [
                     TextButton(
+                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.white12)), 
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) => UserSignupScreen(screenSize: screenSize),));
                       }, 
@@ -87,7 +88,8 @@ class UserLoginScreen extends StatelessWidget {
                     TextButton(
                       onPressed: () {
                         
-                      }, 
+                      },
+                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue)), 
                       child: const Text('Login as Dealer',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),
                     )
                   ],

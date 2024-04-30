@@ -1,5 +1,5 @@
-import 'package:auto_mates/screens/authentications/text_form_field_widget.dart';
-import 'package:auto_mates/screens/authentications/user_login_screen.dart';
+import 'package:auto_mates/screens/authentication/ui/text_form_field_widget.dart';
+import 'package:auto_mates/screens/authentication/ui/user_login_screen.dart';
 import 'package:auto_mates/screens/bottomtabswitch/bottom_tab_switch.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +38,7 @@ class UserSignupScreen extends StatelessWidget {
                         width: screenSize.width,
                         child: const Column(
                           children: [
-                            Text('Create Account To Explore More',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                            Text('Create Account To Explore More',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),),
                             Text(
                               'Signup',
                               style: TextStyle(
@@ -62,6 +62,7 @@ class UserSignupScreen extends StatelessWidget {
                         ),
                       ),
                       TextButton(
+                        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.white10)),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => const UserLoginScreen(),
