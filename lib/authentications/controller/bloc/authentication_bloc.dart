@@ -13,6 +13,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     on<LoginButtonClickedEvent>(loginButtonClickedEvent);
     on<AlreadyHaveAccountButtonClickedEvent>(alreadyHaveAccountButtonClickedEvent);
     on<SignupButtonClickedEvent>(signupButtonClickedEvent);
+    on<NavigateToDealerLoginPageEvent>(navigateToDealerLoginPageEvent);
   }
 
   FutureOr<void> navigateToSignupPageEvent(
@@ -33,6 +34,11 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   FutureOr<void> signupButtonClickedEvent(
     SignupButtonClickedEvent event, Emitter<AuthenticationState> emit) {
       emit(SignupButtonClickedActionState());
+  }
+
+  FutureOr<void> navigateToDealerLoginPageEvent(
+    NavigateToDealerLoginPageEvent event, Emitter<AuthenticationState> emit) {
+      emit(NavigateToDealerLoginPageActionState());
   }
 }
 

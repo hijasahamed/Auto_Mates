@@ -1,4 +1,5 @@
 import 'package:auto_mates/authentications/controller/bloc/authentication_bloc.dart';
+import 'package:auto_mates/authentications/view/dealer_login_screen.dart';
 import 'package:auto_mates/authentications/view/widgets/login_screen_widgets/google_login_widget.dart';
 import 'package:auto_mates/authentications/view/widgets/login_screen_widgets/login_button_widget.dart';
 import 'package:auto_mates/authentications/view/widgets/login_screen_widgets/login_section_widget.dart';
@@ -31,6 +32,11 @@ class UserLoginScreen extends StatelessWidget {
         else if(state is LoginButtonClickedActionState){
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => const AppbarBottomTabSwitchScreen(),
+          ));
+        }
+        else if(state is NavigateToDealerLoginPageActionState){
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => const DealerLoginScreen(),
           ));
         }
         else if(state is AlreadyHaveAccountButtonClickedActionState){

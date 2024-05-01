@@ -1,3 +1,4 @@
+import 'package:auto_mates/appbarbottombar/controller/bloc/appbottombar_bloc.dart';
 import 'package:auto_mates/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/authentications/view/user_login_screen.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => AuthenticationBloc(),)
+        BlocProvider(create: (context) => AuthenticationBloc(),),
+        BlocProvider(create: (context) => AppbottombarBloc(),)
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false, 

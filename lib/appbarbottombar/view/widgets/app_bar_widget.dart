@@ -8,7 +8,7 @@ class AppBarWidget extends StatelessWidget {
   final int tabIndex;
   @override
   Widget build(BuildContext context) {
-    return  AppBar(
+    return  AppBar( 
       backgroundColor: Colors.white,
       leading: const MenuButtonWidget(),  
       title: Container(

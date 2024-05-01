@@ -24,7 +24,9 @@ class SignupDealerLoginWidget extends StatelessWidget {
           height: screenSize.height / 50,
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            authenticationBloc.add(NavigateToDealerLoginPageEvent());
+          },
           child: const Text(
             'Login as Dealer',
             style: TextStyle(
