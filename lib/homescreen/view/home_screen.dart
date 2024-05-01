@@ -1,9 +1,9 @@
-import 'package:auto_mates/homescreen/ui/emi_card_widget.dart';
-import 'package:auto_mates/homescreen/ui/favourite_cars_widget.dart';
-import 'package:auto_mates/homescreen/ui/latest_car_updates_widget.dart';
-import 'package:auto_mates/homescreen/ui/top_sellers_widget.dart';
-import 'package:auto_mates/homescreen/ui/carousal_widget.dart';
-import 'package:auto_mates/homescreen/ui/fetured_cars_widget.dart';
+import 'package:auto_mates/homescreen/view/widgets/emi_card_widget.dart';
+import 'package:auto_mates/homescreen/view/widgets/favourite_cars_widget.dart';
+import 'package:auto_mates/homescreen/view/widgets/latest_car_updates_widget.dart';
+import 'package:auto_mates/homescreen/view/widgets/top_sellers_widget.dart';
+import 'package:auto_mates/homescreen/view/widgets/carousal_widget.dart';
+import 'package:auto_mates/homescreen/view/widgets/fetured_cars_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {

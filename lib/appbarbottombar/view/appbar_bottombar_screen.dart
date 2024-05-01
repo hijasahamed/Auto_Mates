@@ -3,7 +3,7 @@ import 'package:auto_mates/appbarbottombar/controller/bloc/appbottombar_bloc.dar
 import 'package:auto_mates/appbarbottombar/view/widgets/app_bar_widget.dart';
 import 'package:auto_mates/appbarbottombar/view/widgets/drawer_widget.dart';
 import 'package:auto_mates/buyscreentab/ui/buy_screen.dart';
-import 'package:auto_mates/homescreen/ui/home_screen.dart';
+import 'package:auto_mates/homescreen/view/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
