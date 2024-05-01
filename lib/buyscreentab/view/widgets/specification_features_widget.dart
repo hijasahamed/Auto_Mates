@@ -1,4 +1,4 @@
-import 'package:auto_mates/buyscreentab/ui/tab_bar_view_list_tile.dart';
+import 'package:auto_mates/buyscreentab/view/widgets/tab_bar_view_list_tile.dart';
 import 'package:flutter/material.dart';
 
 class SpecificationFeaturesWidget extends StatelessWidget {

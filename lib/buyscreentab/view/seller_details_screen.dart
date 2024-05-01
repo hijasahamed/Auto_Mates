@@ -1,8 +1,8 @@
 
-import 'package:auto_mates/buyscreentab/ui/buy_screen.dart';
-import 'package:auto_mates/buyscreentab/ui/car_details_widget.dart';
-import 'package:auto_mates/buyscreentab/ui/custom_alert_dialoge_widget.dart';
-import 'package:auto_mates/buyscreentab/ui/seller_details_widget.dart';
+import 'package:auto_mates/buyscreentab/view/buy_screen.dart';
+import 'package:auto_mates/buyscreentab/view/widgets/car_details_widget.dart';
+import 'package:auto_mates/buyscreentab/view/widgets/custom_alert_dialoge_widget.dart';
+import 'package:auto_mates/buyscreentab/view/widgets/seller_details_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

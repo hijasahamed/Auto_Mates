@@ -1,3 +1,4 @@
+import 'package:auto_mates/commonwidgets/my_text_widget.dart';
 import 'package:flutter/material.dart';
 
 class DrawerListtileWidget extends StatelessWidget {
@@ -18,12 +19,9 @@ class DrawerListtileWidget extends StatelessWidget {
       child: ListTile(
         leading: Icon(
           leadingIcon,
-          size: 35,
+          size: 30,
         ),
-        title: Text(
-          title,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-        ),
+        title: MyTextWidget(text: title, color: const Color(0xFF424141), size: 16, weight: FontWeight.w600),
       ),
     );
   }

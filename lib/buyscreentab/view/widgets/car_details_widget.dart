@@ -1,6 +1,6 @@
-import 'package:auto_mates/buyscreentab/ui/buy_screen.dart';
-import 'package:auto_mates/buyscreentab/ui/seller_details_screen.dart';
-import 'package:auto_mates/buyscreentab/ui/specification_features_widget.dart';
+import 'package:auto_mates/buyscreentab/view/buy_screen.dart';
+import 'package:auto_mates/buyscreentab/view/seller_details_screen.dart';
+import 'package:auto_mates/buyscreentab/view/widgets/specification_features_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

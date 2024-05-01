@@ -26,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Card(
                 elevation: 5,
+                color: const Color(0xFFDBEDF5),
                 child: Container(
                   height: screenSize.height/4.8,
                   width: screenSize.width,
