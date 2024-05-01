@@ -1,11 +1,11 @@
-import 'package:auto_mates/screens/authentications/controller/bloc/authentication_bloc.dart';
-import 'package:auto_mates/screens/authentications/view/widgets/login_screen_widgets/google_login_widget.dart';
-import 'package:auto_mates/screens/authentications/view/widgets/login_screen_widgets/login_button_widget.dart';
-import 'package:auto_mates/screens/authentications/view/widgets/login_screen_widgets/login_section_widget.dart';
-import 'package:auto_mates/screens/authentications/view/widgets/login_screen_widgets/signup_dealer_login_widget.dart';
-import 'package:auto_mates/screens/authentications/view/user_signup_screen.dart';
-import 'package:auto_mates/screens/authentications/view/widgets/login_screen_widgets/welcome_text_widget.dart';
-import 'package:auto_mates/screens/appbarbottombar/bottom_tab_switch.dart';
+import 'package:auto_mates/authentications/controller/bloc/authentication_bloc.dart';
+import 'package:auto_mates/authentications/view/widgets/login_screen_widgets/google_login_widget.dart';
+import 'package:auto_mates/authentications/view/widgets/login_screen_widgets/login_button_widget.dart';
+import 'package:auto_mates/authentications/view/widgets/login_screen_widgets/login_section_widget.dart';
+import 'package:auto_mates/authentications/view/widgets/login_screen_widgets/signup_dealer_login_widget.dart';
+import 'package:auto_mates/authentications/view/user_signup_screen.dart';
+import 'package:auto_mates/authentications/view/widgets/login_screen_widgets/welcome_text_widget.dart';
+import 'package:auto_mates/appbarbottombar/view/appbar_bottombar_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

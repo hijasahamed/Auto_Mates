@@ -1,6 +1,6 @@
-import 'package:auto_mates/screens/authentications/controller/bloc/authentication_bloc.dart';
-import 'package:auto_mates/screens/authentications/view/widgets/signup_screen_widgets/signup_button_widget.dart';
-import 'package:auto_mates/screens/authentications/view/widgets/signup_screen_widgets/signup_welcome_widget.dart';
+import 'package:auto_mates/authentications/controller/bloc/authentication_bloc.dart';
+import 'package:auto_mates/authentications/view/widgets/signup_screen_widgets/signup_button_widget.dart';
+import 'package:auto_mates/authentications/view/widgets/signup_screen_widgets/signup_welcome_widget.dart';
 import 'package:flutter/material.dart';
 
 

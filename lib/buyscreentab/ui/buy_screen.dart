@@ -1,4 +1,4 @@
-import 'package:auto_mates/screens/buyscreentab/ui/seller_details_screen.dart';
+import 'package:auto_mates/buyscreentab/ui/seller_details_screen.dart';
 import 'package:flutter/material.dart';
 
 class BuyScreen extends StatelessWidget {

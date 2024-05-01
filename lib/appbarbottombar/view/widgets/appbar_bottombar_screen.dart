@@ -1,8 +1,8 @@
 
-import 'package:auto_mates/screens/appbarbottombar/drawer_list_tile_widget.dart';
-import 'package:auto_mates/screens/appbar_bottombar.dart/appbar/view/app_bar_widget.dart';
-import 'package:auto_mates/screens/buyscreentab/ui/buy_screen.dart';
-import 'package:auto_mates/screens/homescreen/ui/home_screen.dart'; 
+import 'package:auto_mates/appbarbottombar/view/widgets/app_bar_widget.dart';
+import 'package:auto_mates/appbarbottombar/view/widgets/drawer_list_tile_widget.dart'; 
+import 'package:auto_mates/buyscreentab/ui/buy_screen.dart';
+import 'package:auto_mates/homescreen/ui/home_screen.dart'; 
 import 'package:flutter/material.dart';
 
 class AppbarBottomTabSwitchScreen extends StatefulWidget {

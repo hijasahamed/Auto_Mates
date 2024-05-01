@@ -1,5 +1,5 @@
-import 'package:auto_mates/screens/authentications/controller/bloc/authentication_bloc.dart';
-import 'package:auto_mates/screens/authentications/view/user_login_screen.dart';
+import 'package:auto_mates/authentications/controller/bloc/authentication_bloc.dart';
+import 'package:auto_mates/authentications/view/user_login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
