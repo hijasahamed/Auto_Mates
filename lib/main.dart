@@ -1,5 +1,5 @@
-import 'package:auto_mates/screens/authentication/bloc/authentication_bloc.dart';
-import 'package:auto_mates/screens/authentication/ui/view/user_login_screen.dart';
+import 'package:auto_mates/screens/authentication/controller/bloc/authentication_bloc.dart';
+import 'package:auto_mates/screens/authentication/view/user_login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,9 +15,10 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => AuthenticationBloc(),)
       ],
-      child: const MaterialApp(
-        debugShowCheckedModeBanner: false,      
-        home: UserLoginScreen(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false, 
+        theme: ThemeData.light(),      
+        home: const UserLoginScreen(),
       ),
     );
   }

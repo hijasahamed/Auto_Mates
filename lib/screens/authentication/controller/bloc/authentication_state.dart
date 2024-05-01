@@ -12,3 +12,7 @@ class NavigateToSignupPageActionState extends AuthenticationActionState{}
 class NavigateToDealerLoginPageActionState extends AuthenticationActionState{}
 
 class LoginButtonClickedActionState extends AuthenticationActionState{}
+
+class AlreadyHaveAccountButtonClickedActionState extends AuthenticationActionState{}
+
+class SignupButtonClickedActionState extends AuthenticationActionState{}

@@ -1,4 +1,4 @@
-import 'package:auto_mates/screens/authentication/bloc/authentication_bloc.dart';
+import 'package:auto_mates/screens/authentication/controller/bloc/authentication_bloc.dart';
 import 'package:flutter/material.dart';
 
 class LoginButtonWidget extends StatelessWidget {

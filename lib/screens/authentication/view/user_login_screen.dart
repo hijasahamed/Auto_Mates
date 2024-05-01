@@ -1,10 +1,10 @@
-import 'package:auto_mates/screens/authentication/bloc/authentication_bloc.dart';
-import 'package:auto_mates/screens/authentication/ui/widgets/login_screen_widgets/google_login_widget.dart';
-import 'package:auto_mates/screens/authentication/ui/widgets/login_screen_widgets/login_button_widget.dart';
-import 'package:auto_mates/screens/authentication/ui/widgets/login_screen_widgets/login_section_widget.dart';
-import 'package:auto_mates/screens/authentication/ui/widgets/login_screen_widgets/signup_dealer_login_widget.dart';
-import 'package:auto_mates/screens/authentication/ui/view/user_signup_screen.dart';
-import 'package:auto_mates/screens/authentication/ui/widgets/login_screen_widgets/welcome_text_widget.dart';
+import 'package:auto_mates/screens/authentication/controller/bloc/authentication_bloc.dart';
+import 'package:auto_mates/screens/authentication/view/widgets/login_screen_widgets/google_login_widget.dart';
+import 'package:auto_mates/screens/authentication/view/widgets/login_screen_widgets/login_button_widget.dart';
+import 'package:auto_mates/screens/authentication/view/widgets/login_screen_widgets/login_section_widget.dart';
+import 'package:auto_mates/screens/authentication/view/widgets/login_screen_widgets/signup_dealer_login_widget.dart';
+import 'package:auto_mates/screens/authentication/view/user_signup_screen.dart';
+import 'package:auto_mates/screens/authentication/view/widgets/login_screen_widgets/welcome_text_widget.dart';
 import 'package:auto_mates/screens/bottomtabswitch/bottom_tab_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,7 +25,7 @@ class UserLoginScreen extends StatelessWidget {
         if(state is NavigateToSignupPageActionState){
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) =>
-                UserSignupScreen(screenSize: screenSize),
+                UserSignupScreen(screenSize: screenSize,authenticationBloc: authenticationBloc),
           ));
         }
         else if(state is LoginButtonClickedActionState){
@@ -33,6 +33,7 @@ class UserLoginScreen extends StatelessWidget {
             builder: (context) => const BottomTabSwitchScreen(),
           ));
         }
+        
       },
       builder: (context, state) {
         return Scaffold(

@@ -10,3 +10,8 @@ class NavigateToDealerLoginPageEvent extends AuthenticationEvent{}
 
 class LoginButtonClickedEvent extends AuthenticationEvent {}
 
+class AlreadyHaveAccountButtonClickedEvent extends AuthenticationEvent{}
+
+class SignupButtonClickedEvent extends AuthenticationEvent{}
+
+

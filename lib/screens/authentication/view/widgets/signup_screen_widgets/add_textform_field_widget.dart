@@ -1,4 +1,4 @@
-import 'package:auto_mates/screens/authentication/ui/widgets/login_screen_widgets/text_formfield_widget.dart';
+import 'package:auto_mates/screens/authentication/view/widgets/login_screen_widgets/text_formfield_widget.dart';
 import 'package:flutter/material.dart';
 
 class AddTextformFieldWidget extends StatelessWidget {
@@ -12,9 +12,6 @@ class AddTextformFieldWidget extends StatelessWidget {
         children: [                           
           TextFormFieldWidget(
             hintText: 'Username',
-          ),
-          TextFormFieldWidget(
-            hintText: 'Email',
           ),
           TextFormFieldWidget(
             hintText: 'Password',
