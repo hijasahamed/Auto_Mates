@@ -1,9 +1,9 @@
-import 'package:auto_mates/homescreen/view/widgets/emi_card_widget.dart';
-import 'package:auto_mates/homescreen/view/widgets/favourite_cars_widget.dart';
-import 'package:auto_mates/homescreen/view/widgets/latest_car_updates_widget.dart';
-import 'package:auto_mates/homescreen/view/widgets/top_sellers_widget.dart';
-import 'package:auto_mates/homescreen/view/widgets/carousal_widget.dart';
-import 'package:auto_mates/homescreen/view/widgets/fetured_cars_widget.dart';
+import 'package:auto_mates/homescreen/view/widgets/emicard/emi_card_widget.dart';
+import 'package:auto_mates/homescreen/view/widgets/favouritecars/favourite_cars_widget.dart';
+import 'package:auto_mates/homescreen/view/widgets/latestcarupdates/latest_car_updates_widget.dart';
+import 'package:auto_mates/homescreen/view/widgets/topsellers/top_sellers_widget.dart';
+import 'package:auto_mates/homescreen/view/widgets/carouselslider/carousal_slider_widget.dart';
+import 'package:auto_mates/homescreen/view/widgets/featuredcars/fetured_cars_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -78,13 +78,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              Card(
-                elevation: 5,
-                color: const Color(0xFFDBEDF5),
-                child: Padding(
-                  padding: const EdgeInsets.all(6),
-                  child: EmiCardWidget(screenSize: screenSize),
-                ),
+              Padding(
+                padding: const EdgeInsets.all(4.5),
+                child: EmiCardWidget(screenSize: screenSize),
               ),
             ],
           ),

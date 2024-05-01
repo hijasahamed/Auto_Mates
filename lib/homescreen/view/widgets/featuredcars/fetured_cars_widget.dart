@@ -54,7 +54,7 @@ return Column(
             TextButton(onPressed: (){}, child: const Text('View All',style: TextStyle(fontWeight: FontWeight.w600,color: Colors.blue),), )
           ],
         ),
-        Container(
+        SizedBox(
           height: screenSize.height/5.5,
           width: screenSize.width,
           child: ListView.builder(
@@ -86,7 +86,7 @@ return Column(
                       height: 30,
                       width: screenSize.width/2.23,
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(50),color: Colors.white),
-                      child:  Center(child: Text(carList[index].price,style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xFF424141)),)),
+                      child:  Center(child: Text(carList[index].price,style: const TextStyle(fontWeight: FontWeight.bold,color: Color(0xFF424141)),)),
                     )
                   ),
                   Positioned(    
@@ -95,9 +95,9 @@ return Column(
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: Colors.black45,
+                        color: Colors.black,
                       ),
-                      child: Text(carList[index].name,style: TextStyle(fontSize: 15,color: Colors.white,fontWeight: FontWeight.bold),)
+                      child: Text(carList[index].name,style: const TextStyle(fontSize: 15,color: Colors.white,fontWeight: FontWeight.bold),)
                     ),
                   ),
                 ],
