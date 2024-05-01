@@ -1,11 +1,13 @@
 
+import 'package:auto_mates/screens/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/screens/authentications/view/widgets/signup_screen_widgets/add_textform_field_widget.dart';
 import 'package:auto_mates/screens/authentications/view/widgets/signup_screen_widgets/back_to_login_screen_widget.dart';
 import 'package:flutter/material.dart';
 
 class SignupWelcomeWidget extends StatelessWidget {
-  const SignupWelcomeWidget({super.key,required this.screenSize,});
+  const SignupWelcomeWidget({super.key,required this.screenSize,required this.authenticationBloc});
   final Size screenSize;
+  final AuthenticationBloc authenticationBloc;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -29,7 +31,8 @@ class SignupWelcomeWidget extends StatelessWidget {
           ),
           const Spacer(),
           AddTextformFieldWidget(screenSize: screenSize),
-          const BackToLoginScreenWidget(),
+          const Spacer(),
+          BackToLoginScreenWidget(authenticationBloc: authenticationBloc),
         ],
       ),
     );

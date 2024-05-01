@@ -1,4 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:auto_mates/screens/appbarbottombar/menu_button_widget.dart';
+
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget {
@@ -7,17 +9,9 @@ class AppBarWidget extends StatelessWidget {
   final int tabIndex;
   @override
   Widget build(BuildContext context) {
-    return AppBar(
+    return  AppBar(
       backgroundColor: Colors.white,
-      leading: IconButton(
-          onPressed: () {
-            Scaffold.of(context).openDrawer();
-          },
-          icon: const Icon(
-            Icons.menu_outlined,
-            color: Colors.white,
-            size: 35,
-          )),
+      leading: const MenuButtonWidget(),  
       title: Container(
         height: screenSize.height / 21,
         width: screenSize.width / 1.5,

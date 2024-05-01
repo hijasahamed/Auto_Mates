@@ -14,7 +14,7 @@ class DrawerListtileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(      
      elevation: 2,
-      shadowColor: Color(0xFFDBEDF5),
+      shadowColor: const Color(0xFFDBEDF5),
       child: ListTile(
         leading: Icon(
           leadingIcon,

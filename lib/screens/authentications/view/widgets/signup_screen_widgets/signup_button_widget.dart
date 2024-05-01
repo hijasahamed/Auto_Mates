@@ -1,5 +1,5 @@
 import 'package:auto_mates/screens/authentications/view/widgets/login_screen_widgets/login_button_widget.dart';
-import 'package:auto_mates/screens/bottomtabswitch/bottom_tab_switch.dart';
+import 'package:auto_mates/screens/appbarbottombar/bottom_tab_switch.dart';
 import 'package:flutter/material.dart';
 
 class SignupButtonWidget extends StatelessWidget {
@@ -10,7 +10,7 @@ class SignupButtonWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const BottomTabSwitchScreen(),
+          builder: (context) => const AppbarBottomTabSwitchScreen(),
         ));
       },
       child: ClipPath(

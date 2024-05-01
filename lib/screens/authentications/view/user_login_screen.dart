@@ -5,7 +5,7 @@ import 'package:auto_mates/screens/authentications/view/widgets/login_screen_wid
 import 'package:auto_mates/screens/authentications/view/widgets/login_screen_widgets/signup_dealer_login_widget.dart';
 import 'package:auto_mates/screens/authentications/view/user_signup_screen.dart';
 import 'package:auto_mates/screens/authentications/view/widgets/login_screen_widgets/welcome_text_widget.dart';
-import 'package:auto_mates/screens/bottomtabswitch/bottom_tab_switch.dart';
+import 'package:auto_mates/screens/appbarbottombar/bottom_tab_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,8 +30,11 @@ class UserLoginScreen extends StatelessWidget {
         }
         else if(state is LoginButtonClickedActionState){
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const BottomTabSwitchScreen(),
+            builder: (context) => const AppbarBottomTabSwitchScreen(),
           ));
+        }
+        else if(state is AlreadyHaveAccountButtonClickedActionState){
+          Navigator.of(context).pop();
         }
         
       },

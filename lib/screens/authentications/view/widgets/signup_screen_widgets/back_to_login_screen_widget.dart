@@ -1,17 +1,15 @@
+import 'package:auto_mates/screens/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/screens/authentications/view/user_login_screen.dart';
 import 'package:flutter/material.dart';
 
 class BackToLoginScreenWidget extends StatelessWidget {
-  const BackToLoginScreenWidget({super.key});
-
+  const BackToLoginScreenWidget({super.key,required this.authenticationBloc});
+  final AuthenticationBloc authenticationBloc;
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.white10)),
+    return TextButton(      
       onPressed: () {
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const UserLoginScreen(),
-        ));
+        authenticationBloc.add(AlreadyHaveAccountButtonClickedEvent());
       },
       child: const Text(
         'Already have an Account? Login',

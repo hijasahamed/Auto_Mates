@@ -10,9 +10,6 @@ class SignupDealerLoginWidget extends StatelessWidget {
     return Column(
       children: [
         TextButton(
-          style: ButtonStyle(
-              backgroundColor:
-                  MaterialStateProperty.all(Colors.white12)),
           onPressed: () {
             authenticationBloc.add(NavigateToSignupPageEvent());
           },
@@ -28,9 +25,6 @@ class SignupDealerLoginWidget extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {},
-          style: ButtonStyle(
-              backgroundColor:
-                MaterialStateProperty.all(Colors.white12)),
           child: const Text(
             'Login as Dealer',
             style: TextStyle(
