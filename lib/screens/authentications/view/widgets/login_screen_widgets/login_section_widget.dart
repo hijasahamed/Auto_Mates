@@ -1,4 +1,4 @@
-import 'package:auto_mates/screens/authentication/view/widgets/login_screen_widgets/text_formfield_widget.dart';
+import 'package:auto_mates/screens/authentications/view/widgets/login_screen_widgets/text_formfield_widget.dart';
 import 'package:flutter/material.dart';
 
 class LoginSectionWidget extends StatelessWidget {

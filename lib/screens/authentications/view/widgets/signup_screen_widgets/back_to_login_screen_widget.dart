@@ -1,4 +1,4 @@
-import 'package:auto_mates/screens/authentication/view/user_login_screen.dart';
+import 'package:auto_mates/screens/authentications/view/user_login_screen.dart';
 import 'package:flutter/material.dart';
 
 class BackToLoginScreenWidget extends StatelessWidget {

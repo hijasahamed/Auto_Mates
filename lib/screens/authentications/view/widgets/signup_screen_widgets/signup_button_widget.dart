@@ -1,4 +1,4 @@
-import 'package:auto_mates/screens/authentication/view/widgets/login_screen_widgets/login_button_widget.dart';
+import 'package:auto_mates/screens/authentications/view/widgets/login_screen_widgets/login_button_widget.dart';
 import 'package:auto_mates/screens/bottomtabswitch/bottom_tab_switch.dart';
 import 'package:flutter/material.dart';
 
