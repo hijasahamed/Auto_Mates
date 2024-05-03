@@ -1,5 +1,5 @@
 import 'package:auto_mates/authentications/controller/bloc/authentication_bloc.dart';
-import 'package:auto_mates/authentications/controller/functions/fire_base_auth_service.dart';
+import 'package:auto_mates/firebase/fire_base_auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

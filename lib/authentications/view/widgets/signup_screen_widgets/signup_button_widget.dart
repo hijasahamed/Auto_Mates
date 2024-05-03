@@ -1,6 +1,6 @@
 import 'package:auto_mates/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/authentications/controller/functions/common_fuctions.dart';
-import 'package:auto_mates/authentications/controller/functions/fire_base_auth_service.dart';
+import 'package:auto_mates/firebase/fire_base_auth_service.dart';
 import 'package:auto_mates/authentications/view/widgets/login_signup_buttonshape/login_signup_button_shape.dart';
 import 'package:flutter/material.dart';
 
