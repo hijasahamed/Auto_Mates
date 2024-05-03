@@ -1,4 +1,3 @@
-import 'package:auto_mates/appbarbottombar/view/appbar_bottombar_screen.dart';
 import 'package:auto_mates/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/authentications/controller/functions/fire_base_auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';

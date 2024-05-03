@@ -3,6 +3,7 @@ import 'package:auto_mates/appbarbottombar/view/widgets/app_bar_widget.dart';
 import 'package:auto_mates/appbarbottombar/view/widgets/drawer_widget.dart';
 import 'package:auto_mates/buyscreentab/view/buy_screen.dart';
 import 'package:auto_mates/homescreen/view/home_screen.dart';
+import 'package:auto_mates/profilescreen/view/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,7 +20,7 @@ class AppbarBottomTabSwitchScreen extends StatelessWidget {
       const HomeScreen(),
       const BuyScreen(),
       const BuyScreen(),
-      const BuyScreen(),
+      const ProfileScreen(),
     ];
     final AppbottombarBloc appbottombarBloc = AppbottombarBloc();
 
