@@ -1,17 +1,29 @@
-import 'package:auto_mates/authentications/view/widgets/login_screen_widgets/login_button_widget.dart';
-import 'package:auto_mates/appbarbottombar/view/appbar_bottombar_screen.dart';
+import 'package:auto_mates/authentications/controller/bloc/authentication_bloc.dart';
+import 'package:auto_mates/authentications/controller/functions/common_fuctions.dart';
+import 'package:auto_mates/authentications/controller/functions/fire_base_auth_service.dart';
+import 'package:auto_mates/authentications/view/widgets/login_signup_buttonshape/login_signup_button_shape.dart';
 import 'package:flutter/material.dart';
 
 class SignupButtonWidget extends StatelessWidget {
-  const SignupButtonWidget({super.key,required this.screenSize});
+  const SignupButtonWidget({super.key,required this.screenSize,required this.userNameController,
+      required this.authenticationBloc,
+      required this.emailController,
+      required this.passwordController,
+      required this.reChekPasswordController,
+      required this.formkey,required this.auth});
   final Size screenSize;
+  final AuthenticationBloc authenticationBloc;
+  final TextEditingController userNameController;
+  final TextEditingController passwordController;
+  final TextEditingController emailController;
+  final TextEditingController reChekPasswordController;
+  final GlobalKey formkey;
+  final FirebaseAuthService auth;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const AppbarBottomTabSwitchScreen(), 
-        ));
+      onTap: () {        
+        return signupButtonClicked(emailController.text, passwordController.text, authenticationBloc);
       },
       child: ClipPath(
         clipper: Customshape(),

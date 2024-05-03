@@ -11,38 +11,41 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserLoginScreen extends StatelessWidget {
-  const UserLoginScreen({super.key});
+  UserLoginScreen({super.key});
 
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-  final AuthenticationBloc authenticationBloc =AuthenticationBloc();
+    final AuthenticationBloc authenticationBloc = AuthenticationBloc();
     final screenSize = MediaQuery.of(context).size;
     return BlocConsumer<AuthenticationBloc, AuthenticationState>(
       bloc: authenticationBloc,
       listenWhen: (previous, current) => current is AuthenticationActionState,
-      buildWhen: (previous, current) => current is!  AuthenticationActionState,
+      buildWhen: (previous, current) => current is! AuthenticationActionState,
       listener: (context, state) {
-        if(state is NavigateToSignupPageActionState){
+        if (state is NavigateToSignupPageActionState) {
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) =>
-                UserSignupScreen(screenSize: screenSize,authenticationBloc: authenticationBloc),
+            builder: (context) => UserSignupScreen(
+                screenSize: screenSize, authenticationBloc: authenticationBloc),
           ));
-        }
-        else if(state is LoginButtonClickedActionState){
+        } else if (state is LoginButtonClickedActionState) {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => const AppbarBottomTabSwitchScreen(),
+          ));
+        } else if (state is NavigateToDealerLoginPageActionState) {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => const DealerLoginScreen(),
+          ));
+        } else if (state is AlreadyHaveAccountButtonClickedActionState) {
+          Navigator.of(context).pop();
+        } else if (state is SignupButtonClickedActionState) {
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => const AppbarBottomTabSwitchScreen(),
           ));
         }
-        else if(state is NavigateToDealerLoginPageActionState){
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const DealerLoginScreen(),
-          ));
-        }
-        else if(state is AlreadyHaveAccountButtonClickedActionState){
-          Navigator.of(context).pop();
-        }
-        
       },
       builder: (context, state) {
         return Scaffold(
@@ -65,10 +68,20 @@ class UserLoginScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     WelcomeTextWidget(screenSize: screenSize),
-                    LoginSectionWidget(screenSize: screenSize),
+                    LoginSectionWidget(
+                        screenSize: screenSize,
+                        emailController: emailController,
+                        passwordController: passwordController,
+                        formkey: formkey),
                     GoogleLoginwidget(screenSize: screenSize),
-                    SignupDealerLoginWidget(screenSize: screenSize, authenticationBloc: authenticationBloc),
-                    LoginButtonWidget(screenSize: screenSize, authenticationBloc: authenticationBloc),
+                    SignupDealerLoginWidget(
+                        screenSize: screenSize,
+                        authenticationBloc: authenticationBloc),
+                    LoginButtonWidget(
+                        screenSize: screenSize,
+                        authenticationBloc: authenticationBloc,
+                        emailController: emailController,
+                        passwordController: passwordController),
                   ],
                 ),
               ),

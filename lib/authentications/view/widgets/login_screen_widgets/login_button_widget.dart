@@ -1,15 +1,25 @@
 import 'package:auto_mates/authentications/controller/bloc/authentication_bloc.dart';
+import 'package:auto_mates/authentications/controller/functions/common_fuctions.dart';
+import 'package:auto_mates/authentications/view/widgets/login_signup_buttonshape/login_signup_button_shape.dart';
 import 'package:flutter/material.dart';
 
 class LoginButtonWidget extends StatelessWidget {
-  const LoginButtonWidget({super.key,required this.screenSize,required this.authenticationBloc});
+  const LoginButtonWidget(
+      {super.key,
+      required this.screenSize,
+      required this.authenticationBloc,
+      required this.emailController,
+      required this.passwordController});
   final Size screenSize;
   final AuthenticationBloc authenticationBloc;
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        authenticationBloc.add(LoginButtonClickedEvent());
+        return loginButtonClicked(
+            emailController.text, passwordController.text, authenticationBloc);
       },
       child: ClipPath(
         clipper: Customshape(),
@@ -20,9 +30,7 @@ class LoginButtonWidget extends StatelessWidget {
               child: Text(
             'Login',
             style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.w600,
-                color: Colors.white),
+                fontSize: 28, fontWeight: FontWeight.w600, color: Colors.white),
           )),
         ),
       ),
@@ -31,26 +39,3 @@ class LoginButtonWidget extends StatelessWidget {
 }
 
 
-
-class Customshape extends CustomClipper<Path>{ 
-  @override 
-  Path getClip(Size size) { 
-    double height = size.height; 
-    double width = size.width; 
-  
-    var path = Path();
-    path.lineTo(0, 0); 
-    path.quadraticBezierTo(width / 2, height * 0.6, width, 0); 
-    path.lineTo(width, height); 
-    path.lineTo(0, height); 
-    path.close(); 
-
-    return path; 
-  } 
-  
-  @override 
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) { 
-    return true; 
-  } 
-  
-} 

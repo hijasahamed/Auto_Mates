@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "770714286776",
+    "project_id": "auto-mates-e8ebe",
+    "storage_bucket": "auto-mates-e8ebe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770714286776:android:9a32b704e6264bb2a7124d",
+        "android_client_info": {
+          "package_name": "com.automates"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxTgAxXvp4rigj3sZk_8uxRkpQiJsCnfc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
