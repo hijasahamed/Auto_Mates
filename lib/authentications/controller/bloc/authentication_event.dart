@@ -14,4 +14,8 @@ class AlreadyHaveAccountButtonClickedEvent extends AuthenticationEvent{}
 
 class SignupButtonClickedEvent extends AuthenticationEvent{}
 
+class LoginNotSuccessfullEvent extends AuthenticationEvent{}
 
+class SignupNotSuccessfullEvent extends AuthenticationEvent{}
+
+class SignupSuccessfullAndAccountCreatedEvent extends AuthenticationEvent{}

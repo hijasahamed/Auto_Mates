@@ -25,10 +25,10 @@ class AddTextformFieldWidget extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-            TextFormWidget(text: 'Username',controller: userNameController),
-            TextFormWidget(text: 'Email',controller: emailController),
-            TextFormWidget(text: 'Password',controller: passwordController),
-            TextFormWidget(text: 'ConfirmPassword',controller: reChekPasswordController),
+            TextFormWidget(text: 'Username',controller: userNameController,warning: 'Enter Username',),
+            TextFormWidget(text: 'Email',controller: emailController,warning: 'Enter Email',),
+            TextFormWidget(text: 'Password',controller: passwordController,warning: 'Enter Password',),
+            TextFormWidget(text: 'ConfirmPassword',controller: reChekPasswordController,warning: 'Re enter Password',),
             ],
           )
         ),

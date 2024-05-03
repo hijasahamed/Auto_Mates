@@ -21,9 +21,9 @@ class _FavouriteCarsWidgetState extends State<FavouriteCarsWidget> {
   Widget build(BuildContext context) {
 
     List homeData = [
+      "https://stimg.cardekho.com/images/carexteriorimages/930x620/Skoda/Superb-2024/11648/1712204642647/front-left-side-47.jpg",
       "https://spn-sta.spinny.com/blog/20230612165825/Audi-A6.webp?compress=true&quality=80&w=1024&dpr=2.6",
       "https://dealerinspire-image-library-prod.s3.us-east-1.amazonaws.com/images/Biuxbk7TtBO6vb3n0EqHA2515YSE91dLP3cUXBUD.jpg",
-      "https://stimg.cardekho.com/images/carexteriorimages/930x620/Skoda/Superb-2024/11648/1712204642647/front-left-side-47.jpg",
       "https://www.financialexpress.com/wp-content/uploads/2023/03/2023-Hyundai-Verna-Review-1.jpg",
     ];
     CarouselController carouselController = CarouselController();

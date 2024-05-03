@@ -67,6 +67,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   child:  FavouriteCarsWidget(screenSize: screenSize),
                 ),
               ),              
+              Padding(
+                padding: const EdgeInsets.all(4.5),
+                child: EmiCardWidget(screenSize: screenSize),
+              ),
               Card(
                 elevation: 5,
                 color: const Color(0xFFDBEDF5),
@@ -78,10 +82,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: LatestCarUpdatesWidget(screenSize: screenSize),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(4.5),
-                child: EmiCardWidget(screenSize: screenSize),
               ),
             ],
           ),

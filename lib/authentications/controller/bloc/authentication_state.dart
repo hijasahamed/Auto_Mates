@@ -16,3 +16,9 @@ class LoginButtonClickedActionState extends AuthenticationActionState{}
 class AlreadyHaveAccountButtonClickedActionState extends AuthenticationActionState{}
 
 class SignupButtonClickedActionState extends AuthenticationActionState{}
+
+class LoginNotSuccessfullActionState extends AuthenticationActionState{}
+
+class SignupNotSuccessfullActionState extends AuthenticationActionState{}
+
+class SignupSuccessfullAndAccountCreatedActionState extends AuthenticationActionState{}

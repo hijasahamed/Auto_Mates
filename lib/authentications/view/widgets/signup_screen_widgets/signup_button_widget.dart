@@ -23,7 +23,7 @@ class SignupButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {        
-        return signupButtonClicked(emailController.text, passwordController.text, authenticationBloc);
+        return signupButtonClicked(emailController.text, passwordController.text, authenticationBloc,formkey,context);
       },
       child: ClipPath(
         clipper: Customshape(),

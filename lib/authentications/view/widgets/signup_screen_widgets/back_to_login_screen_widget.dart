@@ -10,10 +10,20 @@ class BackToLoginScreenWidget extends StatelessWidget {
       onPressed: () {
         authenticationBloc.add(AlreadyHaveAccountButtonClickedEvent());
       },
-      child: const Text(
-        'Already have an Account? Login',
-        style: TextStyle(
-            fontWeight: FontWeight.w500, color: Colors.white),
+      child: const Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Already have an Account? ',
+            style: TextStyle(
+                fontWeight: FontWeight.w500, color: Colors.white),
+          ),
+          Text(
+            'Login',
+            style: TextStyle(
+                fontWeight: FontWeight.bold, color: Colors.blue),
+          ),
+        ],
       ),
     );
   }

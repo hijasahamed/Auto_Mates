@@ -9,17 +9,19 @@ class LoginButtonWidget extends StatelessWidget {
       required this.screenSize,
       required this.authenticationBloc,
       required this.emailController,
-      required this.passwordController});
+      required this.passwordController,
+      required this.formkey});
   final Size screenSize;
   final AuthenticationBloc authenticationBloc;
   final TextEditingController emailController;
   final TextEditingController passwordController;
+  final GlobalKey formkey;
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         return loginButtonClicked(
-            emailController.text, passwordController.text, authenticationBloc);
+            emailController.text, passwordController.text, authenticationBloc,formkey);
       },
       child: ClipPath(
         clipper: Customshape(),

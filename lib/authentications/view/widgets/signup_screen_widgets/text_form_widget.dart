@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class TextFormWidget extends StatelessWidget {
-  const TextFormWidget({super.key,required this.text,required this.controller});
+  const TextFormWidget({super.key,required this.text,required this.controller,required this.warning});
   final String text;
+  final String warning;
   final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
@@ -10,7 +11,7 @@ class TextFormWidget extends StatelessWidget {
       controller: controller,
       validator: (value) {
         if(value!.isEmpty){
-          return 'Please enter Password';
+          return warning;
         }
         return null;
       },

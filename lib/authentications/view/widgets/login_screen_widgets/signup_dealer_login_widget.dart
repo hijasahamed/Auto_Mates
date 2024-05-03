@@ -13,11 +13,22 @@ class SignupDealerLoginWidget extends StatelessWidget {
           onPressed: () {
             authenticationBloc.add(NavigateToSignupPageEvent());
           },
-          child: const Text(
-            'Don’t have an Account? Signup',
-            style: TextStyle(
-                fontWeight: FontWeight.w500,
-                color: Colors.white),
+          child: const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Don’t have an Account? ',
+                style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white),
+              ),
+              Text(
+                'Signup',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue),
+              ),
+            ],
           ),
         ),
         SizedBox(

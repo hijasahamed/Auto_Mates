@@ -14,6 +14,9 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     on<AlreadyHaveAccountButtonClickedEvent>(alreadyHaveAccountButtonClickedEvent);
     on<SignupButtonClickedEvent>(signupButtonClickedEvent);
     on<NavigateToDealerLoginPageEvent>(navigateToDealerLoginPageEvent);
+    on<LoginNotSuccessfullEvent>(loginNotSuccessfullEvent);
+    on<SignupNotSuccessfullEvent>(signupNotSuccessfullEvent);
+    on<SignupSuccessfullAndAccountCreatedEvent>(signupSuccessfullAndAccountCreatedEvent);
   }
 
   FutureOr<void> navigateToSignupPageEvent(
@@ -39,6 +42,21 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   FutureOr<void> navigateToDealerLoginPageEvent(
     NavigateToDealerLoginPageEvent event, Emitter<AuthenticationState> emit) {
       emit(NavigateToDealerLoginPageActionState());
+  }
+
+  FutureOr<void> loginNotSuccessfullEvent(
+    LoginNotSuccessfullEvent event, Emitter<AuthenticationState> emit) {
+      emit(LoginNotSuccessfullActionState());
+  }
+
+  FutureOr<void> signupNotSuccessfullEvent(
+    SignupNotSuccessfullEvent event, Emitter<AuthenticationState> emit) {
+      emit(SignupNotSuccessfullActionState());
+  }
+
+  FutureOr<void> signupSuccessfullAndAccountCreatedEvent(
+    SignupSuccessfullAndAccountCreatedEvent event, Emitter<AuthenticationState> emit) {
+      emit(SignupSuccessfullAndAccountCreatedActionState());
   }
 }
 

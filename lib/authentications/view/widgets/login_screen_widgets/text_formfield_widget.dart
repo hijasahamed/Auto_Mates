@@ -18,7 +18,7 @@ class TextFormFieldWidget extends StatelessWidget {
               controller: emailController,
               validator: (value) {
                 if(value!.isEmpty){
-                  return 'Please enter email';
+                  return 'Please enter a valid email';
                 }
                 return null;
               },
@@ -48,7 +48,7 @@ class TextFormFieldWidget extends StatelessWidget {
               validator: (value) {
                 if(value!.isEmpty){
                   return 'Please enter Password';
-                }
+                }                
                 return null;
               },
               autovalidateMode: AutovalidateMode.onUserInteraction,
