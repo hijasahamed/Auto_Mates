@@ -1,13 +1,16 @@
+import 'package:auto_mates/authentications/controller/bloc/authentication_bloc.dart';
+import 'package:auto_mates/firebase/fire_base_auth_service.dart';
 import 'package:flutter/material.dart';
 
 class GoogleLoginwidget extends StatelessWidget {
-  const GoogleLoginwidget({super.key,required this.screenSize});
+  const GoogleLoginwidget({super.key,required this.screenSize,required this.authenticationBloc});
   final Size screenSize;
+  final AuthenticationBloc authenticationBloc;
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        
+        logInWithGoogle(authenticationBloc);
       },
       child: Container(
         decoration: BoxDecoration(

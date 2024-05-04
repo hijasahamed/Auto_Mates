@@ -1,6 +1,7 @@
 import 'package:auto_mates/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/authentications/controller/functions/common_fuctions.dart';
 import 'package:auto_mates/authentications/view/dealer_login_screen.dart';
+import 'package:auto_mates/authentications/view/widgets/login_screen_widgets/forgotpassword/forgot_password_widget.dart';
 import 'package:auto_mates/authentications/view/widgets/login_screen_widgets/google_login_widget.dart';
 import 'package:auto_mates/authentications/view/widgets/login_screen_widgets/login_button_widget.dart';
 import 'package:auto_mates/authentications/view/widgets/login_screen_widgets/login_section_widget.dart';
@@ -28,7 +29,7 @@ class UserLoginScreen extends StatelessWidget {
       buildWhen: (previous, current) => current is! AuthenticationActionState,
       listener: (context, state) {
         if (state is NavigateToSignupPageActionState) {
-          Navigator.of(context).push(MaterialPageRoute(
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (context) => UserSignupScreen(
                 screenSize: screenSize, authenticationBloc: authenticationBloc),
           ));
@@ -40,14 +41,22 @@ class UserLoginScreen extends StatelessWidget {
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => const DealerLoginScreen(),
           ));
-        } else if (state is AlreadyHaveAccountButtonClickedActionState) {
-          Navigator.of(context).pop();
         }
         else if (state is LoginNotSuccessfullActionState){
           snackbarWidget('Email and Password Incorrect', context);
         }
         else if (state is SignupNotSuccessfullActionState){
           snackbarWidget('Provide Correct Details', context);
+        }
+        else if(state is LoginWithGoogleButtonSuccessfulNavigateToScreenActionState){
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => const AppbarBottomTabSwitchScreen(),
+          ));
+        }
+        else if(state is ForgetPasswordButtonClickedActionState){
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => ForgotPasswordScreen(screenSize: screenSize,),
+          ));
         }
       },
       builder: (context, state) {
@@ -75,8 +84,9 @@ class UserLoginScreen extends StatelessWidget {
                         screenSize: screenSize,
                         emailController: emailController,
                         passwordController: passwordController,
-                        formkey: formkey),
-                    GoogleLoginwidget(screenSize: screenSize),
+                        formkey: formkey,
+                        authenticationBloc: authenticationBloc,),
+                    GoogleLoginwidget(screenSize: screenSize,authenticationBloc: authenticationBloc,),
                     SignupDealerLoginWidget(
                         screenSize: screenSize,
                         authenticationBloc: authenticationBloc),

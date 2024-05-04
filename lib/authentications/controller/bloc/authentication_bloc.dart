@@ -17,6 +17,8 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     on<LoginNotSuccessfullEvent>(loginNotSuccessfullEvent);
     on<SignupNotSuccessfullEvent>(signupNotSuccessfullEvent);
     on<SignupSuccessfullAndAccountCreatedEvent>(signupSuccessfullAndAccountCreatedEvent);
+    on<LoginWithGoogleButtonSuccessfulNavigateToScreenEvent>(loginWithGoogleButtonSuccessfulNavigateToScreenEvent);
+    on<ForgetPasswordButtonClickedEvent>(forgetPasswordButtonClickedEvent);
   }
 
   FutureOr<void> navigateToSignupPageEvent(
@@ -57,6 +59,16 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   FutureOr<void> signupSuccessfullAndAccountCreatedEvent(
     SignupSuccessfullAndAccountCreatedEvent event, Emitter<AuthenticationState> emit) {
       emit(SignupSuccessfullAndAccountCreatedActionState());
+  }
+
+  FutureOr<void> loginWithGoogleButtonSuccessfulNavigateToScreenEvent(
+    LoginWithGoogleButtonSuccessfulNavigateToScreenEvent event, Emitter<AuthenticationState> emit) {
+      emit(LoginWithGoogleButtonSuccessfulNavigateToScreenActionState());
+  }
+
+  FutureOr<void> forgetPasswordButtonClickedEvent(
+    ForgetPasswordButtonClickedEvent event, Emitter<AuthenticationState> emit) {
+      emit(ForgetPasswordButtonClickedActionState());
   }
 }
 

@@ -1,6 +1,7 @@
 import 'package:auto_mates/appbarbottombar/view/appbar_bottombar_screen.dart';
 import 'package:auto_mates/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/authentications/controller/functions/common_fuctions.dart';
+import 'package:auto_mates/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/firebase/fire_base_auth_service.dart';
 import 'package:auto_mates/authentications/view/widgets/signup_screen_widgets/signup_button_widget.dart';
 import 'package:auto_mates/authentications/view/widgets/signup_screen_widgets/signup_welcome_widget.dart';
@@ -27,6 +28,11 @@ class UserSignupScreen extends StatelessWidget {
         if (state is SignupButtonClickedActionState) {
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => const AppbarBottomTabSwitchScreen(),
+          ));
+        }
+         else if (state is AlreadyHaveAccountButtonClickedActionState) {
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => UserLoginScreen(),
           ));
         }
         else if(state is SignupSuccessfullAndAccountCreatedActionState){
