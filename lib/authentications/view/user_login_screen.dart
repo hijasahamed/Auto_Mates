@@ -1,7 +1,7 @@
 import 'package:auto_mates/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/authentications/controller/functions/common_fuctions.dart';
 import 'package:auto_mates/authentications/view/dealer_login_screen.dart';
-import 'package:auto_mates/authentications/view/widgets/login_screen_widgets/forgotpassword/forgot_password_widget.dart';
+import 'package:auto_mates/authentications/view/forgot_password_screen.dart';
 import 'package:auto_mates/authentications/view/widgets/login_screen_widgets/google_login_widget.dart';
 import 'package:auto_mates/authentications/view/widgets/login_screen_widgets/login_button_widget.dart';
 import 'package:auto_mates/authentications/view/widgets/login_screen_widgets/login_section_widget.dart';
@@ -55,7 +55,7 @@ class UserLoginScreen extends StatelessWidget {
         }
         else if(state is ForgetPasswordButtonClickedActionState){
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => ForgotPasswordScreen(screenSize: screenSize,),
+            builder: (context) => ForgotPasswordScreen(screenSize: screenSize,authenticationBloc: authenticationBloc,),
           ));
         }
       },

@@ -1,4 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:auto_mates/appbarbottombar/view/widgets/app_bar_gradient_color.dart';
 import 'package:auto_mates/appbarbottombar/view/widgets/menu_button_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,7 @@ class AppBarWidget extends StatelessWidget {
         height: screenSize.height / 21,
         width: screenSize.width / 1.5,
         decoration: const BoxDecoration(
-            color: Color(0xFF143A42),            
+            color: Color(0xFF143A42),           
             borderRadius: BorderRadius.all(Radius.circular(60))),
         child: Row(
           children: [
@@ -36,16 +37,16 @@ class AppBarWidget extends StatelessWidget {
                   'Search',
                   textStyle: const TextStyle(
                     color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
                   ),
-                  speed: const Duration(milliseconds: 300),
+                  speed: const Duration(milliseconds: 100),
                   cursor: ''
                 ),
               ],
-              isRepeatingAnimation: true,
-              repeatForever: true,              
-            )
+              isRepeatingAnimation: false,
+              repeatForever: false,              
+            ),
           ],
         ),
       ),
@@ -76,21 +77,7 @@ class AppBarWidget extends StatelessWidget {
           ],
         )
       ],
-      flexibleSpace: Container(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20)),
-          gradient: LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-            colors: [
-              Color.fromARGB(255, 76, 207, 239),
-              Color.fromARGB(255, 80, 171, 250)
-            ],
-          ),
-        ),
-      ),
+      flexibleSpace: const AppBarGradientColor(),
       bottom: tabIndex==1?
       const PreferredSize(
         preferredSize: Size.fromHeight(150), 

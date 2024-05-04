@@ -1,3 +1,4 @@
+import 'package:auto_mates/emicalculator/view/emi_calculator_screen.dart';
 import 'package:flutter/material.dart';
 
 class EmiCardWidget extends StatelessWidget {
@@ -50,7 +51,11 @@ class EmiCardWidget extends StatelessWidget {
             SizedBox(
               width: screenSize.width,
               child: ElevatedButton(
-                onPressed: (){},
+                onPressed: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => EmiCalculatorScreen(screenSize: screenSize,),
+                  ));
+                },
                 child: const Text('CALCULATE & GET OFFERS',style: TextStyle(color: Color(0xFF424141),fontWeight: FontWeight.bold),)
               ),
             )

@@ -1,6 +1,8 @@
 import 'package:auto_mates/authentications/controller/bloc/authentication_bloc.dart';
+import 'package:auto_mates/authentications/view/user_login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 final FirebaseAuthService auth = FirebaseAuthService();
@@ -63,17 +65,19 @@ logInWithGoogle(authenticationBloc)async{
 }
 
 
-// forgetPassword(){
-//   firebase.auth().sendPasswordResetEmail(email)
-//   .then(() => {
-//     // Password reset email sent!
-//     // ..
-//   })
-//   .catch((error) => {
-//     var errorCode = error.code;
-//     var errorMessage = error.message;
-//     // ..
-//   });
-// }
+resetPassword(resetPasswordcontroller,context)async{
+ dynamic email=resetPasswordcontroller.text.trim();
+ try{
+  await FirebaseAuth.instance.sendPasswordResetEmail(email: email).then((value) {
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => UserLoginScreen(),
+          ));
+  },);
+ }on FirebaseAuthException catch(e){
+  if (kDebugMode) {
+    print(e);
+  }
+ }
+}
 
 

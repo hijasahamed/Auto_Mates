@@ -23,3 +23,5 @@ class SignupSuccessfullAndAccountCreatedEvent extends AuthenticationEvent{}
 class LoginWithGoogleButtonSuccessfulNavigateToScreenEvent extends AuthenticationEvent{}
 
 class ForgetPasswordButtonClickedEvent extends AuthenticationEvent{}
+
+class ResetPasswordButtonClickedEvent extends AuthenticationEvent{}

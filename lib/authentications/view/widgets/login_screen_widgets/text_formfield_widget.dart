@@ -15,6 +15,7 @@ class TextFormFieldWidget extends StatelessWidget {
         child: Column(
           children: [
             TextFormField(
+              keyboardType: TextInputType.emailAddress,
               controller: emailController,
               validator: (value) {
                 if(value!.isEmpty){
