@@ -1,6 +1,7 @@
 import 'package:auto_mates/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/authentications/view/widgets/signup_screen_widgets/add_textform_field_widget.dart';
 import 'package:auto_mates/authentications/view/widgets/signup_screen_widgets/back_to_login_screen_widget.dart';
+import 'package:auto_mates/commonwidgets/my_text_widget.dart';
 import 'package:flutter/material.dart';
 
 class SignupWelcomeWidget extends StatelessWidget {
@@ -31,20 +32,8 @@ class SignupWelcomeWidget extends StatelessWidget {
           const Spacer(),
           const Column(
             children: [
-              Text(
-                'Create Account To Explore More',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22),
-              ),
-              Text(
-                'Signup',
-                style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
+              MyTextWidget(text: 'Create Account To Explore More', color: Colors.white, size: 25, weight: FontWeight.bold),
+              MyTextWidget(text: 'Signup', color: Colors.white, size: 30, weight: FontWeight.bold),
             ],
           ),
           const Spacer(),

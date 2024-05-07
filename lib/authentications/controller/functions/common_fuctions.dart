@@ -26,23 +26,29 @@ void signupButtonClicked(
 
     if (user != null) {
       authenticationBloc.add(SignupButtonClickedEvent());
+      final sharedPref=await SharedPreferences.getInstance();
+      await sharedPref.setBool(logedInKey, true); 
+      Future.delayed(const Duration(seconds: 3));
       authenticationBloc.add(SignupSuccessfullAndAccountCreatedEvent());
     }
+    // else{
+    //   authenticationBloc.add(SignupNotSuccessfullActionState());
+    // }
   }
 }
 
-snackbarWidget(String text, context) {
+snackbarWidget(String text, context,Color color,Color textColor) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
     elevation: 10,
     dismissDirection: DismissDirection.horizontal,
     duration: const Duration(milliseconds: 2100),
     behavior: SnackBarBehavior.floating,
-    backgroundColor: Colors.blue,
+    backgroundColor: color,
     margin: const EdgeInsets.all(50),
     content: Text(
       text,
       textAlign: TextAlign.center,
-      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+      style: TextStyle(color: textColor, fontWeight: FontWeight.w500),
     ),
   ));
 }

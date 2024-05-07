@@ -43,11 +43,8 @@ class UserLoginScreen extends StatelessWidget {
           ));
         }
         else if (state is LoginNotSuccessfullActionState){
-          snackbarWidget('Email and Password Incorrect', context);
-        }
-        else if (state is SignupNotSuccessfullActionState){
-          snackbarWidget('Provide Correct Details', context);
-        }
+          snackbarWidget('Email and Password Incorrect', context,Colors.red,Colors.white);
+        }        
         else if(state is LoginWithGoogleButtonSuccessfulNavigateToScreenActionState){
           Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (context) => const AppbarBottomTabSwitchScreen(),
@@ -76,29 +73,27 @@ class UserLoginScreen extends StatelessWidget {
                 height: screenSize.height,
                 width: screenSize.width,
                 color: Colors.black.withOpacity(0.75),
-                child: SafeArea(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      WelcomeTextWidget(screenSize: screenSize),
-                      LoginSectionWidget(
-                          screenSize: screenSize,
-                          emailController: emailController,
-                          passwordController: passwordController,
-                          formkey: formkey,
-                          authenticationBloc: authenticationBloc,),
-                      GoogleLoginwidget(screenSize: screenSize,authenticationBloc: authenticationBloc,),
-                      SignupDealerLoginWidget(
-                          screenSize: screenSize,
-                          authenticationBloc: authenticationBloc),
-                      LoginButtonWidget(
-                          screenSize: screenSize,
-                          authenticationBloc: authenticationBloc,
-                          emailController: emailController,
-                          passwordController: passwordController,
-                          formkey: formkey,),
-                    ],
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [                   
+                    WelcomeTextWidget(screenSize: screenSize),
+                    LoginSectionWidget(
+                        screenSize: screenSize,
+                        emailController: emailController,
+                        passwordController: passwordController,
+                        formkey: formkey,
+                        authenticationBloc: authenticationBloc,),
+                    GoogleLoginwidget(screenSize: screenSize,authenticationBloc: authenticationBloc,),
+                    SignupDealerLoginWidget(
+                        screenSize: screenSize,
+                        authenticationBloc: authenticationBloc),
+                    LoginButtonWidget(
+                        screenSize: screenSize,
+                        authenticationBloc: authenticationBloc,
+                        emailController: emailController,
+                        passwordController: passwordController,
+                        formkey: formkey,),
+                  ],
                 ),
               ),
             ),

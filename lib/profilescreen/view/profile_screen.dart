@@ -1,8 +1,5 @@
-import 'package:auto_mates/authentications/view/user_login_screen.dart';
-import 'package:auto_mates/splashscreen/controllers/functions.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:auto_mates/profilescreen/controller/functions.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -13,12 +10,7 @@ class ProfileScreen extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
             onPressed: () async {
-              FirebaseAuth.instance.signOut();
-              final sharedPref = await SharedPreferences.getInstance();
-              await sharedPref.setBool(logedInKey, false);
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => UserLoginScreen(),
-              ));
+              logoutButtonClicked(context);
             },
             child: const Text('Logout')),
       ),

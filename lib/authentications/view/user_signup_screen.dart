@@ -26,7 +26,7 @@ class UserSignupScreen extends StatelessWidget {
       buildWhen: (previous, current) => current is! AuthenticationActionState,
       listener: (context, state) {
         if (state is SignupButtonClickedActionState) {
-          Navigator.of(context).push(MaterialPageRoute(
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (context) => const AppbarBottomTabSwitchScreen(),
           ));
         }
@@ -36,7 +36,10 @@ class UserSignupScreen extends StatelessWidget {
           ));
         }
         else if(state is SignupSuccessfullAndAccountCreatedActionState){
-          snackbarWidget('User Account Created Successfully', context);
+          snackbarWidget('User Account Created Successfully', context,Colors.green,Colors.white);
+        }
+        else if (state is SignupNotSuccessfullActionState){
+          snackbarWidget('Provide Correct Details', context,Colors.red,Colors.white);
         }
       },
       builder: (context, state) {

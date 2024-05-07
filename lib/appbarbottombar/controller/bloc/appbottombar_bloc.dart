@@ -15,7 +15,7 @@ class AppbottombarBloc extends Bloc<AppbottombarEvent, AppbottombarState> {
 
   FutureOr<void> appBottomBarInitialEvent(
     AppBottomBarInitialEvent event, Emitter<AppbottombarState> emit) async {
-      emit(AppbottombarLoadingState());
+      emit(AppbottombarLoadingState());     
       await Future.delayed(const Duration(milliseconds: 2500));
       emit(AppbottombarLoadedSuccessState());
   }

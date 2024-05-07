@@ -19,16 +19,15 @@ class AddTextformFieldWidget extends StatelessWidget {
       padding: const EdgeInsets.only(left: 20,right: 20,), 
       child: SizedBox(
         width: screenSize.width,
-        height: screenSize.height/2.7,
+        height: screenSize.height/4,
         child: Form(
           key: formkey,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
             TextFormWidget(text: 'Username',controller: userNameController,warning: 'Enter Username',obscure: false,),
             TextFormWidget(text: 'Email',controller: emailController,warning: 'Enter Email',obscure: false,),
             TextFormWidget(text: 'Password',controller: passwordController,warning: 'Enter Password',obscure: true,),
-            TextFormWidget(text: 'ConfirmPassword',controller: reChekPasswordController,warning: 'Re enter Password',obscure: true,),
             ],
           )
         ),
