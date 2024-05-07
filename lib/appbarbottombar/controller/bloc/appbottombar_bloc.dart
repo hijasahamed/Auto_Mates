@@ -8,11 +8,21 @@ part 'appbottombar_state.dart';
 
 class AppbottombarBloc extends Bloc<AppbottombarEvent, AppbottombarState> {
   AppbottombarBloc() : super(AppbottombarInitial()) {
+    on<AppBottomBarInitialEvent>(appBottomBarInitialEvent);
     on<OntapIndexChangeEvent>(ontapIndexChangeEvent);
+  }
+
+
+  FutureOr<void> appBottomBarInitialEvent(
+    AppBottomBarInitialEvent event, Emitter<AppbottombarState> emit) async {
+      emit(AppbottombarLoadingState());
+      await Future.delayed(const Duration(milliseconds: 2200));
+      emit(AppbottombarLoadedSuccessState());
   }
 
   FutureOr<void> ontapIndexChangeEvent(
     OntapIndexChangeEvent event, Emitter<AppbottombarState> emit) {
       emit(OntapIndexChangeState());
   }
+
 }

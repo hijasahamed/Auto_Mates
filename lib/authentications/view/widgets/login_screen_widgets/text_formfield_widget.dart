@@ -52,6 +52,7 @@ class TextFormFieldWidget extends StatelessWidget {
                 }                
                 return null;
               },
+              obscureText: true,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               style: const TextStyle(color: Color(0xFF424141),fontWeight: FontWeight.normal),
               decoration: InputDecoration(

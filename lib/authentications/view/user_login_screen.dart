@@ -61,42 +61,44 @@ class UserLoginScreen extends StatelessWidget {
       },
       builder: (context, state) {
         return Scaffold(
-          resizeToAvoidBottomInset: false,
+          // resizeToAvoidBottomInset: false,
           backgroundColor: Colors.white,
-          body: Container(
-            height: screenSize.height,
-            width: screenSize.width,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-              image: AssetImage('assets/images/wheel.webp'),
-              fit: BoxFit.cover,
-            )),
+          body: SingleChildScrollView(
             child: Container(
               height: screenSize.height,
               width: screenSize.width,
-              color: Colors.black.withOpacity(0.75),
-              child: SafeArea(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    WelcomeTextWidget(screenSize: screenSize),
-                    LoginSectionWidget(
-                        screenSize: screenSize,
-                        emailController: emailController,
-                        passwordController: passwordController,
-                        formkey: formkey,
-                        authenticationBloc: authenticationBloc,),
-                    GoogleLoginwidget(screenSize: screenSize,authenticationBloc: authenticationBloc,),
-                    SignupDealerLoginWidget(
-                        screenSize: screenSize,
-                        authenticationBloc: authenticationBloc),
-                    LoginButtonWidget(
-                        screenSize: screenSize,
-                        authenticationBloc: authenticationBloc,
-                        emailController: emailController,
-                        passwordController: passwordController,
-                        formkey: formkey,),
-                  ],
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                image: AssetImage('assets/images/wheel.webp'),
+                fit: BoxFit.cover,
+              )),
+              child: Container(
+                height: screenSize.height,
+                width: screenSize.width,
+                color: Colors.black.withOpacity(0.75),
+                child: SafeArea(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      WelcomeTextWidget(screenSize: screenSize),
+                      LoginSectionWidget(
+                          screenSize: screenSize,
+                          emailController: emailController,
+                          passwordController: passwordController,
+                          formkey: formkey,
+                          authenticationBloc: authenticationBloc,),
+                      GoogleLoginwidget(screenSize: screenSize,authenticationBloc: authenticationBloc,),
+                      SignupDealerLoginWidget(
+                          screenSize: screenSize,
+                          authenticationBloc: authenticationBloc),
+                      LoginButtonWidget(
+                          screenSize: screenSize,
+                          authenticationBloc: authenticationBloc,
+                          emailController: emailController,
+                          passwordController: passwordController,
+                          formkey: formkey,),
+                    ],
+                  ),
                 ),
               ),
             ),

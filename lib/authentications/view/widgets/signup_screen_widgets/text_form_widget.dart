@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class TextFormWidget extends StatelessWidget {
-  const TextFormWidget({super.key,required this.text,required this.controller,required this.warning});
+  const TextFormWidget({super.key,required this.text,required this.controller,required this.warning,required this.obscure});
   final String text;
   final String warning;
   final TextEditingController controller;
+  final bool obscure;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -15,6 +16,7 @@ class TextFormWidget extends StatelessWidget {
         }
         return null;
       },
+      obscureText: obscure,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       style: const TextStyle(color: Color(0xFF424141),fontWeight: FontWeight.normal),
       decoration: InputDecoration(

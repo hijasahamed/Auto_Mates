@@ -2,6 +2,7 @@ import 'package:auto_mates/appbarbottombar/controller/bloc/appbottombar_bloc.dar
 import 'package:auto_mates/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/firebase/firebase_options.dart';
+import 'package:auto_mates/splashscreen/view/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,10 +24,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AuthenticationBloc(),),
         BlocProvider(create: (context) => AppbottombarBloc(),)
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false, 
-        theme: ThemeData.light(),      
-        home: UserLoginScreen(),
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,      
+        home: SplashScreen(),
       ),
     );
   }

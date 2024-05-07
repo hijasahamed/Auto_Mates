@@ -1,9 +1,9 @@
 import 'package:auto_mates/authentications/controller/bloc/authentication_bloc.dart';
-import 'package:auto_mates/authentications/view/widgets/login_screen_widgets/text_formfield_widget.dart';
-import 'package:auto_mates/commonwidgets/my_text_widget.dart';
 import 'package:auto_mates/firebase/fire_base_auth_service.dart';
+import 'package:auto_mates/splashscreen/controllers/functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void loginButtonClicked(email, password, authenticationBloc, formkey) async {
   if (formkey.currentState!.validate()) {
@@ -11,6 +11,8 @@ void loginButtonClicked(email, password, authenticationBloc, formkey) async {
 
     if (user != null) {
       authenticationBloc.add(LoginButtonClickedEvent());
+      final sharedPref=await SharedPreferences.getInstance();
+      await sharedPref.setBool(logedInKey, true); 
     } else {
       authenticationBloc.add(LoginNotSuccessfullEvent());
     }
