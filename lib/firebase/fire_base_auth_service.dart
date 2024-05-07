@@ -1,9 +1,11 @@
 import 'package:auto_mates/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/authentications/view/user_login_screen.dart';
+import 'package:auto_mates/splashscreen/controllers/functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final FirebaseAuthService auth = FirebaseAuthService();
 
@@ -54,6 +56,9 @@ logInWithGoogle(authenticationBloc)async{
       await FirebaseAuth.instance.signInWithCredential(credential);
 
       authenticationBloc.add(LoginWithGoogleButtonSuccessfulNavigateToScreenEvent());
+
+      final sharedPref=await SharedPreferences.getInstance();
+      await sharedPref.setBool(logedInKey, true);
 
     }
 

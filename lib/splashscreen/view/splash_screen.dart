@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:auto_mates/commonwidgets/my_text_widget.dart';
 import 'package:auto_mates/splashscreen/controllers/functions.dart';
 import 'package:flutter/material.dart';
@@ -19,23 +20,35 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
+    final size =MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.white,
-      // body: Container(
-      //   width: double.maxFinite,
-      //   height: double.maxFinite,
-      //   decoration: const BoxDecoration(
-      //     image: DecorationImage(image: AssetImage('assets/images/Splash Screen.png'),fit: BoxFit.cover)
-      //   ),
-      //   child: const MyTextWidget(text: 'Auto Mates', color: Colors.black, size: 40, weight: FontWeight.bold),
-      // ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          LottieBuilder.asset('assets/animations/Animation - 1715086665819.json',height: 500,width: double.maxFinite,),
-          const MyTextWidget(text: 'Auto Mates', color: Colors.black, size: 40, weight: FontWeight.bold),
-        ],
+      backgroundColor: const Color(0xFFDBEDF5), 
+      body: SizedBox(
+        height: size.height,
+        width: size.width,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            LottieBuilder.asset('assets/animations/splash_animation_jeep.json',), 
+            AnimatedTextKit(
+              animatedTexts: [
+                TypewriterAnimatedText(
+                  'Auto Mates',
+                  textStyle: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  speed: const Duration(milliseconds: 220),
+                  cursor: ''
+                ),
+              ],
+              isRepeatingAnimation: false,
+              repeatForever: false,              
+            ),
+          ],
+        ),
       ),
     );
   }

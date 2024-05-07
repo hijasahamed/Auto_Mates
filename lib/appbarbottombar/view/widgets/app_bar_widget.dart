@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:auto_mates/appbarbottombar/view/widgets/app_bar_gradient_color.dart';
 import 'package:auto_mates/appbarbottombar/view/widgets/menu_button_widget.dart';
+import 'package:auto_mates/commonwidgets/my_text_widget.dart';
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget {
@@ -31,22 +32,7 @@ class AppBarWidget extends StatelessWidget {
             SizedBox(
               width: screenSize.width / 22,
             ),
-            AnimatedTextKit(
-              animatedTexts: [
-                TypewriterAnimatedText(
-                  'Search',
-                  textStyle: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  speed: const Duration(milliseconds: 100),
-                  cursor: ''
-                ),
-              ],
-              isRepeatingAnimation: false,
-              repeatForever: false,              
-            ),
+            const MyTextWidget(text: 'Search', color: Colors.white, size: 16, weight: FontWeight.w400)
           ],
         ),
       ),

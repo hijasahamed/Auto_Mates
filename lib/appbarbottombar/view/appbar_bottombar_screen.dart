@@ -44,11 +44,12 @@ class _AppbarBottomTabSwitchScreenState
         switch (state.runtimeType) {
           case AppbottombarLoadingState:
             return Scaffold(
+              backgroundColor: const Color(0xFFDBEDF5),
               body: Center(
                 child: LottieBuilder.asset(
-                  'assets/animations/Animation - 1715064689493.json',
-                  height: screenSize.height / 8,
-                  width: screenSize.width / 3,
+                  'assets/animations/loading_animation.json',
+                  height: screenSize.height / 10,
+                  width: screenSize.width / 4,
                   repeat: true,
                 ),
               ),

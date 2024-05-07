@@ -5,8 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 const logedInKey = 'Userlogedin';
 
-Future<void> goToLoginScreen(context)async{
-  await Future.delayed(const Duration(seconds: 3));
+Future<void> goToLoginScreen(context)async{ 
   Navigator.of(context).pushReplacement(
       MaterialPageRoute(
         builder: (ctx){
@@ -21,9 +20,11 @@ Future<void> checkIfUserLogedin(context)async{
   final sharedPref=await SharedPreferences.getInstance();
   final isLogedin=sharedPref.getBool(logedInKey);
   if(isLogedin==null || isLogedin==false){
+    await Future.delayed(const Duration(milliseconds: 3150));
     goToLoginScreen(context);
   }
   else{
+    await Future.delayed(const Duration(milliseconds: 3150));
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx)=>const AppbarBottomTabSwitchScreen()));
   }
 }
