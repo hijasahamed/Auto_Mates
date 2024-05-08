@@ -64,6 +64,7 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
+    #images
     - assets/images/road-accidents-pti.jpg
     - assets/images/news.webp
     - assets/images/gmap.png
@@ -71,7 +72,9 @@ flutter:
     - assets/images/wheel.webp
     - assets/images/reset password.avif
     - assets/images/seller login.png
+    #animations
     - assets/animations/loading_animation.json
+    - assets/animations/loading lines.json
     - assets/animations/splash_animation_jeep.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

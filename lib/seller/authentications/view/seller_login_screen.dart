@@ -4,6 +4,7 @@ import 'package:auto_mates/seller/authentications/view/widgets/login_screen_widg
 import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
 class SellerLoginScreen extends StatefulWidget {
   const SellerLoginScreen({super.key, required this.screenSize});
@@ -42,13 +43,10 @@ class _SellerLoginScreenState extends State<SellerLoginScreen> {
       builder: (context, state) {
         switch (state.runtimeType) {
           case const (SellerAuthenticationLoadingState):
-            return const Scaffold(
-              backgroundColor: Color(0xFFDBEDF5),
+            return Scaffold(
+              backgroundColor: const Color(0xFFDBEDF5),
               body:Center(
-                child: CircularProgressIndicator(
-                  strokeWidth: 4,
-                  color: Colors.blue,
-                ),
+                child: LottieBuilder.asset('assets/animations/loading lines.json',height: 100,width: 100,)
               ),
             );
           case const (SellerAuthenticationLoadedSuccessState):
