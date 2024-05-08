@@ -1,8 +1,8 @@
-import 'package:auto_mates/appbarbottombar/controller/bloc/appbottombar_bloc.dart';
-import 'package:auto_mates/authentications/controller/bloc/authentication_bloc.dart';
-import 'package:auto_mates/authentications/view/user_login_screen.dart';
-import 'package:auto_mates/firebase/firebase_options.dart';
-import 'package:auto_mates/splashscreen/view/splash_screen.dart';
+import 'package:auto_mates/user/appbarbottombar/controller/bloc/appbottombar_bloc.dart';
+import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
+import 'package:auto_mates/user/firebase/firebase_options.dart';
+import 'package:auto_mates/user/splashscreen/view/bloc/splash_bloc.dart';
+import 'package:auto_mates/user/splashscreen/view/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +22,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => AuthenticationBloc(),),
-        BlocProvider(create: (context) => AppbottombarBloc(),)
+        BlocProvider(create: (context) => AppbottombarBloc(),),
+        BlocProvider(create: (context) => SplashBloc(),)
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,      

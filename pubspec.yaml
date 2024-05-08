@@ -32,7 +32,9 @@ dependencies:
   bloc: ^8.1.4
   carousel_slider: ^4.2.1
   cloud_firestore: ^4.17.2
+  connectivity: ^3.0.6
   cupertino_icons: ^1.0.6
+  eva_icons_flutter: ^3.1.0
   firebase_auth: ^4.19.4
   firebase_core: ^2.27.0
   firebase_core_web: ^2.11.5
@@ -70,9 +72,6 @@ flutter:
     - assets/images/reset password.avif
     - assets/animations/loading_animation.json
     - assets/animations/splash_animation_jeep.json
-    - assets/animations/splash.json
-
-   
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
