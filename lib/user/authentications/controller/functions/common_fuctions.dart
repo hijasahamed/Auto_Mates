@@ -3,7 +3,6 @@ import 'package:auto_mates/user/firebase/fire_base_auth_service.dart';
 import 'package:auto_mates/user/splashscreen/controllers/functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void loginButtonClicked(email, password, authenticationBloc, formkey) async {

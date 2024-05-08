@@ -45,43 +45,33 @@ class UserSignupScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: Colors.white,
           body: Container(
             height: screenSize.height,
             width: screenSize.width,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-              image: AssetImage('assets/images/wheel.webp'),
-              fit: BoxFit.cover,
-            )),
-            child: Container(
-              height: screenSize.height,
-              width: screenSize.width,
-              color: Colors.black.withOpacity(0.75),
-              child: SafeArea(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SignupWelcomeWidget(
-                        screenSize: screenSize,
-                        authenticationBloc: authenticationBloc,
-                        emailController: emailController,
-                        userNameController: userNameController,
-                        passwordController: passwordController,
-                        reChekPasswordController: reChekPasswordController,
-                        formkey: formkey),
-                    SignupButtonWidget(
+            color: const Color(0XFFDBEDF5),
+            child: SafeArea(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SignupWelcomeWidget(
                       screenSize: screenSize,
                       authenticationBloc: authenticationBloc,
                       emailController: emailController,
                       userNameController: userNameController,
                       passwordController: passwordController,
                       reChekPasswordController: reChekPasswordController,
-                      formkey: formkey,
-                      auth: auth,
-                    ),
-                  ],
-                ),
+                      formkey: formkey),
+                  SignupButtonWidget(
+                    screenSize: screenSize,
+                    authenticationBloc: authenticationBloc,
+                    emailController: emailController,
+                    userNameController: userNameController,
+                    passwordController: passwordController,
+                    reChekPasswordController: reChekPasswordController,
+                    formkey: formkey,
+                    auth: auth,
+                  ),
+                ],
               ),
             ),
           ),

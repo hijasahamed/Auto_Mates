@@ -70,6 +70,7 @@ flutter:
     - assets/images/google logo.png
     - assets/images/wheel.webp
     - assets/images/reset password.avif
+    - assets/images/seller login.png
     - assets/animations/loading_animation.json
     - assets/animations/splash_animation_jeep.json
   # An image asset can refer to one or more resolution-specific "variants", see

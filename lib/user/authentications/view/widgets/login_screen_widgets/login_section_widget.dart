@@ -25,7 +25,7 @@ class LoginSectionWidget extends StatelessWidget {
           const Text(
             'Login',
             style: TextStyle(
-                fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
+                fontSize: 28, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 78, 78, 78)),
           ),
           TextFormFieldWidget(
               emailController: emailController,
@@ -43,7 +43,7 @@ class LoginSectionWidget extends StatelessWidget {
                   child: const Text(
                     'Forget Password?',
                     style: TextStyle(
-                        fontWeight: FontWeight.w500, color: Colors.white),
+                        fontWeight: FontWeight.w500, color: Color.fromARGB(255, 78, 78, 78)),
                   ),
                 )),
           )

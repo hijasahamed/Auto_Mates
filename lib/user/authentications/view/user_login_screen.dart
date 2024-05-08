@@ -1,5 +1,5 @@
+import 'package:auto_mates/seller/authentications/view/seller_login_screen.dart';
 import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
-import 'package:auto_mates/user/authentications/view/dealer_login_screen.dart';
 import 'package:auto_mates/user/authentications/view/forgot_password_screen.dart';
 import 'package:auto_mates/user/authentications/view/widgets/login_screen_widgets/google_login_widget.dart';
 import 'package:auto_mates/user/authentications/view/widgets/login_screen_widgets/login_button_widget.dart';
@@ -38,8 +38,8 @@ class UserLoginScreen extends StatelessWidget {
             builder: (context) => const AppbarBottomTabSwitchScreen(),
           ));
         } else if (state is NavigateToDealerLoginPageActionState) {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const DealerLoginScreen(),
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => SellerLoginScreen(screenSize: screenSize,),
           ));
         }
         else if (state is LoginNotSuccessfullActionState){
@@ -63,37 +63,28 @@ class UserLoginScreen extends StatelessWidget {
             child: Container(
               height: screenSize.height,
               width: screenSize.width,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                image: AssetImage('assets/images/wheel.webp'),
-                fit: BoxFit.cover,
-              )),
-              child: Container(
-                height: screenSize.height,
-                width: screenSize.width,
-                color: Colors.black.withOpacity(0.75),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [                   
-                    WelcomeTextWidget(screenSize: screenSize),
-                    LoginSectionWidget(
-                        screenSize: screenSize,
-                        emailController: emailController,
-                        passwordController: passwordController,
-                        formkey: formkey,
-                        authenticationBloc: authenticationBloc,),
-                    GoogleLoginwidget(screenSize: screenSize,authenticationBloc: authenticationBloc,),
-                    SignupDealerLoginWidget(
-                        screenSize: screenSize,
-                        authenticationBloc: authenticationBloc),
-                    LoginButtonWidget(
-                        screenSize: screenSize,
-                        authenticationBloc: authenticationBloc,
-                        emailController: emailController,
-                        passwordController: passwordController,
-                        formkey: formkey,),
-                  ],
-                ),
+              color: const Color(0XFFDBEDF5),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [                   
+                  WelcomeTextWidget(screenSize: screenSize),
+                  LoginSectionWidget(
+                      screenSize: screenSize,
+                      emailController: emailController,
+                      passwordController: passwordController,
+                      formkey: formkey,
+                      authenticationBloc: authenticationBloc,),
+                  GoogleLoginwidget(screenSize: screenSize,authenticationBloc: authenticationBloc,),
+                  SignupDealerLoginWidget(
+                      screenSize: screenSize,
+                      authenticationBloc: authenticationBloc),
+                  LoginButtonWidget(
+                      screenSize: screenSize,
+                      authenticationBloc: authenticationBloc,
+                      emailController: emailController,
+                      passwordController: passwordController,
+                      formkey: formkey,),
+                ],
               ),
             ),
           ),

@@ -20,7 +20,7 @@ class SignupDealerLoginWidget extends StatelessWidget {
                 'Don’t have an Account? ',
                 style: TextStyle(
                     fontWeight: FontWeight.w500,
-                    color: Colors.white),
+                    color: Color.fromARGB(255, 78, 78, 78)),
               ),
               Text(
                 'Signup',
@@ -42,7 +42,7 @@ class SignupDealerLoginWidget extends StatelessWidget {
             'Login as Dealer',
             style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Colors.white),
+                color: Color.fromARGB(255, 78, 78, 78)),
           ),
         )
       ],

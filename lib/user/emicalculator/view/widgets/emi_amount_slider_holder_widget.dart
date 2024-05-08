@@ -38,7 +38,7 @@ class EmiAmountSliderHolderWidget extends StatelessWidget {
           SizedBox(height: screenSize.height/40,),
           Container(
             height: screenSize.height/15,
-            width: screenSize.width/1.5,
+            width: screenSize.width/1.3,
             decoration: BoxDecoration(
               border: Border.all(width: 2,color: const Color.fromARGB(255, 141, 140, 140)),
             ),

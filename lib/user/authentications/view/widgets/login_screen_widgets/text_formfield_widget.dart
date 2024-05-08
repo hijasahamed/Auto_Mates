@@ -28,7 +28,7 @@ class TextFormFieldWidget extends StatelessWidget {
               decoration: InputDecoration(
                     hintText: 'Email',
                     hintStyle: const TextStyle(color: Color.fromARGB(255, 86, 86, 86),fontWeight: FontWeight.normal),
-                    fillColor: const Color(0xFFDBEDF5),
+                    fillColor: Colors.white,
                     filled: true,
                     enabledBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -58,7 +58,7 @@ class TextFormFieldWidget extends StatelessWidget {
               decoration: InputDecoration(
                     hintText: 'Password',
                     hintStyle: const TextStyle(color: Color.fromARGB(255, 86, 86, 86),fontWeight: FontWeight.normal),                    
-                    fillColor: const Color(0xFFDBEDF5),
+                    fillColor: Colors.white,
                     filled: true,
                     enabledBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),

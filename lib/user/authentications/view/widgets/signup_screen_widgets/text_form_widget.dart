@@ -36,7 +36,7 @@ class TextFormWidget extends StatelessWidget {
         hintStyle: const TextStyle(
             color: Color.fromARGB(255, 86, 86, 86),
             fontWeight: FontWeight.normal),
-        fillColor: const Color(0xFFDBEDF5),
+        fillColor: Colors.white,
         filled: true,
         enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white),
