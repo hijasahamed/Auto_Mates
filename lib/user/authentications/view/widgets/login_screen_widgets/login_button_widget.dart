@@ -26,7 +26,7 @@ class LoginButtonWidget extends StatelessWidget {
       child: ClipPath(
         clipper: Customshape(),
         child: Container(
-          color: const Color(0xFF284845),
+          color: const Color.fromARGB(255, 9, 82, 75),
           height: screenSize.height / 10,
           child: const Center(
               child: Text(

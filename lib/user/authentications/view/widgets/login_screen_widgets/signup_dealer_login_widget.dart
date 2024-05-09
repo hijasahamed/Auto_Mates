@@ -9,27 +9,28 @@ class SignupDealerLoginWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TextButton(
-          onPressed: () {
-            authenticationBloc.add(NavigateToSignupPageEvent());
-          },
-          child: const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Don’t have an Account? ',
-                style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    color: Color.fromARGB(255, 78, 78, 78)),
-              ),
-              Text(
-                'Signup',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue),
-              ),
-            ],
-          ),
+        
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Don’t have an Account? ',
+              style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white),
+            ),
+            TextButton(
+              onPressed: (){
+                authenticationBloc.add(NavigateToSignupPageEvent());
+              }, 
+              child: const Text(
+              'Signup',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue),
+            ),
+            )
+          ],
         ),
         SizedBox(
           height: screenSize.height / 50,
@@ -42,7 +43,7 @@ class SignupDealerLoginWidget extends StatelessWidget {
             'Login as Dealer',
             style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 78, 78, 78)),
+                color: Colors.white),
           ),
         )
       ],

@@ -58,13 +58,12 @@ class UserLoginScreen extends StatelessWidget {
       },
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: Colors.white,
           body: SingleChildScrollView(
             child: Container(
               height: screenSize.height,
               width: screenSize.width,
               decoration: const BoxDecoration(
-                image: DecorationImage(image: AssetImage('assets/images/login blur image.jpg'),fit: BoxFit.cover)
+                image: DecorationImage(image: AssetImage('assets/images/login blackimage.jpg'),fit: BoxFit.cover)
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

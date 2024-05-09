@@ -16,13 +16,13 @@ class WelcomeTextWidget extends StatelessWidget {
             style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 78, 78, 78)),
+                color: Colors.white),
           ),
           Text('Login into your account',
               style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
-                  color: Color.fromARGB(255, 78, 78, 78)))
+                  color: Colors.white))
         ],
       ),
     );
