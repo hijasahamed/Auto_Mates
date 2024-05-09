@@ -63,7 +63,9 @@ class UserLoginScreen extends StatelessWidget {
             child: Container(
               height: screenSize.height,
               width: screenSize.width,
-              color: const Color(0XFFDBEDF5),
+              decoration: const BoxDecoration(
+                image: DecorationImage(image: AssetImage('assets/images/login blur image.jpg'),fit: BoxFit.cover)
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [                   

@@ -24,7 +24,7 @@ class SellerLoginWidget extends StatelessWidget {
       width: screenSize.width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.black54
+        color: Colors.black45
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),

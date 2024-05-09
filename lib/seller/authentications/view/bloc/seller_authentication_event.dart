@@ -6,3 +6,5 @@ abstract class SellerAuthenticationEvent {}
 class SellerAuthenticationInitialEvent extends SellerAuthenticationEvent {}
 
 class CreateCompanyButtonClickedEvent extends SellerAuthenticationEvent {}
+
+class AlreadyASellerLoginToYourAccountButtonClickedEvent extends SellerAuthenticationEvent{}

@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   animated_text_kit: ^4.2.2
+  animations: ^2.0.11
   bloc: ^8.1.4
   carousel_slider: ^4.2.1
   cloud_firestore: ^4.17.2
@@ -69,12 +70,11 @@ flutter:
     - assets/images/news.webp
     - assets/images/gmap.png
     - assets/images/google logo.png
-    - assets/images/wheel.webp
     - assets/images/reset password.avif
     - assets/images/seller login.png
+    - assets/images/login blur image.jpg
     #animations
     - assets/animations/loading_animation.json
-    - assets/animations/loading lines.json
     - assets/animations/splash_animation_jeep.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

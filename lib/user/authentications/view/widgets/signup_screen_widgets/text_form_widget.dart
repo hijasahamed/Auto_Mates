@@ -26,6 +26,7 @@ class TextFormWidget extends StatelessWidget {
         return null;
       },
       textCapitalization: textCapitalization,
+      
       keyboardType: keyBoardType,
       obscureText: obscure,
       autovalidateMode: AutovalidateMode.onUserInteraction,

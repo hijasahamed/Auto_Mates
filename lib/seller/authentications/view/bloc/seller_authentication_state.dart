@@ -9,8 +9,11 @@ class SellerAuthenticationInitial extends SellerAuthenticationState {}
 
 
 
-class CreateCompanyButtonClickedActionState extends SellerAuthenticationActionState{}
-
 class SellerAuthenticationLoadingState extends SellerAuthenticationState {}
 
 class SellerAuthenticationLoadedSuccessState extends SellerAuthenticationState {}
+
+class CreateCompanyButtonClickedActionState extends SellerAuthenticationActionState{}
+
+class AlreadyASellerLoginToYourAccountButtonClickedActionState extends SellerAuthenticationActionState{}
+

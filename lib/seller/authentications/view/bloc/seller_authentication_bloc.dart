@@ -10,12 +10,13 @@ class SellerAuthenticationBloc extends Bloc<SellerAuthenticationEvent, SellerAut
   SellerAuthenticationBloc() : super(SellerAuthenticationInitial()) {
     on<SellerAuthenticationInitialEvent>(sellerAuthenticationInitialEvent);
     on<CreateCompanyButtonClickedEvent>(createCompanyButtonClickedEvent);
+    on<AlreadyASellerLoginToYourAccountButtonClickedEvent>(alreadyASellerLoginToYourAccountButtonClickedEvent);
   }
 
   FutureOr<void> sellerAuthenticationInitialEvent(
     SellerAuthenticationInitialEvent event, Emitter<SellerAuthenticationState> emit)async {
       emit(SellerAuthenticationLoadingState());     
-      await Future.delayed(const Duration(milliseconds: 1500));
+      await Future.delayed(const Duration(milliseconds: 2300));
       emit(SellerAuthenticationLoadedSuccessState());
   }
 
@@ -24,4 +25,9 @@ class SellerAuthenticationBloc extends Bloc<SellerAuthenticationEvent, SellerAut
       emit(CreateCompanyButtonClickedActionState());
   }
 
+
+  FutureOr<void> alreadyASellerLoginToYourAccountButtonClickedEvent(
+    AlreadyASellerLoginToYourAccountButtonClickedEvent event, Emitter<SellerAuthenticationState> emit) {
+      emit(AlreadyASellerLoginToYourAccountButtonClickedActionState());
+  }
 }
