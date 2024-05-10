@@ -1,6 +1,5 @@
-import 'package:auto_mates/seller/appbar_bottombar/sellerappbarbottombar.dart';
+import 'package:auto_mates/seller/appbar_bottombar/view/sellerappbarbottombar.dart';
 import 'package:auto_mates/seller/authentications/view/otp_verification_screen.dart';
-import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +41,7 @@ Future<void> getOtpButtonClicked(
     verificationCompleted: (phoneAuthCredential) {},
     verificationFailed: (FirebaseAuthException ex) {},
     codeSent: (String verificationId, forceResendingToken) {
-      Navigator.of(context).push(MaterialPageRoute(
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => OtpVerificationScreen(
             sellerAuthenticationBloc:sellerAuthenticationBloc,
                 screenSize: screenSize,
