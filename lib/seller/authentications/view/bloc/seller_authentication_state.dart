@@ -13,9 +13,14 @@ class SellerAuthenticationLoadingState extends SellerAuthenticationState {}
 
 class SellerAuthenticationLoadedSuccessState extends SellerAuthenticationState {}
 
-class SellerLoginButtonClickedActionState extends SellerAuthenticationActionState{}
+class SellerGetOtpButtonClickedActionState extends SellerAuthenticationActionState{}
 
 class CreateCompanyButtonClickedActionState extends SellerAuthenticationActionState{}
 
 class AlreadyASellerLoginToYourAccountButtonClickedActionState extends SellerAuthenticationActionState{}
+
+class SubmitOtpButtonClickedActionState extends SellerAuthenticationActionState{
+  final String code;
+  SubmitOtpButtonClickedActionState({required this.code});
+}
 

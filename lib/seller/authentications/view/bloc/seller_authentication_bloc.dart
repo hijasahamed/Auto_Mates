@@ -9,9 +9,10 @@ part 'seller_authentication_state.dart';
 class SellerAuthenticationBloc extends Bloc<SellerAuthenticationEvent, SellerAuthenticationState> {
   SellerAuthenticationBloc() : super(SellerAuthenticationInitial()) {
     on<SellerAuthenticationInitialEvent>(sellerAuthenticationInitialEvent);
-    on<SellerLoginButtonClickedEvent>(loginButtonClickedEvent);
+    on<SellerGetOtpButtonClickedEvent>(loginButtonClickedEvent);
     on<CreateCompanyButtonClickedEvent>(createCompanyButtonClickedEvent);
     on<AlreadyASellerLoginToYourAccountButtonClickedEvent>(alreadyASellerLoginToYourAccountButtonClickedEvent);
+    on<SubmitOtpButtonClickedEvent>(submitOtpButtonClickedEvent);
   }
 
   FutureOr<void> sellerAuthenticationInitialEvent(
@@ -22,8 +23,8 @@ class SellerAuthenticationBloc extends Bloc<SellerAuthenticationEvent, SellerAut
   }
 
   FutureOr<void> loginButtonClickedEvent(
-    SellerLoginButtonClickedEvent event, Emitter<SellerAuthenticationState> emit) {
-      emit(SellerLoginButtonClickedActionState());
+    SellerGetOtpButtonClickedEvent event, Emitter<SellerAuthenticationState> emit) {
+      emit(SellerGetOtpButtonClickedActionState());
   }
 
   FutureOr<void> createCompanyButtonClickedEvent(
@@ -38,4 +39,9 @@ class SellerAuthenticationBloc extends Bloc<SellerAuthenticationEvent, SellerAut
   }
 
   
+
+  FutureOr<void> submitOtpButtonClickedEvent(
+    SubmitOtpButtonClickedEvent event, Emitter<SellerAuthenticationState> emit) {
+      emit(SubmitOtpButtonClickedActionState(code: event.code));
+  }
 }

@@ -1,11 +1,13 @@
 import 'package:auto_mates/seller/authentications/controllers/functions.dart';
+import 'package:auto_mates/seller/authentications/view/bloc/seller_authentication_bloc.dart';
 import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
-class EnterOtpWidget extends StatelessWidget {
-  const EnterOtpWidget({super.key, required this.screenSize});
+class SubmitOtpWidget extends StatelessWidget {
+  const SubmitOtpWidget({super.key, required this.screenSize,required this.sellerAuthenticationBloc});
   final Size screenSize;
+  final SellerAuthenticationBloc sellerAuthenticationBloc;  
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -39,6 +41,9 @@ class EnterOtpWidget extends StatelessWidget {
               defaultPinTheme: defaultPinTheme,
               focusedPinTheme: focusedPinTheme,
               submittedPinTheme: submittedPinTheme,
+              onChanged: (value) {
+                otpSmsCode=value;
+              },
             ),
           ),
           SizedBox(
@@ -49,7 +54,9 @@ class EnterOtpWidget extends StatelessWidget {
                 backgroundColor: WidgetStatePropertyAll(Colors.blue),
                 minimumSize: WidgetStatePropertyAll(Size(double.infinity, 55)),
               ),
-              onPressed: () {},
+              onPressed: () {
+                sellerAuthenticationBloc.add(SubmitOtpButtonClickedEvent(code: otpSmsCode));
+              },
               child: const MyTextWidget(
                   text: 'Submit OTP',
                   color: Colors.white,

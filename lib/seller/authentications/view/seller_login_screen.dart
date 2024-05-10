@@ -1,7 +1,7 @@
+import 'package:auto_mates/seller/authentications/controllers/functions.dart';
 import 'package:auto_mates/seller/authentications/view/bloc/seller_authentication_bloc.dart';
 import 'package:auto_mates/seller/authentications/view/create_company_screen.dart';
-import 'package:auto_mates/seller/authentications/view/otp_verification_screen.dart';
-import 'package:auto_mates/seller/authentications/view/widgets/login_screen_widgets/seller_login_widget.dart';
+import 'package:auto_mates/seller/authentications/view/widgets/login_screen_widgets/seller_get_otp_widget.dart';
 import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,8 +17,6 @@ class SellerLoginScreen extends StatefulWidget {
 
 class _SellerLoginScreenState extends State<SellerLoginScreen> {
   final GlobalKey formKey = GlobalKey();
-
-  final TextEditingController companyName = TextEditingController();
 
   final TextEditingController phoneNumber = TextEditingController();
 
@@ -42,9 +40,8 @@ class _SellerLoginScreenState extends State<SellerLoginScreen> {
                     screenSize: widget.screenSize,
                     sellerAuthenticationBloc: sellerAuthenticationBloc,
                   )));
-        } else if (state is SellerLoginButtonClickedActionState) {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => OtpVerificationScreen(screenSize: widget.screenSize,)));
+        } else if (state is SellerGetOtpButtonClickedActionState) {
+          getOtpButtonClicked(phoneNumber,context,widget.screenSize,sellerAuthenticationBloc,contrryCode);
           snackbarWidget('OTP send to the PhoneNumber', context, Colors.blue,
               Colors.white, SnackBarBehavior.floating);
         }
@@ -86,9 +83,8 @@ class _SellerLoginScreenState extends State<SellerLoginScreen> {
                                 color: Colors.white,
                                 size: 50,
                                 weight: FontWeight.bold),
-                            SellerLoginWidget(
+                            SellerGetOtpWidget(
                               screenSize: widget.screenSize,
-                              companyName: companyName,
                               phoneNumber: phoneNumber,
                               formKey: formKey,
                               sellerAuthenticationBloc:
