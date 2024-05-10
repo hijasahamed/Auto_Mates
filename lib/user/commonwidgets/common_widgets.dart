@@ -15,7 +15,7 @@ class MyTextWidget extends StatelessWidget {
 
 snackbarWidget(String text, context, Color color, Color textColor,SnackBarBehavior behavior) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    elevation: 10,
+    elevation: 5,
     dismissDirection: DismissDirection.horizontal,
     duration: const Duration(milliseconds: 2100),
     behavior: behavior,

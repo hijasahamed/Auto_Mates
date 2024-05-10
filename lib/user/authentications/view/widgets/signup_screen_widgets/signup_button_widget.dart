@@ -28,7 +28,7 @@ class SignupButtonWidget extends StatelessWidget {
       child: ClipPath(
         clipper: Customshape(),
         child: Container(
-          color: const Color(0xFF284845),
+          color: const Color(0XFF143A42),  
           height: screenSize.height/10,
           child: const Center(
               child: Text(

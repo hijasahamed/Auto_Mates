@@ -48,30 +48,35 @@ class UserSignupScreen extends StatelessWidget {
           body: Container(
             height: screenSize.height,
             width: screenSize.width,
-            color: const Color(0XFFDBEDF5),
+            decoration: const BoxDecoration(
+                image: DecorationImage(image: AssetImage('assets/images/car.png'),fit: BoxFit.cover)
+              ),
             child: SafeArea(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SignupWelcomeWidget(
+              child: Container(
+                color: Colors.black54,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SignupWelcomeWidget(
+                        screenSize: screenSize,
+                        authenticationBloc: authenticationBloc,
+                        emailController: emailController,
+                        userNameController: userNameController,
+                        passwordController: passwordController,
+                        reChekPasswordController: reChekPasswordController,
+                        formkey: formkey),
+                    SignupButtonWidget(
                       screenSize: screenSize,
                       authenticationBloc: authenticationBloc,
                       emailController: emailController,
                       userNameController: userNameController,
                       passwordController: passwordController,
                       reChekPasswordController: reChekPasswordController,
-                      formkey: formkey),
-                  SignupButtonWidget(
-                    screenSize: screenSize,
-                    authenticationBloc: authenticationBloc,
-                    emailController: emailController,
-                    userNameController: userNameController,
-                    passwordController: passwordController,
-                    reChekPasswordController: reChekPasswordController,
-                    formkey: formkey,
-                    auth: auth,
-                  ),
-                ],
+                      formkey: formkey,
+                      auth: auth,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

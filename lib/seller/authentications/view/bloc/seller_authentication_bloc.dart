@@ -9,6 +9,7 @@ part 'seller_authentication_state.dart';
 class SellerAuthenticationBloc extends Bloc<SellerAuthenticationEvent, SellerAuthenticationState> {
   SellerAuthenticationBloc() : super(SellerAuthenticationInitial()) {
     on<SellerAuthenticationInitialEvent>(sellerAuthenticationInitialEvent);
+    on<SellerLoginButtonClickedEvent>(loginButtonClickedEvent);
     on<CreateCompanyButtonClickedEvent>(createCompanyButtonClickedEvent);
     on<AlreadyASellerLoginToYourAccountButtonClickedEvent>(alreadyASellerLoginToYourAccountButtonClickedEvent);
   }
@@ -18,6 +19,11 @@ class SellerAuthenticationBloc extends Bloc<SellerAuthenticationEvent, SellerAut
       emit(SellerAuthenticationLoadingState());     
       await Future.delayed(const Duration(milliseconds: 2300));
       emit(SellerAuthenticationLoadedSuccessState());
+  }
+
+  FutureOr<void> loginButtonClickedEvent(
+    SellerLoginButtonClickedEvent event, Emitter<SellerAuthenticationState> emit) {
+      emit(SellerLoginButtonClickedActionState());
   }
 
   FutureOr<void> createCompanyButtonClickedEvent(
@@ -30,4 +36,6 @@ class SellerAuthenticationBloc extends Bloc<SellerAuthenticationEvent, SellerAut
     AlreadyASellerLoginToYourAccountButtonClickedEvent event, Emitter<SellerAuthenticationState> emit) {
       emit(AlreadyASellerLoginToYourAccountButtonClickedActionState());
   }
+
+  
 }

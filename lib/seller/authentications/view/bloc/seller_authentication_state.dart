@@ -13,6 +13,8 @@ class SellerAuthenticationLoadingState extends SellerAuthenticationState {}
 
 class SellerAuthenticationLoadedSuccessState extends SellerAuthenticationState {}
 
+class SellerLoginButtonClickedActionState extends SellerAuthenticationActionState{}
+
 class CreateCompanyButtonClickedActionState extends SellerAuthenticationActionState{}
 
 class AlreadyASellerLoginToYourAccountButtonClickedActionState extends SellerAuthenticationActionState{}

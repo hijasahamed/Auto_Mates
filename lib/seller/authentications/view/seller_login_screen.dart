@@ -1,5 +1,6 @@
 import 'package:auto_mates/seller/authentications/view/bloc/seller_authentication_bloc.dart';
 import 'package:auto_mates/seller/authentications/view/create_company_screen.dart';
+import 'package:auto_mates/seller/authentications/view/otp_verification_screen.dart';
 import 'package:auto_mates/seller/authentications/view/widgets/login_screen_widgets/seller_login_widget.dart';
 import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:flutter/material.dart';
@@ -37,8 +38,15 @@ class _SellerLoginScreenState extends State<SellerLoginScreen> {
       listener: (context, state) {
         if (state is CreateCompanyButtonClickedActionState) {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) =>
-                  CreateCompanyScreen(screenSize: widget.screenSize,sellerAuthenticationBloc: sellerAuthenticationBloc,)));
+              builder: (context) => CreateCompanyScreen(
+                    screenSize: widget.screenSize,
+                    sellerAuthenticationBloc: sellerAuthenticationBloc,
+                  )));
+        } else if (state is SellerLoginButtonClickedActionState) {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => OtpVerificationScreen(screenSize: widget.screenSize,)));
+          snackbarWidget('OTP send to the PhoneNumber', context, Colors.blue,
+              Colors.white, SnackBarBehavior.floating);
         }
       },
       builder: (context, state) {
@@ -66,7 +74,7 @@ class _SellerLoginScreenState extends State<SellerLoginScreen> {
                             fit: BoxFit.cover)),
                     child: SafeArea(
                         child: Container(
-                      color: Colors.black45,
+                      color: Colors.black54,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
@@ -86,18 +94,12 @@ class _SellerLoginScreenState extends State<SellerLoginScreen> {
                               sellerAuthenticationBloc:
                                   sellerAuthenticationBloc,
                             ),
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.black45,
-                              ),
-                              child: const MyTextWidget(
-                                  text:
-                                      'Sell your car fast & free. Eager used car buyers visit us monthly. Get started in just a few steps!',
-                                  color: Colors.white,
-                                  size: 24,
-                                  weight: FontWeight.bold),
-                            )
+                            const MyTextWidget(
+                                text:
+                                    'Sell your car fast & free. Eager used car buyers visit us monthly. Get started in just a few steps!',
+                                color: Colors.white,
+                                size: 24,
+                                weight: FontWeight.bold)
                           ],
                         ),
                       ),

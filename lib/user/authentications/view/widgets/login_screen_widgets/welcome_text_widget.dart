@@ -14,7 +14,7 @@ class WelcomeTextWidget extends StatelessWidget {
           Text(
             'Welcome Back!',
             style: TextStyle(
-                fontSize: 28,
+                fontSize: 35,
                 fontWeight: FontWeight.bold,
                 color: Colors.white),
           ),

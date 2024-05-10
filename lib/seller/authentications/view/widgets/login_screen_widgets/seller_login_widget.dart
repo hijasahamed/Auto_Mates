@@ -24,31 +24,30 @@ class SellerLoginWidget extends StatelessWidget {
       width: screenSize.width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.black45
+        color: Colors.black12
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            TextFormWidget(
-                text: 'Company',
-                controller: companyName,
-                warning: 'Enter company name',
-                obscure: false,
-                keyBoardType: TextInputType.name,
-                textCapitalization: TextCapitalization.words),
-            TextFormWidget(
-                text: 'Phone',
-                controller: phoneNumber,
-                warning: 'Enter Valid Phone Number',
-                obscure: false,
-                keyBoardType: TextInputType.phone,
-                textCapitalization: TextCapitalization.none),
+            const MyTextWidget(text: 'Enter Your Registerd Company Number To Login', color: Colors.white, size: 20, weight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: TextFormWidget(
+                  text: 'Phone Number',
+                  controller: phoneNumber,
+                  warning: 'Enter Valid Phone Number',
+                  obscure: false,
+                  keyBoardType: TextInputType.phone,
+                  textCapitalization: TextCapitalization.none),
+            ),
             ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  sellerAuthenticationBloc.add(SellerLoginButtonClickedEvent());
+                },
                 child: const MyTextWidget(
-                    text: 'Login',
+                    text: 'Get OTP',
                     color: Colors.black,
                     size: 18,
                     weight: FontWeight.bold)),

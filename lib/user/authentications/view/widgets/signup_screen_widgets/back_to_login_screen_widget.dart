@@ -16,7 +16,7 @@ class BackToLoginScreenWidget extends StatelessWidget {
           Text(
             'Already have an Account? ',
             style: TextStyle(
-                fontWeight: FontWeight.w500, color: Color.fromARGB(255, 78, 78, 78)),
+                fontWeight: FontWeight.w500, color: Colors.white),
           ),
           Text(
             'Login',

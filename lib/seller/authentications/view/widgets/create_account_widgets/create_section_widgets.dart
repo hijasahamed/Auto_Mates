@@ -22,7 +22,7 @@ class CreateSectionWidget extends StatelessWidget {
       width: screenSize.width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.black45
+        color: Colors.black12
       ),
       child: Padding(
         padding: const EdgeInsets.all(15),

@@ -32,8 +32,8 @@ class SignupWelcomeWidget extends StatelessWidget {
           const Spacer(),
           const Column(
             children: [
-              MyTextWidget(text: 'Create Account To Explore More', color: Color.fromARGB(255, 78, 78, 78), size: 25, weight: FontWeight.bold),
-              MyTextWidget(text: 'Signup', color: Color.fromARGB(255, 78, 78, 78), size: 30, weight: FontWeight.bold),
+              MyTextWidget(text: 'Create Account To Explore More', color: Colors.white, size: 25, weight: FontWeight.bold),
+              MyTextWidget(text: 'Signup', color: Colors.white, size: 30, weight: FontWeight.bold),
             ],
           ),
           const Spacer(),

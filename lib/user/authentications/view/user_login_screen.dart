@@ -63,29 +63,34 @@ class UserLoginScreen extends StatelessWidget {
               height: screenSize.height,
               width: screenSize.width,
               decoration: const BoxDecoration(
-                image: DecorationImage(image: AssetImage('assets/images/login blackimage.jpg'),fit: BoxFit.cover)
+                image: DecorationImage(image: AssetImage('assets/images/car.png'),fit: BoxFit.cover)
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [                   
-                  WelcomeTextWidget(screenSize: screenSize),
-                  LoginSectionWidget(
-                      screenSize: screenSize,
-                      emailController: emailController,
-                      passwordController: passwordController,
-                      formkey: formkey,
-                      authenticationBloc: authenticationBloc,),
-                  GoogleLoginwidget(screenSize: screenSize,authenticationBloc: authenticationBloc,),
-                  SignupDealerLoginWidget(
-                      screenSize: screenSize,
-                      authenticationBloc: authenticationBloc),
-                  LoginButtonWidget(
-                      screenSize: screenSize,
-                      authenticationBloc: authenticationBloc,
-                      emailController: emailController,
-                      passwordController: passwordController,
-                      formkey: formkey,),
-                ],
+              child: SafeArea(
+                child: Container(
+                  color: Colors.black54,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [                   
+                      WelcomeTextWidget(screenSize: screenSize),
+                      LoginSectionWidget(
+                          screenSize: screenSize,
+                          emailController: emailController,
+                          passwordController: passwordController,
+                          formkey: formkey,
+                          authenticationBloc: authenticationBloc,),
+                      GoogleLoginwidget(screenSize: screenSize,authenticationBloc: authenticationBloc,),
+                      SignupDealerLoginWidget(
+                          screenSize: screenSize,
+                          authenticationBloc: authenticationBloc),
+                      LoginButtonWidget(
+                          screenSize: screenSize,
+                          authenticationBloc: authenticationBloc,
+                          emailController: emailController,
+                          passwordController: passwordController,
+                          formkey: formkey,),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),

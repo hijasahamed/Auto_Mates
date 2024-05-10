@@ -47,6 +47,7 @@ dependencies:
   google_sign_in: ^6.2.1
   lottie: ^3.1.0
   meta: ^1.11.0
+  pinput: ^4.0.0
   shared_preferences: ^2.2.3
 
 dev_dependencies:
@@ -72,8 +73,9 @@ flutter:
     - assets/images/google logo.png
     - assets/images/reset password.avif
     - assets/images/seller login.png
-    - assets/images/login blur image.jpg
     - assets/images/login blackimage.jpg
+    - assets/images/car.png
+    - assets/images/enter-otp-concept-illustration picture.jpg
     #animations
     - assets/animations/loading_animation.json
     - assets/animations/splash_animation_jeep.json
