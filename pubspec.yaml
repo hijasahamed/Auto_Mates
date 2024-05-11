@@ -46,6 +46,7 @@ dependencies:
   flutter_bloc: ^8.1.5
   font_awesome_flutter: ^10.7.0
   google_sign_in: ^6.2.1
+  intl_phone_field: ^3.2.0
   lottie: ^3.1.0
   meta: ^1.11.0
   pinput: ^4.0.0
@@ -73,10 +74,11 @@ flutter:
     - assets/images/gmap.png
     - assets/images/google logo.png
     - assets/images/reset password.avif
-    - assets/images/seller login.png
-    - assets/images/login blackimage.jpg
+    - assets/images/seller login image.png
     - assets/images/car.png
-    - assets/images/enter-otp-concept-illustration picture.jpg
+    - assets/images/enter number.webp
+    - assets/images/otp log.png
+    - assets/images/black car.jpg
     #animations
     - assets/animations/loading_animation.json
     - assets/animations/splash_animation_jeep.json

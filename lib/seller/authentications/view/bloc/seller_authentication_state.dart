@@ -24,3 +24,4 @@ class SubmitOtpButtonClickedActionState extends SellerAuthenticationActionState{
   SubmitOtpButtonClickedActionState({required this.code});
 }
 
+class ResendOtpButtonClickedAction extends SellerAuthenticationActionState{}

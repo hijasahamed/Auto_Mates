@@ -25,7 +25,7 @@ class AddTextformFieldWidget extends StatelessWidget {
       ),
       child: SizedBox(
         width: screenSize.width,
-        height: screenSize.height / 4,
+        height: screenSize.height / 3.7,
         child: Form(
             key: formkey,
             child: Column(

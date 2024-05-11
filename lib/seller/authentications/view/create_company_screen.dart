@@ -23,7 +23,7 @@ class CreateCompanyScreen extends StatelessWidget {
         if(state is AlreadyASellerLoginToYourAccountButtonClickedActionState){
           Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (context) =>
-              SellerLoginScreen(screenSize: screenSize)));
+              const SellerLoginScreen()));
         }
       },
       builder: (context, state) {
@@ -34,11 +34,11 @@ class CreateCompanyScreen extends StatelessWidget {
             width: screenSize.width,
             decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/images/seller login.png'),
+                    image: AssetImage('assets/images/black car.jpg'),
                     fit: BoxFit.cover)),
             child: SafeArea(
                 child: Container(
-              color: Colors.black45,
+              color: Colors.black54,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(

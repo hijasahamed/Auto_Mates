@@ -23,6 +23,7 @@ class _AppbarBottomTabSwitchScreenState
   @override
   void initState() {
     appbottombarBloc.add(AppBottomBarInitialEvent());
+    tabIndex = 0;
     super.initState();
   }
 
@@ -42,7 +43,7 @@ class _AppbarBottomTabSwitchScreenState
       listener: (context, state) {},
       builder: (context, state) {
         switch (state.runtimeType) {
-          case AppbottombarLoadingState:
+          case AppbottombarLoadingState:  
             return Scaffold(
               backgroundColor: const Color(0xFFDBEDF5),
               body: Center(
@@ -66,44 +67,49 @@ class _AppbarBottomTabSwitchScreenState
                           screenSize: screenSize,
                           tabIndex: tabIndex,
                         )),
-                    bottomNavigationBar: BottomNavigationBar(
-                      elevation: 10,
-                      currentIndex: tabIndex,
-                      onTap: (index) {
-                        setState(() {
-                          tabIndex = index;
-                        });
-                        // appbottombarBloc.add(OntapIndexChangeEvent());
+                    bottomNavigationBar: BlocBuilder<AppbottombarBloc, AppbottombarState>(
+                      builder: (context, state) {
+                        return BottomNavigationBar(
+                          elevation: 10,
+                          currentIndex: tabIndex,
+                          onTap: (index) {
+                            setState(() {
+                              tabIndex = index;
+                            });
+                            // tabIndex=index;
+                            // appbottombarBloc.add(OntapIndexChangeEvent());
+                          },
+                          items: const [
+                            BottomNavigationBarItem(
+                              icon: Icon(Icons.home),
+                              label: 'Home',
+                            ),
+                            BottomNavigationBarItem(
+                              icon: Icon(Icons.car_rental),
+                              label: 'Buy',
+                            ),
+                            BottomNavigationBarItem(
+                              icon: Icon(Icons.newspaper),
+                              label: 'News',
+                            ),
+                            BottomNavigationBarItem(
+                              icon: Icon(Icons.person),
+                              label: 'Profile',
+                            ),
+                          ],
+                          selectedItemColor:
+                              const Color.fromARGB(255, 76, 207, 239),
+                          selectedFontSize: 15,
+                          selectedLabelStyle: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                          showUnselectedLabels: true,
+                          showSelectedLabels: true,
+                          unselectedItemColor: const Color(0xFF424141),
+                          unselectedLabelStyle:
+                              const TextStyle(fontWeight: FontWeight.bold),
+                        );
                       },
-                      items: const [
-                        BottomNavigationBarItem(
-                          icon: Icon(Icons.home),
-                          label: 'Home',
-                        ),
-                        BottomNavigationBarItem(
-                          icon: Icon(Icons.car_rental),
-                          label: 'Buy',
-                        ),
-                        BottomNavigationBarItem(
-                          icon: Icon(Icons.newspaper),
-                          label: 'News',
-                        ),
-                        BottomNavigationBarItem(
-                          icon: Icon(Icons.person),
-                          label: 'Profile',
-                        ),
-                      ],
-                      selectedItemColor:
-                          const Color.fromARGB(255, 76, 207, 239),
-                      selectedFontSize: 15,
-                      selectedLabelStyle: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                      showUnselectedLabels: true,
-                      showSelectedLabels: true,
-                      unselectedItemColor: const Color(0xFF424141),
-                      unselectedLabelStyle:
-                          const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     body: tabs[tabIndex],
                     drawer: DrawerWidget(screenSize: screenSize));

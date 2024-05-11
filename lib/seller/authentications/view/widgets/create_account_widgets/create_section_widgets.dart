@@ -22,7 +22,6 @@ class CreateSectionWidget extends StatelessWidget {
       width: screenSize.width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.black12
       ),
       child: Padding(
         padding: const EdgeInsets.all(15),
@@ -60,17 +59,18 @@ class CreateSectionWidget extends StatelessWidget {
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const MyTextWidget(text: 'Add Profile', color: Color.fromARGB(255, 86, 86, 86), size: 15, weight: FontWeight.bold),
+                children: [                  
                   IconButton(
                     onPressed: () {
                       
                     }, 
                     icon: const CircleAvatar(
+                      radius: 30,
                       backgroundColor: Colors.black12,
-                      child: Icon(Icons.add)
+                      child: Icon(Icons.camera_alt_rounded)
                     )
-                  )
+                  ),
+                  const MyTextWidget(text: 'Add Photo', color: Color.fromARGB(255, 86, 86, 86), size: 15, weight: FontWeight.bold),
                 ],
               ),
             )

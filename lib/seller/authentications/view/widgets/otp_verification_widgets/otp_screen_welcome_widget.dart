@@ -14,12 +14,15 @@ class OtpScreenWelcomeWidget extends StatelessWidget {
           width: screenSize.width/1.5,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50),
-            image: const DecorationImage(image: AssetImage('assets/images/enter-otp-concept-illustration picture.jpg'),fit: BoxFit.cover)
+            image: const DecorationImage(image: AssetImage('assets/images/otp log.png'),fit: BoxFit.cover)
           ),
         ),
-        const MyTextWidget(text: 'OTP Verification', color: Colors.black, size: 30, weight: FontWeight.bold),
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: MyTextWidget(text: 'OTP Verification', color: Colors.black, size: 30, weight: FontWeight.bold),
+        ),
         Padding(
-          padding: const EdgeInsets.only(top: 5,bottom: 5,left: 20,right: 20),
+          padding: const EdgeInsets.only(top: 10,bottom: 5,left: 20,right: 20),
           child: MyTextWidget(text: otpWarn, color: const Color(0XFFB5B5B5), size: 15, weight: FontWeight.bold),
         ),
         

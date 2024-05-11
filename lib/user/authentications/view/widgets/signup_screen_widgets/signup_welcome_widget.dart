@@ -24,7 +24,7 @@ class SignupWelcomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: screenSize.height / 1.8,
+      height: screenSize.height / 2,
       width: screenSize.width,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

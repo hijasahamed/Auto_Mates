@@ -8,8 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
 class SellerLoginScreen extends StatefulWidget {
-  const SellerLoginScreen({super.key, required this.screenSize});
-  final Size screenSize;
+  const SellerLoginScreen({super.key,});
 
   @override
   State<SellerLoginScreen> createState() => _SellerLoginScreenState();
@@ -31,17 +30,19 @@ class _SellerLoginScreenState extends State<SellerLoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
     return BlocConsumer<SellerAuthenticationBloc, SellerAuthenticationState>(
       bloc: sellerAuthenticationBloc,
       listener: (context, state) {
         if (state is CreateCompanyButtonClickedActionState) {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
               builder: (context) => CreateCompanyScreen(
-                    screenSize: widget.screenSize,
+                    screenSize: screenSize,
                     sellerAuthenticationBloc: sellerAuthenticationBloc,
                   )));
         } else if (state is SellerGetOtpButtonClickedActionState) {
-          getOtpButtonClicked(phoneNumber,context,widget.screenSize,sellerAuthenticationBloc,contrryCode);
+          getOtpButtonClicked(phoneNumber, context, screenSize,
+              sellerAuthenticationBloc, contrryCode,);
           snackbarWidget('OTP send to the PhoneNumber', context, Colors.blue,
               Colors.white, SnackBarBehavior.floating);
         }
@@ -54,52 +55,54 @@ class _SellerLoginScreenState extends State<SellerLoginScreen> {
               body: Center(
                   child: LottieBuilder.asset(
                 'assets/animations/loading_animation.json',
-                height: widget.screenSize.height / 10,
-                width: widget.screenSize.width / 4,
+                height: screenSize.height / 10,
+                width: screenSize.width / 4,
                 repeat: true,
               )),
             );
           case const (SellerAuthenticationLoadedSuccessState):
             return Scaffold(
+                backgroundColor: const Color(0XFFDBEDF5),
                 resizeToAvoidBottomInset: false,
                 body: Container(
-                    height: widget.screenSize.height,
-                    width: widget.screenSize.width,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('assets/images/seller login.png'),
-                            fit: BoxFit.cover)),
-                    child: SafeArea(
-                        child: Container(
-                      color: Colors.black54,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            const MyTextWidget(
-                                text: 'Auto Mates',
-                                color: Colors.white,
-                                size: 50,
-                                weight: FontWeight.bold),
-                            SellerGetOtpWidget(
-                              screenSize: widget.screenSize,
-                              phoneNumber: phoneNumber,
-                              formKey: formKey,
-                              sellerAuthenticationBloc:
-                                  sellerAuthenticationBloc,
-                            ),
-                            const MyTextWidget(
-                                text:
-                                    'Sell your car fast & free. Eager used car buyers visit us monthly. Get started in just a few steps!',
-                                color: Colors.white,
-                                size: 24,
-                                weight: FontWeight.bold)
-                          ],
+                  height: screenSize.height,
+                  width: screenSize.width,
+                  decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/images/black car.jpg'),
+                    fit: BoxFit.cover)),
+                  child: SafeArea(
+                      child: Container(
+                        color: Colors.black54,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: screenSize.height / 3.5,
+                                width: screenSize.width / 2,
+                                decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                          'assets/images/enter number.webp'),
+                                      fit: BoxFit.cover),
+                                ),
+                              ),
+                              const MyTextWidget(text: 'Phone Verification', color: Colors.white, size: 25, weight: FontWeight.bold),
+                              SizedBox(height: screenSize.height/70,),
+                              SellerGetOtpWidget(
+                                screenSize: screenSize,
+                                phoneNumber: phoneNumber,
+                                formKey: formKey,
+                                sellerAuthenticationBloc:
+                                    sellerAuthenticationBloc,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ))));
+                      )),
+                ));
           default:
             return const SizedBox();
         }

@@ -8,10 +8,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OtpVerificationScreen extends StatelessWidget {
   const OtpVerificationScreen(
-      {super.key, required this.screenSize, required this.verificationId,required this.sellerAuthenticationBloc});
+      {super.key, required this.screenSize, required this.verificationId,required this.sellerAuthenticationBloc,required this.phoneNumberController});
   final Size screenSize;
   final String verificationId;
   final SellerAuthenticationBloc sellerAuthenticationBloc;
+  final TextEditingController phoneNumberController;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SellerAuthenticationBloc, SellerAuthenticationState>(
@@ -20,29 +21,32 @@ class OtpVerificationScreen extends StatelessWidget {
         if(state is SubmitOtpButtonClickedActionState){
           submitOtp(verificationId, state.code, context);
         }
+        if(state is ResendOtpButtonClickedAction){
+          resendOtp(phoneNumberController.text);
+        }
       },
       builder: (context, state) {
         return Scaffold(
+          resizeToAvoidBottomInset: false,
           backgroundColor: const Color.fromARGB(255, 255, 254, 254),
-          body: SingleChildScrollView(
-            child: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  height: screenSize.height,
-                  width: screenSize.width,
-                  child: Column(
-                    children: [
-                      OtpScreenWelcomeWidget(
-                        screenSize: screenSize,
-                      ),
-                      SubmitOtpWidget(
-                        screenSize: screenSize,
-                        sellerAuthenticationBloc: sellerAuthenticationBloc,
-                      ),
-                      const ResendOtpWidget(),
-                    ],
-                  ),
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                height: screenSize.height,
+                width: screenSize.width,
+                child: Column(
+                  children: [
+                    OtpScreenWelcomeWidget(
+                      screenSize: screenSize,
+                    ),
+                    SubmitOtpWidget(
+                      screenSize: screenSize,
+                      sellerAuthenticationBloc: sellerAuthenticationBloc,
+                      phoneNumberController: phoneNumberController,
+                    ),
+                    ResendOtpWidget(phoneNumberController: phoneNumberController,sellerAuthenticationBloc: sellerAuthenticationBloc,),
+                  ],
                 ),
               ),
             ),

@@ -6,7 +6,7 @@ class CreateButtonWidget extends StatelessWidget {
   final Size screenSize;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: screenSize.height / 18,
       width: screenSize.width / 2.5,
       child: Material(

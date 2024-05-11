@@ -15,3 +15,5 @@ class SubmitOtpButtonClickedEvent extends SellerAuthenticationEvent{
   final String code;
   SubmitOtpButtonClickedEvent({required this.code});
 }
+
+class ResendOtpButtonClickedEvent extends SellerAuthenticationEvent{}

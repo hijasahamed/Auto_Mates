@@ -13,6 +13,7 @@ class SellerAuthenticationBloc extends Bloc<SellerAuthenticationEvent, SellerAut
     on<CreateCompanyButtonClickedEvent>(createCompanyButtonClickedEvent);
     on<AlreadyASellerLoginToYourAccountButtonClickedEvent>(alreadyASellerLoginToYourAccountButtonClickedEvent);
     on<SubmitOtpButtonClickedEvent>(submitOtpButtonClickedEvent);
+    on<ResendOtpButtonClickedEvent>(resendOtpButtonClickedEvent);
   }
 
   FutureOr<void> sellerAuthenticationInitialEvent(
@@ -43,5 +44,10 @@ class SellerAuthenticationBloc extends Bloc<SellerAuthenticationEvent, SellerAut
   FutureOr<void> submitOtpButtonClickedEvent(
     SubmitOtpButtonClickedEvent event, Emitter<SellerAuthenticationState> emit) {
       emit(SubmitOtpButtonClickedActionState(code: event.code));
+  }
+
+  FutureOr<void> resendOtpButtonClickedEvent(
+    ResendOtpButtonClickedEvent event, Emitter<SellerAuthenticationState> emit) {
+      emit(ResendOtpButtonClickedAction());
   }
 }

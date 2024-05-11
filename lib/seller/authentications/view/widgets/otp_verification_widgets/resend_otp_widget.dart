@@ -1,9 +1,11 @@
+import 'package:auto_mates/seller/authentications/view/bloc/seller_authentication_bloc.dart';
 import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 
 class ResendOtpWidget extends StatelessWidget {
-  const ResendOtpWidget({super.key});
-
+  const ResendOtpWidget({super.key,required this.phoneNumberController,required this.sellerAuthenticationBloc});
+  final TextEditingController phoneNumberController;
+  final SellerAuthenticationBloc sellerAuthenticationBloc;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,7 +15,7 @@ class ResendOtpWidget extends StatelessWidget {
         children: [
           TextButton(
             onPressed: () {
-              
+              sellerAuthenticationBloc.add(ResendOtpButtonClickedEvent());
             }, 
             child: const MyTextWidget(text: 'Resend OTP', color: Colors.black87, size: 17, weight: FontWeight.w500),
           ),
