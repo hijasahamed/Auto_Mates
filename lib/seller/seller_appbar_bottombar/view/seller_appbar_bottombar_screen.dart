@@ -1,5 +1,5 @@
 import 'package:auto_mates/seller/seller_appbar_bottombar/view/bloc/sellerappbottom_bloc.dart';
-import 'package:auto_mates/user/appbarbottombar/view/widgets/app_bar_gradient_color.dart';
+import 'package:auto_mates/seller/seller_appbar_bottombar/view/widgets/seller_screen_appbar_widget.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +32,7 @@ class _SellerappbarbottombarState extends State<Sellerappbarbottombar> {
       builder: (context, state) {
         final screenSize = MediaQuery.of(context).size;
         switch(state.runtimeType){
-          case SellerAppbottombarLoadingState :
+          case const (SellerAppbottombarLoadingState) :
           return Scaffold(
               backgroundColor: const Color(0xFFDBEDF5),
               body: Center(
@@ -44,11 +44,11 @@ class _SellerappbarbottombarState extends State<Sellerappbarbottombar> {
                 ),
               ),
             );
-          case SellerAppbottombarLoadedSuccessState:
+          case const (SellerAppbottombarLoadedSuccessState):
           return Scaffold(
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            flexibleSpace: const AppBarGradientColor(),
+          appBar: const PreferredSize(
+            preferredSize: Size.fromHeight(80),
+            child: SellerScreenAppbarWidget()
           ),
           body: const Center(child: Text('Seller AppBottomBAr')),
           bottomNavigationBar: CurvedNavigationBar(
