@@ -47,9 +47,6 @@ class CreateCompanyScreen extends StatelessWidget {
                       height: screenSize.height / 50,
                     ),
                     const CreateAccountWelcomeScreen(),
-                    SizedBox(
-                      height: screenSize.height / 15,
-                    ),
                     CreateSectionWidget(
                       formKey: formKey,
                       phoneNumberController: phoneNumberController,
@@ -58,7 +55,7 @@ class CreateCompanyScreen extends StatelessWidget {
                       locationController: locationController,
                     ),
                     SizedBox(
-                      height: screenSize.height / 15,
+                      height: screenSize.height / 30,
                     ),
                     CreateButtonWidget(
                       screenSize: screenSize,

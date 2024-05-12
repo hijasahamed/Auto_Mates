@@ -10,7 +10,7 @@ class CreateButtonWidget extends StatelessWidget {
       height: screenSize.height / 18,
       width: screenSize.width / 2.5,
       child: Material(
-        color: const Color(0XFF5569C7),
+        color: Colors.blue,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: InkWell(
           onTap: () {

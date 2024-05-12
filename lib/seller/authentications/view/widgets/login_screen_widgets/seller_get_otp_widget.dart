@@ -29,12 +29,12 @@ class SellerGetOtpWidget extends StatelessWidget {
           const MyTextWidget(
               text: 'Enter your registerd company number',
               color: Colors.white,
-              size: 20,
+              size: 15,
               weight: FontWeight.bold),
           const MyTextWidget(
               text: 'to verify your account',
               color: Colors.white,
-              size: 20,
+              size: 15,
               weight: FontWeight.bold),
           Padding(
               padding: const EdgeInsets.all(10),
@@ -72,7 +72,7 @@ class SellerGetOtpWidget extends StatelessWidget {
               )),
           Container(
             height: screenSize.height / 16,
-            width: screenSize.width/1.2,
+            width: screenSize.width/1.5,
             color: Colors.transparent,
             child: Material(
               shape: RoundedRectangleBorder(
@@ -88,7 +88,7 @@ class SellerGetOtpWidget extends StatelessWidget {
                     child: MyTextWidget(
                         text: 'Generate OTP',
                         color: Colors.white,
-                        size: 18,
+                        size: 17,
                         weight: FontWeight.bold),
                   )),
             ),

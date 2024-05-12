@@ -69,7 +69,7 @@ class _SellerLoginScreenState extends State<SellerLoginScreen> {
                   width: screenSize.width,
                   decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/images/black car.jpg'),
+                    image: AssetImage('assets/images/login blackimage.jpg'),
                     fit: BoxFit.cover)),
                   child: SafeArea(
                       child: Container(

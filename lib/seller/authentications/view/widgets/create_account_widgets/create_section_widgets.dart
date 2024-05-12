@@ -18,7 +18,7 @@ class CreateSectionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: screenSize.height/2.3,
+      height: screenSize.height / 2.2,
       width: screenSize.width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -28,6 +28,22 @@ class CreateSectionWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            CircleAvatar(
+              radius: 60,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.camera_alt_rounded)),
+                  const MyTextWidget(
+                      text: 'Add Photo',
+                      color: Color.fromARGB(255, 86, 86, 86),
+                      size: 15,
+                      weight: FontWeight.bold),
+                ],
+              ),
+            ),
             TextFormWidget(
                 text: 'Company Name',
                 controller: companyNameController,
@@ -49,31 +65,6 @@ class CreateSectionWidget extends StatelessWidget {
                 obscure: false,
                 keyBoardType: TextInputType.phone,
                 textCapitalization: TextCapitalization.none),
-            Container(              
-              height: screenSize.height/8,
-              width: screenSize.width/2,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(width: 1,color: Colors.grey)
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [                  
-                  IconButton(
-                    onPressed: () {
-                      
-                    }, 
-                    icon: const CircleAvatar(
-                      radius: 30,
-                      backgroundColor: Colors.black12,
-                      child: Icon(Icons.camera_alt_rounded)
-                    )
-                  ),
-                  const MyTextWidget(text: 'Add Photo', color: Color.fromARGB(255, 86, 86, 86), size: 15, weight: FontWeight.bold),
-                ],
-              ),
-            )
           ],
         ),
       ),

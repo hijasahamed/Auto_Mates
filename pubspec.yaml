@@ -74,14 +74,16 @@ flutter:
     - assets/images/gmap.png
     - assets/images/google logo.png
     - assets/images/reset password.avif
-    - assets/images/seller login image.png
+    - assets/images/no network.jpg
     - assets/images/car.png
     - assets/images/enter number.webp
     - assets/images/otp log.png
     - assets/images/black car.jpg
+    - assets/images/login blackimage.jpg
     #animations
     - assets/animations/loading_animation.json
     - assets/animations/splash_animation_jeep.json
+    - assets/animations/Animation - 1715495581568.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
