@@ -17,55 +17,47 @@ class CreateSectionWidget extends StatelessWidget {
   final GlobalKey formKey;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: screenSize.height / 2.2,
-      width: screenSize.width,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            CircleAvatar(
-              radius: 60,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.camera_alt_rounded)),
-                  const MyTextWidget(
-                      text: 'Add Photo',
-                      color: Color.fromARGB(255, 86, 86, 86),
-                      size: 15,
-                      weight: FontWeight.bold),
-                ],
-              ),
-            ),
-            TextFormWidget(
-                text: 'Company Name',
-                controller: companyNameController,
-                warning: 'Enter values',
-                obscure: false,
-                keyBoardType: TextInputType.name,
-                textCapitalization: TextCapitalization.words),
-            TextFormWidget(
-                text: 'Location',
-                controller: locationController,
-                warning: 'Enter your company location',
-                obscure: false,
-                keyBoardType: TextInputType.streetAddress,
-                textCapitalization: TextCapitalization.words),
-            TextFormWidget(
-                text: 'Phone Number',
-                controller: phoneNumberController,
-                warning: 'Enter a valid Phone Numbe',
-                obscure: false,
-                keyBoardType: TextInputType.phone,
-                textCapitalization: TextCapitalization.none),
-          ],
+    return SingleChildScrollView(
+      child: Container(
+        height: screenSize.height / 2.7,
+        width: screenSize.width,        
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Column(
+            children: [            
+              TextFormWidget(
+                  text: 'Company Name',
+                  controller: companyNameController,
+                  warning: 'Enter values',
+                  obscure: false,
+                  keyBoardType: TextInputType.name,
+                  textCapitalization: TextCapitalization.words,
+                  fillColor: const Color.fromARGB(255, 240, 240, 240),
+                  ),
+                  SizedBox(height: screenSize.height/60,),
+              TextFormWidget(
+                  text: 'Location',
+                  fillColor: const Color.fromARGB(255, 240, 240, 240),
+                  controller: locationController,
+                  warning: 'Enter your company location',
+                  obscure: false,
+                  keyBoardType: TextInputType.streetAddress,
+                  textCapitalization: TextCapitalization.words),
+                  SizedBox(height: screenSize.height/60,),
+              TextFormWidget(
+                  text: 'Phone Number',
+                  fillColor: const Color.fromARGB(255, 240, 240, 240),
+                  controller: phoneNumberController,
+                  warning: 'Enter a valid Phone Numbe',
+                  obscure: false,
+                  keyBoardType: TextInputType.phone,
+                  textCapitalization: TextCapitalization.none),
+            ],
+          ),
         ),
       ),
     );

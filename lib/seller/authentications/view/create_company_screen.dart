@@ -29,24 +29,13 @@ class CreateCompanyScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           resizeToAvoidBottomInset: false,
-          body: Container(
-            height: screenSize.height,
-            width: screenSize.width,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/images/black car.jpg'),
-                    fit: BoxFit.cover)),
-            child: SafeArea(
-                child: Container(
-              color: Colors.black54,
+          backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+          body: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
-                  children: [
-                    SizedBox(
-                      height: screenSize.height / 50,
-                    ),
-                    const CreateAccountWelcomeScreen(),
+                  children: [                   
+                    CreateAccountWelcomeScreen(screenSize: screenSize,),
                     CreateSectionWidget(
                       formKey: formKey,
                       phoneNumberController: phoneNumberController,
@@ -54,21 +43,17 @@ class CreateCompanyScreen extends StatelessWidget {
                       companyNameController: companyNameController,
                       locationController: locationController,
                     ),
-                    SizedBox(
-                      height: screenSize.height / 30,
-                    ),
+                    
                     CreateButtonWidget(
                       screenSize: screenSize,
                     ),
-                    SizedBox(
-                      height: screenSize.height / 50,
-                    ),
+                    // SizedBox(
+                    //   height: screenSize.height / 50,
+                    // ),
                     AlreadyASellerLoginWidget(sellerAuthenticationBloc: sellerAuthenticationBloc,)
                   ],
                 ),
-              ),
-            )),
-          ),
+              )),
         );
       },
     );

@@ -8,7 +8,7 @@ class CreateButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: screenSize.height / 18,
-      width: screenSize.width / 2.5,
+      width: screenSize.width / 1.5,
       child: Material(
         color: Colors.blue,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -18,9 +18,9 @@ class CreateButtonWidget extends StatelessWidget {
           },
           child: const Center(
               child: MyTextWidget(
-                  text: 'Signup',
+                  text: 'Create Account',
                   color: Colors.white,
-                  size: 20,
+                  size: 16,
                   weight: FontWeight.bold)),
         ),
       ),

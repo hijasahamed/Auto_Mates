@@ -8,13 +8,16 @@ class TextFormWidget extends StatelessWidget {
       required this.warning,
       required this.obscure,
       required this.keyBoardType,
-      required this.textCapitalization});
+      required this.textCapitalization,
+      required this.fillColor
+      });
   final String text;
   final String warning;
   final TextEditingController controller;
   final bool obscure;
   final TextInputType keyBoardType;
   final TextCapitalization textCapitalization;
+  final Color fillColor;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -37,7 +40,7 @@ class TextFormWidget extends StatelessWidget {
         hintStyle: const TextStyle(
             color: Color.fromARGB(255, 86, 86, 86),
             fontWeight: FontWeight.normal),
-        fillColor: Colors.white,
+        fillColor: fillColor,
         filled: true,
         enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white),

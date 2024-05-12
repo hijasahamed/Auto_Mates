@@ -28,12 +28,12 @@ class SellerGetOtpWidget extends StatelessWidget {
         children: [
           const MyTextWidget(
               text: 'Enter your registerd company number',
-              color: Colors.white,
+              color: Colors.black87,
               size: 15,
               weight: FontWeight.bold),
           const MyTextWidget(
               text: 'to verify your account',
-              color: Colors.white,
+              color: Colors.black87,
               size: 15,
               weight: FontWeight.bold),
           Padding(
@@ -56,7 +56,7 @@ class SellerGetOtpWidget extends StatelessWidget {
                     hintStyle: const TextStyle(
                         color: Color.fromARGB(255, 86, 86, 86),
                         fontWeight: FontWeight.normal),
-                    fillColor: Colors.white,
+                    fillColor: const Color.fromARGB(175, 231, 231, 231),
                     filled: true,
                     enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
@@ -94,15 +94,25 @@ class SellerGetOtpWidget extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          TextButton(
-              onPressed: () {
-                sellerAuthenticationBloc.add(CreateCompanyButtonClickedEvent());
-              },
-              child: const MyTextWidget(
-                  text: 'Create Company',
-                  color: Colors.white,
-                  size: 25,
-                  weight: FontWeight.bold))
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [                
+                    const MyTextWidget(
+                      text: 'New to AutoMates?',
+                      color: Color.fromARGB(255, 114, 114, 114),
+                      size: 15,
+                      weight: FontWeight.bold),
+                    TextButton(
+                      onPressed: () {
+                        sellerAuthenticationBloc.add(CreateCompanyButtonClickedEvent());
+                      },
+                      child: const MyTextWidget(text: 'Click to create company', color: Colors.blue, size: 15, weight: FontWeight.bold)
+                    ),
+              ],
+            ),
+          )
         ],
       ),
     );

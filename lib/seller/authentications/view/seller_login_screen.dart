@@ -62,47 +62,36 @@ class _SellerLoginScreenState extends State<SellerLoginScreen> {
             );
           case const (SellerAuthenticationLoadedSuccessState):
             return Scaffold(
-                backgroundColor: const Color(0XFFDBEDF5),
+                backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                 resizeToAvoidBottomInset: false,
-                body: Container(
-                  height: screenSize.height,
-                  width: screenSize.width,
-                  decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/images/login blackimage.jpg'),
-                    fit: BoxFit.cover)),
-                  child: SafeArea(
-                      child: Container(
-                        color: Colors.black54,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 10, right: 10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                height: screenSize.height / 3.5,
-                                width: screenSize.width / 2,
-                                decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                          'assets/images/enter number.webp'),
-                                      fit: BoxFit.cover),
-                                ),
-                              ),
-                              const MyTextWidget(text: 'Phone Verification', color: Colors.white, size: 25, weight: FontWeight.bold),
-                              SizedBox(height: screenSize.height/70,),
-                              SellerGetOtpWidget(
-                                screenSize: screenSize,
-                                phoneNumber: phoneNumber,
-                                formKey: formKey,
-                                sellerAuthenticationBloc:
-                                    sellerAuthenticationBloc,
-                              ),
-                            ],
+                body: SafeArea(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: screenSize.height / 3.3,
+                            width: screenSize.width / 2,
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      'assets/images/enter number.webp'),
+                                  fit: BoxFit.cover),
+                            ),
                           ),
-                        ),
-                      )),
-                ));
+                          const MyTextWidget(text: 'Phone Verification', color: Colors.black, size: 25, weight: FontWeight.bold),
+                          SizedBox(height: screenSize.height/70,),
+                          SellerGetOtpWidget(
+                            screenSize: screenSize,
+                            phoneNumber: phoneNumber,
+                            formKey: formKey,
+                            sellerAuthenticationBloc:
+                                sellerAuthenticationBloc,
+                          ),
+                        ],
+                      ),
+                    )));
           default:
             return const SizedBox();
         }

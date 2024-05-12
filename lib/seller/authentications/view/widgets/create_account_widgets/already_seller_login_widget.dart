@@ -7,17 +7,20 @@ class AlreadyASellerLoginWidget extends StatelessWidget {
   final SellerAuthenticationBloc sellerAuthenticationBloc;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const MyTextWidget(text: 'Already a Seller?', color: Colors.white, size: 15, weight: FontWeight.bold),
-        TextButton(
-          onPressed: () {
-            sellerAuthenticationBloc.add(AlreadyASellerLoginToYourAccountButtonClickedEvent());
-          }, 
-          child: const MyTextWidget(text: 'Login to your Account', color: Colors.white, size: 15, weight: FontWeight.bold),
-        )
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const MyTextWidget(text: 'Already a Seller?', color: Color.fromARGB(255, 132, 132, 132), size: 15, weight: FontWeight.bold),
+          TextButton(
+            onPressed: () {
+              sellerAuthenticationBloc.add(AlreadyASellerLoginToYourAccountButtonClickedEvent());
+            }, 
+            child: const MyTextWidget(text: 'Login to your Account', color: Colors.blue, size: 15, weight: FontWeight.bold),
+          )
+        ],
+      ),
     );
   }
 }

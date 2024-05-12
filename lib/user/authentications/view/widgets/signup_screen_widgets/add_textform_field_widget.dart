@@ -38,6 +38,7 @@ class AddTextformFieldWidget extends StatelessWidget {
                   obscure: false,
                   keyBoardType: TextInputType.name,
                   textCapitalization: TextCapitalization.words,
+                  fillColor: Colors.white
                 ),
                 TextFormWidget(
                   text: 'Email',
@@ -46,6 +47,7 @@ class AddTextformFieldWidget extends StatelessWidget {
                   obscure: false,
                   keyBoardType: TextInputType.emailAddress,
                   textCapitalization: TextCapitalization.none,
+                  fillColor: Colors.white
                 ),
                 TextFormWidget(
                   text: 'Password',
@@ -54,6 +56,7 @@ class AddTextformFieldWidget extends StatelessWidget {
                   obscure: true,
                   keyBoardType: TextInputType.name,
                   textCapitalization: TextCapitalization.none,
+                  fillColor: Colors.white,
                 ),
               ],
             )),
