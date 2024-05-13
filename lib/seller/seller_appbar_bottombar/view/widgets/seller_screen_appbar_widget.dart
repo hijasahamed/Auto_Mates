@@ -10,12 +10,15 @@ class SellerScreenAppbarWidget extends StatelessWidget {
     return AppBar(
       backgroundColor: Colors.white,
       flexibleSpace: const AppBarGradientColor(),
-      title: const MyTextWidget(text: 'Seller Side', color: Colors.white, size: 20, weight: FontWeight.bold),
-      centerTitle: true,
-      leading: IconButton(
-        onPressed: (){}, 
-        icon: const Icon(Icons.menu,color: Colors.white,size: 40,)
-      ),
+      title: const MyTextWidget(text: 'Seller Side', color: Colors.white, size:27, weight: FontWeight.bold), 
+      actions: [
+        IconButton(
+          onPressed: () {
+            
+          }, 
+          icon: const Icon(Icons.search,size: 35,color: Colors.white,)
+        )
+      ],
     );
   }
 }

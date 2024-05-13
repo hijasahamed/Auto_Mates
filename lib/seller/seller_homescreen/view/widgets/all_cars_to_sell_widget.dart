@@ -25,6 +25,7 @@ class AllCarsToSellWidget extends StatelessWidget {
             itemBuilder: (context, index) {
               final DocumentSnapshot data=snapshot.data.docs[index];
               return Card(
+                color: const Color(0XFFDBEDF5),
                 elevation: 5,
                 child: Container(
                   child: Column(
