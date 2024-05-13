@@ -79,6 +79,7 @@ flutter:
     - assets/images/enter number.webp
     - assets/images/otp log.png
     - assets/images/create a account.webp
+    - assets/images/post new car.jpg
     #animations
     - assets/animations/loading_animation.json
     - assets/animations/splash_animation_jeep.json

@@ -42,12 +42,6 @@ class SellerGetOtpWidget extends StatelessWidget {
                 key: formKey,
                 child: IntlPhoneField(
                   controller: phoneNumber,
-                  // validator: (phoneNumber) {
-                  //   if (phoneNumber!.isValidNumber()) {
-                  //     return 'Phone number is required';
-                  //   }
-                  //   return null;
-                  // },
                   initialCountryCode: 'IN',
                   keyboardType: TextInputType.phone,
                   style: const TextStyle(

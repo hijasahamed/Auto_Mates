@@ -18,7 +18,7 @@ class SellerHomeScreen extends StatelessWidget {
       listener: (context, state) {
         if(state is FloatingButtonClickedActionState){
            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => AddCarWidget()));
+              builder: (context) => AddCarWidget(screenSize: screenSize,)));
         }
       },
       builder: (context, state) {
@@ -26,10 +26,14 @@ class SellerHomeScreen extends StatelessWidget {
           body: SafeArea(
             child: Stack(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: AllCarsToSellWidget(
-                    screenSize: screenSize,
+                SizedBox(
+                  height: screenSize.height,
+                  width: screenSize.width,
+                  child: Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: AllCarsToSellWidget(
+                      screenSize: screenSize,
+                    ),
                   ),
                 ),
                 Positioned(
