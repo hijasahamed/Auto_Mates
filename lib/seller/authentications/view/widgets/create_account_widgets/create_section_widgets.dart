@@ -1,5 +1,4 @@
 import 'package:auto_mates/user/authentications/view/widgets/signup_screen_widgets/text_form_widget.dart';
-import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 
 class CreateSectionWidget extends StatelessWidget {

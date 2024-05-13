@@ -5,13 +5,11 @@ class AddTextformFieldWidget extends StatelessWidget {
   const AddTextformFieldWidget(
       {super.key,
       required this.screenSize,
-      required this.userNameController,
       required this.emailController,
       required this.passwordController,
       required this.reChekPasswordController,
       required this.formkey});
   final Size screenSize;
-  final TextEditingController userNameController;
   final TextEditingController passwordController;
   final TextEditingController emailController;
   final TextEditingController reChekPasswordController;
@@ -25,21 +23,12 @@ class AddTextformFieldWidget extends StatelessWidget {
       ),
       child: SizedBox(
         width: screenSize.width,
-        height: screenSize.height / 3.7,
+        height: screenSize.height / 4,
         child: Form(
             key: formkey,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                TextFormWidget(
-                  text: 'Username',
-                  controller: userNameController,
-                  warning: 'Enter Username',
-                  obscure: false,
-                  keyBoardType: TextInputType.name,
-                  textCapitalization: TextCapitalization.words,
-                  fillColor: Colors.white
-                ),
+                SizedBox(height: screenSize.height/50,),
                 TextFormWidget(
                   text: 'Email',
                   controller: emailController,
@@ -49,6 +38,7 @@ class AddTextformFieldWidget extends StatelessWidget {
                   textCapitalization: TextCapitalization.none,
                   fillColor: Colors.white
                 ),
+                SizedBox(height: screenSize.height/50,),
                 TextFormWidget(
                   text: 'Password',
                   controller: passwordController,

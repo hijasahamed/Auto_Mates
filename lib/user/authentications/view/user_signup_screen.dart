@@ -1,8 +1,8 @@
 import 'package:auto_mates/user/appbarbottombar/view/appbar_bottombar_screen.dart';
 import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
+import 'package:auto_mates/user/authentications/controller/functions/common_fuctions.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
-import 'package:auto_mates/user/firebase/fire_base_auth_service.dart';
 import 'package:auto_mates/user/authentications/view/widgets/signup_screen_widgets/signup_button_widget.dart';
 import 'package:auto_mates/user/authentications/view/widgets/signup_screen_widgets/signup_welcome_widget.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +13,6 @@ class UserSignupScreen extends StatelessWidget {
       {super.key, required this.screenSize, required this.authenticationBloc});
   final Size screenSize;
   final AuthenticationBloc authenticationBloc;
-  final userNameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final reChekPasswordController = TextEditingController();
@@ -61,7 +60,6 @@ class UserSignupScreen extends StatelessWidget {
                         screenSize: screenSize,
                         authenticationBloc: authenticationBloc,
                         emailController: emailController,
-                        userNameController: userNameController,
                         passwordController: passwordController,
                         reChekPasswordController: reChekPasswordController,
                         formkey: formkey),
@@ -69,7 +67,6 @@ class UserSignupScreen extends StatelessWidget {
                       screenSize: screenSize,
                       authenticationBloc: authenticationBloc,
                       emailController: emailController,
-                      userNameController: userNameController,
                       passwordController: passwordController,
                       reChekPasswordController: reChekPasswordController,
                       formkey: formkey,

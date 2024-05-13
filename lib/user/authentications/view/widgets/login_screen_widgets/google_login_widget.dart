@@ -1,5 +1,5 @@
 import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
-import 'package:auto_mates/user/firebase/fire_base_auth_service.dart';
+import 'package:auto_mates/user/authentications/controller/functions/common_fuctions.dart';
 import 'package:flutter/material.dart';
 
 class GoogleLoginwidget extends StatelessWidget {

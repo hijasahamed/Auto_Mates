@@ -1,11 +1,10 @@
 import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/user/authentications/controller/functions/common_fuctions.dart';
-import 'package:auto_mates/user/firebase/fire_base_auth_service.dart';
 import 'package:auto_mates/user/authentications/view/widgets/login_signup_buttonshape/login_signup_button_shape.dart';
 import 'package:flutter/material.dart';
 
 class SignupButtonWidget extends StatelessWidget {
-  const SignupButtonWidget({super.key,required this.screenSize,required this.userNameController,
+  const SignupButtonWidget({super.key,required this.screenSize,
       required this.authenticationBloc,
       required this.emailController,
       required this.passwordController,
@@ -13,7 +12,6 @@ class SignupButtonWidget extends StatelessWidget {
       required this.formkey,required this.auth});
   final Size screenSize;
   final AuthenticationBloc authenticationBloc;
-  final TextEditingController userNameController;
   final TextEditingController passwordController;
   final TextEditingController emailController;
   final TextEditingController reChekPasswordController;
