@@ -15,7 +15,7 @@ class SellerLoginScreen extends StatefulWidget {
 }
 
 class _SellerLoginScreenState extends State<SellerLoginScreen> {
-  final GlobalKey formKey = GlobalKey();
+  final GlobalKey<FormState> sellerFormKey = GlobalKey<FormState>();
 
   final TextEditingController phoneNumber = TextEditingController();
 
@@ -41,10 +41,7 @@ class _SellerLoginScreenState extends State<SellerLoginScreen> {
                     sellerAuthenticationBloc: sellerAuthenticationBloc,
                   )));
         } else if (state is SellerGetOtpButtonClickedActionState) {
-          getOtpButtonClicked(phoneNumber, context, screenSize,
-              sellerAuthenticationBloc, contrryCode,);
-          snackbarWidget('OTP send to the PhoneNumber', context, Colors.blue,
-              Colors.white, SnackBarBehavior.floating);
+          getOtpButtonClicked(formkey: sellerFormKey,context: context,contryCode: contrryCode,phoneNumberController: phoneNumber, screenSize: screenSize,sellerAuthenticationBloc: sellerAuthenticationBloc);
         }
       },
       builder: (context, state) {
@@ -85,7 +82,7 @@ class _SellerLoginScreenState extends State<SellerLoginScreen> {
                           SellerGetOtpWidget(
                             screenSize: screenSize,
                             phoneNumber: phoneNumber,
-                            formKey: formKey,
+                            formKey: sellerFormKey,
                             sellerAuthenticationBloc:
                                 sellerAuthenticationBloc,
                           ),

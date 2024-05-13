@@ -13,7 +13,7 @@ class SellerGetOtpWidget extends StatelessWidget {
   });
   final Size screenSize;
   final TextEditingController phoneNumber;
-  final GlobalKey formKey;
+  final GlobalKey<FormState> formKey;
   final SellerAuthenticationBloc sellerAuthenticationBloc;
   @override
   Widget build(BuildContext context) {
@@ -39,14 +39,15 @@ class SellerGetOtpWidget extends StatelessWidget {
           Padding(
               padding: const EdgeInsets.all(10),
               child: Form(
+                key: formKey,
                 child: IntlPhoneField(
                   controller: phoneNumber,
-                  validator: (value) {
-                    if (value == null) {
-                      return 'Enter a valid phone number';
-                    }
-                    return null;
-                  },
+                  // validator: (phoneNumber) {
+                  //   if (phoneNumber!.isValidNumber()) {
+                  //     return 'Phone number is required';
+                  //   }
+                  //   return null;
+                  // },
                   initialCountryCode: 'IN',
                   keyboardType: TextInputType.phone,
                   style: const TextStyle(
@@ -72,7 +73,7 @@ class SellerGetOtpWidget extends StatelessWidget {
               )),
           Container(
             height: screenSize.height / 16,
-            width: screenSize.width/1.5,
+            width: screenSize.width / 1.5,
             color: Colors.transparent,
             child: Material(
               shape: RoundedRectangleBorder(
@@ -81,8 +82,17 @@ class SellerGetOtpWidget extends StatelessWidget {
               color: Colors.redAccent,
               child: InkWell(
                   onTap: () {
-                    sellerAuthenticationBloc
+                    if (phoneNumber.text =='') {
+                      snackbarWidget(
+                          'Please enter a valid phone number',
+                          context,
+                          Colors.blue,
+                          Colors.white,
+                          SnackBarBehavior.floating);
+                    } else if (formKey.currentState!.validate()) {
+                        sellerAuthenticationBloc
                         .add(SellerGetOtpButtonClickedEvent());
+                      } 
                   },
                   child: const Center(
                     child: MyTextWidget(
@@ -98,18 +108,22 @@ class SellerGetOtpWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [                
-                    const MyTextWidget(
-                      text: 'New to AutoMates?',
-                      color: Color.fromARGB(255, 114, 114, 114),
-                      size: 15,
-                      weight: FontWeight.bold),
-                    TextButton(
-                      onPressed: () {
-                        sellerAuthenticationBloc.add(CreateCompanyButtonClickedEvent());
-                      },
-                      child: const MyTextWidget(text: 'Click to create company', color: Colors.blue, size: 15, weight: FontWeight.bold)
-                    ),
+              children: [
+                const MyTextWidget(
+                    text: 'New to AutoMates?',
+                    color: Color.fromARGB(255, 114, 114, 114),
+                    size: 15,
+                    weight: FontWeight.bold),
+                TextButton(
+                    onPressed: () {
+                      sellerAuthenticationBloc
+                          .add(CreateCompanyButtonClickedEvent());
+                    },
+                    child: const MyTextWidget(
+                        text: 'Click to create company',
+                        color: Colors.blue,
+                        size: 15,
+                        weight: FontWeight.bold)),
               ],
             ),
           )

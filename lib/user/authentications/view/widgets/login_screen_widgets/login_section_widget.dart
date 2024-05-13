@@ -27,7 +27,7 @@ class LoginSectionWidget extends StatelessWidget {
             style: TextStyle(
                 fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
           ),
-          TextFormFieldWidget(
+          UserLoginTextFormFieldWidget(
               emailController: emailController,
               passwordController: passwordController,
               formkey: formkey,

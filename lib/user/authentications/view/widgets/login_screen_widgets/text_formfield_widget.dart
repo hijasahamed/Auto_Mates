@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TextFormFieldWidget extends StatelessWidget {
-  const TextFormFieldWidget({super.key,required this.emailController,required this.passwordController,required this.formkey,required this.screenSize}); 
+class UserLoginTextFormFieldWidget extends StatelessWidget {
+  const UserLoginTextFormFieldWidget({super.key,required this.emailController,required this.passwordController,required this.formkey,required this.screenSize}); 
   final TextEditingController emailController;
   final TextEditingController passwordController;
   final GlobalKey formkey;

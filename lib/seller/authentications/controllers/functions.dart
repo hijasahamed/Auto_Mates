@@ -11,10 +11,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 String otpWarn =
     'Please enter the OTP (One-Time-Password) sent to your registered phone number to complete your verification.';
 
-String otpSmsCode='';
-String contrryCode='+91';
-
-
+String otpSmsCode = '';
+String contrryCode = '+91';
 
 final defaultPinTheme = PinTheme(
   width: 56,
@@ -40,53 +38,58 @@ final submittedPinTheme = defaultPinTheme.copyWith(
   ),
 );
 
-
 Future<void> getOtpButtonClicked(
-    phoneNumberController, context, screenSize,sellerAuthenticationBloc,contryCode) async {
+    {required GlobalKey<FormState> formkey,
+    phoneNumberController,
+    context,
+    screenSize,
+    sellerAuthenticationBloc,
+    contryCode}) async {
   await FirebaseAuth.instance.verifyPhoneNumber(
-    verificationCompleted: (phoneAuthCredential) {},
-    verificationFailed: (FirebaseAuthException ex) {},
-    codeSent: (String verificationId, forceResendingToken) {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => OtpVerificationScreen(
-            sellerAuthenticationBloc:sellerAuthenticationBloc,
-                screenSize: screenSize,
-                verificationId: verificationId,
-                phoneNumberController: phoneNumberController,
-              )));
-    },
-    codeAutoRetrievalTimeout: (String verificationId) {},
-    phoneNumber: '${contryCode+phoneNumberController.text.toString()}'
-  );
+  verificationCompleted: (phoneAuthCredential) {},
+  verificationFailed: (FirebaseAuthException ex) {},
+  codeSent: (String verificationId, forceResendingToken) {
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => OtpVerificationScreen(
+              sellerAuthenticationBloc: sellerAuthenticationBloc,
+              screenSize: screenSize,
+              verificationId: verificationId,
+              phoneNumberController: phoneNumberController,
+            )));
+  },
+  codeAutoRetrievalTimeout: (String verificationId) {},
+  phoneNumber: '${contryCode + phoneNumberController.text.toString()}');
 }
 
-Future<void> submitOtp(verificationId,smsCode,context)async{
-  try{
-    PhoneAuthCredential credential= PhoneAuthProvider.credential(verificationId: verificationId, smsCode: smsCode);
-    FirebaseAuth.instance.signInWithCredential(credential).then((value) async{
-      final sharedPref = await SharedPreferences.getInstance();
-      await sharedPref.setBool(sellerLogedInKey, true);
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => const Sellerappbarbottombar() ));
-    },).catchError((e){
-      snackbarWidget('Invalid OTP', context,Colors.red, Colors.white,SnackBarBehavior.floating);
+Future<void> submitOtp(verificationId, smsCode, context) async {
+  try {
+    PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: verificationId, smsCode: smsCode);
+    FirebaseAuth.instance.signInWithCredential(credential).then(
+      (value) async {
+        final sharedPref = await SharedPreferences.getInstance();
+        await sharedPref.setBool(sellerLogedInKey, true);
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => const Sellerappbarbottombar()));
+      },
+    ).catchError((e) {
+      snackbarWidget('Invalid OTP', context, Colors.red, Colors.white,
+          SnackBarBehavior.floating);
     });
-  }catch(x){
-   if (kDebugMode) {
-     print(x);
-   }
+  } catch (x) {
+    if (kDebugMode) {
+      print(x);
+    }
   }
 }
 
-
-Future<void> resendOtp(phoneNumberController)async{
+Future<void> resendOtp(phoneNumberController) async {
   await FirebaseAuth.instance.verifyPhoneNumber(
-    verificationCompleted: (PhoneAuthCredential credential) {
-      FirebaseAuth.instance.signInWithCredential(credential);
-    }, 
-    verificationFailed: (FirebaseAuthException ex) {}, 
-    codeSent: (String verificationId, int? resendToken) {}, 
-    codeAutoRetrievalTimeout: (String verificationId) {},
-    phoneNumber: contrryCode+phoneNumberController
-  );
+      verificationCompleted: (PhoneAuthCredential credential) {
+        FirebaseAuth.instance.signInWithCredential(credential);
+      },
+      verificationFailed: (FirebaseAuthException ex) {},
+      codeSent: (String verificationId, int? resendToken) {},
+      codeAutoRetrievalTimeout: (String verificationId) {},
+      phoneNumber: contrryCode + phoneNumberController);
 }

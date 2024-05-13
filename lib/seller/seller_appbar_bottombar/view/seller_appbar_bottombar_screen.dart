@@ -1,5 +1,6 @@
 import 'package:auto_mates/seller/seller_appbar_bottombar/view/bloc/sellerappbottom_bloc.dart';
 import 'package:auto_mates/seller/seller_appbar_bottombar/view/widgets/seller_screen_appbar_widget.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/seller_home_screen.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,13 @@ class Sellerappbarbottombar extends StatefulWidget {
 
 class _SellerappbarbottombarState extends State<Sellerappbarbottombar> {
   final SellerappbottomBloc sellerAppBottomBloc = SellerappbottomBloc();
+
+  int sellertabIndex=0;
+  List sellerTabs=[
+    const SellerHomeScreen(),
+    const SellerHomeScreen(),
+    const SellerHomeScreen(),
+  ];
 
   @override
   void initState() {
@@ -50,7 +58,7 @@ class _SellerappbarbottombarState extends State<Sellerappbarbottombar> {
             preferredSize: Size.fromHeight(80),
             child: SellerScreenAppbarWidget()
           ),
-          body: const Center(child: Text('Seller AppBottomBAr')),
+          body: sellerTabs[sellertabIndex],
           bottomNavigationBar: CurvedNavigationBar(
             animationCurve: Easing.standard,
             backgroundColor: Colors.white,
@@ -79,7 +87,11 @@ class _SellerappbarbottombarState extends State<Sellerappbarbottombar> {
                     TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               ),
             ],
-            onTap: (index) {},
+            onTap: (index) {
+              setState(() {
+                sellertabIndex=index;
+              });
+            },            
           ),
         );
         default:

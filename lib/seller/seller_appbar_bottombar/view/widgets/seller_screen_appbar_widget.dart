@@ -14,7 +14,7 @@ class SellerScreenAppbarWidget extends StatelessWidget {
       centerTitle: true,
       leading: IconButton(
         onPressed: (){}, 
-        icon: Icon(Icons.menu,color: Colors.white,size: 40,)
+        icon: const Icon(Icons.menu,color: Colors.white,size: 40,)
       ),
     );
   }
