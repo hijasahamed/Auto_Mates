@@ -1,4 +1,5 @@
 import 'package:auto_mates/seller/authentications/view/bloc/seller_authentication_bloc.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
 import 'package:auto_mates/user/appbarbottombar/controller/bloc/appbottombar_bloc.dart';
 import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/user/firebase/firebase_options.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AppbottombarBloc(),),
         BlocProvider(create: (context) => SplashBloc(),),
         BlocProvider(create: (context) => SellerAuthenticationBloc(),),
+        BlocProvider(create: (context) => SellerHomeScreenBloc(),),
 
       ],
       child: MaterialApp(

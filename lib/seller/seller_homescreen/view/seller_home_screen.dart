@@ -1,5 +1,6 @@
+import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
-import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_car_widget.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_car_edit_car_widget.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/all_cars_to_sell_widget.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/floating_button_widget.dart';
 import 'package:flutter/material.dart';
@@ -18,11 +19,28 @@ class SellerHomeScreen extends StatelessWidget {
       listener: (context, state) {
         if(state is FloatingButtonClickedActionState){
            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => AddCarWidget(screenSize: screenSize,)));
+              builder: (context) => AddCarEditCarWidget(screenSize: screenSize,sellerHomeScreenBloc: sellerHomeScreenBloc,isEditPage: false,)));
+        }
+        else if(state is BackArrowClickedActionState){
+          Navigator.of(context).pop();
+        }
+        else if(state is PostNewCarButtonClickedActionState){
+          postNewCar(
+            context: context,
+            carBrandController: state.carBrandController,
+            carColorController: state.carColorController,
+            carFuelController: state.carFuelController,
+            carKilometerController: state.carKilometerController,
+            carModelNameController: state.carModelNameController,
+            carPriceController: state.carPriceController,
+            carYearController: state.carYearController,
+            postCarFormkey: state.postCarFormkey,
+          );
         }
       },
       builder: (context, state) {
         return Scaffold(
+          backgroundColor: const Color.fromARGB(255, 255, 254, 254),
           body: SafeArea(
             child: Stack(
               children: [
@@ -33,6 +51,7 @@ class SellerHomeScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(5),
                     child: AllCarsToSellWidget(
                       screenSize: screenSize,
+                      sellerHomeScreenBloc: sellerHomeScreenBloc,
                     ),
                   ),
                 ),

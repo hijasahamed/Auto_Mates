@@ -1,6 +1,7 @@
 import 'package:auto_mates/seller/seller_appbar_bottombar/view/bloc/sellerappbottom_bloc.dart';
 import 'package:auto_mates/seller/seller_appbar_bottombar/view/widgets/seller_screen_appbar_widget.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/seller_home_screen.dart';
+import 'package:auto_mates/seller/seller_profile_screen/view/seller_profile_screen.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class _SellerappbarbottombarState extends State<Sellerappbarbottombar> {
   List sellerTabs=[
     const SellerHomeScreen(),
     const SellerHomeScreen(),
-    const SellerHomeScreen(),
+    const SellerProfileScreen(),
   ];
 
   @override

@@ -1,11 +1,14 @@
 import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/popup_menu_button_widget.dart';
 import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class AllCarsToSellWidget extends StatelessWidget {
-  const AllCarsToSellWidget({super.key, required this.screenSize});
+  const AllCarsToSellWidget({super.key, required this.screenSize,required this.sellerHomeScreenBloc});
   final Size screenSize;
+  final SellerHomeScreenBloc sellerHomeScreenBloc;
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
@@ -23,28 +26,84 @@ class AllCarsToSellWidget extends StatelessWidget {
               crossAxisCount: 2,
             ),
             itemBuilder: (context, index) {
-              final DocumentSnapshot data=snapshot.data.docs[index];
+              final DocumentSnapshot data = snapshot.data.docs[index];
               return Card(
                 color: const Color(0XFFDBEDF5),
                 elevation: 5,
-                child: Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      MyTextWidget(text: data['brand'], color: Colors.black, size: 15, weight: FontWeight.bold),
-                      MyTextWidget(text: data['modelName'], color: Colors.black, size: 15, weight: FontWeight.bold),
-                      MyTextWidget(text: data['color'], color: Colors.black, size: 15, weight: FontWeight.bold),
-                      MyTextWidget(text: data['year'], color: Colors.black, size: 15, weight: FontWeight.bold),
-                      MyTextWidget(text: data['fuel'], color: Colors.black, size: 15, weight: FontWeight.bold),
-                      MyTextWidget(text: data['kilometer'], color: Colors.black, size: 15, weight: FontWeight.bold),
-                    ],
-                  ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Stack(
+                      children: [
+                        Container(
+                          height: screenSize.height / 7.5,
+                          width: screenSize.width,
+                          decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(5),
+                                  topRight: Radius.circular(4)),
+                              color: Colors.transparent,
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                      'https://stimg.cardekho.com/images/carexteriorimages/930x620/Skoda/Superb-2024/11648/1712204642647/front-left-side-47.jpg'),
+                                  fit: BoxFit.cover,
+                                  filterQuality: FilterQuality.high)),
+                        ),
+                        Positioned(
+                            right: 2,
+                            top: 2, 
+                            child: CircleAvatar(
+                              radius: 20,
+                              backgroundColor: Colors.black12,
+                              child: PopupMenuButtonWidget(screenSize: screenSize,data: data,sellerHomeScreenBloc: sellerHomeScreenBloc,)
+                            ),
+                          ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: MyTextWidget(text: data['brand'], color: const Color(0xFF424141), size: 15, weight: FontWeight.bold),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: MyTextWidget(text: data['modelName'], color: const Color(0xFF424141), size: 15, weight: FontWeight.bold),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: MyTextWidget(text: data['price'], color: const Color(0xFF424141), size: 15, weight: FontWeight.bold),
+                    ),
+                  ],
                 ),
               );
             },
           );
+        } else {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                height: screenSize.height / 4.5,
+                width: screenSize.width / 1.2,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(
+                          'assets/images/no car to sell.avif',
+                        ),
+                        fit: BoxFit.cover)),
+              ),
+              const MyTextWidget(
+                  text: 'No cars left for selling',
+                  color: Colors.black,
+                  size: 17,
+                  weight: FontWeight.w500),
+              const MyTextWidget(
+                  text: 'Please post new cars by clicking the + button',
+                  color: Colors.black,
+                  size: 17,
+                  weight: FontWeight.w500),
+            ],
+          );
         }
-        return const Center(child: MyTextWidget(text: 'No car to sell', color: Colors.black, size: 25, weight: FontWeight.bold),);
       },
     );
   }
