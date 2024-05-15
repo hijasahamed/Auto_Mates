@@ -1,6 +1,6 @@
 import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
-import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_car_edit_car_widget.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car/add_car_edit_car_widget.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/all_cars_to_sell_widget.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/floating_button_widget.dart';
 import 'package:flutter/material.dart';

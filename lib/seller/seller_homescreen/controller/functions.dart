@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car/add_car_edit_car_widget.dart';
 import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -14,6 +15,7 @@ final CollectionReference firebaseObject =
 
 String imageUrl = '';
 
+
 postNewCar(
     {context,
     postCarFormkey,
@@ -25,6 +27,7 @@ postNewCar(
     carFuelController,
     carKilometerController}) {
   final data = {
+    'image':imageUrl,
     'brand': carBrandController.text,
     'modelName': carModelNameController.text,
     'color': carColorController.text,
@@ -41,14 +44,18 @@ postNewCar(
       },
     ).then(snackbarWidget('Car Posted Successfully', context, Colors.white,
         const Color(0xFF424141), SnackBarBehavior.floating));
+        imageUrl='';
   } else {
     snackbarWidget('Car details not completed', context, Colors.white,
         const Color(0xFF424141), SnackBarBehavior.floating);
   }
 }
 
-deleteCarToSell(docId) {
-  firebaseObject.doc(docId).delete();
+deleteCarToSell(docId,context)async {
+ await  firebaseObject.doc(docId).delete().then((value) => Navigator.of(context).pop(),).then((value) {
+    snackbarWidget('Car details removed', context,Colors.blue, Colors.white, SnackBarBehavior.floating);
+  },);
+  
 }
 
 updateCarDetails(
@@ -62,13 +69,14 @@ updateCarDetails(
     carPriceController,
     carFuelController,
     carKilometerController) {
-  final data = {
+  final data = { 
+    'image':imageUrl,   
     'brand': carBrandController.text,
     'modelName': carModelNameController.text,
     'color': carColorController.text,
     'year': carYearController.text,
     'price': carPriceController.text,
-    'fuel': carFuelController.text,
+    'fuel': carFuelController.text, 
     'kilometer': carKilometerController.text,
   };
   if(postCarFormkey.currentState!.validate()){
@@ -80,12 +88,14 @@ updateCarDetails(
       )
       .then(snackbarWidget('Car details updated', context, Colors.white,
           const Color(0xFF424141), SnackBarBehavior.floating));
+    imageUrl='';
   }else{
     snackbarWidget('Car details not updated', context, Colors.white, const Color(0xFF424141), SnackBarBehavior.floating);
   } 
 }
 
 addImage() async {
+  print('image taking');
   final file = await ImagePicker().pickImage(source: ImageSource.gallery);
   if (file == null) {
     return;
@@ -105,7 +115,7 @@ addImage() async {
 }
 
 deleteAlertDialogwidget(
-  SellerHomeScreenBloc? sellerhomescreenbloc, {
+  sellerhomescreenbloc , {
   context,
   title,
   content,
@@ -144,7 +154,7 @@ deleteAlertDialogwidget(
                   style: const ButtonStyle(
                       backgroundColor: WidgetStatePropertyAll(Colors.red)),
                   onPressed: () {
-                    deleteCarToSell(docId);
+                    deleteCarToSell(docId,context,);
                   },
                   child: const MyTextWidget(
                       text: 'Delete',

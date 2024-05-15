@@ -31,3 +31,5 @@ class PostNewCarButtonClickedActionState extends SellerHomeScreenActionState{
     required this.carKilometerController,
   });
 }
+
+class ImagePickedState extends SellerHomeScreenState {}

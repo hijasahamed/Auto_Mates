@@ -1,11 +1,13 @@
 import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car/add_edit_form_widget.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/app_bar_gradient_color.dart';
-import 'package:auto_mates/user/authentications/view/widgets/signup_screen_widgets/text_form_widget.dart';
 import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+
 
 class AddCarEditCarWidget extends StatefulWidget {
   const AddCarEditCarWidget(
@@ -95,122 +97,92 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                height: widget.screenSize.height / 6,
-                                width: widget.screenSize.width,
-                                color: Colors.transparent,
-                                child: Material(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  color: const Color(0XFFDBEDF5),
-                                  child: InkWell(
-                                    onTap: () {},
-                                    child: const Center(
-                                        child: MyTextWidget(
-                                            text: 'Add Photo',
-                                            color: Color(0xFF424141),
-                                            size: 15,
-                                            weight: FontWeight.w500)),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Form(
-                              key: postCarFormkey,
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
+                            widget.isEditPage
+                                ? Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: TextFormWidget(
-                                        text: 'Brand Name',
-                                        controller: carBrandController,
-                                        warning: 'Enter value',
-                                        obscure: false,
-                                        keyBoardType: TextInputType.name,
-                                        textCapitalization:
-                                            TextCapitalization.words,
-                                        fillColor: const Color(0XFFDBEDF5)),
-                                  ),
-                                  Padding(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        addImage();
+                                      },
+                                      child: Container(
+                                        height:
+                                            widget.screenSize.height / 6,
+                                        width: widget.screenSize.width,
+                                        decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: NetworkImage(
+                                                    widget.data!['image']),
+                                                fit: BoxFit.cover)),
+                                        child: const Center(
+                                            child: MyTextWidget(
+                                                text: 'Change Photo',
+                                                color: Colors.white,
+                                                size: 15,
+                                                weight: FontWeight.bold)),
+                                      ),
+                                    ),
+                                  )
+                                : Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: TextFormWidget(
-                                        text: 'Model Name',
-                                        controller: carModelNameController,
-                                        warning: 'Enter value',
-                                        obscure: false,
-                                        keyBoardType: TextInputType.name,
-                                        textCapitalization:
-                                            TextCapitalization.words,
-                                        fillColor: const Color(0XFFDBEDF5)),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: TextFormWidget(
-                                        text: 'Color',
-                                        controller: carColorController,
-                                        warning: 'Enter value',
-                                        obscure: false,
-                                        keyBoardType: TextInputType.name,
-                                        textCapitalization:
-                                            TextCapitalization.words,
-                                        fillColor: const Color(0XFFDBEDF5)),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: TextFormWidget(
-                                        text: 'Year',
-                                        controller: carYearController,
-                                        warning: 'Enter value',
-                                        obscure: false,
-                                        keyBoardType: TextInputType.name,
-                                        textCapitalization:
-                                            TextCapitalization.words,
-                                        fillColor: const Color(0XFFDBEDF5)),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: TextFormWidget(
-                                        text: 'Price',
-                                        controller: carPriceController,
-                                        warning: 'Enter value',
-                                        obscure: false,
-                                        keyBoardType: TextInputType.name,
-                                        textCapitalization:
-                                            TextCapitalization.words,
-                                        fillColor: const Color(0XFFDBEDF5)),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: TextFormWidget(
-                                        text: 'Fuel',
-                                        controller: carFuelController,
-                                        warning: 'Enter value',
-                                        obscure: false,
-                                        keyBoardType: TextInputType.name,
-                                        textCapitalization:
-                                            TextCapitalization.words,
-                                        fillColor: const Color(0XFFDBEDF5)),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: TextFormWidget(
-                                        text: 'Kilometers',
-                                        controller: carKilometerController,
-                                        warning: 'Enter value',
-                                        obscure: false,
-                                        keyBoardType: TextInputType.name,
-                                        textCapitalization:
-                                            TextCapitalization.words,
-                                        fillColor: const Color(0XFFDBEDF5)),
-                                  ),
-                                ],
-                              ),
-                            ),
+                                    child: imageUrl == ''
+                                        ? Container(
+                                            height:
+                                                widget.screenSize.height /
+                                                    6,
+                                            width: widget.screenSize.width,
+                                            color: Colors.transparent,
+                                            child: Material(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        10),
+                                              ),
+                                              color:
+                                                  const Color(0XFFDBEDF5),
+                                              child: InkWell(
+                                                onTap: () {
+                                                  addImage();
+                                                },
+                                                child: const Center(
+                                                    child: MyTextWidget(
+                                                        text: 'Add Photo',
+                                                        color: Color(
+                                                            0xFF424141),
+                                                        size: 15,
+                                                        weight: FontWeight
+                                                            .w500)),
+                                              ),
+                                            ),
+                                          )
+                                        : Container(
+                                            height:
+                                                widget.screenSize.height /
+                                                    6,
+                                            width: widget.screenSize.width,
+                                            decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                    image: NetworkImage(
+                                                        imageUrl),
+                                                    fit: BoxFit.cover),
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        10),
+                                                border: Border.all(
+                                                    width: 1,
+                                                    color: const Color(
+                                                        0xFF424141))),
+                                          )),
+                            AddEditFormWidget(
+                                postCarFormkey: postCarFormkey,
+                                carBrandController: carBrandController,
+                                carColorController: carColorController,
+                                carFuelController: carFuelController,
+                                carKilometerController:
+                                    carKilometerController,
+                                carModelNameController:
+                                    carModelNameController,
+                                carPriceController: carPriceController,
+                                carYearController: carYearController)
                           ],
                         ),
                       ),

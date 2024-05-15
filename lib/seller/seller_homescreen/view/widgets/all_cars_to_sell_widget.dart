@@ -38,16 +38,13 @@ class AllCarsToSellWidget extends StatelessWidget {
                         Container(
                           height: screenSize.height / 7.5,
                           width: screenSize.width,
-                          decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
+                          decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(5),
                                   topRight: Radius.circular(4)),
                               color: Colors.transparent,
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                      'https://stimg.cardekho.com/images/carexteriorimages/930x620/Skoda/Superb-2024/11648/1712204642647/front-left-side-47.jpg'),
-                                  fit: BoxFit.cover,
-                                  filterQuality: FilterQuality.high)),
+                              image: DecorationImage(image: NetworkImage(data['image']),fit: BoxFit.cover,filterQuality: FilterQuality.high)
+                              ),
                         ),
                         Positioned(
                             right: 2,

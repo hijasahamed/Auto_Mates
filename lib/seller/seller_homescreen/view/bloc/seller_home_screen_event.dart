@@ -29,3 +29,5 @@ class PostNewCarButtonClickedEvent extends SellerHomeScreenEvent {
     required this.carKilometerController,
   });
 }
+
+class ImagePickedEvent extends SellerHomeScreenEvent {}
