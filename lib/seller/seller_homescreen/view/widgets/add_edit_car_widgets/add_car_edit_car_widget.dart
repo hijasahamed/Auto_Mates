@@ -1,6 +1,6 @@
 import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
-import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car/add_edit_form_widget.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/add_edit_form_widget.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/app_bar_gradient_color.dart';
 import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -173,6 +173,7 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
                                                         0xFF424141))),
                                           )),
                             AddEditFormWidget(
+                              screenSize: widget.screenSize,
                                 postCarFormkey: postCarFormkey,
                                 carBrandController: carBrandController,
                                 carColorController: carColorController,

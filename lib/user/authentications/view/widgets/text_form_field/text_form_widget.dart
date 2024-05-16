@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TextFormWidget extends StatelessWidget {
-  const TextFormWidget(
+class MyTextFormWidget extends StatelessWidget {
+  const MyTextFormWidget(
       {super.key,
       required this.text,
       required this.controller,
@@ -9,7 +9,8 @@ class TextFormWidget extends StatelessWidget {
       required this.obscure,
       required this.keyBoardType,
       required this.textCapitalization,
-      required this.fillColor
+      required this.fillColor,
+      required this.screenSize
       });
   final String text;
   final String warning;
@@ -18,6 +19,7 @@ class TextFormWidget extends StatelessWidget {
   final TextInputType keyBoardType;
   final TextCapitalization textCapitalization;
   final Color fillColor;
+  final Size screenSize;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -28,18 +30,18 @@ class TextFormWidget extends StatelessWidget {
         }
         return null;
       },
-      textCapitalization: textCapitalization,
-      
+      textCapitalization: textCapitalization,      
       keyboardType: keyBoardType,
       obscureText: obscure,
+      obscuringCharacter: '*',
       autovalidateMode: AutovalidateMode.onUserInteraction,
       style: const TextStyle(
           color: Color(0xFF424141), fontWeight: FontWeight.normal),
       decoration: InputDecoration(
-        hintText: text,
-        hintStyle: const TextStyle(
-            color: Color.fromARGB(255, 86, 86, 86),
-            fontWeight: FontWeight.normal),
+        labelText: text,
+        labelStyle: const TextStyle(
+            color: Color(0xFF424141),
+            fontWeight: FontWeight.w400),
         fillColor: fillColor,
         filled: true,
         enabledBorder: const OutlineInputBorder(

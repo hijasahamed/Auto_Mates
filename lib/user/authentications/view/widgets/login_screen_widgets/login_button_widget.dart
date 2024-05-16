@@ -1,5 +1,5 @@
 import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
-import 'package:auto_mates/user/authentications/controller/functions/common_fuctions.dart';
+import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/authentications/view/widgets/login_signup_buttonshape/login_signup_button_shape.dart';
 import 'package:flutter/material.dart';
 
@@ -10,18 +10,18 @@ class LoginButtonWidget extends StatelessWidget {
       required this.authenticationBloc,
       required this.emailController,
       required this.passwordController,
-      required this.formkey});
+      required this.userLoginformkey});
   final Size screenSize;
   final AuthenticationBloc authenticationBloc;
   final TextEditingController emailController;
   final TextEditingController passwordController;
-  final GlobalKey formkey;
+  final GlobalKey userLoginformkey;
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         return loginButtonClicked(
-            emailController.text, passwordController.text, authenticationBloc,formkey);
+            emailController.text, passwordController.text, authenticationBloc,userLoginformkey);
       },
       child: ClipPath(
         clipper: Customshape(),

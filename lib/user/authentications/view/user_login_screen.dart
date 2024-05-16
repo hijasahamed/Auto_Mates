@@ -17,7 +17,7 @@ class UserLoginScreen extends StatelessWidget {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  final GlobalKey<FormState> userLoginformkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +76,7 @@ class UserLoginScreen extends StatelessWidget {
                           screenSize: screenSize,
                           emailController: emailController,
                           passwordController: passwordController,
-                          formkey: formkey,
+                          userLoginformkey: userLoginformkey,
                           authenticationBloc: authenticationBloc,),
                       GoogleLoginwidget(screenSize: screenSize,authenticationBloc: authenticationBloc,),
                       SignupDealerLoginWidget(
@@ -87,7 +87,7 @@ class UserLoginScreen extends StatelessWidget {
                           authenticationBloc: authenticationBloc,
                           emailController: emailController,
                           passwordController: passwordController,
-                          formkey: formkey,),
+                          userLoginformkey: userLoginformkey,),
                     ],
                   ),
                 ),

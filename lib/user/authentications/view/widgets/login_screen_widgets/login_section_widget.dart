@@ -1,5 +1,6 @@
 import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
-import 'package:auto_mates/user/authentications/view/widgets/login_screen_widgets/text_formfield_widget.dart';
+import 'package:auto_mates/user/authentications/view/widgets/login_screen_widgets/add_user_login_text_formfield_widget.dart';
+import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 
 class LoginSectionWidget extends StatelessWidget {
@@ -8,12 +9,12 @@ class LoginSectionWidget extends StatelessWidget {
       required this.screenSize,
       required this.emailController,
       required this.passwordController,
-      required this.formkey,
+      required this.userLoginformkey,
       required this.authenticationBloc});
   final Size screenSize;
   final TextEditingController emailController;
   final TextEditingController passwordController;
-  final GlobalKey formkey;
+  final GlobalKey userLoginformkey;
   final AuthenticationBloc authenticationBloc;
 
   @override
@@ -22,15 +23,11 @@ class LoginSectionWidget extends StatelessWidget {
       width: screenSize.width,
       child: Column(
         children: [
-          const Text(
-            'Login',
-            style: TextStyle(
-                fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
-          ),
-          UserLoginTextFormFieldWidget(
+          const MyTextWidget(text: "Login", color: Colors.white, size: 28, weight: FontWeight.bold),
+          AddUserLoginTextFormFieldWidget(
               emailController: emailController,
               passwordController: passwordController,
-              formkey: formkey,
+              userLoginformkey: userLoginformkey,
               screenSize: screenSize),
           Padding(
             padding: const EdgeInsets.only(right: 15),

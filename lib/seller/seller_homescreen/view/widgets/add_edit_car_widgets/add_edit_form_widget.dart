@@ -1,4 +1,4 @@
-import 'package:auto_mates/user/authentications/view/widgets/signup_screen_widgets/text_form_widget.dart';
+import 'package:auto_mates/user/authentications/view/widgets/text_form_field/text_form_widget.dart';
 import 'package:flutter/material.dart';
 
 class AddEditFormWidget extends StatelessWidget {
@@ -11,7 +11,8 @@ class AddEditFormWidget extends StatelessWidget {
     required this.carKilometerController,
     required this.carModelNameController,
     required this.carPriceController,
-    required this.carYearController
+    required this.carYearController,
+    required this.screenSize
   });
   final TextEditingController carBrandController ;
   final TextEditingController carModelNameController;
@@ -21,6 +22,7 @@ class AddEditFormWidget extends StatelessWidget {
   final TextEditingController carFuelController;
   final TextEditingController carKilometerController ;
   final GlobalKey<FormState> postCarFormkey ;
+  final Size screenSize;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -31,7 +33,8 @@ class AddEditFormWidget extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: TextFormWidget(
+            child: MyTextFormWidget(
+              screenSize: screenSize,
                 text: 'Brand Name',
                 controller: carBrandController,
                 warning: 'Enter value',
@@ -43,7 +46,8 @@ class AddEditFormWidget extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: TextFormWidget(
+            child: MyTextFormWidget(
+              screenSize: screenSize,
                 text: 'Model Name',
                 controller: carModelNameController,
                 warning: 'Enter value',
@@ -55,7 +59,8 @@ class AddEditFormWidget extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: TextFormWidget(
+            child: MyTextFormWidget(
+              screenSize: screenSize,
                 text: 'Color',
                 controller: carColorController,
                 warning: 'Enter value',
@@ -67,7 +72,8 @@ class AddEditFormWidget extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: TextFormWidget(
+            child: MyTextFormWidget(
+              screenSize: screenSize,
                 text: 'Year',
                 controller: carYearController,
                 warning: 'Enter value',
@@ -79,7 +85,8 @@ class AddEditFormWidget extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: TextFormWidget(
+            child: MyTextFormWidget(
+              screenSize: screenSize,
                 text: 'Price',
                 controller: carPriceController,
                 warning: 'Enter value',
@@ -91,7 +98,8 @@ class AddEditFormWidget extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: TextFormWidget(
+            child: MyTextFormWidget(
+              screenSize: screenSize,
                 text: 'Fuel',
                 controller: carFuelController,
                 warning: 'Enter value',
@@ -103,7 +111,8 @@ class AddEditFormWidget extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: TextFormWidget(
+            child: MyTextFormWidget(
+              screenSize: screenSize,
                 text: 'Kilometers',
                 controller: carKilometerController,
                 warning: 'Enter value',

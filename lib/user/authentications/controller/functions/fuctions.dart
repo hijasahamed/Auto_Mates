@@ -2,6 +2,7 @@ import 'package:auto_mates/user/authentications/controller/bloc/authentication_b
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:auto_mates/user/splashscreen/controllers/functions.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class FirebaseAuthService {
     try {
       UserCredential credential = await auth.signInWithEmailAndPassword(
           email: email, password: password);
+          
       return credential.user;
     } catch (e) {
       if (kDebugMode) {
@@ -39,6 +41,81 @@ class FirebaseAuthService {
     return null;
   }
 }
+
+
+ void loginButtonClicked(email, password, authenticationBloc, formkey) async {
+  if (formkey.currentState!.validate()) {
+    User? user = await auth.userLogin(email, password);
+    Future<List<Map<String, dynamic>>> userDetail=checkIfUserAvailable();
+    if (user != null) {
+      authenticationBloc.add(LoginButtonClickedEvent());
+      final sharedPref = await SharedPreferences.getInstance();
+      await sharedPref.setBool(logedInKey, true);
+    } else {
+      authenticationBloc.add(LoginNotSuccessfullEvent());
+    }
+  }
+}
+
+
+Future<List<Map<String, dynamic>>> checkIfUserAvailable() async {
+  final CollectionReference signupFirebaseObject =
+      FirebaseFirestore.instance.collection('userSignupData');
+
+  List<Map<String, dynamic>> userDataList = [];
+
+  try {
+    QuerySnapshot querySnapshot = await signupFirebaseObject.get();
+    querySnapshot.docs.forEach((doc) {
+      Map<String, dynamic> userData = doc.data() as Map<String, dynamic>;
+      userData['id'] = doc.id;
+      userDataList.add(userData);
+    });
+  } catch (error) {
+    print("Error retrieving user data: $error");
+  }
+  return userDataList;
+}
+
+
+void signupButtonClicked({userName,email, password,recheckPassword, authenticationBloc, formkey, context}) async {
+  if (formkey.currentState!.validate()) {
+    if(password==recheckPassword){
+      try {
+     User? user = await auth.userSignup(email, password);
+      if (user != null) {
+        await addUserSignupDatatoDb(userName, email, password);
+        authenticationBloc.add(SignupButtonClickedEvent());
+        final sharedPref = await SharedPreferences.getInstance();
+        await sharedPref.setBool(logedInKey, true);
+        Future.delayed(const Duration(seconds: 3));
+        authenticationBloc.add(SignupSuccessfullAndAccountCreatedEvent());
+      } else {
+        authenticationBloc.add(SignupNotSuccessfullEvent());
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+    }
+    else{
+      snackbarWidget('Password Recheck failed.Please enter the same password', context, Colors.blue, Colors.white, SnackBarBehavior.floating);
+    }
+  }
+}
+
+addUserSignupDatatoDb(username,email,password){
+  final CollectionReference signupFirebaseObject =
+    FirebaseFirestore.instance.collection('userSignupData');
+  final data={
+    'userName':username,
+    'email':email,
+    'password':password
+  };
+  signupFirebaseObject.add(data);
+}
+
 
 logInWithGoogle(authenticationBloc)async{
   final GoogleSignIn googleSignIn = GoogleSignIn();
@@ -87,42 +164,5 @@ resetPassword(resetPasswordcontroller,context)async{
  }
 }
 
-
-void loginButtonClicked(email, password, authenticationBloc, formkey) async {
-  if (formkey.currentState!.validate()) {
-    User? user = await auth.userLogin(email, password);
-
-    if (user != null) {
-      authenticationBloc.add(LoginButtonClickedEvent());
-      final sharedPref = await SharedPreferences.getInstance();
-      await sharedPref.setBool(logedInKey, true);
-    } else {
-      authenticationBloc.add(LoginNotSuccessfullEvent());
-    }
-  }
-}
-
-void signupButtonClicked(
-    email, password, authenticationBloc, formkey, context) async {
-  if (formkey.currentState!.validate()) {
-
-    try {
-     User? user = await auth.userSignup(email, password);
-      if (user != null) {
-        authenticationBloc.add(SignupButtonClickedEvent());
-        final sharedPref = await SharedPreferences.getInstance();
-        await sharedPref.setBool(logedInKey, true);
-        Future.delayed(const Duration(seconds: 3));
-        authenticationBloc.add(SignupSuccessfullAndAccountCreatedEvent());
-      } else {
-        authenticationBloc.add(SignupNotSuccessfullActionState());
-      }
-    } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
-    }
-  }
-}
 
 

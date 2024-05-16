@@ -1,4 +1,4 @@
-import 'package:auto_mates/user/authentications/view/widgets/signup_screen_widgets/text_form_widget.dart';
+import 'package:auto_mates/user/authentications/view/widgets/text_form_field/text_form_widget.dart';
 import 'package:flutter/material.dart';
 
 class CreateSectionWidget extends StatelessWidget {
@@ -28,7 +28,8 @@ class CreateSectionWidget extends StatelessWidget {
           padding: const EdgeInsets.all(15),
           child: Column(
             children: [            
-              TextFormWidget(
+              MyTextFormWidget(
+                screenSize: screenSize,
                   text: 'Company Name',
                   controller: companyNameController,
                   warning: 'Enter values',
@@ -38,7 +39,8 @@ class CreateSectionWidget extends StatelessWidget {
                   fillColor: const Color.fromARGB(255, 240, 240, 240),
                   ),
                   SizedBox(height: screenSize.height/60,),
-              TextFormWidget(
+              MyTextFormWidget(
+                screenSize: screenSize,
                   text: 'Location',
                   fillColor: const Color.fromARGB(255, 240, 240, 240),
                   controller: locationController,
@@ -47,7 +49,8 @@ class CreateSectionWidget extends StatelessWidget {
                   keyBoardType: TextInputType.streetAddress,
                   textCapitalization: TextCapitalization.words),
                   SizedBox(height: screenSize.height/60,),
-              TextFormWidget(
+              MyTextFormWidget(
+                screenSize: screenSize,
                   text: 'Phone Number',
                   fillColor: const Color.fromARGB(255, 240, 240, 240),
                   controller: phoneNumberController,

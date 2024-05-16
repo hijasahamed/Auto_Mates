@@ -1,6 +1,6 @@
 import 'package:auto_mates/user/appbarbottombar/view/appbar_bottombar_screen.dart';
 import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
-import 'package:auto_mates/user/authentications/controller/functions/common_fuctions.dart';
+import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:auto_mates/user/authentications/view/widgets/signup_screen_widgets/signup_button_widget.dart';
@@ -13,10 +13,11 @@ class UserSignupScreen extends StatelessWidget {
       {super.key, required this.screenSize, required this.authenticationBloc});
   final Size screenSize;
   final AuthenticationBloc authenticationBloc;
+  final userNameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final reChekPasswordController = TextEditingController();
-  final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  final GlobalKey<FormState> userSignupFormkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthenticationBloc, AuthenticationState>(
@@ -35,44 +36,47 @@ class UserSignupScreen extends StatelessWidget {
           ));
         }
         else if(state is SignupSuccessfullAndAccountCreatedActionState){
-          snackbarWidget('User Account Created Successfully', context,Colors.green,Colors.white,SnackBarBehavior.floating);
+          snackbarWidget('User Account Created Successfully.Welcome to AutoMates', context,Colors.blue,Colors.white,SnackBarBehavior.floating);
         }
         else if (state is SignupNotSuccessfullActionState){
-          snackbarWidget('Provide Correct Details', context,Colors.red,Colors.white,SnackBarBehavior.floating);
+          snackbarWidget('User account not created.Provide Correct Details', context,Colors.blue,Colors.white,SnackBarBehavior.floating);
         }
       },
       builder: (context, state) {
         return Scaffold(
-          resizeToAvoidBottomInset: false,
-          body: Container(
-            height: screenSize.height,
-            width: screenSize.width,
-            decoration: const BoxDecoration(
-                image: DecorationImage(image: AssetImage('assets/images/car.png'),fit: BoxFit.cover)
-              ),
-            child: SafeArea(
-              child: Container(
-                color: Colors.black54,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SignupWelcomeWidget(
+          body: SingleChildScrollView(
+            child: Container(
+              height: screenSize.height,
+              width: screenSize.width,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(image: AssetImage('assets/images/car.png'),fit: BoxFit.cover)
+                ),
+              child: SafeArea(
+                child: Container(
+                  color: Colors.black54,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SignupWidget(
+                          screenSize: screenSize,
+                          authenticationBloc: authenticationBloc,
+                          userNameController: userNameController,
+                          emailController: emailController,
+                          passwordController: passwordController,
+                          reChekPasswordController: reChekPasswordController,
+                          userSignupFormkey: userSignupFormkey),
+                      SignupButtonWidget(
                         screenSize: screenSize,
                         authenticationBloc: authenticationBloc,
+                        userNameController: userNameController,
                         emailController: emailController,
                         passwordController: passwordController,
                         reChekPasswordController: reChekPasswordController,
-                        formkey: formkey),
-                    SignupButtonWidget(
-                      screenSize: screenSize,
-                      authenticationBloc: authenticationBloc,
-                      emailController: emailController,
-                      passwordController: passwordController,
-                      reChekPasswordController: reChekPasswordController,
-                      formkey: formkey,
-                      auth: auth,
-                    ),
-                  ],
+                        userSignupFormkey: userSignupFormkey,
+                        auth: auth,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
