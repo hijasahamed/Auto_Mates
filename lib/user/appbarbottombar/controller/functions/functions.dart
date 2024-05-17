@@ -1,5 +1,3 @@
-
-
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,6 +9,5 @@ Future<UserData?> fetchUserDetails()async{
   print(id);
   print(email);
   print(userName);
-
   return UserData(id: id, email: email, userName: userName);
 }

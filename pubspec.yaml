@@ -86,6 +86,7 @@ flutter:
     - assets/images/no car to sell.avif
     - assets/images/profile_png.png
     - assets/images/avatar.png
+    - assets/images/placeholder.jpg
     #animations
     - assets/animations/loading_animation.json
     - assets/animations/splash_animation_jeep.json
