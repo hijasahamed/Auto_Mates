@@ -11,7 +11,7 @@ import 'package:lottie/lottie.dart';
 int tabIndex = 0;
 
 class AppbarBottomTabSwitchScreen extends StatefulWidget {
-  const AppbarBottomTabSwitchScreen({super.key});
+  const AppbarBottomTabSwitchScreen({super.key,});
 
   @override
   State<AppbarBottomTabSwitchScreen> createState() =>
@@ -21,7 +21,7 @@ class AppbarBottomTabSwitchScreen extends StatefulWidget {
 class _AppbarBottomTabSwitchScreenState
     extends State<AppbarBottomTabSwitchScreen> {
   @override
-  void initState() {
+  void initState(){    
     appbottombarBloc.add(AppBottomBarInitialEvent());
     tabIndex = 0;
     super.initState();
@@ -36,7 +36,7 @@ class _AppbarBottomTabSwitchScreenState
       const HomeScreen(),
       const BuyScreen(),
       const BuyScreen(),
-      const ProfileScreen(),
+      ProfileScreen(),
     ];
     return BlocConsumer<AppbottombarBloc, AppbottombarState>(
       bloc: appbottombarBloc,

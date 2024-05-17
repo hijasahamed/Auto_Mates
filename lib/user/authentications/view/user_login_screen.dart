@@ -47,7 +47,7 @@ class UserLoginScreen extends StatelessWidget {
         }        
         else if(state is LoginWithGoogleButtonSuccessfulNavigateToScreenActionState){
           Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => const AppbarBottomTabSwitchScreen(),
+            builder: (context) =>  const AppbarBottomTabSwitchScreen(),
           ));
         }
         else if(state is ForgetPasswordButtonClickedActionState){
