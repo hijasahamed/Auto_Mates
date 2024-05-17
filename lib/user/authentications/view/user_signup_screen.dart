@@ -7,6 +7,7 @@ import 'package:auto_mates/user/authentications/view/widgets/signup_screen_widge
 import 'package:auto_mates/user/authentications/view/widgets/signup_screen_widgets/signup_welcome_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
 class UserSignupScreen extends StatelessWidget {
   UserSignupScreen(
@@ -25,9 +26,9 @@ class UserSignupScreen extends StatelessWidget {
       listenWhen: (previous, current) => current is AuthenticationActionState,
       buildWhen: (previous, current) => current is! AuthenticationActionState,
       listener: (context, state) {
-        if (state is SignupButtonClickedActionState) {
+        if (state is SignupButtonClickedActionState){          
           Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => const AppbarBottomTabSwitchScreen(),
+            builder: (context) => const AppbarBottomTabSwitchScreen(isAccountCreated: true,),
           ));
         }
          else if (state is AlreadyHaveAccountButtonClickedActionState) {

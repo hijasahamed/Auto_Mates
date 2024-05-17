@@ -1,18 +1,21 @@
 import 'package:auto_mates/user/appbarbottombar/controller/bloc/appbottombar_bloc.dart';
+import 'package:auto_mates/user/appbarbottombar/controller/functions/functions.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/app_bar_widget.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/drawer_widget.dart';
+import 'package:auto_mates/user/appbarbottombar/view/widgets/loading_state_widget.dart';
+import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen.dart';
 import 'package:auto_mates/user/homescreen/view/home_screen.dart';
 import 'package:auto_mates/user/profilescreen/view/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
 
-int tabIndex = 0;
+
+
 
 class AppbarBottomTabSwitchScreen extends StatefulWidget {
-  const AppbarBottomTabSwitchScreen({super.key,});
-
+  const AppbarBottomTabSwitchScreen({super.key,required this.isAccountCreated});
+  final bool isAccountCreated;
   @override
   State<AppbarBottomTabSwitchScreen> createState() =>
       _AppbarBottomTabSwitchScreenState();
@@ -23,39 +26,30 @@ class _AppbarBottomTabSwitchScreenState
   @override
   void initState(){    
     appbottombarBloc.add(AppBottomBarInitialEvent());
-    tabIndex = 0;
+    tabIndex = 0;    
     super.initState();
   }
 
+  int tabIndex = 0;
   final AppbottombarBloc appbottombarBloc = AppbottombarBloc();
 
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     List tabs = [
-      const HomeScreen(),
+      HomeScreen(screenSize: screenSize,),
       const BuyScreen(),
       const BuyScreen(),
-      ProfileScreen(),
+      ProfileScreen(screenSize: screenSize,),
     ];
     return BlocConsumer<AppbottombarBloc, AppbottombarState>(
       bloc: appbottombarBloc,
       listener: (context, state) {},
       builder: (context, state) {
         switch (state.runtimeType) {
-          case AppbottombarLoadingState:  
-            return Scaffold(
-              backgroundColor: const Color(0xFFDBEDF5),
-              body: Center(
-                child: LottieBuilder.asset(
-                  'assets/animations/loading_animation.json',
-                  height: screenSize.height / 10,
-                  width: screenSize.width / 4,
-                  repeat: true,
-                ),
-              ),
-            );
-          case AppbottombarLoadedSuccessState:
+          case const (AppbottombarLoadingState):  
+            return LoadingStateWidget(isAccountCreated: widget.isAccountCreated, screenSize: screenSize);
+          case const (AppbottombarLoadedSuccessState):
             return BlocBuilder<AppbottombarBloc, AppbottombarState>(
               builder: (context, state) {
                 return Scaffold(

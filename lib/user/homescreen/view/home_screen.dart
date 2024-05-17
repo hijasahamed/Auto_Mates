@@ -6,17 +6,11 @@ import 'package:auto_mates/user/homescreen/view/widgets/carouselslider/carousal_
 import 'package:auto_mates/user/homescreen/view/widgets/featuredcars/fetured_cars_widget.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key,required this.screenSize});
+  final Size screenSize;
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,     
       body: SingleChildScrollView(

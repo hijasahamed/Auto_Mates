@@ -7,15 +7,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-dynamic usersDetailsToShow='';
 
 final FirebaseAuthService auth = FirebaseAuthService();
 
 class FirebaseAuthService {
   FirebaseAuth auth = FirebaseAuth.instance;
-
   Future<User?> userLogin(String email, String password) async {
     try {
       UserCredential credential = await auth.signInWithEmailAndPassword(
@@ -29,7 +28,6 @@ class FirebaseAuthService {
     }
     return null;
   }
-
   Future<User?> userSignup(String email, String password) async {
     try {
       UserCredential credential = await auth.createUserWithEmailAndPassword(
@@ -48,11 +46,13 @@ void loginButtonClicked(email, password, authenticationBloc, formkey) async {
   if (formkey.currentState!.validate()) {
     User? user = await auth.userLogin(email, password);
     if (user != null) {
-      UserData? userData = await checkIfUserAvailable(email);
-      usersDetailsToShow=userData; 
-      authenticationBloc.add(LoginButtonClickedEvent());
       final sharedPref = await SharedPreferences.getInstance();
       await sharedPref.setBool(logedInKey, true);
+      dynamic userData = await checkIfUserAvailable(email);
+      await sharedPref.setString('id', userData.id);
+      await sharedPref.setString('email', userData.email);
+      await sharedPref.setString('userName', userData.userName);
+      authenticationBloc.add(LoginButtonClickedEvent());     
     } else {
       authenticationBloc.add(LoginNotSuccessfullEvent());
     }
@@ -83,8 +83,11 @@ Future<UserData?> checkIfUserAvailable(String email) async {
       return null;
     }
   } catch (e) {
-    print("Error checking email availability: $e");
+    if (kDebugMode) {
+      print("Error checking email availability: $e");
+    }
   }
+  return null;
 }
 
 void signupButtonClicked(
@@ -113,6 +116,10 @@ void signupButtonClicked(
             authenticationBloc.add(SignupButtonClickedEvent());
             final sharedPref = await SharedPreferences.getInstance();
             await sharedPref.setBool(logedInKey, true);
+            dynamic userData = await checkIfUserAvailable(email);            
+            await sharedPref.setString('id', userData.id);
+            await sharedPref.setString('email', userData.email);
+            await sharedPref.setString('userName', userData.userName);
             Future.delayed(const Duration(seconds: 3));
             authenticationBloc.add(SignupSuccessfullAndAccountCreatedEvent());
           } else {

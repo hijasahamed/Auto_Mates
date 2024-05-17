@@ -89,6 +89,7 @@ flutter:
     #animations
     - assets/animations/loading_animation.json
     - assets/animations/splash_animation_jeep.json
+    - assets/animations/account created.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

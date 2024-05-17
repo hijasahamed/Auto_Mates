@@ -1,23 +1,26 @@
-import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
+import 'package:auto_mates/user/profilescreen/view/widgets/profile_banner.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key,});
-  
+  const ProfileScreen({super.key,required this.screenSize});
+  final Size screenSize;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          const MyTextWidget(text: 'UserName', color: Colors.black, size: 30, weight: FontWeight.bold),
-          ElevatedButton(
-              onPressed: () async {
-                logoutButtonClicked(context);
-              },
-              child: const Text('Logout')),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(3),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            ProfileBanner(screenSize: screenSize),
+            ElevatedButton(
+                onPressed: () async {
+                  logoutButtonClicked(context);
+                },
+                child: const Text('Logout')),
+          ],
+        ),
       ),
     );
   }
