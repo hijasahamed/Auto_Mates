@@ -3,6 +3,7 @@ import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen
 import 'package:auto_mates/user/appbarbottombar/controller/bloc/appbottombar_bloc.dart';
 import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/user/firebase/firebase_options.dart';
+import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
 import 'package:auto_mates/user/splashscreen/view/bloc/splash_bloc.dart';
 import 'package:auto_mates/user/splashscreen/view/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => SplashBloc(),),
         BlocProvider(create: (context) => SellerAuthenticationBloc(),),
         BlocProvider(create: (context) => SellerHomeScreenBloc(),),
-
+        BlocProvider(create: (context) => ProfileScreenBloc(),),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false, 

@@ -1,4 +1,8 @@
 part of 'profile_screen_bloc.dart';
 
 @immutable
-sealed class ProfileScreenEvent {}
+abstract class ProfileScreenEvent {}
+
+class LogoutButtonClickedEvent extends ProfileScreenEvent {}
+
+class ConfirmLogoutEvent extends ProfileScreenEvent {}

@@ -11,12 +11,16 @@ class SignupWidget extends StatelessWidget {
       required this.authenticationBloc,
       required this.userNameController,
       required this.emailController,
+      required this.locationController,
+      required this.mobileController,
       required this.passwordController,
       required this.reChekPasswordController,
       required this.userSignupFormkey});
   final Size screenSize;
   final AuthenticationBloc authenticationBloc;
   final TextEditingController userNameController;
+  final TextEditingController locationController;
+  final TextEditingController mobileController;
   final TextEditingController passwordController;
   final TextEditingController emailController;
   final TextEditingController reChekPasswordController;
@@ -39,6 +43,8 @@ class SignupWidget extends StatelessWidget {
           AddUserSignupTextformFieldWidget(
               screenSize: screenSize,
               userNameController: userNameController,
+              locationController: locationController,
+              mobileController: mobileController,
               emailController: emailController,
               passwordController: passwordController,
               reChekPasswordController: reChekPasswordController,

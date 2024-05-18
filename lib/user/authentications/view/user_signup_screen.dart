@@ -16,6 +16,8 @@ class UserSignupScreen extends StatelessWidget {
   final userNameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final locationController = TextEditingController();
+  final mobileController = TextEditingController();
   final reChekPasswordController = TextEditingController();
   final GlobalKey<FormState> userSignupFormkey = GlobalKey<FormState>();
   @override
@@ -62,6 +64,8 @@ class UserSignupScreen extends StatelessWidget {
                           authenticationBloc: authenticationBloc,
                           userNameController: userNameController,
                           emailController: emailController,
+                          locationController: locationController,
+                          mobileController: mobileController,
                           passwordController: passwordController,
                           reChekPasswordController: reChekPasswordController,
                           userSignupFormkey: userSignupFormkey),
@@ -70,6 +74,8 @@ class UserSignupScreen extends StatelessWidget {
                         authenticationBloc: authenticationBloc,
                         userNameController: userNameController,
                         emailController: emailController,
+                        locationController: locationController,
+                        mobileController: mobileController,
                         passwordController: passwordController,
                         reChekPasswordController: reChekPasswordController,
                         userSignupFormkey: userSignupFormkey,

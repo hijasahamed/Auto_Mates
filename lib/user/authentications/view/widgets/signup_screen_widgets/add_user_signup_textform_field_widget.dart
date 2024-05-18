@@ -9,9 +9,13 @@ class AddUserSignupTextformFieldWidget extends StatelessWidget {
       required this.emailController,
       required this.passwordController,
       required this.reChekPasswordController,
+      required this.locationController,
+      required this.mobileController,
       required this.userSignupFormkey});
   final Size screenSize;
   final TextEditingController userNameController;
+  final TextEditingController locationController;
+  final TextEditingController mobileController;
   final TextEditingController passwordController;
   final TextEditingController emailController;
   final TextEditingController reChekPasswordController;
@@ -52,6 +56,28 @@ class AddUserSignupTextformFieldWidget extends StatelessWidget {
                 SizedBox(height: screenSize.height/50,),
                 MyTextFormWidget(
                   screenSize: screenSize,
+                  text: 'Mobile', 
+                  controller: mobileController,
+                  warning: 'Enter a valid mobile number',
+                  obscure: false,
+                  keyBoardType: TextInputType.name,
+                  textCapitalization: TextCapitalization.none,
+                  fillColor: Colors.white,                  
+                ),
+                SizedBox(height: screenSize.height/50,),
+                MyTextFormWidget(
+                  screenSize: screenSize,
+                  text: 'Location', 
+                  controller: locationController,
+                  warning: 'Enter your location',
+                  obscure: false,
+                  keyBoardType: TextInputType.name,
+                  textCapitalization: TextCapitalization.words,
+                  fillColor: Colors.white,                  
+                ),
+                SizedBox(height: screenSize.height/50,),
+                MyTextFormWidget(
+                  screenSize: screenSize,
                   text: 'Password',
                   controller: passwordController,
                   warning: 'Enter a Password',
@@ -67,7 +93,7 @@ class AddUserSignupTextformFieldWidget extends StatelessWidget {
                   controller: reChekPasswordController,
                   warning: 'Enter the same password',
                   obscure: true,
-                  keyBoardType: TextInputType.emailAddress,
+                  keyBoardType: TextInputType.name,
                   textCapitalization: TextCapitalization.none,
                   fillColor: Colors.white,                  
                 ),

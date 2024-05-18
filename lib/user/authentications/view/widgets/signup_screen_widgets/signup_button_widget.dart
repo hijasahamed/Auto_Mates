@@ -10,6 +10,8 @@ class SignupButtonWidget extends StatelessWidget {
       required this.authenticationBloc,
       required this.userNameController,
       required this.emailController,
+      required this.locationController,
+      required this.mobileController,
       required this.passwordController,
       required this.reChekPasswordController,
       required this.userSignupFormkey,
@@ -18,6 +20,8 @@ class SignupButtonWidget extends StatelessWidget {
   final AuthenticationBloc authenticationBloc;
   final TextEditingController userNameController;
   final TextEditingController passwordController;
+  final TextEditingController locationController;
+  final TextEditingController mobileController;
   final TextEditingController emailController;
   final TextEditingController reChekPasswordController;
   final GlobalKey userSignupFormkey;
@@ -27,6 +31,8 @@ class SignupButtonWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
         return signupButtonClicked(
+          location: locationController.text,
+          mobile: mobileController.text,
             userName: userNameController.text,
             recheckPassword: reChekPasswordController.text,
             email: emailController.text,

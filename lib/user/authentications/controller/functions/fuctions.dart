@@ -51,6 +51,8 @@ void loginButtonClicked(email, password, authenticationBloc, formkey) async {
       await sharedPref.setString('id', userData.id);
       await sharedPref.setString('email', userData.email);
       await sharedPref.setString('userName', userData.userName);
+      await sharedPref.setString('mobile', userData.mobile);
+      await sharedPref.setString('location', userData.location); 
       authenticationBloc.add(LoginButtonClickedEvent());     
     } else {
       authenticationBloc.add(LoginNotSuccessfullEvent());
@@ -62,7 +64,9 @@ class UserData {
   final String id;
   final String userName;
   final String email;
-  UserData({required this.id, required this.email, required this.userName});
+  final String mobile;
+  final String location;  
+  UserData({required this.id, required this.email, required this.userName,required this.location,required this.mobile});
 }
 
 Future<UserData?> checkIfUserAvailable(String email) async {
@@ -76,7 +80,7 @@ Future<UserData?> checkIfUserAvailable(String email) async {
     if (querySnapshot.docs.isNotEmpty) {
       QueryDocumentSnapshot doc = querySnapshot.docs.first;
       UserData userData =
-          UserData(id: doc.id, email: doc['email'], userName: doc['userName']);
+          UserData(id: doc.id, email: doc['email'], userName: doc['userName'],location: doc['location'],mobile: doc['mobile']);
       return userData;
     } else {
       return null;
@@ -90,7 +94,9 @@ Future<UserData?> checkIfUserAvailable(String email) async {
 }
 
 void signupButtonClicked(
-    {userName,
+    {mobile,
+    location,
+    userName,
     email,
     password,
     recheckPassword,
@@ -111,14 +117,16 @@ void signupButtonClicked(
         } else {
           User? user = await auth.userSignup(email, password);
           if (user != null) {
-            await addUserSignupDatatoDb(userName, email, password);
+            await addUserSignupDatatoDb(username: userName,email: email,password: password,location: location,mobile: mobile);
             authenticationBloc.add(SignupButtonClickedEvent());
             final sharedPref = await SharedPreferences.getInstance();
             await sharedPref.setBool(logedInKey, true);
-            dynamic userData = await checkIfUserAvailable(email);            
+            dynamic userData = await checkIfUserAvailable(email);           
             await sharedPref.setString('id', userData.id);
             await sharedPref.setString('email', userData.email);
-            await sharedPref.setString('userName', userData.userName);
+            await sharedPref.setString('userName', userData.userName); 
+            await sharedPref.setString('mobile', userData.mobile);
+            await sharedPref.setString('location', userData.location);         
             Future.delayed(const Duration(seconds: 3));
             authenticationBloc.add(SignupSuccessfullAndAccountCreatedEvent());
           } else {
@@ -137,10 +145,10 @@ void signupButtonClicked(
   }
 }
 
-addUserSignupDatatoDb(username, email, password) {
+addUserSignupDatatoDb({username, email, password,mobile,location}) {
   final CollectionReference signupFirebaseObject =
       FirebaseFirestore.instance.collection('userSignupData');
-  final data = {'userName': username, 'email': email, 'password': password};
+  final data = {'userName': username, 'email': email, 'password': password,'mobile':mobile,'location':location};
   signupFirebaseObject.add(data);
 }
 

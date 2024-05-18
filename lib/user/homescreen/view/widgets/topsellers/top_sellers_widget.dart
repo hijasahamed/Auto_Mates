@@ -1,3 +1,4 @@
+import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 
 class TopSellersWidget extends StatelessWidget {
@@ -75,8 +76,8 @@ class TopSellersWidget extends StatelessWidget {
                         ),
                         child: Row(
                           children: [
-                            const Icon(Icons.star,color: Colors.white,),
-                            Text(topSellers[index].rating,style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),)
+                            const Icon(Icons.star,color: Colors.white,),                            
+                            MyTextWidget(text: topSellers[index].rating, color: Colors.white, size: 15, weight: FontWeight.bold)
                           ],
                         ),
                       )

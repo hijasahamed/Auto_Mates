@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 
 class CustomAlertDialogeWidget extends StatefulWidget {
@@ -76,8 +77,8 @@ class _CustomAlertDialogeWidgetState extends State<CustomAlertDialogeWidget> {
                   SizedBox(width: widget.screenSize.width/35,),
                   CircleAvatar(
                     backgroundColor: Colors.red,
-                    radius: 13,
-                    child: Text('$secondsLeft',style: TextStyle(color: Colors.white,),),
+                    radius: 13,                    
+                    child: MyTextWidget(text: secondsLeft.toString(), color: Colors.white, size: 15, weight: FontWeight.w300),
                   )
                 ],
               ), 

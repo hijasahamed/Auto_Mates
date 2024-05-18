@@ -87,6 +87,8 @@ flutter:
     - assets/images/profile_png.png
     - assets/images/avatar.png
     - assets/images/placeholder.jpg
+    - assets/images/add image.jpg
+    - assets/images/logout.png
     #animations
     - assets/animations/loading_animation.json
     - assets/animations/splash_animation_jeep.json
