@@ -1,9 +1,7 @@
 import 'package:auto_mates/user/appbarbottombar/controller/functions/functions.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
-import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/profile_banner_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key,required this.screenSize});

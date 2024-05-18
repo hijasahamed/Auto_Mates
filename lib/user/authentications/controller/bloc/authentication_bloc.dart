@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 part 'authentication_event.dart';

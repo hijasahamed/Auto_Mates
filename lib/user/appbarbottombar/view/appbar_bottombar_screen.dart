@@ -1,9 +1,7 @@
 import 'package:auto_mates/user/appbarbottombar/controller/bloc/appbottombar_bloc.dart';
-import 'package:auto_mates/user/appbarbottombar/controller/functions/functions.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/app_bar_widget.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/drawer_widget.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/loading_state_widget.dart';
-import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen.dart';
 import 'package:auto_mates/user/homescreen/view/home_screen.dart';
 import 'package:auto_mates/user/profilescreen/view/profile_screen.dart';
