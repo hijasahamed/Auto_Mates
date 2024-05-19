@@ -1,4 +1,3 @@
-import 'package:auto_mates/user/appbarbottombar/controller/functions/functions.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:flutter/material.dart';
@@ -10,20 +9,27 @@ class ProfileBannerWidget extends StatelessWidget {
   final UserData user;
   @override
   Widget build(BuildContext context) {
-    fetchUserDetails();
     return Stack(
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: FadeInImage(
-            fadeInDuration: const Duration(milliseconds: 1500),
-            height: screenSize.height / 4.5,
-            width: screenSize.width,
-            placeholder: const AssetImage('assets/images/placeholder.jpg'),
-            image: const AssetImage(
-              'assets/images/profile_png.png',
-            ),
-            fit: BoxFit.cover,
+        // ClipRRect(
+        //   borderRadius: BorderRadius.circular(10),
+        //   child: FadeInImage(
+        //     fadeInDuration: const Duration(milliseconds: 400),
+        //     height: screenSize.height / 4.5,
+        //     width: screenSize.width,
+        //     placeholder: const AssetImage('assets/images/placeholder.jpg'),
+        //     image: const AssetImage(
+        //       'assets/images/profile_png.png',
+        //     ),
+        //     fit: BoxFit.cover,
+        //   ),
+        // ),
+        Container(
+          height: screenSize.height / 4.7,
+          width: screenSize.width,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10), 
+            image: const DecorationImage(image: AssetImage('assets/images/profile_png.png'),fit: BoxFit.cover)
           ),
         ),
         Positioned(

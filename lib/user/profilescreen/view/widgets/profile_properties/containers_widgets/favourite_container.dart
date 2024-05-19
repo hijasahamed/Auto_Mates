@@ -10,7 +10,7 @@ class FavouriteContainer extends StatelessWidget {
       margin: const EdgeInsets.all(3),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.red,
+        color: Colors.grey,
       ),
     );
   }

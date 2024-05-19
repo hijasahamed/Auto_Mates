@@ -1,3 +1,4 @@
+import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
@@ -6,8 +7,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+Future<UserData?> fetchUserDetails()async{
+  final sharedPref=await SharedPreferences.getInstance();
+  dynamic id= sharedPref.getString('id');
+  dynamic email= sharedPref.getString('email');
+  dynamic userName= sharedPref.getString('userName');
+  dynamic location= sharedPref.getString('location');
+  dynamic mobile= sharedPref.getString('mobile');
+  return UserData(id: id, email: email, userName: userName,location: location,mobile: mobile);
+}
+
 logoutAlertMessage({context, profileScreenBloc}) {
-  return showDialog<void>(
+  return showDialog(
     context: context,
     barrierDismissible: false,
     builder: (BuildContext context) {

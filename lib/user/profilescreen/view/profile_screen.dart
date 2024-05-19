@@ -1,4 +1,3 @@
-import 'package:auto_mates/user/appbarbottombar/controller/functions/functions.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
@@ -16,7 +15,7 @@ class ProfileScreen extends StatelessWidget {
     final ProfileScreenBloc profileScreenBloc = ProfileScreenBloc();
     return BlocConsumer<ProfileScreenBloc, ProfileScreenState>(
       bloc: profileScreenBloc,
-      listener: (context, state) {
+      listener: (context, state)async {
         if (state is LogoutButtonClickedActionState) {
           logoutAlertMessage(
               context: context, profileScreenBloc: profileScreenBloc);
@@ -40,21 +39,15 @@ class ProfileScreen extends StatelessWidget {
               UserData user = snapshot.data!;
               return Padding(
                 padding: const EdgeInsets.all(3),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Stack(
-                        children: [
-                          ProfileBannerWidget(
-                            screenSize: screenSize,
-                            user: user,
-                          ),
-                        ],
-                      ),
-                      ProfilePropertiesScreen(screenSize: screenSize,)
-                      // LogoutButtonWidget(profileScreenBloc: profileScreenBloc,screenSize: screenSize,)
-                    ],
-                  ),
+                child: Column(
+                  children: [
+                    ProfileBannerWidget(
+                      screenSize: screenSize,
+                      user: user,
+                    ),
+                    ProfilePropertiesScreen(screenSize: screenSize,profileScreenBloc: profileScreenBloc,),
+                    
+                  ],
                 ),
               );
             }
