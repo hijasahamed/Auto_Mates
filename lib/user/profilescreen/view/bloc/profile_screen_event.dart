@@ -6,3 +6,5 @@ abstract class ProfileScreenEvent {}
 class LogoutButtonClickedEvent extends ProfileScreenEvent {}
 
 class ConfirmLogoutEvent extends ProfileScreenEvent {}
+
+class FavouriteConatinerClickedEvent extends ProfileScreenEvent {}

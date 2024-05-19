@@ -39,20 +39,20 @@ class NoNetworkWidget extends StatelessWidget {
                       ),
                     ),
                     const MyTextWidget(
-                        text: 'Whooops',
-                        color: Colors.black,
-                        size: 20,
+                        text: 'Whoops! Connection lost',
+                        color: Color(0xFF424141),
+                        size: 23,
                         weight: FontWeight.w500),
                     const MyTextWidget(
-                        text: 'No internet connection found',
+                        text: 'It seems something is wrong with your connection',
                         color: Colors.grey,
                         size: 15,
-                        weight: FontWeight.w400),
+                        weight: FontWeight.w600),
                     const MyTextWidget(
-                        text: 'Check your connection',
+                        text: 'Please connect to the internet and try again',
                         color: Colors.grey,
-                        size: 16,
-                        weight: FontWeight.w400),
+                        size: 15,
+                        weight: FontWeight.w600),
                     SizedBox(
                       height: screenSize.height / 50,
                     ),

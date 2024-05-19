@@ -164,7 +164,7 @@ class BuyScreen extends StatelessWidget {
                                     },));
                                   },
                                   child: const Text(
-                                    'Seller Details',
+                                    'More Details',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black),

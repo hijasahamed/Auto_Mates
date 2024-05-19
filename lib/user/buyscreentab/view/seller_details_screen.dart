@@ -1,4 +1,5 @@
 
+import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen.dart';
 import 'package:auto_mates/user/buyscreentab/view/widgets/car_details_widget.dart';
 import 'package:auto_mates/user/buyscreentab/view/widgets/custom_alert_dialoge_widget.dart';
@@ -15,34 +16,9 @@ class SellerDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20)),
-            gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [
-                Color.fromARGB(255, 76, 207, 239),
-                Color.fromARGB(255, 80, 171, 250)
-              ],
-            ),
-          ),
-        ),
-        leading: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.white,
-            )),
-        title: const Text(
-          'Seller Details',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-      ),
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(55),
+        child: NormalAppBar(title: 'More Details',)),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(6),

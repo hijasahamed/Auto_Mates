@@ -1,4 +1,5 @@
 import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
+import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,7 @@ class LogoutContainer extends StatelessWidget {
     return Container(
       height: screenSize.height/7, 
       margin: const EdgeInsets.all(3),
-      decoration: const BoxDecoration(        
+      decoration: const BoxDecoration(
         color: Colors.transparent,
       ),
       child: Material(
@@ -21,11 +22,14 @@ class LogoutContainer extends StatelessWidget {
         color: Colors.red,
         child: InkWell(
           onTap: (){            
-            profileScreenBloc.add(LogoutButtonClickedEvent());
+            // profileScreenBloc.add(LogoutButtonClickedEvent());
+            // logoutAlertMessage();
           },
           child: Stack(
             children: [
-              Center(
+              Positioned(
+                left: 77,
+                top: 30,
                 child: Container(
                   height: screenSize.height/18,
                   width: screenSize.width/9,
@@ -35,8 +39,8 @@ class LogoutContainer extends StatelessWidget {
                 ),
               ),
               const Positioned(
-              bottom: 0,
-              left: 63,
+              bottom: 18,
+              left: 65,
               child: MyTextWidget(text: "Logout", color: Colors.white, size: 20, weight: FontWeight.bold)
             ),
             ],

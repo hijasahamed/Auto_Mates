@@ -8,8 +8,7 @@ class SellerDetailsWidget extends StatelessWidget {
     return Card(
       color: Colors.white,
       elevation: 5,
-      child: Column(
-        
+      child: Column(        
         children: [
           Stack(
             children: [

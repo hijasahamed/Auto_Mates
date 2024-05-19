@@ -10,6 +10,7 @@ class ProfileScreenBloc extends Bloc<ProfileScreenEvent, ProfileScreenState> {
   ProfileScreenBloc() : super(ProfileScreenInitial()) {
     on<LogoutButtonClickedEvent>(logoutButtonClickedEvent);
     on<ConfirmLogoutEvent>(confirmLogoutEvent);
+    on<FavouriteConatinerClickedEvent>(favouriteConatinerClickedEvent);
   }
 
   FutureOr<void> logoutButtonClickedEvent(
@@ -22,4 +23,9 @@ class ProfileScreenBloc extends Bloc<ProfileScreenEvent, ProfileScreenState> {
       emit(ConfirmLogoutActionState());      
   }
 
+
+  FutureOr<void> favouriteConatinerClickedEvent(
+    FavouriteConatinerClickedEvent event, Emitter<ProfileScreenState> emit) {
+      emit(FavouriteConatinerClickedActionState());
+  }
 }

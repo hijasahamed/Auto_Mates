@@ -91,6 +91,7 @@ flutter:
     - assets/images/logout.png
     - assets/images/fav container banner.jpg
     - assets/images/fav insta.png
+    - assets/images/fav section.jpg
     #animations
     - assets/animations/loading_animation.json
     - assets/animations/splash_animation_jeep.json

@@ -1,4 +1,5 @@
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
+import 'package:auto_mates/user/favourite_screen/view/favourite_screen.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/logout_section/loging_out_screen_widget.dart';
@@ -22,6 +23,10 @@ class ProfileScreen extends StatelessWidget {
         } else if (state is ConfirmLogoutActionState) {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (context) => LogingOutScreenWidget(screenSize: screenSize),
+          ));
+        }else if (state is FavouriteConatinerClickedActionState){
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => const FavouriteScreen(),
           ));
         }
       },
