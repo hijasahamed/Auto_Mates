@@ -4,6 +4,7 @@ import 'package:auto_mates/user/appbarbottombar/view/widgets/drawer_widget.dart'
 import 'package:auto_mates/user/appbarbottombar/view/widgets/loading_state_widget.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen.dart';
 import 'package:auto_mates/user/homescreen/view/home_screen.dart';
+import 'package:auto_mates/user/news/news_screen.dart';
 import 'package:auto_mates/user/profilescreen/view/profile_screen.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
@@ -39,7 +40,7 @@ class _AppbarBottomTabSwitchScreenState
         screenSize: screenSize,
       ),
       const BuyScreen(),
-      const BuyScreen(),
+      const NewsScreen(),
       ProfileScreen(
         screenSize: screenSize,
       ),
@@ -68,47 +69,47 @@ class _AppbarBottomTabSwitchScreenState
                     bottomNavigationBar:
                         BlocBuilder<AppbottombarBloc, AppbottombarState>(
                       builder: (context, state) {
-                        // return BottomNavigationBar(
-                        //   elevation: 10,
-                        //   currentIndex: tabIndex,
-                        //   onTap: (index) {
-                        //     setState(() {
-                        //       tabIndex = index;
-                        //     });
-                        //     // tabIndex=index;
-                        //     // appbottombarBloc.add(OntapIndexChangeEvent());
-                        //   },
-                        //   items: const [
-                        //     BottomNavigationBarItem(
-                        //       icon: Icon(Icons.home),
-                        //       label: 'Home',
-                        //     ),
-                        //     BottomNavigationBarItem(
-                        //       icon: Icon(Icons.car_rental),
-                        //       label: 'Buy',
-                        //     ),
-                        //     BottomNavigationBarItem(
-                        //       icon: Icon(Icons.newspaper),
-                        //       label: 'News',
-                        //     ),
-                        //     BottomNavigationBarItem(
-                        //       icon: Icon(Icons.person),
-                        //       label: 'Profile',
-                        //     ),
-                        //   ],
-                        //   selectedItemColor:
-                        //       const Color.fromARGB(255, 76, 207, 239),
-                        //   selectedFontSize: 15,
-                        //   selectedLabelStyle: const TextStyle(
-                        //     fontWeight: FontWeight.bold,
-                        //   ),
-                        //   showUnselectedLabels: true,
-                        //   showSelectedLabels: true,
-                        //   unselectedItemColor: const Color(0xFF424141),
-                        //   unselectedLabelStyle:
-                        //       const TextStyle(fontWeight: FontWeight.bold),
-                        // );
-                        return CurvedNavigationBar(
+                        return BottomNavigationBar(
+                          elevation: 10,
+                          currentIndex: tabIndex,
+                          onTap: (index) {
+                            setState(() {
+                              tabIndex = index;
+                            });
+                            // tabIndex=index;
+                            // appbottombarBloc.add(OntapIndexChangeEvent());
+                          },
+                          items: const [
+                            BottomNavigationBarItem(
+                              icon: Icon(Icons.home),
+                              label: 'Home',
+                            ),
+                            BottomNavigationBarItem(
+                              icon: Icon(Icons.car_rental),
+                              label: 'Buy',
+                            ),
+                            BottomNavigationBarItem(
+                              icon: Icon(Icons.newspaper),
+                              label: 'News',
+                            ),
+                            BottomNavigationBarItem(
+                              icon: Icon(Icons.person),
+                              label: 'Profile',
+                            ),
+                          ],
+                          selectedItemColor:
+                              const Color.fromARGB(255, 76, 207, 239),
+                          selectedFontSize: 17,
+                          selectedLabelStyle: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                          showUnselectedLabels: true,
+                          showSelectedLabels: true,
+                          unselectedItemColor: const Color(0xFF424141),
+                          unselectedLabelStyle:
+                              const TextStyle(fontWeight: FontWeight.bold),
+                        );
+                        /* return CurvedNavigationBar(
                           
                           animationCurve: Easing.standard,
                           backgroundColor: Colors.white,
@@ -155,7 +156,7 @@ class _AppbarBottomTabSwitchScreenState
                               tabIndex = index;
                             });
                           },
-                        );
+                        ); */
                       },
                     ),
                     body: tabs[tabIndex],

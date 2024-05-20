@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class MyTextFormWidget extends StatelessWidget {
-  MyTextFormWidget({
+ const MyTextFormWidget({
     super.key,
     required this.text,
     required this.controller,

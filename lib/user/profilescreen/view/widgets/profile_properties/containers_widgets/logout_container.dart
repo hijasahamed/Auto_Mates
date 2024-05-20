@@ -1,5 +1,5 @@
 import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
-import 'package:auto_mates/user/profilescreen/controller/functions.dart';
+
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
 import 'package:flutter/material.dart';
 

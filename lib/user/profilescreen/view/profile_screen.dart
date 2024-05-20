@@ -7,7 +7,6 @@ import 'package:auto_mates/user/profilescreen/view/widgets/logout_section/loging
 import 'package:auto_mates/user/profilescreen/view/widgets/profile_properties/profile_properties_screen.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/user_banner/profile_banner_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileScreen extends StatelessWidget {
