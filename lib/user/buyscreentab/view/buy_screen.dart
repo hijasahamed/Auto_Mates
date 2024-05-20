@@ -1,5 +1,8 @@
+import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/seller_details_screen.dart';
 import 'package:auto_mates/user/buyscreentab/view/widgets/sorting_filter_widget.dart';
+import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class BuyScreen extends StatelessWidget {
@@ -65,7 +68,9 @@ class BuyScreen extends StatelessWidget {
           '29,310Km',
           '₹8.82 Lakh'),
     ];
-    return Scaffold(
+
+    
+  /*  return Scaffold(
         body: Padding(
             padding:
             const EdgeInsets.only(top: 0, bottom: 0, left: 5, right: 5),
@@ -177,7 +182,132 @@ class BuyScreen extends StatelessWidget {
                   ),
                 ),
               ],
-            )));
+            ))); */
+
+      return StreamBuilder(
+        stream: firebaseObject.orderBy('brand').snapshots(), 
+        builder: (context, AsyncSnapshot snapshot) {
+          if(snapshot.connectionState == ConnectionState.waiting){
+          return const CircularProgressIndicator(color: Colors.blue,);
+          }
+          if(snapshot.hasData && snapshot.data.docs.isNotEmpty){
+             Column(
+              children: [
+                SortingFilteringWidget(screenSize: screenSize),
+                Expanded(
+                  child: GridView.builder(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemCount: snapshot.data!.docs.length,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      childAspectRatio: .75,
+                      mainAxisSpacing: 3,
+                      crossAxisSpacing: 3,
+                      crossAxisCount: 2,
+                    ),
+                    itemBuilder: (context, index) {
+                      final DocumentSnapshot data = snapshot.data.docs[index];
+                      return Card(
+                        elevation: 5,
+                        color: const Color(0xFFDBEDF5),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: FadeInImage(
+                                    fadeInDuration: const Duration(milliseconds: 750),
+                                    height: screenSize.height / 7,
+                                    width: screenSize.width,
+                                    placeholder: const AssetImage('assets/images/image placeholder.jpeg'),placeholderFit: BoxFit.fill,
+                                    imageErrorBuilder: (context, error, stackTrace) {
+                                      return const CircularProgressIndicator(color: Colors.blue,);
+                                    },
+                                    image: NetworkImage(data['image']),fit: BoxFit.cover,filterQuality: FilterQuality.high
+                                  ),
+                                ),
+                                const Positioned(
+                                  top: 5,
+                                  right: 5,
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.white,
+                                    radius: 15,
+                                    child: Icon(Icons.favorite_outline_rounded,size: 20,color: Colors.red,),
+                                  )
+                                )
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 4),
+                              child: Text(
+                                carDetails[index].name,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF424141)),
+                              ),
+                            ),
+                            const Spacer(),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 4),
+                              child: Text(
+                                carDetails[index].model,
+                                style: const TextStyle(
+                                    color: Color.fromARGB(255, 83, 83, 83),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 4),
+                              child: Text(
+                                carDetails[index].kilometers,
+                                style: const TextStyle(
+                                    color: Color.fromARGB(255, 83, 83, 83),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 4),
+                              child: Text(
+                                carDetails[index].price,
+                                style: const TextStyle(
+                                    color: Color.fromARGB(255, 83, 83, 83),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            const Spacer(),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 4, bottom: 4),
+                              child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                                      return SellerDetailsScreen(screenSize: screenSize,data: carDetails[index],);
+                                    },));
+                                  },
+                                  child: const Text(
+                                    'More Details',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black),
+                                  )),
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            );
+          }else{
+            const Center(
+              child: MyTextWidget(text: 'No Data', color: Colors.blue, size: 15, weight: FontWeight.bold),
+            );
+          }
+          return const SizedBox();
+        },
+      );
   }
 }
 
