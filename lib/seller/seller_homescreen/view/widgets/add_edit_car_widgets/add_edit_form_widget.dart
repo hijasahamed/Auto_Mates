@@ -1,4 +1,4 @@
-import 'package:auto_mates/user/authentications/view/widgets/text_form_field/text_form_widget.dart';
+import 'package:auto_mates/user/commonwidgets/text_form_field/text_form_widget.dart';
 import 'package:flutter/material.dart';
 
 class AddEditFormWidget extends StatelessWidget {
@@ -37,8 +37,9 @@ class AddEditFormWidget extends StatelessWidget {
               screenSize: screenSize,
                 text: 'Brand Name',
                 controller: carBrandController,
-                warning: 'Enter value',
+                warning: 'Enter the brand of car',
                 obscure: false,
+                brandName: true,
                 keyBoardType: TextInputType.name,
                 textCapitalization:
                     TextCapitalization.words,
@@ -50,7 +51,7 @@ class AddEditFormWidget extends StatelessWidget {
               screenSize: screenSize,
                 text: 'Model Name',
                 controller: carModelNameController,
-                warning: 'Enter value',
+                warning: 'Enter the model name of car',
                 obscure: false,
                 keyBoardType: TextInputType.name,
                 textCapitalization:
@@ -63,7 +64,7 @@ class AddEditFormWidget extends StatelessWidget {
               screenSize: screenSize,
                 text: 'Color',
                 controller: carColorController,
-                warning: 'Enter value',
+                warning: 'Enter what color is the car',
                 obscure: false,
                 keyBoardType: TextInputType.name,
                 textCapitalization:
@@ -76,9 +77,10 @@ class AddEditFormWidget extends StatelessWidget {
               screenSize: screenSize,
                 text: 'Year',
                 controller: carYearController,
-                warning: 'Enter value',
+                warning: 'Enter the Registration Year of car',
                 obscure: false,
-                keyBoardType: TextInputType.number,
+                datePicker: true,
+                keyBoardType: TextInputType.none,
                 textCapitalization:
                     TextCapitalization.words,
                 fillColor: const Color(0XFFDBEDF5)),
@@ -89,7 +91,7 @@ class AddEditFormWidget extends StatelessWidget {
               screenSize: screenSize,
                 text: 'Price',
                 controller: carPriceController,
-                warning: 'Enter value',
+                warning: 'Enter the amount of the car to be sold',
                 obscure: false,
                 keyBoardType: TextInputType.name,
                 textCapitalization:
@@ -102,9 +104,10 @@ class AddEditFormWidget extends StatelessWidget {
               screenSize: screenSize,
                 text: 'Fuel',
                 controller: carFuelController,
-                warning: 'Enter value',
+                warning: 'Enter the fuel type of car',
                 obscure: false,
-                keyBoardType: TextInputType.name,
+                fuel: true,
+                keyBoardType: TextInputType.none,
                 textCapitalization:
                     TextCapitalization.words,
                 fillColor: const Color(0XFFDBEDF5)),
@@ -115,7 +118,7 @@ class AddEditFormWidget extends StatelessWidget {
               screenSize: screenSize,
                 text: 'Kilometers',
                 controller: carKilometerController,
-                warning: 'Enter value',
+                warning: 'Enter the exact kilometers the car driven',
                 obscure: false,
                 keyBoardType: TextInputType.number,
                 textCapitalization:

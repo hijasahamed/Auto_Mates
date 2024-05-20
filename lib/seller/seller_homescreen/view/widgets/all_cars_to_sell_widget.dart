@@ -14,6 +14,9 @@ class AllCarsToSellWidget extends StatelessWidget {
     return StreamBuilder(
       stream: firebaseObject.orderBy('brand').snapshots(),
       builder: (context, AsyncSnapshot snapshot) {
+        if(snapshot.connectionState == ConnectionState.waiting){
+          return const SizedBox();
+        }
         if (snapshot.hasData && snapshot.data.docs.isNotEmpty) {
           return GridView.builder(
             scrollDirection: Axis.vertical,
@@ -34,17 +37,19 @@ class AllCarsToSellWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Stack(
-                      children: [
-                        Container(
-                          height: screenSize.height / 7.5,
-                          width: screenSize.width,
-                          decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(5),
-                                  topRight: Radius.circular(4)),
-                              color: Colors.transparent,
-                              image: DecorationImage(image: NetworkImage(data['image']),fit: BoxFit.cover,filterQuality: FilterQuality.high)
-                              ),
+                      children: [                       
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: FadeInImage(
+                            fadeInDuration: const Duration(milliseconds: 750),
+                            height: screenSize.height / 7.5,
+                            width: screenSize.width,
+                            placeholder: const AssetImage('assets/images/placeholder.jpg'),placeholderFit: BoxFit.cover,
+                            imageErrorBuilder: (context, error, stackTrace) {
+                              return const CircularProgressIndicator(color: Colors.blue,);
+                            },
+                            image: NetworkImage(data['image']),fit: BoxFit.cover,filterQuality: FilterQuality.high
+                          ),
                         ),
                         Positioned(
                             right: 2,
@@ -74,7 +79,8 @@ class AllCarsToSellWidget extends StatelessWidget {
               );
             },
           );
-        } else {
+        }
+         else {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

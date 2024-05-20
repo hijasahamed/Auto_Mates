@@ -1,3 +1,4 @@
+import 'package:auto_mates/seller/chat_screen/chat_screen.dart';
 import 'package:auto_mates/seller/seller_appbar_bottombar/view/bloc/sellerappbottom_bloc.dart';
 import 'package:auto_mates/seller/seller_appbar_bottombar/view/widgets/seller_screen_appbar_widget.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/seller_home_screen.dart';
@@ -21,7 +22,7 @@ class _SellerappbarbottombarState extends State<Sellerappbarbottombar> {
   int sellertabIndex=0;
   List sellerTabs=[
     const SellerHomeScreen(),
-    const SellerHomeScreen(),
+    const ChatScreen(),
     const SellerProfileScreen(),
   ];
 

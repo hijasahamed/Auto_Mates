@@ -22,7 +22,7 @@ class ProfileScreen extends StatelessWidget {
               context: context, profileScreenBloc: profileScreenBloc);
         } else if (state is ConfirmLogoutActionState) {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => LogingOutScreenWidget(screenSize: screenSize),
+            builder: (context) => LogingOutScreenWidget(screenSize: screenSize,seller: false,),
           ));
         }else if (state is FavouriteConatinerClickedActionState){
           Navigator.of(context).push(MaterialPageRoute(

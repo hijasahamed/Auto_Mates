@@ -7,8 +7,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
-
 class AddCarEditCarWidget extends StatefulWidget {
   const AddCarEditCarWidget(
       {super.key,
@@ -53,32 +51,32 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
     return BlocBuilder<SellerHomeScreenBloc, SellerHomeScreenState>(
       builder: (context, state) {
         return Scaffold(
-            resizeToAvoidBottomInset: true,
-            backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-            appBar: AppBar(
-              flexibleSpace: const AppBarGradientColor(),
-              leading: IconButton(
-                  onPressed: () {
-                    widget.sellerHomeScreenBloc.add(BackArrowClickedEvent());
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back_ios,
+          backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+          appBar: AppBar(
+            flexibleSpace: const AppBarGradientColor(),
+            leading: IconButton(
+                onPressed: () {
+                  widget.sellerHomeScreenBloc.add(BackArrowClickedEvent());
+                },
+                icon: const Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.white,
+                )),
+            title: widget.isEditPage
+                ? const MyTextWidget(
+                    text: 'Edit Car Details',
                     color: Colors.white,
-                  )),
-              title: widget.isEditPage
-                  ? const MyTextWidget(
-                      text: 'Edit Car Details',
-                      color: Colors.white,
-                      size: 20,
-                      weight: FontWeight.bold)
-                  : const MyTextWidget(
-                      text: 'Post New Car',
-                      color: Colors.white,
-                      size: 20,
-                      weight: FontWeight.bold),
-              centerTitle: true,
-            ),
-            body: SafeArea(
+                    size: 20,
+                    weight: FontWeight.bold)
+                : const MyTextWidget(
+                    text: 'Post New Car',
+                    color: Colors.white,
+                    size: 20,
+                    weight: FontWeight.bold),
+            centerTitle: true,
+          ),
+          body: SafeArea(
+            child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -93,178 +91,156 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
                               fit: BoxFit.cover,
                               filterQuality: FilterQuality.high)),
                     ),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            widget.isEditPage
-                                ? Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        addImage();
-                                      },
-                                      child: Container(
-                                        height:
-                                            widget.screenSize.height / 6,
-                                        width: widget.screenSize.width,
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: NetworkImage(
-                                                    widget.data!['image']),
-                                                fit: BoxFit.cover)),
-                                        child: const Center(
-                                            child: MyTextWidget(
-                                                text: 'Change Photo',
-                                                color: Colors.white,
-                                                size: 15,
-                                                weight: FontWeight.bold)),
-                                      ),
-                                    ),
-                                  )
-                                : Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: imageUrl == ''
-                                        ? Container(
-                                            height:
-                                                widget.screenSize.height /
-                                                    6,
-                                            width: widget.screenSize.width,
-                                            color: Colors.transparent,
-                                            child: Material(
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        10),
-                                              ),
-                                              color:
-                                                  const Color(0XFFDBEDF5),
-                                              child: InkWell(
-                                                onTap: () {
-                                                  addImage();
-                                                },
-                                                child: const Center(
-                                                    child: MyTextWidget(
-                                                        text: 'Add Photo',
-                                                        color: Color(
-                                                            0xFF424141),
-                                                        size: 15,
-                                                        weight: FontWeight
-                                                            .w500)),
-                                              ),
-                                            ),
-                                          )
-                                        : Container(
-                                            height:
-                                                widget.screenSize.height /
-                                                    6,
-                                            width: widget.screenSize.width,
-                                            decoration: BoxDecoration(
-                                                image: DecorationImage(
-                                                    image: NetworkImage(
-                                                        imageUrl),
-                                                    fit: BoxFit.cover),
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        10),
-                                                border: Border.all(
-                                                    width: 1,
-                                                    color: const Color(
-                                                        0xFF424141))),
-                                          )),
-                            AddEditFormWidget(
-                              screenSize: widget.screenSize,
-                                postCarFormkey: postCarFormkey,
-                                carBrandController: carBrandController,
-                                carColorController: carColorController,
-                                carFuelController: carFuelController,
-                                carKilometerController:
-                                    carKilometerController,
-                                carModelNameController:
-                                    carModelNameController,
-                                carPriceController: carPriceController,
-                                carYearController: carYearController)
-                          ],
-                        ),
-                      ),
-                    ),
                     widget.isEditPage
                         ? Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: widget.screenSize.height / 17,
-                              width: widget.screenSize.width / 1.5,
-                              color: Colors.transparent,
-                              child: Material(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                color: Colors.blue,
-                                child: InkWell(
-                                    onTap: () {
-                                      updateCarDetails(
-                                          context,
-                                          widget.data!.id,
-                                          postCarFormkey,
-                                          carBrandController,
-                                          carModelNameController,
-                                          carColorController,
-                                          carYearController,
-                                          carPriceController,
-                                          carFuelController,
-                                          carKilometerController);
-                                    },
-                                    child: const Center(
-                                      child: MyTextWidget(
-                                          text: 'Edit Car Details',
-                                          color: Colors.white,
-                                          size: 17,
-                                          weight: FontWeight.bold),
-                                    )),
+                            child: GestureDetector(
+                              onTap: () {
+                                addImage();
+                              },
+                              child: Container(
+                                height: widget.screenSize.height / 6,
+                                width: widget.screenSize.width,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image:
+                                            NetworkImage(widget.data!['image']),
+                                        fit: BoxFit.cover)),
+                                child: const Center(
+                                    child: MyTextWidget(
+                                        text: 'Change Photo',
+                                        color: Colors.white,
+                                        size: 15,
+                                        weight: FontWeight.bold)),
                               ),
                             ),
                           )
                         : Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: widget.screenSize.height / 17,
-                              width: widget.screenSize.width / 1.5,
-                              color: Colors.transparent,
-                              child: Material(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                color: Colors.redAccent,
-                                child: InkWell(
-                                    onTap: () {
-                                      widget.sellerHomeScreenBloc
-                                          .add(PostNewCarButtonClickedEvent(
-                                        postCarFormkey: postCarFormkey,
-                                        carBrandController: carBrandController,
-                                        carColorController: carColorController,
-                                        carFuelController: carFuelController,
-                                        carKilometerController:
-                                            carKilometerController,
-                                        carModelNameController:
-                                            carModelNameController,
-                                        carPriceController: carPriceController,
-                                        carYearController: carYearController,
-                                      ));
-                                    },
-                                    child: const Center(
-                                      child: MyTextWidget(
-                                          text: 'Post New Car',
-                                          color: Colors.white,
-                                          size: 17,
-                                          weight: FontWeight.bold),
-                                    )),
-                              ),
-                            ),
-                          ),
+                            child: imageUrl == ''
+                                ? Container(
+                                    height: widget.screenSize.height / 6,
+                                    width: widget.screenSize.width,
+                                    color: Colors.transparent,
+                                    child: Material(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      color: const Color(0XFFDBEDF5),
+                                      child: InkWell(
+                                        onTap: () {
+                                          addImage();
+                                        },
+                                        child: const Center(
+                                            child: MyTextWidget(
+                                                text: 'Add Photo',
+                                                color: Color(0xFF424141),
+                                                size: 15,
+                                                weight: FontWeight.w500)),
+                                      ),
+                                    ),
+                                  )
+                                : Container(
+                                    height: widget.screenSize.height / 6,
+                                    width: widget.screenSize.width,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: NetworkImage(imageUrl),
+                                            fit: BoxFit.cover),
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(
+                                            width: 1,
+                                            color: const Color(0xFF424141))),
+                                  )),
+                    AddEditFormWidget(
+                        screenSize: widget.screenSize,
+                        postCarFormkey: postCarFormkey,
+                        carBrandController: carBrandController,
+                        carColorController: carColorController,
+                        carFuelController: carFuelController,
+                        carKilometerController: carKilometerController,
+                        carModelNameController: carModelNameController,
+                        carPriceController: carPriceController,
+                        carYearController: carYearController),
                   ],
                 ),
               ),
-            ));
+            ),
+          ),
+          bottomNavigationBar: BottomAppBar(
+            child: widget.isEditPage
+                ? Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: widget.screenSize.height / 17,
+                      width: widget.screenSize.width / 1.5,
+                      color: Colors.transparent,
+                      child: Material(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        color: Colors.blue,
+                        child: InkWell(
+                            onTap: () {
+                              updateCarDetails(
+                                  context,
+                                  widget.data!.id,
+                                  postCarFormkey,
+                                  carBrandController,
+                                  carModelNameController,
+                                  carColorController,
+                                  carYearController,
+                                  carPriceController,
+                                  carFuelController,
+                                  carKilometerController);
+                            },
+                            child: const Center(
+                              child: MyTextWidget(
+                                  text: 'Edit Car Details',
+                                  color: Colors.white,
+                                  size: 17,
+                                  weight: FontWeight.bold),
+                            )),
+                      ),
+                    ),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: widget.screenSize.height / 17,
+                      width: widget.screenSize.width / 1.5,
+                      color: Colors.transparent,
+                      child: Material(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        color: Colors.redAccent,
+                        child: InkWell(
+                            onTap: () {
+                              widget.sellerHomeScreenBloc
+                                  .add(PostNewCarButtonClickedEvent(
+                                postCarFormkey: postCarFormkey,
+                                carBrandController: carBrandController,
+                                carColorController: carColorController,
+                                carFuelController: carFuelController,
+                                carKilometerController: carKilometerController,
+                                carModelNameController: carModelNameController,
+                                carPriceController: carPriceController,
+                                carYearController: carYearController,
+                              ));                              
+                            },
+                            child: const Center(
+                              child: MyTextWidget(
+                                  text: 'Post New Car',
+                                  color: Colors.white,
+                                  size: 17,
+                                  weight: FontWeight.bold),
+                            )),
+                      ),
+                    ),
+                  ),
+          ),
+        );
       },
     );
   }

@@ -1,17 +1,24 @@
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbutton/car_brand_drop_down.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbutton/fuel_drop_down.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/year_picker.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class MyTextFormWidget extends StatelessWidget {
-  const MyTextFormWidget(
-      {super.key,
-      required this.text,
-      required this.controller,
-      required this.warning,
-      required this.obscure,
-      required this.keyBoardType,
-      required this.textCapitalization,
-      required this.fillColor,
-      required this.screenSize
-      });
+  MyTextFormWidget({
+    super.key,
+    required this.text,
+    required this.controller,
+    required this.warning,
+    required this.obscure,
+    required this.keyBoardType,
+    required this.textCapitalization,
+    required this.fillColor,
+    required this.screenSize,
+    this.datePicker,
+    this.fuel,
+    this.brandName
+  });
   final String text;
   final String warning;
   final TextEditingController controller;
@@ -20,6 +27,12 @@ class MyTextFormWidget extends StatelessWidget {
   final TextCapitalization textCapitalization;
   final Color fillColor;
   final Size screenSize;
+  final bool? datePicker;
+  final bool? fuel;
+  final bool? brandName;
+
+  
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -30,18 +43,27 @@ class MyTextFormWidget extends StatelessWidget {
         }
         return null;
       },
-      textCapitalization: textCapitalization,      
+      textCapitalization: textCapitalization,
       keyboardType: keyBoardType,
       obscureText: obscure,
+      onTap: () async {
+        if (datePicker == true) {
+          await selectYear(context, controller, screenSize);
+        }
+      },
       obscuringCharacter: '*',
       autovalidateMode: AutovalidateMode.onUserInteraction,
       style: const TextStyle(
           color: Color(0xFF424141), fontWeight: FontWeight.normal),
       decoration: InputDecoration(
+        suffixIcon: (fuel == true)
+            ? FuelDropDown(controller: controller) 
+            : (brandName==true)
+            ? CarBrandDropDown(controller: controller)
+            :const SizedBox(),
         labelText: text,
         labelStyle: const TextStyle(
-            color: Color(0xFF424141),
-            fontWeight: FontWeight.w400),
+            color: Color(0xFF424141), fontWeight: FontWeight.bold),
         fillColor: fillColor,
         filled: true,
         enabledBorder: const OutlineInputBorder(

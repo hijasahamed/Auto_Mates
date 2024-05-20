@@ -16,15 +16,15 @@ String imageUrl = '';
 
 
 postNewCar(
-    {context,
-    postCarFormkey,
-    carBrandController,
-    carModelNameController,
-    carColorController,
-    carYearController,
-    carPriceController,
-    carFuelController,
-    carKilometerController}) {
+    {required BuildContext context,
+  postCarFormkey,
+  required TextEditingController carBrandController,
+  required TextEditingController carModelNameController,
+  required TextEditingController carColorController,
+  required TextEditingController carYearController,
+  required TextEditingController carPriceController,
+  required TextEditingController carFuelController,
+  required TextEditingController carKilometerController,}){
   final data = {
     'image':imageUrl,
     'brand': carBrandController.text,
@@ -36,14 +36,11 @@ postNewCar(
     'kilometer': carKilometerController.text,
   };
 
-  if (postCarFormkey.currentState!.validate()) {
-    firebaseObject.add(data).then(
-      (value) {
-        Navigator.of(context).pop();
-      },
-    ).then(snackbarWidget('Car Posted Successfully', context, Colors.white,
-        const Color(0xFF424141), SnackBarBehavior.floating));
-        imageUrl='';
+  if (postCarFormkey.currentState!.validate()){
+    firebaseObject.add(data);
+    Navigator.of(context).pop();   
+    snackbarWidget('Car Posted Successfully', context, Colors.white,const Color(0xFF424141), SnackBarBehavior.floating);
+    imageUrl='';
   } else {
     snackbarWidget('Car details not completed', context, Colors.white,
         const Color(0xFF424141), SnackBarBehavior.floating);
@@ -51,10 +48,9 @@ postNewCar(
 }
 
 deleteCarToSell(docId,context)async {
- await  firebaseObject.doc(docId).delete().then((value) => Navigator.of(context).pop(),).then((value) {
-    snackbarWidget('Car details removed', context,Colors.blue, Colors.white, SnackBarBehavior.floating);
-  },);
-  
+ firebaseObject.doc(docId).delete();
+  Navigator.of(context).pop();
+  snackbarWidget('Car details removed', context,Colors.blue, Colors.white, SnackBarBehavior.floating);
 }
 
 updateCarDetails(
@@ -94,7 +90,6 @@ updateCarDetails(
 }
 
 addImage() async {
-  print('image taking');
   final file = await ImagePicker().pickImage(source: ImageSource.gallery);
   if (file == null) {
     return;
