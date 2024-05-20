@@ -1,3 +1,4 @@
+import 'package:auto_mates/seller/seller_profile_screen/controllers/functions.dart';
 import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +14,12 @@ class LogingOutScreenWidget extends StatefulWidget {
 
 class _LogingOutScreenWidgetState extends State<LogingOutScreenWidget> {
   @override
-  void initState() {
+  void initState(){
+    if(widget.seller==true){
+    sellerLogout();
+    }else{
     confirmUserLogout(context);
+    }
     super.initState();
   }
   @override

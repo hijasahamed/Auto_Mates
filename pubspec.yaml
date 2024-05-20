@@ -92,6 +92,8 @@ flutter:
     - assets/images/fav container banner.jpg
     - assets/images/fav insta.png
     - assets/images/fav section.jpg
+    - assets/images/image placeholder.jpeg
+    - assets/images/error placeholder.png
     #animations
     - assets/animations/loading_animation.json
     - assets/animations/splash_animation_jeep.json

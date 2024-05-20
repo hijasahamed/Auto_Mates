@@ -23,7 +23,7 @@ class AllCarsToSellWidget extends StatelessWidget {
             shrinkWrap: true,
             itemCount: snapshot.data!.docs.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: .9,
+              childAspectRatio: .99,
               mainAxisSpacing: 2,
               crossAxisSpacing: 2,
               crossAxisCount: 2,
@@ -42,9 +42,9 @@ class AllCarsToSellWidget extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                           child: FadeInImage(
                             fadeInDuration: const Duration(milliseconds: 750),
-                            height: screenSize.height / 7.5,
+                            height: screenSize.height / 7,
                             width: screenSize.width,
-                            placeholder: const AssetImage('assets/images/placeholder.jpg'),placeholderFit: BoxFit.cover,
+                            placeholder: const AssetImage('assets/images/image placeholder.jpeg'),placeholderFit: BoxFit.fill,
                             imageErrorBuilder: (context, error, stackTrace) {
                               return const CircularProgressIndicator(color: Colors.blue,);
                             },

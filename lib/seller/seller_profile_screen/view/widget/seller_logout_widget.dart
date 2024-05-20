@@ -1,9 +1,11 @@
+import 'package:auto_mates/seller/seller_profile_screen/view/bloc/seller_profile_bloc.dart';
 import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 
 class SellerLogoutWidget extends StatelessWidget {
-  const SellerLogoutWidget({super.key,required this.screenSize});
+  const SellerLogoutWidget({super.key,required this.screenSize,required this.sellerProfileBloc});
   final Size screenSize;
+  final SellerProfileBloc sellerProfileBloc;
   @override
   Widget build(BuildContext context) {
     return Ink(
@@ -15,10 +17,17 @@ class SellerLogoutWidget extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          
+          sellerProfileBloc.add(SellerLogoutButtonClickedEvent());
         },
-        child: const Center(
-          child: MyTextWidget(text: 'Logout', color: Colors.white, size: 18, weight: FontWeight.bold),
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const MyTextWidget(text: 'Logout', color: Colors.white, size: 18, weight: FontWeight.bold),
+              SizedBox(width: screenSize.width/70,),
+              const Icon(Icons.logout,color: Colors.white,)
+            ],
+          ),
         ),
       ),
     );

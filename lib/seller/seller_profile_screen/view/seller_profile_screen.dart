@@ -1,6 +1,7 @@
 import 'package:auto_mates/seller/seller_profile_screen/view/bloc/seller_profile_bloc.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/widget/banner_card_widget.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/widget/seller_logout_widget.dart';
+import 'package:auto_mates/seller/seller_profile_screen/view/widget/seller_properties_tile/seller_properties_tiles_widget.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/logout_section/loging_out_screen_widget.dart';
 
 import 'package:flutter/material.dart';
@@ -21,8 +22,7 @@ class SellerProfileScreen extends StatelessWidget {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (context) => LogingOutScreenWidget(screenSize: screenSize,seller: false,),
           ));
-        }
-        
+        }        
       },
       builder: (context, state) {
         return Scaffold(
@@ -33,8 +33,10 @@ class SellerProfileScreen extends StatelessWidget {
                 BannerCardWidget(
                   screenSize: screenSize,
                 ),
-                const Spacer(),
-                SellerLogoutWidget(screenSize: screenSize)
+                Expanded(
+                  child: SellerPropertiesTilesWidget(screenSize: screenSize,)
+                ),
+                SellerLogoutWidget(screenSize: screenSize,sellerProfileBloc: sellerProfileBloc,)
               ],
             ),
           ),

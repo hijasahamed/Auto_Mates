@@ -59,7 +59,15 @@ class MyTextFormWidget extends StatelessWidget {
         suffixIcon: (fuel == true)
             ? FuelDropDown(controller: controller) 
             : (brandName==true)
-            ? CarBrandDropDown(controller: controller)
+            ? Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GestureDetector(child: SizedBox(
+                height: screenSize.height/50,
+                width: screenSize.width/50,
+                child: const Icon(Icons.arrow_drop_down)),onTap: () {
+                showBrandSelectionDialog(context: context,brands: brands,controller: controller);
+              },),
+            )
             :const SizedBox(),
         labelText: text,
         labelStyle: const TextStyle(
