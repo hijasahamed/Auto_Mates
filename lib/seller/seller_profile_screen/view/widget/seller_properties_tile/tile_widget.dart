@@ -1,6 +1,5 @@
 import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class TileWidget extends StatelessWidget {
   const TileWidget({super.key, required this.screenSize,required this.title});

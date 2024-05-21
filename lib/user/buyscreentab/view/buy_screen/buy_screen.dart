@@ -1,7 +1,5 @@
 import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
-import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/car_holder/car_holder.dart';
-import 'package:auto_mates/user/buyscreentab/view/seller_details_screen.dart';
 import 'package:auto_mates/user/buyscreentab/view/widgets/sorting_filter_widget.dart';
 import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
