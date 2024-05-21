@@ -1,18 +1,15 @@
 
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
-import 'package:auto_mates/user/buyscreentab/view/buy_screen.dart';
-import 'package:auto_mates/user/buyscreentab/view/widgets/car_details_widget.dart';
+import 'package:auto_mates/user/buyscreentab/view/widgets/car_details/car_details_widget.dart';
 import 'package:auto_mates/user/buyscreentab/view/widgets/custom_alert_dialoge_widget.dart';
 import 'package:auto_mates/user/buyscreentab/view/widgets/seller_details_widget.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SellerDetailsScreen extends StatelessWidget {
   const SellerDetailsScreen(
       {super.key, required this.screenSize, required this.data});
   final Size screenSize;
-  final AllCars data;
+  final dynamic data;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,9 +39,7 @@ class SellerDetailsScreen extends StatelessWidget {
             InkWell(
               highlightColor: const Color(0xFFDBEDF5),
               onTap: () {
-                if (kDebugMode) {
-                  print('Chat button clicked');
-                }
+
               },
               child: Ink(
                 height: screenSize.height/20,
@@ -99,9 +94,9 @@ class SellerDetailsScreen extends StatelessWidget {
 class CarMoreDetails extends StatelessWidget {
   const CarMoreDetails({super.key,required this.text,required this.icon});
   final String text;
-  final FaIcon icon;
+  final Icon icon;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {    
     return Column(
       children: [
         icon, 

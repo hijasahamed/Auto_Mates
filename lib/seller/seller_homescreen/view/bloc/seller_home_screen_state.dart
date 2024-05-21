@@ -33,3 +33,8 @@ class PostNewCarButtonClickedActionState extends SellerHomeScreenActionState{
 }
 
 class ImagePickedState extends SellerHomeScreenState {}
+
+class NavigateToSingleCarDetailsPageActionState extends SellerHomeScreenState {
+  final dynamic data;
+  NavigateToSingleCarDetailsPageActionState({required this.data});
+}

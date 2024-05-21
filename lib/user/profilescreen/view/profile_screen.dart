@@ -27,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
           ));
         }else if (state is FavouriteConatinerClickedActionState){
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const FavouriteScreen(),
+            builder: (context) => FavouriteScreen(screenSize: screenSize,),
           ));
         }
       },
@@ -71,7 +71,7 @@ class ProfileScreen extends StatelessWidget {
               );
             }
           },
-        );
+        );     
       },
     );
   }

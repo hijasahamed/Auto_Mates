@@ -12,6 +12,7 @@ class SellerHomeScreenBloc extends Bloc<SellerHomeScreenEvent, SellerHomeScreenS
     on<BackArrowClickedEvent>(backArrowClickedEvent);
     on<PostNewCarButtonClickedEvent>(postNewCarButtonClickedEvent);
     on<ImagePickedEvent>(imagePickedEvent);
+    on<NavigateToSingleCarDetailsPageEvent>(navigateToSingleCarDetailsPageEvent);
   }
 
   FutureOr<void> floatingButtonClickedEvent(
@@ -41,5 +42,10 @@ class SellerHomeScreenBloc extends Bloc<SellerHomeScreenEvent, SellerHomeScreenS
   FutureOr<void> imagePickedEvent(
     ImagePickedEvent event, Emitter<SellerHomeScreenState> emit) {
       emit(ImagePickedState());
+  }
+
+  FutureOr<void> navigateToSingleCarDetailsPageEvent(
+    NavigateToSingleCarDetailsPageEvent event, Emitter<SellerHomeScreenState> emit) {
+      emit(NavigateToSingleCarDetailsPageActionState(data: event.data));
   }
 }

@@ -31,3 +31,8 @@ class PostNewCarButtonClickedEvent extends SellerHomeScreenEvent {
 }
 
 class ImagePickedEvent extends SellerHomeScreenEvent {}
+
+class NavigateToSingleCarDetailsPageEvent extends SellerHomeScreenEvent {
+ final dynamic data;
+  NavigateToSingleCarDetailsPageEvent({required this.data});
+}

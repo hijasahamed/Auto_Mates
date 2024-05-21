@@ -2,12 +2,10 @@ import 'package:auto_mates/user/appbarbottombar/controller/bloc/appbottombar_blo
 import 'package:auto_mates/user/appbarbottombar/view/widgets/app_bar_widget.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/drawer_widget.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/loading_state_widget.dart';
-import 'package:auto_mates/user/buyscreentab/view/buy_screen.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/buy_screen.dart';
 import 'package:auto_mates/user/homescreen/view/home_screen.dart';
 import 'package:auto_mates/user/news/news_screen.dart';
 import 'package:auto_mates/user/profilescreen/view/profile_screen.dart';
-import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
-import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

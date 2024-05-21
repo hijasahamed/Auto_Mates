@@ -30,51 +30,56 @@ class AllCarsToSellWidget extends StatelessWidget {
             ),
             itemBuilder: (context, index) {
               final DocumentSnapshot data = snapshot.data.docs[index];
-              return Card(
-                color: const Color(0XFFDBEDF5),
-                elevation: 5,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Stack(
-                      children: [                       
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: FadeInImage(
-                            fadeInDuration: const Duration(milliseconds: 750),
-                            height: screenSize.height / 7,
-                            width: screenSize.width,
-                            placeholder: const AssetImage('assets/images/image placeholder.jpeg'),placeholderFit: BoxFit.fill,
-                            imageErrorBuilder: (context, error, stackTrace) {
-                              return const CircularProgressIndicator(color: Colors.blue,);
-                            },
-                            image: NetworkImage(data['image']),fit: BoxFit.cover,filterQuality: FilterQuality.high
-                          ),
-                        ),
-                        Positioned(
-                            right: 2,
-                            top: 2, 
-                            child: CircleAvatar(
-                              radius: 20,
-                              backgroundColor: Colors.black12,
-                              child: PopupMenuButtonWidget(screenSize: screenSize,data: data,sellerHomeScreenBloc: sellerHomeScreenBloc,)
+              return GestureDetector(
+                onTap: () {
+                  sellerHomeScreenBloc.add(NavigateToSingleCarDetailsPageEvent(data: data));
+                },
+                child: Card(
+                  color: const Color(0XFFDBEDF5),
+                  elevation: 5,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Stack(
+                        children: [                       
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: FadeInImage(
+                              fadeInDuration: const Duration(milliseconds: 750),
+                              height: screenSize.height / 7,
+                              width: screenSize.width,
+                              placeholder: const AssetImage('assets/images/image placeholder.jpeg'),placeholderFit: BoxFit.fill,
+                              imageErrorBuilder: (context, error, stackTrace) {
+                                return const CircularProgressIndicator(color: Colors.blue,);
+                              },
+                              image: NetworkImage(data['image']),fit: BoxFit.cover,filterQuality: FilterQuality.high
                             ),
                           ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5),
-                      child: MyTextWidget(text: data['brand'], color: const Color(0xFF424141), size: 15, weight: FontWeight.bold),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5),
-                      child: MyTextWidget(text: data['modelName'], color: const Color(0xFF424141), size: 15, weight: FontWeight.bold),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5),
-                      child: MyTextWidget(text: data['price'], color: const Color(0xFF424141), size: 15, weight: FontWeight.bold),
-                    ),
-                  ],
+                          Positioned(
+                              right: 2,
+                              top: 2, 
+                              child: CircleAvatar(
+                                radius: 20,
+                                backgroundColor: Colors.black12,
+                                child: PopupMenuButtonWidget(screenSize: screenSize,data: data,sellerHomeScreenBloc: sellerHomeScreenBloc,)
+                              ),
+                            ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5),
+                        child: MyTextWidget(text: data['brand'], color: const Color(0xFF424141), size: 15, weight: FontWeight.bold),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5),
+                        child: MyTextWidget(text: data['modelName'], color: const Color(0xFF424141), size: 15, weight: FontWeight.bold),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5),
+                        child: MyTextWidget(text: data['price'], color: const Color(0xFF424141), size: 15, weight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
                 ),
               );
             },

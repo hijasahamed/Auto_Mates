@@ -48,6 +48,7 @@ dependencies:
   font_awesome_flutter: ^10.7.0
   google_sign_in: ^6.2.1
   image_picker: ^1.1.1
+  intl: ^0.19.0
   intl_phone_field: ^3.2.0
   lottie: ^3.1.0
   meta: ^1.11.0
@@ -94,6 +95,10 @@ flutter:
     - assets/images/fav section.jpg
     - assets/images/image placeholder.jpeg
     - assets/images/error placeholder.png
+    - assets/images/quality.png
+    - assets/images/favourite.png
+    - assets/images/calculator (1).png
+    - assets/images/no data.avif
     #animations
     - assets/animations/loading_animation.json
     - assets/animations/splash_animation_jeep.json

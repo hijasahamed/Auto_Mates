@@ -19,11 +19,10 @@ class LogoutContainer extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        color: Colors.red,
+        color: const Color.fromARGB(255, 195, 226, 239),
         child: InkWell(
           onTap: (){            
-            // profileScreenBloc.add(LogoutButtonClickedEvent());
-            // logoutAlertMessage();
+            profileScreenBloc.add(LogoutButtonClickedEvent());            
           },
           child: Stack(
             children: [
@@ -40,8 +39,8 @@ class LogoutContainer extends StatelessWidget {
               ),
               const Positioned(
               bottom: 18,
-              left: 65,
-              child: MyTextWidget(text: "Logout", color: Colors.white, size: 20, weight: FontWeight.bold)
+              left: 73,
+              child: MyTextWidget(text: "Logout", color: Color(0XFF424141), size: 15, weight: FontWeight.bold)
             ),
             ],
           ),

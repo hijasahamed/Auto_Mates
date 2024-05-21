@@ -10,20 +10,7 @@ class ProfileBannerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: [
-        // ClipRRect(
-        //   borderRadius: BorderRadius.circular(10),
-        //   child: FadeInImage(
-        //     fadeInDuration: const Duration(milliseconds: 400),
-        //     height: screenSize.height / 4.5,
-        //     width: screenSize.width,
-        //     placeholder: const AssetImage('assets/images/placeholder.jpg'),
-        //     image: const AssetImage(
-        //       'assets/images/profile_png.png',
-        //     ),
-        //     fit: BoxFit.cover,
-        //   ),
-        // ),
+      children: [        
         Container(
           height: screenSize.height / 4.7,
           width: screenSize.width,
@@ -41,7 +28,7 @@ class ProfileBannerWidget extends StatelessWidget {
                 const CircleAvatar(
                   backgroundColor: Colors.white,
                   radius: 55,
-                  backgroundImage: AssetImage('assets/images/add image.jpg'),
+                  backgroundImage: AssetImage('assets/images/avatar.png'),
                 ),
                 MyTextWidget(
                     text: user.userName,
