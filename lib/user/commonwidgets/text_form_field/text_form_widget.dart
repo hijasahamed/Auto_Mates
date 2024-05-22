@@ -17,7 +17,11 @@ class MyTextFormWidget extends StatelessWidget {
     required this.screenSize,
     this.datePicker,
     this.fuel,
-    this.brandName
+    this.brandName,
+    required this.labelTextColor,
+    required this.enabledBorderColor,
+    required this.focusedBorderColor,
+    required this.valueTextColor
   });
   final String text;
   final String warning;
@@ -30,8 +34,10 @@ class MyTextFormWidget extends StatelessWidget {
   final bool? datePicker;
   final bool? fuel;
   final bool? brandName;
-
-  
+  final Color labelTextColor;
+  final Color enabledBorderColor;
+  final Color focusedBorderColor;
+  final Color valueTextColor;
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +59,8 @@ class MyTextFormWidget extends StatelessWidget {
       },
       obscuringCharacter: '*',
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      style: const TextStyle(
-          color: Color(0xFF424141), fontWeight: FontWeight.normal),
+      style: TextStyle(
+          color: valueTextColor, fontWeight: FontWeight.w400),
       decoration: InputDecoration(
         suffixIcon: (fuel == true)
             ? FuelDropDown(controller: controller) 
@@ -70,17 +76,18 @@ class MyTextFormWidget extends StatelessWidget {
             )
             :const SizedBox(),
         labelText: text,
-        labelStyle: const TextStyle(
-            color: Color(0xFF424141), fontWeight: FontWeight.bold),
+        labelStyle: TextStyle(
+            color: labelTextColor,
+            fontWeight: FontWeight.w400),
         fillColor: fillColor,
         filled: true,
-        enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
-            borderRadius: BorderRadius.all(Radius.circular(10))),
-        focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
-            borderRadius: BorderRadius.all(Radius.circular(10))),
-        border: OutlineInputBorder(
+        enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: enabledBorderColor),
+            borderRadius: const BorderRadius.all(Radius.circular(10))),
+        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: focusedBorderColor),
+            borderRadius: const BorderRadius.all(Radius.circular(10))),
+        border: OutlineInputBorder(          
           borderRadius: BorderRadius.circular(10),
         ),
       ),

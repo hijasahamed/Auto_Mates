@@ -19,7 +19,7 @@ class LoadingStateWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    height: screenSize.height/4,
+                    height: screenSize.height/6,
                     decoration: const BoxDecoration(
                       image: DecorationImage(image: AssetImage('assets/images/account created.webp'))
                     ),

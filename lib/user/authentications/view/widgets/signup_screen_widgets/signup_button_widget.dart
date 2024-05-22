@@ -28,30 +28,33 @@ class SignupButtonWidget extends StatelessWidget {
   final FirebaseAuthService auth;
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        return signupButtonClicked(
-          location: locationController.text,
-          mobile: mobileController.text,
-            userName: userNameController.text,
-            recheckPassword: reChekPasswordController.text,
-            email: emailController.text,
-            password: passwordController.text,
-            authenticationBloc: authenticationBloc,
-            formkey: userSignupFormkey,
-            context: context);
-      },
-      child: ClipPath(
-        clipper: Customshape(),
-        child: Container(
-          color: const Color(0XFF143A42),
-          height: screenSize.height / 10,
-          child: const Center(
-              child: Text(
-            'Signup',
-            style: TextStyle(
-                fontSize: 28, fontWeight: FontWeight.w600, color: Colors.white),
-          )),
+    return Ink(
+      
+      child: InkWell(
+        onTap: () {
+          return signupButtonClicked(
+            location: locationController.text,
+            mobile: mobileController.text,
+              userName: userNameController.text,
+              recheckPassword: reChekPasswordController.text,
+              email: emailController.text,
+              password: passwordController.text,
+              authenticationBloc: authenticationBloc,
+              formkey: userSignupFormkey,
+              context: context);
+        },
+        child: ClipPath(
+          clipper: Customshape(),
+          child: Container(
+            color: const Color(0XFF143A42),
+            height: screenSize.height / 10,
+            child: const Center(
+                child: Text(
+              'Signup',
+              style: TextStyle(
+                  fontSize: 28, fontWeight: FontWeight.w600, color: Colors.white),
+            )),
+          ),
         ),
       ),
     );

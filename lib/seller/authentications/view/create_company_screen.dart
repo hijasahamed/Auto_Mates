@@ -47,9 +47,9 @@ class CreateCompanyScreen extends StatelessWidget {
                     CreateButtonWidget(
                       screenSize: screenSize,
                     ),
-                    // SizedBox(
-                    //   height: screenSize.height / 50,
-                    // ),
+                    SizedBox(
+                      height: screenSize.height / 50,
+                    ),
                     AlreadyASellerLoginWidget(sellerAuthenticationBloc: sellerAuthenticationBloc,)
                   ],
                 ),

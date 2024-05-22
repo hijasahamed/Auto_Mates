@@ -27,33 +27,28 @@ class SignupWidget extends StatelessWidget {
   final GlobalKey userSignupFormkey;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: screenSize.height / 1.2,
-      width: screenSize.width,
-      child: Column(
-        children: [
-          SizedBox(height: screenSize.height/12,),
-          const Column(
-            children: [
-              MyTextWidget(text: 'Create Account To Explore More', color: Colors.white, size: 25, weight: FontWeight.bold),
-              MyTextWidget(text: 'Signup', color: Colors.white, size: 30, weight: FontWeight.bold),
-            ],
-          ),
-          SizedBox(height: screenSize.height/15,),
-          AddUserSignupTextformFieldWidget(
-              screenSize: screenSize,
-              userNameController: userNameController,
-              locationController: locationController,
-              mobileController: mobileController,
-              emailController: emailController,
-              passwordController: passwordController,
-              reChekPasswordController: reChekPasswordController,
-              userSignupFormkey: userSignupFormkey),
-          SizedBox(height: screenSize.height/50,),
-          BackToLoginScreenWidget(authenticationBloc: authenticationBloc),
-          const Spacer(),
-        ],
-      ),
+    return Column(
+      children: [
+        SizedBox(height: screenSize.height/40,),
+        const Column(
+          children: [
+            MyTextWidget(text: 'Create Account To Explore More', color: Colors.white, size: 20, weight: FontWeight.bold),
+            MyTextWidget(text: 'Signup', color: Colors.white, size: 25, weight: FontWeight.bold),
+          ],
+        ),
+        SizedBox(height: screenSize.height/40,),
+        AddUserSignupTextformFieldWidget(
+            screenSize: screenSize,
+            userNameController: userNameController,
+            locationController: locationController,
+            mobileController: mobileController,
+            emailController: emailController,
+            passwordController: passwordController,
+            reChekPasswordController: reChekPasswordController,
+            userSignupFormkey: userSignupFormkey),
+        SizedBox(height: screenSize.height/50,),
+        BackToLoginScreenWidget(authenticationBloc: authenticationBloc),
+      ],
     );
   }
 }

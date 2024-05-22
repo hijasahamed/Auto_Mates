@@ -4,7 +4,7 @@ import 'package:auto_mates/user/authentications/controller/functions/fuctions.da
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
 import 'package:auto_mates/user/authentications/view/widgets/signup_screen_widgets/signup_button_widget.dart';
-import 'package:auto_mates/user/authentications/view/widgets/signup_screen_widgets/signup_welcome_widget.dart';
+import 'package:auto_mates/user/authentications/view/widgets/signup_screen_widgets/signup_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -56,19 +56,20 @@ class UserSignupScreen extends StatelessWidget {
               child: SafeArea(
                 child: Container(
                   color: Colors.black54,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  child: Column(                    
                     children: [
-                      SignupWidget(
-                          screenSize: screenSize,
-                          authenticationBloc: authenticationBloc,
-                          userNameController: userNameController,
-                          emailController: emailController,
-                          locationController: locationController,
-                          mobileController: mobileController,
-                          passwordController: passwordController,
-                          reChekPasswordController: reChekPasswordController,
-                          userSignupFormkey: userSignupFormkey),
+                      Expanded(
+                        child: SignupWidget(
+                            screenSize: screenSize,
+                            authenticationBloc: authenticationBloc,
+                            userNameController: userNameController,
+                            emailController: emailController,
+                            locationController: locationController,
+                            mobileController: mobileController,
+                            passwordController: passwordController,
+                            reChekPasswordController: reChekPasswordController,
+                            userSignupFormkey: userSignupFormkey),
+                      ),
                       SignupButtonWidget(
                         screenSize: screenSize,
                         authenticationBloc: authenticationBloc,
