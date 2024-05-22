@@ -117,7 +117,7 @@ void signupButtonClicked(
         } else {
           User? user = await auth.userSignup(email, password);
           if (user != null) {
-            await addUserSignupDatatoDb(username: userName,email: email,password: password,location: location,mobile: mobile);
+            await addUserSignupDatatoDb(username: userName,email: email,location: location,mobile: mobile);
             authenticationBloc.add(SignupButtonClickedEvent());
             final sharedPref = await SharedPreferences.getInstance();
             await sharedPref.setBool(logedInKey, true);
@@ -145,10 +145,10 @@ void signupButtonClicked(
   }
 }
 
-addUserSignupDatatoDb({username, email, password,mobile,location}) {
+addUserSignupDatatoDb({username, email,mobile,location}) {
   final CollectionReference signupFirebaseObject =
       FirebaseFirestore.instance.collection('userSignupData');
-  final data = {'userName': username, 'email': email, 'password': password,'mobile':mobile,'location':location};
+  final data = {'userName': username, 'email': email,'mobile':mobile,'location':location};
   signupFirebaseObject.add(data);
 }
 
@@ -168,11 +168,25 @@ logInWithGoogle(authenticationBloc) async {
 
       await FirebaseAuth.instance.signInWithCredential(credential);
 
-      authenticationBloc
-          .add(LoginWithGoogleButtonSuccessfulNavigateToScreenEvent());
+      String googleEmail=googleSignInAccount.email;
+      String userName = googleEmail.split('@')[0].toUpperCase();
+      UserData? isExistingUser = await checkIfUserAvailable(googleEmail);
 
-      final sharedPref = await SharedPreferences.getInstance();
-      await sharedPref.setBool(logedInKey, true);
+      if(isExistingUser==null){
+        await addUserSignupDatatoDb(email: googleEmail,username: userName,location: googleEmail,mobile: googleEmail);
+        isExistingUser= await checkIfUserAvailable(googleEmail);
+      }
+
+      if(isExistingUser != null){
+        authenticationBloc.add(LoginWithGoogleButtonSuccessfulNavigateToScreenEvent());
+        final sharedPref = await SharedPreferences.getInstance();
+        await sharedPref.setBool(logedInKey, true);
+        await sharedPref.setString('id', isExistingUser.id);
+        await sharedPref.setString('email', isExistingUser.email);
+        await sharedPref.setString('userName', isExistingUser.userName); 
+        await sharedPref.setString('mobile', isExistingUser.mobile);
+        await sharedPref.setString('location', isExistingUser.location);
+      }     
     }
   } catch (e) {
     if (kDebugMode) {

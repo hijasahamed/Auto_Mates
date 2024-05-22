@@ -9,9 +9,21 @@ import 'package:auto_mates/user/profilescreen/view/widgets/user_banner/profile_b
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key, required this.screenSize});
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key, required this.screenSize,});
   final Size screenSize;
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  late Future<UserData?> fetch;
+  @override
+  void initState() {
+    fetch=fetchUserDetails();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final ProfileScreenBloc profileScreenBloc = ProfileScreenBloc();
@@ -23,17 +35,17 @@ class ProfileScreen extends StatelessWidget {
               context: context, profileScreenBloc: profileScreenBloc);
         } else if (state is ConfirmLogoutActionState) {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => LogingOutScreenWidget(screenSize: screenSize,seller: false,),
+            builder: (context) => LogingOutScreenWidget(screenSize: widget.screenSize,seller: false,),
           ));
         }else if (state is FavouriteConatinerClickedActionState){
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => FavouriteScreen(screenSize: screenSize,),
+            builder: (context) => FavouriteScreen(screenSize: widget.screenSize,),
           ));
         }
       },
       builder: (context, state) {
         return FutureBuilder(
-          future: fetchUserDetails(),
+          future: fetch,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
@@ -43,7 +55,7 @@ class ProfileScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      height: screenSize.height/8,                      
+                      height: widget.screenSize.height/8,                      
                       decoration: const BoxDecoration(
                         image: DecorationImage(image: AssetImage('assets/images/error placeholder.png'))
                       ),
@@ -61,10 +73,10 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     ProfileBannerWidget(
-                      screenSize: screenSize,
+                      screenSize: widget.screenSize,
                       user: user,
                     ),
-                    ProfilePropertiesScreen(screenSize: screenSize,profileScreenBloc: profileScreenBloc,),
+                    ProfilePropertiesScreen(screenSize: widget.screenSize,profileScreenBloc: profileScreenBloc,),
                     
                   ],
                 ),

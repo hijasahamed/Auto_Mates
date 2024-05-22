@@ -10,7 +10,7 @@ class LoadingStateWidget extends StatelessWidget {
   Widget build(BuildContext context) {
      if (isAccountCreated == true) {
           return Scaffold(
-            backgroundColor: const Color(0xFFDBEDF5),
+            backgroundColor: const Color.fromARGB(255, 255, 255, 255),
             body: SizedBox(
               height: screenSize.height,
               width: screenSize.width,
@@ -18,15 +18,15 @@ class LoadingStateWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  LottieBuilder.asset(
-                    'assets/animations/account created.json',
-                    height: screenSize.height / 4,
-                    width: screenSize.width,
-                    repeat: true,
+                  Container(
+                    height: screenSize.height/4,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(image: AssetImage('assets/images/account created.webp'))
+                    ),
                   ),
                   const MyTextWidget(
-                    text: 'Loading',
-                    color: Colors.blue,
+                    text: 'Account created successfully',
+                    color: Color.fromARGB(255, 52, 52, 52),
                     size: 20,
                     weight: FontWeight.w500,
                   ),

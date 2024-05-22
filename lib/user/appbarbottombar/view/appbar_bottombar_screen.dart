@@ -11,7 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppbarBottomTabSwitchScreen extends StatefulWidget {
   const AppbarBottomTabSwitchScreen(
-      {super.key, required this.isAccountCreated});
+      {super.key, required this.isAccountCreated,});
   final bool isAccountCreated;
   @override
   State<AppbarBottomTabSwitchScreen> createState() =>

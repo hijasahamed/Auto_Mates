@@ -5,6 +5,7 @@ import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart
 import 'package:auto_mates/user/splashscreen/controllers/functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<UserData?> fetchUserDetails()async{
@@ -19,6 +20,7 @@ Future<UserData?> fetchUserDetails()async{
 
 logoutAlertMessage({context, profileScreenBloc}) {
   return showDialog(
+    barrierColor: Colors.black54,
     context: context,
     barrierDismissible: false,
     builder: (BuildContext context) {
@@ -36,7 +38,7 @@ logoutAlertMessage({context, profileScreenBloc}) {
         actions: [
           ElevatedButton(
               style: const ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.black12)),
+                  backgroundColor: WidgetStatePropertyAll(Colors.black26)),
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -62,8 +64,10 @@ logoutAlertMessage({context, profileScreenBloc}) {
   );
 }
 
-Future<void> confirmUserLogout(context) async {
+Future<void> confirmUserLogout({context}) async {
+  final GoogleSignIn googleSignInn = GoogleSignIn();
   await Future.delayed(const Duration(milliseconds: 2500));
+  await googleSignInn.signOut();
   await FirebaseAuth.instance.signOut();
   final sharedPref = await SharedPreferences.getInstance();
   await sharedPref.setBool(logedInKey, false);

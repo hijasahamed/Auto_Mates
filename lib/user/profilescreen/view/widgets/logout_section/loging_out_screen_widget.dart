@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class LogingOutScreenWidget extends StatefulWidget {
-  const LogingOutScreenWidget({super.key,required this.screenSize,required this.seller});
+  const LogingOutScreenWidget({super.key,required this.screenSize,required this.seller,});
   final Size screenSize;
   final bool seller;
   @override
@@ -18,7 +18,7 @@ class _LogingOutScreenWidgetState extends State<LogingOutScreenWidget> {
     if(widget.seller==true){
     sellerLogout();
     }else{
-    confirmUserLogout(context);
+    confirmUserLogout(context: context,);
     }
     super.initState();
   }
