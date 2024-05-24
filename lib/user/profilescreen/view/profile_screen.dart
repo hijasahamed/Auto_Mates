@@ -1,6 +1,6 @@
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
-import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
-import 'package:auto_mates/user/favourite_screen/view/favourite_screen.dart';
+import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_error_placeholder.dart';
+import 'package:auto_mates/user/favourite_screen/view/favourite_screen/favourite_screen.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/logout_section/loging_out_screen_widget.dart';
@@ -50,22 +50,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasError) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: widget.screenSize.height/8,                      
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(image: AssetImage('assets/images/error placeholder.png'))
-                      ),
-                    ),
-                    const MyTextWidget(text: 'Error Loading State', color: Color(0XFF424141), size: 20, weight: FontWeight.bold)
-                  ],
-                )
-              );
+              return NoDataErrorPlaceholder(screenSize: widget.screenSize, titleText: 'Error Loading State');
             } else if (!snapshot.hasData || snapshot.data == null) {
-              return const Center(child: Text('No user data available'));
+              return NoDataErrorPlaceholder(screenSize: widget.screenSize, titleText: 'Error Loading State');
             } else {
               UserData user = snapshot.data!;
               return Padding(

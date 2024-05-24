@@ -2,7 +2,7 @@ import 'package:auto_mates/seller/authentications/controllers/functions.dart';
 import 'package:auto_mates/seller/authentications/view/bloc/seller_authentication_bloc.dart';
 import 'package:auto_mates/seller/authentications/view/create_company_screen.dart';
 import 'package:auto_mates/seller/authentications/view/widgets/login_screen_widgets/seller_get_otp_widget.dart';
-import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
+import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
@@ -48,12 +48,12 @@ class _SellerLoginScreenState extends State<SellerLoginScreen> {
         switch (state.runtimeType) {
           case const (SellerAuthenticationLoadingState):
             return Scaffold(
-              backgroundColor: const Color(0xFFDBEDF5),
+              backgroundColor: const Color.fromARGB(255, 255, 255, 255),
               body: Center(
                   child: LottieBuilder.asset(
                 'assets/animations/loading_animation.json',
                 height: screenSize.height / 10,
-                width: screenSize.width / 4,
+                width: screenSize.width / 5,
                 repeat: true,
               )),
             );

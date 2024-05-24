@@ -1,6 +1,6 @@
 import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/user/authentications/view/widgets/login_screen_widgets/add_user_login_text_formfield_widget.dart';
-import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
+import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 
 class LoginSectionWidget extends StatelessWidget {

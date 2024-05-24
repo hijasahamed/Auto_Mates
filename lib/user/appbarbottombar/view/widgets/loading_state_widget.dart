@@ -1,4 +1,4 @@
-import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
+import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -19,13 +19,13 @@ class LoadingStateWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    height: screenSize.height/6,
+                    height: screenSize.height/10,
                     decoration: const BoxDecoration(
                       image: DecorationImage(image: AssetImage('assets/images/account created.webp'))
                     ),
                   ),
                   const MyTextWidget(
-                    text: 'Account created successfully',
+                    text: 'Account created',
                     color: Color.fromARGB(255, 52, 52, 52),
                     size: 20,
                     weight: FontWeight.w500,
@@ -36,7 +36,7 @@ class LoadingStateWidget extends StatelessWidget {
           );
         } else {
           return Scaffold(
-            backgroundColor: const Color(0xFFDBEDF5),
+            backgroundColor: const Color.fromARGB(255, 255, 255, 255),
             body: SizedBox(
               height: screenSize.height,
               width: screenSize.width,
@@ -47,14 +47,8 @@ class LoadingStateWidget extends StatelessWidget {
                   LottieBuilder.asset(
                     'assets/animations/loading_animation.json',
                     height: screenSize.height / 10,
-                    width: screenSize.width / 4,
+                    width: screenSize.width / 5,
                     repeat: true,
-                  ),
-                  const MyTextWidget(
-                    text: 'Loading',
-                    color: Colors.blue,
-                    size: 20,
-                    weight: FontWeight.w500,
                   ),
                 ],
               ),

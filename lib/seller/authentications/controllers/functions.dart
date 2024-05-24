@@ -1,6 +1,6 @@
 import 'package:auto_mates/seller/seller_appbar_bottombar/view/seller_appbar_bottombar_screen.dart';
 import 'package:auto_mates/seller/authentications/view/otp_verification_screen.dart';
-import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
+import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
 import 'package:auto_mates/user/splashscreen/controllers/functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';

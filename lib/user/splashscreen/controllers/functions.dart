@@ -1,7 +1,7 @@
 import 'package:auto_mates/seller/seller_appbar_bottombar/view/seller_appbar_bottombar_screen.dart';
 import 'package:auto_mates/user/appbarbottombar/view/appbar_bottombar_screen.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
-import 'package:auto_mates/user/splashscreen/view/widgets/no_network_widget.dart';
+import 'package:auto_mates/user/splashscreen/view/no_network_connection/no_network_widget.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';

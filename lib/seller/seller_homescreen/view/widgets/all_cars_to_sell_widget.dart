@@ -1,7 +1,7 @@
 import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/popup_menu_button_widget.dart';
-import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
+import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 

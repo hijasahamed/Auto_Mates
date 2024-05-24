@@ -1,5 +1,5 @@
 import 'package:auto_mates/user/appbarbottombar/view/widgets/app_bar_gradient_color.dart';
-import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
+import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
 import 'package:auto_mates/user/emicalculator/view/widgets/button_interest_holder_widget.dart';
 import 'package:auto_mates/user/emicalculator/view/widgets/emi_amount_slider_holder_widget.dart';
 import 'package:auto_mates/user/emicalculator/view/widgets/emi_screen_opening_text_widget.dart';

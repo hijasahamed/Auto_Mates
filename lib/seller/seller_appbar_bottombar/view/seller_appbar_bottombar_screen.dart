@@ -44,12 +44,12 @@ class _SellerappbarbottombarState extends State<Sellerappbarbottombar> {
         switch(state.runtimeType){
           case const (SellerAppbottombarLoadingState) :
           return Scaffold(
-              backgroundColor: const Color(0xFFDBEDF5),
+              backgroundColor: const Color.fromARGB(255, 255, 255, 255),
               body: Center(
                 child: LottieBuilder.asset(
                   'assets/animations/loading_animation.json',
                   height: screenSize.height / 10,
-                  width: screenSize.width / 4,
+                  width: screenSize.width / 5,
                   repeat: true,
                 ),
               ),

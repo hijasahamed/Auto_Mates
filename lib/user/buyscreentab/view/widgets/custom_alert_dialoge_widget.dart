@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
+import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 
 class CustomAlertDialogeWidget extends StatefulWidget {

@@ -1,5 +1,6 @@
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/widgets/seller_details_screen.dart';
+import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 
 class CarHolder extends StatelessWidget {
@@ -43,8 +44,6 @@ class CarHolder extends StatelessWidget {
                         width: screenSize.width,
                         placeholder: const AssetImage(
                             'assets/images/image placeholder.jpeg',),
-                        //  placeholder: const AssetImage(
-                        //     'assets/images/photo placeholder.webp'),
                         placeholderFit: BoxFit.cover,
                         imageErrorBuilder: (context, error, stackTrace) {
                           return const CircularProgressIndicator(
@@ -91,38 +90,25 @@ class CarHolder extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 4),
-                child: Text(
-                  data['modelName'],
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, color: Color(0xFF424141)),
+                child: Row(                  
+                  children: [
+                    MyTextWidget(text: '${data['brand']}', color: Colors.black, size: 15, weight: FontWeight.bold),
+                    SizedBox(width: screenSize.width/100,),
+                    MyTextWidget(text: '${data['modelName']}', color: Colors.black, size: 15, weight: FontWeight.bold),
+                  ],
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 4),
-                child: Text(
-                  data['year'],
-                  style: const TextStyle(
-                      color: Color.fromARGB(255, 83, 83, 83),
-                      fontWeight: FontWeight.bold),
-                ),
+                child: MyTextWidget(text: '${data['year']} model', color: Colors.black, size: 15, weight: FontWeight.bold),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 4),                
+                child: MyTextWidget(text: '${data['kilometer']} kilometers', color: Colors.black, size: 15, weight: FontWeight.bold),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 4),
-                child: Text(
-                  data['kilometer'],
-                  style: const TextStyle(
-                      color: Color.fromARGB(255, 83, 83, 83),
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 4),
-                child: Text(
-                  'Rs. ${data['price']} onwards',
-                  style: const TextStyle(
-                      color: Color.fromARGB(255, 83, 83, 83),
-                      fontWeight: FontWeight.bold),
-                ),
+                child: MyTextWidget(text: 'Rs. ${data['price']} onwards', color: Colors.black, size: 15, weight: FontWeight.bold),
               ),
             ],
           ),

@@ -1,7 +1,7 @@
 import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/car_holder/car_holder.dart';
 import 'package:auto_mates/user/buyscreentab/view/widgets/sorting_filter_widget.dart';
-import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
+import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -22,22 +22,20 @@ class BuyScreen extends StatelessWidget {
             return Column(
               children: [
                 SortingFilteringWidget(screenSize: screenSize),
-                Expanded(
-                  child: GridView.builder(
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    itemCount: snapshot.data!.docs.length,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: .75,
-                      mainAxisSpacing: 3,
-                      crossAxisSpacing: 3,
-                      crossAxisCount: 2,
-                    ),
-                    itemBuilder: (context, index) {
-                      final DocumentSnapshot data = snapshot.data.docs[index];
-                      return CarHolder(screenSize: screenSize, data: data,isFromFavorites: false,);
-                    },
+                GridView.builder(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: snapshot.data!.docs.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: .72,
+                    mainAxisSpacing: 3,
+                    crossAxisSpacing: 3,
+                    crossAxisCount: 2,
                   ),
+                  itemBuilder: (context, index) {
+                    final DocumentSnapshot data = snapshot.data.docs[index];
+                    return CarHolder(screenSize: screenSize, data: data,isFromFavorites: false,);
+                  },
                 ),
               ],
             );

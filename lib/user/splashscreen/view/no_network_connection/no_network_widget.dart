@@ -1,6 +1,6 @@
-import 'package:auto_mates/user/commonwidgets/common_widgets.dart';
+import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
 import 'package:auto_mates/user/splashscreen/view/bloc/splash_bloc.dart';
-import 'package:auto_mates/user/splashscreen/view/splash_screen.dart';
+import 'package:auto_mates/user/splashscreen/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,7 +32,7 @@ class NoNetworkWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [                    
                     Container(
-                      height: screenSize.height/3.5,
+                      height: screenSize.height/2.8,
                       width: screenSize.width/2,
                       decoration: const BoxDecoration(
                         image: DecorationImage(image: AssetImage('assets/images/no network.jpg'),fit: BoxFit.cover,filterQuality: FilterQuality.high)
