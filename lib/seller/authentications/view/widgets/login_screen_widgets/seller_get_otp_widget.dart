@@ -1,3 +1,4 @@
+import 'package:auto_mates/seller/authentications/controllers/functions.dart';
 import 'package:auto_mates/seller/authentications/view/bloc/seller_authentication_bloc.dart';
 import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
@@ -75,8 +76,8 @@ class SellerGetOtpWidget extends StatelessWidget {
               ),
               color: Colors.redAccent,
               child: InkWell(
-                  onTap: () {
-                    if (phoneNumber.text =='') {
+                  onTap: ()async {
+                    if (phoneNumber.text == '') {
                       snackbarWidget(
                           'Please enter a valid phone number',
                           context,
@@ -84,9 +85,14 @@ class SellerGetOtpWidget extends StatelessWidget {
                           Colors.white,
                           SnackBarBehavior.floating);
                     } else if (formKey.currentState!.validate()) {
-                        sellerAuthenticationBloc
-                        .add(SellerGetOtpButtonClickedEvent());
-                      } 
+                      await sellerPhoneVerification(
+                          formkey: formKey,
+                          context: context,
+                          contryCode: countrryCode,
+                          phoneNumber: phoneNumber.text,
+                          screenSize: screenSize,
+                          sellerAuthenticationBloc: sellerAuthenticationBloc);
+                    }
                   },
                   child: const Center(
                     child: MyTextWidget(

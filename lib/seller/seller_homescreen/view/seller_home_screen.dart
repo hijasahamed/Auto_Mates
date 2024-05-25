@@ -1,3 +1,4 @@
+
 import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/add_car_edit_car_widget.dart';
@@ -39,8 +40,7 @@ class SellerHomeScreen extends StatelessWidget {
           );
         }
         else if(state is NavigateToSingleCarDetailsPageActionState){
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => SingleCarDetailsScreen(screenSize: screenSize,data: state.data,sellerHomeScreenBloc: sellerHomeScreenBloc,)));
+         
         }
       },
       builder: (context, state) {

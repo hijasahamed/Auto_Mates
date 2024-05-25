@@ -8,11 +8,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OtpVerificationScreen extends StatelessWidget {
   const OtpVerificationScreen(
-      {super.key, required this.screenSize, required this.verificationId,required this.sellerAuthenticationBloc,required this.phoneNumberController});
+      {super.key, required this.screenSize, required this.verificationId,required this.sellerAuthenticationBloc,required this.phoneNumber});
   final Size screenSize;
   final String verificationId;
   final SellerAuthenticationBloc sellerAuthenticationBloc;
-  final TextEditingController phoneNumberController;
+  final String phoneNumber;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SellerAuthenticationBloc, SellerAuthenticationState>(
@@ -22,7 +22,7 @@ class OtpVerificationScreen extends StatelessWidget {
           submitOtp(verificationId, state.code, context);
         }
         if(state is ResendOtpButtonClickedAction){
-          resendOtp(phoneNumberController.text);
+          resendOtp(phoneNumber);
         }
       },
       builder: (context, state) {
@@ -43,9 +43,9 @@ class OtpVerificationScreen extends StatelessWidget {
                     SubmitOtpWidget(
                       screenSize: screenSize,
                       sellerAuthenticationBloc: sellerAuthenticationBloc,
-                      phoneNumberController: phoneNumberController,
+                      phoneNumber: phoneNumber,
                     ),
-                    ResendOtpWidget(phoneNumberController: phoneNumberController,sellerAuthenticationBloc: sellerAuthenticationBloc,),
+                    ResendOtpWidget(phoneNumber: phoneNumber,sellerAuthenticationBloc: sellerAuthenticationBloc,),
                   ],
                 ),
               ),

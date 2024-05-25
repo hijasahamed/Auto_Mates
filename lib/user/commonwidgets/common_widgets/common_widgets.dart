@@ -8,7 +8,7 @@ class MyTextWidget extends StatelessWidget {
   final FontWeight weight;
   @override
   Widget build(BuildContext context) {
-    return Text(text,style: TextStyle(fontWeight: weight,color: color,fontSize: size,overflow: TextOverflow.ellipsis),);
+    return Text(text,style: TextStyle(fontWeight: weight,color: color,fontSize: size,overflow: TextOverflow.ellipsis,),);
   }
 }
 

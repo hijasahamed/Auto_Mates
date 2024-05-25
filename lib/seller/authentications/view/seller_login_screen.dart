@@ -8,7 +8,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
 class SellerLoginScreen extends StatefulWidget {
-  const SellerLoginScreen({super.key,});
+  const SellerLoginScreen({
+    super.key,
+  });
 
   @override
   State<SellerLoginScreen> createState() => _SellerLoginScreenState();
@@ -40,8 +42,6 @@ class _SellerLoginScreenState extends State<SellerLoginScreen> {
                     screenSize: screenSize,
                     sellerAuthenticationBloc: sellerAuthenticationBloc,
                   )));
-        } else if (state is SellerGetOtpButtonClickedActionState) {
-          getOtpButtonClicked(formkey: sellerFormKey,context: context,contryCode: contrryCode,phoneNumberController: phoneNumber, screenSize: screenSize,sellerAuthenticationBloc: sellerAuthenticationBloc);
         }
       },
       builder: (context, state) {
@@ -63,32 +63,37 @@ class _SellerLoginScreenState extends State<SellerLoginScreen> {
                 resizeToAvoidBottomInset: false,
                 body: SafeArea(
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            height: screenSize.height / 3.3,
-                            width: screenSize.width / 2,
-                            decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                      'assets/images/enter number.webp'),
-                                  fit: BoxFit.cover),
-                            ),
-                          ),
-                          const MyTextWidget(text: 'Phone Verification', color: Colors.black, size: 25, weight: FontWeight.bold),
-                          SizedBox(height: screenSize.height/70,),
-                          SellerGetOtpWidget(
-                            screenSize: screenSize,
-                            phoneNumber: phoneNumber,
-                            formKey: sellerFormKey,
-                            sellerAuthenticationBloc:
-                                sellerAuthenticationBloc,
-                          ),
-                        ],
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: screenSize.height / 3.3,
+                        width: screenSize.width / 2,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image:
+                                  AssetImage('assets/images/enter number.webp'),
+                              fit: BoxFit.cover),
+                        ),
                       ),
-                    )));
+                      const MyTextWidget(
+                          text: 'Phone Verification',
+                          color: Colors.black,
+                          size: 25,
+                          weight: FontWeight.bold),
+                      SizedBox(
+                        height: screenSize.height / 70,
+                      ),
+                      SellerGetOtpWidget(
+                        screenSize: screenSize,
+                        phoneNumber: phoneNumber,
+                        formKey: sellerFormKey,
+                        sellerAuthenticationBloc: sellerAuthenticationBloc,
+                      ),
+                    ],
+                  ),
+                )));
           default:
             return const SizedBox();
         }

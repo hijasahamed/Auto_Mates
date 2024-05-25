@@ -3,8 +3,8 @@ import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart
 import 'package:flutter/material.dart';
 
 class ResendOtpWidget extends StatelessWidget {
-  const ResendOtpWidget({super.key,required this.phoneNumberController,required this.sellerAuthenticationBloc});
-  final TextEditingController phoneNumberController;
+  const ResendOtpWidget({super.key,required this.phoneNumber,required this.sellerAuthenticationBloc});
+  final String phoneNumber;
   final SellerAuthenticationBloc sellerAuthenticationBloc;
   @override
   Widget build(BuildContext context) {

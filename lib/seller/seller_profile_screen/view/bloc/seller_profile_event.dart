@@ -4,3 +4,5 @@ part of 'seller_profile_bloc.dart';
 abstract class SellerProfileEvent {}
 
 class SellerLogoutButtonClickedEvent extends SellerProfileEvent {}
+
+class SellerLogoutConfirmButtonClickedEvent extends SellerProfileEvent {}

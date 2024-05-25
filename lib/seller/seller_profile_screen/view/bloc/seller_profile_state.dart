@@ -8,3 +8,5 @@ abstract class SellerProfileActionState  extends SellerProfileState {}
 final class SellerProfileInitial extends SellerProfileState {}
 
 final class SellerLogoutButtonClickedActionState extends SellerProfileActionState {}
+
+final class SellerLogoutConfirmButtonClickedActionState extends SellerProfileActionState {}

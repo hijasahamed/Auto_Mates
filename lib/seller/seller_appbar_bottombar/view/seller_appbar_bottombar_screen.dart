@@ -1,4 +1,6 @@
+import 'package:auto_mates/seller/authentications/controllers/functions.dart';
 import 'package:auto_mates/seller/chat_screen/chat_screen.dart';
+import 'package:auto_mates/seller/seller_appbar_bottombar/controllers/functions.dart';
 import 'package:auto_mates/seller/seller_appbar_bottombar/view/bloc/sellerappbottom_bloc.dart';
 import 'package:auto_mates/seller/seller_appbar_bottombar/view/widgets/seller_screen_appbar_widget.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/seller_home_screen.dart';
@@ -19,16 +21,21 @@ class Sellerappbarbottombar extends StatefulWidget {
 class _SellerappbarbottombarState extends State<Sellerappbarbottombar> {
   final SellerappbottomBloc sellerAppBottomBloc = SellerappbottomBloc();
 
-  int sellertabIndex=0;
-  List sellerTabs=[
-    const SellerHomeScreen(),
-    const ChatScreen(),
-    const SellerProfileScreen(),
-  ];
+  int sellertabIndex = 0;
+  List<Widget> _buildSellerTabs(SellerData data) {
+    return [
+      const SellerHomeScreen(),
+      const ChatScreen(),
+      SellerProfileScreen(data: data),
+    ];
+  }
+
+  late Future<SellerData?> fetch;
 
   @override
   void initState() {
     sellerAppBottomBloc.add(SellerAppBottomBarInitialEvent());
+    fetch = fetchSellerDetails();
     super.initState();
   }
 
@@ -36,14 +43,12 @@ class _SellerappbarbottombarState extends State<Sellerappbarbottombar> {
   Widget build(BuildContext context) {
     return BlocConsumer<SellerappbottomBloc, SellerappbottomState>(
       bloc: sellerAppBottomBloc,
-      listener: (context, state) {
-        
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         final screenSize = MediaQuery.of(context).size;
-        switch(state.runtimeType){
-          case const (SellerAppbottombarLoadingState) :
-          return Scaffold(
+        switch (state.runtimeType) {
+          case const (SellerAppbottombarLoadingState):
+            return Scaffold(
               backgroundColor: const Color.fromARGB(255, 255, 255, 255),
               body: Center(
                 child: LottieBuilder.asset(
@@ -55,49 +60,79 @@ class _SellerappbarbottombarState extends State<Sellerappbarbottombar> {
               ),
             );
           case const (SellerAppbottombarLoadedSuccessState):
-          return Scaffold(
-          appBar: const PreferredSize(
-            preferredSize: Size.fromHeight(80),
-            child: SellerScreenAppbarWidget()
-          ),
-          body: sellerTabs[sellertabIndex],
-          bottomNavigationBar: CurvedNavigationBar(
-            animationCurve: Easing.standard,
-            backgroundColor: Colors.white,
-            buttonBackgroundColor: const Color.fromARGB(255, 100, 206, 248),
-            color: const Color.fromARGB(255, 36, 167, 248),
-            items: const [
-              CurvedNavigationBarItem(
-                child: Icon(
-                  Icons.home_rounded,
-                  color: Colors.black,
-                ),
-                label: 'Home',
-                labelStyle:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              ),
-              CurvedNavigationBarItem(
-                child: Icon(Icons.message_rounded),
-                label: 'Chat',
-                labelStyle:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              ),
-              CurvedNavigationBarItem(
-                child: Icon(Icons.perm_identity),
-                label: 'Profile',
-                labelStyle:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              ),
-            ],
-            onTap: (index) {
-              setState(() {
-                sellertabIndex=index;
-              });
-            },            
-          ),
-        );
-        default:
-        return const SizedBox();
+            return FutureBuilder<SellerData?>(
+              future: fetch,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Scaffold(
+                    backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                    body: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                } else if (snapshot.hasError) {
+                  return Scaffold(
+                    backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+                    body: Center(
+                      child: Text('Error: ${snapshot.error}'),
+                    ),
+                  );
+                } else if (!snapshot.hasData || snapshot.data == null) {
+                  return const Scaffold(
+                    backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                    body: Center(
+                      child: Text('No seller data found'),
+                    ),
+                  );
+                } else {
+                  SellerData data = snapshot.data!;
+                  List<Widget> sellerTabs = _buildSellerTabs(data);
+                  return Scaffold(
+                    appBar: PreferredSize(
+                      preferredSize: const Size.fromHeight(80),
+                      child: SellerScreenAppbarWidget(name: data.companyName),
+                    ),
+                    body: sellerTabs[sellertabIndex],
+                    bottomNavigationBar: CurvedNavigationBar(
+                      animationCurve: Easing.standard,
+                      backgroundColor: Colors.white,
+                      buttonBackgroundColor: const Color.fromARGB(255, 100, 206, 248),
+                      color: const Color.fromARGB(255, 36, 167, 248),
+                      items: const [
+                        CurvedNavigationBarItem(
+                          child: Icon(
+                            Icons.home_rounded,
+                            color: Colors.black,
+                          ),
+                          label: 'Home',
+                          labelStyle: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                        CurvedNavigationBarItem(
+                          child: Icon(Icons.message_rounded),
+                          label: 'Chat',
+                          labelStyle: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                        CurvedNavigationBarItem(
+                          child: Icon(Icons.perm_identity),
+                          label: 'Profile',
+                          labelStyle: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                      onTap: (index) {
+                        setState(() {
+                          sellertabIndex = index;
+                        });
+                      },
+                    ),
+                  );
+                }
+              },
+            );
+          default:
+            return const SizedBox();
         }
       },
     );

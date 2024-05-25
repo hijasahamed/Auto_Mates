@@ -6,57 +6,53 @@ class BannerCardWidget extends StatelessWidget {
   final Size screenSize;
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          height: screenSize.height / 5,
-          width: screenSize.width,
-          decoration: BoxDecoration(
-            image: const DecorationImage(
-                image: AssetImage('assets/images/profile_png.png'),
-                fit: BoxFit.cover),
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-        const Positioned(
-            top: 2,
-            left: 15,
-            child: CircleAvatar(
+    return Container(
+      height: screenSize.height / 5,
+      width: screenSize.width,
+      decoration: BoxDecoration(
+        image: const DecorationImage(
+            image: AssetImage('assets/images/profile_png.png'),
+            fit: BoxFit.cover),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(5),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const CircleAvatar(
               backgroundColor: Colors.white,
               radius: 55,
               backgroundImage: AssetImage('assets/images/avatar.png'),
-            )),
-        const Positioned(
-            top: 115,
-            left: 15,
-            child: MyTextWidget(
-                text: 'Abc Dealers ',
-                color: Colors.white,
-                size: 20,
-                weight: FontWeight.bold)),
-        Positioned(
-            top: 135,
-            left: 3,
-            child: TextButton(
-                onPressed: () {},
-                child: Row(
-                  children: [
-                    const MyTextWidget(
-                        text: 'Edit profile',
+            ),
+            SizedBox(
+              width: screenSize.width/2.5,
+              child: TextButton(
+                  onPressed: () {
+                    
+                  },
+                  child: Row(
+                    children: [
+                      const MyTextWidget(
+                          text: 'Edit profile',
+                          color: Colors.white,
+                          size: 15,
+                          weight: FontWeight.w500),
+                      SizedBox(
+                        width: screenSize.width / 75,
+                      ),
+                      const Icon(
+                        Icons.edit,
                         color: Colors.white,
                         size: 15,
-                        weight: FontWeight.w500),
-                    SizedBox(
-                      width: screenSize.width / 75,
-                    ),
-                    const Icon(
-                      Icons.edit,
-                      color: Colors.white,
-                      size: 15,
-                    )
-                  ],
-                ))),
-      ],
+                      )
+                    ],
+                  )),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

@@ -34,7 +34,7 @@ class BuyScreen extends StatelessWidget {
                   ),
                   itemBuilder: (context, index) {
                     final DocumentSnapshot data = snapshot.data.docs[index];
-                    return CarHolder(screenSize: screenSize, data: data,isFromFavorites: false,);
+                    return CarHolder(screenSize: screenSize, data: data,isFromSeller: false,isFromUser: true,);
                   },
                 ),
               ],

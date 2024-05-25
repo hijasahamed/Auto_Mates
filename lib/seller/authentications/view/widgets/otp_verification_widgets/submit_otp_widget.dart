@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
 class SubmitOtpWidget extends StatelessWidget {
-  const SubmitOtpWidget({super.key, required this.screenSize,required this.sellerAuthenticationBloc,required this.phoneNumberController});
+  const SubmitOtpWidget({super.key, required this.screenSize,required this.sellerAuthenticationBloc,required this.phoneNumber});
   final Size screenSize;
   final SellerAuthenticationBloc sellerAuthenticationBloc;
-  final TextEditingController phoneNumberController;  
+  final String phoneNumber;  
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,7 +28,7 @@ class SubmitOtpWidget extends StatelessWidget {
                 width: screenSize.width / 60,
               ),
               MyTextWidget(
-                  text: phoneNumberController.text.toString(),
+                  text: phoneNumber,
                   color: Colors.black,
                   size: 18,
                   weight: FontWeight.bold),

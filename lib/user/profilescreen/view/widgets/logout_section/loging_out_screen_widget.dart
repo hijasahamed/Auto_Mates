@@ -15,7 +15,7 @@ class _LogingOutScreenWidgetState extends State<LogingOutScreenWidget> {
   @override
   void initState(){
     if(widget.seller==true){
-    sellerLogout();
+    sellerLogout(context: context);
     }else{
     confirmUserLogout(context: context,);
     }

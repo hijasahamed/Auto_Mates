@@ -34,7 +34,7 @@ class FavouriteScreen extends StatelessWidget {
                   ),
                   itemBuilder: (context, index) {
                     final DocumentSnapshot data = snapshot.data.docs[index];
-                    return CarHolder(screenSize: screenSize, data: data,isFromFavorites: true,);
+                    return CarHolder(screenSize: screenSize, data: data,);
                   },
                 );
           }

@@ -109,10 +109,9 @@ addImage() async {
 }
 
 deleteAlertDialogwidget(
-  sellerhomescreenbloc , {
+   {
   context,
-  title,
-  content,
+  sellerhomescreenbloc ,
   docId,
 }) {
   return showDialog(
@@ -122,14 +121,14 @@ deleteAlertDialogwidget(
         builder: (context, state) {
           return AlertDialog(
             backgroundColor: Colors.white,
-            title: MyTextWidget(
-                text: title,
-                color: const Color(0xFF424141),
+            title: const MyTextWidget(
+                text: 'Remove Car',
+                color: Color(0xFF424141),
                 size: 25,
                 weight: FontWeight.bold),
-            content: MyTextWidget(
-                text: content,
-                color: const Color(0xFF424141),
+            content: const MyTextWidget(
+                text: 'Do you want to remove this car',
+                color: Color(0xFF424141),
                 size: 15,
                 weight: FontWeight.w500),
             actions: [
