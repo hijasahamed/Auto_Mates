@@ -1,4 +1,4 @@
-import 'package:auto_mates/user/buyscreentab/view/widgets/seller_details_screen.dart';
+import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/seller_details/seller_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

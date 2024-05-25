@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SellerDetailsWidget extends StatelessWidget {
-  const SellerDetailsWidget({super.key, required this.screenSize});
+class SellerDetailsCardWidget extends StatelessWidget {
+  const SellerDetailsCardWidget({super.key, required this.screenSize});
   final Size screenSize;
   @override
   Widget build(BuildContext context) {

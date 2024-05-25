@@ -33,9 +33,9 @@ class NoNetworkWidget extends StatelessWidget {
                   children: [                    
                     Container(
                       height: screenSize.height/2.8,
-                      width: screenSize.width/2,
+                      width: screenSize.width/1.1,
                       decoration: const BoxDecoration(
-                        image: DecorationImage(image: AssetImage('assets/images/no network.jpg'),fit: BoxFit.cover,filterQuality: FilterQuality.high)
+                        image: DecorationImage(image: AssetImage('assets/images/no net.webp'),fit: BoxFit.cover,filterQuality: FilterQuality.high)
                       ),
                     ),
                     const MyTextWidget(

@@ -1,6 +1,6 @@
-import 'package:auto_mates/user/buyscreentab/view/widgets/car_details/sections/car_image.dart';
-import 'package:auto_mates/user/buyscreentab/view/widgets/car_details/sections/details_container.dart';
-import 'package:auto_mates/user/buyscreentab/view/widgets/specification_features_widget.dart';
+import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/car_image.dart';
+import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/details_container.dart';
+import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/specification_features_widget.dart';
 import 'package:flutter/material.dart';
 
 class CarDetailsWidget extends StatelessWidget {

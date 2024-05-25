@@ -1,8 +1,8 @@
 
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
-import 'package:auto_mates/user/buyscreentab/view/widgets/car_details/car_details_widget.dart';
-import 'package:auto_mates/user/buyscreentab/view/widgets/custom_alert_dialoge_widget.dart';
-import 'package:auto_mates/user/buyscreentab/view/widgets/seller_details_widget.dart';
+import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/car_details_widget.dart';
+import 'package:auto_mates/user/buyscreentab/view/common_widgets/custom_alert_dialoge_widget.dart';
+import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/seller_details/seller_details_widget.dart';
 import 'package:flutter/material.dart';
 
 class SellerDetailsScreen extends StatelessWidget {
@@ -22,12 +22,12 @@ class SellerDetailsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [              
-              SellerDetailsWidget(screenSize: screenSize),
+              SellerDetailsCardWidget(screenSize: screenSize),
               const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text('Car Details',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Color(0xFF424141)),),
               ),
-              CarDetailsWidget(screenSize: screenSize, data: data),
+              CarDetailsWidget(screenSize: screenSize, data: data,fromSeller: false,),
             ],
           ),
         ),
