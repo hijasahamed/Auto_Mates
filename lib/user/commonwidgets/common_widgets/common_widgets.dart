@@ -15,12 +15,12 @@ class MyTextWidget extends StatelessWidget {
 
 snackbarWidget(String text, context, Color color, Color textColor,SnackBarBehavior behavior) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    elevation: 4,
+    elevation: 3,
     dismissDirection: DismissDirection.horizontal,
     duration: const Duration(milliseconds: 2100),
     behavior: behavior,
     backgroundColor: color,
-    margin: const EdgeInsets.all(50),
+    margin: const EdgeInsets.all(15),
     content: Text(
       text,
       textAlign: TextAlign.center,

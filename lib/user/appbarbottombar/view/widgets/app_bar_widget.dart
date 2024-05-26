@@ -1,6 +1,7 @@
 import 'package:auto_mates/user/appbarbottombar/view/widgets/app_bar_gradient_color.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/menu_button_widget.dart';
 import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
+import 'package:auto_mates/user/search/view/search_page/search_page.dart';
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget {
@@ -12,27 +13,34 @@ class AppBarWidget extends StatelessWidget {
     return  AppBar( 
       backgroundColor: Colors.white,
       leading: const MenuButtonWidget(),  
-      title: Container(
+      title: Ink(
         height: screenSize.height / 21,
         width: screenSize.width / 1.5,
         decoration: const BoxDecoration(
             color: Color(0xFF143A42),           
             borderRadius: BorderRadius.all(Radius.circular(60))),
-        child: Row(
-          children: [
-            SizedBox(
-              width: screenSize.width / 50,
-            ),
-            const Icon(
-              Icons.search,
-              color: Colors.white,
-              size: 25,
-            ),
-            SizedBox(
-              width: screenSize.width / 22,
-            ),
-            const MyTextWidget(text: 'Search', color: Colors.white, size: 16, weight: FontWeight.w400)
-          ],
+        child: InkWell(
+          onTap: () {
+            Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => SearchPage(screenSize: screenSize,)));
+          },
+          splashColor: Colors.white10,
+          child: Row(
+            children: [
+              SizedBox(
+                width: screenSize.width / 50,
+              ),
+              const Icon(
+                Icons.search,
+                color: Colors.white,
+                size: 25,
+              ),
+              SizedBox(
+                width: screenSize.width / 22,
+              ),
+              const MyTextWidget(text: 'Search', color: Colors.white, size: 16, weight: FontWeight.w400)
+            ],
+          ),
         ),
       ),
       actions: [

@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class NormalAppBar extends StatelessWidget {
-  const NormalAppBar({super.key,required this.title,this.isFromSeller,this.sellerHomeScreenBloc,this.screenSize,this.data});
+  const NormalAppBar({super.key,required this.title,this.isFromSeller,this.sellerHomeScreenBloc,this.screenSize,this.data,});
   final String title;
   final bool? isFromSeller;
   final SellerHomeScreenBloc? sellerHomeScreenBloc;
@@ -30,7 +30,7 @@ class NormalAppBar extends StatelessWidget {
           (isFromSeller==true)?
           PopupMenuButtonWidget(screenSize: screenSize, data: data, sellerHomeScreenBloc: sellerHomeScreenBloc)
           :const SizedBox()
-        ],
+        ],        
       );
   }
 }

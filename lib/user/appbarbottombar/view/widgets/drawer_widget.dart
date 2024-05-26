@@ -8,7 +8,7 @@ class DrawerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
         width: screenSize.width/1.22,
-        child: ListView(
+        child: Column(
           children: [
             DrawerHeader(
               decoration: const BoxDecoration(
@@ -50,7 +50,7 @@ class DrawerWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                height: 50,
+                height: screenSize.height/7,
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),),
                 child: const Center(child: Text('Version 1.0.0',style: TextStyle(fontWeight: FontWeight.w600),),),
               ),

@@ -43,7 +43,7 @@ class UserLoginScreen extends StatelessWidget {
           ));
         }
         else if (state is LoginNotSuccessfullActionState){
-          snackbarWidget('Email and Password Incorrect', context,Colors.red,Colors.white,SnackBarBehavior.floating);
+          snackbarWidget('Login details incorrect', context,Colors.red,Colors.white,SnackBarBehavior.floating);
         }        
         else if(state is LoginWithGoogleButtonSuccessfulNavigateToScreenActionState){
           Navigator.of(context).pushReplacement(MaterialPageRoute(

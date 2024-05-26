@@ -51,11 +51,11 @@ Future<void> checkIfUserLogedin(context) async {
     await Future.delayed(const Duration(milliseconds: 3150));
     await goToLoginScreen(context);
   }
-  else if(isLogedin==true && isSellerLogedIn==null){
+  else if(isLogedin==true && isSellerLogedIn==null||isSellerLogedIn==false){
     await Future.delayed(const Duration(milliseconds: 3150));
     await goToUserScreen(context);
   }
-   else if(isSellerLogedIn==true && isLogedin==null){
+   else if(isSellerLogedIn==true && isLogedin==null||isLogedin==false){
     await Future.delayed(const Duration(milliseconds: 3150));
     await goToSellerScreen(context);
   }

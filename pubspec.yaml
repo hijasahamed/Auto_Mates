@@ -102,6 +102,8 @@ flutter:
     - assets/images/account created.webp
     - assets/images/photo placeholder.webp
     - assets/images/no net.webp
+    - assets/images/search background.png
+    - assets/images/search any.png
     #animations
     - assets/animations/loading_animation.json
     - assets/animations/splash_animation_jeep.json
