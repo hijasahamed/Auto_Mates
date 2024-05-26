@@ -33,6 +33,7 @@ class SpecificationFeaturesWidget extends StatelessWidget {
                    TabBarViewListTile(leading: 'Transmission', title: 'Manual',screenSize: screenSize,),
                    TabBarViewListTile(leading: 'No.of Owner', title: '2',screenSize: screenSize,),
                    TabBarViewListTile(leading: 'Insurance', title: 'Nov 2024',screenSize: screenSize,),
+                   TabBarViewListTile(leading: 'Reg.No', title: 'kL 10 AB 2255',screenSize: screenSize,),
                   ],
                 ),
                 ListView(

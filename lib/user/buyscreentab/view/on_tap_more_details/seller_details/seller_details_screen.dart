@@ -2,7 +2,7 @@
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/car_details_widget.dart';
 import 'package:auto_mates/user/buyscreentab/view/common_widgets/custom_alert_dialoge_widget.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/seller_details/seller_details_widget.dart';
+import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/seller_details/section/seller_details_widget.dart';
 import 'package:flutter/material.dart';
 
 class SellerDetailsScreen extends StatelessWidget {
