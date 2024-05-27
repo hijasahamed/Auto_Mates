@@ -1,5 +1,4 @@
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/tab_bar_view_list_tile.dart';
-import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 
 class SpecificationFeaturesWidget extends StatelessWidget {

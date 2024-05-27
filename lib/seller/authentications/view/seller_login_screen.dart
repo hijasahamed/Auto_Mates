@@ -1,4 +1,3 @@
-import 'package:auto_mates/seller/authentications/controllers/functions.dart';
 import 'package:auto_mates/seller/authentications/view/bloc/seller_authentication_bloc.dart';
 import 'package:auto_mates/seller/authentications/view/create_company_screen.dart';
 import 'package:auto_mates/seller/authentications/view/widgets/login_screen_widgets/seller_get_otp_widget.dart';

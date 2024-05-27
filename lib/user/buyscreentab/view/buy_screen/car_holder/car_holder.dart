@@ -5,7 +5,6 @@ import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/seller_details/seller_details_screen.dart';
 import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
 import 'package:auto_mates/user/favourite_screen/controller/functions.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class CarHolder extends StatefulWidget {
