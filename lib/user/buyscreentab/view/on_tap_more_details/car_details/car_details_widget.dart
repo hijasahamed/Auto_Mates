@@ -36,24 +36,6 @@ class CarDetailsWidget extends StatelessWidget {
                       fontSize: 23,
                       color: Color(0xFF424141)),
                 ),
-                (fromSeller==false)? Row(
-                  children: [
-                    const Text(
-                      'EMI Starts from',
-                      style: TextStyle(
-                          color: Color.fromARGB(255, 118, 118, 118),
-                          fontWeight: FontWeight.w500),
-                    ),
-                    SizedBox(
-                      width: screenSize.width / 35,
-                    ),
-                    const Text(
-                      '₹38,587',
-                      style: TextStyle(
-                          color: Colors.blue, fontWeight: FontWeight.bold),
-                    )
-                  ],
-                ):const SizedBox(),
                 SizedBox(
                   height: screenSize.height / 90,
                 ),
@@ -75,7 +57,7 @@ class CarDetailsWidget extends StatelessWidget {
                         padding: EdgeInsets.only(left: 10,top: 5),
                         child: Text('Specifications & Features',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Color(0xFF424141)),),
                       ),
-                      SpecificationFeaturesWidget(screenSize: screenSize,)
+                      SpecificationFeaturesWidget(screenSize: screenSize,data: data,)
                     ],
                   ),
                 )

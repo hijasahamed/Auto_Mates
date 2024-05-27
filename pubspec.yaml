@@ -78,7 +78,6 @@ flutter:
     - assets/images/gmap.png
     - assets/images/google logo.png
     - assets/images/reset password.avif
-    - assets/images/no network.jpg
     - assets/images/car.png
     - assets/images/enter number.webp
     - assets/images/otp log.png
@@ -90,9 +89,6 @@ flutter:
     - assets/images/placeholder.jpg
     - assets/images/add image.jpg
     - assets/images/logout.png
-    - assets/images/fav container banner.jpg
-    - assets/images/fav insta.png
-    - assets/images/fav section.jpg
     - assets/images/image placeholder.jpeg
     - assets/images/error placeholder.png
     - assets/images/quality.png
@@ -104,6 +100,12 @@ flutter:
     - assets/images/no net.webp
     - assets/images/search background.png
     - assets/images/search any.png
+    - assets/images/calender.png
+    - assets/images/fuel.png
+    - assets/images/gear.png
+    - assets/images/kilometers.png
+    - assets/images/reg loc.png
+    - assets/images/no data available.avif
     #animations
     - assets/animations/loading_animation.json
     - assets/animations/splash_animation_jeep.json

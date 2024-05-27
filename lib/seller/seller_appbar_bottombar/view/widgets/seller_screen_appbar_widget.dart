@@ -1,5 +1,4 @@
-import 'package:auto_mates/seller/authentications/controllers/functions.dart';
-import 'package:auto_mates/seller/seller_appbar_bottombar/controllers/functions.dart';
+
 import 'package:auto_mates/user/appbarbottombar/view/widgets/app_bar_gradient_color.dart';
 import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
 import 'package:flutter/material.dart';

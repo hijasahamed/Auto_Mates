@@ -30,12 +30,32 @@ class SellerHomeScreenBloc extends Bloc<SellerHomeScreenEvent, SellerHomeScreenS
       emit(PostNewCarButtonClickedActionState(
         postCarFormkey: event.postCarFormkey,
         carBrandController: event.carBrandController,
+        carModelNameController: event.carModelNameController,
         carColorController: event.carColorController,
+        carYearController: event.carYearController,
+        carPriceController: event.carPriceController,
         carFuelController: event.carFuelController,
         carKilometerController: event.carKilometerController,
-        carModelNameController: event.carModelNameController,
-        carPriceController: event.carPriceController,
-        carYearController: event.carYearController
+        regNumberController: event.regNumberController,
+        numOfOwnerController: event.numOfOwnerController,
+        transmissionController: event.transmissionController,
+        insuranceController: event.insuranceController,
+        seatCapacityController: event.seatCapacityController,
+        milageController: event.milageController,
+        sunroofController: event.sunroofController,
+        bootspaceController: event.bootspaceController,
+        infotainmentSystemController: event.infotainmentSystemController,
+        alloyWheelController: event.alloyWheelController,
+        carHeightController: event.carHeightController,
+        carWidthController: event.carWidthController,
+        carLengthController: event.carLengthController,
+        groundClearanceController: event.groundClearanceController,
+        airBagController: event.airBagController,
+        airConditionerController: event.airConditionerController,
+        powerWindowController: event.powerWindowController,
+        bodyTypeController: event.bodyTypeController,
+        fuelTankController: event.fuelTankController,
+        overViewController: event.overViewController
         ));
   }
 

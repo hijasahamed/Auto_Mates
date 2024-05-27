@@ -67,7 +67,7 @@ class SellerDetailsScreen extends StatelessWidget {
                 context: context,
                 barrierDismissible: false,
                 builder: (BuildContext context) {
-                  return CustomAlertDialogeWidget(screenSize: screenSize,);
+                  return CustomAlertDialogeWidget(screenSize: screenSize,data: data,);
                 },
               );
               },
@@ -92,14 +92,23 @@ class SellerDetailsScreen extends StatelessWidget {
 
 
 class CarMoreDetails extends StatelessWidget {
-  const CarMoreDetails({super.key,required this.text,required this.icon});
+  const CarMoreDetails({super.key,required this.text,required this.screenSize,required this.image,});
   final String text;
-  final Icon icon;
+  final Size screenSize;
+  final ImageProvider image;
+
   @override
   Widget build(BuildContext context) {    
     return Column(
       children: [
-        icon, 
+        Container(
+          height: screenSize.height/35,
+          width: screenSize.width/10,
+          decoration: BoxDecoration(
+            image: DecorationImage(image: image)
+          ),
+        ),
+        SizedBox(height: screenSize.height/100,), 
         Text(text,style: const TextStyle(color:Color.fromARGB(255, 118, 118, 118),fontWeight: FontWeight.w500 ),)
       ],
     );

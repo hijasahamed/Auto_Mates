@@ -31,6 +31,29 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
   final TextEditingController carFuelController = TextEditingController();
   final TextEditingController carKilometerController = TextEditingController();
   final GlobalKey<FormState> postCarFormkey = GlobalKey<FormState>();
+  final TextEditingController regNumberController = TextEditingController();
+  final TextEditingController numOfOwnerController = TextEditingController();
+  final TextEditingController transmissionController = TextEditingController();
+  final TextEditingController insuranceController = TextEditingController();
+  final TextEditingController seatCapacityController = TextEditingController();
+  final TextEditingController milageController = TextEditingController();
+  final TextEditingController sunroofController = TextEditingController();
+  final TextEditingController bootspaceController = TextEditingController();
+  final TextEditingController infotainmentSystemController =
+      TextEditingController();
+  final TextEditingController alloyWheelController = TextEditingController();
+  final TextEditingController carheightController = TextEditingController();
+  final TextEditingController carWidthController = TextEditingController();
+  final TextEditingController carLengthController = TextEditingController();
+  final TextEditingController groundClearenceController =
+      TextEditingController();
+  final TextEditingController airBagController = TextEditingController();
+  final TextEditingController airConditionerController =
+      TextEditingController();
+  final TextEditingController powerWindowController = TextEditingController();
+  final TextEditingController bodyTypeController = TextEditingController();
+  final TextEditingController fuelTankController = TextEditingController();
+  final TextEditingController overViewController = TextEditingController();
 
   @override
   void initState() {
@@ -42,6 +65,26 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
       carPriceController.text = widget.data!['price'];
       carFuelController.text = widget.data!['fuel'];
       carKilometerController.text = widget.data!['kilometer'];
+      regNumberController.text=widget.data!['regNumber'];
+      numOfOwnerController.text=widget.data!['noOfOwners'];
+      transmissionController.text=widget.data!['transmission'];
+      insuranceController.text=widget.data!['insurance'];
+      seatCapacityController.text=widget.data!['seat'];
+      milageController.text=widget.data!['milage'];
+      sunroofController.text=widget.data!['sunroof'];
+      bootspaceController.text=widget.data!['bootspace'];
+      infotainmentSystemController.text=widget.data!['infotainment'];
+      alloyWheelController.text=widget.data!['alloywheel'];
+      carheightController.text=widget.data!['carheight'];
+      carWidthController.text=widget.data!['carwidth'];
+      carLengthController.text=widget.data!['carlength'];
+      groundClearenceController.text=widget.data!['groundclearance'];
+      airBagController.text=widget.data!['airbag'];
+      airConditionerController.text=widget.data!['airconditioner'];
+      powerWindowController.text=widget.data!['powerwindow'];
+      bodyTypeController.text=widget.data!['bodytype'];
+      fuelTankController.text=widget.data!['fueltank'];
+      overViewController.text=widget.data!['overview'];
     }
     super.initState();
   }
@@ -153,15 +196,36 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
                                             color: const Color(0xFF424141))),
                                   )),
                     AddEditFormWidget(
-                        screenSize: widget.screenSize,
-                        postCarFormkey: postCarFormkey,
-                        carBrandController: carBrandController,
-                        carColorController: carColorController,
-                        carFuelController: carFuelController,
-                        carKilometerController: carKilometerController,
-                        carModelNameController: carModelNameController,
-                        carPriceController: carPriceController,
-                        carYearController: carYearController),
+                      postCarFormkey: postCarFormkey,
+                      carBrandController: carBrandController,
+                      carColorController: carColorController,
+                      carFuelController: carFuelController,
+                      carKilometerController: carKilometerController,
+                      carModelNameController: carModelNameController,
+                      carPriceController: carPriceController,
+                      carYearController: carYearController,
+                      screenSize: widget.screenSize,
+                      regNumberController: regNumberController,
+                      numOfOwnerController: numOfOwnerController,
+                      transmissionController: transmissionController,
+                      insuranceController: insuranceController,
+                      seatCapacityController: seatCapacityController,
+                      milageController: milageController,
+                      sunroofController: sunroofController,
+                      bootspaceController: bootspaceController,
+                      infotainmentSystemController: infotainmentSystemController,
+                      alloyWheelController: alloyWheelController,
+                      carHeightController: carheightController,
+                      carWidthController: carWidthController,
+                      carLengthController: carLengthController,
+                      groundClearanceController: groundClearenceController,
+                      airBagController: airBagController,
+                      airConditionerController: airConditionerController,
+                      powerWindowController: powerWindowController,
+                      bodyTypeController: bodyTypeController,
+                      fuelTankController:fuelTankController ,
+                      overViewController: overViewController,
+                    ),
                   ],
                 ),
               ),
@@ -183,16 +247,37 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
                         child: InkWell(
                             onTap: () {
                               updateCarDetails(
-                                  context,
-                                  widget.data!.id,
-                                  postCarFormkey,
-                                  carBrandController,
-                                  carModelNameController,
-                                  carColorController,
-                                  carYearController,
-                                  carPriceController,
-                                  carFuelController,
-                                  carKilometerController);
+                                context: context,
+                                docId: widget.data!.id,
+                                postCarFormkey: postCarFormkey,
+                                carBrandController: carBrandController,
+                                carColorController: carColorController,
+                                carFuelController: carFuelController,
+                                carKilometerController: carKilometerController,
+                                carModelNameController: carModelNameController,
+                                carPriceController: carPriceController,
+                                carYearController: carYearController,
+                                regNumberController: regNumberController,
+                                numOfOwnerController: numOfOwnerController,
+                                transmissionController: transmissionController,
+                                insuranceController: insuranceController,
+                                seatCapacityController: seatCapacityController,
+                                milageController: milageController,
+                                sunroofController: sunroofController,
+                                bootspaceController: bootspaceController,
+                                infotainmentSystemController: infotainmentSystemController,
+                                alloyWheelController: alloyWheelController,
+                                carHeightController: carheightController,
+                                carWidthController: carWidthController,
+                                carLengthController: carLengthController,
+                                groundClearanceController: groundClearenceController,
+                                airBagController: airBagController,
+                                airConditionerController: airConditionerController,
+                                powerWindowController: powerWindowController,
+                                bodyTypeController: bodyTypeController,
+                                fuelTankController:fuelTankController ,
+                                overViewController: overViewController
+                              );
                             },
                             child: const Center(
                               child: MyTextWidget(
@@ -221,13 +306,33 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
                                   .add(PostNewCarButtonClickedEvent(
                                 postCarFormkey: postCarFormkey,
                                 carBrandController: carBrandController,
+                                carModelNameController: carModelNameController,
                                 carColorController: carColorController,
+                                carYearController: carYearController,
+                                carPriceController: carPriceController,
                                 carFuelController: carFuelController,
                                 carKilometerController: carKilometerController,
-                                carModelNameController: carModelNameController,
-                                carPriceController: carPriceController,
-                                carYearController: carYearController,
-                              ));                              
+                                regNumberController: regNumberController,
+                                numOfOwnerController: numOfOwnerController,
+                                transmissionController: transmissionController,
+                                insuranceController: insuranceController,
+                                seatCapacityController: seatCapacityController,
+                                milageController: milageController,
+                                sunroofController: sunroofController,
+                                bootspaceController: bootspaceController,
+                                infotainmentSystemController: infotainmentSystemController,
+                                alloyWheelController: alloyWheelController,
+                                carHeightController: carheightController,
+                                carWidthController: carWidthController,
+                                carLengthController: carLengthController,
+                                groundClearanceController: groundClearenceController,
+                                airBagController: airBagController,
+                                airConditionerController: airConditionerController,
+                                powerWindowController: powerWindowController,
+                                bodyTypeController: bodyTypeController,
+                                fuelTankController: fuelTankController,
+                                overViewController: overViewController
+                              ));
                             },
                             child: const Center(
                               child: MyTextWidget(

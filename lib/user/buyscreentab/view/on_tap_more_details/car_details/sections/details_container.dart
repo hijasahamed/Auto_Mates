@@ -1,6 +1,5 @@
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/seller_details/seller_details_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DetailsContainer extends StatelessWidget {
   const DetailsContainer({
@@ -24,26 +23,29 @@ class DetailsContainer extends StatelessWidget {
           children: [
             CarMoreDetails(
                 text: data['year'],
-                icon: const Icon(
-                  Icons.calendar_month_rounded,
-                  color: Color.fromARGB(255, 118, 118, 118),
-                )),
+                screenSize: screenSize,
+                image: const AssetImage('assets/images/calender.png'),
+                ),
             CarMoreDetails(
                 text: data['kilometer'],
-                icon: const Icon(Icons.calculate,
-                    color: Color.fromARGB(255, 118, 118, 118))),
+                screenSize: screenSize,
+                image: const AssetImage('assets/images/kilometers.png'),
+               ),
             CarMoreDetails(
                 text: data['fuel'],
-                icon: const Icon(Icons.gas_meter_outlined,
-                    color: Color.fromARGB(255, 118, 118, 118))),
-            const CarMoreDetails(
-                text: 'Automatic',
-                icon: Icon(FontAwesomeIcons.gear,
-                    color: Color.fromARGB(255, 118, 118, 118))),
-            const CarMoreDetails(
-                text: 'Calicut',
-                icon: Icon(FontAwesomeIcons.locationDot,
-                    color: Color.fromARGB(255, 118, 118, 118))),
+                screenSize: screenSize,
+                image: const AssetImage('assets/images/fuel.png'),
+                ),
+            CarMoreDetails(
+                text: data['transmission'],
+                screenSize: screenSize,
+                image: const AssetImage('assets/images/gear.png'),
+                ),
+            CarMoreDetails(
+                text: data['regNumber'].substring(0, 4),
+                screenSize: screenSize,
+                image: const AssetImage('assets/images/reg loc.png'),
+               ),
           ],
         ),
       ),

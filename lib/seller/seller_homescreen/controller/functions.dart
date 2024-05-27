@@ -16,7 +16,8 @@ String imageUrl = '';
 
 
 postNewCar(
-    {required BuildContext context,
+    {required
+ BuildContext context,
   postCarFormkey,
   required TextEditingController carBrandController,
   required TextEditingController carModelNameController,
@@ -24,7 +25,28 @@ postNewCar(
   required TextEditingController carYearController,
   required TextEditingController carPriceController,
   required TextEditingController carFuelController,
-  required TextEditingController carKilometerController,}){
+  required TextEditingController carKilometerController,
+  required TextEditingController regNumberController,
+  required TextEditingController numOfOwnerController,
+  required TextEditingController transmissionController,
+  required TextEditingController insuranceController,
+  required TextEditingController seatCapacityController,
+  required TextEditingController milageController,
+  required TextEditingController sunroofController,
+  required TextEditingController bootspaceController,
+  required TextEditingController infotainmentSystemController,
+  required TextEditingController alloyWheelController,
+  required TextEditingController carHeightController,
+  required TextEditingController carWidthController,
+  required TextEditingController carLengthController,
+  required TextEditingController groundClearanceController,
+  required TextEditingController airBagController,
+  required TextEditingController airConditionerController,
+  required TextEditingController powerWindowController,
+  required TextEditingController bodyTypeController,
+  required TextEditingController fuelTankController,
+  required TextEditingController overViewController,
+  }){
   final data = {
     'image':imageUrl,
     'brand': carBrandController.text,
@@ -34,45 +56,107 @@ postNewCar(
     'price': carPriceController.text,
     'fuel': carFuelController.text,
     'kilometer': carKilometerController.text,
+    'regNumber': regNumberController.text,
+    'noOfOwners':numOfOwnerController.text,
+    'transmission':transmissionController.text,
+    'insurance':insuranceController.text,
+    'seat':seatCapacityController.text,
+    'milage':milageController.text,
+    'sunroof':sunroofController.text,
+    'bootspace':bootspaceController.text,
+    'infotainment':infotainmentSystemController.text,
+    'alloywheel':alloyWheelController.text,
+    'carheight':carHeightController.text,
+    'carwidth':carWidthController.text,
+    'carlength':carLengthController.text,
+    'groundclearance':groundClearanceController.text,
+    'airbag':airBagController.text,
+    'airconditioner':airConditionerController.text,
+    'powerwindow':powerWindowController.text,
+    'bodytype':bodyTypeController.text,
+    'fueltank':fuelTankController.text,
+    'overview':overViewController.text
   };
-
   if (postCarFormkey.currentState!.validate()){
     firebaseObject.add(data);
     Navigator.of(context).pop();   
-    snackbarWidget('Car Posted Successfully', context, Colors.white,const Color(0xFF424141), SnackBarBehavior.floating);
+    snackbarWidget('Car Posted Successfully', context, Colors.blue,Colors.white, SnackBarBehavior.floating);
     imageUrl='';
   } else {
-    snackbarWidget('Car details not completed', context, Colors.white,
-        const Color(0xFF424141), SnackBarBehavior.floating);
+    snackbarWidget('Car details not completed', context, Colors.blue,
+        Colors.white, SnackBarBehavior.floating);
   }
 }
 
 deleteCarToSell(docId,context)async {
  firebaseObject.doc(docId).delete();
   Navigator.of(context).pop();
-  snackbarWidget('Car details removed', context,Colors.blue, Colors.white, SnackBarBehavior.floating);
+  snackbarWidget('Car details removed', context,Colors.red, Colors.white, SnackBarBehavior.floating);
 }
 
 updateCarDetails(
-    context,
+   { context,
     docId,
     postCarFormkey,
-    carBrandController,
-    carModelNameController,
-    carColorController,
-    carYearController,
-    carPriceController,
-    carFuelController,
-    carKilometerController) {
-  final data = { 
-    'image':imageUrl,   
+    required TextEditingController carBrandController,
+  required TextEditingController carModelNameController,
+  required TextEditingController carColorController,
+  required TextEditingController carYearController,
+  required TextEditingController carPriceController,
+  required TextEditingController carFuelController,
+  required TextEditingController carKilometerController,
+  required TextEditingController regNumberController,
+  required TextEditingController numOfOwnerController,
+  required TextEditingController transmissionController,
+  required TextEditingController insuranceController,
+  required TextEditingController seatCapacityController,
+  required TextEditingController milageController,
+  required TextEditingController sunroofController,
+  required TextEditingController bootspaceController,
+  required TextEditingController infotainmentSystemController,
+  required TextEditingController alloyWheelController,
+  required TextEditingController carHeightController,
+  required TextEditingController carWidthController,
+  required TextEditingController carLengthController,
+  required TextEditingController groundClearanceController,
+  required TextEditingController airBagController,
+  required TextEditingController airConditionerController,
+  required TextEditingController powerWindowController,
+  required TextEditingController bodyTypeController,
+  required TextEditingController fuelTankController,
+  required TextEditingController overViewController,
+  }
+    
+  ) {
+  final data = {
+    'image':imageUrl,
     'brand': carBrandController.text,
     'modelName': carModelNameController.text,
     'color': carColorController.text,
     'year': carYearController.text,
     'price': carPriceController.text,
-    'fuel': carFuelController.text, 
+    'fuel': carFuelController.text,
     'kilometer': carKilometerController.text,
+    'reg.number': regNumberController.text,
+    'no.of.owners':numOfOwnerController.text,
+    'transmission':transmissionController.text,
+    'insurance':insuranceController.text,
+    'seat':seatCapacityController.text,
+    'milage':milageController.text,
+    'sunroof':sunroofController.text,
+    'bootspace':bootspaceController.text,
+    'infotainment':infotainmentSystemController.text,
+    'alloywheel':alloyWheelController.text,
+    'carheight':carHeightController.text,
+    'carwidth':carWidthController.text,
+    'carlength':carLengthController.text,
+    'groundclearance':groundClearanceController.text,
+    'airbag':airBagController.text,
+    'airconditioner':airConditionerController.text,
+    'powerwindow':powerWindowController.text,
+    'bodytype':bodyTypeController.text,
+    'fueltank':fuelTankController.text,
+    'overview':overViewController.text
   };
   if(postCarFormkey.currentState!.validate()){
     firebaseObject
@@ -81,11 +165,11 @@ updateCarDetails(
       .then(
         (value) => Navigator.of(context).pop(),
       )
-      .then(snackbarWidget('Car details updated', context, Colors.white,
-          const Color(0xFF424141), SnackBarBehavior.floating));
+      .then(snackbarWidget('Car details updated', context, Colors.blue,
+          Colors.white, SnackBarBehavior.floating));
     imageUrl='';
   }else{
-    snackbarWidget('Car details not updated', context, Colors.white, const Color(0xFF424141), SnackBarBehavior.floating);
+    snackbarWidget('Car details not updated', context, Colors.blue, Colors.white, SnackBarBehavior.floating);
   } 
 }
 

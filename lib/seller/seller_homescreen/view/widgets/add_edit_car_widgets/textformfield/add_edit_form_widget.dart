@@ -12,7 +12,27 @@ class AddEditFormWidget extends StatelessWidget {
     required this.carModelNameController,
     required this.carPriceController,
     required this.carYearController,
-    required this.screenSize
+    required this.screenSize,
+    required this.regNumberController,
+    required this.numOfOwnerController,
+    required this.transmissionController,
+    required this.insuranceController,
+    required this.seatCapacityController,
+    required this.milageController,
+    required this.sunroofController,
+    required this.bootspaceController,
+    required this.infotainmentSystemController,
+    required this.alloyWheelController,
+    required this.carHeightController,
+    required this.carWidthController,
+    required this.carLengthController,
+    required this.groundClearanceController,
+    required this.airBagController,
+    required this.airConditionerController,
+    required this.powerWindowController,
+    required this.bodyTypeController,
+    required this.fuelTankController,
+    required this.overViewController
   });
   final TextEditingController carBrandController ;
   final TextEditingController carModelNameController;
@@ -23,6 +43,26 @@ class AddEditFormWidget extends StatelessWidget {
   final TextEditingController carKilometerController ;
   final GlobalKey<FormState> postCarFormkey ;
   final Size screenSize;
+  final TextEditingController regNumberController;
+  final TextEditingController numOfOwnerController;
+  final TextEditingController transmissionController;
+  final TextEditingController insuranceController;
+  final TextEditingController seatCapacityController;
+  final TextEditingController milageController;
+  final TextEditingController sunroofController;
+  final TextEditingController bootspaceController;
+  final TextEditingController infotainmentSystemController;
+  final TextEditingController alloyWheelController;
+  final TextEditingController carHeightController;
+  final TextEditingController carWidthController;
+  final TextEditingController carLengthController;
+  final TextEditingController groundClearanceController;
+  final TextEditingController airBagController;
+  final TextEditingController airConditionerController;
+  final TextEditingController powerWindowController;
+  final TextEditingController bodyTypeController;
+  final TextEditingController fuelTankController;
+  final TextEditingController overViewController;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -162,7 +202,7 @@ class AddEditFormWidget extends StatelessWidget {
                 valueTextColor: Colors.grey,
                 focusedBorderColor: Colors.red,
                 labelTextColor: Colors.grey,
-                controller: carKilometerController,
+                controller: regNumberController,
                 warning: 'Enter the registration number of car',
                 obscure: false,
                 keyBoardType: TextInputType.name,
@@ -179,7 +219,7 @@ class AddEditFormWidget extends StatelessWidget {
                 valueTextColor: Colors.grey,
                 focusedBorderColor: Colors.red,
                 labelTextColor: Colors.grey,
-                controller: carKilometerController,
+                controller: numOfOwnerController,
                 warning: 'Enter the number of owners owned the car',
                 obscure: false,
                 keyBoardType: TextInputType.number,
@@ -196,7 +236,7 @@ class AddEditFormWidget extends StatelessWidget {
                 valueTextColor: Colors.grey,
                 focusedBorderColor: Colors.red,
                 labelTextColor: Colors.grey,
-                controller: carKilometerController,
+                controller: transmissionController,
                 transmission: true,
                 warning: 'Enter the car transmission type',
                 obscure: false,
@@ -214,7 +254,7 @@ class AddEditFormWidget extends StatelessWidget {
                 valueTextColor: Colors.grey,
                 focusedBorderColor: Colors.red,
                 labelTextColor: Colors.grey,
-                controller: carKilometerController,
+                controller: insuranceController,
                 insurenceDate: true,
                 warning: 'Enter the validity of insurence',
                 obscure: false,
@@ -232,7 +272,7 @@ class AddEditFormWidget extends StatelessWidget {
                 valueTextColor: Colors.grey,
                 focusedBorderColor: Colors.red,
                 labelTextColor: Colors.grey,
-                controller: carKilometerController,
+                controller: seatCapacityController,
                 warning: 'Enter the seat capacity of the car',
                 obscure: false,
                 keyBoardType: TextInputType.number,
@@ -249,7 +289,7 @@ class AddEditFormWidget extends StatelessWidget {
                 valueTextColor: Colors.grey,
                 focusedBorderColor: Colors.red,
                 labelTextColor: Colors.grey,
-                controller: carKilometerController,
+                controller: milageController,
                 warning: 'Enter the current milage',
                 obscure: false,
                 keyBoardType: TextInputType.number,
@@ -266,7 +306,7 @@ class AddEditFormWidget extends StatelessWidget {
                 valueTextColor: Colors.grey,
                 focusedBorderColor: Colors.red,
                 labelTextColor: Colors.grey,
-                controller: carKilometerController,
+                controller: sunroofController,
                 sunroof: true,
                 warning: 'Please provide a valid data',
                 obscure: false,
@@ -284,7 +324,7 @@ class AddEditFormWidget extends StatelessWidget {
                 valueTextColor: Colors.grey,
                 focusedBorderColor: Colors.red,
                 labelTextColor: Colors.grey,
-                controller: carKilometerController,
+                controller: bootspaceController,
                 warning: 'Please the quantity of bootspace',
                 obscure: false,
                 keyBoardType: TextInputType.number,
@@ -301,7 +341,7 @@ class AddEditFormWidget extends StatelessWidget {
                 valueTextColor: Colors.grey,
                 focusedBorderColor: Colors.red,
                 labelTextColor: Colors.grey,
-                controller: carKilometerController,
+                controller: infotainmentSystemController,
                 infotainment: true,
                 warning: 'Please provide appropriate details',
                 obscure: false,
@@ -319,7 +359,7 @@ class AddEditFormWidget extends StatelessWidget {
                 valueTextColor: Colors.grey,
                 focusedBorderColor: Colors.red,
                 labelTextColor: Colors.grey,
-                controller: carKilometerController,
+                controller: alloyWheelController,
                 alloy: true,
                 warning: 'Please provide appropriate details',
                 obscure: false,
@@ -337,7 +377,7 @@ class AddEditFormWidget extends StatelessWidget {
                 valueTextColor: Colors.grey,
                 focusedBorderColor: Colors.red,
                 labelTextColor: Colors.grey,
-                controller: carKilometerController,
+                controller: carHeightController,
                 warning: 'Provide the height of the car',
                 obscure: false,
                 keyBoardType: TextInputType.number,
@@ -354,7 +394,7 @@ class AddEditFormWidget extends StatelessWidget {
                 valueTextColor: Colors.grey,
                 focusedBorderColor: Colors.red,
                 labelTextColor: Colors.grey,
-                controller: carKilometerController,
+                controller: carWidthController,
                 warning: 'Provide the width of the car',
                 obscure: false,
                 keyBoardType: TextInputType.number,
@@ -371,7 +411,7 @@ class AddEditFormWidget extends StatelessWidget {
                 valueTextColor: Colors.grey,
                 focusedBorderColor: Colors.red,
                 labelTextColor: Colors.grey,
-                controller: carKilometerController,
+                controller: carLengthController,
                 warning: 'Provide the length of the car',
                 obscure: false,
                 keyBoardType: TextInputType.number,
@@ -388,7 +428,7 @@ class AddEditFormWidget extends StatelessWidget {
                 valueTextColor: Colors.grey,
                 focusedBorderColor: Colors.red,
                 labelTextColor: Colors.grey,
-                controller: carKilometerController,
+                controller: groundClearanceController,
                 warning: 'Provide the ground clearence of the car',
                 obscure: false,
                 keyBoardType: TextInputType.number,
@@ -405,7 +445,7 @@ class AddEditFormWidget extends StatelessWidget {
                 valueTextColor: Colors.grey,
                 focusedBorderColor: Colors.red,
                 labelTextColor: Colors.grey,
-                controller: carKilometerController,
+                controller: airBagController,
                 warning: 'Provide the number of airbags',
                 obscure: false,
                 keyBoardType: TextInputType.number,
@@ -422,7 +462,7 @@ class AddEditFormWidget extends StatelessWidget {
                 valueTextColor: Colors.grey,
                 focusedBorderColor: Colors.red,
                 labelTextColor: Colors.grey,
-                controller: carKilometerController,
+                controller: airConditionerController,
                 airConditioner: true,
                 warning: 'Please provide appropriate details',
                 obscure: false,
@@ -440,7 +480,7 @@ class AddEditFormWidget extends StatelessWidget {
                 valueTextColor: Colors.grey,
                 focusedBorderColor: Colors.red,
                 labelTextColor: Colors.grey,
-                controller: carKilometerController,
+                controller: powerWindowController,
                 powerWindow: true,
                 warning: 'Please provide appropriate details',
                 obscure: false,
@@ -458,7 +498,7 @@ class AddEditFormWidget extends StatelessWidget {
                 valueTextColor: Colors.grey,
                 focusedBorderColor: Colors.red,
                 labelTextColor: Colors.grey,
-                controller: carKilometerController,
+                controller: bodyTypeController,
                 bodyType: true,
                 warning: 'Please provide appropriate details',
                 obscure: false,
@@ -476,12 +516,29 @@ class AddEditFormWidget extends StatelessWidget {
                 valueTextColor: Colors.grey,
                 focusedBorderColor: Colors.red,
                 labelTextColor: Colors.grey,
-                controller: carKilometerController,
+                controller: fuelTankController,
                 warning: 'Please provide appropriate details',
                 obscure: false,
                 keyBoardType: TextInputType.number,
                 textCapitalization:
                     TextCapitalization.words,
+                fillColor: const Color(0XFFDBEDF5)),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: MyTextFormWidget(
+              screenSize: screenSize,
+                text: 'Overview',
+                enabledBorderColor: Colors.white,
+                valueTextColor: Colors.grey,
+                focusedBorderColor: Colors.red,
+                labelTextColor: Colors.grey,
+                controller: overViewController,
+                warning: 'Please provide appropriate details',
+                obscure: false,
+                keyBoardType: TextInputType.name,
+                textCapitalization:
+                    TextCapitalization.sentences,
                 fillColor: const Color(0XFFDBEDF5)),
           ),
         ],

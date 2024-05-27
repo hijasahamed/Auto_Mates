@@ -16,7 +16,7 @@ class NoDataInFavourites extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              height: screenSize.height / 6,
+              height: screenSize.height / 4,
               width: screenSize.width / 1.5,
               decoration: const BoxDecoration(
                 image: DecorationImage(
@@ -27,7 +27,7 @@ class NoDataInFavourites extends StatelessWidget {
                 text: 'No Favourite Cars Found',
                 color: Colors.black,
                 size: 15,
-                weight: FontWeight.bold)
+                weight: FontWeight.w600)
           ],
         ),
       ),
