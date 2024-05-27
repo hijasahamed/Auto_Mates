@@ -1,5 +1,6 @@
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbutton/car_brand_drop_down.dart';
-import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbutton/fuel_drop_down.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbutton/dropdown_button_widget.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbutton/insurence_date_picker.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbutton/year_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,15 @@ class MyTextFormWidget extends StatelessWidget {
     required this.fillColor,
     required this.screenSize,
     this.datePicker,
+    this.insurenceDate,
+    this.infotainment,
+    this.alloy,
+    this.airConditioner,
+    this.bodyType,
+    this.powerWindow,
     this.fuel,
+    this.sunroof,
+    this.transmission,
     this.brandName,
     required this.labelTextColor,
     required this.enabledBorderColor,
@@ -32,7 +41,15 @@ class MyTextFormWidget extends StatelessWidget {
   final Color fillColor;
   final Size screenSize;
   final bool? datePicker;
+  final bool? insurenceDate;
   final bool? fuel;
+  final bool? alloy;
+  final bool? bodyType;
+  final bool? powerWindow;
+  final bool? airConditioner;
+  final bool? infotainment;
+  final bool? sunroof;
+  final bool? transmission;
   final bool? brandName;
   final Color labelTextColor;
   final Color enabledBorderColor;
@@ -56,6 +73,10 @@ class MyTextFormWidget extends StatelessWidget {
         if (datePicker == true) {
           await selectYear(context, controller, screenSize);
         }
+        else if(insurenceDate==true){
+          await insurenceDatePicker(context: context,controller: controller);
+        }
+        
       },
       obscuringCharacter: '*',
       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -63,7 +84,7 @@ class MyTextFormWidget extends StatelessWidget {
           color: valueTextColor, fontWeight: FontWeight.w400),
       decoration: InputDecoration(
         suffixIcon: (fuel == true)
-            ? FuelDropDown(controller: controller) 
+            ? DropDownButtonWidget (controller: controller,isFuel: true,) 
             : (brandName==true)
             ? Padding(
               padding: const EdgeInsets.all(8.0),
@@ -74,7 +95,11 @@ class MyTextFormWidget extends StatelessWidget {
                 showBrandSelectionDialog(context: context,brands: brands,controller: controller);
               },),
             )
-            :const SizedBox(),
+            : (transmission==true)? DropDownButtonWidget(controller: controller,isTransmission: true,) 
+            : (sunroof==true||alloy==true||airConditioner==true||powerWindow==true) ? DropDownButtonWidget(controller: controller,yesOrNoButton: true,)
+            : (infotainment==true) ? DropDownButtonWidget(controller: controller,isInfotainment: true,)
+            : (bodyType==true) ? DropDownButtonWidget(controller: controller,isbodyType: true,)  
+            : const SizedBox(),
         labelText: text,
         labelStyle: TextStyle(
             color: labelTextColor,
