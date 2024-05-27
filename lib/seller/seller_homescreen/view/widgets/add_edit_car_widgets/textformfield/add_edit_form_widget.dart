@@ -167,22 +167,22 @@ class AddEditFormWidget extends StatelessWidget {
                 obscure: false,
                 keyBoardType: TextInputType.name,
                 textCapitalization:
-                    TextCapitalization.words,
+                    TextCapitalization.characters,
                 fillColor: const Color(0XFFDBEDF5)),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: MyTextFormWidget(
               screenSize: screenSize,
-                text: 'Reg.No',
+                text: 'No.of owners',
                 enabledBorderColor: Colors.white,
                 valueTextColor: Colors.grey,
                 focusedBorderColor: Colors.red,
                 labelTextColor: Colors.grey,
                 controller: carKilometerController,
-                warning: 'Enter the registration number of car',
+                warning: 'Enter the number of owners owned the car',
                 obscure: false,
-                keyBoardType: TextInputType.name,
+                keyBoardType: TextInputType.number,
                 textCapitalization:
                     TextCapitalization.words,
                 fillColor: const Color(0XFFDBEDF5)),
@@ -208,13 +208,13 @@ class AddEditFormWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: MyTextFormWidget(
               screenSize: screenSize,
-                text: 'Transmission',
+                text: 'Insurance',
                 enabledBorderColor: Colors.white,
                 valueTextColor: Colors.grey,
                 focusedBorderColor: Colors.red,
                 labelTextColor: Colors.grey,
                 controller: carKilometerController,
-                warning: 'Enter the car transmission type',
+                warning: 'Enter the validity of insurence',
                 obscure: false,
                 keyBoardType: TextInputType.name,
                 textCapitalization:
