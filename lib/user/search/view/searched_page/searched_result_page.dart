@@ -1,9 +1,10 @@
+import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/seller_details/seller_details_screen.dart';
 import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
 import 'package:auto_mates/user/search/controllers/functions.dart';
 import 'package:flutter/material.dart';
 
 class SearchedResultPage extends StatelessWidget {
-  const SearchedResultPage({super.key, required this.screenSize, required this.searchnotifier});
+  const SearchedResultPage({super.key, required this.screenSize, required this.searchnotifier,});
   final Size screenSize;
   final ValueNotifier<TextEditingController> searchnotifier;
 
@@ -27,7 +28,6 @@ class SearchedResultPage extends StatelessWidget {
               );
             }
             final results = snapshot.data ?? [];
-            print(results);
             if (results.isEmpty) {
               return const Center(
                 child: Text(
@@ -36,69 +36,87 @@ class SearchedResultPage extends StatelessWidget {
                 ),
               );
             }
-            final filteredData =results
-                  .where((data) =>
-                      data['name'].toLowerCase().contains(controller.text.toLowerCase()))
-                  .toList();
+            final queryText = controller.text.trim().toLowerCase();
+            final filteredData = results
+            .where((data) {
+              final modelName = data['modelName'].toString().toLowerCase();
+              final brand = data['brand'].toString().toLowerCase();
+              return modelName.contains(queryText) || brand.contains(queryText);
+            })
+            .toList();
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: GridView.builder(
                 shrinkWrap: true,
                 itemCount: filteredData.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 1,
-                  mainAxisSpacing: 5,
-                  crossAxisSpacing: 5,
-                  childAspectRatio: 2.19,
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 3,
+                  crossAxisSpacing: 3,
+                  childAspectRatio: 1.05,
                 ),
                 itemBuilder: (context, index) {
                   final data = filteredData[index];
-                  return Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(width: 1, color: Colors.grey),
-                    ),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: screenSize.height / 6,
-                          width: screenSize.width,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage(data['image']),
-                              fit: BoxFit.cover,
-                            ),
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(10),
-                              topRight: Radius.circular(10),
-                            ),
-                          ),
+                  return GestureDetector(
+                    onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) {
+                      return SellerDetailsScreen(
+                        screenSize: screenSize,
+                        data: data,
+                          );
+                        },
+                    ));
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(width: 1, color: Colors.grey),
+                      ),
+                      child: Column(
+                        children: [
+                          FadeInImage(
+                        fadeInDuration: const Duration(milliseconds: 750),
+                        height: screenSize.height / 6,
+                        width: screenSize.width,
+                        placeholder: const AssetImage(
+                          'assets/images/image placeholder.jpeg',
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 4),
-                          child: Row(
-                            children: [
-                              MyTextWidget(
-                                text: '${data['brand']}',
-                                color: Colors.black,
-                                size: 20,
-                                weight: FontWeight.bold,
-                              ),
-                              SizedBox(
-                                width: screenSize.width / 100,
-                              ),
-                              Expanded(
-                                child: MyTextWidget(
-                                  text: '${data['modelName']}',
+                        placeholderFit: BoxFit.cover,
+                        imageErrorBuilder: (context, error, stackTrace) {
+                          return const CircularProgressIndicator(
+                            color: Colors.blue,
+                          );
+                        },
+                        image: NetworkImage(data['image']),
+                        fit: BoxFit.cover,
+                        filterQuality: FilterQuality.high),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 4),
+                            child: Row(
+                              children: [
+                                MyTextWidget(
+                                  text: '${data['brand']}',
                                   color: Colors.black,
-                                  size: 19,
+                                  size: 20,
                                   weight: FontWeight.bold,
                                 ),
-                              ),
-                            ],
+                                SizedBox(
+                                  width: screenSize.width / 100,
+                                ),
+                                Expanded(
+                                  child: MyTextWidget(
+                                    text: '${data['modelName']}',
+                                    color: Colors.black,
+                                    size: 19,
+                                    weight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   );
                 },

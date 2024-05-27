@@ -4,7 +4,6 @@ import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/add_car_edit_car_widget.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/all_cars_to_sell_widget.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/floating_button_widget.dart';
-import 'package:auto_mates/seller/seller_homescreen/view/widgets/single_car_details/single_car_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

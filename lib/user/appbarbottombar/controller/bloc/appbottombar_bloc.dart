@@ -10,6 +10,7 @@ class AppbottombarBloc extends Bloc<AppbottombarEvent, AppbottombarState> {
   AppbottombarBloc() : super(AppbottombarInitial()) {
     on<AppBottomBarInitialEvent>(appBottomBarInitialEvent);
     on<OntapIndexChangeEvent>(ontapIndexChangeEvent);
+    on<SearchClickedEvent>(searchClickedEvent);
   }
 
 
@@ -25,4 +26,9 @@ class AppbottombarBloc extends Bloc<AppbottombarEvent, AppbottombarState> {
       emit(OntapIndexChangeState());
   }
 
+
+  FutureOr<void> searchClickedEvent(
+    SearchClickedEvent event, Emitter<AppbottombarState> emit) {
+      emit(SearchClickedActionState());
+  }
 }

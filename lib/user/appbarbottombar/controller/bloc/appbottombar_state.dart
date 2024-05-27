@@ -9,6 +9,8 @@ class AppbottombarInitial extends AppbottombarState {}
 
 class OntapIndexChangeState extends AppbottombarActionState {}
 
+class SearchClickedActionState extends AppbottombarActionState {}
+
 
 class AppbottombarLoadingState extends AppbottombarState {}
 

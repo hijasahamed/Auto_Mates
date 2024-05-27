@@ -1,8 +1,8 @@
 import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 
-class SearchAnythingWidget extends StatelessWidget {
-  const SearchAnythingWidget({super.key,required this.screenSize});
+class SearchCar extends StatelessWidget {
+  const SearchCar({super.key,required this.screenSize});
   final Size screenSize;
   @override
   Widget build(BuildContext context) {

@@ -7,5 +7,7 @@ class AppBottomBarInitialEvent extends AppbottombarEvent {}
 
 class OntapIndexChangeEvent extends AppbottombarEvent{}
 
+class SearchClickedEvent extends AppbottombarEvent{}
+
 
 

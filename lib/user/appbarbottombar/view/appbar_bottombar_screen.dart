@@ -107,54 +107,6 @@ class _AppbarBottomTabSwitchScreenState
                           unselectedLabelStyle:
                               const TextStyle(fontWeight: FontWeight.bold),
                         );
-                        /* return CurvedNavigationBar(
-                          
-                          animationCurve: Easing.standard,
-                          backgroundColor: Colors.white,
-                          buttonBackgroundColor: const Color.fromARGB(255, 100, 206, 248),
-                          color: const Color.fromARGB(255, 36, 167, 248),
-                          items: const [
-                            CurvedNavigationBarItem(
-                              child: Icon(
-                                Icons.home_rounded,
-                                color: Color(0xFF424141),
-                              ),
-                              label: 'Home',
-                              labelStyle: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            CurvedNavigationBarItem(
-                              child: Icon(Icons.car_rental,
-                                color: Color(0xFF424141),), 
-                              label: 'Cars',
-                              labelStyle: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            CurvedNavigationBarItem(
-                              child: Icon(Icons.newspaper,
-                                color: Color(0xFF424141),),
-                              label: 'News',
-                              labelStyle: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            CurvedNavigationBarItem(
-                              child: Icon(Icons.person,
-                                color: Color(0xFF424141),),
-                              label: 'Profile',
-                              labelStyle: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                          onTap: (index) {
-                            setState(() {
-                              tabIndex = index;
-                            });
-                          },
-                        ); */
                       },
                     ),
                     body: tabs[tabIndex],
