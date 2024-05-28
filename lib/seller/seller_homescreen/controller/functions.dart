@@ -1,7 +1,8 @@
 import 'dart:io';
 
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
-import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
+import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';

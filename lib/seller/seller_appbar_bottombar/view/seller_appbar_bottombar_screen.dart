@@ -90,7 +90,7 @@ class _SellerappbarbottombarState extends State<Sellerappbarbottombar> {
                   return Scaffold(
                     appBar: PreferredSize(
                       preferredSize: const Size.fromHeight(80),
-                      child: SellerScreenAppbarWidget(name: data.companyName),
+                      child: SellerScreenAppbarWidget(name: data.companyName,screenSize: screenSize,),
                     ),
                     body: sellerTabs[sellertabIndex],
                     bottomNavigationBar: CurvedNavigationBar(

@@ -18,6 +18,7 @@ class SearchPage extends StatelessWidget {
     return BlocBuilder<AppbottombarBloc, AppbottombarState>(
       builder: (context, state) {
         return Scaffold(
+          resizeToAvoidBottomInset: false,
           appBar: AppBar(
             flexibleSpace: const AppBarGradientColor(),
             leading: IconButton(

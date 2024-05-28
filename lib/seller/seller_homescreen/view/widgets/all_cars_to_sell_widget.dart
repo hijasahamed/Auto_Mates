@@ -1,7 +1,7 @@
 import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/car_holder/car_holder.dart';
-import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +23,7 @@ class AllCarsToSellWidget extends StatelessWidget {
             shrinkWrap: true,
             itemCount: snapshot.data!.docs.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: .73,
+              childAspectRatio: .72,
               mainAxisSpacing: 2,
               crossAxisSpacing: 2,
               crossAxisCount: 2,

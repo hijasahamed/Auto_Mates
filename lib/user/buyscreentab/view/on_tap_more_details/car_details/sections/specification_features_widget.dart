@@ -37,6 +37,7 @@ class SpecificationFeaturesWidget extends StatelessWidget {
                    TabBarViewListTile(leading: 'Insurance', title: data['insurance'],screenSize: screenSize,),
                    TabBarViewListTile(leading: 'Color', title: data['color'],screenSize: screenSize,),
                    TabBarViewListTile(leading: 'Body Type', title: data['bodytype'],screenSize: screenSize,),
+                   TabBarViewListTile(leading: 'Reg.Num', title: data['regNumber'],screenSize: screenSize,),
                   ],
                 ),
                 ListView(

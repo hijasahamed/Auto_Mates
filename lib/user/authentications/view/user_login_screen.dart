@@ -8,7 +8,7 @@ import 'package:auto_mates/user/authentications/view/widgets/login_screen_widget
 import 'package:auto_mates/user/authentications/view/user_signup_screen.dart';
 import 'package:auto_mates/user/authentications/view/widgets/login_screen_widgets/welcome_text_widget.dart';
 import 'package:auto_mates/user/appbarbottombar/view/appbar_bottombar_screen.dart';
-import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
+import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

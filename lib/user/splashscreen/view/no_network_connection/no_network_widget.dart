@@ -1,4 +1,4 @@
-import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/splashscreen/view/bloc/splash_bloc.dart';
 import 'package:auto_mates/user/splashscreen/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';

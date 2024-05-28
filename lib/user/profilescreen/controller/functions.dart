@@ -1,6 +1,6 @@
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
-import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
 import 'package:auto_mates/user/splashscreen/controllers/functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';

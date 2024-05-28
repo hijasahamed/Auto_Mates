@@ -1,11 +1,13 @@
 
 import 'package:auto_mates/user/appbarbottombar/view/widgets/app_bar_gradient_color.dart';
-import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
+import 'package:auto_mates/user/search/view/search_page/search_page.dart';
 import 'package:flutter/material.dart';
 
 class SellerScreenAppbarWidget extends StatelessWidget {
-  const SellerScreenAppbarWidget({super.key,required this.name});
+  const SellerScreenAppbarWidget({super.key,required this.name,required this.screenSize});
   final String name;
+  final Size screenSize;
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -15,35 +17,12 @@ class SellerScreenAppbarWidget extends StatelessWidget {
       actions: [
         IconButton(
           onPressed: () {
-
+            Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => SearchPage(screenSize: screenSize,)));
           },
           icon: const Icon(Icons.search,size: 35,color: Colors.white,)
         )
       ],
     );
-    // return FutureBuilder(
-    //   future: fetchSellerDetails(),
-    //   builder: (context, snapshot) {
-    //     SellerData data=snapshot.data!;
-    //     return AppBar(
-    //       backgroundColor: Colors.white,
-    //       flexibleSpace: const AppBarGradientColor(),
-    //       title: const MyTextWidget(
-    //           text: 'Seller Side',
-    //           color: Colors.white,
-    //           size: 27,
-    //           weight: FontWeight.bold),
-    //       actions: [
-    //         IconButton(
-    //             onPressed: () {},
-    //             icon: const Icon(
-    //               Icons.search,
-    //               size: 35,
-    //               color: Colors.white,
-    //             ))
-    //       ],
-    //     );
-    //   },
-    // );
   }
 }

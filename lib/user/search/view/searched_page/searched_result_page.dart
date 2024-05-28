@@ -1,6 +1,6 @@
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/seller_details/seller_details_screen.dart';
-import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
 import 'package:auto_mates/user/search/controllers/functions.dart';
+import 'package:auto_mates/user/search/view/searched_page/searched_result_holder/searched_result_holder.dart';
 import 'package:flutter/material.dart';
 
 class SearchedResultPage extends StatelessWidget {
@@ -14,7 +14,7 @@ class SearchedResultPage extends StatelessWidget {
       valueListenable: searchnotifier,
       builder: (context, controller, _) {
         return FutureBuilder<List<Map<String, dynamic>>>(
-          future: getAllCars(query: controller.text.trim()),
+          future: getSearchingCars(query: controller.text.trim()),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
@@ -44,6 +44,14 @@ class SearchedResultPage extends StatelessWidget {
               return modelName.contains(queryText) || brand.contains(queryText);
             })
             .toList();
+            if(filteredData.isEmpty){
+              return const Center(
+                child: Text(
+                  'No Results Found',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
+                ),
+              );
+            }
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: GridView.builder(
@@ -68,56 +76,7 @@ class SearchedResultPage extends StatelessWidget {
                         },
                     ));
                     },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(width: 1, color: Colors.grey),
-                      ),
-                      child: Column(
-                        children: [
-                          FadeInImage(
-                        fadeInDuration: const Duration(milliseconds: 750),
-                        height: screenSize.height / 6,
-                        width: screenSize.width,
-                        placeholder: const AssetImage(
-                          'assets/images/image placeholder.jpeg',
-                        ),
-                        placeholderFit: BoxFit.cover,
-                        imageErrorBuilder: (context, error, stackTrace) {
-                          return const CircularProgressIndicator(
-                            color: Colors.blue,
-                          );
-                        },
-                        image: NetworkImage(data['image']),
-                        fit: BoxFit.cover,
-                        filterQuality: FilterQuality.high),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 4),
-                            child: Row(
-                              children: [
-                                MyTextWidget(
-                                  text: '${data['brand']}',
-                                  color: Colors.black,
-                                  size: 20,
-                                  weight: FontWeight.bold,
-                                ),
-                                SizedBox(
-                                  width: screenSize.width / 100,
-                                ),
-                                Expanded(
-                                  child: MyTextWidget(
-                                    text: '${data['modelName']}',
-                                    color: Colors.black,
-                                    size: 19,
-                                    weight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    child: SearchedResultHolder(screenSize: screenSize,data: data,)
                   );
                 },
               ),

@@ -1,7 +1,7 @@
 import 'package:auto_mates/seller/authentications/view/bloc/seller_authentication_bloc.dart';
 import 'package:auto_mates/seller/authentications/view/create_company_screen.dart';
 import 'package:auto_mates/seller/authentications/view/widgets/login_screen_widgets/seller_get_otp_widget.dart';
-import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';

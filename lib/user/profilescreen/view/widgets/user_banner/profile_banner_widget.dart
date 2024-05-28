@@ -1,5 +1,5 @@
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
-import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 
 class ProfileBannerWidget extends StatelessWidget {

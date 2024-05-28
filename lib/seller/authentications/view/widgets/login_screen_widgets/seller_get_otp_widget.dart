@@ -1,6 +1,7 @@
 import 'package:auto_mates/seller/authentications/controllers/functions.dart';
 import 'package:auto_mates/seller/authentications/view/bloc/seller_authentication_bloc.dart';
-import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
+import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 

@@ -1,5 +1,5 @@
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
-import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
+import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -66,15 +66,17 @@ Future<void> checkIfFavourite({id,isFavOrNotValueNotifier}) async {
   } else {
     isFavOrNotValueNotifier.value = false; 
   }
-  }
+}
 
+
+final CollectionReference userInterestMarked = FirebaseFirestore.instance.collection('userInterestMarked');
 
 Future<void> markUserInterest ({context,carImage,carName,carNumber,})async{
   UserData? userData=await fetchUserDetails();
   String userName=userData!.userName;
   String userContact = userData.mobile;
   String userLocation = userData.location;
-  final CollectionReference userInterestMarked = FirebaseFirestore.instance.collection('userInterestMarked');
+  
   final QuerySnapshot existingDocs = await userInterestMarked
       .where('carNumber', isEqualTo: carNumber)
       .get();

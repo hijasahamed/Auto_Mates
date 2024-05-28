@@ -2,7 +2,7 @@ import 'package:auto_mates/user/appbarbottombar/view/appbar_bottombar_screen.dar
 import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
-import 'package:auto_mates/user/commonwidgets/common_widgets/common_widgets.dart';
+import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/authentications/view/widgets/signup_screen_widgets/signup_button_widget.dart';
 import 'package:auto_mates/user/authentications/view/widgets/signup_screen_widgets/signup_widget.dart';
 import 'package:flutter/material.dart';

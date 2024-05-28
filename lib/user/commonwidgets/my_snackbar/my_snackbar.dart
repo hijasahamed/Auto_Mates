@@ -1,17 +1,5 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-
-class MyTextWidget extends StatelessWidget {
-  const MyTextWidget({super.key,required this.text,required this.color,required this.size,required this.weight});
-  final String text;
-  final Color color;
-  final double size;
-  final FontWeight weight;
-  @override
-  Widget build(BuildContext context) {
-    return Text(text,style: TextStyle(fontWeight: weight,color: color,fontSize: size,overflow: TextOverflow.ellipsis,),);
-  }
-}
-
 
 snackbarWidget(String text, context, Color color, Color textColor,SnackBarBehavior behavior) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -27,4 +15,18 @@ snackbarWidget(String text, context, Color color, Color textColor,SnackBarBehavi
       style: TextStyle(color: textColor, fontWeight: FontWeight.w500),
     ),
   ));
+}
+
+awsomeSnackbar({content}){
+   SnackBar(
+      elevation: 10,
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.transparent,
+      content: AwesomeSnackbarContent(
+        title: 'Hi There!',
+        message:
+            content, 
+        contentType: ContentType.help,
+      ),
+    );
 }
