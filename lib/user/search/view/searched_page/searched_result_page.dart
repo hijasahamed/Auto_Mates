@@ -1,6 +1,7 @@
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/seller_details/seller_details_screen.dart';
+import 'package:auto_mates/user/commonwidgets/circular_indicator/circular_indicator_widget.dart';
+import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_error_placeholder.dart';
 import 'package:auto_mates/user/search/controllers/functions.dart';
-import 'package:auto_mates/user/search/view/searched_page/searched_result_holder/searched_result_holder.dart';
+import 'package:auto_mates/user/search/view/searched_page/searched_result_holder/searched_results_grid.dart';
 import 'package:flutter/material.dart';
 
 class SearchedResultPage extends StatelessWidget {
@@ -17,11 +18,7 @@ class SearchedResultPage extends StatelessWidget {
           future: getSearchingCars(query: controller.text.trim()),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(
-                  color: Colors.blue,
-                ),
-              );
+              return const CircularIndicatorWidget();
             } else if (snapshot.hasError || !snapshot.hasData) {
               return const Center(
                 child: Text('Something Went Wrong'),
@@ -29,12 +26,7 @@ class SearchedResultPage extends StatelessWidget {
             }
             final results = snapshot.data ?? [];
             if (results.isEmpty) {
-              return const Center(
-                child: Text(
-                  'No Results Found',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
-                ),
-              );
+              return NoDataErrorPlaceholder(screenSize: screenSize, titleText: 'No Data Available');
             }
             final queryText = controller.text.trim().toLowerCase();
             final filteredData = results
@@ -45,42 +37,9 @@ class SearchedResultPage extends StatelessWidget {
             })
             .toList();
             if(filteredData.isEmpty){
-              return const Center(
-                child: Text(
-                  'No Results Found',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
-                ),
-              );
+              return NoDataErrorPlaceholder(screenSize: screenSize, titleText: 'Searched data not available');
             }
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: GridView.builder(
-                shrinkWrap: true,
-                itemCount: filteredData.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 3,
-                  crossAxisSpacing: 3,
-                  childAspectRatio: 1.05,
-                ),
-                itemBuilder: (context, index) {
-                  final data = filteredData[index];
-                  return GestureDetector(
-                    onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) {
-                      return SellerDetailsScreen(
-                        screenSize: screenSize,
-                        data: data,
-                          );
-                        },
-                    ));
-                    },
-                    child: SearchedResultHolder(screenSize: screenSize,data: data,)
-                  );
-                },
-              ),
-            );
+            return SearchedResultsGrid(screenSize: screenSize,dataList: filteredData,);
           },
         );
       },

@@ -3,7 +3,7 @@ import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen
 import 'package:auto_mates/seller/seller_profile_screen/view/bloc/seller_profile_bloc.dart';
 import 'package:auto_mates/user/appbarbottombar/controller/bloc/appbottombar_bloc.dart';
 import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
-import 'package:auto_mates/user/firebase/firebase_options.dart';
+import 'package:auto_mates/firebase/firebase_options.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
 import 'package:auto_mates/user/splashscreen/view/bloc/splash_bloc.dart';
 import 'package:auto_mates/user/splashscreen/view/splash_screen/splash_screen.dart';

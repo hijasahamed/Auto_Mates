@@ -7,29 +7,29 @@ class SearchedResultHolder extends StatelessWidget {
   final dynamic data;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(width: 1, color: Colors.grey),
-      ),
+    return Card(
+      color: const Color(0xFFDBEDF5),
       child: Column(
         children: [
-          FadeInImage(
-              fadeInDuration: const Duration(milliseconds: 750),
-              height: screenSize.height / 6,
-              width: screenSize.width,
-              placeholder: const AssetImage(
-                'assets/images/image placeholder.jpeg',
-              ),
-              placeholderFit: BoxFit.cover,
-              imageErrorBuilder: (context, error, stackTrace) {
-                return const CircularProgressIndicator(
-                  color: Colors.blue,
-                );
-              },
-              image: NetworkImage(data['image']),
-              fit: BoxFit.cover,
-              filterQuality: FilterQuality.high),
+          ClipRRect(
+            borderRadius: const BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(10)),
+            child: FadeInImage(
+                fadeInDuration: const Duration(milliseconds: 750),
+                height: screenSize.height / 6,
+                width: screenSize.width,
+                placeholder: const AssetImage(
+                  'assets/images/image placeholder.jpeg',
+                ),
+                placeholderFit: BoxFit.cover,
+                imageErrorBuilder: (context, error, stackTrace) {
+                  return const CircularProgressIndicator(
+                    color: Colors.blue,
+                  );
+                },
+                image: NetworkImage(data['image']),
+                fit: BoxFit.cover,
+                filterQuality: FilterQuality.high),
+          ),
           Padding(
             padding: const EdgeInsets.only(left: 4),
             child: Row(
@@ -37,8 +37,8 @@ class SearchedResultHolder extends StatelessWidget {
                 MyTextWidget(
                   text: '${data['brand']}',
                   color: Colors.black,
-                  size: 20,
-                  weight: FontWeight.bold,
+                  size: 19,
+                  weight: FontWeight.w600,
                 ),
                 SizedBox(
                   width: screenSize.width / 100,
@@ -46,8 +46,8 @@ class SearchedResultHolder extends StatelessWidget {
                 Expanded(
                   child: MyTextWidget(
                     text: '${data['modelName']}',
-                    color: Colors.black,
-                    size: 19,
+                    color: const Color.fromARGB(255, 75, 76, 76),
+                    size: 15,
                     weight: FontWeight.bold,
                   ),
                 ),
