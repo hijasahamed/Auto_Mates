@@ -88,7 +88,7 @@ class _CarHolderState extends State<CarHolder> {
                         image: NetworkImage(widget.data['image']),
                         fit: BoxFit.cover,
                         filterQuality: FilterQuality.high),
-                  ),
+                  ),                 
                   Positioned(
                       top: 5,
                       right: 5,

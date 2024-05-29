@@ -27,7 +27,7 @@ class FavouriteScreen extends StatelessWidget {
                   shrinkWrap: true,
                   itemCount: snapshot.data!.docs.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: .72,
+                    childAspectRatio: .75,
                     mainAxisSpacing: 3,
                     crossAxisSpacing: 3,
                     crossAxisCount: 2,

@@ -19,8 +19,9 @@ Future<void> addCarToUserFavourite({required DocumentSnapshot data, required con
     }
 
     Map<String, dynamic> carData = {
+      'sellerId':data['sellerId'],
       'image': data['image'],
-      'UnId':data.id,
+      'carToSellId':data.id,
       'brand': data['brand'],
       'modelName': data['modelName'],
       'color': data['color'],
@@ -60,12 +61,14 @@ Future<void> addCarToUserFavourite({required DocumentSnapshot data, required con
 Future<void> checkIfFavourite({id,isFavOrNotValueNotifier}) async {
     final CollectionReference userFavouriteCars = FirebaseFirestore.instance.collection('userFavouriteCars');
 
-    final QuerySnapshot isOrNot = await userFavouriteCars.where('UnId', isEqualTo: id).get();
+    final QuerySnapshot isOrNot = await userFavouriteCars.where('carToSellId', isEqualTo: id).get();
 
     if (isOrNot.docs.isNotEmpty) {
     isFavOrNotValueNotifier.value = true;
+    isFavOrNotValueNotifier.notifyListeners();
   } else {
-    isFavOrNotValueNotifier.value = false; 
+    isFavOrNotValueNotifier.value = false;
+    isFavOrNotValueNotifier.notifyListeners(); 
   }
 }
 
@@ -103,7 +106,7 @@ Future<void> markUserInterest ({context,carImage,carName,carNumber,})async{
 
 
 Future<SellerData?> getSellerDetailsById(String sellerId) async {
-  await Future.delayed(const Duration(milliseconds: 1300));
+  await Future.delayed(const Duration(milliseconds: 1000));
   final CollectionReference sellerSignupFirebaseObject = FirebaseFirestore.instance.collection('sellerSignupData');
   try{
     QuerySnapshot querySnapshot = await sellerSignupFirebaseObject.get();

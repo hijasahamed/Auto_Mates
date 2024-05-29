@@ -20,6 +20,7 @@ class BuyScreen extends StatelessWidget {
           }
           if(snapshot.hasData && snapshot.data.docs.isNotEmpty){
             return Scaffold(
+              resizeToAvoidBottomInset: false,
               body: Column(
                 children: [
                   SortingFilteringWidget(screenSize: screenSize),
