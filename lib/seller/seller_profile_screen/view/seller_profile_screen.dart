@@ -1,3 +1,4 @@
+import 'package:auto_mates/seller/authentications/controllers/functions.dart';
 import 'package:auto_mates/seller/seller_profile_screen/controllers/functions.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/bloc/seller_profile_bloc.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/widget/banner_card_widget.dart';
@@ -9,7 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SellerProfileScreen extends StatelessWidget {
   const SellerProfileScreen({super.key, required this.data});
-  final dynamic data;
+  final SellerData data;
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -29,7 +30,7 @@ class SellerProfileScreen extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return Scaffold(
+        return Scaffold(          
           body: Padding(
             padding: const EdgeInsets.all(5),
             child: Column(

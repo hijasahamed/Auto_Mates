@@ -14,7 +14,7 @@ class CarImage extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          height: screenSize.height / 6,
+          height: screenSize.height / 4,
           width: screenSize.width,
           decoration: BoxDecoration(
               borderRadius: const BorderRadius.only(

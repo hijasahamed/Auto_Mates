@@ -4,15 +4,15 @@ import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 
-class CustomAlertDialogeWidget extends StatefulWidget {
-  const CustomAlertDialogeWidget({super.key,required this.screenSize,required this.data});
+class AutoBackWidget extends StatefulWidget {
+  const AutoBackWidget({super.key,required this.screenSize,required this.data});
   final Size screenSize;
   final dynamic data;
   @override
-  State<CustomAlertDialogeWidget> createState() => _CustomAlertDialogeWidgetState();
+  State<AutoBackWidget> createState() => _AutoBackWidgetState();
 }
 
-class _CustomAlertDialogeWidgetState extends State<CustomAlertDialogeWidget> {
+class _AutoBackWidgetState extends State<AutoBackWidget> {
 
   late int secondsLeft;
   late Timer timer;

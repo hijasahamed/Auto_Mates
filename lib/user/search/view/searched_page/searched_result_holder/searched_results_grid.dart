@@ -1,4 +1,4 @@
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/seller_details/seller_details_screen.dart';
+import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/on_tap_car_more_details.dart';
 import 'package:auto_mates/user/search/view/searched_page/searched_result_holder/searched_result_holder.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +25,7 @@ class SearchedResultsGrid extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) {
-                    return SellerDetailsScreen(
+                    return OnTapCarMoreDetailsCarScreen(
                       screenSize: screenSize,
                       data: data,
                     );

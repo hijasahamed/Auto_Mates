@@ -20,7 +20,6 @@ class BuyScreen extends StatelessWidget {
           }
           if(snapshot.hasData && snapshot.data.docs.isNotEmpty){
             return Scaffold(
-              backgroundColor: const Color.fromARGB(255, 255, 255, 255),
               body: Column(
                 children: [
                   SortingFilteringWidget(screenSize: screenSize),
@@ -29,7 +28,7 @@ class BuyScreen extends StatelessWidget {
                     shrinkWrap: true,
                     itemCount: snapshot.data!.docs.length,
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: .72,
+                      childAspectRatio: .75,
                       mainAxisSpacing: 3,
                       crossAxisSpacing: 3,
                       crossAxisCount: 2,

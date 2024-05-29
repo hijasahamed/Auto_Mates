@@ -11,5 +11,3 @@ class MyTextWidget extends StatelessWidget {
     return Text(text,style: TextStyle(fontWeight: weight,color: color,fontSize: size,overflow: TextOverflow.ellipsis,),);
   }
 }
-
-

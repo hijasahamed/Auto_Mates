@@ -86,7 +86,7 @@ class AddEditFormWidget extends StatelessWidget {
                 brandName: true,
                 keyBoardType: TextInputType.name,
                 textCapitalization:
-                    TextCapitalization.words,
+                    TextCapitalization.none,
                 fillColor: const Color(0XFFDBEDF5)),
           ),
           Padding(
@@ -153,7 +153,7 @@ class AddEditFormWidget extends StatelessWidget {
                 controller: carPriceController,
                 warning: 'Enter the amount of the car to be sold',
                 obscure: false,
-                keyBoardType: TextInputType.name,
+                keyBoardType: TextInputType.number,
                 textCapitalization:
                     TextCapitalization.words,
                 fillColor: const Color(0XFFDBEDF5)),

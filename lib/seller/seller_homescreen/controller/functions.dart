@@ -1,5 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 
+import 'package:auto_mates/seller/authentications/controllers/functions.dart';
+import 'package:auto_mates/seller/seller_appbar_bottombar/controllers/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
@@ -47,8 +51,14 @@ postNewCar(
   required TextEditingController bodyTypeController,
   required TextEditingController fuelTankController,
   required TextEditingController overViewController,
-  }){
+  }) async{
+   SellerData? sellerDetails = await fetchSellerDetails();
+   if (sellerDetails == null) {
+    snackbarWidget('seller data not found', context, Colors.red, Colors.white,SnackBarBehavior.floating);
+    return;
+  }
   final data = {
+    'sellerId':sellerDetails.id,
     'image':imageUrl,
     'brand': carBrandController.text,
     'modelName': carModelNameController.text,

@@ -1,3 +1,4 @@
+import 'package:auto_mates/seller/authentications/controllers/functions.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
@@ -101,3 +102,25 @@ Future<void> markUserInterest ({context,carImage,carName,carNumber,})async{
 }
 
 
+Future<SellerData?> getSellerDetailsById(String sellerId) async {
+  await Future.delayed(const Duration(milliseconds: 1300));
+  final CollectionReference sellerSignupFirebaseObject = FirebaseFirestore.instance.collection('sellerSignupData');
+  try{
+    QuerySnapshot querySnapshot = await sellerSignupFirebaseObject.get();
+    for (var doc in querySnapshot.docs) {
+      if (doc.id == sellerId) {
+        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;            
+        SellerData sellerDetails = SellerData(
+          id: doc.id,
+          companyName: data['companyName'],
+          location: data['location'],
+          mobile: data['mobile'],
+        );
+        return sellerDetails;
+      }
+    }
+  }catch (e) {    
+    return null;
+  }
+  return null;
+}

@@ -1,6 +1,7 @@
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/car_image.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/details_container.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/specification_features_widget.dart';
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 
 class CarDetailsWidget extends StatelessWidget {
@@ -22,20 +23,8 @@ class CarDetailsWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  data['brand'],
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 23,
-                      color: Color(0xFF424141)),
-                ),
-                Text(
-                  data['modelName'],
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 23,
-                      color: Color(0xFF424141)),
-                ),
+                MyTextWidget(text: data['brand'], color: const Color(0xFF424141), size: 23, weight: FontWeight.bold),
+                MyTextWidget(text: data['modelName'], color: const Color(0xFF424141), size: 17, weight: FontWeight.bold),                
                 SizedBox(
                   height: screenSize.height / 90,
                 ),

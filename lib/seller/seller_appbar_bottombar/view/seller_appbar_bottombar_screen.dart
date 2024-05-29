@@ -5,6 +5,8 @@ import 'package:auto_mates/seller/seller_appbar_bottombar/view/bloc/sellerappbot
 import 'package:auto_mates/seller/seller_appbar_bottombar/view/widgets/seller_screen_appbar_widget.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/seller_home_screen.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/seller_profile_screen.dart';
+import 'package:auto_mates/user/commonwidgets/circular_indicator/circular_indicator_widget.dart';
+import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_error_placeholder.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +24,8 @@ class _SellerappbarbottombarState extends State<Sellerappbarbottombar> {
   final SellerappbottomBloc sellerAppBottomBloc = SellerappbottomBloc();
 
   int sellertabIndex = 0;
-  List<Widget> _buildSellerTabs(SellerData data) {
+
+  List<Widget> buildSellerTabs(SellerData data) {
     return [
       const SellerHomeScreen(),
       const ChatScreen(),
@@ -64,12 +67,7 @@ class _SellerappbarbottombarState extends State<Sellerappbarbottombar> {
               future: fetch,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Scaffold(
-                    backgroundColor: Color.fromARGB(255, 255, 255, 255),
-                    body: Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  );
+                  return const CircularIndicatorWidget();
                 } else if (snapshot.hasError) {
                   return Scaffold(
                     backgroundColor: const Color.fromARGB(255, 255, 255, 255),
@@ -78,15 +76,10 @@ class _SellerappbarbottombarState extends State<Sellerappbarbottombar> {
                     ),
                   );
                 } else if (!snapshot.hasData || snapshot.data == null) {
-                  return const Scaffold(
-                    backgroundColor: Color.fromARGB(255, 255, 255, 255),
-                    body: Center(
-                      child: Text('No seller data found'),
-                    ),
-                  );
+                  return NoDataErrorPlaceholder(screenSize: screenSize, titleText: 'No data found');
                 } else {
                   SellerData data = snapshot.data!;
-                  List<Widget> sellerTabs = _buildSellerTabs(data);
+                  List<Widget> sellerTabs = buildSellerTabs(data);
                   return Scaffold(
                     appBar: PreferredSize(
                       preferredSize: const Size.fromHeight(80),
