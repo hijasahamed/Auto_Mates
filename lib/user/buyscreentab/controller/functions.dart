@@ -1,27 +1,33 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:auto_mates/seller/authentications/controllers/functions.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-final CollectionReference userFavouriteCars = FirebaseFirestore.instance.collection('userFavouriteCars');
+final CollectionReference userFavouriteCars =
+    FirebaseFirestore.instance.collection('userFavouriteCars');
 
-Future<void> addCarToUserFavourite({required DocumentSnapshot data, required context}) async {
+Future<void> addCarToUserFavourite(
+    {required DocumentSnapshot data, required context}) async {
   try {
-    QuerySnapshot existingCar = await userFavouriteCars
-        .where('UnId', isEqualTo: data.id)
-        .get();
+    QuerySnapshot existingCar =
+        await userFavouriteCars.where('carToSellId', isEqualTo: data.id).get();
 
     if (existingCar.docs.isNotEmpty) {
-      snackbarWidget('Car is already in favourites', context, Colors.blue, Colors.white, SnackBarBehavior.floating);
+      snackbarWidget('Car is already in favourites', context, Colors.blue,
+          Colors.white, SnackBarBehavior.floating);
       return;
     }
 
     Map<String, dynamic> carData = {
-      'sellerId':data['sellerId'],
+      'sellerId': data['sellerId'],
       'image': data['image'],
-      'carToSellId':data.id,
+      'carToSellId': data.id,
       'brand': data['brand'],
       'modelName': data['modelName'],
       'color': data['color'],
@@ -52,67 +58,80 @@ Future<void> addCarToUserFavourite({required DocumentSnapshot data, required con
     };
 
     await userFavouriteCars.add(carData);
-    snackbarWidget('Car added to favourites successfully', context, Colors.blue, Colors.white, SnackBarBehavior.floating);
+    snackbarWidget('Car added to favourites successfully', context, Colors.blue,
+        Colors.white, SnackBarBehavior.floating);
   } catch (e) {
-    snackbarWidget('Failed to add car to favourites', context, Colors.blueGrey, Colors.white, SnackBarBehavior.floating);
+    snackbarWidget('Failed to add car to favourites', context, Colors.blueGrey,
+        Colors.white, SnackBarBehavior.floating);
   }
 }
 
-Future<void> checkIfFavourite({id,isFavOrNotValueNotifier}) async {
-    final CollectionReference userFavouriteCars = FirebaseFirestore.instance.collection('userFavouriteCars');
+Future<void> checkIfFavourite({id, isFavOrNotValueNotifier}) async {
+  final CollectionReference userFavouriteCars =
+      FirebaseFirestore.instance.collection('userFavouriteCars');
 
-    final QuerySnapshot isOrNot = await userFavouriteCars.where('carToSellId', isEqualTo: id).get();
+  final QuerySnapshot isOrNot =
+      await userFavouriteCars.where('carToSellId', isEqualTo: id).get();
 
-    if (isOrNot.docs.isNotEmpty) {
+  if (isOrNot.docs.isNotEmpty) {
     isFavOrNotValueNotifier.value = true;
     isFavOrNotValueNotifier.notifyListeners();
   } else {
     isFavOrNotValueNotifier.value = false;
-    isFavOrNotValueNotifier.notifyListeners(); 
+    isFavOrNotValueNotifier.notifyListeners();
   }
 }
 
+final CollectionReference userInterestMarked =
+    FirebaseFirestore.instance.collection('userInterestMarked');
 
-final CollectionReference userInterestMarked = FirebaseFirestore.instance.collection('userInterestMarked');
-
-Future<void> markUserInterest ({context,carImage,carName,carNumber,})async{
-  UserData? userData=await fetchUserDetails();
-  String userName=userData!.userName;
+Future<void> markUserInterest({
+  context,
+  carImage,
+  carName,
+  carNumber,
+}) async {
+  UserData? userData = await fetchUserDetails();
+  String userName = userData!.userName;
   String userContact = userData.mobile;
   String userLocation = userData.location;
-  
-  final QuerySnapshot existingDocs = await userInterestMarked
-      .where('carNumber', isEqualTo: carNumber)
-      .get();
-      
-  if(existingDocs.docs.isEmpty){
-    final data={ 
-     'userName': userName,
-     'userContact' : userContact,
-     'userLocation' : userLocation,
-     'carImag' : carImage,
-     'carName': carName,
-     'carNumber' : carNumber
+
+  final QuerySnapshot existingDocs =
+      await userInterestMarked.where('carNumber', isEqualTo: carNumber).get();
+
+  if (existingDocs.docs.isEmpty) {
+    final data = {
+      'userName': userName,
+      'userContact': userContact,
+      'userLocation': userLocation,
+      'carImag': carImage,
+      'carName': carName,
+      'carNumber': carNumber
     };
-    userInterestMarked.add(data);     
-    snackbarWidget('Your interest is been marked', context, Colors.blue,Colors.white, SnackBarBehavior.floating);
+    userInterestMarked.add(data);
+    snackbarWidget('Your interest is been marked', context, Colors.blue,
+        Colors.white, SnackBarBehavior.floating);
     Navigator.of(context).pop();
-  }else{
-    snackbarWidget('Interest already marked for this car. Seller will contact you in short', context, Colors.blue,Colors.white, SnackBarBehavior.floating);
+  } else {
+    snackbarWidget(
+        'Interest already marked for this car. Seller will contact you in short',
+        context,
+        Colors.blue,
+        Colors.white,
+        SnackBarBehavior.floating);
     Navigator.of(context).pop();
   }
- 
 }
-
 
 Future<SellerData?> getSellerDetailsById(String sellerId) async {
   await Future.delayed(const Duration(milliseconds: 1000));
-  final CollectionReference sellerSignupFirebaseObject = FirebaseFirestore.instance.collection('sellerSignupData');
-  try{
+  final CollectionReference sellerSignupFirebaseObject =
+      FirebaseFirestore.instance.collection('sellerSignupData');
+  try {
     QuerySnapshot querySnapshot = await sellerSignupFirebaseObject.get();
     for (var doc in querySnapshot.docs) {
       if (doc.id == sellerId) {
-        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;            
+        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
         SellerData sellerDetails = SellerData(
           id: doc.id,
           companyName: data['companyName'],
@@ -122,8 +141,50 @@ Future<SellerData?> getSellerDetailsById(String sellerId) async {
         return sellerDetails;
       }
     }
-  }catch (e) {    
+  } catch (e) {
     return null;
   }
   return null;
+}
+
+void sellerDetailsAlertDialog(
+    {required BuildContext context, required dynamic data}) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: const MyTextWidget(
+            text: 'Contact Seller',
+            color: Colors.black,
+            size: 20,
+            weight: FontWeight.bold),
+        content: MyTextWidget(
+            text: '${data.companyName}',
+            color: Colors.black,
+            size: 17,
+            weight: FontWeight.w500),
+        actions: [
+          ElevatedButton(
+            onPressed: () => Navigator.pop(context),
+            style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.red)),
+            child: const MyTextWidget(text: 'Back', color: Colors.white, size: 15, weight: FontWeight.bold)
+          ),
+          ElevatedButton.icon(
+            onPressed: () async {
+              final url = Uri.parse('tel:${data.mobile}');
+              if (await canLaunchUrl(url)) {
+                await launchUrl(url);
+                Navigator.pop(context);
+              } else {
+                snackbarWidget('Could not launch call app', context, Colors.red, Colors.white, SnackBarBehavior.floating);
+              }
+            },
+            icon: const Icon(Icons.call, color: Colors.white),
+            label: const MyTextWidget(text: 'Call now', color: Colors.white, size: 15, weight: FontWeight.bold),
+            style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.green)),
+          ),
+        ],
+      );
+    },
+  );
 }

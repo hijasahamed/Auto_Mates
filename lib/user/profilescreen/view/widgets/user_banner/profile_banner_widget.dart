@@ -24,15 +24,20 @@ class ProfileBannerWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               const CircleAvatar(
-                backgroundColor: Colors.white,
-                radius: 55,
+                backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                radius: 40,
                 backgroundImage: AssetImage('assets/images/avatar.png'),
               ),
               MyTextWidget(
                   text: user.userName,
                   color: Colors.white,
-                  size: 20,
-                  weight: FontWeight.bold)
+                  size: 25,
+                  weight: FontWeight.bold),
+              TextButton(onPressed: () {
+                
+                }, 
+                child: const MyTextWidget(text: 'Edit Profile', color: Colors.white, size: 12, weight: FontWeight.bold)
+              )
             ],
           ),
         ));

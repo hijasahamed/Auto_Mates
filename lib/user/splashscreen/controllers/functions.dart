@@ -36,8 +36,6 @@ Future<void> checkIfUserLogedin(context) async {
   final sharedPref = await SharedPreferences.getInstance();
   final isLogedin = sharedPref.getBool(logedInKey);
   final isSellerLogedIn = sharedPref.getBool(sellerLogedInKey);
-  print('user loged in key $isLogedin');
-  print('seller loged in key $isSellerLogedIn');
   var connectivityResult = await Connectivity().checkConnectivity();
   if (connectivityResult == ConnectivityResult.none) {
     await Future.delayed(const Duration(milliseconds: 3150));

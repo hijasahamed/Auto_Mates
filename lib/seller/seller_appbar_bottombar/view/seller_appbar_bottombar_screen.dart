@@ -27,7 +27,7 @@ class _SellerappbarbottombarState extends State<Sellerappbarbottombar> {
 
   List<Widget> buildSellerTabs(SellerData data) {
     return [
-      const SellerHomeScreen(),
+      SellerHomeScreen(data: data,),
       const ChatScreen(),
       SellerProfileScreen(data: data),
     ];
@@ -80,7 +80,7 @@ class _SellerappbarbottombarState extends State<Sellerappbarbottombar> {
                 } else {
                   SellerData data = snapshot.data!;
                   List<Widget> sellerTabs = buildSellerTabs(data);
-                  return Scaffold(
+                  return Scaffold(                    
                     appBar: PreferredSize(
                       preferredSize: const Size.fromHeight(80),
                       child: SellerScreenAppbarWidget(name: data.companyName,screenSize: screenSize,),

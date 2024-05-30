@@ -256,3 +256,18 @@ deleteAlertDialogwidget(
     },
   );
 }
+
+
+Future<List<Map<String, dynamic>>> getCarsBySellerId(String sellerId) async {
+  try {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection('carstosell')
+        .where('sellerId', isEqualTo: sellerId)
+        .get();
+    
+    List<Map<String, dynamic>> carsList = querySnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+    return carsList;
+  } catch (e) {
+    return [];
+  }
+}

@@ -30,8 +30,9 @@ class _CarHolderState extends State<CarHolder> {
 
   @override
   void initState() {
-    checkIfFavourite(
-        isFavOrNotValueNotifier: isFavOrNotValueNotifier, id: widget.data.id);
+    if(widget.isFromUser==true){
+      checkIfFavourite(id: widget.data.id,isFavOrNotValueNotifier: isFavOrNotValueNotifier);
+    }
     super.initState();
   }
 
@@ -129,7 +130,7 @@ class _CarHolderState extends State<CarHolder> {
                                         context: context);
                                   },
                                   child: const CircleAvatar(
-                                    backgroundColor: Colors.white,
+                                    backgroundColor: Colors.white70,
                                     radius: 15,
                                     child: Icon(
                                       Icons.delete,
@@ -183,7 +184,7 @@ class _CarHolderState extends State<CarHolder> {
                   children: [
                     MyTextWidget(
                         text: 'Rs. ${widget.data['price']}',
-                        color: Colors.black,
+                        color: const Color.fromARGB(255, 10, 104, 12),
                         size: 15,
                         weight: FontWeight.bold),
                         SizedBox(width: widget.screenSize.width/120,),

@@ -1,3 +1,4 @@
+import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:flutter/material.dart';
 
 class CarImage extends StatelessWidget {
@@ -23,18 +24,19 @@ class CarImage extends StatelessWidget {
                   image: NetworkImage(data['image']), fit: BoxFit.cover)),
         ),
         (fromSeller == false)
-            ? const Positioned(
+            ? Positioned(
                 top: 5,
                 right: 5,
                 child: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  radius: 15,
-                  child: Icon(
-                    Icons.favorite_outline_rounded,
-                    size: 20,
-                    color: Colors.red,
-                  ),
-                ))
+                  radius: 17,
+                  backgroundColor: Colors.black45,
+                  child: IconButton(
+                  onPressed: () {
+                    addCarToUserFavourite(data: data, context: context);
+                  }, 
+                  icon: const Icon(Icons.favorite_rounded,color: Colors.white,size: 18,)
+                ),
+            ))
             : const SizedBox()
       ],
     );

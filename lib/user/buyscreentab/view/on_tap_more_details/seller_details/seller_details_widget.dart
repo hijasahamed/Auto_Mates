@@ -27,44 +27,56 @@ class SellerDetailsCardWidget extends StatelessWidget {
               return const Center(child: MyTextWidget(text: 'No seller data', color: Colors.black, size: 11, weight: FontWeight.bold));
             }else{
               SellerData data=snapshot.data!;
-              return Stack(              
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [                    
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: MyTextWidget(text: 'Seller information', color: Color(0xFF424141), size: 13, weight: FontWeight.bold),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SellersDetail(icon: Icons.person, data: data.companyName),
-                              SellersDetail(icon: Icons.call, data: data.mobile),
-                              const SellersDetail(icon: Icons.star, data: "4.2"),
-                              SellersDetail(icon: Icons.place, data: data.location),
-                            ],
-                          ),
-                          MapHolder(screenSize: screenSize)
-                        ],
-                      ),
-                    ],
-                  ),
+              return Padding(
+                padding: const EdgeInsets.all(8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [                    
+                    Row(
+                      children: [
+                        const MyTextWidget(text: 'Seller informations', color: Color(0xFF424141), size: 15, weight: FontWeight.bold),
+                        SizedBox(width: screenSize.width/12,),                        
+                        const Spacer(),
+                        const SellerFavButton()
+                      ],
+                    ),
+                    SizedBox(height: screenSize.height/175,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SellersDetail(icon: Icons.person, data: data.companyName,screenSize: screenSize,),                              
+                            SellersDetail(icon: Icons.call, data: data.mobile,screenSize: screenSize,),
+                            SellersDetail(icon: Icons.star, data: "4.2",screenSize: screenSize,),
+                            SellersDetail(icon: Icons.place, data: data.location,screenSize: screenSize,),
+                            TextButton(
+                              onPressed: 
+                              () {
+                                sellerDetailsAlertDialog(context: context,data: data);
+                              }, 
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.call,color: Colors.blue,size: 15,),
+                                  SizedBox(width: screenSize.width/75,),
+                                  const MyTextWidget(text: 'Contact Seller', color: Colors.blue, size: 12, weight: FontWeight.bold),
+                                ],
+                              )
+                            ),
+                          ],
+                        ),
+                        MapHolder(screenSize: screenSize)
+                      ],
+                    ),
+                  ],
                 ),
-                const SellerFavButton()
-              ],
-            );
+              );
           }
         },
       ),
     );
   }
 }
-
-
