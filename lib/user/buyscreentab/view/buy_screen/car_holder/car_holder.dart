@@ -26,13 +26,9 @@ class CarHolder extends StatefulWidget {
 }
 
 class _CarHolderState extends State<CarHolder> {
-  final ValueNotifier<bool> isFavOrNotValueNotifier = ValueNotifier(false);
 
   @override
-  void initState() {
-    if(widget.isFromUser==true){
-      checkIfFavourite(id: widget.data.id,isFavOrNotValueNotifier: isFavOrNotValueNotifier);
-    }
+  void initState() {    
     super.initState();
   }
 
@@ -107,21 +103,14 @@ class _CarHolderState extends State<CarHolder> {
                                     addCarToUserFavourite(
                                         data: widget.data, context: context);
                                   },
-                                  child: ValueListenableBuilder(
-                                    valueListenable: isFavOrNotValueNotifier,
-                                    builder: (context, value, child) {
-                                      return CircleAvatar(
-                                        backgroundColor: Colors.white,
-                                        radius: 15,
-                                        child: Icon(
-                                          value
-                                              ? Icons.favorite_rounded
-                                              : Icons.favorite_border_rounded,
-                                          size: 20,
-                                          color: Colors.red,
-                                        ),
-                                      );
-                                    },
+                                  child: const CircleAvatar(
+                                    backgroundColor: Colors.white,
+                                    radius: 15,
+                                    child: Icon(
+                                       Icons.favorite_border_rounded,
+                                      size: 20,
+                                      color: Colors.red,
+                                    ),
                                   ))
                               : GestureDetector(
                                   onTap: () {

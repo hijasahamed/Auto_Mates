@@ -302,9 +302,40 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
                         color: Colors.redAccent,
                         child: InkWell(
                             onTap: () {
-                              widget.sellerHomeScreenBloc
-                                  .add(PostNewCarButtonClickedEvent(
-                                postCarFormkey: postCarFormkey,
+                              // widget.sellerHomeScreenBloc
+                              //    .add(PostNewCarButtonClickedEvent(
+                              //   postCarFormkey: postCarFormkey,
+                              //   carBrandController: carBrandController,
+                              //   carModelNameController: carModelNameController,
+                              //   carColorController: carColorController,
+                              //   carYearController: carYearController,
+                              //   carPriceController: carPriceController,
+                              //   carFuelController: carFuelController,
+                              //   carKilometerController: carKilometerController,
+                              //   regNumberController: regNumberController,
+                              //   numOfOwnerController: numOfOwnerController,
+                              //   transmissionController: transmissionController,
+                              //   insuranceController: insuranceController,
+                              //   seatCapacityController: seatCapacityController,
+                              //   milageController: milageController,
+                              //   sunroofController: sunroofController,
+                              //   bootspaceController: bootspaceController,
+                              //   infotainmentSystemController: infotainmentSystemController,
+                              //   alloyWheelController: alloyWheelController,
+                              //   carHeightController: carheightController,
+                              //   carWidthController: carWidthController,
+                              //   carLengthController: carLengthController,
+                              //   groundClearanceController: groundClearenceController,
+                              //   airBagController: airBagController,
+                              //   airConditionerController: airConditionerController,
+                              //   powerWindowController: powerWindowController,
+                              //   bodyTypeController: bodyTypeController,
+                              //   fuelTankController: fuelTankController,
+                              //   overViewController: overViewController
+                              // ));
+                              postNewCar(
+                                    context: context,
+                                    postCarFormkey: postCarFormkey,
                                 carBrandController: carBrandController,
                                 carModelNameController: carModelNameController,
                                 carColorController: carColorController,
@@ -332,7 +363,7 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
                                 bodyTypeController: bodyTypeController,
                                 fuelTankController: fuelTankController,
                                 overViewController: overViewController
-                              ));
+                                  );
                             },
                             child: const Center(
                               child: MyTextWidget(

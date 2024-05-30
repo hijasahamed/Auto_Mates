@@ -1,7 +1,6 @@
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/popup_menu_button_widget.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/app_bar_gradient_color.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class NormalAppBar extends StatelessWidget {
@@ -10,7 +9,7 @@ class NormalAppBar extends StatelessWidget {
   final bool? isFromSeller;
   final SellerHomeScreenBloc? sellerHomeScreenBloc;
   final Size? screenSize;
-  final DocumentSnapshot? data;
+  final dynamic data;
   @override
   Widget build(BuildContext context) {
     return AppBar(
