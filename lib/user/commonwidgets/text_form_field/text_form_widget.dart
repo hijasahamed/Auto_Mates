@@ -1,7 +1,7 @@
-import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbutton/car_brand_drop_down.dart';
-import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbutton/dropdown_button_widget.dart';
-import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbutton/insurence_date_picker.dart';
-import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbutton/year_picker.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbuttons/car_brand_drop_down.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbuttons/dropdown_button_widget.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbuttons/insurence_date_picker.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbuttons/year_picker.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable

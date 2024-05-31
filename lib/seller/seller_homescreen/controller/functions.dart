@@ -51,6 +51,7 @@ postNewCar(
   required TextEditingController bodyTypeController,
   required TextEditingController fuelTankController,
   required TextEditingController overViewController,
+  sellerHomeScreenBloc
   }) async{
    SellerData? sellerDetails = await fetchSellerDetails();
    if (sellerDetails == null) {
@@ -90,7 +91,8 @@ postNewCar(
   };
   if (postCarFormkey.currentState!.validate()){
     firebaseObject.add(data);
-    Navigator.of(context).pop();   
+    Navigator.of(context).pop();
+    sellerHomeScreenBloc.add(AllCarsTOSellEvent());   
     snackbarWidget('Car Posted Successfully', context, Colors.blue,Colors.white, SnackBarBehavior.floating);
     imageUrl='';
   } else {
@@ -99,9 +101,10 @@ postNewCar(
   }
 }
 
-deleteCarToSell(docId,context)async {
+deleteCarToSell(docId,context,sellerHomeScreenBloc)async {
  firebaseObject.doc(docId).delete();
   Navigator.of(context).pop();
+  sellerHomeScreenBloc.add(AllCarsTOSellEvent());
   snackbarWidget('Car details removed', context,Colors.red, Colors.white, SnackBarBehavior.floating);
 }
 
@@ -242,7 +245,7 @@ deleteAlertDialogwidget(
                   style: const ButtonStyle(
                       backgroundColor: WidgetStatePropertyAll(Colors.red)),
                   onPressed: () {
-                    deleteCarToSell(docId,context,);
+                    deleteCarToSell(docId,context,sellerhomescreenbloc);
                   },
                   child: const MyTextWidget(
                       text: 'Delete',
@@ -258,15 +261,16 @@ deleteAlertDialogwidget(
 }
 
 
-Future<List<Map<String, dynamic>>> getCarsBySellerId(String sellerId) async {
+Future<List> getCarsBySellerId({sellerId}) async {
+  List result=[];
   try {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection('carstosell')
         .where('sellerId', isEqualTo: sellerId)
         .get();
     
-    List<Map<String, dynamic>> carsList = querySnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
-    return carsList;
+   result=querySnapshot.docs as List;
+    return result;
   } catch (e) {
     return [];
   }

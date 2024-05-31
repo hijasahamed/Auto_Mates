@@ -1,8 +1,8 @@
 import 'package:auto_mates/seller/authentications/controllers/functions.dart';
 import 'package:auto_mates/seller/seller_profile_screen/controllers/functions.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/bloc/seller_profile_bloc.dart';
-import 'package:auto_mates/seller/seller_profile_screen/view/widget/banner_card_widget.dart';
-import 'package:auto_mates/seller/seller_profile_screen/view/widget/seller_logout_widget.dart';
+import 'package:auto_mates/seller/seller_profile_screen/view/widget/seller_banner/banner_card_widget.dart';
+import 'package:auto_mates/seller/seller_profile_screen/view/widget/log_out_widget/seller_logout_widget.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/widget/seller_properties_tile/seller_properties_tiles_widget.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/logout_section/loging_out_screen_widget.dart';
 import 'package:flutter/material.dart';

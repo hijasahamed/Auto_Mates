@@ -2,8 +2,9 @@ import 'package:auto_mates/seller/authentications/controllers/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/add_car_edit_car_widget.dart';
-import 'package:auto_mates/seller/seller_homescreen/view/widgets/all_cars_to_sell_widget.dart';
-import 'package:auto_mates/seller/seller_homescreen/view/widgets/floating_button_widget.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/all_cars_to_sell/all_cars_to_sell_widget.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/floating_button/floating_button_widget.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/single_car_details/single_car_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -61,7 +62,12 @@ class SellerHomeScreen extends StatelessWidget {
           );
         }
         else if(state is NavigateToSingleCarDetailsPageActionState){
-         
+         Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => SingleCarDetailsScreen(
+              screenSize:screenSize,
+              data: state.data,
+              sellerHomeScreenBloc: sellerHomeScreenBloc,
+          )));
         }
       },
       builder: (context, state) {

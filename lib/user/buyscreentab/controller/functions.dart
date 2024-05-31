@@ -171,13 +171,7 @@ void sellerDetailsAlertDialog(
           ),
           ElevatedButton.icon(
             onPressed: () async {
-              final url = Uri.parse('tel:${data.mobile}');
-              if (await canLaunchUrl(url)) {
-                await launchUrl(url);
-                Navigator.pop(context);
-              } else {
-                snackbarWidget('Could not launch call app', context, Colors.red, Colors.white, SnackBarBehavior.floating);
-              }
+              makeCall(context: context,mobileNumber: data.mobile);
             },
             icon: const Icon(Icons.call, color: Colors.white),
             label: const MyTextWidget(text: 'Call now', color: Colors.white, size: 15, weight: FontWeight.bold),
@@ -187,4 +181,15 @@ void sellerDetailsAlertDialog(
       );
     },
   );
+}
+
+
+makeCall({mobileNumber,context})async{
+  final url = Uri.parse('tel:$mobileNumber');
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url);
+    Navigator.pop(context);
+  } else {
+    snackbarWidget('Could not launch call app', context, Colors.red, Colors.white, SnackBarBehavior.floating);
+  }
 }

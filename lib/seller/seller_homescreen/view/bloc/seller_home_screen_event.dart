@@ -77,3 +77,5 @@ class NavigateToSingleCarDetailsPageEvent extends SellerHomeScreenEvent {
  final dynamic data;
   NavigateToSingleCarDetailsPageEvent({required this.data});
 }
+
+class AllCarsTOSellEvent extends SellerHomeScreenEvent {}

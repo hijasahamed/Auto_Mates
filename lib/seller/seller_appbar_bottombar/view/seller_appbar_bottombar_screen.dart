@@ -82,7 +82,7 @@ class _SellerappbarbottombarState extends State<Sellerappbarbottombar> {
                   List<Widget> sellerTabs = buildSellerTabs(data);
                   return Scaffold(                    
                     appBar: PreferredSize(
-                      preferredSize: const Size.fromHeight(80),
+                      preferredSize: const Size.fromHeight(65),
                       child: SellerScreenAppbarWidget(name: data.companyName,screenSize: screenSize,),
                     ),
                     body: sellerTabs[sellertabIndex],

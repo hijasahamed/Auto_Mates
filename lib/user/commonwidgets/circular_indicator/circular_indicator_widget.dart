@@ -5,9 +5,11 @@ class CircularIndicatorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: CircularProgressIndicator(
-        color: Colors.blue,
+    return const Scaffold(
+      body: Center(
+        child: CircularProgressIndicator(
+          color: Colors.blue,
+        ),
       ),
     );
   }

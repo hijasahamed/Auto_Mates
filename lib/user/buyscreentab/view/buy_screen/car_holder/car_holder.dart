@@ -1,13 +1,12 @@
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
-import 'package:auto_mates/seller/seller_homescreen/view/widgets/popup_menu_button_widget.dart';
-import 'package:auto_mates/seller/seller_homescreen/view/widgets/single_car_details/single_car_details_screen.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/all_cars_to_sell/pop_up_button/popup_menu_button_widget.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/on_tap_car_more_details.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/favourite_screen/controller/functions.dart';
 import 'package:flutter/material.dart';
 
-class CarHolder extends StatefulWidget {
+class CarHolder extends StatelessWidget {
   const CarHolder(
       {super.key,
       required this.screenSize,
@@ -22,32 +21,16 @@ class CarHolder extends StatefulWidget {
   final bool? isFromUser;
 
   @override
-  State<CarHolder> createState() => _CarHolderState();
-}
-
-class _CarHolderState extends State<CarHolder> {
-
-  @override
-  void initState() {    
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        (widget.isFromSeller == true)
-            ? Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => SingleCarDetailsScreen(
-                      screenSize: widget.screenSize,
-                      data: widget.data,
-                      sellerHomeScreenBloc: widget.sellerHomeScreenBloc,
-                    )))
+        (isFromSeller == true)
+            ? sellerHomeScreenBloc?.add(NavigateToSingleCarDetailsPageEvent(data: data))
             : Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) {
                   return OnTapCarMoreDetailsCarScreen(
-                    screenSize: widget.screenSize,
-                    data: widget.data,
+                    screenSize: screenSize,
+                    data: data,
                   );
                 },
               ));
@@ -71,8 +54,8 @@ class _CarHolderState extends State<CarHolder> {
                         topRight: Radius.circular(10)),
                     child: FadeInImage(
                         fadeInDuration: const Duration(milliseconds: 750),
-                        height: widget.screenSize.height / 5,
-                        width: widget.screenSize.width,
+                        height: screenSize.height / 5,
+                        width: screenSize.width,
                         placeholder: const AssetImage(
                           'assets/images/image placeholder.jpeg',
                         ),
@@ -82,40 +65,40 @@ class _CarHolderState extends State<CarHolder> {
                             color: Colors.blue,
                           );
                         },
-                        image: NetworkImage(widget.data['image']),
+                        image: NetworkImage(data['image']),
                         fit: BoxFit.cover,
                         filterQuality: FilterQuality.high),
                   ),                 
                   Positioned(
                       top: 5,
                       right: 5,
-                      child: (widget.isFromSeller == true)
+                      child: (isFromSeller == true)
                           ? CircleAvatar(
                               backgroundColor: Colors.black38,
                               child: PopupMenuButtonWidget(
-                                  screenSize: widget.screenSize,
-                                  data: widget.data,
+                                  screenSize: screenSize,
+                                  data: data,
                                   sellerHomeScreenBloc:
-                                      widget.sellerHomeScreenBloc))
-                          : (widget.isFromUser == true)
+                                      sellerHomeScreenBloc))
+                          : (isFromUser == true)
                               ? GestureDetector(
                                   onTap: () {
                                     addCarToUserFavourite(
-                                        data: widget.data, context: context);
+                                        data: data, context: context);
                                   },
                                   child: const CircleAvatar(
-                                    backgroundColor: Colors.white,
+                                    backgroundColor: Colors.black38,
                                     radius: 15,
                                     child: Icon(
                                        Icons.favorite_border_rounded,
                                       size: 20,
-                                      color: Colors.red,
+                                      color: Colors.white,
                                     ),
                                   ))
                               : GestureDetector(
                                   onTap: () {
                                     removeFavoriteCar(
-                                        docId: widget.data.id,
+                                        docId: data.id,
                                         context: context);
                                   },
                                   child: const CircleAvatar(
@@ -135,16 +118,16 @@ class _CarHolderState extends State<CarHolder> {
                 child: Row(
                   children: [
                     MyTextWidget(
-                        text: '${widget.data['brand']}',
+                        text: '${data['brand']}',
                         color: const Color(0XFF143A42),
                         size: 18,
                         weight: FontWeight.bold),
                     SizedBox(
-                      width: widget.screenSize.width / 100,
+                      width: screenSize.width / 100,
                     ),
                     Expanded(
                         child: MyTextWidget(
-                            text: '${widget.data['modelName']}',
+                            text: '${data['modelName']}',
                             color: const Color.fromARGB(255, 9, 87, 189),
                             size: 15,
                             weight: FontWeight.bold)),
@@ -154,7 +137,7 @@ class _CarHolderState extends State<CarHolder> {
               Padding(
                 padding: const EdgeInsets.only(left: 4),
                 child: MyTextWidget(
-                    text: '${widget.data['year']} model',
+                    text: '${data['year']} model',
                     color: Colors.black,
                     size: 12,
                     weight: FontWeight.w500),
@@ -162,7 +145,7 @@ class _CarHolderState extends State<CarHolder> {
               Padding(
                 padding: const EdgeInsets.only(left: 4),
                 child: MyTextWidget(
-                    text: '${widget.data['kilometer']} kilometers',
+                    text: '${data['kilometer']} kilometers',
                     color: Colors.black,
                     size: 12,
                     weight: FontWeight.w500),
@@ -172,11 +155,11 @@ class _CarHolderState extends State<CarHolder> {
                 child: Row(
                   children: [
                     MyTextWidget(
-                        text: 'Rs. ${widget.data['price']}',
+                        text: 'Rs. ${data['price']}',
                         color: const Color.fromARGB(255, 10, 104, 12),
                         size: 15,
                         weight: FontWeight.bold),
-                        SizedBox(width: widget.screenSize.width/120,),
+                        SizedBox(width: screenSize.width/120,),
                     const MyTextWidget(text: 'Lakhs onwards', color: Colors.black, size: 12, weight: FontWeight.w500)
                   ],
                 ),

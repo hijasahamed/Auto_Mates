@@ -78,3 +78,6 @@ class NavigateToSingleCarDetailsPageActionState extends SellerHomeScreenState {
   final dynamic data;
   NavigateToSingleCarDetailsPageActionState({required this.data});
 }
+
+
+class AllCarsTOSellState extends SellerHomeScreenState {}

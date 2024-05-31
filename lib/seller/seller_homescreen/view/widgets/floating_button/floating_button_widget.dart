@@ -11,7 +11,7 @@ class FloatingButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      backgroundColor: Colors.red,
+      backgroundColor: Colors.redAccent,
       onPressed: () {
         sellerHomeScreenBloc.add(FloatingButtonClickedEvent());        
       },

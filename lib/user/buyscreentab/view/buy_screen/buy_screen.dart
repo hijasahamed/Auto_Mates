@@ -24,20 +24,24 @@ class BuyScreen extends StatelessWidget {
               body: Column(
                 children: [
                   SortingFilteringWidget(screenSize: screenSize),
-                  GridView.builder(
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    itemCount: snapshot.data!.docs.length,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: .75,
-                      mainAxisSpacing: 3,
-                      crossAxisSpacing: 3,
-                      crossAxisCount: 2,
+                  Expanded(
+                    child: SizedBox(
+                      child: GridView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount: snapshot.data!.docs.length,
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          childAspectRatio: .75,
+                          mainAxisSpacing: 3,
+                          crossAxisSpacing: 3,
+                          crossAxisCount: 2,
+                        ),
+                        itemBuilder: (context, index) {
+                          final DocumentSnapshot data = snapshot.data.docs[index];
+                          return CarHolder(screenSize: screenSize, data: data,isFromSeller: false,isFromUser: true,);
+                        },
+                      ),
                     ),
-                    itemBuilder: (context, index) {
-                      final DocumentSnapshot data = snapshot.data.docs[index];
-                      return CarHolder(screenSize: screenSize, data: data,isFromSeller: false,isFromUser: true,);
-                    },
                   ),
                 ],
               ),
