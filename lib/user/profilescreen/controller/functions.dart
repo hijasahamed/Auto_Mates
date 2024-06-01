@@ -1,8 +1,12 @@
+
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
+import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
+import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
 import 'package:auto_mates/user/splashscreen/controllers/functions.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -70,11 +74,22 @@ Future<void> confirmUserLogout({context}) async {
   await googleSignInn.signOut();
   await FirebaseAuth.instance.signOut();
   final sharedPref = await SharedPreferences.getInstance();
-  await sharedPref.setBool(logedInKey, false);
+  await sharedPref.setBool(logedInKey, false); 
   Navigator.of(context).pushReplacement(MaterialPageRoute(
     builder: (context) => UserLoginScreen(),
   ));
 }
 
 
+Future<void> removeFavoriteCar({docId,context})async{
+  userFavouriteCars.doc(docId).delete();
+  snackbarWidget('Car Removed from favourites', context,Colors.blue, Colors.white, SnackBarBehavior.floating);
+}
 
+
+Stream<QuerySnapshot> getInterestedCarsStream(String userContact) {
+  return FirebaseFirestore.instance
+      .collection('userInterestMarked')
+      .where('userContact', isEqualTo: userContact)
+      .snapshots();
+}

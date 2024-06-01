@@ -3,7 +3,7 @@ import 'package:auto_mates/seller/seller_homescreen/view/widgets/all_cars_to_sel
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/on_tap_car_more_details.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
-import 'package:auto_mates/user/favourite_screen/controller/functions.dart';
+import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:flutter/material.dart';
 
 class CarHolder extends StatelessWidget {

@@ -1,4 +1,5 @@
 import 'package:auto_mates/seller/authentications/controllers/functions.dart';
+import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/add_car_edit_car_widget.dart';

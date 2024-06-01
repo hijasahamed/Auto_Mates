@@ -34,7 +34,6 @@ class AllCarsToSellWidget extends StatelessWidget {
               );
             }
             if (snapshot.hasData && snapshot.data!.isNotEmpty) {
-              final val = snapshot.data ?? [];
               return GridView.builder(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,

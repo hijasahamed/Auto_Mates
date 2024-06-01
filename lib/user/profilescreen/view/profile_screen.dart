@@ -1,13 +1,17 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_error_placeholder.dart';
-import 'package:auto_mates/user/favourite_screen/view/favourite_screen/favourite_screen.dart';
+import 'package:auto_mates/user/profilescreen/view/widgets/favourite_screen/favourite_screen/favourite_screen.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
+import 'package:auto_mates/user/profilescreen/view/widgets/interested_cars/interested_cars_screen.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/logout_section/loging_out_screen_widget.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/profile_properties/profile_properties_screen.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/user_banner/profile_banner_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key, required this.screenSize,});
@@ -40,6 +44,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
         }else if (state is FavouriteConatinerClickedActionState){
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => FavouriteScreen(screenSize: widget.screenSize,),
+          ));
+        }
+        else if(state is InterestedCarConatinerClickedActionState){ 
+          final sharedPref=await SharedPreferences.getInstance();
+          dynamic mobile= sharedPref.getString('mobile');         
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => InterestedCarsScreen(userContact: mobile, screenSize: widget.screenSize),
           ));
         }
       },

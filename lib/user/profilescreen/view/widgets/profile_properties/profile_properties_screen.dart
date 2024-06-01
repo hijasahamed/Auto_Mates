@@ -1,8 +1,5 @@
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
-import 'package:auto_mates/user/profilescreen/view/widgets/profile_properties/containers_widgets/emi_calculator_container.dart';
-import 'package:auto_mates/user/profilescreen/view/widgets/profile_properties/containers_widgets/favourite_container.dart';
-import 'package:auto_mates/user/profilescreen/view/widgets/profile_properties/containers_widgets/favourite_seller_container.dart';
-import 'package:auto_mates/user/profilescreen/view/widgets/profile_properties/containers_widgets/logout_container.dart';
+import 'package:auto_mates/user/profilescreen/view/widgets/profile_properties/containers_widget/properties_container.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePropertiesScreen extends StatelessWidget {
@@ -16,23 +13,30 @@ class ProfilePropertiesScreen extends StatelessWidget {
         Row(
           children: [
              Expanded(
-                child: FavouriteContainer(screenSize: screenSize,profileScreenBloc: profileScreenBloc,) 
+                child: PropertiesContainer(screenSize: screenSize,profileScreenBloc: profileScreenBloc,isFavouriteCar: true,) 
               ),
               Expanded(
-                child: EmiCalculatorContainer(screenSize: screenSize)
+                child: PropertiesContainer(screenSize: screenSize,profileScreenBloc: profileScreenBloc,isEmiCalculator: true,) 
               ),
           ],
         ),
         Row(
           children: [
              Expanded(
-                child:FavouriteSellerContainer(screenSize: screenSize, profileScreenBloc: profileScreenBloc)
+                child:PropertiesContainer(screenSize: screenSize,profileScreenBloc: profileScreenBloc,isFavouriteSeller: true,) 
               ),
-              Expanded(
-                child: LogoutContainer(screenSize: screenSize,profileScreenBloc: profileScreenBloc,)
+              Expanded(                
+                child: PropertiesContainer(screenSize: screenSize, profileScreenBloc: profileScreenBloc,isInterestedCar: true,)
               ),
           ],
         ),
+        Row(
+          children: [
+            Expanded(
+              child: PropertiesContainer(screenSize: screenSize,profileScreenBloc: profileScreenBloc,isLogout: true,)
+            )
+          ],
+        )
       ],
     );
   }

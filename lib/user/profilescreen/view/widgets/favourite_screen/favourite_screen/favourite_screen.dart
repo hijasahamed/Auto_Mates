@@ -1,7 +1,8 @@
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/car_holder/car_holder.dart';
-import 'package:auto_mates/user/favourite_screen/view/no_data_in_favourites/no_data_in_favourites.dart';
+import 'package:auto_mates/user/commonwidgets/circular_indicator/circular_indicator_widget.dart';
+import 'package:auto_mates/user/profilescreen/view/widgets/favourite_screen/no_data_in_favourites/no_data_in_favourites.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class FavouriteScreen extends StatelessWidget {
         stream: userFavouriteCars.orderBy('brand').snapshots(),
         builder: (context, AsyncSnapshot snapshot) {
           if(snapshot.connectionState == ConnectionState.waiting){
-          return const Center(child: CircularProgressIndicator(color: Colors.blue,));
+          return const CircularIndicatorWidget();
           }
           if(snapshot.hasData && snapshot.data.docs.isNotEmpty){
             return GridView.builder(

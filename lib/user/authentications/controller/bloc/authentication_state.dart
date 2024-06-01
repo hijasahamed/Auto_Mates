@@ -30,3 +30,4 @@ class LoginWithGoogleButtonSuccessfulNavigateToScreenActionState extends Authent
 class ForgetPasswordButtonClickedActionState extends  AuthenticationActionState{}
 
 class ResetPasswordButtonClickedActionState extends AuthenticationActionState{}
+

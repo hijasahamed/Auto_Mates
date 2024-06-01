@@ -2,6 +2,7 @@ import 'package:auto_mates/user/authentications/controller/bloc/authentication_b
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/authentications/view/widgets/login_signup_buttonshape/login_signup_button_shape.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignupButtonWidget extends StatelessWidget {
   const SignupButtonWidget(
@@ -28,35 +29,42 @@ class SignupButtonWidget extends StatelessWidget {
   final FirebaseAuthService auth;
   @override
   Widget build(BuildContext context) {
-    return Ink(
-      
-      child: InkWell(
-        onTap: () {
-          return signupButtonClicked(
-            location: locationController.text,
-            mobile: mobileController.text,
-              userName: userNameController.text,
-              recheckPassword: reChekPasswordController.text,
-              email: emailController.text,
-              password: passwordController.text,
-              authenticationBloc: authenticationBloc,
-              formkey: userSignupFormkey,
-              context: context);
-        },
-        child: ClipPath(
-          clipper: Customshape(),
-          child: Container(
-            color: const Color(0XFF143A42),
-            height: screenSize.height / 10,
-            child: const Center(
-                child: Text(
-              'Signup',
-              style: TextStyle(
-                  fontSize: 28, fontWeight: FontWeight.w600, color: Colors.white),
-            )),
+    return BlocBuilder<AuthenticationBloc, AuthenticationState>(
+      builder: (context, state) {
+        return Ink(
+          child: InkWell(
+            onTap: () {
+              signupButtonClicked(
+                  location: locationController.text,
+                  mobile: mobileController.text,
+                  userName: userNameController.text,
+                  recheckPassword: reChekPasswordController.text,
+                  email: emailController.text,
+                  password: passwordController.text,
+                  authenticationBloc: authenticationBloc,
+                  formkey: userSignupFormkey,
+                  context: context);
+            },
+            child: ClipPath(
+              clipper: Customshape(),
+              child: Container(
+                color: const Color(0XFF143A42),
+                height: screenSize.height / 10,
+                child: const Center(
+                  child: Text(
+                          'Signup',
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                        ),
+                ),
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

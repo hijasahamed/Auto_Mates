@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:auto_mates/seller/authentications/controllers/functions.dart';
+import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
@@ -90,6 +91,8 @@ Future<void> markUserInterest({
   carImage,
   carName,
   carNumber,
+  carSellerId,
+  carId,
 }) async {
   UserData? userData = await fetchUserDetails();
   String userName = userData!.userName;
@@ -97,7 +100,7 @@ Future<void> markUserInterest({
   String userLocation = userData.location;
 
   final QuerySnapshot existingDocs =
-      await userInterestMarked.where('carNumber', isEqualTo: carNumber).get();
+      await userInterestMarked.where('userContact', isEqualTo: userContact).get();
 
   if (existingDocs.docs.isEmpty) {
     final data = {
@@ -106,7 +109,9 @@ Future<void> markUserInterest({
       'userLocation': userLocation,
       'carImag': carImage,
       'carName': carName,
-      'carNumber': carNumber
+      'carNumber': carNumber,
+      'carSellerId':carSellerId,
+      'carId':carId
     };
     userInterestMarked.add(data);
     snackbarWidget('Your interest is been marked', context, Colors.blue,

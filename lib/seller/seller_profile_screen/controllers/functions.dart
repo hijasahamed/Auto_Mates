@@ -1,5 +1,5 @@
-import 'dart:io';
 import 'package:auto_mates/seller/seller_profile_screen/view/bloc/seller_profile_bloc.dart';
+import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
@@ -13,9 +13,8 @@ sellerLogout({
   await Future.delayed(const Duration(milliseconds: 2500));
   final sharedPref = await SharedPreferences.getInstance();
   await sharedPref.setBool(sellerLogedInKey, false);
-  exit(0);
-  // Navigator.of(context).pushReplacement(
-  //     MaterialPageRoute(builder: (context) => UserLoginScreen()));
+  Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) => UserLoginScreen()));
 }
 
 sellerLogoutAlertDialoge({context,screenSize,sellerProfileBloc}) {

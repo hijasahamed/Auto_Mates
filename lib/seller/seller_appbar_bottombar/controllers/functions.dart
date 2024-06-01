@@ -1,4 +1,4 @@
-import 'package:auto_mates/seller/authentications/controllers/functions.dart';
+import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<SellerData?> fetchSellerDetails()async{

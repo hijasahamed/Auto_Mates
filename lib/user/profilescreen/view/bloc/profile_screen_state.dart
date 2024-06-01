@@ -12,3 +12,5 @@ class LogoutButtonClickedActionState extends ProfileScreenActionState{}
 class ConfirmLogoutActionState extends ProfileScreenActionState{}
 
 class FavouriteConatinerClickedActionState extends ProfileScreenActionState{}
+
+class InterestedCarConatinerClickedActionState extends ProfileScreenActionState{}

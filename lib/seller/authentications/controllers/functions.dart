@@ -1,3 +1,4 @@
+import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/seller/seller_appbar_bottombar/view/seller_appbar_bottombar_screen.dart';
 import 'package:auto_mates/seller/authentications/view/otp_verification_screen.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
@@ -178,17 +179,7 @@ checkIfSellerAccountAvailable({mobileNumber}) async {
   }
 }
 
-class SellerData {
-  final String id;
-  final String companyName;
-  final String location;
-  final String mobile;
-  SellerData(
-      {required this.id,
-      required this.companyName,
-      required this.location,
-      required this.mobile});
-}
+
 
 Future<void> resendOtp(phoneNumberController) async {
   await FirebaseAuth.instance.verifyPhoneNumber(

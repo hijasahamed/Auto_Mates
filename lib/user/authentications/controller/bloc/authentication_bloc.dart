@@ -75,6 +75,6 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   FutureOr<void> resetPasswordButtonClickedEvent(
     ResetPasswordButtonClickedEvent event, Emitter<AuthenticationState> emit) {
       emit(ResetPasswordButtonClickedActionState());
-  }
+  } 
 }
 
