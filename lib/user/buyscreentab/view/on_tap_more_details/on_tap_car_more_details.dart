@@ -12,6 +12,7 @@ class OnTapCarMoreDetailsCarScreen extends StatelessWidget {
       {super.key, required this.screenSize, required this.data});
   final Size screenSize;
   final dynamic data;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

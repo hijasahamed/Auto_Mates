@@ -7,6 +7,7 @@ import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 final CollectionReference userFavouriteCars =
@@ -205,10 +206,20 @@ makeCall({mobileNumber,context})async{
 }
 
 
-Future<bool> checkIfUserInterestedCar({carId,userContact})async{
-  final QuerySnapshot existingCarInterested= await userInterestMarked
+Future<List<Map<String, dynamic>>>  checkIfUserInterestedCar({carId})async{
+  List<Map<String, dynamic>> result = [];
+  final sharedPref=await SharedPreferences.getInstance();
+  dynamic mobile= sharedPref.getString('mobile');
+  try{
+    QuerySnapshot existingCarInterested= await userInterestMarked
         .where('carId', isEqualTo: carId)
-        .where('userContact', isEqualTo: userContact)
+        .where('userContact', isEqualTo: mobile)
         .get();
-    return existingCarInterested.docs.isNotEmpty;
+    for(var doc in existingCarInterested.docs){
+      result.add({'id':doc.id,...doc.data() as Map<String,dynamic>});
+    }
+    return result;
+  }catch (e){
+    return [];
+  }
 }

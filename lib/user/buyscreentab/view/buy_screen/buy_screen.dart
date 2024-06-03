@@ -1,6 +1,5 @@
 import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/car_holder/car_holder.dart';
-import 'package:auto_mates/user/buyscreentab/view/buy_screen/sort_and_filter/sorting_filter_widget.dart';
 import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_error_placeholder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +22,6 @@ class BuyScreen extends StatelessWidget {
               resizeToAvoidBottomInset: false,
               body: Column(
                 children: [
-                  // SortingFilteringWidget(screenSize: screenSize),
                   Expanded(
                     child: SizedBox(
                       child: GridView.builder(

@@ -58,6 +58,7 @@ profileScreenAlertMessage({context, profileScreenBloc,removeInterestMarked,inter
                   backgroundColor: WidgetStatePropertyAll(Colors.red)),
               onPressed: () {
                 removeInterestMarked? removeUsersInterest(context: context,docId: interestedData.id) : profileScreenBloc.add(ConfirmLogoutEvent());
+                Navigator.pop(context);
               },
               child: MyTextWidget(
                   text: removeInterestMarked? 'Remove Interest' : 'Logout',
@@ -72,7 +73,6 @@ profileScreenAlertMessage({context, profileScreenBloc,removeInterestMarked,inter
 
 Future<void> confirmUserLogout({context}) async {
   final GoogleSignIn googleSignInn = GoogleSignIn();
-  await Future.delayed(const Duration(milliseconds: 2500));
   await googleSignInn.signOut();
   await FirebaseAuth.instance.signOut();
   final sharedPref = await SharedPreferences.getInstance();
