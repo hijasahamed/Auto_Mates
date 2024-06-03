@@ -4,6 +4,7 @@ import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/interested_cars/car_details_holder/user_interested_details_holder.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/interested_cars/car_image_holder/user_interested_car_holder.dart';
+import 'package:auto_mates/user/profilescreen/view/widgets/interested_cars/car_remove_button/user_interested_car_remove_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class InterestedCarsScreen extends StatelessWidget {
         child: NormalAppBar(title: 'Interested Cars')
       ),
       body: StreamBuilder(
-        stream: getInterestedCarsStream(userContact),
+        stream: getUsersInterestedCars(userContact),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const CircularIndicatorWidget();
@@ -35,16 +36,20 @@ class InterestedCarsScreen extends StatelessWidget {
             return ListView.builder(
               itemCount: cars.length,
               itemBuilder: (context, index) {
-                var car = cars[index].data() as Map<String, dynamic>;
+                var car = cars[index];               
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Card(
-                    color: const Color.fromARGB(255, 142, 142, 142),
+                    elevation: 5,
+                    color: Colors.white,
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         UserInterestedCarHolder(screenSize: screenSize, car: car),
                         SizedBox(width: screenSize.width/50,),
                         UserInterestedDetailsHolder(screenSize: screenSize, car: car),
+                        const Spacer(),
+                        UserInterestedCarRemoveButton(data: car,)
                       ],
                     ),
                   ),

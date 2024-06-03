@@ -10,22 +10,16 @@ class UserInterestCloseButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Padding(
-          padding: const EdgeInsets.all(3),
-          child: CircleAvatar(
-              radius: 20,
-              backgroundColor: Colors.red,
-              child: IconButton(
-                  onPressed: () {
-                    removeUserInterestAlertDialog(
-                        context: context, docId: data.id);
-                  },
-                  icon: const Icon(
-                    Icons.close,
-                    color: Colors.white,
-                    size: 20,
-                  ))),
-        ),
+        IconButton(
+            onPressed: () {
+              removeUserInterestAlertDialog(
+                  context: context, docId: data.id);
+            },
+            icon: const Icon(
+              Icons.close,
+              color: Color.fromARGB(255, 89, 89, 89),
+              size: 20,
+            )),
       ],
     );
   }

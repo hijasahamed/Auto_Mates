@@ -15,27 +15,27 @@ class CarAndUserDetails extends StatelessWidget {
           MyTextWidget(
               text: data['userName'],
               color: const Color.fromARGB(255, 111, 111, 111),
-              size: 18,
+              size: 15,
               weight: FontWeight.bold),
           MyTextWidget(
               text: data['userContact'],
               color: const Color.fromARGB(255, 111, 111, 111),
-              size: 15,
+              size: 13,
               weight: FontWeight.bold),
           MyTextWidget(
               text: data['userLocation'],
               color: const Color.fromARGB(255, 111, 111, 111),
-              size: 15,
+              size: 13,
               weight: FontWeight.bold),
           MyTextWidget(
               text: data['carName'],
               color: const Color.fromARGB(255, 111, 111, 111),
-              size: 16,
+              size: 13,
               weight: FontWeight.bold),
           MyTextWidget(
               text: data['carNumber'],
               color: const Color.fromARGB(255, 111, 111, 111),
-              size: 16,
+              size: 13,
               weight: FontWeight.bold),
         ],
       ),

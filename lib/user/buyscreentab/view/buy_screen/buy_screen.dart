@@ -13,7 +13,7 @@ class BuyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;   
       return StreamBuilder(
-        stream: firebaseObject.orderBy('brand').snapshots(), 
+        stream: firebaseObject.orderBy('brand').snapshots(),
         builder: (context, AsyncSnapshot snapshot) {
           if(snapshot.connectionState == ConnectionState.waiting){
           return const Center(child: CircularProgressIndicator(color: Colors.blue,));
@@ -23,7 +23,7 @@ class BuyScreen extends StatelessWidget {
               resizeToAvoidBottomInset: false,
               body: Column(
                 children: [
-                  SortingFilteringWidget(screenSize: screenSize),
+                  // SortingFilteringWidget(screenSize: screenSize),
                   Expanded(
                     child: SizedBox(
                       child: GridView.builder(

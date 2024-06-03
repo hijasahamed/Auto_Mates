@@ -1,4 +1,5 @@
 
+import 'package:auto_mates/seller/seller_profile_screen/controllers/functions.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
@@ -22,22 +23,23 @@ Future<UserData?> fetchUserDetails()async{
   return UserData(id: id, email: email, userName: userName,location: location,mobile: mobile);
 }
 
-logoutAlertMessage({context, profileScreenBloc}) {
+profileScreenAlertMessage({context, profileScreenBloc,removeInterestMarked,interestedData}) {
   return showDialog(
-    barrierColor: Colors.black54,
     context: context,
     barrierDismissible: false,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: const MyTextWidget(
-            text: 'Logout',
-            color: Color(0xFF424141),
-            size: 26,
+        backgroundColor: Colors.white,
+        title: MyTextWidget(
+            text: removeInterestMarked? 'Remove Interest' : 'Logout',
+            color: const Color(0xFF424141),
+            size: 24,
             weight: FontWeight.bold),
-        content: const MyTextWidget(
-            text: 'Do you want to Logout from AutoMates',
-            color: Color(0xFF424141),
+        content: MyTextWidget(
+            text: removeInterestMarked? 'Do you want to remove the interest? This will be removed for the seller also.': 'Do you want to Logout from AutoMates',
+            color: const Color(0xFF424141),
             size: 15,
+            maxline: true,
             weight: FontWeight.bold),
         actions: [
           ElevatedButton(
@@ -55,10 +57,10 @@ logoutAlertMessage({context, profileScreenBloc}) {
               style: const ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(Colors.red)),
               onPressed: () {
-                profileScreenBloc.add(ConfirmLogoutEvent());
+                removeInterestMarked? removeUsersInterest(context: context,docId: interestedData.id) : profileScreenBloc.add(ConfirmLogoutEvent());
               },
-              child: const MyTextWidget(
-                  text: 'Logout',
+              child: MyTextWidget(
+                  text: removeInterestMarked? 'Remove Interest' : 'Logout',
                   color: Colors.white,
                   size: 12,
                   weight: FontWeight.bold)),
@@ -83,13 +85,20 @@ Future<void> confirmUserLogout({context}) async {
 
 Future<void> removeFavoriteCar({docId,context})async{
   userFavouriteCars.doc(docId).delete();
-  snackbarWidget('Car Removed from favourites', context,Colors.blue, Colors.white, SnackBarBehavior.floating);
+  snackbarWidget('Car Removed from favourites', context,Colors.red, Colors.white, SnackBarBehavior.floating);
 }
 
 
-Stream<QuerySnapshot> getInterestedCarsStream(String userContact) {
+Stream<QuerySnapshot> getUsersInterestedCars(String userContact) {
   return FirebaseFirestore.instance
       .collection('userInterestMarked')
       .where('userContact', isEqualTo: userContact)
       .snapshots();
+}
+
+Stream<QuerySnapshot> getUsersFavouriteCars({String? userContact}){
+  return FirebaseFirestore.instance
+  .collection('userFavouriteCars')
+  .where('userContact',isEqualTo: userContact)
+  .snapshots();
 }

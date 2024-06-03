@@ -58,8 +58,8 @@ class _AppbarBottomTabSwitchScreenState
                 return Scaffold(
                     appBar: PreferredSize(
                         preferredSize: tabIndex == 1
-                            ? const Size.fromHeight(110)
-                            : const Size.fromHeight(85),
+                            ? const Size.fromHeight(85)
+                            : const Size.fromHeight(70),
                         child: AppBarWidget(
                           screenSize: screenSize,
                           tabIndex: tabIndex,
@@ -80,19 +80,19 @@ class _AppbarBottomTabSwitchScreenState
                           items: const [
                             BottomNavigationBarItem(
                               icon: Icon(Icons.home),
-                              label: 'Home',
+                              label: 'HOME',
                             ),
                             BottomNavigationBarItem(
                               icon: Icon(Icons.car_rental),
-                              label: 'Buy',
+                              label: 'BUY',
                             ),
                             BottomNavigationBarItem(
                               icon: Icon(Icons.newspaper),
-                              label: 'News',
+                              label: 'NEWS',
                             ),
                             BottomNavigationBarItem(
                               icon: Icon(Icons.person),
-                              label: 'Profile',
+                              label: 'PROFILE',
                             ),
                           ],
                           selectedItemColor:

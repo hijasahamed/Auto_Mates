@@ -68,11 +68,7 @@ class _AutoBackWidgetState extends State<AutoBackWidget> {
               onPressed: () {
                 markUserInterest(
                     context: context,
-                    carImage: widget.data['image'],
-                    carName: widget.data['modelName'],
-                    carSellerId: widget.data['sellerId'],
-                    carId: widget.data.id,
-                    carNumber: widget.data['regNumber']);
+                    car: widget.data);
               },
               style: const ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(Colors.green)),

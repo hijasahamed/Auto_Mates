@@ -35,15 +35,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
       bloc: profileScreenBloc,
       listener: (context, state)async {
         if (state is LogoutButtonClickedActionState) {
-          logoutAlertMessage(
-              context: context, profileScreenBloc: profileScreenBloc);
+          profileScreenAlertMessage(
+              context: context, profileScreenBloc: profileScreenBloc,interestedData: false,removeInterestMarked: false);
         } else if (state is ConfirmLogoutActionState) {
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => LogingOutScreenWidget(screenSize: widget.screenSize,seller: false,),
-          ));
+            confirmUserLogout(context: context);
         }else if (state is FavouriteConatinerClickedActionState){
+          UserData? userData = await fetchUserDetails();
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => FavouriteScreen(screenSize: widget.screenSize,),
+            builder: (context) => FavouriteScreen(screenSize: widget.screenSize,userContact: userData!.mobile,),
           ));
         }
         else if(state is InterestedCarConatinerClickedActionState){ 

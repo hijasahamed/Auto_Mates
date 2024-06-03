@@ -21,6 +21,7 @@ class InterestHolder extends StatelessWidget {
         },
         child: Card(
           color: const Color.fromARGB(255, 243, 243, 243),
+          elevation: 6,
           child: Row(
             children: [
               IntrestedCarPhoto(screenSize: screenSize, data: data),

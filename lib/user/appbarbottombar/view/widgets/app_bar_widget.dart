@@ -1,5 +1,6 @@
 import 'package:auto_mates/user/appbarbottombar/view/widgets/app_bar_gradient_color.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/menu_button_widget.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/sort_and_filter/sorting_filter_widget.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/search/view/search_page/search_page.dart';
 import 'package:flutter/material.dart';
@@ -38,13 +39,15 @@ class AppBarWidget extends StatelessWidget {
               SizedBox(
                 width: screenSize.width / 22,
               ),
-              const MyTextWidget(text: 'Search', color: Colors.white, size: 16, weight: FontWeight.w400)
+              const MyTextWidget(text: 'Search', color: Colors.white, size: 16, weight: FontWeight.w500)
             ],
           ),
         ),
       ),
       actions: [
-        Stack(
+        tabIndex==1?
+        SortingFilteringWidget(screenSize: screenSize)
+        : Stack(
           children: [
             IconButton(
                 onPressed: () {},
@@ -73,10 +76,10 @@ class AppBarWidget extends StatelessWidget {
       flexibleSpace: const AppBarGradientColor(),
       bottom: tabIndex==1?
       const PreferredSize(
-        preferredSize: Size.fromHeight(150), 
+        preferredSize: Size.fromHeight(80), 
         child: Padding(
-          padding: EdgeInsets.only(bottom: 13),
-          child: Text('FIND THE RIGHT USED CAR',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 20),),
+          padding: EdgeInsets.only(bottom: 1),
+          child: Text('FIND THE RIGHT USED CAR',style: TextStyle(fontWeight: FontWeight.w700,color: Colors.white,fontSize: 19),), 
         )
       ) : null,
     );

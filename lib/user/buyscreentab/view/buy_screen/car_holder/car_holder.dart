@@ -68,7 +68,7 @@ class CarHolder extends StatelessWidget {
                         image: NetworkImage(data['image']),
                         fit: BoxFit.cover,
                         filterQuality: FilterQuality.high),
-                  ),                 
+                  ),
                   Positioned(
                       top: 5,
                       right: 5,
@@ -102,12 +102,12 @@ class CarHolder extends StatelessWidget {
                                         context: context);
                                   },
                                   child: const CircleAvatar(
-                                    backgroundColor: Colors.white70,
+                                    backgroundColor: Colors.black26,
                                     radius: 15,
                                     child: Icon(
                                       Icons.delete,
-                                      size: 20,
-                                      color: Colors.red,
+                                      size: 18,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ))

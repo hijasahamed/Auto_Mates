@@ -23,7 +23,7 @@ class IntrestedCarPhoto extends StatelessWidget {
               color: Colors.blue,
             );
           },
-          image: NetworkImage(data['carImag']),
+          image: NetworkImage(data['carImage']),
           fit: BoxFit.cover,
           filterQuality: FilterQuality.high),
     );

@@ -1,6 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:auto_mates/seller/authentications/controllers/functions.dart';
 import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
@@ -15,17 +14,25 @@ final CollectionReference userFavouriteCars =
 
 Future<void> addCarToUserFavourite(
     {required DocumentSnapshot data, required context}) async {
+
+    UserData? userData = await fetchUserDetails();
+    String userName = userData!.userName;
+    String userContact = userData.mobile;
+
   try {
     QuerySnapshot existingCar =
-        await userFavouriteCars.where('carToSellId', isEqualTo: data.id).get();
+        await userFavouriteCars.where('carToSellId', isEqualTo: data.id).where('userContact', isEqualTo: userContact).get();
 
     if (existingCar.docs.isNotEmpty) {
-      snackbarWidget('Car is already in favourites', context, Colors.blue,
+      snackbarWidget('Car is already in favourites', context, Colors.red,
           Colors.white, SnackBarBehavior.floating);
       return;
     }
+    
 
     Map<String, dynamic> carData = {
+      'userName':userName,
+      'userContact':userContact,
       'sellerId': data['sellerId'],
       'image': data['image'],
       'carToSellId': data.id,
@@ -59,7 +66,7 @@ Future<void> addCarToUserFavourite(
     };
 
     await userFavouriteCars.add(carData);
-    snackbarWidget('Car added to favourites successfully', context, Colors.blue,
+    snackbarWidget('Car added to favourites', context, Colors.green,
         Colors.white, SnackBarBehavior.floating);
   } catch (e) {
     snackbarWidget('Failed to add car to favourites', context, Colors.blueGrey,
@@ -88,11 +95,7 @@ final CollectionReference userInterestMarked =
 
 Future<void> markUserInterest({
   context,
-  carImage,
-  carName,
-  carNumber,
-  carSellerId,
-  carId,
+  car,
 }) async {
   UserData? userData = await fetchUserDetails();
   String userName = userData!.userName;
@@ -100,18 +103,20 @@ Future<void> markUserInterest({
   String userLocation = userData.location;
 
   final QuerySnapshot existingDocs =
-      await userInterestMarked.where('userContact', isEqualTo: userContact).get();
+      await userInterestMarked.where('userContact', isEqualTo: userContact).where('carId', isEqualTo: car.id).get();
 
   if (existingDocs.docs.isEmpty) {
     final data = {
       'userName': userName,
       'userContact': userContact,
       'userLocation': userLocation,
-      'carImag': carImage,
-      'carName': carName,
-      'carNumber': carNumber,
-      'carSellerId':carSellerId,
-      'carId':carId
+      'carImage': car['image'],
+      'carName': car['modelName'],
+      'CarBrand': car['brand'],
+      'carNumber': car['regNumber'],
+      'carSellerId': car['sellerId'],
+      'carId':car.id,
+      'carRate': car['price']
     };
     userInterestMarked.add(data);
     snackbarWidget('Your interest is been marked', context, Colors.blue,
@@ -197,4 +202,13 @@ makeCall({mobileNumber,context})async{
   } else {
     snackbarWidget('Could not launch call app', context, Colors.red, Colors.white, SnackBarBehavior.floating);
   }
+}
+
+
+Future<bool> checkIfUserInterestedCar({carId,userContact})async{
+  final QuerySnapshot existingCarInterested= await userInterestMarked
+        .where('carId', isEqualTo: carId)
+        .where('userContact', isEqualTo: userContact)
+        .get();
+    return existingCarInterested.docs.isNotEmpty;
 }
