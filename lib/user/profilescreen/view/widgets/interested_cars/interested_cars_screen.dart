@@ -1,6 +1,7 @@
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
 import 'package:auto_mates/user/commonwidgets/circular_indicator/circular_indicator_widget.dart';
 import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_error_placeholder.dart';
+import 'package:auto_mates/user/commonwidgets/shimmer_effect/shimmer_effect.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/interested_cars/car_details_holder/user_interested_details_holder.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/interested_cars/car_image_holder/user_interested_car_holder.dart';
@@ -23,10 +24,15 @@ class InterestedCarsScreen extends StatelessWidget {
         stream: getUsersInterestedCars(userContact),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularIndicatorWidget();
+            return ListView.builder(
+              itemCount: 6,
+              itemBuilder: (context, index) {
+                return const SkelotonIndicator();
+              },
+            );
           }
           if (snapshot.hasError) {
-            return const Center(child: Text('Something went wrong'));
+            return const SizedBox();
           }
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
             return NoDataErrorPlaceholder(screenSize: screenSize, titleText: 'No data found');
@@ -40,7 +46,7 @@ class InterestedCarsScreen extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Card(
-                    elevation: 5,
+                    elevation: 6,
                     color: Colors.white,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,

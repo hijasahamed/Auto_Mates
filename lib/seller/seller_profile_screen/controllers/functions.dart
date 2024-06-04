@@ -2,6 +2,8 @@ import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/bloc/seller_profile_bloc.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
+import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/buy_screen.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/splashscreen/controllers/functions.dart';
@@ -119,6 +121,7 @@ Stream<QuerySnapshot> getUsersInterestsWithSellerId(sellerId){
 removeUsersInterest({context,docId}){
   userInterestMarked.doc(docId).delete(); 
   snackbarWidget('User interest removed', context,Colors.red, Colors.white, SnackBarBehavior.floating);
+  buyScreenBloc.add(InterstButtonClickedRebuildUiEvent());
 }
 
 callCarInterestedCustomer({context,data,screenSize}){

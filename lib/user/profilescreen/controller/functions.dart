@@ -3,6 +3,8 @@ import 'package:auto_mates/seller/seller_profile_screen/controllers/functions.da
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
+import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/buy_screen.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
@@ -85,6 +87,7 @@ Future<void> confirmUserLogout({context}) async {
 
 Future<void> removeFavoriteCar({docId,context})async{
   userFavouriteCars.doc(docId).delete();
+  buyScreenBloc.add(FavouriteButtonClickedRebuildUiEvent());
   snackbarWidget('Car Removed from favourites', context,Colors.red, Colors.white, SnackBarBehavior.floating);
 }
 

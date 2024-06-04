@@ -1,6 +1,6 @@
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/all_cars_to_sell/pop_up_button/popup_menu_button_widget.dart';
-import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/car_holder/fav_icon/favourite_icon.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/on_tap_car_more_details.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
@@ -13,24 +13,28 @@ class CarHolder extends StatelessWidget {
       required this.data,
       this.sellerHomeScreenBloc,
       this.isFromUser,
+      this.isUserFavScreen,
       this.isFromSeller});
   final Size screenSize;
   final dynamic data;
   final bool? isFromSeller;
   final SellerHomeScreenBloc? sellerHomeScreenBloc;
   final bool? isFromUser;
+  final bool? isUserFavScreen;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         (isFromSeller == true)
-            ? sellerHomeScreenBloc?.add(NavigateToSingleCarDetailsPageEvent(data: data))
+            ? sellerHomeScreenBloc
+                ?.add(NavigateToSingleCarDetailsPageEvent(data: data))
             : Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) {
                   return OnTapCarMoreDetailsCarScreen(
                     screenSize: screenSize,
                     data: data,
+                    isUserFavScreen: isUserFavScreen,
                   );
                 },
               ));
@@ -53,7 +57,7 @@ class CarHolder extends StatelessWidget {
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10)),
                     child: FadeInImage(
-                        fadeInDuration: const Duration(milliseconds: 750),
+                        fadeInDuration: const Duration(milliseconds: 500),
                         height: screenSize.height / 5,
                         width: screenSize.width,
                         placeholder: const AssetImage(
@@ -70,47 +74,35 @@ class CarHolder extends StatelessWidget {
                         filterQuality: FilterQuality.high),
                   ),
                   Positioned(
-                      top: 5,
-                      right: 5,
+                      top: 0,
+                      right: 0,
                       child: (isFromSeller == true)
                           ? CircleAvatar(
                               backgroundColor: Colors.black38,
                               child: PopupMenuButtonWidget(
                                   screenSize: screenSize,
                                   data: data,
-                                  sellerHomeScreenBloc:
-                                      sellerHomeScreenBloc))
+                                  sellerHomeScreenBloc: sellerHomeScreenBloc))
                           : (isFromUser == true)
-                              ? GestureDetector(
-                                  onTap: () {
-                                    addCarToUserFavourite(
-                                        data: data, context: context);
-                                  },
-                                  child: const CircleAvatar(
-                                    backgroundColor: Colors.black38,
-                                    radius: 15,
-                                    child: Icon(
-                                       Icons.favorite_border_rounded,
-                                      size: 20,
-                                      color: Colors.white,
-                                    ),
-                                  ))
-                              : GestureDetector(
-                                  onTap: () {
+                              ? FavouriteIcon(
+                                  data: data,
+                                )
+                              : IconButton(
+                                  style: const ButtonStyle(
+                                      backgroundColor: WidgetStatePropertyAll(
+                                    Colors.black26,
+                                  )),
+                                  constraints: const BoxConstraints(
+                                      maxHeight: 30, maxWidth: 30),
+                                  onPressed: () {
                                     removeFavoriteCar(
-                                        docId: data.id,
-                                        context: context);
+                                        docId: data.id, context: context);
                                   },
-                                  child: const CircleAvatar(
-                                    backgroundColor: Colors.black26,
-                                    radius: 15,
-                                    child: Icon(
-                                      Icons.delete,
-                                      size: 18,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ))
+                                  icon: const Icon(
+                                    Icons.clear_rounded,
+                                    size: 14,
+                                    color: Colors.white,
+                                  )))
                 ],
               ),
               Padding(
@@ -159,8 +151,14 @@ class CarHolder extends StatelessWidget {
                         color: const Color.fromARGB(255, 10, 104, 12),
                         size: 15,
                         weight: FontWeight.bold),
-                        SizedBox(width: screenSize.width/120,),
-                    const MyTextWidget(text: 'Lakhs onwards', color: Colors.black, size: 12, weight: FontWeight.w500)
+                    SizedBox(
+                      width: screenSize.width / 120,
+                    ),
+                    const MyTextWidget(
+                        text: 'Lakhs onwards',
+                        color: Colors.black,
+                        size: 12,
+                        weight: FontWeight.w500)
                   ],
                 ),
               ),

@@ -3,6 +3,7 @@ import 'package:auto_mates/user/appbarbottombar/view/appbar_bottombar_screen.dar
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/user/splashscreen/view/no_network_connection/no_network_widget.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -36,8 +37,10 @@ Future<void> checkIfUserLogedin(context) async {
   final sharedPref = await SharedPreferences.getInstance();
   final isLogedin = sharedPref.getBool(logedInKey);
   final isSellerLogedIn = sharedPref.getBool(sellerLogedInKey);
-  print('user is $isLogedin');
-  print('seller is $isSellerLogedIn');
+  if (kDebugMode) {
+    print('user is $isLogedin');
+    print('seller is $isSellerLogedIn');
+  }  
   var connectivityResult = await Connectivity().checkConnectivity();
   if (connectivityResult == ConnectivityResult.none) {
     await Future.delayed(const Duration(milliseconds: 3150));
@@ -47,32 +50,39 @@ Future<void> checkIfUserLogedin(context) async {
         content: Text('No network connection.'),
       ),
     );
-  } else if (isLogedin == null &&isSellerLogedIn==null) {
+  } else if (isLogedin == null && isSellerLogedIn == null) {
     await Future.delayed(const Duration(milliseconds: 3150));
     await goToLoginScreen(context);
   }
-  else if(isLogedin==true && isSellerLogedIn==null||isSellerLogedIn==false){
+  else if(isLogedin == true && isSellerLogedIn == null){
     await Future.delayed(const Duration(milliseconds: 3150));
     await goToUserScreen(context);
   }
-   else if(isSellerLogedIn==true && isLogedin==null||isLogedin==false){
-    await Future.delayed(const Duration(milliseconds: 3150));
-    await goToSellerScreen(context);
-  }
-  else if(isLogedin==false&&isSellerLogedIn==false){
+  else if(isLogedin == false && isSellerLogedIn == null){
     await Future.delayed(const Duration(milliseconds: 3150));
     await goToLoginScreen(context);
   }
-  else if(isSellerLogedIn==true){
+  else if(isLogedin == null && isSellerLogedIn == true){
     await Future.delayed(const Duration(milliseconds: 3150));
     await goToSellerScreen(context);
   }
-  else if(isLogedin==false && isSellerLogedIn==null){
-    print('login page opening');
+  else if(isLogedin == null && isSellerLogedIn == false){
     await Future.delayed(const Duration(milliseconds: 3150));
     await goToLoginScreen(context);
   }
-  else if(isLogedin==null && isSellerLogedIn==false){
+  else if(isLogedin == null && isSellerLogedIn == false){
+    await Future.delayed(const Duration(milliseconds: 3150));
+    await goToLoginScreen(context);
+  }
+  else if(isLogedin == true && isSellerLogedIn == false){
+    await Future.delayed(const Duration(milliseconds: 3150));
+    await goToUserScreen(context);
+  }
+  else if(isLogedin == false && isSellerLogedIn == true){
+    await Future.delayed(const Duration(milliseconds: 3150));
+    await goToSellerScreen(context);
+  }
+  else if(isLogedin == false && isSellerLogedIn == false){
     await Future.delayed(const Duration(milliseconds: 3150));
     await goToLoginScreen(context);
   }

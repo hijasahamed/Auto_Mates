@@ -1,11 +1,16 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:math';
+
 import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
+import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/buy_screen.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -67,6 +72,7 @@ Future<void> addCarToUserFavourite(
     };
 
     await userFavouriteCars.add(carData);
+    buyScreenBloc.add(FavouriteButtonClickedRebuildUiEvent());
     snackbarWidget('Car added to favourites', context, Colors.green,
         Colors.white, SnackBarBehavior.floating);
   } catch (e) {
@@ -120,6 +126,7 @@ Future<void> markUserInterest({
       'carRate': car['price']
     };
     userInterestMarked.add(data);
+    buyScreenBloc.add(InterstButtonClickedRebuildUiEvent());
     snackbarWidget('Your interest is been marked', context, Colors.blue,
         Colors.white, SnackBarBehavior.floating);
     Navigator.of(context).pop();
@@ -222,4 +229,22 @@ Future<List<Map<String, dynamic>>>  checkIfUserInterestedCar({carId})async{
   }catch (e){
     return [];
   }
+}
+
+Future<List<Map<String, dynamic>>>  isCarToSellInUserFavourite({carToSellId,})async{
+    List<Map<String, dynamic>> result = [];
+    final sharedPref=await SharedPreferences.getInstance();
+    dynamic mobile= sharedPref.getString('mobile');
+    try{
+      QuerySnapshot isFavourite = await userFavouriteCars
+      .where('carToSellId', isEqualTo: carToSellId)
+      .where('userContact', isEqualTo: mobile)
+      .get();
+      for(var doc in isFavourite.docs){
+      result.add({'id':doc.id,...doc.data() as Map<String,dynamic>});
+      }
+      return result;   
+    }catch (e){
+      return [];
+    } 
 }

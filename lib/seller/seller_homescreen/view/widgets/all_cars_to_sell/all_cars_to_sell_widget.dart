@@ -20,7 +20,8 @@ class AllCarsToSellWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SellerHomeScreenBloc, SellerHomeScreenState>(bloc: sellerHomeScreenBloc,
+    return BlocBuilder<SellerHomeScreenBloc, SellerHomeScreenState>(
+      bloc: sellerHomeScreenBloc,
       builder: (context, state) {
         return FutureBuilder<List>(
           future: getCarsBySellerId(sellerId: sellerId),
