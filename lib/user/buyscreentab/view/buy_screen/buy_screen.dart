@@ -18,13 +18,7 @@ class BuyScreen extends StatelessWidget {
     return StreamBuilder(
       stream: firebaseObject.orderBy('brand').snapshots(),
       builder: (context, AsyncSnapshot snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          // return ListView.builder(
-          //   itemCount: 6,
-          //   itemBuilder: (context, index) {
-          //     return const SkelotonIndicator();
-          //   },
-          // );
+        if (snapshot.connectionState == ConnectionState.waiting) {        
           return SkelotonIndicatorGrid(screenSize: screenSize,);
         }
         if (snapshot.hasData && snapshot.data.docs.isNotEmpty) {

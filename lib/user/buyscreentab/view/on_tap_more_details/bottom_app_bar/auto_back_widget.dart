@@ -6,9 +6,10 @@ import 'package:flutter/material.dart';
 
 class AutoBackWidget extends StatefulWidget {
   const AutoBackWidget(
-      {super.key, required this.screenSize, required this.data});
+      {super.key, required this.screenSize, required this.data,this.isFromSearch});
   final Size screenSize;
   final dynamic data;
+  final bool? isFromSearch;
   @override
   State<AutoBackWidget> createState() => _AutoBackWidgetState();
 }
@@ -68,6 +69,7 @@ class _AutoBackWidgetState extends State<AutoBackWidget> {
               onPressed: () {
                 markUserInterest(
                     context: context,
+                    isFromSearch: widget.isFromSearch,
                     car: widget.data);
               },
               style: const ButtonStyle(

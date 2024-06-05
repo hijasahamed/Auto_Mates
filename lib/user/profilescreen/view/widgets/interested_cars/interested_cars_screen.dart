@@ -23,13 +23,8 @@ class InterestedCarsScreen extends StatelessWidget {
       body: StreamBuilder(
         stream: getUsersInterestedCars(userContact),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return ListView.builder(
-              itemCount: 6,
-              itemBuilder: (context, index) {
-                return const SkelotonIndicator();
-              },
-            );
+          if (snapshot.connectionState == ConnectionState.waiting) {            
+            return SkelotonIndicatorList(screenSize: screenSize, itemCount: 6);
           }
           if (snapshot.hasError) {
             return const SizedBox();
@@ -47,12 +42,12 @@ class InterestedCarsScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Card(
                     elevation: 6,
-                    color: Colors.white,
+                    color: const Color.fromARGB(255, 231, 231, 231),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         UserInterestedCarHolder(screenSize: screenSize, car: car),
-                        SizedBox(width: screenSize.width/50,),
+                        SizedBox(width: screenSize.width/40,),
                         UserInterestedDetailsHolder(screenSize: screenSize, car: car),
                         const Spacer(),
                         UserInterestedCarRemoveButton(data: car,)

@@ -22,7 +22,9 @@ class SearchPage extends StatelessWidget {
           appBar: AppBar(
             flexibleSpace: const AppBarGradientColor(),
             leading: IconButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                Navigator.pop(context);
+              },
               icon: const Icon(
                 Icons.arrow_back_ios_new_rounded,
                 color: Colors.white,
@@ -34,11 +36,12 @@ class SearchPage extends StatelessWidget {
               IconButton(
                 onPressed: () {
                   searchNotifier.value.clear();
+                  FocusScope.of(context).unfocus();
                   searchNotifier.notifyListeners();
                 },
                 icon: const CircleAvatar(
                   radius: 15,
-                  backgroundColor: Colors.white54,
+                  backgroundColor: Colors.white24,
                   child: Icon(
                     Icons.clear_rounded,
                     color: Color.fromARGB(255, 255, 255, 255),

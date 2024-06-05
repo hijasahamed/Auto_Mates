@@ -7,9 +7,6 @@ class NewsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    // return const Center(
-    //   child: Text('News Screen'),
-    // );
-    return SkelotonIndicatorGrid(screenSize: screenSize);
+    return SkelotonIndicatorList(screenSize: screenSize,itemCount: 6,);
   }
 }

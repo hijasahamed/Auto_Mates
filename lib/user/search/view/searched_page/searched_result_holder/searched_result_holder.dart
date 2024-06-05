@@ -8,7 +8,8 @@ class SearchedResultHolder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: const Color(0xFFDBEDF5),
+      color: Colors.white,
+      elevation: 5,
       child: Column(
         children: [
           ClipRRect(

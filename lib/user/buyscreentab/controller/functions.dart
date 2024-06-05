@@ -1,6 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:math';
+
 
 import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
@@ -10,7 +10,6 @@ import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -19,7 +18,7 @@ final CollectionReference userFavouriteCars =
     FirebaseFirestore.instance.collection('userFavouriteCars');
 
 Future<void> addCarToUserFavourite(
-    {required DocumentSnapshot data, required context}) async {
+    { data, context,isFromSearch}) async {
 
     UserData? userData = await fetchUserDetails();
     String userName = userData!.userName;
@@ -27,7 +26,7 @@ Future<void> addCarToUserFavourite(
 
   try {
     QuerySnapshot existingCar =
-        await userFavouriteCars.where('carToSellId', isEqualTo: data.id).where('userContact', isEqualTo: userContact).get();
+        await userFavouriteCars.where('carToSellId', isEqualTo: isFromSearch?data['id']:data.id).where('userContact', isEqualTo: userContact).get();
 
     if (existingCar.docs.isNotEmpty) {
       snackbarWidget('Car is already in favourites', context, Colors.red,
@@ -41,7 +40,7 @@ Future<void> addCarToUserFavourite(
       'userContact':userContact,
       'sellerId': data['sellerId'],
       'image': data['image'],
-      'carToSellId': data.id,
+      'carToSellId': isFromSearch?data['id']:data.id,
       'brand': data['brand'],
       'modelName': data['modelName'],
       'color': data['color'],
@@ -103,6 +102,7 @@ final CollectionReference userInterestMarked =
 Future<void> markUserInterest({
   context,
   car,
+  isFromSearch
 }) async {
   UserData? userData = await fetchUserDetails();
   String userName = userData!.userName;
@@ -110,7 +110,7 @@ Future<void> markUserInterest({
   String userLocation = userData.location;
 
   final QuerySnapshot existingDocs =
-      await userInterestMarked.where('userContact', isEqualTo: userContact).where('carId', isEqualTo: car.id).get();
+      await userInterestMarked.where('userContact', isEqualTo: userContact).where('carId', isEqualTo: isFromSearch? car['id']: car.id).get();
 
   if (existingDocs.docs.isEmpty) {
     final data = {
@@ -122,7 +122,7 @@ Future<void> markUserInterest({
       'CarBrand': car['brand'],
       'carNumber': car['regNumber'],
       'carSellerId': car['sellerId'],
-      'carId':car.id,
+      'carId':isFromSearch? car['id']:car.id,
       'carRate': car['price']
     };
     userInterestMarked.add(data);
@@ -142,7 +142,7 @@ Future<void> markUserInterest({
 }
 
 Future<SellerData?> getSellerDetailsById(String sellerId) async {
-  await Future.delayed(const Duration(milliseconds: 1000));
+  await Future.delayed(const Duration(milliseconds: 400));
   final CollectionReference sellerSignupFirebaseObject =
       FirebaseFirestore.instance.collection('sellerSignupData');
   try {

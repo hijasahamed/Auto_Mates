@@ -9,8 +9,10 @@ class FavouriteIcon extends StatelessWidget {
   const FavouriteIcon({
     super.key,
     required this.data,
+    this.isFromSearch
   });
   final dynamic data;
+  final bool? isFromSearch;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BuyScreenBloc, BuyScreenState>(
@@ -18,13 +20,13 @@ class FavouriteIcon extends StatelessWidget {
       builder: (context, state) {
         return FutureBuilder(
           future: isCarToSellInUserFavourite(
-            carToSellId: data.id,
+            carToSellId: (isFromSearch==true)?data['id']:data.id
           ),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return IconButton(
                 onPressed: (){},
-                 icon: const Icon(Icons.favorite_outline_rounded,size: 20,color: Colors.white,)
+                 icon: const Icon(Icons.favorite_outline_rounded,size: 23,color: Colors.white,)
               );
             }
             final List favouriteData = snapshot.data ?? [];
@@ -45,7 +47,7 @@ class FavouriteIcon extends StatelessWidget {
                     ))
                 : IconButton(
                     onPressed: () {
-                      addCarToUserFavourite(data: data, context: context);
+                      addCarToUserFavourite(data: data, context: context,isFromSearch: isFromSearch);
                     },
                     icon: const Icon(
                       Icons.favorite_outline_rounded,

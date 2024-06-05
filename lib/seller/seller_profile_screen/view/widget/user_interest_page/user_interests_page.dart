@@ -21,12 +21,7 @@ class UserInterestsPage extends StatelessWidget {
                 preferredSize: Size.fromHeight(50), 
                 child: NormalAppBar(title: 'User Interest')
               ),
-              body: ListView.builder(
-                itemCount: 6,
-                itemBuilder: (context, index) {
-                  return const SkelotonIndicator();
-                },
-              ),
+              body: SkelotonIndicatorList(screenSize: screenSize,itemCount: 6,)
             );
           }
           if(snapshot.hasData && snapshot.data.docs.isNotEmpty){

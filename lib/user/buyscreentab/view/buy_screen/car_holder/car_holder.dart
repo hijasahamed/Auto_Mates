@@ -35,6 +35,7 @@ class CarHolder extends StatelessWidget {
                     screenSize: screenSize,
                     data: data,
                     isUserFavScreen: isUserFavScreen,
+                    isFromSearch: false,
                   );
                 },
               ));
@@ -86,6 +87,7 @@ class CarHolder extends StatelessWidget {
                           : (isFromUser == true)
                               ? FavouriteIcon(
                                   data: data,
+                                  isFromSearch: false,
                                 )
                               : IconButton(
                                   style: const ButtonStyle(

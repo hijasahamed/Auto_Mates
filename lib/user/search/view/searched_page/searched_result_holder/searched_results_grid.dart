@@ -28,6 +28,7 @@ class SearchedResultsGrid extends StatelessWidget {
                     return OnTapCarMoreDetailsCarScreen(
                       screenSize: screenSize,
                       data: data,
+                      isFromSearch: true,
                     );
                   },
                 ));

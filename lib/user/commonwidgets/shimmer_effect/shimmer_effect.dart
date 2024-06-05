@@ -68,6 +68,42 @@ class SkelotonIndicator extends StatelessWidget {
   }
 }
 
+class SkelotonIndicatorList extends StatelessWidget {
+  const SkelotonIndicatorList({super.key,required this.screenSize,required this.itemCount});
+  final Size screenSize;
+  final int itemCount;
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: itemCount,
+      itemBuilder: (context, index) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Skeleton(height: screenSize.height/7.2,width: screenSize.width/2.9,),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Skeleton(height: screenSize.height/80,width: screenSize.width/4,),
+                  Skeleton(height: screenSize.height/80,width: screenSize.width/1.9,),
+                  Skeleton(height: screenSize.height/80,width: screenSize.width/1.9,),
+                  Row(
+                    children: [
+                      Skeleton(height: screenSize.height/80,width: screenSize.width/4.2,),
+                      Skeleton(height: screenSize.height/80,width: screenSize.width/4.2,),
+                    ],
+                  )
+                ],
+              ),
+            )
+          ],
+        );
+      },
+    );
+  }
+}
+
 class SkelotonIndicatorGrid extends StatelessWidget {
   const SkelotonIndicatorGrid({super.key,required this.screenSize});
  final Size screenSize;

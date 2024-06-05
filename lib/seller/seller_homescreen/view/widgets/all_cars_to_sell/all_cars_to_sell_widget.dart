@@ -27,12 +27,7 @@ class AllCarsToSellWidget extends StatelessWidget {
           future: getCarsBySellerId(sellerId: sellerId),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return ListView.builder(
-                itemCount: 6,
-                itemBuilder: (context, index) {
-                  return const SkelotonIndicator();
-                },
-              );
+              return SkelotonIndicatorList(screenSize: screenSize,itemCount: 6,);
             }
             if (snapshot.hasData && snapshot.data!.isNotEmpty) {
               return GridView.builder(

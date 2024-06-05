@@ -10,12 +10,13 @@ import 'package:flutter/material.dart';
 
 class OnTapCarMoreDetailsCarScreen extends StatelessWidget {
   const OnTapCarMoreDetailsCarScreen(
-      {super.key, required this.screenSize, required this.data,this.isUserFavScreen});
+      {super.key, required this.screenSize, required this.data,this.isUserFavScreen,this.isFromSearch});
   final Size screenSize;
   final dynamic data;
   final bool? isUserFavScreen;
+  final bool? isFromSearch;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {   
     return Scaffold(
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(55),
@@ -31,7 +32,7 @@ class OnTapCarMoreDetailsCarScreen extends StatelessWidget {
                 padding: EdgeInsets.all(8.0),
                 child: MyTextWidget(text: 'Car Details', color: Color(0xFF424141), size: 18, weight: FontWeight.bold),
               ),
-              CarDetailsWidget(screenSize: screenSize, data: data,fromSeller: false,),
+              CarDetailsWidget(screenSize: screenSize, data: data,fromSeller: false,isFromSearch: isFromSearch,isUserFavScreen: isUserFavScreen,),
             ],
           ),
         ),
@@ -41,7 +42,7 @@ class OnTapCarMoreDetailsCarScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             ChatButton(screenSize: screenSize,data: data,),
-            (isUserFavScreen==true)? UserFavouriteRemoveButton(screenSize: screenSize, data: data) : InterestedButton(data: data, screenSize: screenSize)
+            (isUserFavScreen==true)? UserFavouriteRemoveButton(screenSize: screenSize, data: data) : InterestedButton(data: data, screenSize: screenSize,isFromSearch: isFromSearch,)
           ],
         ),
       ),

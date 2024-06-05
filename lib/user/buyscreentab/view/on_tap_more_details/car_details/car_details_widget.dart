@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 
 class CarDetailsWidget extends StatelessWidget {
   const CarDetailsWidget(
-      {super.key, required this.screenSize, required this.data,this.fromSeller});
+      {super.key, required this.screenSize, required this.data,this.fromSeller,this.isFromSearch,this.isUserFavScreen});
   final Size screenSize;
   final dynamic data;
   final bool? fromSeller;
+  final bool? isFromSearch;
+  final bool? isUserFavScreen;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -17,7 +19,7 @@ class CarDetailsWidget extends StatelessWidget {
       elevation: 5,
       child: Column(
         children: [
-          CarImage(screenSize: screenSize, data: data,fromSeller: fromSeller,),
+          CarImage(screenSize: screenSize, data: data,fromSeller: fromSeller,isFromSearch: isFromSearch,isUserFavScreen: isUserFavScreen,),
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
             child: Column(

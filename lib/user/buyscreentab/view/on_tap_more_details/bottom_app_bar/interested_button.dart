@@ -8,16 +8,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class InterestedButton extends StatelessWidget {
   const InterestedButton(
-      {super.key, required this.data, required this.screenSize,});
+      {super.key, required this.data, required this.screenSize,this.isFromSearch});
   final Size screenSize;
   final dynamic data;
+  final bool? isFromSearch;
   @override
   Widget build(BuildContext context) {
+    
     return BlocBuilder<BuyScreenBloc, BuyScreenState>(
       bloc: buyScreenBloc,
       builder: (context, state) {
         return FutureBuilder<List>(
-          future: checkIfUserInterestedCar(
+          future: (isFromSearch==true)
+          ? checkIfUserInterestedCar(
+            carId: data['id'],
+          )
+          : checkIfUserInterestedCar(
             carId: data.id,
           ),
           builder: (context, snapshot) {
@@ -54,6 +60,7 @@ class InterestedButton extends StatelessWidget {
                           return AutoBackWidget(
                             screenSize: screenSize,
                             data: data,
+                            isFromSearch: isFromSearch,
                           );
                         },
                       );

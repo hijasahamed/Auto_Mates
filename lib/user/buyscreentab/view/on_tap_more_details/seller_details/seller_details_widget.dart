@@ -21,7 +21,11 @@ class SellerDetailsCardWidget extends StatelessWidget {
         future: getSellerDetailsById(data['sellerId']), 
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-              return const SkelotonIndicator();
+              return SizedBox(
+                height: screenSize.height/5.8,
+                width: screenSize.width,
+                child: SkelotonIndicatorList(screenSize: screenSize,itemCount: 1,)
+              ); 
             } else if (snapshot.hasError) {
               return const Center(child: MyTextWidget(text: 'Something went wrong', color: Colors.black, size: 11, weight: FontWeight.bold));
             } else if (!snapshot.hasData || snapshot.data == null) {
