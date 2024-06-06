@@ -2,7 +2,6 @@
 
 import 'dart:io';
 
-import 'package:auto_mates/seller/authentications/controllers/functions.dart';
 import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/seller/seller_appbar_bottombar/controllers/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';

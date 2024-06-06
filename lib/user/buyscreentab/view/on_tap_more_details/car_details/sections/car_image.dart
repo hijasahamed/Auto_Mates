@@ -40,15 +40,6 @@ class CarImage extends StatelessWidget {
               fit: BoxFit.cover,
               filterQuality: FilterQuality.high),
         ),
-        // (fromSeller == false)
-        //     ? Positioned(
-        //         top: 5,
-        //         right: 5,
-        //         child: FavouriteIcon(data: data,isFromSearch: isFromSearch,)
-        //       )
-        //     : (isUserFavScreen==true)
-        //     ? const SizedBox()
-        //     : const SizedBox()
         (isUserFavScreen==true)? const SizedBox()
         : (fromSeller==false)
         ? Positioned(

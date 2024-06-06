@@ -6,7 +6,6 @@ import 'package:auto_mates/user/profilescreen/view/widgets/favourite_screen/favo
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/interested_cars/interested_cars_screen.dart';
-import 'package:auto_mates/user/profilescreen/view/widgets/logout_section/loging_out_screen_widget.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/profile_properties/profile_properties_screen.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/user_banner/profile_banner_widget.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,5 @@
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/car_holder/car_holder.dart';
-import 'package:auto_mates/user/commonwidgets/circular_indicator/circular_indicator_widget.dart';
 import 'package:auto_mates/user/commonwidgets/shimmer_effect/shimmer_effect.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/favourite_screen/no_data_in_favourites/no_data_in_favourites.dart';

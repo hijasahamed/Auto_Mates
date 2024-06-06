@@ -1,4 +1,4 @@
-import 'package:auto_mates/seller/authentications/controllers/functions.dart';
+
 import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/seller_details/section/map_holder.dart';

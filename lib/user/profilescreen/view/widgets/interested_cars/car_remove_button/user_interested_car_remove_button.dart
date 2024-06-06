@@ -1,4 +1,4 @@
-import 'package:auto_mates/seller/seller_profile_screen/controllers/functions.dart';
+
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:flutter/material.dart';
 

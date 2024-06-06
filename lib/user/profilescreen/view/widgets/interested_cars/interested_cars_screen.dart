@@ -1,5 +1,4 @@
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
-import 'package:auto_mates/user/commonwidgets/circular_indicator/circular_indicator_widget.dart';
 import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_error_placeholder.dart';
 import 'package:auto_mates/user/commonwidgets/shimmer_effect/shimmer_effect.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
@@ -43,15 +42,20 @@ class InterestedCarsScreen extends StatelessWidget {
                   child: Card(
                     elevation: 6,
                     color: const Color.fromARGB(255, 231, 231, 231),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        UserInterestedCarHolder(screenSize: screenSize, car: car),
-                        SizedBox(width: screenSize.width/40,),
-                        UserInterestedDetailsHolder(screenSize: screenSize, car: car),
-                        const Spacer(),
-                        UserInterestedCarRemoveButton(data: car,)
-                      ],
+                    child: InkWell(
+                      onTap: () {
+                        
+                      },
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          UserInterestedCarHolder(screenSize: screenSize, car: car),
+                          SizedBox(width: screenSize.width/40,),
+                          UserInterestedDetailsHolder(screenSize: screenSize, car: car),
+                          const Spacer(),
+                          UserInterestedCarRemoveButton(data: car,)
+                        ],
+                      ),
                     ),
                   ),
                 );
