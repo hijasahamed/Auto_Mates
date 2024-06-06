@@ -105,3 +105,21 @@ Stream<QuerySnapshot> getUsersFavouriteCars({String? userContact}){
   .where('userContact',isEqualTo: userContact)
   .snapshots();
 }
+
+
+Future<DocumentSnapshot?> getCarDetailFromInterestedCarsList({carNumber}) async {
+  try{
+      final querySnapshot = await FirebaseFirestore.instance
+      .collection('carstosell')
+      .where('regNumber', isEqualTo: carNumber) 
+      .get();
+  
+    if (querySnapshot.docs.isNotEmpty) {
+      return querySnapshot.docs.first;
+    } else {
+      return null;
+    }
+  } catch (e){
+    return null;
+  }
+}

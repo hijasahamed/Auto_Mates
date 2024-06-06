@@ -36,7 +36,7 @@ class PropertiesContainer extends StatelessWidget {
             profileScreenBloc.add(FavouriteConatinerClickedEvent());
           }
           if(isLogout==true){
-            profileScreenBloc.add(LogoutButtonClickedEvent()); 
+            profileScreenBloc.add(LogoutButtonClickedEvent());  
           }
           if(isInterestedCar==true){
             profileScreenBloc.add(InterestedCarConatinerClickedEvent());

@@ -11,10 +11,11 @@ class UserInterestedDetailsHolder extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        MyTextWidget(text: car['CarBrand'], color: const Color.fromARGB(255, 79, 79, 79), size: 17, weight: FontWeight.bold),
-        MyTextWidget(text: car['carName'], color: const Color.fromARGB(255, 79, 79, 79), size: 17, weight: FontWeight.w600),
+        MyTextWidget(text: car['CarBrand'], color: const Color.fromARGB(255, 79, 79, 79), size: 16, weight: FontWeight.bold),
+        MyTextWidget(text: car['carName'], color: const Color.fromARGB(255, 79, 79, 79), size: 15, weight: FontWeight.w600),
         MyTextWidget(text: car['carNumber'], color: const Color.fromARGB(255, 79, 79, 79), size: 13, weight: FontWeight.w600),
-        MyTextWidget(text: '₹${car['carRate']} Lakhs', color: Colors.green, size: 16, weight: FontWeight.bold),
+        MyTextWidget(text: '₹ ${car['carRate']} Lakhs', color: const Color.fromARGB(255, 8, 118, 11), size: 17, weight: FontWeight.bold),
+        MyTextWidget(text: 'From ${car['sellerName']}', color: const Color.fromARGB(255, 79, 79, 79), size: 12, weight: FontWeight.bold,),
       ],
     );
   }

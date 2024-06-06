@@ -9,7 +9,7 @@ class FavouriteIcon extends StatelessWidget {
   const FavouriteIcon({
     super.key,
     required this.data,
-    this.isFromSearch
+    this.isFromSearch,
   });
   final dynamic data;
   final bool? isFromSearch;
@@ -22,13 +22,7 @@ class FavouriteIcon extends StatelessWidget {
           future: isCarToSellInUserFavourite(
             carToSellId: (isFromSearch==true)?data['id']:data.id
           ),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return IconButton(
-                onPressed: (){},
-                 icon: const Icon(Icons.favorite_outline_rounded,size: 23,color: Colors.white,)
-              );
-            }
+          builder: (context, snapshot) {            
             final List favouriteData = snapshot.data ?? [];
             bool isFavourite = favouriteData.isNotEmpty;
             String? docId;

@@ -26,7 +26,7 @@ Future<void> addCarToUserFavourite(
 
   try {
     QuerySnapshot existingCar =
-        await userFavouriteCars.where('carToSellId', isEqualTo: isFromSearch?data['id']:data.id).where('userContact', isEqualTo: userContact).get();
+        await userFavouriteCars.where('carToSellId', isEqualTo: (isFromSearch==true)?data['id']:data.id).where('userContact', isEqualTo: userContact).get();
 
     if (existingCar.docs.isNotEmpty) {
       snackbarWidget('Car is already in favourites', context, Colors.red,
@@ -40,7 +40,7 @@ Future<void> addCarToUserFavourite(
       'userContact':userContact,
       'sellerId': data['sellerId'],
       'image': data['image'],
-      'carToSellId': isFromSearch?data['id']:data.id,
+      'carToSellId': (isFromSearch==true)?data['id']:data.id,
       'brand': data['brand'],
       'modelName': data['modelName'],
       'color': data['color'],
@@ -109,8 +109,10 @@ Future<void> markUserInterest({
   String userContact = userData.mobile;
   String userLocation = userData.location;
 
+  final sellerDetails = await getSellerDetailsById(car['sellerId']);
+  
   final QuerySnapshot existingDocs =
-      await userInterestMarked.where('userContact', isEqualTo: userContact).where('carId', isEqualTo: isFromSearch? car['id']: car.id).get();
+      await userInterestMarked.where('userContact', isEqualTo: userContact).where('carId', isEqualTo: (isFromSearch == true)? car['id']: car.id).get();
 
   if (existingDocs.docs.isEmpty) {
     final data = {
@@ -122,8 +124,9 @@ Future<void> markUserInterest({
       'CarBrand': car['brand'],
       'carNumber': car['regNumber'],
       'carSellerId': car['sellerId'],
-      'carId':isFromSearch? car['id']:car.id,
-      'carRate': car['price']
+      'carId':(isFromSearch == true)? car['id']:car.id,
+      'carRate': car['price'],
+      'sellerName':sellerDetails!.companyName,
     };
     userInterestMarked.add(data);
     buyScreenBloc.add(InterstButtonClickedRebuildUiEvent());

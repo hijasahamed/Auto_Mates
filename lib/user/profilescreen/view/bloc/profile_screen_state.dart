@@ -14,3 +14,8 @@ class ConfirmLogoutActionState extends ProfileScreenActionState{}
 class FavouriteConatinerClickedActionState extends ProfileScreenActionState{}
 
 class InterestedCarConatinerClickedActionState extends ProfileScreenActionState{}
+
+class InterestedCarOnTapActionState extends ProfileScreenActionState{
+  final dynamic data;
+  InterestedCarOnTapActionState({required this.data});
+}

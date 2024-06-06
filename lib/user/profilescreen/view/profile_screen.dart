@@ -48,7 +48,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           final sharedPref=await SharedPreferences.getInstance();
           dynamic mobile= sharedPref.getString('mobile');         
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => InterestedCarsScreen(userContact: mobile, screenSize: widget.screenSize),
+            builder: (context) => InterestedCarsScreen(userContact: mobile, screenSize: widget.screenSize,profileScreenBloc: profileScreenBloc,),
           ));
         }
       },

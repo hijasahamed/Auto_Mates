@@ -8,10 +8,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class InterestedButton extends StatelessWidget {
   const InterestedButton(
-      {super.key, required this.data, required this.screenSize,this.isFromSearch});
+      {super.key, required this.data, required this.screenSize,this.isFromSearch,this.isFrominterestedCars});
   final Size screenSize;
   final dynamic data;
   final bool? isFromSearch;
+  final bool? isFrominterestedCars;
   @override
   Widget build(BuildContext context) {
     

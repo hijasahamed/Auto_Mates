@@ -45,7 +45,7 @@ class CarImage extends StatelessWidget {
         ? Positioned(
                 top: 5,
                 right: 5,
-                child: FavouriteIcon(data: data,isFromSearch: isFromSearch,)
+                child: FavouriteIcon(data: data,isFromSearch: isFromSearch)
               )
         : const SizedBox()
       ],

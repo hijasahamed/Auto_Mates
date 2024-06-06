@@ -12,6 +12,7 @@ class ProfileScreenBloc extends Bloc<ProfileScreenEvent, ProfileScreenState> {
     on<ConfirmLogoutEvent>(confirmLogoutEvent);
     on<FavouriteConatinerClickedEvent>(favouriteConatinerClickedEvent);
     on<InterestedCarConatinerClickedEvent>(interestedCarConatinerClickedEvent);
+    on<InterestedCarOnTapEvent>(interestedCarOnTapEvent);
   }
 
   FutureOr<void> logoutButtonClickedEvent(
@@ -33,5 +34,10 @@ class ProfileScreenBloc extends Bloc<ProfileScreenEvent, ProfileScreenState> {
   FutureOr<void> interestedCarConatinerClickedEvent(
     InterestedCarConatinerClickedEvent event, Emitter<ProfileScreenState> emit) {
       emit(InterestedCarConatinerClickedActionState());
+  }
+
+  FutureOr<void> interestedCarOnTapEvent(
+    InterestedCarOnTapEvent event, Emitter<ProfileScreenState> emit) {
+      emit(InterestedCarOnTapActionState(data: event.data));
   }
 }

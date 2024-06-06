@@ -10,3 +10,8 @@ class ConfirmLogoutEvent extends ProfileScreenEvent {}
 class FavouriteConatinerClickedEvent extends ProfileScreenEvent {}
 
 class InterestedCarConatinerClickedEvent extends ProfileScreenEvent {}
+
+class InterestedCarOnTapEvent extends ProfileScreenEvent {
+  final dynamic data;
+  InterestedCarOnTapEvent({required this.data});
+}
