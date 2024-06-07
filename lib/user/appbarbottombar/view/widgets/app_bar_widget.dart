@@ -1,6 +1,6 @@
 import 'package:auto_mates/user/appbarbottombar/view/widgets/app_bar_gradient_color.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/menu_button_widget.dart';
-import 'package:auto_mates/user/buyscreentab/view/buy_screen/sort_and_filter/sorting_filter_button.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/filter_cars/filter_button.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/search/view/search_page/search_page.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +46,7 @@ class AppBarWidget extends StatelessWidget {
       ),
       actions: [
         tabIndex==1?
-        SortingFilteringButton(screenSize: screenSize)
+        FilterButton(screenSize: screenSize)
         : Stack(
           children: [
             IconButton(

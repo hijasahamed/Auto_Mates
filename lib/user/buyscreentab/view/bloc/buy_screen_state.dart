@@ -8,3 +8,5 @@ final class BuyScreenInitial extends BuyScreenState {}
 class InterstButtonClickedRebuildUiState extends BuyScreenState {}
 
 class FavouriteButtonClickedRebuildUiState extends BuyScreenState {}
+
+class FilterButtonClickedState extends BuyScreenState {}

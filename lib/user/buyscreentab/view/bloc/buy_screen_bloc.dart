@@ -10,6 +10,7 @@ class BuyScreenBloc extends Bloc<BuyScreenEvent, BuyScreenState> {
   BuyScreenBloc() : super(BuyScreenInitial()) {
     on<InterstButtonClickedRebuildUiEvent>(interestedCarConatinerClickedEvent);
     on<FavouriteButtonClickedRebuildUiEvent>(favouriteButtonClickedRebuildUiEvent);
+    on<FilterButtonClickedEvent>(filterButtonClickedEvent);
   }
 
   FutureOr<void> interestedCarConatinerClickedEvent(
@@ -20,5 +21,10 @@ class BuyScreenBloc extends Bloc<BuyScreenEvent, BuyScreenState> {
   FutureOr<void> favouriteButtonClickedRebuildUiEvent(
     FavouriteButtonClickedRebuildUiEvent event, Emitter<BuyScreenState> emit) {
       emit(FavouriteButtonClickedRebuildUiState());
+  }
+
+  FutureOr<void> filterButtonClickedEvent(
+    FilterButtonClickedEvent event, Emitter<BuyScreenState> emit) {
+      emit(FilterButtonClickedState());
   }
 }
