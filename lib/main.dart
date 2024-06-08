@@ -5,7 +5,6 @@ import 'package:auto_mates/user/appbarbottombar/controller/bloc/appbottombar_blo
 import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/firebase/firebase_options.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
-import 'package:auto_mates/user/buyscreentab/view/buy_screen/buy_screen.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
 import 'package:auto_mates/user/splashscreen/view/bloc/splash_bloc.dart';
 import 'package:auto_mates/user/splashscreen/view/splash_screen/splash_screen.dart';

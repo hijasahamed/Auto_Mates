@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 String? selectedItem;
   
-final List<String> brands=['Maruti Suzuki',
+final List<String> carBrands=['Maruti Suzuki',
   'Hyundai','Tata Motors',  'Mahindra',  'Kia','Skoda' , 'Toyota',  'Honda',  'Ford',  'Volkswagen',  'Renault',  'MG Motor',
-  'Nissan',  'Fiat',  'Datsun',  'Jeep',  'Mercedes-Benz',  'BMW',  'Audi',  'Land Rover',  'Volvo',  'Lexus',  'Porsche',
-  'Ferrari',  'Lamborghini',  'Maserati',  'Bentley',  'Rolls-Royce',  'Mini',  'Mitsubishi',  'Isuzu',  'Force Motors',
+  'Nissan',  'Fiat',  'Datsun',  'Jeep',  'Mercedes-Benz',  'BMW',  'Audi',  'Land Rover',  'Volvo',  'Lexus',
+  'Mini',  'Mitsubishi',  'Isuzu',  'Force Motors',
   'Chevrolet',  
   'Citroen',
   'BYD',];

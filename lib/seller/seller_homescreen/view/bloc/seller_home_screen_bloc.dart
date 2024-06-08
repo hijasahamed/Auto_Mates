@@ -69,10 +69,6 @@ class SellerHomeScreenBloc extends Bloc<SellerHomeScreenEvent, SellerHomeScreenS
     NavigateToSingleCarDetailsPageEvent event, Emitter<SellerHomeScreenState> emit) {
       emit(NavigateToSingleCarDetailsPageActionState(data: event.data));
   }
-  
- 
-  
-
 
   FutureOr<void> allCarsTOSellEvent(AllCarsTOSellEvent event, Emitter<SellerHomeScreenState> emit) {
     emit(AllCarsTOSellState());

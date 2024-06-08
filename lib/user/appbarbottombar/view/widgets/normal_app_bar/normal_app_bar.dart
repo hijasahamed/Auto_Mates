@@ -4,12 +4,13 @@ import 'package:auto_mates/user/appbarbottombar/view/widgets/app_bar_gradient_co
 import 'package:flutter/material.dart';
 
 class NormalAppBar extends StatelessWidget {
-  const NormalAppBar({super.key,required this.title,this.isFromSeller,this.sellerHomeScreenBloc,this.screenSize,this.data,});
+  const NormalAppBar({super.key,required this.title,this.isFromSeller,this.sellerHomeScreenBloc,this.screenSize,this.data,this.isFromFilterPage});
   final String title;
   final bool? isFromSeller;
   final SellerHomeScreenBloc? sellerHomeScreenBloc;
   final Size? screenSize;
   final dynamic data;
+  final bool? isFromFilterPage;
   @override
   Widget build(BuildContext context) {
     return AppBar(

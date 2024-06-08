@@ -1,8 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
-
-
 import 'package:auto_mates/seller/authentications/model/model.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbuttons/car_brand_drop_down.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/buy_screen.dart';
@@ -11,36 +10,37 @@ import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 final CollectionReference userFavouriteCars =
     FirebaseFirestore.instance.collection('userFavouriteCars');
 
-Future<void> addCarToUserFavourite(
-    { data, context,isFromSearch}) async {
-
-    UserData? userData = await fetchUserDetails();
-    String userName = userData!.userName;
-    String userContact = userData.mobile;
+Future<void> addCarToUserFavourite({data, context, isFromSearch}) async {
+  UserData? userData = await fetchUserDetails();
+  String userName = userData!.userName;
+  String userContact = userData.mobile;
 
   try {
-    QuerySnapshot existingCar =
-        await userFavouriteCars.where('carToSellId', isEqualTo: (isFromSearch==true)?data['id']:data.id).where('userContact', isEqualTo: userContact).get();
+    QuerySnapshot existingCar = await userFavouriteCars
+        .where('carToSellId',
+            isEqualTo: (isFromSearch == true) ? data['id'] : data.id)
+        .where('userContact', isEqualTo: userContact)
+        .get();
 
     if (existingCar.docs.isNotEmpty) {
       snackbarWidget('Car is already in favourites', context, Colors.red,
           Colors.white, SnackBarBehavior.floating);
       return;
     }
-    
 
     Map<String, dynamic> carData = {
-      'userName':userName,
-      'userContact':userContact,
+      'userName': userName,
+      'userContact': userContact,
       'sellerId': data['sellerId'],
       'image': data['image'],
-      'carToSellId': (isFromSearch==true)?data['id']:data.id,
+      'carToSellId': (isFromSearch == true) ? data['id'] : data.id,
       'brand': data['brand'],
       'modelName': data['modelName'],
       'color': data['color'],
@@ -99,20 +99,18 @@ Future<void> checkIfFavourite({id, isFavOrNotValueNotifier}) async {
 final CollectionReference userInterestMarked =
     FirebaseFirestore.instance.collection('userInterestMarked');
 
-Future<void> markUserInterest({
-  context,
-  car,
-  isFromSearch
-}) async {
+Future<void> markUserInterest({context, car, isFromSearch}) async {
   UserData? userData = await fetchUserDetails();
   String userName = userData!.userName;
   String userContact = userData.mobile;
   String userLocation = userData.location;
 
   final sellerDetails = await getSellerDetailsById(car['sellerId']);
-  
-  final QuerySnapshot existingDocs =
-      await userInterestMarked.where('userContact', isEqualTo: userContact).where('carId', isEqualTo: (isFromSearch == true)? car['id']: car.id).get();
+
+  final QuerySnapshot existingDocs = await userInterestMarked
+      .where('userContact', isEqualTo: userContact)
+      .where('carId', isEqualTo: (isFromSearch == true) ? car['id'] : car.id)
+      .get();
 
   if (existingDocs.docs.isEmpty) {
     final data = {
@@ -124,9 +122,9 @@ Future<void> markUserInterest({
       'CarBrand': car['brand'],
       'carNumber': car['regNumber'],
       'carSellerId': car['sellerId'],
-      'carId':(isFromSearch == true)? car['id']:car.id,
+      'carId': (isFromSearch == true) ? car['id'] : car.id,
       'carRate': car['price'],
-      'sellerName':sellerDetails!.companyName,
+      'sellerName': sellerDetails!.companyName,
     };
     userInterestMarked.add(data);
     buyScreenBloc.add(InterstButtonClickedRebuildUiEvent());
@@ -186,17 +184,26 @@ void sellerDetailsAlertDialog(
             weight: FontWeight.w500),
         actions: [
           ElevatedButton(
-            onPressed: () => Navigator.pop(context),
-            style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.red)),
-            child: const MyTextWidget(text: 'Back', color: Colors.white, size: 15, weight: FontWeight.bold)
-          ),
+              onPressed: () => Navigator.pop(context),
+              style: const ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(Colors.red)),
+              child: const MyTextWidget(
+                  text: 'Back',
+                  color: Colors.white,
+                  size: 15,
+                  weight: FontWeight.bold)),
           ElevatedButton.icon(
             onPressed: () async {
-              makeCall(context: context,mobileNumber: data.mobile);
+              makeCall(context: context, mobileNumber: data.mobile);
             },
             icon: const Icon(Icons.call, color: Colors.white),
-            label: const MyTextWidget(text: 'Call now', color: Colors.white, size: 15, weight: FontWeight.bold),
-            style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.green)),
+            label: const MyTextWidget(
+                text: 'Call now',
+                color: Colors.white,
+                size: 15,
+                weight: FontWeight.bold),
+            style: const ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(Colors.green)),
           ),
         ],
       );
@@ -204,50 +211,60 @@ void sellerDetailsAlertDialog(
   );
 }
 
-
-makeCall({mobileNumber,context})async{
+makeCall({mobileNumber, context}) async {
   final url = Uri.parse('tel:$mobileNumber');
   if (await canLaunchUrl(url)) {
     await launchUrl(url);
     Navigator.pop(context);
   } else {
-    snackbarWidget('Could not launch call app', context, Colors.red, Colors.white, SnackBarBehavior.floating);
+    snackbarWidget('Could not launch call app', context, Colors.red,
+        Colors.white, SnackBarBehavior.floating);
   }
 }
 
-
-Future<List<Map<String, dynamic>>>  checkIfUserInterestedCar({carId})async{
+Future<List<Map<String, dynamic>>> checkIfUserInterestedCar({carId}) async {
   List<Map<String, dynamic>> result = [];
-  final sharedPref=await SharedPreferences.getInstance();
-  dynamic mobile= sharedPref.getString('mobile');
-  try{
-    QuerySnapshot existingCarInterested= await userInterestMarked
+  final sharedPref = await SharedPreferences.getInstance();
+  dynamic mobile = sharedPref.getString('mobile');
+  try {
+    QuerySnapshot existingCarInterested = await userInterestMarked
         .where('carId', isEqualTo: carId)
         .where('userContact', isEqualTo: mobile)
         .get();
-    for(var doc in existingCarInterested.docs){
-      result.add({'id':doc.id,...doc.data() as Map<String,dynamic>});
+    for (var doc in existingCarInterested.docs) {
+      result.add({'id': doc.id, ...doc.data() as Map<String, dynamic>});
     }
     return result;
-  }catch (e){
+  } catch (e) {
     return [];
   }
 }
 
-Future<List<Map<String, dynamic>>>  isCarToSellInUserFavourite({carToSellId,})async{
-    List<Map<String, dynamic>> result = [];
-    final sharedPref=await SharedPreferences.getInstance();
-    dynamic mobile= sharedPref.getString('mobile');
-    try{
-      QuerySnapshot isFavourite = await userFavouriteCars
-      .where('carToSellId', isEqualTo: carToSellId)
-      .where('userContact', isEqualTo: mobile)
-      .get();
-      for(var doc in isFavourite.docs){
-      result.add({'id':doc.id,...doc.data() as Map<String,dynamic>});
-      }
-      return result;   
-    }catch (e){
-      return [];
-    } 
+Future<List<Map<String, dynamic>>> isCarToSellInUserFavourite({
+  carToSellId,
+}) async {
+  List<Map<String, dynamic>> result = [];
+  final sharedPref = await SharedPreferences.getInstance();
+  dynamic mobile = sharedPref.getString('mobile');
+  try {
+    QuerySnapshot isFavourite = await userFavouriteCars
+        .where('carToSellId', isEqualTo: carToSellId)
+        .where('userContact', isEqualTo: mobile)
+        .get();
+    for (var doc in isFavourite.docs) {
+      result.add({'id': doc.id, ...doc.data() as Map<String, dynamic>});
+    }
+    return result;
+  } catch (e) {
+    return [];
+  }
 }
+
+// addCarBrandToFilterList({selectedCarBrandsList, index}) {
+//  if(!selectedCarBrandsList.contains(carBrands[index])){
+//      selectedCarBrandsList.add(carBrands[index]); 
+//  }else{
+//   selectedCarBrandsList.remove(carBrands[index]);
+//  }
+//  buyScreenBloc.add(CarBrandFilterStateRefreshEvent(selectedCar: carBrands[index]));
+// }

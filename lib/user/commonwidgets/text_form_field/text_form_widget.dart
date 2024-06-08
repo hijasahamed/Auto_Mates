@@ -92,7 +92,7 @@ class MyTextFormWidget extends StatelessWidget {
                 height: screenSize.height/50,
                 width: screenSize.width/50,
                 child: const Icon(Icons.arrow_drop_down)),onTap: () {
-                showBrandSelectionDialog(context: context,brands: brands,controller: controller);
+                showBrandSelectionDialog(context: context,brands: carBrands,controller: controller);
               },),
             )
             : (transmission==true)? DropDownButtonWidget(controller: controller,isTransmission: true,) 

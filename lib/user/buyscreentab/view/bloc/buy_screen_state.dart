@@ -10,3 +10,11 @@ class InterstButtonClickedRebuildUiState extends BuyScreenState {}
 class FavouriteButtonClickedRebuildUiState extends BuyScreenState {}
 
 class FilterButtonClickedState extends BuyScreenState {}
+
+class CarBrandFilterStateRefreshState extends BuyScreenState {
+  final String selectedCar;
+  final int index;
+  CarBrandFilterStateRefreshState({required this.selectedCar,required this.index});
+}
+
+class CarFuelFilterDropDownStateChangeState extends BuyScreenState {}

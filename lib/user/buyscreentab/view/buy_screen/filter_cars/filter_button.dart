@@ -14,9 +14,10 @@ class FilterButton extends StatelessWidget {
       listener: (context, state) {
         if(state is FilterButtonClickedState){
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const FilterScreen()
+            builder: (context) => FilterScreen(screenSize: screenSize,)
           ));
         }
+                
       },
       builder: (context, state) {
         return IconButton(
