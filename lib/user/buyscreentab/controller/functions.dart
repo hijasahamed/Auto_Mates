@@ -1,16 +1,16 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:auto_mates/seller/authentications/model/model.dart';
-import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbuttons/car_brand_drop_down.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
+import 'package:auto_mates/user/buyscreentab/model/buyscreen_model.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/buy_screen.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/filter_car_screen/car_brands/filter_with_car_brands.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -260,11 +260,11 @@ Future<List<Map<String, dynamic>>> isCarToSellInUserFavourite({
   }
 }
 
-// addCarBrandToFilterList({selectedCarBrandsList, index}) {
-//  if(!selectedCarBrandsList.contains(carBrands[index])){
-//      selectedCarBrandsList.add(carBrands[index]); 
-//  }else{
-//   selectedCarBrandsList.remove(carBrands[index]);
-//  }
-//  buyScreenBloc.add(CarBrandFilterStateRefreshEvent(selectedCar: carBrands[index]));
-// }
+  String getSelectedFuelType() {
+    for (var fuel in fuelTypes) {
+      if (selectedCarFilterdList.contains(fuel.fuelType)) {
+        return fuel.fuelType;
+      }
+    }
+    return 'Fuel Types';
+  }

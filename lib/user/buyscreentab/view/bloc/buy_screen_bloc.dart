@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbuttons/car_brand_drop_down.dart';
-import 'package:auto_mates/user/buyscreentab/view/buy_screen/filter_cars/car_brands/filter_with_car_brands.dart';
+import 'package:auto_mates/user/buyscreentab/model/buyscreen_model.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/filter_car_screen/car_brands/filter_with_car_brands.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -15,6 +16,8 @@ class BuyScreenBloc extends Bloc<BuyScreenEvent, BuyScreenState> {
     on<FilterButtonClickedEvent>(filterButtonClickedEvent);
     on<CarBrandFilterStateRefreshEvent>(carBrandFilterStateRefreshEvent);
     on<CarFuelFilterDropDownStateChangeEvent>(carFuelFilterDropDownStateChangeEvent);
+    on<CarFuelFilterStateRefreshEvent>(carFuelFilterStateRefreshEvent);
+    on<CarTransmissionFilterStateRefreshEvent>(carTransmissionFilterStateRefreshEvent);
   }
 
   FutureOr<void> interestedCarConatinerClickedEvent(
@@ -35,15 +38,36 @@ class BuyScreenBloc extends Bloc<BuyScreenEvent, BuyScreenState> {
   FutureOr<void> carBrandFilterStateRefreshEvent(
     CarBrandFilterStateRefreshEvent event, Emitter<BuyScreenState> emit) {
       emit(CarBrandFilterStateRefreshState(selectedCar: event.selectedCar,index: event.index));
-        if(!selectedCarBrandsList.contains(carBrands[event.index])){
-          selectedCarBrandsList.add(event.selectedCar); 
+        if(!selectedCarFilterdList.contains(carBrands[event.index])){
+          selectedCarFilterdList.add(event.selectedCar); 
         }else{
-          selectedCarBrandsList.remove(event.selectedCar);
+          selectedCarFilterdList.remove(event.selectedCar);
         }
   }
 
   FutureOr<void> carFuelFilterDropDownStateChangeEvent(
     CarFuelFilterDropDownStateChangeEvent event, Emitter<BuyScreenState> emit) {
-      emit(CarFuelFilterDropDownStateChangeState());
+      emit(CarFuelFilterDropDownStateChangeState(isDropdownVisible: event.isDropdownVisible));
+  }
+
+
+  FutureOr<void> carFuelFilterStateRefreshEvent(
+    CarFuelFilterStateRefreshEvent event, Emitter<BuyScreenState> emit) {
+      emit(CarFuelFilterStateRefreshState(index: event.index,selectedFuel: event.selectedFuel));
+      if(!selectedCarFilterdList.contains(fuelTypes[event.index].fuelType)){
+        selectedCarFilterdList.add(event.selectedFuel);
+      }else{
+        selectedCarFilterdList.remove(event.selectedFuel);
+      }
+  }
+
+  FutureOr<void> carTransmissionFilterStateRefreshEvent(
+    CarTransmissionFilterStateRefreshEvent event, Emitter<BuyScreenState> emit) {
+      emit(CarTransmissionFilterStateRefreshState(selectedTransmission: event.selectedTransmission, index: event.index));
+      if(!selectedCarFilterdList.contains(transmissionTypes[event.index].transmissionType)){
+        selectedCarFilterdList.add(event.selectedTransmission);
+      }else{
+        selectedCarFilterdList.remove(event.selectedTransmission);
+      }
   }
 }

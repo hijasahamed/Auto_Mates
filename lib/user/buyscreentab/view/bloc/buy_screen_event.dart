@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 part of 'buy_screen_bloc.dart';
 
 @immutable
@@ -15,4 +17,19 @@ class CarBrandFilterStateRefreshEvent extends BuyScreenEvent {
   CarBrandFilterStateRefreshEvent({required this.selectedCar,required this.index});
 }
 
-class CarFuelFilterDropDownStateChangeEvent extends BuyScreenEvent {}
+class CarFuelFilterDropDownStateChangeEvent extends BuyScreenEvent {
+ final bool isDropdownVisible;
+ CarFuelFilterDropDownStateChangeEvent({required this.isDropdownVisible});
+}
+
+class CarFuelFilterStateRefreshEvent extends BuyScreenEvent {
+  final String selectedFuel;
+  final int index;
+  CarFuelFilterStateRefreshEvent({required this.selectedFuel,required this.index});
+}
+
+class CarTransmissionFilterStateRefreshEvent extends BuyScreenEvent {
+  final String selectedTransmission;
+  final int index;
+  CarTransmissionFilterStateRefreshEvent({required this.selectedTransmission,required this.index});
+}
