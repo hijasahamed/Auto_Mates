@@ -1,9 +1,10 @@
-import 'package:auto_mates/user/buyscreentab/view/buy_screen/filter_car_screen/transmission_types/transmission_container_widget/transmission_container_widget.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/filter_car_screen/seat_capacity/seat_capacity_container_widget/seat_capacity_container_widget.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-class FilterWithTransmissionTypes extends StatelessWidget {
-  const FilterWithTransmissionTypes({super.key, required this.screenSize});
+class FilterWithSeatCapacity extends StatelessWidget {
+  const FilterWithSeatCapacity({super.key,required this.screenSize});
   final Size screenSize;
   @override
   Widget build(BuildContext context) {
@@ -13,11 +14,11 @@ class FilterWithTransmissionTypes extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const MyTextWidget(
-              text: 'Transmission',
+              text: 'Seating Capacity',
               color: Color.fromARGB(255, 136, 136, 136),
               size: 15,
               weight: FontWeight.w700),
-          TransmissionContainerWidget(screenSize: screenSize)
+          SeatCapacityContainerWidget(screenSize: screenSize)
         ],
       ),
     );

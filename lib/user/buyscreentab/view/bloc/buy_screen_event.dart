@@ -33,3 +33,14 @@ class CarTransmissionFilterStateRefreshEvent extends BuyScreenEvent {
   final int index;
   CarTransmissionFilterStateRefreshEvent({required this.selectedTransmission,required this.index});
 }
+
+class CarSeatFilterStateRefreshEvent extends BuyScreenEvent {
+  final int index;
+  CarSeatFilterStateRefreshEvent({required this.index});
+}
+
+class CarBudgetFilterStateRefreshEvent extends BuyScreenEvent {
+  final int index;
+  final String budgetText;
+  CarBudgetFilterStateRefreshEvent({required this.index,required this.budgetText});
+}

@@ -1,6 +1,7 @@
 import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/car_holder/car_holder.dart';
+import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_error_placeholder.dart';
 import 'package:auto_mates/user/commonwidgets/shimmer_effect/shimmer_effect.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,7 +15,13 @@ class BuyScreen extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;    
+    final screenSize = MediaQuery.of(context).size;
+    final controller =  ScrollController();
+    controller.addListener(() {
+      if(controller.offset == controller.position.maxScrollExtent){
+        snackbarWidget('End of the list.No more cars', context, const Color.fromARGB(255, 126, 126, 126), Colors.white, SnackBarBehavior.fixed);
+      }
+    },) ;
     return StreamBuilder(
       stream: firebaseObject.orderBy('brand').snapshots(),
       builder: (context, AsyncSnapshot snapshot) {
@@ -29,6 +36,7 @@ class BuyScreen extends StatelessWidget {
                 Expanded(
                   child: SizedBox(
                     child: GridView.builder(
+                      controller: controller,
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       itemCount: snapshot.data!.docs.length,

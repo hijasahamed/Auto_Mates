@@ -18,6 +18,8 @@ class BuyScreenBloc extends Bloc<BuyScreenEvent, BuyScreenState> {
     on<CarFuelFilterDropDownStateChangeEvent>(carFuelFilterDropDownStateChangeEvent);
     on<CarFuelFilterStateRefreshEvent>(carFuelFilterStateRefreshEvent);
     on<CarTransmissionFilterStateRefreshEvent>(carTransmissionFilterStateRefreshEvent);
+    on<CarSeatFilterStateRefreshEvent>(carSeatFilterStateRefreshEvent);
+    on<CarBudgetFilterStateRefreshEvent>(carBudgetFilterStateRefreshEvent);
   }
 
   FutureOr<void> interestedCarConatinerClickedEvent(
@@ -68,6 +70,26 @@ class BuyScreenBloc extends Bloc<BuyScreenEvent, BuyScreenState> {
         selectedCarFilterdList.add(event.selectedTransmission);
       }else{
         selectedCarFilterdList.remove(event.selectedTransmission);
+      }
+  }
+
+  FutureOr<void> carSeatFilterStateRefreshEvent(
+    CarSeatFilterStateRefreshEvent event, Emitter<BuyScreenState> emit) {
+      emit(CarSeatFilterStateRefreshState(index: event.index));
+      if(!selectedCarFilterdList.contains(seatCapacity[event.index])){
+        selectedCarFilterdList.add(seatCapacity[event.index]);
+      }else{
+        selectedCarFilterdList.remove(seatCapacity[event.index]);
+      }
+  }
+
+  FutureOr<void> carBudgetFilterStateRefreshEvent(
+    CarBudgetFilterStateRefreshEvent event, Emitter<BuyScreenState> emit) {
+      emit(CarBudgetFilterStateRefreshState(index: event.index,budgetText: event.budgetText));
+      if(!selectedCarFilterdList.contains(event.budgetText)){
+        selectedCarFilterdList.add(event.budgetText);
+      }else{
+        selectedCarFilterdList.remove(event.budgetText);
       }
   }
 }

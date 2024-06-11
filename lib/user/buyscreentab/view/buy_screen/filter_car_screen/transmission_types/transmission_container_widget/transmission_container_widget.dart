@@ -5,39 +5,44 @@ import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class FuelTypeContainerWidget extends StatelessWidget {
-   FuelTypeContainerWidget({super.key, required this.screenSize});
+class TransmissionContainerWidget extends StatelessWidget {
+  TransmissionContainerWidget({super.key, required this.screenSize});
   final Size screenSize;
-  final BuyScreenBloc dropselectbloc=BuyScreenBloc();
+  final BuyScreenBloc transmissionSelectbloc=BuyScreenBloc();
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: screenSize.height / 8,
-        width: screenSize.width,
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(5), bottomRight: Radius.circular(5)),
-          color: Color.fromARGB(255, 244, 244, 244),
-        ),
+      height: screenSize.height / 8.8,
+      width: screenSize.width,
+      decoration: BoxDecoration(
+          color: const Color.fromARGB(255, 244, 244, 244),
+          borderRadius: BorderRadius.circular(5)),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: GridView.builder(
-          padding: const EdgeInsets.only(left: 8, right: 8),
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 4,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
               childAspectRatio: .955),
-          itemCount: fuelTypes.length,
+          itemCount: transmissionTypes.length,
           itemBuilder: (context, index) {
             return BlocBuilder<BuyScreenBloc, BuyScreenState>(
-              bloc: dropselectbloc,
+              bloc: transmissionSelectbloc,
               builder: (context, state) {
                 return GestureDetector(
                   onTap: () {
-                    dropselectbloc.add(CarFuelFilterStateRefreshEvent(selectedFuel: fuelTypes[index].fuelType, index: index));
+                    transmissionSelectbloc.add(CarTransmissionFilterStateRefreshEvent(
+                        selectedTransmission:
+                            transmissionTypes[index].transmissionType,
+                        index: index));
                   },
                   child: CircleAvatar(
-                    backgroundColor: selectedCarFilterdList.contains(fuelTypes[index].fuelType) ? Colors.blue : Colors.white,
+                    backgroundColor: selectedCarFilterdList
+                            .contains(transmissionTypes[index].transmissionType)
+                        ? Colors.blue
+                        : Colors.white,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -48,15 +53,17 @@ class FuelTypeContainerWidget extends StatelessWidget {
                           decoration: const BoxDecoration(
                             color: Colors.transparent,
                           ),
-                          child: Image.asset(
-                            selectedCarFilterdList.contains(fuelTypes[index].fuelType)
-                            ? fuelTypes[index].imageUrlWhite
-                            : fuelTypes[index].imageUrl
-                          ),
+                          child: Image.asset(selectedCarFilterdList.contains(
+                                  transmissionTypes[index].transmissionType)
+                              ? transmissionTypes[index].imageUrlWhite
+                              : transmissionTypes[index].imageUrl),
                         ),
                         MyTextWidget(
-                            text: fuelTypes[index].fuelType,
-                            color: selectedCarFilterdList.contains(fuelTypes[index].fuelType) ? Colors.white : Colors.grey,
+                            text: transmissionTypes[index].transmissionType,
+                            color: selectedCarFilterdList.contains(
+                                    transmissionTypes[index].transmissionType)
+                                ? Colors.white
+                                : Colors.grey,
                             size: 12,
                             weight: FontWeight.w600)
                       ],
@@ -66,6 +73,8 @@ class FuelTypeContainerWidget extends StatelessWidget {
               },
             );
           },
-        ));
+        ),
+      ),
+    );
   }
 }

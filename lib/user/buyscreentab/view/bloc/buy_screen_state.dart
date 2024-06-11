@@ -35,3 +35,14 @@ class CarTransmissionFilterStateRefreshState extends BuyScreenState {
   final int index;
   CarTransmissionFilterStateRefreshState({required this.selectedTransmission,required this.index});
 }
+
+class CarSeatFilterStateRefreshState extends BuyScreenState{
+  final int index;
+  CarSeatFilterStateRefreshState({required this.index});
+}
+
+class CarBudgetFilterStateRefreshState extends BuyScreenState{
+  final int index;
+  final String budgetText;
+  CarBudgetFilterStateRefreshState({required this.index,required this.budgetText});
+}
