@@ -79,3 +79,5 @@ class NavigateToSingleCarDetailsPageEvent extends SellerHomeScreenEvent {
 }
 
 class AllCarsTOSellEvent extends SellerHomeScreenEvent {}
+
+class ReloadPageAfterAddingImagesEvent extends SellerHomeScreenEvent {}

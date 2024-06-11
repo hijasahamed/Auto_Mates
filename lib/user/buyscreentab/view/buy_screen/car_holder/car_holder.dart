@@ -70,7 +70,7 @@ class CarHolder extends StatelessWidget {
                             color: Colors.blue,
                           );
                         },
-                        image: NetworkImage(data['image']),
+                        image: NetworkImage(data['thumbnail']),
                         fit: BoxFit.cover,
                         filterQuality: FilterQuality.high),
                   ),

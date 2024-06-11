@@ -36,7 +36,7 @@ class CarImage extends StatelessWidget {
                   color: Colors.blue,
                 );
               },
-              image: NetworkImage(data['image']),
+              image: NetworkImage(data['image'][0]),
               fit: BoxFit.cover,
               filterQuality: FilterQuality.high),
         ),

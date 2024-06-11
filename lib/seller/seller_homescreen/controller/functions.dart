@@ -17,8 +17,6 @@ import 'package:image_picker/image_picker.dart';
 final CollectionReference firebaseObject =
     FirebaseFirestore.instance.collection('carstosell');
 
-String imageUrl = '';
-
 
 postNewCar(
     {required
@@ -58,9 +56,12 @@ postNewCar(
     snackbarWidget('seller data not found', context, Colors.red, Colors.white,SnackBarBehavior.floating);
     return;
   }
+  List<dynamic> imageUrls = await addMultiImagesToDb();
+  String? thumbnailUrl = await addThumbnailToDb();
   final data = {
+    'thumbnail':thumbnailUrl,
     'sellerId':sellerDetails.id,
-    'image':imageUrl,
+    'image':imageUrls,
     'brand': carBrandController.text,
     'modelName': carModelNameController.text,
     'color': carColorController.text,
@@ -94,7 +95,6 @@ postNewCar(
     Navigator.of(context).pop();
     sellerHomeScreenBloc.add(AllCarsTOSellEvent());   
     snackbarWidget('Car Posted Successfully', context, Colors.blue,Colors.white, SnackBarBehavior.floating);
-    imageUrl='';
   } else {
     snackbarWidget('Car details not completed', context, Colors.blue,
         Colors.white, SnackBarBehavior.floating);
@@ -107,6 +107,7 @@ deleteCarToSell(docId,context,sellerHomeScreenBloc)async {
   sellerHomeScreenBloc.add(AllCarsTOSellEvent());
   snackbarWidget('Car details removed', context,Colors.red, Colors.white, SnackBarBehavior.floating);
 }
+
 
 updateCarDetails(
    { context,
@@ -143,7 +144,7 @@ updateCarDetails(
     
   ) {
   final data = {
-    'image':imageUrl,
+    'image':'',
     'brand': carBrandController.text,
     'modelName': carModelNameController.text,
     'color': carColorController.text,
@@ -181,29 +182,89 @@ updateCarDetails(
       )
       .then(snackbarWidget('Car details updated', context, Colors.blue,
           Colors.white, SnackBarBehavior.floating));
-    imageUrl='';
   }else{
     snackbarWidget('Car details not updated', context, Colors.blue, Colors.white, SnackBarBehavior.floating);
   } 
 }
 
-addImage() async {
+// addImage() async {
+//   final file = await ImagePicker().pickImage(source: ImageSource.gallery);
+//   if (file == null) {
+//     return;
+//   }
+//   String fileName = DateTime.now().microsecondsSinceEpoch.toString();
+//   Reference referenceRoot = FirebaseStorage.instance.ref();
+//   Reference referenceDireImages = referenceRoot.child('images');
+//   Reference referenceImageToUpload = referenceDireImages.child(fileName);
+//   try {
+//     await referenceImageToUpload.putFile(File(file.path));
+//     imageUrl = await referenceImageToUpload.getDownloadURL();
+//   } catch (e) {
+//     if (kDebugMode) {
+//       print(e);
+//     }
+//   }
+// }
+
+String? thumbnailImage;
+
+addCarThumbnail({bloc})async{
   final file = await ImagePicker().pickImage(source: ImageSource.gallery);
-  if (file == null) {
+  if(file == null){
     return;
   }
+  thumbnailImage = file.path;
+  bloc.add(ReloadPageAfterAddingImagesEvent());
+}
+
+
+Future<String?> addThumbnailToDb() async {
+  if (thumbnailImage == null) {
+    return null;
+  }
+
   String fileName = DateTime.now().microsecondsSinceEpoch.toString();
   Reference referenceRoot = FirebaseStorage.instance.ref();
   Reference referenceDireImages = referenceRoot.child('images');
   Reference referenceImageToUpload = referenceDireImages.child(fileName);
+  
   try {
-    await referenceImageToUpload.putFile(File(file.path));
-    imageUrl = await referenceImageToUpload.getDownloadURL();
+    await referenceImageToUpload.putFile(File(thumbnailImage!));
+    String imageUrl = await referenceImageToUpload.getDownloadURL();
+    thumbnailImage==null;
+    return imageUrl;
   } catch (e) {
     if (kDebugMode) {
       print(e);
     }
+    return null;
   }
+}
+
+List<File> selectedImages = [];
+
+addMultipleImages({bloc})async{
+  final List<XFile> files = await ImagePicker().pickMultiImage();
+  if (files.isEmpty) {
+    return;
+  }
+  selectedImages = files.map((file) => File(file.path)).toList();
+  bloc.add(ReloadPageAfterAddingImagesEvent());
+}
+
+Future<List<dynamic>> addMultiImagesToDb()async{
+  List<String> imagesToDb= [];
+  String fileName = DateTime.now().microsecondsSinceEpoch.toString();
+  Reference referenceRoot = FirebaseStorage.instance.ref();
+  Reference referenceDireImages = referenceRoot.child('images');
+  Reference referenceImageToUpload = referenceDireImages.child(fileName);
+  for(int i=0;i<selectedImages.length;i++){
+    await referenceImageToUpload.putFile(selectedImages[i]);
+     String url= await referenceImageToUpload.getDownloadURL();
+    imagesToDb.add(url);
+  }
+  selectedImages.clear();
+  return imagesToDb;
 }
 
 deleteAlertDialogwidget(
