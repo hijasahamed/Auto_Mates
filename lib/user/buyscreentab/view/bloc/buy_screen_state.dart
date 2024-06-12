@@ -46,3 +46,11 @@ class CarBudgetFilterStateRefreshState extends BuyScreenState{
   final String budgetText;
   CarBudgetFilterStateRefreshState({required this.index,required this.budgetText});
 }
+
+class ShowAllCarImagesState extends BuyScreenState{}
+
+class AllImageIndexCheckingState extends BuyScreenState{
+  // final int selectedIndex;
+  // final int newIndex;
+  // AllImageIndexCheckingState({required this.selectedIndex,required this.newIndex});
+}

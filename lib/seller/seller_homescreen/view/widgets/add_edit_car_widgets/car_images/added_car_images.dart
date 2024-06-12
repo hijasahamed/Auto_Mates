@@ -11,7 +11,7 @@ class AddedCarImages extends StatelessWidget {
     return GridView.builder(
       padding: const EdgeInsets.all(8.0),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
+        crossAxisCount: 2,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
         childAspectRatio: 1,
@@ -24,11 +24,7 @@ class AddedCarImages extends StatelessWidget {
               image: FileImage(File(selectedImages[index].path)),
               fit: BoxFit.cover,
             ),
-            borderRadius: BorderRadius.circular(5),
-            border: Border.all(
-              width: 1,
-              color: const Color(0xFF424141),
-            ),
+            borderRadius: BorderRadius.circular(5),            
           ),
         );
       },

@@ -57,6 +57,7 @@ postNewCar(
     return;
   }
   List<dynamic> imageUrls = await addMultiImagesToDb();
+  print('images to add in db ===$imageUrls');
   String? thumbnailUrl = await addThumbnailToDb();
   final data = {
     'thumbnail':thumbnailUrl,
@@ -92,8 +93,8 @@ postNewCar(
   };
   if (postCarFormkey.currentState!.validate()){
     firebaseObject.add(data);
-    Navigator.of(context).pop();
     sellerHomeScreenBloc.add(AllCarsTOSellEvent());   
+    Navigator.of(context).pop();
     snackbarWidget('Car Posted Successfully', context, Colors.blue,Colors.white, SnackBarBehavior.floating);
   } else {
     snackbarWidget('Car details not completed', context, Colors.blue,
@@ -187,24 +188,6 @@ updateCarDetails(
   } 
 }
 
-// addImage() async {
-//   final file = await ImagePicker().pickImage(source: ImageSource.gallery);
-//   if (file == null) {
-//     return;
-//   }
-//   String fileName = DateTime.now().microsecondsSinceEpoch.toString();
-//   Reference referenceRoot = FirebaseStorage.instance.ref();
-//   Reference referenceDireImages = referenceRoot.child('images');
-//   Reference referenceImageToUpload = referenceDireImages.child(fileName);
-//   try {
-//     await referenceImageToUpload.putFile(File(file.path));
-//     imageUrl = await referenceImageToUpload.getDownloadURL();
-//   } catch (e) {
-//     if (kDebugMode) {
-//       print(e);
-//     }
-//   }
-// }
 
 String? thumbnailImage;
 

@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbuttons/car_brand_drop_down.dart';
 import 'package:auto_mates/user/buyscreentab/model/buyscreen_model.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/filter_car_screen/car_brands/filter_with_car_brands.dart';
+import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/all_images/all_images_screen.dart';
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
 part 'buy_screen_event.dart';
@@ -20,6 +22,8 @@ class BuyScreenBloc extends Bloc<BuyScreenEvent, BuyScreenState> {
     on<CarTransmissionFilterStateRefreshEvent>(carTransmissionFilterStateRefreshEvent);
     on<CarSeatFilterStateRefreshEvent>(carSeatFilterStateRefreshEvent);
     on<CarBudgetFilterStateRefreshEvent>(carBudgetFilterStateRefreshEvent);
+    on<ShowAllCarImagesEvent>(showAllCarImagesEvent);
+    on<AllImageIndexCheckingEvent>(allImageIndexCheckingEvent);
   }
 
   FutureOr<void> interestedCarConatinerClickedEvent(
@@ -91,5 +95,17 @@ class BuyScreenBloc extends Bloc<BuyScreenEvent, BuyScreenState> {
       }else{
         selectedCarFilterdList.remove(event.budgetText);
       }
+  }
+
+  FutureOr<void> showAllCarImagesEvent(
+    ShowAllCarImagesEvent event, Emitter<BuyScreenState> emit) {
+      emit(ShowAllCarImagesState());     
+  }
+
+  FutureOr<void> allImageIndexCheckingEvent(
+    AllImageIndexCheckingEvent event, Emitter<BuyScreenState> emit) {
+      emit(AllImageIndexCheckingState());
+      // event.selectedIndex=event.newIndex;
+
   }
 }

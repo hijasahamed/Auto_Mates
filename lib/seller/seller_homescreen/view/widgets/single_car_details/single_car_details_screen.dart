@@ -25,11 +25,10 @@ class SingleCarDetailsScreen extends StatelessWidget {
       ),
       bottomNavigationBar: BottomAppBar(
         height: screenSize.height/11,
-        color: const Color(0xFFDBEDF5),
         child: Ink(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: const Color.fromARGB(255, 65, 141, 204)
+            color: const Color.fromARGB(255, 218, 44, 25)
           ),
           child: InkWell(
             onTap: () {
