@@ -35,6 +35,7 @@ class _AllImagesScreenState extends State<AllImagesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(50),
           child: BlocBuilder<BuyScreenBloc, BuyScreenState>(

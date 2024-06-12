@@ -28,7 +28,7 @@ class NormalAppBar extends StatelessWidget {
         centerTitle: true,
         actions: [
           (isFromSeller==true)?
-          PopupMenuButtonWidget(screenSize: screenSize, data: data, sellerHomeScreenBloc: sellerHomeScreenBloc)
+          PopupMenuButtonWidget(screenSize: screenSize, data: data, sellerHomeScreenBloc: sellerHomeScreenBloc,isFromCarDetailsAppBar: true,)
           :const SizedBox()
         ],        
       );

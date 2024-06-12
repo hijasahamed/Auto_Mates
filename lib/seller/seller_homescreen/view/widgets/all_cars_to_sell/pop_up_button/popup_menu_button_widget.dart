@@ -3,10 +3,11 @@ import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_wi
 import 'package:flutter/material.dart';
 
 class PopupMenuButtonWidget extends StatelessWidget {
-  const PopupMenuButtonWidget({super.key,required this.screenSize,required this.data,required this.sellerHomeScreenBloc});
+  const PopupMenuButtonWidget({super.key,required this.screenSize,required this.data,required this.sellerHomeScreenBloc,this.isFromCarDetailsAppBar});
   final dynamic screenSize;
   final dynamic data;
   final dynamic sellerHomeScreenBloc;
+  final bool? isFromCarDetailsAppBar;
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
@@ -18,7 +19,7 @@ class PopupMenuButtonWidget extends StatelessWidget {
               builder: (context) => AddCarEditCarWidget(screenSize: screenSize,sellerHomeScreenBloc: sellerHomeScreenBloc,isEditPage: true,data: data,)));
         } 
         else if (value == 'delete') {
-          deleteAlertDialogwidget(context: context,docId: data.id,sellerhomescreenbloc: sellerHomeScreenBloc);                     
+          deleteAlertDialogwidget(context: context,docId: data.id,sellerhomescreenbloc: sellerHomeScreenBloc,isFromCarDetailsAppBar: true);                     
         }
       },
       icon: const Icon(

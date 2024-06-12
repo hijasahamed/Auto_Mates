@@ -57,7 +57,6 @@ postNewCar(
     return;
   }
   List<dynamic> imageUrls = await addMultiImagesToDb();
-  print('images to add in db ===$imageUrls');
   String? thumbnailUrl = await addThumbnailToDb();
   final data = {
     'thumbnail':thumbnailUrl,
@@ -237,11 +236,13 @@ addMultipleImages({bloc})async{
 
 Future<List<dynamic>> addMultiImagesToDb()async{
   List<String> imagesToDb= [];
-  String fileName = DateTime.now().microsecondsSinceEpoch.toString();
+  
   Reference referenceRoot = FirebaseStorage.instance.ref();
   Reference referenceDireImages = referenceRoot.child('images');
-  Reference referenceImageToUpload = referenceDireImages.child(fileName);
+  
   for(int i=0;i<selectedImages.length;i++){
+    String fileName = DateTime.now().microsecondsSinceEpoch.toString();
+    Reference referenceImageToUpload = referenceDireImages.child(fileName);
     await referenceImageToUpload.putFile(selectedImages[i]);
      String url= await referenceImageToUpload.getDownloadURL();
     imagesToDb.add(url);
@@ -255,6 +256,7 @@ deleteAlertDialogwidget(
   context,
   sellerhomescreenbloc ,
   docId,
+  isFromCarDetailsAppBar
 }) {
   return showDialog(
     context: context,
@@ -290,6 +292,9 @@ deleteAlertDialogwidget(
                       backgroundColor: WidgetStatePropertyAll(Colors.red)),
                   onPressed: () {
                     deleteCarToSell(docId,context,sellerhomescreenbloc);
+                    if(isFromCarDetailsAppBar==true){
+                      Navigator.of(context).pop();
+                    } 
                   },
                   child: const MyTextWidget(
                       text: 'Delete',

@@ -50,7 +50,7 @@ class CarImage extends StatelessWidget {
               fit: BoxFit.cover,
               filterQuality: FilterQuality.high),
         ),
-        (isImagesNotAvailable==false)?const SizedBox()
+        (isImagesNotAvailable==true)?const SizedBox()
         :  Positioned(
             bottom: 7,
             right: 7,

@@ -83,3 +83,7 @@ class NavigateToSingleCarDetailsPageActionState extends SellerHomeScreenState {
 class AllCarsTOSellState extends SellerHomeScreenState {}
 
 class ReloadPageAfterAddingImagesState extends SellerHomeScreenState {}
+
+class PostingCarLoadingState extends SellerHomeScreenState {}
+
+class PostingCarStopLoadingState extends SellerHomeScreenState {}

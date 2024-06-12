@@ -79,7 +79,7 @@ class CarHolder extends StatelessWidget {
                       right: 0,
                       child: (isFromSeller == true)
                           ? CircleAvatar(
-                              backgroundColor: Colors.black38,
+                              backgroundColor: Colors.black12,
                               child: PopupMenuButtonWidget(
                                   screenSize: screenSize,
                                   data: data,
