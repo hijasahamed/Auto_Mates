@@ -40,7 +40,8 @@ class SellerProfileScreen extends StatelessWidget {
                 SellerLogoutWidget(
                   screenSize: screenSize,
                   sellerProfileBloc: sellerProfileBloc,
-                )
+                ),
+                SizedBox(height: screenSize.height/14,)
               ],
             ),
           ),

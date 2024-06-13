@@ -49,8 +49,9 @@ class CarBudgetFilterStateRefreshState extends BuyScreenState{
 
 class ShowAllCarImagesState extends BuyScreenState{}
 
-class AllImageIndexCheckingState extends BuyScreenState{
-  // final int selectedIndex;
-  // final int newIndex;
-  // AllImageIndexCheckingState({required this.selectedIndex,required this.newIndex});
+class AllImageIndexCheckingState extends BuyScreenState{}
+
+class ImageZoomingScreenNavigateState extends BuyScreenState{
+  int index;
+  ImageZoomingScreenNavigateState({required this.index});
 }

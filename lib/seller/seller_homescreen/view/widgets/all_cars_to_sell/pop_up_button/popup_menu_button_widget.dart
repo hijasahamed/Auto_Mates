@@ -19,7 +19,7 @@ class PopupMenuButtonWidget extends StatelessWidget {
               builder: (context) => AddCarEditCarWidget(screenSize: screenSize,sellerHomeScreenBloc: sellerHomeScreenBloc,isEditPage: true,data: data,)));
         } 
         else if (value == 'delete') {
-          deleteAlertDialogwidget(context: context,docId: data.id,sellerhomescreenbloc: sellerHomeScreenBloc,isFromCarDetailsAppBar: true);                     
+          deleteAlertDialogwidget(context: context,docId: data.id,sellerhomescreenbloc: sellerHomeScreenBloc,isFromCarDetailsAppBar: isFromCarDetailsAppBar);                     
         }
       },
       icon: const Icon(

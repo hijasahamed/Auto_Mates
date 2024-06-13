@@ -33,7 +33,7 @@ class AddedCarImages extends StatelessWidget {
               ),
             );
           },
-        );        
+        );
       },
     );
   }

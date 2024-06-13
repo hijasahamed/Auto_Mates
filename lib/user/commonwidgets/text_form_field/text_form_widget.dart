@@ -81,7 +81,7 @@ class MyTextFormWidget extends StatelessWidget {
       obscuringCharacter: '*',
       autovalidateMode: AutovalidateMode.onUserInteraction,
       style: TextStyle(
-          color: valueTextColor, fontWeight: FontWeight.w400),
+          color: valueTextColor, fontWeight: FontWeight.w500),
       decoration: InputDecoration(
         suffixIcon: (fuel == true)
             ? DropDownButtonWidget (controller: controller,isFuel: true,) 

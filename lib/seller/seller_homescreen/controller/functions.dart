@@ -17,6 +17,7 @@ import 'package:image_picker/image_picker.dart';
 final CollectionReference firebaseObject =
     FirebaseFirestore.instance.collection('carstosell');
 
+SellerHomeScreenBloc refreshAllCarToSellInstance = SellerHomeScreenBloc();
 
 postNewCar(
     {required
@@ -92,18 +93,20 @@ postNewCar(
   };
   if (postCarFormkey.currentState!.validate()){
     firebaseObject.add(data);
-    sellerHomeScreenBloc.add(AllCarsTOSellEvent());   
     Navigator.of(context).pop();
     snackbarWidget('Car Posted Successfully', context, Colors.blue,Colors.white, SnackBarBehavior.floating);
+    refreshAllCarToSellInstance.add(AllCarsTOSellEvent());   
   } else {
     snackbarWidget('Car details not completed', context, Colors.blue,
         Colors.white, SnackBarBehavior.floating);
   }
 }
 
-deleteCarToSell(docId,context,sellerHomeScreenBloc)async {
+deleteCarToSell(docId,context,sellerHomeScreenBloc,isFromCarDetailsAppBar)async {
  firebaseObject.doc(docId).delete();
+ if(isFromCarDetailsAppBar==true){
   Navigator.of(context).pop();
+ }
   sellerHomeScreenBloc.add(AllCarsTOSellEvent());
   snackbarWidget('Car details removed', context,Colors.red, Colors.white, SnackBarBehavior.floating);
 }
@@ -291,10 +294,8 @@ deleteAlertDialogwidget(
                   style: const ButtonStyle(
                       backgroundColor: WidgetStatePropertyAll(Colors.red)),
                   onPressed: () {
-                    deleteCarToSell(docId,context,sellerhomescreenbloc);
-                    if(isFromCarDetailsAppBar==true){
-                      Navigator.of(context).pop();
-                    } 
+                    Navigator.of(context).pop();                   
+                    deleteCarToSell(docId,context,sellerhomescreenbloc,isFromCarDetailsAppBar); 
                   },
                   child: const MyTextWidget(
                       text: 'Delete',

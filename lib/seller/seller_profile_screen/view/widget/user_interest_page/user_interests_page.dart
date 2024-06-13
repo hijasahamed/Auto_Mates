@@ -27,7 +27,7 @@ class UserInterestsPage extends StatelessWidget {
           if(snapshot.hasData && snapshot.data.docs.isNotEmpty){
             final cars= snapshot.data!.docs;
             return Scaffold(
-              backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+              backgroundColor: Colors.white,
               appBar: const PreferredSize(
                 preferredSize: Size.fromHeight(50), 
                 child: NormalAppBar(title: 'User Interest')

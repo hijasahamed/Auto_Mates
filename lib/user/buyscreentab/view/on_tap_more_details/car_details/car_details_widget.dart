@@ -1,6 +1,4 @@
-import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
-import 'package:auto_mates/user/buyscreentab/view/buy_screen/buy_screen.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/all_images/all_images_screen.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/car_image.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/details_container.dart';
@@ -60,7 +58,7 @@ class CarDetailsWidget extends StatelessWidget {
                   children: [
                     MyTextWidget(
                         text: data['brand'],
-                        color: const Color(0xFF424141),
+                        color: Colors.blueGrey,
                         size: 23,
                         weight: FontWeight.bold),
                     MyTextWidget(

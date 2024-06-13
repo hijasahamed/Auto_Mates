@@ -1,7 +1,7 @@
-
 import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/car_images/added_car_images.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/car_images/preview_selected_cars/preview_cars_widget.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/post_car_banner/post_car_banner.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/textformfields/add_edit_form_widget.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/thumbnail_image/added_thumbnail_image.dart';
@@ -95,7 +95,7 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
   @override
   void dispose() {
     selectedImages.clear();
-    thumbnailImage=null;
+    thumbnailImage = null;
     super.dispose();
   }
 
@@ -150,7 +150,8 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
                               color: Colors.transparent,
                               child: Row(
                                 children: [
-                                  BlocBuilder<SellerHomeScreenBloc,SellerHomeScreenState>(
+                                  BlocBuilder<SellerHomeScreenBloc,
+                                      SellerHomeScreenState>(
                                     bloc: homescreenBloc,
                                     builder: (context, state) {
                                       return Expanded(
@@ -201,6 +202,11 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
                                                 addMultipleImages(
                                                     bloc: homescreenBloc);
                                               },
+                                              onLongPress: () {
+                                                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                                  return PreviewCarsWidget(screenSize: widget.screenSize,);
+                                                },));
+                                              },
                                               child: selectedImages.isEmpty
                                                   ? const Center(
                                                       child: MyTextWidget(
@@ -210,7 +216,10 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
                                                           size: 15,
                                                           weight:
                                                               FontWeight.w600))
-                                                  : AddedCarImages(sellerHomeScreenBloc: homescreenBloc,)),
+                                                  : AddedCarImages(
+                                                      sellerHomeScreenBloc:
+                                                          homescreenBloc,
+                                                    )),
                                         ),
                                       );
                                     },
@@ -319,75 +328,68 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
                       ),
                     ),
                   )
-                : BlocBuilder<SellerHomeScreenBloc, SellerHomeScreenState>(
-                    builder: (context, state) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: widget.screenSize.height / 17,
-                          width: widget.screenSize.width / 1.5,
-                          color: Colors.transparent,
-                          child: Material(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            color: Colors.redAccent,
-                            child: InkWell(
-                                onTap: () {                                 
-                                  postNewCar(
-                                      context: context,
-                                      postCarFormkey: postCarFormkey,
-                                      carBrandController: carBrandController,
-                                      carModelNameController:
-                                          carModelNameController,
-                                      carColorController: carColorController,
-                                      carYearController: carYearController,
-                                      carPriceController: carPriceController,
-                                      carFuelController: carFuelController,
-                                      carKilometerController:
-                                          carKilometerController,
-                                      regNumberController: regNumberController,
-                                      numOfOwnerController:
-                                          numOfOwnerController,
-                                      transmissionController:
-                                          transmissionController,
-                                      insuranceController: insuranceController,
-                                      seatCapacityController:
-                                          seatCapacityController,
-                                      milageController: milageController,
-                                      sunroofController: sunroofController,
-                                      bootspaceController: bootspaceController,
-                                      infotainmentSystemController:
-                                          infotainmentSystemController,
-                                      alloyWheelController:
-                                          alloyWheelController,
-                                      carHeightController: carheightController,
-                                      carWidthController: carWidthController,
-                                      carLengthController: carLengthController,
-                                      groundClearanceController:
-                                          groundClearenceController,
-                                      airBagController: airBagController,
-                                      airConditionerController:
-                                          airConditionerController,
-                                      powerWindowController:
-                                          powerWindowController,
-                                      bodyTypeController: bodyTypeController,
-                                      fuelTankController: fuelTankController,
-                                      overViewController: overViewController,
-                                      sellerHomeScreenBloc:
-                                          widget.sellerHomeScreenBloc);
-                                },
-                                child: const Center(
-                                  child: MyTextWidget(
-                                      text: 'Post New Car',
-                                      color: Colors.white,
-                                      size: 17,
-                                      weight: FontWeight.bold),
-                                )),
-                          ),
+                : Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: widget.screenSize.height / 17,
+                      width: widget.screenSize.width / 1.5,
+                      color: Colors.transparent,
+                      child: Material(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                      );
-                    },
+                        color: Colors.redAccent,
+                        child: InkWell(
+                            onTap: () {
+                              postNewCar(
+                                  context: context,
+                                  postCarFormkey: postCarFormkey,
+                                  carBrandController: carBrandController,
+                                  carModelNameController:
+                                      carModelNameController,
+                                  carColorController: carColorController,
+                                  carYearController: carYearController,
+                                  carPriceController: carPriceController,
+                                  carFuelController: carFuelController,
+                                  carKilometerController:
+                                      carKilometerController,
+                                  regNumberController: regNumberController,
+                                  numOfOwnerController: numOfOwnerController,
+                                  transmissionController:
+                                      transmissionController,
+                                  insuranceController: insuranceController,
+                                  seatCapacityController:
+                                      seatCapacityController,
+                                  milageController: milageController,
+                                  sunroofController: sunroofController,
+                                  bootspaceController: bootspaceController,
+                                  infotainmentSystemController:
+                                      infotainmentSystemController,
+                                  alloyWheelController: alloyWheelController,
+                                  carHeightController: carheightController,
+                                  carWidthController: carWidthController,
+                                  carLengthController: carLengthController,
+                                  groundClearanceController:
+                                      groundClearenceController,
+                                  airBagController: airBagController,
+                                  airConditionerController:
+                                      airConditionerController,
+                                  powerWindowController: powerWindowController,
+                                  bodyTypeController: bodyTypeController,
+                                  fuelTankController: fuelTankController,
+                                  overViewController: overViewController,
+                                  sellerHomeScreenBloc:
+                                      widget.sellerHomeScreenBloc);
+                            },
+                            child: const Center(
+                              child: MyTextWidget(
+                                  text: 'Post New Car',
+                                  color: Colors.white,
+                                  size: 17,
+                                  weight: FontWeight.bold),
+                            )),
+                      ),
+                    ),
                   ),
           ),
         );

@@ -1,3 +1,4 @@
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 
 String? selectedItem;
@@ -15,24 +16,28 @@ void showBrandSelectionDialog({required BuildContext context, String? selectedIt
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Select Car Brand'),         
+          title: const MyTextWidget(text: 'Select the Car Brand', color: Colors.black, size: 22, weight: FontWeight.w700),        
           content: SizedBox(
           width: 200,
           height: 200,
-          child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: brands.length,
-            itemBuilder: (BuildContext context, int index) {
-              return ListTile(
-                title: Text(brands[index]),
-                onTap: () {
-                  controller.text = brands[index];
-                  Navigator.of(context).pop();
-                },
-              );
-            },
+          child: Scrollbar(
+            thumbVisibility: true,
+            radius: const Radius.circular(20),
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: brands.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ListTile(
+                  title: MyTextWidget(text: brands[index], color: Colors.black, size: 18, weight: FontWeight.w500),
+                  onTap: () {
+                    controller.text = brands[index];
+                    Navigator.of(context).pop();
+                  },
+                );
+              },
+            ),
           ),
-        ),         
+        ),
         );
       },
     );

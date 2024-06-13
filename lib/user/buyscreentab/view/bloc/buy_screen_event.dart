@@ -47,8 +47,9 @@ class CarBudgetFilterStateRefreshEvent extends BuyScreenEvent {
 
 class ShowAllCarImagesEvent extends BuyScreenEvent{}
 
-class AllImageIndexCheckingEvent extends BuyScreenEvent{
-  // int selectedIndex;
-  // final int newIndex;
-  // AllImageIndexCheckingEvent({required this.selectedIndex,required this.newIndex});
+class AllImageIndexCheckingEvent extends BuyScreenEvent{}
+
+class ImageZoomingScreenNavigateEvent extends BuyScreenEvent{
+  int index;
+  ImageZoomingScreenNavigateEvent({required this.index});
 }

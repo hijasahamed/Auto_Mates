@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbuttons/car_brand_drop_down.dart';
 import 'package:auto_mates/user/buyscreentab/model/buyscreen_model.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/filter_car_screen/car_brands/filter_with_car_brands.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/all_images/all_images_screen.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
@@ -24,6 +23,7 @@ class BuyScreenBloc extends Bloc<BuyScreenEvent, BuyScreenState> {
     on<CarBudgetFilterStateRefreshEvent>(carBudgetFilterStateRefreshEvent);
     on<ShowAllCarImagesEvent>(showAllCarImagesEvent);
     on<AllImageIndexCheckingEvent>(allImageIndexCheckingEvent);
+    on<ImageZoomingScreenNavigateEvent>(imageZoomingScreenNavigateEvent);
   }
 
   FutureOr<void> interestedCarConatinerClickedEvent(
@@ -104,8 +104,11 @@ class BuyScreenBloc extends Bloc<BuyScreenEvent, BuyScreenState> {
 
   FutureOr<void> allImageIndexCheckingEvent(
     AllImageIndexCheckingEvent event, Emitter<BuyScreenState> emit) {
-      emit(AllImageIndexCheckingState());
-      // event.selectedIndex=event.newIndex;
+      emit(AllImageIndexCheckingState());      
+  }
 
+  FutureOr<void> imageZoomingScreenNavigateEvent(
+    ImageZoomingScreenNavigateEvent event, Emitter<BuyScreenState> emit) {
+      emit(ImageZoomingScreenNavigateState(index: event.index));
   }
 }

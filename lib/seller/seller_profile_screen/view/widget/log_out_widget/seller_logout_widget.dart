@@ -9,7 +9,7 @@ class SellerLogoutWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Ink(
-      height: screenSize.height/16,
+      height: screenSize.height/21,
       width: screenSize.width/2.4,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
