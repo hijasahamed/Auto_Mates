@@ -2,6 +2,7 @@ import 'package:auto_mates/user/appbarbottombar/view/appbar_bottombar_screen.dar
 import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
+import 'package:auto_mates/user/authentications/view/widgets/signup_screen_widgets/back_to_login_screen_widget.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/authentications/view/widgets/signup_screen_widgets/signup_button_widget.dart';
 import 'package:auto_mates/user/authentications/view/widgets/signup_screen_widgets/signup_widget.dart';
@@ -56,7 +57,8 @@ class UserSignupScreen extends StatelessWidget {
               child: SafeArea(
                 child: Container(
                   color: Colors.black54,
-                  child: Column(                    
+                  child: Column(   
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,                 
                     children: [
                       Expanded(
                         child: SignupWidget(
@@ -70,6 +72,7 @@ class UserSignupScreen extends StatelessWidget {
                             reChekPasswordController: reChekPasswordController,
                             userSignupFormkey: userSignupFormkey),
                       ),
+                      BackToLoginScreenWidget(authenticationBloc: authenticationBloc),
                       SignupButtonWidget(
                         screenSize: screenSize,
                         authenticationBloc: authenticationBloc,

@@ -43,11 +43,13 @@ class AllImagesScreenBottomBar extends StatelessWidget {
                         ),
                       ),
                       margin: const EdgeInsets.all(5),
-                      child: Image.network(
-                        data['image'][index],
-                        height: screenSize.height / 12,
-                        width: screenSize.width / 7,
-                        fit: BoxFit.cover,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(2),
+                        child: Image.network(
+                          data['image'][index],
+                          width: screenSize.width / 7,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ));
               },

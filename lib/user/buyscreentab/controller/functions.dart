@@ -17,7 +17,7 @@ import 'package:url_launcher/url_launcher.dart';
 final CollectionReference userFavouriteCars =
     FirebaseFirestore.instance.collection('userFavouriteCars');
 
-Future<void> addCarToUserFavourite({data, context, isFromSearch}) async {
+Future<void> addCarToUserFavourite({data, context, isFromSearch,favouriteIconBlocInstance}) async {
   UserData? userData = await fetchUserDetails();
   String userName = userData!.userName;
   String userContact = userData.mobile;
@@ -40,6 +40,7 @@ Future<void> addCarToUserFavourite({data, context, isFromSearch}) async {
       'userContact': userContact,
       'sellerId': data['sellerId'],
       'image': data['image'],
+      'thumbnail':data['thumbnail'],
       'carToSellId': (isFromSearch == true) ? data['id'] : data.id,
       'brand': data['brand'],
       'modelName': data['modelName'],
@@ -71,7 +72,7 @@ Future<void> addCarToUserFavourite({data, context, isFromSearch}) async {
     };
 
     await userFavouriteCars.add(carData);
-    buyScreenBloc.add(FavouriteButtonClickedRebuildUiEvent());
+    favouriteIconBlocInstance.add(FavouriteButtonClickedRebuildUiEvent());
     snackbarWidget('Car added to favourites', context, Colors.green,
         Colors.white, SnackBarBehavior.floating);
   } catch (e) {

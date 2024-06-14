@@ -23,6 +23,7 @@ class OnTapCarMoreDetailsCarScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: const PreferredSize(
           preferredSize: Size.fromHeight(55),
           child: NormalAppBar(

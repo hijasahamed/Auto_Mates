@@ -26,3 +26,5 @@ class ForgetPasswordButtonClickedEvent extends AuthenticationEvent{}
 
 class ResetPasswordButtonClickedEvent extends AuthenticationEvent{}
 
+class UserProfileRefreshEvent extends AuthenticationEvent{}
+

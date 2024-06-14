@@ -22,7 +22,8 @@ Future<UserData?> fetchUserDetails()async{
   dynamic userName= sharedPref.getString('userName');
   dynamic location= sharedPref.getString('location');
   dynamic mobile= sharedPref.getString('mobile');
-  return UserData(id: id, email: email, userName: userName,location: location,mobile: mobile);
+  dynamic userProfile =sharedPref.getString('userProfile');
+  return UserData(id: id, email: email, userName: userName,location: location,mobile: mobile,userProfile: userProfile);
 }
 
 profileScreenAlertMessage({context, profileScreenBloc,removeInterestMarked,interestedData}) {
@@ -85,9 +86,11 @@ Future<void> confirmUserLogout({context}) async {
 }
 
 
-Future<void> removeFavoriteCar({docId,context})async{
+Future<void> removeFavoriteCar({docId,context,favouriteIconBlocInstance})async{
   userFavouriteCars.doc(docId).delete();
-  buyScreenBloc.add(FavouriteButtonClickedRebuildUiEvent());
+  if(favouriteIconBlocInstance !=null){
+    favouriteIconBlocInstance.add(FavouriteButtonClickedRebuildUiEvent());
+  }
   snackbarWidget('Car Removed from favourites', context,Colors.red, Colors.white, SnackBarBehavior.floating);
 }
 

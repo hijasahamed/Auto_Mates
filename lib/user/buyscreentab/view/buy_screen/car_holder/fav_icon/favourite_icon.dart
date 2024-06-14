@@ -1,6 +1,5 @@
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
-import 'package:auto_mates/user/buyscreentab/view/buy_screen/buy_screen.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,8 +14,9 @@ class FavouriteIcon extends StatelessWidget {
   final bool? isFromSearch;
   @override
   Widget build(BuildContext context) {
+    BuyScreenBloc favouriteIconBlocInstance = BuyScreenBloc();
     return BlocBuilder<BuyScreenBloc, BuyScreenState>(
-      bloc: buyScreenBloc,
+      bloc: favouriteIconBlocInstance,
       builder: (context, state) {
         return FutureBuilder(
           future: isCarToSellInUserFavourite(
@@ -32,7 +32,7 @@ class FavouriteIcon extends StatelessWidget {
             return isFavourite
                 ? IconButton(
                     onPressed: () {
-                      removeFavoriteCar(context: context, docId: docId);
+                      removeFavoriteCar(context: context, docId: docId,favouriteIconBlocInstance: favouriteIconBlocInstance);
                     },
                     icon: const Icon(
                       Icons.favorite_rounded,
@@ -41,7 +41,7 @@ class FavouriteIcon extends StatelessWidget {
                     ))
                 : IconButton(
                     onPressed: () {
-                      addCarToUserFavourite(data: data, context: context,isFromSearch: isFromSearch);
+                      addCarToUserFavourite(data: data, context: context,isFromSearch: isFromSearch,favouriteIconBlocInstance: favouriteIconBlocInstance);
                     },
                     icon: const Icon(
                       Icons.favorite_outline_rounded,

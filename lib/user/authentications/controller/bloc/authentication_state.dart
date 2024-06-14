@@ -31,3 +31,5 @@ class ForgetPasswordButtonClickedActionState extends  AuthenticationActionState{
 
 class ResetPasswordButtonClickedActionState extends AuthenticationActionState{}
 
+class UserProfileRefreshState extends AuthenticationActionState{}
+

@@ -19,8 +19,10 @@ class IntrestedCarPhoto extends StatelessWidget {
           ),
           placeholderFit: BoxFit.cover,
           imageErrorBuilder: (context, error, stackTrace) {
-            return const CircularProgressIndicator(
-              color: Colors.blue,
+            return const Center(
+              child: CircularProgressIndicator(
+                color: Colors.blue,
+              ),
             );
           },
           image: NetworkImage(data['carImage']),

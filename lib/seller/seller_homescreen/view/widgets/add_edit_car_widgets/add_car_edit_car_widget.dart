@@ -2,6 +2,7 @@ import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/car_images/added_car_images.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/car_images/preview_selected_cars/preview_cars_widget.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/car_thumnail_images_holder/thumbnail_images_holder.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/post_car_banner/post_car_banner.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/textformfields/add_edit_form_widget.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/thumbnail_image/added_thumbnail_image.dart';
@@ -42,17 +43,14 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
   final TextEditingController milageController = TextEditingController();
   final TextEditingController sunroofController = TextEditingController();
   final TextEditingController bootspaceController = TextEditingController();
-  final TextEditingController infotainmentSystemController =
-      TextEditingController();
+  final TextEditingController infotainmentSystemController = TextEditingController();
   final TextEditingController alloyWheelController = TextEditingController();
   final TextEditingController carheightController = TextEditingController();
   final TextEditingController carWidthController = TextEditingController();
   final TextEditingController carLengthController = TextEditingController();
-  final TextEditingController groundClearenceController =
-      TextEditingController();
+  final TextEditingController groundClearenceController = TextEditingController();
   final TextEditingController airBagController = TextEditingController();
-  final TextEditingController airConditionerController =
-      TextEditingController();
+  final TextEditingController airConditionerController = TextEditingController();
   final TextEditingController powerWindowController = TextEditingController();
   final TextEditingController bodyTypeController = TextEditingController();
   final TextEditingController fuelTankController = TextEditingController();
@@ -142,91 +140,7 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
                               ),
                             ),
                           )
-                        : Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: widget.screenSize.height / 6,
-                              width: widget.screenSize.width,
-                              color: Colors.transparent,
-                              child: Row(
-                                children: [
-                                  BlocBuilder<SellerHomeScreenBloc,
-                                      SellerHomeScreenState>(
-                                    bloc: homescreenBloc,
-                                    builder: (context, state) {
-                                      return Expanded(
-                                        child: Ink(
-                                          height: widget.screenSize.height / 6,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            color: const Color(0XFFDBEDF5),
-                                          ),
-                                          child: InkWell(
-                                              onTap: () {
-                                                addCarThumbnail(
-                                                    bloc: homescreenBloc);
-                                              },
-                                              child: thumbnailImage == null
-                                                  ? const Center(
-                                                      child: MyTextWidget(
-                                                          text: 'Add Thumbnail',
-                                                          color: Colors.grey,
-                                                          size: 15,
-                                                          weight:
-                                                              FontWeight.w600))
-                                                  : AddedThumbnailImage(
-                                                      screenSize:
-                                                          widget.screenSize)),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                  SizedBox(
-                                    width: widget.screenSize.width / 110,
-                                  ),
-                                  BlocBuilder<SellerHomeScreenBloc,
-                                      SellerHomeScreenState>(
-                                    bloc: homescreenBloc,
-                                    builder: (context, state) {
-                                      return Expanded(
-                                        child: Ink(
-                                          height: widget.screenSize.height / 6,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            color: const Color(0XFFDBEDF5),
-                                          ),
-                                          child: InkWell(
-                                              onTap: () {
-                                                addMultipleImages(
-                                                    bloc: homescreenBloc);
-                                              },
-                                              onLongPress: () {
-                                                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                                  return PreviewCarsWidget(screenSize: widget.screenSize,);
-                                                },));
-                                              },
-                                              child: selectedImages.isEmpty
-                                                  ? const Center(
-                                                      child: MyTextWidget(
-                                                          text:
-                                                              'Add Car Images',
-                                                          color: Colors.grey,
-                                                          size: 15,
-                                                          weight:
-                                                              FontWeight.w600))
-                                                  : AddedCarImages(
-                                                      sellerHomeScreenBloc:
-                                                          homescreenBloc,
-                                                    )),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ],
-                              ),
-                            )),
+                        : ThumbnailImagesHolder(screenSize: widget.screenSize, homescreenBloc: homescreenBloc),
                     AddEditFormWidget(
                       postCarFormkey: postCarFormkey,
                       carBrandController: carBrandController,
