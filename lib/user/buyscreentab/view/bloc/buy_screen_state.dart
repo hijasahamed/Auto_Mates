@@ -55,3 +55,5 @@ class ImageZoomingScreenNavigateState extends BuyScreenState{
   int index;
   ImageZoomingScreenNavigateState({required this.index});
 }
+
+class TabBarViewRefreshState extends BuyScreenState{}

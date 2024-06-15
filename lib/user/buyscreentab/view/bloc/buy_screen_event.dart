@@ -53,3 +53,5 @@ class ImageZoomingScreenNavigateEvent extends BuyScreenEvent{
   int index;
   ImageZoomingScreenNavigateEvent({required this.index});
 }
+
+class TabBarViewRefreshEvent extends BuyScreenEvent{}

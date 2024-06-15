@@ -1,94 +1,216 @@
+// ignore_for_file: library_private_types_in_public_api
+
+import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/tab_bar_view_list_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SpecificationFeaturesWidget extends StatelessWidget {
-  const SpecificationFeaturesWidget({super.key,required this.screenSize,required this.data});
+class SpecificationFeaturesWidget extends StatefulWidget {
+  const SpecificationFeaturesWidget(
+      {super.key, required this.screenSize, required this.data});
   final Size screenSize;
   final dynamic data;
+
+  @override
+  _SpecificationFeaturesWidgetState createState() =>
+      _SpecificationFeaturesWidgetState();
+}
+
+class _SpecificationFeaturesWidgetState
+    extends State<SpecificationFeaturesWidget>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  final BuyScreenBloc tabBarBlocInstance = BuyScreenBloc();
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+    _tabController.addListener(() {
+      tabBarBlocInstance.add(TabBarViewRefreshEvent());
+    });
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    ScrollController controller = ScrollController();
-    return DefaultTabController(
-      length: 3,
-      initialIndex: 0,       
-      child: Column(
-        children: [
-          const TabBar(
-            indicatorColor: Color(0xFF00BAAB),
-            tabs: [
-              Tab(child: Text('Specifications',style: TextStyle(fontWeight: FontWeight.bold,color: Color.fromARGB(255, 118, 118, 118)),),),
-              Tab(child: Text('Features',style: TextStyle(fontWeight: FontWeight.bold,color: Color.fromARGB(255, 118, 118, 118)),),),
-              Tab(child: Text('Overview',style: TextStyle(fontWeight: FontWeight.bold,color: Color.fromARGB(255, 118, 118, 118)),),),
-            ]
+    ScrollController specificationsController = ScrollController();
+    ScrollController featuresController = ScrollController();
+
+    return BlocBuilder<BuyScreenBloc, BuyScreenState>(
+      bloc: tabBarBlocInstance,
+      builder: (context, state) {
+        return DefaultTabController(
+          length: 2,
+          initialIndex: 0,
+          child: Column(
+            children: [
+              TabBar(
+                controller: _tabController,
+                indicatorColor: const Color.fromARGB(255, 27, 202, 161),
+                indicatorWeight: .5,
+                tabs: [
+                  Tab(
+                    child: Text(
+                      'SPECIFICATIONS',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: _tabController.index == 0
+                            ? const Color.fromARGB(255, 27, 202, 161)
+                            : const Color.fromARGB(255, 118, 118, 118),
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                  Tab(
+                    child: Text(
+                      'FEATURES',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: _tabController.index == 1
+                            ? const Color.fromARGB(255, 27, 202, 161)
+                            : const Color.fromARGB(255, 118, 118, 118),
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: widget.screenSize.height / 2.434,
+                width: widget.screenSize.width,
+                child: TabBarView(
+                  controller: _tabController,
+                  children: [
+                    Scrollbar(
+                      controller: specificationsController,
+                      thumbVisibility: true,
+                      radius: const Radius.circular(10),
+                      child: ListView(
+                        controller: specificationsController,
+                        scrollDirection: Axis.vertical,
+                        children: [
+                          TabBarViewListTile(
+                              leading: 'Price',
+                              title: '${widget.data['price']} Lakhs',
+                              screenSize: widget.screenSize),
+                          TabBarViewListTile(
+                              leading: 'Year',
+                              title: widget.data['year'],
+                              screenSize: widget.screenSize),
+                          TabBarViewListTile(
+                              leading: 'Kilometer',
+                              title: widget.data['kilometer'],
+                              screenSize: widget.screenSize),
+                          TabBarViewListTile(
+                              leading: 'Fuel ',
+                              title: widget.data['fuel'],
+                              screenSize: widget.screenSize),
+                          TabBarViewListTile(
+                              leading: 'Transmission',
+                              title: widget.data['transmission'],
+                              screenSize: widget.screenSize),
+                          TabBarViewListTile(
+                              leading: 'No.of Owner',
+                              title: widget.data['noOfOwners'],
+                              screenSize: widget.screenSize),
+                          TabBarViewListTile(
+                              leading: 'Insurance',
+                              title: widget.data['insurance'],
+                              screenSize: widget.screenSize),
+                          TabBarViewListTile(
+                              leading: 'Color',
+                              title: widget.data['color'],
+                              screenSize: widget.screenSize),
+                          TabBarViewListTile(
+                              leading: 'Body Type',
+                              title: widget.data['bodytype'],
+                              screenSize: widget.screenSize),
+                          TabBarViewListTile(
+                              leading: 'Reg.Num',
+                              title: widget.data['regNumber'],
+                              screenSize: widget.screenSize),
+                        ],
+                      ),
+                    ),
+                    Scrollbar(
+                      controller: featuresController,
+                      thumbVisibility: true,
+                      radius: const Radius.circular(10),
+                      child: ListView(
+                        controller: featuresController,
+                        scrollDirection: Axis.vertical,
+                        children: [
+                          TabBarViewListTile(
+                              leading: 'Air Bag',
+                              title: widget.data['airbag'],
+                              screenSize: widget.screenSize),
+                          TabBarViewListTile(
+                              leading: 'Air Conditioner',
+                              title: widget.data['airconditioner'],
+                              screenSize: widget.screenSize),
+                          TabBarViewListTile(
+                              leading: 'Alloy Wheel',
+                              title: widget.data['alloywheel'],
+                              screenSize: widget.screenSize),
+                          TabBarViewListTile(
+                              leading: 'BootSpace',
+                              title: '${widget.data['bootspace']} litres',
+                              screenSize: widget.screenSize),
+                          TabBarViewListTile(
+                              leading: 'Height',
+                              title: '${widget.data['carheight']} mm',
+                              screenSize: widget.screenSize),
+                          TabBarViewListTile(
+                              leading: 'Width',
+                              title: '${widget.data['carwidth']} mm',
+                              screenSize: widget.screenSize),
+                          TabBarViewListTile(
+                              leading: 'Length',
+                              title: '${widget.data['carlength']} mm',
+                              screenSize: widget.screenSize),
+                          TabBarViewListTile(
+                              leading: 'Wheelbase',
+                              title: '${widget.data['groundclearance']} mm',
+                              screenSize: widget.screenSize),
+                          TabBarViewListTile(
+                              leading: 'Fuel Capacity',
+                              title: '${widget.data['fueltank']} litres',
+                              screenSize: widget.screenSize),
+                          TabBarViewListTile(
+                              leading: 'Infotainment',
+                              title: '${widget.data['infotainment']} Type',
+                              screenSize: widget.screenSize),
+                          TabBarViewListTile(
+                              leading: 'Milage',
+                              title: '${widget.data['milage']} kmpl',
+                              screenSize: widget.screenSize),
+                          TabBarViewListTile(
+                              leading: 'Power Window',
+                              title: widget.data['powerwindow'],
+                              screenSize: widget.screenSize),
+                          TabBarViewListTile(
+                              leading: 'Seat Capacity',
+                              title: '${widget.data['seat']} seater',
+                              screenSize: widget.screenSize),
+                          TabBarViewListTile(
+                              leading: 'Sun Roof',
+                              title: widget.data['sunroof'],
+                              screenSize: widget.screenSize),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
           ),
-          SizedBox(
-            height: screenSize.height/2.434,
-            width: screenSize.width,
-            child: TabBarView(
-              children: [
-                Scrollbar(
-                  controller: controller,
-                  thumbVisibility: true,
-                  radius: const Radius.circular(10),
-                  child: ListView(
-                    scrollDirection: Axis.vertical,
-                    children: [
-                     TabBarViewListTile(leading: 'Price', title: '${data['price']} Lakhs',screenSize: screenSize ),
-                     TabBarViewListTile(leading: 'Year', title: data['year'],screenSize: screenSize,),
-                     TabBarViewListTile(leading: 'Kilometer', title: data['kilometer'],screenSize: screenSize,),
-                     TabBarViewListTile(leading: 'Fuel ', title: data['fuel'],screenSize: screenSize,),
-                     TabBarViewListTile(leading: 'Transmission', title: data['transmission'],screenSize: screenSize,),
-                     TabBarViewListTile(leading: 'No.of Owner', title: data['noOfOwners'],screenSize: screenSize,),
-                     TabBarViewListTile(leading: 'Insurance', title: data['insurance'],screenSize: screenSize,),
-                     TabBarViewListTile(leading: 'Color', title: data['color'],screenSize: screenSize,),
-                     TabBarViewListTile(leading: 'Body Type', title: data['bodytype'],screenSize: screenSize,),
-                     TabBarViewListTile(leading: 'Reg.Num', title: data['regNumber'],screenSize: screenSize,),
-                    ],
-                  ),
-                ),
-                Scrollbar(
-                  controller: controller,
-                  thumbVisibility: true,
-                  radius: const Radius.circular(10),
-                  child: ListView(
-                    children: [
-                     TabBarViewListTile(leading: 'Air Bag', title: data['airbag'],screenSize: screenSize ),
-                     TabBarViewListTile(leading: 'Air Conditioner', title: data['airconditioner'],screenSize: screenSize,),
-                     TabBarViewListTile(leading: 'Alloy Wheel', title: data['alloywheel'],screenSize: screenSize,),
-                     TabBarViewListTile(leading: 'BootSpace', title: '${data['bootspace']} litres',screenSize: screenSize,),
-                     TabBarViewListTile(leading: 'Height', title: '${data['carheight']} mm',screenSize: screenSize,),
-                     TabBarViewListTile(leading: 'Width', title: '${data['carwidth']} mm',screenSize: screenSize,),
-                     TabBarViewListTile(leading: 'Length', title: '${data['carlength']} mm',screenSize: screenSize,),
-                     TabBarViewListTile(leading: 'Wheelbase', title: '${data['groundclearance']} mm',screenSize: screenSize,),
-                     TabBarViewListTile(leading: 'Fuel Capacity', title: '${data['fueltank']} litres',screenSize: screenSize,),
-                     TabBarViewListTile(leading: 'Infotainment', title: '${data['infotainment']} Type',screenSize: screenSize ),
-                     TabBarViewListTile(leading: 'Milage', title: '${data['milage']} kmpl',screenSize: screenSize ),
-                     TabBarViewListTile(leading: 'Power Window', title: data['powerwindow'],screenSize: screenSize ),
-                     TabBarViewListTile(leading: 'Seat Capacity', title: '${data['seat']} seater',screenSize: screenSize ),
-                     TabBarViewListTile(leading: 'Sun Roof', title: data['sunroof'],screenSize: screenSize ),
-                    ],
-                  ),
-                ),
-                Scrollbar(
-                  controller: controller,
-                  thumbVisibility: true,
-                  radius: const Radius.circular(10),
-                  child: ListView(
-                    children:  [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(data['overview'],style: const TextStyle(
-                          color: Color.fromARGB(255, 118, 118, 118), fontSize: 15, fontWeight: FontWeight.w500
-                        ),),
-                      )
-                    ],
-                  ),
-                ),
-              ]
-            ),
-          )
-        ],
-      ),
+        );
+      },
     );
   }
 }

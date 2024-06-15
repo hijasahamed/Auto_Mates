@@ -26,48 +26,6 @@ class Skeleton extends StatelessWidget {
   }
 }
 
-class SkelotonIndicator extends StatelessWidget {
-  const SkelotonIndicator({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Row(
-        children: [
-          Skeleton(height: 120, width: 120),
-          SizedBox(
-            width: 5,
-          ),
-          Expanded(
-              child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Skeleton(width: 80),
-              SizedBox(height: 5),
-              Skeleton(),
-              SizedBox(height: 5),
-              Skeleton(),
-              SizedBox(height: 5),
-              Row(
-                children: [
-                  Expanded(
-                    child: Skeleton(),
-                  ),
-                  SizedBox(width: 5),
-                  Expanded(
-                    child: Skeleton(),
-                  ),
-                ],
-              )
-            ],
-          ))
-        ],
-      ),
-    );
-  }
-}
-
 class SkelotonIndicatorList extends StatelessWidget {
   const SkelotonIndicatorList({super.key,required this.screenSize,required this.itemCount});
   final Size screenSize;
@@ -105,14 +63,15 @@ class SkelotonIndicatorList extends StatelessWidget {
 }
 
 class SkelotonIndicatorGrid extends StatelessWidget {
-  const SkelotonIndicatorGrid({super.key,required this.screenSize});
+  const SkelotonIndicatorGrid({super.key,required this.screenSize,this.isFromSimilers});
  final Size screenSize;
+ final bool? isFromSimilers;
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
-      itemCount: 6,
+      itemCount: (isFromSimilers==true)?2:6,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         childAspectRatio: .75,
         mainAxisSpacing: 3,

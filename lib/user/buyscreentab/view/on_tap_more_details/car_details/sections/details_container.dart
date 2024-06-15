@@ -15,7 +15,7 @@ class DetailsContainer extends StatelessWidget {
       height: screenSize.height / 12,
       width: screenSize.width,
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(5)),
+          color: const Color.fromARGB(255, 241, 241, 241), borderRadius: BorderRadius.circular(5)),
       child: Padding(
         padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
         child: Row(

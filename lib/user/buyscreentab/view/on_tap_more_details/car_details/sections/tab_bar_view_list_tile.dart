@@ -14,11 +14,11 @@ class TabBarViewListTile extends StatelessWidget {
           width: screenSize.width/3,
           height: screenSize.width/10,
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(2),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(leading,style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: Color.fromARGB(255, 118, 118, 118))),
+                Text(leading,style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 14,color: Colors.blueGrey)),
               ],
             ),
           )
@@ -31,7 +31,7 @@ class TabBarViewListTile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title,style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: Color.fromARGB(255, 118, 118, 118))),
+                Text(title,style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: Colors.blueGrey)),
               ],
             ),
           )

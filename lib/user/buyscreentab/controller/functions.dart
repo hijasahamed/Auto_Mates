@@ -261,11 +261,21 @@ Future<List<Map<String, dynamic>>> isCarToSellInUserFavourite({
   }
 }
 
-  String getSelectedFuelType() {
-    for (var fuel in fuelTypes) {
-      if (selectedCarFilterdList.contains(fuel.fuelType)) {
-        return fuel.fuelType;
-      }
+String getSelectedFuelType() {
+  for (var fuel in fuelTypes) {
+    if (selectedCarFilterdList.contains(fuel.fuelType)) {
+      return fuel.fuelType;
     }
-    return 'Fuel Types';
   }
+  return 'Fuel Types';
+}
+
+
+Future<List<DocumentSnapshot>> findCarForRelatedCars({required dynamic data,required docid}) async {
+  QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+      .collection('carstosell')
+      .where('bodytype', isEqualTo: data)
+      .get();
+      List<DocumentSnapshot> filteredDocs = querySnapshot.docs.where((doc) => doc.id != docid).toList();
+  return filteredDocs;
+}
