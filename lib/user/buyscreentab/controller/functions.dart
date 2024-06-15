@@ -271,11 +271,11 @@ String getSelectedFuelType() {
 }
 
 
-Future<List<DocumentSnapshot>> findCarForRelatedCars({required dynamic data,required docid}) async {
+Future<List<DocumentSnapshot>> findCarForRelatedCars({required dynamic data,required carNumber}) async {
   QuerySnapshot querySnapshot = await FirebaseFirestore.instance
       .collection('carstosell')
       .where('bodytype', isEqualTo: data)
       .get();
-      List<DocumentSnapshot> filteredDocs = querySnapshot.docs.where((doc) => doc.id != docid).toList();
+      List<DocumentSnapshot> filteredDocs = querySnapshot.docs.where((doc) => doc['regNumber'] != carNumber).toList();
   return filteredDocs;
 }

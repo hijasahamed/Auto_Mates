@@ -14,35 +14,36 @@ class SellerDetailsCardWidget extends StatelessWidget {
   final dynamic data;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white,
-      elevation: 5,
-      child: FutureBuilder(       
-        future: getSellerDetailsById(data['sellerId']), 
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-              return SizedBox(
-                height: screenSize.height/5.8,
-                width: screenSize.width,
-                child: SkelotonIndicatorList(screenSize: screenSize,itemCount: 1,)
-              ); 
-            } else if (snapshot.hasError) {
-              return const Center(child: MyTextWidget(text: 'Something went wrong', color: Colors.black, size: 11, weight: FontWeight.bold));
-            } else if (!snapshot.hasData || snapshot.data == null) {
-              return const Center(child: MyTextWidget(text: 'No seller data', color: Colors.black, size: 11, weight: FontWeight.bold));
-            }else{
-              SellerData data=snapshot.data!;
-              return Padding(
+    return FutureBuilder(       
+      future: getSellerDetailsById(data['sellerId']), 
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+            return SizedBox(
+              height: screenSize.height/5.8,
+              width: screenSize.width,
+              child: SkelotonIndicatorList(screenSize: screenSize,itemCount: 1,)
+            ); 
+          } else if (snapshot.hasError) {
+            return const Center(child: MyTextWidget(text: 'Something went wrong', color: Colors.black, size: 11, weight: FontWeight.bold));
+          } else if (!snapshot.hasData || snapshot.data == null) {
+            return const Center(child: MyTextWidget(text: 'No seller data', color: Colors.black, size: 11, weight: FontWeight.bold));
+          }else{
+            SellerData data=snapshot.data!;
+            return Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: const Color.fromARGB(255, 245, 245, 245)
+              ),
+              child: Padding(
                 padding: const EdgeInsets.all(8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [                    
-                    Row(
+                    const Row(
                       children: [
-                        const MyTextWidget(text: 'Seller informations', color: Color(0xFF424141), size: 15, weight: FontWeight.bold),
-                        SizedBox(width: screenSize.width/12,),                        
-                        const Spacer(),
-                        const SellerFavButton()
+                        MyTextWidget(text: 'Seller informations', color: Color(0xFF424141), size: 15, weight: FontWeight.bold),                     
+                        Spacer(),
+                        SellerFavButton()
                       ],
                     ),
                     SizedBox(height: screenSize.height/175,),
@@ -78,10 +79,10 @@ class SellerDetailsCardWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-              );
-          }
-        },
-      ),
+              ),
+            );
+        }
+      },
     );
   }
 }

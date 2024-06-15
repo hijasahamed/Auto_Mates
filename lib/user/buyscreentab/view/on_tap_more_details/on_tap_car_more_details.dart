@@ -24,10 +24,10 @@ class OnTapCarMoreDetailsCarScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const PreferredSize(
-          preferredSize: Size.fromHeight(55),
+      appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(55),
           child: NormalAppBar(
-            title: 'More Details',
+            title: '${data['brand']} ${data['modelName']}',
           )),
       body: SingleChildScrollView(
         child: Padding(

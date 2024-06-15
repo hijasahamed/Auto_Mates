@@ -15,7 +15,6 @@ class InterestedButton extends StatelessWidget {
   final bool? isFrominterestedCars;
   @override
   Widget build(BuildContext context) {
-    
     return BlocBuilder<BuyScreenBloc, BuyScreenState>(
       bloc: buyScreenBloc,
       builder: (context, state) {

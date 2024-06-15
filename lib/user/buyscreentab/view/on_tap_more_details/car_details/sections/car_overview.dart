@@ -24,9 +24,9 @@ class CarOverview extends StatelessWidget {
             Text(
               data['overview'],
               style: const TextStyle(
-                  color: Color.fromARGB(255, 118, 118, 118),
+                  color: Color.fromARGB(255, 146, 146, 146),
                   fontSize: 15,
-                  fontWeight: FontWeight.w500),
+                  fontWeight: FontWeight.w400),
             )
           ],
         ),

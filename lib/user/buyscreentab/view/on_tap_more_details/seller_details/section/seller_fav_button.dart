@@ -5,15 +5,11 @@ class SellerFavButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: 17,
-      backgroundColor: Colors.black45,
-      child: IconButton(
-        onPressed: () {
-          
-        }, 
-        icon: const Icon(Icons.favorite_rounded,color: Colors.white,size: 18,)
-      ),
+    return IconButton(
+      onPressed: () {
+        
+      }, 
+      icon: const Icon(Icons.favorite_outline_rounded,color: Colors.grey,size: 25,)
     );
   }
 }

@@ -30,24 +30,30 @@ class FavouriteIcon extends StatelessWidget {
               docId = favouriteData[0]['id'] as String;
             }
             return isFavourite
-                ? IconButton(
-                    onPressed: () {
-                      removeFavoriteCar(context: context, docId: docId,favouriteIconBlocInstance: favouriteIconBlocInstance);
-                    },
-                    icon: const Icon(
-                      Icons.favorite_rounded,
-                      size: 23,
-                      color: Colors.redAccent,
-                    ))
-                : IconButton(
-                    onPressed: () {
-                      addCarToUserFavourite(data: data, context: context,isFromSearch: isFromSearch,favouriteIconBlocInstance: favouriteIconBlocInstance);
-                    },
-                    icon: const Icon(
-                      Icons.favorite_outline_rounded,
-                      size: 23,
-                      color: Colors.white,
-                    ));
+                ? CircleAvatar(
+                  backgroundColor: Colors.black12,
+                  child: IconButton(
+                      onPressed: () {
+                        removeFavoriteCar(context: context, docId: docId,favouriteIconBlocInstance: favouriteIconBlocInstance);
+                      },
+                      icon: const Icon(
+                        Icons.favorite_rounded,
+                        size: 23,
+                        color: Colors.redAccent,
+                      )),
+                )
+                : CircleAvatar(
+                  backgroundColor: Colors.black12,
+                  child: IconButton(
+                      onPressed: () {
+                        addCarToUserFavourite(data: data, context: context,isFromSearch: isFromSearch,favouriteIconBlocInstance: favouriteIconBlocInstance);
+                      },
+                      icon: const Icon(
+                        Icons.favorite_outline_rounded,
+                        size: 23,
+                        color: Colors.white,
+                      )),
+                );
           },
         );
       },
