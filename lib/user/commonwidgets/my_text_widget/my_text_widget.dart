@@ -7,12 +7,14 @@ class MyTextWidget extends StatelessWidget {
       required this.color,
       this.maxline,
       required this.size,
+      this.alignTextCenter,
       required this.weight});
   final String text;
   final Color color;
   final double size;
   final bool? maxline;
   final FontWeight weight;
+  final bool? alignTextCenter;
   @override
   Widget build(BuildContext context) {
     return Text(
@@ -24,6 +26,7 @@ class MyTextWidget extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
       ),
       maxLines: (maxline==true)? 10 :1,
+      textAlign: (alignTextCenter==true)?TextAlign.center:TextAlign.left,
     );
   }
 }

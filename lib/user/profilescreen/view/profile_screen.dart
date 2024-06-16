@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
+import 'package:auto_mates/user/commonwidgets/custom_alertdialog/custom_alert_dialog.dart';
 import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_error_placeholder.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/favourite_screen/favourite_screen/favourite_screen.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
@@ -34,8 +35,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
       bloc: profileScreenBloc,
       listener: (context, state)async {
         if (state is LogoutButtonClickedActionState) {
-          profileScreenAlertMessage(
-              context: context, profileScreenBloc: profileScreenBloc,interestedData: false,removeInterestMarked: false);
+          showDialog(
+            barrierDismissible: false,
+            context: context, 
+            builder: (context) => CustomAlertDialog(
+              image: 'assets/images/logout.png',
+              title: 'Logout',
+              subtitle: 'Do you want to Logout from AutoMates',
+              screenSize: widget.screenSize,
+              isUserLogout: true,
+              profileScreenBloc: profileScreenBloc,
+            ),
+          );   
         } else if (state is ConfirmLogoutActionState) {
             confirmUserLogout(context: context);
         }else if (state is FavouriteConatinerClickedActionState){

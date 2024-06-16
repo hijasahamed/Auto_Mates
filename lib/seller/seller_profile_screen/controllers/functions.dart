@@ -119,6 +119,7 @@ Stream<QuerySnapshot> getUsersInterestsWithSellerId(sellerId){
 }
 
 removeUsersInterest({context,docId}){
+  Navigator.pop(context);
   userInterestMarked.doc(docId).delete(); 
   snackbarWidget('User interest removed', context,Colors.red, Colors.white, SnackBarBehavior.floating);
   buyScreenBloc.add(InterstButtonClickedRebuildUiEvent());

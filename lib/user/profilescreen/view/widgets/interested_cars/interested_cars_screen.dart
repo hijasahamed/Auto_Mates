@@ -93,6 +93,7 @@ class InterestedCarsScreen extends StatelessWidget {
                                   const Spacer(),
                                   UserInterestedCarRemoveButton(
                                     data: car,
+                                    screenSize: screenSize,
                                   )
                                 ],
                               ),

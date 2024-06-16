@@ -7,7 +7,6 @@ import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/buy_screen.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/filter_car_screen/car_brands/filter_with_car_brands.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
-import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -165,51 +164,6 @@ Future<SellerData?> getSellerDetailsById(String sellerId) async {
     return null;
   }
   return null;
-}
-
-void callSellerAlertDialog(
-    {required BuildContext context, required dynamic data}) {
-  showDialog(
-    context: context,
-    builder: (context) {
-      return AlertDialog(
-        title: const MyTextWidget(
-            text: 'Contact Seller',
-            color: Colors.black,
-            size: 20,
-            weight: FontWeight.bold),
-        content: MyTextWidget(
-            text: '${data.companyName}',
-            color: Colors.black,
-            size: 17,
-            weight: FontWeight.w500),
-        actions: [
-          ElevatedButton(
-              onPressed: () => Navigator.pop(context),
-              style: const ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.red)),
-              child: const MyTextWidget(
-                  text: 'Back',
-                  color: Colors.white,
-                  size: 15,
-                  weight: FontWeight.bold)),
-          ElevatedButton.icon(
-            onPressed: () async {
-              makeCall(context: context, mobileNumber: data.mobile);
-            },
-            icon: const Icon(Icons.call, color: Colors.white),
-            label: const MyTextWidget(
-                text: 'Call now',
-                color: Colors.white,
-                size: 15,
-                weight: FontWeight.bold),
-            style: const ButtonStyle(
-                backgroundColor: WidgetStatePropertyAll(Colors.green)),
-          ),
-        ],
-      );
-    },
-  );
 }
 
 makeCall({mobileNumber, context}) async {
