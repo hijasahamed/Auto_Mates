@@ -1,6 +1,5 @@
 import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/user/authentications/view/widgets/signup_screen_widgets/add_user_signup_textform_field_widget.dart';
-import 'package:auto_mates/user/authentications/view/widgets/signup_screen_widgets/back_to_login_screen_widget.dart';
 import 'package:auto_mates/user/authentications/view/widgets/signup_screen_widgets/seller_image.dart';
 import 'package:flutter/material.dart';
 

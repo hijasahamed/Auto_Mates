@@ -1,11 +1,8 @@
 import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
-import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/car_images/added_car_images.dart';
-import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/car_images/preview_selected_cars/preview_cars_widget.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/car_thumnail_images_holder/thumbnail_images_holder.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/post_car_banner/post_car_banner.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/textformfields/add_edit_form_widget.dart';
-import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/thumbnail_image/added_thumbnail_image.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';

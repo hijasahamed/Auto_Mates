@@ -4,7 +4,6 @@ import 'package:auto_mates/user/authentications/controller/functions/fuctions.da
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
-import 'package:auto_mates/user/buyscreentab/view/buy_screen/buy_screen.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
