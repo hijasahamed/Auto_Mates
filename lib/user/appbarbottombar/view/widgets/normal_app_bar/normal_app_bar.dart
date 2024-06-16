@@ -14,6 +14,7 @@ class NormalAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      backgroundColor: Colors.white,
         flexibleSpace: const AppBarGradientColor(),
         leading: IconButton(
             onPressed: () => Navigator.pop(context),

@@ -30,6 +30,7 @@ class BuyScreen extends StatelessWidget {
         }
         if (snapshot.hasData && snapshot.data.docs.isNotEmpty) {
           return Scaffold(
+            backgroundColor: Colors.white,
             resizeToAvoidBottomInset: false,
             body: Column(
               children: [

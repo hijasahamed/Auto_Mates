@@ -35,10 +35,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => SellerProfileBloc(),),
         BlocProvider(create: (context) => BuyScreenBloc(),),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false, 
-        theme: ThemeData.light(),  
-        home: const SplashScreen(),
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: SplashScreen(),
         
       ),
     );

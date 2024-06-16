@@ -167,7 +167,7 @@ Future<SellerData?> getSellerDetailsById(String sellerId) async {
   return null;
 }
 
-void sellerDetailsAlertDialog(
+void callSellerAlertDialog(
     {required BuildContext context, required dynamic data}) {
   showDialog(
     context: context,

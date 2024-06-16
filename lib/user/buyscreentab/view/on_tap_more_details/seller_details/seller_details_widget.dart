@@ -6,6 +6,7 @@ import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/seller_det
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/seller_details/section/seller_fav_button.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/commonwidgets/shimmer_effect/shimmer_effect.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
 class SellerDetailsCardWidget extends StatelessWidget {
@@ -29,19 +30,18 @@ class SellerDetailsCardWidget extends StatelessWidget {
             return const Center(child: MyTextWidget(text: 'No seller data', color: Colors.black, size: 11, weight: FontWeight.bold));
           }else{
             SellerData data=snapshot.data!;
-            return Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: const Color.fromARGB(255, 245, 245, 245)
-              ),
+            return Card(
+              color: Colors.white,
+              elevation: 5,
+              shadowColor: Colors.blueGrey,
               child: Padding(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(5),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [                    
                     const Row(
                       children: [
-                        MyTextWidget(text: 'Seller informations', color: Color(0xFF424141), size: 15, weight: FontWeight.bold),                     
+                        MyTextWidget(text: 'Seller informations', color: Color(0xFF424141), size: 17, weight: FontWeight.bold),                     
                         Spacer(),
                         SellerFavButton()
                       ],
@@ -60,15 +60,17 @@ class SellerDetailsCardWidget extends StatelessWidget {
                             SellersDetail(icon: Icons.star, data: "4.2",screenSize: screenSize,),
                             SellersDetail(icon: Icons.place, data: data.location,screenSize: screenSize,),
                             TextButton(
+                              style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.green)),
                               onPressed: 
                               () {
-                                sellerDetailsAlertDialog(context: context,data: data);
+                                callSellerAlertDialog(context: context,data: data);                                
                               }, 
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  const Icon(Icons.call,color: Colors.blue,size: 15,),
+                                  const Icon(Icons.call,color: Colors.white,size: 15,),
                                   SizedBox(width: screenSize.width/75,),
-                                  const MyTextWidget(text: 'Contact Seller', color: Colors.blue, size: 12, weight: FontWeight.bold),
+                                  const MyTextWidget(text: 'Contact Seller', color: Colors.white, size: 12, weight: FontWeight.bold),
                                 ],
                               )
                             ),

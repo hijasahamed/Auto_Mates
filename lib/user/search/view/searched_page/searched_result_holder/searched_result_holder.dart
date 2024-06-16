@@ -27,7 +27,7 @@ class SearchedResultHolder extends StatelessWidget {
                     color: Colors.blue,
                   );
                 },
-                image: NetworkImage(data['thumbnail']),
+                image: NetworkImage(data['thumbnail']), 
                 fit: BoxFit.cover,
                 filterQuality: FilterQuality.high),
           ),

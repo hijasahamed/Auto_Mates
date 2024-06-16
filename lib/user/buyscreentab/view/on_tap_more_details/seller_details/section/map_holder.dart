@@ -8,7 +8,7 @@ class MapHolder extends StatelessWidget {
     return Card(
       elevation: 2,
       child: Container(
-        height: screenSize.height / 7.5,
+        height: screenSize.height / 5,
         width: screenSize.width / 2,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
@@ -20,7 +20,7 @@ class MapHolder extends StatelessWidget {
           child: Icon(
             Icons.place,
             size: 60,
-            color: Colors.blueGrey,
+            color: Colors.blue,
           ),
         ),
       ),

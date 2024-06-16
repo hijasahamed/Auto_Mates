@@ -65,17 +65,12 @@ class _AppbarBottomTabSwitchScreenState
                           tabIndex: tabIndex,
                         )),
                     bottomNavigationBar:
-                        BlocBuilder<AppbottombarBloc, AppbottombarState>(
-                      builder: (context, state) {
-                        return BottomNavigationBar(
-                          elevation: 10,
+                        BottomNavigationBar(                                                  
                           currentIndex: tabIndex,
                           onTap: (index) {
                             setState(() {
                               tabIndex = index;
                             });
-                            // tabIndex=index;
-                            // appbottombarBloc.add(OntapIndexChangeEvent());
                           },
                           items: const [
                             BottomNavigationBarItem(
@@ -106,9 +101,7 @@ class _AppbarBottomTabSwitchScreenState
                           unselectedItemColor: const Color(0xFF424141),
                           unselectedLabelStyle:
                               const TextStyle(fontWeight: FontWeight.bold),
-                        );
-                      },
-                    ),
+                        ),
                     body: tabs[tabIndex],
                     drawer: DrawerWidget(screenSize: screenSize));
               },
