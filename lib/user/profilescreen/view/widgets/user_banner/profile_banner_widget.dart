@@ -30,13 +30,14 @@ class ProfileBannerWidget extends StatelessWidget {
           height: screenSize.height / 4.7,
           width: screenSize.width,
           decoration: BoxDecoration(
-            color: Colors.black38,
+            color: Colors.black45,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,27 +61,28 @@ class ProfileBannerWidget extends StatelessWidget {
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     MyTextWidget(
-                        text: user.userName,
-                        color: Colors.white,
-                        size: 30,
-                        weight: FontWeight.bold),
-                    MyTextWidget(
-                        text: user.mobile,
+                        text: 'User Name: ${user.userName}',
                         color: Colors.white,
                         size: 20,
+                        maxline: true,
                         weight: FontWeight.bold),
                     MyTextWidget(
-                        text: user.location,
+                        text: 'Mobile: ${user.mobile}',
                         color: Colors.white,
-                        size: 20,
+                        size: 15,
                         weight: FontWeight.bold),
                     MyTextWidget(
-                        text: user.email,
+                        text: 'Location: ${user.location}',
                         color: Colors.white,
-                        size: 20,
+                        size: 15,
+                        weight: FontWeight.bold),
+                    MyTextWidget(
+                        text: 'Email: ${user.email}',
+                        color: Colors.white,
+                        size: 15,
                         weight: FontWeight.bold),
                   ],
                 )

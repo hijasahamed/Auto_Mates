@@ -63,13 +63,26 @@ class RelatedCars extends StatelessWidget {
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(image: NetworkImage(carData['thumbnail']),fit: BoxFit.cover),
-                                borderRadius: const BorderRadius.only(topLeft: Radius.circular(5),topRight: Radius.circular(5))
-                              ),
-                              height: screenSize.height/5,
+                          children: [                           
+                            ClipRRect(
+                              borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(5),
+                                  topRight: Radius.circular(5)),
+                              child: FadeInImage(
+                                  fadeInDuration: const Duration(milliseconds: 500),
+                                  height: screenSize.height / 5,                             
+                                  placeholder: const AssetImage(
+                                    'assets/images/image placeholder.jpeg',
+                                  ),
+                                  placeholderFit: BoxFit.cover,
+                                  imageErrorBuilder: (context, error, stackTrace) {
+                                    return const CircularProgressIndicator(
+                                      color: Colors.blue,
+                                    );
+                                  },
+                                  image: NetworkImage(carData['thumbnail']),
+                                  fit: BoxFit.cover,
+                                  filterQuality: FilterQuality.high),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(5),

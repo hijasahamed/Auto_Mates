@@ -1,12 +1,9 @@
 
-import 'package:auto_mates/seller/seller_profile_screen/controllers/functions.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
-import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
-import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
 import 'package:auto_mates/user/splashscreen/controllers/functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -25,53 +22,53 @@ Future<UserData?> fetchUserDetails()async{
   return UserData(id: id, email: email, userName: userName,location: location,mobile: mobile,userProfile: userProfile);
 }
 
-profileScreenAlertMessage({context, profileScreenBloc,removeInterestMarked,interestedData}) {
-  return showDialog(
-    context: context,
-    barrierDismissible: false,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        backgroundColor: Colors.white,
-        title: MyTextWidget(
-            text: removeInterestMarked? 'Remove Interest' : 'Logout',
-            color: const Color(0xFF424141),
-            size: 24,
-            weight: FontWeight.bold),
-        content: MyTextWidget(
-            text: removeInterestMarked? 'Do you want to remove the interest? This will be removed for the seller also.': 'Do you want to Logout from AutoMates',
-            color: const Color(0xFF424141),
-            size: 15,
-            maxline: true,
-            weight: FontWeight.bold),
-        actions: [
-          ElevatedButton(
-              style: const ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.black26)),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const MyTextWidget(
-                  text: 'Back',
-                  color: Colors.white,
-                  size: 12,
-                  weight: FontWeight.bold)),
-          ElevatedButton(
-              style: const ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.red)),
-              onPressed: () {
-                removeInterestMarked? removeUsersInterest(context: context,docId: interestedData.id) : profileScreenBloc.add(ConfirmLogoutEvent());
-                Navigator.pop(context);
-              },
-              child: MyTextWidget(
-                  text: removeInterestMarked? 'Remove Interest' : 'Logout',
-                  color: Colors.white,
-                  size: 12,
-                  weight: FontWeight.bold)),
-        ],
-      );
-    },
-  );
-}
+// profileScreenAlertMessage({context, profileScreenBloc,removeInterestMarked,interestedData}) {
+//   return showDialog(
+//     context: context,
+//     barrierDismissible: false,
+//     builder: (BuildContext context) {
+//       return AlertDialog(
+//         backgroundColor: Colors.white,
+//         title: MyTextWidget(
+//             text: removeInterestMarked? 'Remove Interest' : 'Logout',
+//             color: const Color(0xFF424141),
+//             size: 24,
+//             weight: FontWeight.bold),
+//         content: MyTextWidget(
+//             text: removeInterestMarked? 'Do you want to remove the interest? This will be removed for the seller also.': 'Do you want to Logout from AutoMates',
+//             color: const Color(0xFF424141),
+//             size: 15,
+//             maxline: true,
+//             weight: FontWeight.bold),
+//         actions: [
+//           ElevatedButton(
+//               style: const ButtonStyle(
+//                   backgroundColor: WidgetStatePropertyAll(Colors.black26)),
+//               onPressed: () {
+//                 Navigator.pop(context);
+//               },
+//               child: const MyTextWidget(
+//                   text: 'Back',
+//                   color: Colors.white,
+//                   size: 12,
+//                   weight: FontWeight.bold)),
+//           ElevatedButton(
+//               style: const ButtonStyle(
+//                   backgroundColor: WidgetStatePropertyAll(Colors.red)),
+//               onPressed: () {
+//                 removeInterestMarked? removeUsersInterest(context: context,docId: interestedData.id) : profileScreenBloc.add(ConfirmLogoutEvent());
+//                 Navigator.pop(context);
+//               },
+//               child: MyTextWidget(
+//                   text: removeInterestMarked? 'Remove Interest' : 'Logout',
+//                   color: Colors.white,
+//                   size: 12,
+//                   weight: FontWeight.bold)),
+//         ],
+//       );
+//     },
+//   );
+// }
 
 Future<void> confirmUserLogout({context}) async {
   final GoogleSignIn googleSignInn = GoogleSignIn();

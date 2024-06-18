@@ -23,10 +23,10 @@ class PropertiesContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
   return Padding(
-    padding: const EdgeInsets.all(5),
+    padding: const EdgeInsets.all(2),
     child: Ink(
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 195, 226, 239),
+        color: const Color.fromARGB(255, 2, 67, 93),
         borderRadius: BorderRadius.circular(10),
       ),
       height: screenSize.height/7,
@@ -66,7 +66,7 @@ class PropertiesContainer extends StatelessWidget {
                 : (isLogout==true) ? 'Logout '
                 : (isInterestedCar==true) ? 'Interested Car'
                 : '' ,
-              color: const Color(0XFF424141), size: 15, weight: FontWeight.bold),
+              color: const Color.fromARGB(255, 255, 255, 255), size: 15, weight: FontWeight.bold),
             ],
           ),
       ),

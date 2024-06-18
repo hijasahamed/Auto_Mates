@@ -117,6 +117,7 @@ flutter:
     - assets/images/auto white.png
     - assets/images/auto black.png
     - assets/images/manual black.png
+    - assets/images/telephone (2).png
     #animations
     - assets/animations/loading_animation.json
     - assets/animations/splash_animation_jeep.json

@@ -67,7 +67,7 @@ class SellerDetailsCardWidget extends StatelessWidget {
                                   barrierDismissible: false,
                                   context: context, 
                                   builder: (context) => CustomAlertDialog(
-                                    image: 'assets/images/error placeholder.png',
+                                    image: 'assets/images/telephone (2).png',
                                     title: 'Call The Seller',
                                     subtitle: 'Do you want to call the seller ${data.companyName}',
                                     screenSize: screenSize,
