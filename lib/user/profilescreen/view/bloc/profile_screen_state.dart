@@ -19,3 +19,5 @@ class InterestedCarOnTapActionState extends ProfileScreenActionState{
   final dynamic data;
   InterestedCarOnTapActionState({required this.data});
 }
+
+class FavouriteSellerContainerClickedState extends ProfileScreenActionState{}

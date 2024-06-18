@@ -105,6 +105,13 @@ Stream<QuerySnapshot> getUsersFavouriteCars({String? userContact}){
   .snapshots();
 }
 
+Stream<QuerySnapshot> getUsersFavouriteSellers({String? userContact}){
+  return FirebaseFirestore.instance
+  .collection('FavouriteSeller')
+  .where('userContact',isEqualTo: userContact)
+  .snapshots();
+}
+
 
 Future<DocumentSnapshot?> getCarDetailFromInterestedCarsList({carNumber}) async {
   try{

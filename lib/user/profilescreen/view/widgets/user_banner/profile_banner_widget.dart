@@ -28,65 +28,60 @@ class ProfileBannerWidget extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const MyTextWidget(text: 'My Profile', color: Colors.blueGrey, size: 18, weight: FontWeight.bold),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Column(
                 children: [
-                  Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 58,
-                        backgroundColor: Colors.green,
-                        child: CircleAvatar(
-                          backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-                          radius: 55,
-                          backgroundImage: userImageProvider,
-                        ),
-                      ),
-                      TextButton(
-                          onPressed: () {},
-                          child: const MyTextWidget(
-                              text: 'Edit Profile',
-                              color: Color(0xFF424141),
-                              size: 12,
-                              weight: FontWeight.bold))
-                    ],
+                  const MyTextWidget(text: 'My Profile', color: Colors.blueGrey, size: 18, weight: FontWeight.bold),
+                  CircleAvatar(
+                    radius: 58,
+                    backgroundColor: Colors.green,
+                    child: CircleAvatar(
+                      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+                      radius: 55,
+                      backgroundImage: userImageProvider,
+                    ),
                   ),
-                  SizedBox(width: screenSize.width/15,),
-                  Column(                    
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(height: screenSize.height/70,),
-                      MyTextWidget(
-                          text: 'User Name: ${user.userName}',
-                          color: const Color(0xFF424141),
-                          size: 20,
-                          maxline: true,
-                          weight: FontWeight.bold),
-                      MyTextWidget(
-                          text: 'Mobile: ${user.mobile}',
-                          color: const Color(0xFF424141),
-                          size: 15,
-                          weight: FontWeight.bold),
-                      MyTextWidget(
-                          text: 'Location: ${user.location}',
-                          color: const Color(0xFF424141),
-                          size: 15,
-                          weight: FontWeight.bold),
-                      MyTextWidget(
-                          text: 'Email: ${user.email}',
-                          color: const Color(0xFF424141),
-                          size: 15,
-                          weight: FontWeight.bold),
-                      
-                    ],
-                  )
+                  TextButton(
+                      onPressed: () {},
+                      child: const MyTextWidget(
+                          text: 'Edit Profile',
+                          color: Color(0xFF424141),
+                          size: 12,
+                          weight: FontWeight.bold))
                 ],
               ),
+              SizedBox(width: screenSize.width/15,),
+              Column(                    
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: screenSize.height/20,),
+                  MyTextWidget(
+                      text: 'User Name: ${user.userName}',
+                      color: const Color(0xFF424141),
+                      size: 20,
+                      maxline: true,
+                      weight: FontWeight.bold),
+                  MyTextWidget(
+                      text: 'Mobile: ${user.mobile}',
+                      color: const Color(0xFF424141),
+                      size: 15,
+                      weight: FontWeight.bold),
+                  MyTextWidget(
+                      text: 'Location: ${user.location}',
+                      color: const Color(0xFF424141),
+                      size: 15,
+                      weight: FontWeight.bold),
+                  MyTextWidget(
+                      text: 'Email: ${user.email}',
+                      color: const Color(0xFF424141),
+                      size: 15,
+                      weight: FontWeight.bold),
+                  
+                ],
+              )
             ],
           ),
         ),

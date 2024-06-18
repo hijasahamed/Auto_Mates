@@ -39,11 +39,11 @@ class SellerDetailsCardWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [                    
-                    const Row(
+                    Row(
                       children: [
-                        MyTextWidget(text: 'Seller informations', color: Color(0xFF424141), size: 17, weight: FontWeight.bold),                     
-                        Spacer(),
-                        SellerFavButton()
+                        const MyTextWidget(text: 'Seller informations', color: Color(0xFF424141), size: 17, weight: FontWeight.bold),                     
+                        const Spacer(),
+                        SellerFavButton(sellerData: data,)
                       ],
                     ),
                     SizedBox(height: screenSize.height/175,),

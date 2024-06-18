@@ -233,3 +233,39 @@ Future<List<DocumentSnapshot>> findCarForRelatedCars({required dynamic data,requ
       List<DocumentSnapshot> filteredDocs = querySnapshot.docs.where((doc) => doc['regNumber'] != carNumber).toList();
   return filteredDocs;
 }
+
+
+final CollectionReference favouriteSellerAddedByUser =
+    FirebaseFirestore.instance.collection('FavouriteSeller');
+
+
+Future<void> addSellerToFavourite({context,sellerData})async{
+  UserData? userData = await fetchUserDetails();
+  try{
+
+    QuerySnapshot existingFavSeller = await favouriteSellerAddedByUser
+        .where('sellerMobile',isEqualTo: sellerData.mobile)
+        .where('userContact', isEqualTo: userData!.mobile)
+        .get();
+
+    if (existingFavSeller.docs.isNotEmpty) {
+      snackbarWidget('Seller is already in favourite', context, Colors.red,
+          Colors.white, SnackBarBehavior.floating);
+      return;
+    }
+
+    Map<String,dynamic> data={
+      'sellerName':sellerData.companyName,
+      'sellerMobile':sellerData.mobile,
+      'sellerLocation':sellerData.location,
+      'userName':userData!.userName,
+      'userContact':userData.mobile
+    };
+    await favouriteSellerAddedByUser.add(data);
+    snackbarWidget('Seller marked as favourite', context, Colors.green,
+        Colors.white, SnackBarBehavior.floating);
+  } catch(e){
+    snackbarWidget('Failed to add car to favourites', context, Colors.blueGrey,
+        Colors.white, SnackBarBehavior.floating);
+  }
+}

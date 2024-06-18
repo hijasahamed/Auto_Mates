@@ -43,6 +43,9 @@ class PropertiesContainer extends StatelessWidget {
           if(isInterestedCar==true){
             profileScreenBloc.add(InterestedCarConatinerClickedEvent());
           }
+          if(isFavouriteSeller==true){
+            profileScreenBloc.add(FavouriteSellerContainerClickedEvent());
+          }
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

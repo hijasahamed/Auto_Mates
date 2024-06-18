@@ -15,3 +15,5 @@ class InterestedCarOnTapEvent extends ProfileScreenEvent {
   final dynamic data;
   InterestedCarOnTapEvent({required this.data});
 }
+
+class FavouriteSellerContainerClickedEvent extends ProfileScreenEvent {}
