@@ -46,8 +46,11 @@ class InterestedCarsScreen extends StatelessWidget {
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 
-                return SkelotonIndicatorList(
-                    screenSize: screenSize, itemCount: 6);
+                return Scaffold(
+                  backgroundColor: Colors.white,
+                  body: SkelotonIndicatorList(
+                      screenSize: screenSize, itemCount: 6),
+                );
               }
               if (snapshot.hasError) {
                 return const SizedBox();
@@ -57,52 +60,55 @@ class InterestedCarsScreen extends StatelessWidget {
                     screenSize: screenSize, titleText: 'No data found');
               } else {
                 final cars = snapshot.data!.docs;
-                return BlocBuilder<ProfileScreenBloc, ProfileScreenState>(
-                  bloc: profileScreenBloc,
-                  builder: (context, state) {
-                    return ListView.builder(
-                      itemCount: cars.length,
-                      itemBuilder: (context, index) {
-                        var car = cars[index];
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Card(
-                            elevation: 6,
-                            color: const Color.fromARGB(255, 231, 231, 231),
-                            child: InkWell(
-                              onTap: () async{
-                                final carDetails= await getCarDetailFromInterestedCarsList(carNumber: car['carNumber']);
-                                
-                                if(carDetails != null){                              
-                                  profileScreenBloc
-                                      .add(InterestedCarOnTapEvent(data: carDetails));
-                                }else{
-                                  snackbarWidget('Something wrong with the interested car details', context, Colors.red, Colors.white, SnackBarBehavior.floating);
-                                }
-                              },
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  UserInterestedCarHolder(
-                                      screenSize: screenSize, car: car),
-                                  SizedBox(
-                                    width: screenSize.width / 40,
-                                  ),
-                                  UserInterestedDetailsHolder(
-                                      screenSize: screenSize, car: car),
-                                  const Spacer(),
-                                  UserInterestedCarRemoveButton(
-                                    data: car,
-                                    screenSize: screenSize,
-                                  )
-                                ],
+                return Scaffold(
+                  backgroundColor: Colors.white,
+                  body: BlocBuilder<ProfileScreenBloc, ProfileScreenState>(
+                    bloc: profileScreenBloc,
+                    builder: (context, state) {
+                      return ListView.builder(
+                        itemCount: cars.length,
+                        itemBuilder: (context, index) {
+                          var car = cars[index];
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Card(
+                              elevation: 6,
+                              color: const Color.fromARGB(255, 231, 231, 231),
+                              child: InkWell(
+                                onTap: () async{
+                                  final carDetails= await getCarDetailFromInterestedCarsList(carNumber: car['carNumber']);
+                                  
+                                  if(carDetails != null){                              
+                                    profileScreenBloc
+                                        .add(InterestedCarOnTapEvent(data: carDetails));
+                                  }else{
+                                    snackbarWidget('Something wrong with the interested car details', context, Colors.red, Colors.white, SnackBarBehavior.floating);
+                                  }
+                                },
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    UserInterestedCarHolder(
+                                        screenSize: screenSize, car: car),
+                                    SizedBox(
+                                      width: screenSize.width / 40,
+                                    ),
+                                    UserInterestedDetailsHolder(
+                                        screenSize: screenSize, car: car),
+                                    const Spacer(),
+                                    UserInterestedCarRemoveButton(
+                                      data: car,
+                                      screenSize: screenSize,
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                      },
-                    );
-                  },
+                          );
+                        },
+                      );
+                    },
+                  ),
                 );
               }
             },

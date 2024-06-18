@@ -1,9 +1,9 @@
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/car_holder/car_holder_car_more_details/car_holder_car_more_details.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/car_holder/car_holder_car_name_brand/car_holder_car_name_brand.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/car_holder/car_image/car_holder_car_image.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/car_holder/positioned_button/car_holder_button.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/on_tap_car_more_details.dart';
-import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 
 class CarHolder extends StatelessWidget {
@@ -58,7 +58,7 @@ class CarHolder extends StatelessWidget {
                 ],
               ),
               CarHolderCarNameBrand(screenSize: screenSize, data: data),
-              
+              CarHolderCarMoreDetails(screenSize: screenSize, data: data)
             ],
           ),
         ),

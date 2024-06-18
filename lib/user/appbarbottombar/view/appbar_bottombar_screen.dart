@@ -65,7 +65,7 @@ class _AppbarBottomTabSwitchScreenState
                           tabIndex: tabIndex,
                         )),
                     bottomNavigationBar:
-                        BottomNavigationBar(                                                  
+                        BottomNavigationBar(                                               
                           currentIndex: tabIndex,
                           onTap: (index) {
                             setState(() {
@@ -74,18 +74,22 @@ class _AppbarBottomTabSwitchScreenState
                           },
                           items: const [
                             BottomNavigationBarItem(
+                              backgroundColor: Colors.white,
                               icon: Icon(Icons.home),
                               label: 'HOME',
                             ),
                             BottomNavigationBarItem(
+                              backgroundColor: Colors.white,
                               icon: Icon(Icons.car_rental),
                               label: 'BUY',
                             ),
                             BottomNavigationBarItem(
+                              backgroundColor: Colors.white,
                               icon: Icon(Icons.newspaper),
                               label: 'NEWS',
                             ),
                             BottomNavigationBarItem(
+                              backgroundColor: Colors.white,
                               icon: Icon(Icons.person),
                               label: 'PROFILE',
                             ),

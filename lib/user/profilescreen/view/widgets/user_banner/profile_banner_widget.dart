@@ -18,77 +18,79 @@ class ProfileBannerWidget extends StatelessWidget {
     } else {
       userImageProvider = FileImage(File(user.userProfile));
     }
-    return Container(
-        height: screenSize.height / 4.7,
-        width: screenSize.width,
+    return Card(
+      elevation: 10,
+      child: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            image: const DecorationImage(
-                image: AssetImage('assets/images/profile_png.png'),
-                fit: BoxFit.cover)),
-        child: Container(
-          height: screenSize.height / 4.7,
-          width: screenSize.width,
-          decoration: BoxDecoration(
-            color: Colors.black45,
-            borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+          border: Border.all(width: .01),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const MyTextWidget(text: 'My Profile', color: Colors.blueGrey, size: 18, weight: FontWeight.bold),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    children: [
+                      CircleAvatar(
+                        radius: 58,
+                        backgroundColor: Colors.green,
+                        child: CircleAvatar(
+                          backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+                          radius: 55,
+                          backgroundImage: userImageProvider,
+                        ),
+                      ),
+                      TextButton(
+                          onPressed: () {},
+                          child: const MyTextWidget(
+                              text: 'Edit Profile',
+                              color: Color(0xFF424141),
+                              size: 12,
+                              weight: FontWeight.bold))
+                    ],
+                  ),
+                  SizedBox(width: screenSize.width/15,),
+                  Column(                    
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(height: screenSize.height/70,),
+                      MyTextWidget(
+                          text: 'User Name: ${user.userName}',
+                          color: const Color(0xFF424141),
+                          size: 20,
+                          maxline: true,
+                          weight: FontWeight.bold),
+                      MyTextWidget(
+                          text: 'Mobile: ${user.mobile}',
+                          color: const Color(0xFF424141),
+                          size: 15,
+                          weight: FontWeight.bold),
+                      MyTextWidget(
+                          text: 'Location: ${user.location}',
+                          color: const Color(0xFF424141),
+                          size: 15,
+                          weight: FontWeight.bold),
+                      MyTextWidget(
+                          text: 'Email: ${user.email}',
+                          color: const Color(0xFF424141),
+                          size: 15,
+                          weight: FontWeight.bold),
+                      
+                    ],
+                  )
+                ],
+              ),
+            ],
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircleAvatar(
-                      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-                      radius: 55,
-                      backgroundImage: userImageProvider,
-                    ),
-                    TextButton(
-                        onPressed: () {
-                          
-                        },
-                        child: const MyTextWidget(
-                            text: 'Edit Profile',
-                            color: Colors.white,
-                            size: 12,
-                            weight: FontWeight.bold))
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    MyTextWidget(
-                        text: 'User Name: ${user.userName}',
-                        color: Colors.white,
-                        size: 20,
-                        maxline: true,
-                        weight: FontWeight.bold),
-                    MyTextWidget(
-                        text: 'Mobile: ${user.mobile}',
-                        color: Colors.white,
-                        size: 15,
-                        weight: FontWeight.bold),
-                    MyTextWidget(
-                        text: 'Location: ${user.location}',
-                        color: Colors.white,
-                        size: 15,
-                        weight: FontWeight.bold),
-                    MyTextWidget(
-                        text: 'Email: ${user.email}',
-                        color: Colors.white,
-                        size: 15,
-                        weight: FontWeight.bold),
-                  ],
-                )
-              ],
-            ),
-          ),
-        ));
+        ),
+      ),
+    );
   }
 }

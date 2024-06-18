@@ -13,12 +13,11 @@ class UserInterestedCarRemoveButton extends StatelessWidget {
       children: [
         IconButton(
             onPressed: () {
-              // profileScreenAlertMessage(context: context,interestedData: data,removeInterestMarked: true);
               showDialog(
                 barrierDismissible: false,
                 context: context, 
                 builder: (context) => CustomAlertDialog(
-                  image: 'assets/images/logout.png',
+                  image: 'assets/images/bin.png',
                   title: 'Remove Interest',
                   subtitle: 'Do you want to remove the interest? This will be removed for the seller also.',
                   screenSize: screenSize,

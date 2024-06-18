@@ -75,17 +75,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
               return NoDataErrorPlaceholder(screenSize: widget.screenSize, titleText: 'Error Loading State');
             } else {
               UserData user = snapshot.data!;
-              return Padding(
-                padding: const EdgeInsets.all(3),
-                child: Column(
-                  children: [
-                    ProfileBannerWidget(
-                      screenSize: widget.screenSize,
-                      user: user,
-                    ),
-                    ProfilePropertiesScreen(screenSize: widget.screenSize,profileScreenBloc: profileScreenBloc,),
-                    
-                  ],
+              return Scaffold(
+                backgroundColor: Colors.white,
+                body: Padding(
+                  padding: const EdgeInsets.all(3),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [                      
+                      ProfileBannerWidget(
+                        screenSize: widget.screenSize,
+                        user: user,
+                      ),
+                      ProfilePropertiesScreen(screenSize: widget.screenSize,profileScreenBloc: profileScreenBloc,),
+                      
+                    ],
+                  ),
                 ),
               );
             }
