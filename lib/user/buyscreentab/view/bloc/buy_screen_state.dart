@@ -57,3 +57,5 @@ class ImageZoomingScreenNavigateState extends BuyScreenState{
 }
 
 class TabBarViewRefreshState extends BuyScreenState{}
+
+class SellerAddedToFavouriteButtonRefreshState extends BuyScreenState{}

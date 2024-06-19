@@ -239,7 +239,7 @@ final CollectionReference favouriteSellerAddedByUser =
     FirebaseFirestore.instance.collection('FavouriteSeller');
 
 
-Future<void> addSellerToFavourite({context,sellerData})async{
+Future<void> addSellerToFavourite({context,sellerData,sellerFavIconBlocInstance})async{
   UserData? userData = await fetchUserDetails();
   try{
 
@@ -258,10 +258,11 @@ Future<void> addSellerToFavourite({context,sellerData})async{
       'sellerName':sellerData.companyName,
       'sellerMobile':sellerData.mobile,
       'sellerLocation':sellerData.location,
-      'userName':userData!.userName,
+      'userName':userData.userName,
       'userContact':userData.mobile
     };
     await favouriteSellerAddedByUser.add(data);
+    sellerFavIconBlocInstance.add(SellerAddedToFavouriteButtonRefreshEvent());
     snackbarWidget('Seller marked as favourite', context, Colors.green,
         Colors.white, SnackBarBehavior.floating);
   } catch(e){
@@ -269,3 +270,30 @@ Future<void> addSellerToFavourite({context,sellerData})async{
         Colors.white, SnackBarBehavior.floating);
   }
 }
+
+Future<List<Map<String, dynamic>>> isSellerInFavourites({
+  sellerDetails,
+}) async {
+  List<Map<String, dynamic>> result = [];
+  final sharedPref = await SharedPreferences.getInstance();
+  dynamic userMobile = sharedPref.getString('mobile');
+  try {
+    QuerySnapshot isSellerFavourite = await favouriteSellerAddedByUser
+        .where('sellerMobile', isEqualTo: sellerDetails.mobile)
+        .where('userContact', isEqualTo: userMobile)
+        .get();
+    for (var doc in isSellerFavourite.docs) {
+      result.add({'id': doc.id, ...doc.data() as Map<String, dynamic>});
+    }
+    return result;
+  } catch (e) {
+    return [];
+  }
+}
+
+removeSellerFromFavourites({context,docId,sellerFavIconBlocInstance}){
+  favouriteSellerAddedByUser.doc(docId).delete();
+  sellerFavIconBlocInstance.add(SellerAddedToFavouriteButtonRefreshEvent());
+  snackbarWidget('Seller removed from favourites', context, Colors.red, Colors.white, SnackBarBehavior.floating);
+}
+

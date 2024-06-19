@@ -12,6 +12,7 @@ class PropertiesContainer extends StatelessWidget {
   this.isLogout,
   this.isEmiCalculator,
   this.isFavouriteSeller,
+  this.isCompareCar
   });
   final Size screenSize;
   final ProfileScreenBloc profileScreenBloc;
@@ -20,6 +21,7 @@ class PropertiesContainer extends StatelessWidget {
   final bool? isFavouriteSeller;
   final bool? isInterestedCar;
   final bool? isLogout;
+  final bool? isCompareCar;
   @override
   Widget build(BuildContext context) {
   return Card(
@@ -46,6 +48,9 @@ class PropertiesContainer extends StatelessWidget {
           if(isFavouriteSeller==true){
             profileScreenBloc.add(FavouriteSellerContainerClickedEvent());
           }
+          if(isCompareCar==true){
+            
+          }
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -60,6 +65,7 @@ class PropertiesContainer extends StatelessWidget {
                     : (isFavouriteSeller==true) ? const AssetImage('assets/images/quality.png')
                     : (isLogout==true) ? const AssetImage('assets/images/logout.png')
                     : (isInterestedCar==true)? const AssetImage('assets/images/car-wash.png')
+                    : (isCompareCar==true)? const AssetImage('assets/images/compare.png')
                     : const AssetImage('assets/images/placeholder.jpg')
                   )
                 ),
@@ -70,6 +76,7 @@ class PropertiesContainer extends StatelessWidget {
                 : (isFavouriteSeller==true) ? "Favourite Seller"
                 : (isLogout==true) ? 'Logout '
                 : (isInterestedCar==true) ? 'Interested Car'
+                : (isCompareCar==true)?'Compare Car'
                 : '' ,
               color: const Color(0xFF424141), size: 15, weight: FontWeight.bold),
             ],

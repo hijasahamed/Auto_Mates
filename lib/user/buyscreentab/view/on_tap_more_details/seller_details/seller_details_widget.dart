@@ -38,7 +38,7 @@ class SellerDetailsCardWidget extends StatelessWidget {
                 padding: const EdgeInsets.all(5),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [                    
+                  children: [                                     
                     Row(
                       children: [
                         const MyTextWidget(text: 'Seller informations', color: Color(0xFF424141), size: 17, weight: FontWeight.bold),                     

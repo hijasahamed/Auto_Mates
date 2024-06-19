@@ -1,5 +1,6 @@
 import 'package:auto_mates/seller/authentications/view/seller_login_screen.dart';
 import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
+import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/authentications/view/forgot_password_screen.dart';
 import 'package:auto_mates/user/authentications/view/widgets/login_screen_widgets/google_login_widget.dart';
 import 'package:auto_mates/user/authentications/view/widgets/login_screen_widgets/login_button_widget.dart';
@@ -21,6 +22,9 @@ class UserLoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if(userEmailStorer != null){
+      emailController.text=userEmailStorer!;
+    }
     final AuthenticationBloc authenticationBloc = AuthenticationBloc();
     final screenSize = MediaQuery.of(context).size;
     return BlocConsumer<AuthenticationBloc, AuthenticationState>(

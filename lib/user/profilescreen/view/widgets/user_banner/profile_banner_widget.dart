@@ -1,7 +1,7 @@
-import 'dart:io';
 
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ProfileBannerWidget extends StatelessWidget {
@@ -10,14 +10,7 @@ class ProfileBannerWidget extends StatelessWidget {
   final Size screenSize;
   final UserData user;
   @override
-  Widget build(BuildContext context) {
-    ImageProvider userImageProvider;
-    Uri uri = Uri.parse(user.userProfile);
-    if (uri.isAbsolute) {
-      userImageProvider = NetworkImage(user.userProfile);
-    } else {
-      userImageProvider = FileImage(File(user.userProfile));
-    }
+  Widget build(BuildContext context) {    
     return Card(
       elevation: 10,
       child: Container(
@@ -39,9 +32,23 @@ class ProfileBannerWidget extends StatelessWidget {
                     radius: 58,
                     backgroundColor: Colors.green,
                     child: CircleAvatar(
-                      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-                      radius: 55,
-                      backgroundImage: userImageProvider,
+                      backgroundColor: Colors.white,
+                      radius: 56,                      
+                      child: ClipOval(
+                        child: CachedNetworkImage(
+                          imageUrl: user.userProfile,
+                          placeholder: (context, url) => const CircularProgressIndicator(), 
+                          errorWidget: (context, url, error) => const Icon(Icons.error),
+                          imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                   TextButton(

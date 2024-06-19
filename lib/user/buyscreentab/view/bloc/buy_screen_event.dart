@@ -55,3 +55,5 @@ class ImageZoomingScreenNavigateEvent extends BuyScreenEvent{
 }
 
 class TabBarViewRefreshEvent extends BuyScreenEvent{}
+
+class SellerAddedToFavouriteButtonRefreshEvent extends BuyScreenEvent{}

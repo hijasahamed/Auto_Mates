@@ -16,6 +16,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 final FirebaseAuthService auth = FirebaseAuthService();
 
+String? userEmailStorer;
+
 class FirebaseAuthService {
   FirebaseAuth auth = FirebaseAuth.instance;
   Future<User?> userLogin(String email, String password) async {
@@ -58,6 +60,7 @@ void loginButtonClicked(email, password, authenticationBloc, formkey) async {
       await sharedPref.setString('userName', userData.userName);
       await sharedPref.setString('mobile', userData.mobile);
       await sharedPref.setString('location', userData.location); 
+      userEmailStorer=userData.email;
       authenticationBloc.add(LoginButtonClickedEvent());     
     } else {
       authenticationBloc.add(LoginNotSuccessfullEvent());

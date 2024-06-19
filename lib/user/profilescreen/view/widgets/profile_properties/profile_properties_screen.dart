@@ -33,8 +33,11 @@ class ProfilePropertiesScreen extends StatelessWidget {
         Row(
           children: [
             Expanded(
+              child: PropertiesContainer(screenSize: screenSize,profileScreenBloc: profileScreenBloc,isCompareCar: true,)
+            ),
+            Expanded(
               child: PropertiesContainer(screenSize: screenSize,profileScreenBloc: profileScreenBloc,isLogout: true,)
-            )
+            ),
           ],
         )
       ],

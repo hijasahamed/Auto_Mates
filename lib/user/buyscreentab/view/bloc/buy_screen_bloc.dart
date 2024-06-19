@@ -25,6 +25,7 @@ class BuyScreenBloc extends Bloc<BuyScreenEvent, BuyScreenState> {
     on<AllImageIndexCheckingEvent>(allImageIndexCheckingEvent);
     on<ImageZoomingScreenNavigateEvent>(imageZoomingScreenNavigateEvent);
     on<TabBarViewRefreshEvent>(tabBarViewRefreshEvent);
+    on<SellerAddedToFavouriteButtonRefreshEvent>(sellerAddedToFavouriteButtonRefreshEvent);
   }
 
   FutureOr<void> interestedCarConatinerClickedEvent(
@@ -116,5 +117,10 @@ class BuyScreenBloc extends Bloc<BuyScreenEvent, BuyScreenState> {
   FutureOr<void> tabBarViewRefreshEvent(
     TabBarViewRefreshEvent event, Emitter<BuyScreenState> emit) {
       emit(TabBarViewRefreshState());
+  }
+
+  FutureOr<void> sellerAddedToFavouriteButtonRefreshEvent(
+    SellerAddedToFavouriteButtonRefreshEvent event, Emitter<BuyScreenState> emit) {
+      emit(SellerAddedToFavouriteButtonRefreshState());
   }
 }

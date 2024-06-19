@@ -1,8 +1,10 @@
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
+import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_error_placeholder.dart';
 import 'package:auto_mates/user/commonwidgets/shimmer_effect/shimmer_effect.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
+import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_more_cars_button/favourite_seller_more_cars_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -31,46 +33,58 @@ class FavouriteSellerScreen extends StatelessWidget {
             if (snapshot.hasData && snapshot.data.docs.isNotEmpty) {
               return Scaffold(
                 backgroundColor: Colors.white,
-                body: Padding(
-                  padding: const EdgeInsets.all(4),
-                  child: GridView.builder(
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    itemCount: snapshot.data!.docs.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 1.2,
-                      mainAxisSpacing: 3,
-                      crossAxisSpacing: 3,
-                      crossAxisCount: 2,
-                    ),
-                    itemBuilder: (context, index) {
-                      final DocumentSnapshot data = snapshot.data.docs[index];
-                      return Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Card(
-                          color: Color.fromARGB(255, 245, 4, 4),
-                          elevation: 5,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              
-                            ),
-                            child: Column(
-                              children: [
-                                MyTextWidget(
-                                    text: data['sellerName'],
-                                    color: const Color(0xFF424141),
-                                    size: 15,
-                                    weight: FontWeight.bold)
-                              ],
-                            ),
-                          ),
-                        ),
-                      );
-                    },
+                body: GridView.builder(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: snapshot.data!.docs.length,
+                  gridDelegate:
+                      const SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 1,
+                    mainAxisSpacing: 3,
+                    crossAxisSpacing: 3,
+                    crossAxisCount: 2,
                   ),
+                  itemBuilder: (context, index) {
+                    final DocumentSnapshot data = snapshot.data.docs[index];
+                    return Card(
+                      color: const Color.fromARGB(255, 173, 224, 246),
+                      elevation: 5,
+                      shadowColor: Colors.blueGrey,
+                      child: Column(                             
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  removeSellerFromFavourites(context: context,docId: data.id);
+                                }, 
+                                icon: const Icon(Icons.clear,color: Colors.black,size: 15,)
+                              )
+                            ],
+                          ),
+                          MyTextWidget(
+                              text: data['sellerName'],
+                              color: const Color.fromARGB(255, 53, 103, 145),
+                              size: 19,
+                              weight: FontWeight.bold),
+                          MyTextWidget(
+                              text: data['sellerLocation'],
+                              color: const Color.fromARGB(255, 53, 103, 145),
+                              size: 18,
+                              weight: FontWeight.bold),
+                          MyTextWidget(
+                              text: 'Phone:${data['sellerMobile']}',
+                              color: const Color.fromARGB(255, 53, 103, 145),
+                              size: 16,
+                              weight: FontWeight.bold),
+                          const Spacer(),
+                          const FavouriteSellerMoreCarsButton()
+                        ],
+                      ),
+                    );
+                  },
                 ),
               );
             } else {
