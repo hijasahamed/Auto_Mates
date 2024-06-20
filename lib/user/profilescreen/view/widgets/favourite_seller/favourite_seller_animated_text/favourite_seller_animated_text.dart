@@ -3,14 +3,14 @@
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 
-class FavouriteSellerMoreCarsButton extends StatefulWidget {
-  const FavouriteSellerMoreCarsButton({super.key});
+class FavouriteSellerAnimatedText extends StatefulWidget {
+  const FavouriteSellerAnimatedText({super.key});
 
   @override
-  _FavouriteSellerMoreCarsButtonState createState() => _FavouriteSellerMoreCarsButtonState();
+  _FavouriteSellerAnimatedTextState createState() => _FavouriteSellerAnimatedTextState();
 }
 
-class _FavouriteSellerMoreCarsButtonState extends State<FavouriteSellerMoreCarsButton> with SingleTickerProviderStateMixin {
+class _FavouriteSellerAnimatedTextState extends State<FavouriteSellerAnimatedText> with SingleTickerProviderStateMixin {
  
   late AnimationController controller;
   late Animation<Color?> colorAnimation;

@@ -1,6 +1,7 @@
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/all_cars_to_sell/pop_up_button/popup_menu_button_widget.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/app_bar_gradient_color.dart';
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 
 class NormalAppBar extends StatelessWidget {
@@ -22,10 +23,7 @@ class NormalAppBar extends StatelessWidget {
               Icons.arrow_back_ios_new_rounded,
               color: Colors.white,
             )),
-        title: Text(
-          title,
-          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
+        title: MyTextWidget(text: title, color: Colors.white, size: 18, weight: FontWeight.bold),
         centerTitle: true,
         actions: [
           (isFromSeller==true)?

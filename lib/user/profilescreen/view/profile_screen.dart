@@ -67,12 +67,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         else if(state is FavouriteSellerContainerClickedState){
           UserData? userData = await fetchUserDetails();
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => FavouriteSellerScreen(screenSize: widget.screenSize,userContact: userData!.mobile,profileScreenBloc: profileScreenBloc,)
-          ));
-        }
-        else if(state is FavouriteSellerOnTappedState){
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => FavouriteSellerMoreCars(data: state.data,)
+            builder: (context) => FavouriteSellerScreen(screenSize: widget.screenSize,userContact: userData!.mobile,)
           ));
         }
       },

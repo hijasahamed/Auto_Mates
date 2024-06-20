@@ -258,6 +258,7 @@ Future<void> addSellerToFavourite({context,sellerData,sellerFavIconBlocInstance}
       'sellerName':sellerData.companyName,
       'sellerMobile':sellerData.mobile,
       'sellerLocation':sellerData.location,
+      'sellerId':sellerData.id,
       'userName':userData.userName,
       'userContact':userData.mobile
     };

@@ -62,6 +62,8 @@ postNewCar(
   final data = {
     'thumbnail':thumbnailUrl,
     'sellerId':sellerDetails.id,
+    'sellerPhone':sellerDetails.mobile,
+    'sellerName':sellerDetails.companyName,
     'image':imageUrls,
     'brand': carBrandController.text,
     'modelName': carModelNameController.text,

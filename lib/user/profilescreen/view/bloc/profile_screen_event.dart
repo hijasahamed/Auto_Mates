@@ -18,7 +18,4 @@ class InterestedCarOnTapEvent extends ProfileScreenEvent {
 
 class FavouriteSellerContainerClickedEvent extends ProfileScreenEvent {}
 
-class FavouriteSellerOnTappedEvent extends ProfileScreenEvent {
-  final dynamic data;
-  FavouriteSellerOnTappedEvent({required this.data});
-}
+class FavouriteSellerOnTappedEvent extends ProfileScreenEvent {}

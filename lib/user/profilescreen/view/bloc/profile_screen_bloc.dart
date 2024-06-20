@@ -50,6 +50,6 @@ class ProfileScreenBloc extends Bloc<ProfileScreenEvent, ProfileScreenState> {
 
   FutureOr<void> favouriteSellerOnTappedEvent(
     FavouriteSellerOnTappedEvent event, Emitter<ProfileScreenState> emit) {
-      emit(FavouriteSellerOnTappedState(data: event.data));
+      emit(FavouriteSellerOnTappedState());     
   }
 }

@@ -1,4 +1,7 @@
 
+// ignore_for_file: avoid_print
+
+import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
@@ -127,5 +130,24 @@ Future<DocumentSnapshot?> getCarDetailFromInterestedCarsList({carNumber}) async 
     }
   } catch (e){
     return null;
+  }
+}
+
+
+Future<List<DocumentSnapshot>> getFavouriteSellersAllCars({sellerId}) async {
+  try {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    
+    QuerySnapshot querySnapshot = await firestore
+        .collection('carstosell')
+        .where('sellerId', isEqualTo: sellerId)
+        .get();
+        
+    List<DocumentSnapshot> documents = querySnapshot.docs;
+
+    return documents;
+  } catch (e) {
+    print('Error getting documents: $e');
+    return [];
   }
 }
