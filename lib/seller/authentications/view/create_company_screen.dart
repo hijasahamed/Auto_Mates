@@ -5,6 +5,7 @@ import 'package:auto_mates/seller/authentications/view/widgets/create_account_wi
 import 'package:auto_mates/seller/authentications/view/widgets/create_account_widgets/create_account_welcome_widget.dart';
 import 'package:auto_mates/seller/authentications/view/widgets/create_account_widgets/create_button_widget.dart';
 import 'package:auto_mates/seller/authentications/view/widgets/create_account_widgets/create_section_widgets.dart';
+import 'package:auto_mates/seller/authentications/view/widgets/create_account_widgets/seller_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -48,10 +49,11 @@ class CreateCompanyScreen extends StatelessWidget {
               child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
-              children: [
+              children: [                
                 CreateAccountWelcomeScreen(
                   screenSize: screenSize,
                 ),
+                SellerProfile(),
                 CreateSectionWidget(
                   sellerSignupFormkey: sellerSignupFormkey,
                   phoneNumberController: phoneNumberController,

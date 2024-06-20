@@ -1,43 +1,43 @@
 import 'dart:io';
 
-import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
-import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
+import 'package:auto_mates/seller/authentications/controllers/functions.dart';
+import 'package:auto_mates/seller/authentications/view/bloc/seller_authentication_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SellerImage extends StatelessWidget {
-  const SellerImage({super.key});
+class SellerProfile extends StatelessWidget {
+  const SellerProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
-    AuthenticationBloc userProfileBlocInstance = AuthenticationBloc();
-    return BlocBuilder<AuthenticationBloc, AuthenticationState>(
-      bloc: userProfileBlocInstance,
+    SellerAuthenticationBloc blocInstance = SellerAuthenticationBloc();
+    return BlocBuilder<SellerAuthenticationBloc, SellerAuthenticationState>(
+      bloc: blocInstance,
       builder: (context, state) {
         ImageProvider? imageProvider;
-        if (userProfileImage == null || userProfileImage!.isEmpty) {
+        if (sellerProfileImage == null || sellerProfileImage!.isEmpty) {
           imageProvider = const AssetImage('assets/images/avatar.png');
         } else {
-          Uri uri = Uri.parse(userProfileImage!);
+          Uri uri = Uri.parse(sellerProfileImage!);
           if (uri.isAbsolute) {
-            imageProvider = NetworkImage(userProfileImage!);
+            imageProvider = NetworkImage(sellerProfileImage!);
           } else {
-            imageProvider = FileImage(File(userProfileImage!));
+            imageProvider = FileImage(File(sellerProfileImage!));
           }
         }
         return Stack(
           children: [
             CircleAvatar(
-              radius: 60,
+              radius: 50,
               backgroundColor: const Color(0XFF143A42),
-              backgroundImage: imageProvider
+              backgroundImage: imageProvider,
             ),
             Positioned(
                 bottom: 0,
                 right: 0,
                 child: GestureDetector(
                   onTap: () {
-                    addUserProfileImage(bloc: userProfileBlocInstance);
+                    addSellerProfileImage(bloc: blocInstance);
                   },
                   child: const CircleAvatar(
                     radius: 18,

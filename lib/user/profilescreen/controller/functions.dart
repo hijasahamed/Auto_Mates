@@ -25,54 +25,6 @@ Future<UserData?> fetchUserDetails()async{
   return UserData(id: id, email: email, userName: userName,location: location,mobile: mobile,userProfile: userProfile);
 }
 
-// profileScreenAlertMessage({context, profileScreenBloc,removeInterestMarked,interestedData}) {
-//   return showDialog(
-//     context: context,
-//     barrierDismissible: false,
-//     builder: (BuildContext context) {
-//       return AlertDialog(
-//         backgroundColor: Colors.white,
-//         title: MyTextWidget(
-//             text: removeInterestMarked? 'Remove Interest' : 'Logout',
-//             color: const Color(0xFF424141),
-//             size: 24,
-//             weight: FontWeight.bold),
-//         content: MyTextWidget(
-//             text: removeInterestMarked? 'Do you want to remove the interest? This will be removed for the seller also.': 'Do you want to Logout from AutoMates',
-//             color: const Color(0xFF424141),
-//             size: 15,
-//             maxline: true,
-//             weight: FontWeight.bold),
-//         actions: [
-//           ElevatedButton(
-//               style: const ButtonStyle(
-//                   backgroundColor: WidgetStatePropertyAll(Colors.black26)),
-//               onPressed: () {
-//                 Navigator.pop(context);
-//               },
-//               child: const MyTextWidget(
-//                   text: 'Back',
-//                   color: Colors.white,
-//                   size: 12,
-//                   weight: FontWeight.bold)),
-//           ElevatedButton(
-//               style: const ButtonStyle(
-//                   backgroundColor: WidgetStatePropertyAll(Colors.red)),
-//               onPressed: () {
-//                 removeInterestMarked? removeUsersInterest(context: context,docId: interestedData.id) : profileScreenBloc.add(ConfirmLogoutEvent());
-//                 Navigator.pop(context);
-//               },
-//               child: MyTextWidget(
-//                   text: removeInterestMarked? 'Remove Interest' : 'Logout',
-//                   color: Colors.white,
-//                   size: 12,
-//                   weight: FontWeight.bold)),
-//         ],
-//       );
-//     },
-//   );
-// }
-
 Future<void> confirmUserLogout({context}) async {
   final GoogleSignIn googleSignInn = GoogleSignIn();
   await googleSignInn.signOut();

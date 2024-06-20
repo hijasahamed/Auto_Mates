@@ -118,10 +118,14 @@ Stream<QuerySnapshot> getUsersInterestsWithSellerId(sellerId){
   .snapshots();
 }
 
-removeUsersInterest({context,docId}){
+removeUsersInterest({context,docId,noData}){
   Navigator.pop(context);
-  userInterestMarked.doc(docId).delete(); 
-  snackbarWidget('User interest removed', context,Colors.red, Colors.white, SnackBarBehavior.floating);
+  userInterestMarked.doc(docId).delete();
+  if(noData==true){
+    snackbarWidget('Sorry this car is removed by the seller', context,Colors.red, Colors.white, SnackBarBehavior.floating);
+  }else{
+    snackbarWidget('User interest removed', context,Colors.red, Colors.white, SnackBarBehavior.floating);
+  }
   buyScreenBloc.add(InterstButtonClickedRebuildUiEvent());
 }
 

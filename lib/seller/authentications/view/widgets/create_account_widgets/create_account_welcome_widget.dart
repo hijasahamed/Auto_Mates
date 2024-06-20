@@ -9,7 +9,7 @@ class CreateAccountWelcomeScreen extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: screenSize.height / 4.3,
+          height: screenSize.height / 4.8,
           width: screenSize.width / 2,
           decoration: const BoxDecoration(
               image: DecorationImage(
@@ -17,7 +17,7 @@ class CreateAccountWelcomeScreen extends StatelessWidget {
                   fit: BoxFit.cover)),
         ),
         SizedBox(
-          height: screenSize.height / 50,
+          height: screenSize.height / 120,
         ),
         const MyTextWidget(
             text: 'Sell Cars Easily With AutoMates',

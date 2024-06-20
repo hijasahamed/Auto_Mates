@@ -1,12 +1,18 @@
+import 'dart:io';
+
 import 'package:auto_mates/seller/authentications/model/model.dart';
+import 'package:auto_mates/seller/authentications/view/bloc/seller_authentication_bloc.dart';
 import 'package:auto_mates/seller/seller_appbar_bottombar/view/seller_appbar_bottombar_screen.dart';
 import 'package:auto_mates/seller/authentications/view/otp_verification_screen.dart';
+import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/splashscreen/controllers/functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pinput/pinput.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -143,10 +149,46 @@ createSellerAccount(
   }
 }
 
-addSellerDetailsToDb({companyName, location, phoneNumber}) {
+String? sellerProfileImage;
+
+addSellerProfileImage({bloc})async{
+  final file = await ImagePicker().pickImage(source: ImageSource.gallery);
+  if(file==null){
+    return;
+  }
+  sellerProfileImage=file.path;
+  bloc.add(SellerProfileImageRefreshEvent());
+}
+
+Future<String?> addSellerProfileToDb() async {
+  if (sellerProfileImage == null) {
+    return null;
+  }
+
+  String fileName = DateTime.now().microsecondsSinceEpoch.toString();
+  Reference referenceRoot = FirebaseStorage.instance.ref();
+  Reference referenceDireImages = referenceRoot.child('images');
+  Reference referenceImageToUpload = referenceDireImages.child(fileName);
+  
+  try {
+    await referenceImageToUpload.putFile(File(userProfileImage!));
+    String imageUrl = await referenceImageToUpload.getDownloadURL();
+    sellerProfileImage==null;
+    return imageUrl;
+  } catch (e) {
+    if (kDebugMode) {
+      print(e);
+    }
+    return null;
+  }
+}
+
+addSellerDetailsToDb({companyName, location, phoneNumber})async {
   final CollectionReference sellerSignupFirebaseObject =
       FirebaseFirestore.instance.collection('sellerSignupData');
+      String? imageUrl = await addSellerProfileToDb();
   final data = {
+    'sellerProfile':imageUrl,
     'companyName': companyName,
     'location': location,
     'mobile': phoneNumber,

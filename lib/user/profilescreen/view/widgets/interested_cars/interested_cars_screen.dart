@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:auto_mates/seller/seller_profile_screen/controllers/functions.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/on_tap_car_more_details.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
@@ -81,8 +82,8 @@ class InterestedCarsScreen extends StatelessWidget {
                                   if(carDetails != null){                              
                                     profileScreenBloc
                                         .add(InterestedCarOnTapEvent(data: carDetails));
-                                  }else{
-                                    snackbarWidget('Something wrong with the interested car details', context, Colors.red, Colors.white, SnackBarBehavior.floating);
+                                  }else{                                    
+                                    removeUsersInterest(context: context,docId: car.id,noData: true);
                                   }
                                 },
                                 child: Row(

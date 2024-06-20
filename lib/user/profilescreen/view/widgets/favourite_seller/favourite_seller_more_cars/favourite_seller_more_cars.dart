@@ -1,4 +1,5 @@
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
+import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/on_tap_car_more_details.dart';
 import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_error_placeholder.dart';
 import 'package:auto_mates/user/commonwidgets/shimmer_effect/shimmer_effect.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
@@ -45,9 +46,13 @@ class FavouriteSellerMoreCars extends StatelessWidget {
               itemCount: cars.length,
               itemBuilder: (context, index) {
                 var car = cars[index].data() as Map<String, dynamic>;
+                String carId = cars[index].id;
+                car['id'] = carId;               
                 return GestureDetector(
                   onTap: () {
-                    
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                      return OnTapCarMoreDetailsCarScreen(screenSize: screenSize, data: car,isFromSearch: true,);
+                    },));
                   },
                   child: Card(
                     color: Colors.white,

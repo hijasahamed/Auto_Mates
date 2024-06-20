@@ -17,3 +17,5 @@ class SubmitOtpButtonClickedEvent extends SellerAuthenticationEvent{
 }
 
 class ResendOtpButtonClickedEvent extends SellerAuthenticationEvent{}
+
+class SellerProfileImageRefreshEvent extends SellerAuthenticationEvent{}

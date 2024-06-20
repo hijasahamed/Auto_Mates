@@ -25,3 +25,5 @@ class SubmitOtpButtonClickedActionState extends SellerAuthenticationActionState{
 }
 
 class ResendOtpButtonClickedAction extends SellerAuthenticationActionState{}
+
+class SellerProfileImageRefreshState extends SellerAuthenticationActionState{}

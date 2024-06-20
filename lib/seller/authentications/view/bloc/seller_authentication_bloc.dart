@@ -14,6 +14,7 @@ class SellerAuthenticationBloc extends Bloc<SellerAuthenticationEvent, SellerAut
     on<AlreadyASellerLoginToYourAccountButtonClickedEvent>(alreadyASellerLoginToYourAccountButtonClickedEvent);
     on<SubmitOtpButtonClickedEvent>(submitOtpButtonClickedEvent);
     on<ResendOtpButtonClickedEvent>(resendOtpButtonClickedEvent);
+    on<SellerProfileImageRefreshEvent>(sellerProfileImageRefreshEvent);
   }
 
   FutureOr<void> sellerAuthenticationInitialEvent(
@@ -49,5 +50,10 @@ class SellerAuthenticationBloc extends Bloc<SellerAuthenticationEvent, SellerAut
   FutureOr<void> resendOtpButtonClickedEvent(
     ResendOtpButtonClickedEvent event, Emitter<SellerAuthenticationState> emit) {
       emit(ResendOtpButtonClickedAction());
+  }
+
+  FutureOr<void> sellerProfileImageRefreshEvent(
+    SellerProfileImageRefreshEvent event, Emitter<SellerAuthenticationState> emit) {
+      emit(SellerProfileImageRefreshState());
   }
 }
