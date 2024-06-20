@@ -37,7 +37,16 @@ class CarDetailsWidget extends StatelessWidget {
       },
       builder: (context, state) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: MyTextWidget(
+                    text: 'Car Details',
+                    color: Color(0xFF424141),
+                    size: 18,
+                    weight: FontWeight.bold),
+              ),
             GestureDetector(
               onTap: () {
                 blocInstance.add(ShowAllCarImagesEvent());
@@ -64,7 +73,7 @@ class CarDetailsWidget extends StatelessWidget {
                     size: 17,
                     weight: FontWeight.bold),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
+                  padding: const EdgeInsets.only(bottom: 10,top: 10),
                   child: DetailsContainer(screenSize: screenSize, data: data),
                 ),
                 Container(

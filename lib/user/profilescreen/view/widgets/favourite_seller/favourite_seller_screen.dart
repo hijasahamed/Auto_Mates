@@ -1,18 +1,20 @@
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
-import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_error_placeholder.dart';
 import 'package:auto_mates/user/commonwidgets/shimmer_effect/shimmer_effect.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
+import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_more_cars_button/favourite_seller_more_cars_button.dart';
+import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_remove_button/favourite_seller_remove_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class FavouriteSellerScreen extends StatelessWidget {
   const FavouriteSellerScreen(
-      {super.key, required this.screenSize, required this.userContact});
+      {super.key, required this.screenSize, required this.userContact,required this.profileScreenBloc});
   final Size screenSize;
   final String userContact;
+  final ProfileScreenBloc profileScreenBloc;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,42 +48,37 @@ class FavouriteSellerScreen extends StatelessWidget {
                   ),
                   itemBuilder: (context, index) {
                     final DocumentSnapshot data = snapshot.data.docs[index];
-                    return Card(
-                      color: const Color.fromARGB(255, 173, 224, 246),
-                      elevation: 5,
-                      shadowColor: Colors.blueGrey,
-                      child: Column(                             
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              IconButton(
-                                onPressed: () {
-                                  removeSellerFromFavourites(context: context,docId: data.id);
-                                }, 
-                                icon: const Icon(Icons.clear,color: Colors.black,size: 15,)
-                              )
-                            ],
-                          ),
-                          MyTextWidget(
-                              text: data['sellerName'],
-                              color: const Color.fromARGB(255, 53, 103, 145),
-                              size: 19,
-                              weight: FontWeight.bold),
-                          MyTextWidget(
-                              text: data['sellerLocation'],
-                              color: const Color.fromARGB(255, 53, 103, 145),
-                              size: 18,
-                              weight: FontWeight.bold),
-                          MyTextWidget(
-                              text: 'Phone:${data['sellerMobile']}',
-                              color: const Color.fromARGB(255, 53, 103, 145),
-                              size: 16,
-                              weight: FontWeight.bold),
-                          const Spacer(),
-                          const FavouriteSellerMoreCarsButton()
-                        ],
+                    return GestureDetector(
+                      onTap: () {
+                        profileScreenBloc.add(FavouriteSellerOnTappedEvent(data: data));
+                      },
+                      child: Card(
+                        color: const Color.fromARGB(255, 173, 224, 246),
+                        elevation: 5,
+                        shadowColor: Colors.blueGrey,
+                        child: Column(                             
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            FavouriteSellerRemoveButton(data: data,screenSize: screenSize,),
+                            MyTextWidget(
+                                text: data['sellerName'],
+                                color: const Color.fromARGB(255, 83, 84, 85),
+                                size: 19,
+                                weight: FontWeight.bold),
+                            MyTextWidget(
+                                text: data['sellerLocation'],
+                                color: const Color.fromARGB(255, 83, 84, 85),
+                                size: 18,
+                                weight: FontWeight.bold),
+                            MyTextWidget(
+                                text: 'Phone:${data['sellerMobile']}',
+                                color: const Color.fromARGB(255, 83, 84, 85),
+                                size: 18,
+                                weight: FontWeight.bold),
+                            const Spacer(),
+                            const FavouriteSellerMoreCarsButton()
+                          ],
+                        ),
                       ),
                     );
                   },

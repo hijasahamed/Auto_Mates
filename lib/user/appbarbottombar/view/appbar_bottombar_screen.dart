@@ -63,7 +63,7 @@ class _AppbarBottomTabSwitchScreenState
                         child: AppBarWidget(
                           screenSize: screenSize,
                           tabIndex: tabIndex,
-                        )),
+                        )),                   
                     bottomNavigationBar:
                         BottomNavigationBar(                                               
                           currentIndex: tabIndex,

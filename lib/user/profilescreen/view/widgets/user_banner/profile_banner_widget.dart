@@ -37,7 +37,7 @@ class ProfileBannerWidget extends StatelessWidget {
                       child: ClipOval(
                         child: CachedNetworkImage(
                           imageUrl: user.userProfile,
-                          placeholder: (context, url) => const CircularProgressIndicator(), 
+                          placeholder: (context, url) => const CircularProgressIndicator(color: Colors.blue,), 
                           errorWidget: (context, url, error) => const Icon(Icons.error),
                           imageBuilder: (context, imageProvider) => Container(
                             decoration: BoxDecoration(

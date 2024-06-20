@@ -291,9 +291,14 @@ Future<List<Map<String, dynamic>>> isSellerInFavourites({
   }
 }
 
-removeSellerFromFavourites({context,docId,sellerFavIconBlocInstance}){
+removeSellerFromFavourites({context,docId,sellerFavIconBlocInstance, bool? backNavigation}){
   favouriteSellerAddedByUser.doc(docId).delete();
-  sellerFavIconBlocInstance.add(SellerAddedToFavouriteButtonRefreshEvent());
+  if(sellerFavIconBlocInstance !=null ){
+    sellerFavIconBlocInstance.add(SellerAddedToFavouriteButtonRefreshEvent());
+  }
+  if(backNavigation == true){
+    Navigator.pop(context);
+  }
   snackbarWidget('Seller removed from favourites', context, Colors.red, Colors.white, SnackBarBehavior.floating);
 }
 

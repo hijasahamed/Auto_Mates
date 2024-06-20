@@ -6,6 +6,7 @@ import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_
 import 'package:auto_mates/user/profilescreen/view/widgets/favourite_screen/favourite_screen/favourite_screen.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
+import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_more_cars/favourite_seller_more_cars.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_screen.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/interested_cars/interested_cars_screen.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/profile_properties/profile_properties_screen.dart';
@@ -66,7 +67,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         else if(state is FavouriteSellerContainerClickedState){
           UserData? userData = await fetchUserDetails();
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => FavouriteSellerScreen(screenSize: widget.screenSize,userContact: userData!.mobile,)
+            builder: (context) => FavouriteSellerScreen(screenSize: widget.screenSize,userContact: userData!.mobile,profileScreenBloc: profileScreenBloc,)
+          ));
+        }
+        else if(state is FavouriteSellerOnTappedState){
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => FavouriteSellerMoreCars(data: state.data,)
           ));
         }
       },

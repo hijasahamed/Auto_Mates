@@ -12,7 +12,7 @@ class CarOverview extends StatelessWidget {
         borderRadius: BorderRadius.circular(5)
       ),
       child: Padding(
-        padding: const EdgeInsets.only(top: 10,bottom: 10),
+        padding: const EdgeInsets.only(top: 20,bottom: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -24,9 +24,9 @@ class CarOverview extends StatelessWidget {
             Text(
               data['overview'],
               style: const TextStyle(
-                  color: Color.fromARGB(255, 146, 146, 146),
+                  color: Color.fromARGB(255, 126, 126, 126),
                   fontSize: 15,
-                  fontWeight: FontWeight.w400),
+                  fontWeight: FontWeight.w500),
             )
           ],
         ),

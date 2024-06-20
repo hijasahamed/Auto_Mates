@@ -16,6 +16,8 @@ class CustomAlertDialog extends StatelessWidget {
       this.isUsersInterestRemoving,
       this.userInterestedData,
       this.profileScreenBloc,
+      this.removeFavSeller,
+      this.favSellerData,
       required this.screenSize});
   final String image;
   final String title;
@@ -27,6 +29,8 @@ class CustomAlertDialog extends StatelessWidget {
   final ProfileScreenBloc? profileScreenBloc;
   final bool? isUsersInterestRemoving;
   final dynamic userInterestedData;
+  final bool? removeFavSeller;
+  final dynamic favSellerData;
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -78,6 +82,8 @@ class CustomAlertDialog extends StatelessWidget {
                   profileScreenBloc: profileScreenBloc,
                   isUsersInterestRemoving: isUsersInterestRemoving,
                   userInterestedData: userInterestedData,
+                  removeFavSeller: removeFavSeller,
+                  favSellerData: favSellerData,
                 )
               ],
             )

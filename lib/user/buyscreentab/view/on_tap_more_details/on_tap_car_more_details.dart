@@ -39,14 +39,6 @@ class OnTapCarMoreDetailsCarScreen extends StatelessWidget {
                 screenSize: screenSize,
                 data: data,
               ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: MyTextWidget(
-                    text: 'Car Details',
-                    color: Color(0xFF424141),
-                    size: 18,
-                    weight: FontWeight.bold),
-              ),
               CarDetailsWidget(
                 screenSize: screenSize,
                 data: data,

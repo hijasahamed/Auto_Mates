@@ -13,6 +13,8 @@ class YesButton extends StatelessWidget {
       this.profileScreenBloc,
       this.isUsersInterestRemoving,
       this.userInterestedData,
+      this.removeFavSeller,
+      this.favSellerData,
       this.sellerData});
   final Size screenSize;
   final bool? isSellerCalling;
@@ -21,6 +23,8 @@ class YesButton extends StatelessWidget {
   final ProfileScreenBloc? profileScreenBloc;
   final bool? isUsersInterestRemoving;
   final dynamic userInterestedData;
+  final bool? removeFavSeller;
+  final dynamic favSellerData;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -31,6 +35,8 @@ class YesButton extends StatelessWidget {
         ? profileScreenBloc!.add(ConfirmLogoutEvent())
         : (isUsersInterestRemoving==true)
         ? removeUsersInterest(context: context,docId: userInterestedData.id)
+        : (removeFavSeller==true)
+        ? removeSellerFromFavourites(context: context, docId: favSellerData.id,backNavigation: true)
         : null;
       },
       child: Container(
