@@ -4,6 +4,8 @@ import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_
 import 'package:auto_mates/user/commonwidgets/shimmer_effect/shimmer_effect.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
+import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_details_holder/favourite_seller_details_holder.dart';
+import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_image_holder/favourite_seller_image_holder.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_more_cars/favourite_seller_more_cars.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_animated_text/favourite_seller_animated_text.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_remove_button/favourite_seller_remove_button.dart';
@@ -61,42 +63,28 @@ class FavouriteSellerScreen extends StatelessWidget {
                         }
                       },
                       builder: (context, state) {
-                        return GestureDetector(
-                          onTap: () {
-                            blocInstance.add(FavouriteSellerOnTappedEvent());
-                          },
-                          child: Card(
-                            color: const Color.fromARGB(255, 173, 224, 246),
-                            elevation: 5,
-                            shadowColor: Colors.blueGrey,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                FavouriteSellerRemoveButton(
-                                  data: data,
-                                  screenSize: screenSize,
+                        return Padding(
+                          padding: const EdgeInsets.all(2),
+                          child: GestureDetector(
+                            onTap: () {
+                              blocInstance.add(FavouriteSellerOnTappedEvent());
+                            },
+                            child: Card(
+                              color: const Color.fromARGB(255, 238, 238, 238),
+                              elevation: 5,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5)
                                 ),
-                                MyTextWidget(
-                                    text: data['sellerName'],
-                                    color:
-                                        const Color.fromARGB(255, 83, 84, 85),
-                                    size: 19,
-                                    weight: FontWeight.bold),
-                                MyTextWidget(
-                                    text: data['sellerLocation'],
-                                    color:
-                                        const Color.fromARGB(255, 83, 84, 85),
-                                    size: 18,
-                                    weight: FontWeight.bold),
-                                MyTextWidget(
-                                    text: 'Phone:${data['sellerMobile']}',
-                                    color:
-                                        const Color.fromARGB(255, 83, 84, 85),
-                                    size: 18,
-                                    weight: FontWeight.bold),
-                                const Spacer(),
-                                const FavouriteSellerAnimatedText()
-                              ],
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    FavouriteSellerImageHolder(data: data, screenSize: screenSize),
+                                    FavouriteSellerDetailsHolder(data: data, screenSize: screenSize),
+                                    const FavouriteSellerAnimatedText()
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
                         );

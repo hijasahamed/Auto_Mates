@@ -152,6 +152,7 @@ Future<SellerData?> getSellerDetailsById(String sellerId) async {
       if (doc.id == sellerId) {
         Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
         SellerData sellerDetails = SellerData(
+          sellerProfile:data['sellerProfile'],
           id: doc.id,
           companyName: data['companyName'],
           location: data['location'],
@@ -255,6 +256,7 @@ Future<void> addSellerToFavourite({context,sellerData,sellerFavIconBlocInstance}
     }
 
     Map<String,dynamic> data={
+      'sellerProfile':sellerData.sellerProfile,
       'sellerName':sellerData.companyName,
       'sellerMobile':sellerData.mobile,
       'sellerLocation':sellerData.location,

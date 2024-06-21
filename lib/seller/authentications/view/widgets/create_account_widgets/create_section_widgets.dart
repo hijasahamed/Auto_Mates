@@ -18,7 +18,7 @@ class CreateSectionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        height: screenSize.height / 2.8,
+        height: screenSize.height / 2.5,
         width: screenSize.width,        
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -29,7 +29,6 @@ class CreateSectionWidget extends StatelessWidget {
             key: sellerSignupFormkey,
             child: Column(
               children: [
-
                 MyTextFormWidget(                  
                   screenSize: screenSize,
                     text: 'Company Name',

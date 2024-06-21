@@ -11,34 +11,38 @@ class TileWidget extends StatelessWidget {
   final dynamic sellerData;
   @override
   Widget build(BuildContext context) {
-    return Ink(
-      height: screenSize.height / 15,
-      width: screenSize.width,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: const Color.fromARGB(255, 195, 226, 239)),
-      child: InkWell(
-        onTap: () {
-          if(isUserInterest==true){
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return UserInterestsPage(screenSize: screenSize,sellerData: sellerData,);
-            },));
-          }                  
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              MyTextWidget(
-                  text: title,
-                  color: const Color(0XFF424141),
-                  size: 15,
-                  weight: FontWeight.bold),
-                  const Spacer(),
-              (isUserInterest==true)? UserInterestedNotify(sellerData: sellerData):const SizedBox.shrink()
-            ],
+    return Card(
+      elevation: 5,
+      child: Ink(
+        height: screenSize.height / 15,
+        width: screenSize.width,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(width: 0.01),
+            color: const Color.fromARGB(255, 235, 235, 235)),
+        child: InkWell(
+          onTap: () {
+            if(isUserInterest==true){
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return UserInterestsPage(screenSize: screenSize,sellerData: sellerData,);
+              },));
+            }                  
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                MyTextWidget(
+                    text: title,
+                    color: const Color(0XFF424141),
+                    size: 15,
+                    weight: FontWeight.w500),
+                    const Spacer(),
+                (isUserInterest==true)? UserInterestedNotify(sellerData: sellerData):const SizedBox.shrink()
+              ],
+            ),
           ),
         ),
       ),

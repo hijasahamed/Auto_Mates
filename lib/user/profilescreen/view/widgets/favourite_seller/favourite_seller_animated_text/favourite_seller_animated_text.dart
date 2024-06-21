@@ -19,13 +19,13 @@ class _FavouriteSellerAnimatedTextState extends State<FavouriteSellerAnimatedTex
   void initState() {
     super.initState();
     controller = AnimationController(
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 3),
       vsync: this,
     )..repeat(reverse: true);
 
     colorAnimation = ColorTween(
-      begin: Colors.white,
-      end: const Color.fromARGB(255, 95, 219, 118),
+      begin: const Color.fromARGB(255, 10, 10, 10),
+      end: Colors.blue,
     ).animate(controller);
   }
 
@@ -37,26 +37,20 @@ class _FavouriteSellerAnimatedTextState extends State<FavouriteSellerAnimatedTex
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Color.fromARGB(255, 78, 124, 162),
-        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(5),
-        child: AnimatedBuilder(
-          animation: colorAnimation,
-          builder: (context, child) {
-            return MyTextWidget(
-              text: 'Tap to see More cars from this seller',
-              color: colorAnimation.value ?? Colors.white,
-              size: 13,
-              weight: FontWeight.bold,
-              maxline: true,
-              alignTextCenter: true,
-            );
-          },
-        ),
+    return Padding(
+      padding: const EdgeInsets.only(left: 5),
+      child: AnimatedBuilder(
+        animation: colorAnimation,
+        builder: (context, child) {
+          return MyTextWidget(
+            text: 'Tap to see More cars from this seller',
+            color: colorAnimation.value ?? Colors.white,
+            size: 8,
+            weight: FontWeight.bold,
+            maxline: true,
+            alignTextCenter: true,
+          );
+        },
       ),
     );
   }

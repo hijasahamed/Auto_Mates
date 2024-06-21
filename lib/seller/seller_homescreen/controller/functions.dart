@@ -55,6 +55,7 @@ postNewCar(
    SellerData? sellerDetails = await fetchSellerDetails();
    if (sellerDetails == null) {
     snackbarWidget('seller data not found', context, Colors.red, Colors.white,SnackBarBehavior.floating);
+    sellerHomeScreenBloc.add(PostingCarStopLoadingEvent());
     return;
   }
   List<dynamic> imageUrls = await addMultiImagesToDb();
@@ -102,6 +103,7 @@ postNewCar(
     snackbarWidget('Car details not completed', context, Colors.blue,
         Colors.white, SnackBarBehavior.floating);
   }
+  sellerHomeScreenBloc.add(PostingCarStopLoadingEvent());
 }
 
 deleteCarToSell(docId,context,sellerHomeScreenBloc,isFromCarDetailsAppBar)async {

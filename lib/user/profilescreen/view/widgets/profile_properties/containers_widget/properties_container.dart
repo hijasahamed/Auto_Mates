@@ -29,7 +29,7 @@ class PropertiesContainer extends StatelessWidget {
     shadowColor: Colors.grey,
     child: Ink(
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 255, 255, 255),
+        color: const Color.fromARGB(255, 238, 238, 238),
         borderRadius: BorderRadius.circular(10),
         border: Border.all(width: 0.01)
       ),

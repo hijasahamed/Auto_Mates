@@ -16,14 +16,14 @@ class CreateAccountWelcomeScreen extends StatelessWidget {
                   image: AssetImage('assets/images/create a account.webp'),
                   fit: BoxFit.cover)),
         ),
-        SizedBox(
-          height: screenSize.height / 120,
-        ),
-        const MyTextWidget(
-            text: 'Sell Cars Easily With AutoMates',
-            color: Colors.black,
-            size: 15,
-            weight: FontWeight.bold)
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: MyTextWidget(
+              text: 'Sell Cars Easily With AutoMates',
+              color: Colors.black,
+              size: 15,
+              weight: FontWeight.bold),
+        )
       ],
     );
   }

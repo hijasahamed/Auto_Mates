@@ -26,7 +26,8 @@ class FavouriteSellerMoreCars extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Scaffold(
                 backgroundColor: Colors.white,
-                body: SkelotonIndicatorGrid(
+                body: SkelotonIndicatorList(
+                  itemCount: 7,
                   screenSize: screenSize,
                 ));
           } else if (snapshot.hasError) {

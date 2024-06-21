@@ -27,10 +27,14 @@ class FavouriteSellerRemoveButton extends StatelessWidget {
                 ),
               );
             },
-            icon: const Icon(
-              Icons.clear_outlined,
-              color: Colors.black,
-              size: 20,
+            icon: const CircleAvatar(
+              radius: 12,
+              backgroundColor: Colors.black26,
+              child: Icon(
+                Icons.clear_outlined,
+                color: Colors.white,
+                size: 20,
+              ),
             ))
       ],
     );

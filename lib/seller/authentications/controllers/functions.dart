@@ -4,7 +4,6 @@ import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/seller/authentications/view/bloc/seller_authentication_bloc.dart';
 import 'package:auto_mates/seller/seller_appbar_bottombar/view/seller_appbar_bottombar_screen.dart';
 import 'package:auto_mates/seller/authentications/view/otp_verification_screen.dart';
-import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/splashscreen/controllers/functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -41,6 +40,7 @@ sellerPhoneVerification(
             sellerAuthenticationBloc: sellerAuthenticationBloc);
         final sharedPref = await SharedPreferences.getInstance();
         sharedPref.setBool(sellerLogedInKey, true);
+        await sharedPref.setString('sellerProfile', existingSeller.sellerProfile);
         await sharedPref.setString('sellerId', existingSeller.id);
         await sharedPref.setString('sellerCompanyName', existingSeller.companyName);
         await sharedPref.setString('sellerLocation', existingSeller.location);
@@ -120,12 +120,7 @@ createSellerAccount(
             Colors.blue,
             Colors.white,
             SnackBarBehavior.floating);
-      } else {
-        addSellerDetailsToDb(
-            companyName: companyName,
-            location: location,
-            phoneNumber: phoneNumber);
-        dynamic sellerData =await checkIfSellerAccountAvailable(mobileNumber: phoneNumber);        
+      } else {               
         await getOtpButtonClicked(
           formkey: sellerSignupFormkey,
           context: context,
@@ -134,8 +129,14 @@ createSellerAccount(
           screenSize: screenSize,
           sellerAuthenticationBloc: sellerAuthenticationBloc,
         );
+        await addSellerDetailsToDb(
+            companyName: companyName,
+            location: location,
+            phoneNumber: phoneNumber);
+        SellerData? sellerData = await checkIfSellerAccountAvailable(mobileNumber: phoneNumber); 
         final sharedPref = await SharedPreferences.getInstance();
         sharedPref.setBool(sellerLogedInKey, true);
+        await sharedPref.setString('sellerProfile', sellerData!.sellerProfile);
         await sharedPref.setString('sellerId', sellerData.id);
         await sharedPref.setString('sellerCompanyName', sellerData.companyName);
         await sharedPref.setString('sellerLocation', sellerData.location);
@@ -171,7 +172,7 @@ Future<String?> addSellerProfileToDb() async {
   Reference referenceImageToUpload = referenceDireImages.child(fileName);
   
   try {
-    await referenceImageToUpload.putFile(File(userProfileImage!));
+    await referenceImageToUpload.putFile(File(sellerProfileImage!));
     String imageUrl = await referenceImageToUpload.getDownloadURL();
     sellerProfileImage==null;
     return imageUrl;
@@ -206,6 +207,7 @@ checkIfSellerAccountAvailable({mobileNumber}) async {
     if (querySnapshot.docs.isNotEmpty) {
       QueryDocumentSnapshot doc = querySnapshot.docs.first;
       SellerData sellerData = SellerData(
+          sellerProfile:doc['sellerProfile'],
           id: doc.id,
           companyName: doc['companyName'],
           location: doc['location'],

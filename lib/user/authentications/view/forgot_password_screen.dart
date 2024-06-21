@@ -63,6 +63,8 @@ class ForgotPasswordScreen extends StatelessWidget {
                           'We will send you an email with a link to reset your password please enter the email associated with\nyour account below',
                       color: Color(0xFF424141),
                       size: 15,
+                      maxline: true,
+                      alignTextCenter: true,
                       weight: FontWeight.w600),
                 ),
                 Padding(

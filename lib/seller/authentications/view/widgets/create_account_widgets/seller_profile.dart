@@ -29,7 +29,7 @@ class SellerProfile extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 50,
-              backgroundColor: const Color(0XFF143A42),
+              backgroundColor: Colors.blue,
               backgroundImage: imageProvider,
             ),
             Positioned(

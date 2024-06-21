@@ -18,30 +18,36 @@ class SellerProfileScreen extends StatelessWidget {
       bloc: sellerProfileBloc,
       listener: (context, state) async {
         if (state is SellerLogoutButtonClickedActionState) {
-          sellerLogoutAlertDialoge(context: context, screenSize: screenSize,sellerProfileBloc: sellerProfileBloc);
+          sellerLogoutAlertDialoge(
+              context: context,
+              screenSize: screenSize,
+              sellerProfileBloc: sellerProfileBloc);
         } else if (state is SellerLogoutConfirmButtonClickedActionState) {
           sellerLogout(context: context);
         }
       },
       builder: (context, state) {
-        return Scaffold(                   
+        return Scaffold(
+          backgroundColor: Colors.white,
           body: Padding(
             padding: const EdgeInsets.all(5),
             child: Column(
               children: [
                 BannerCardWidget(
                   screenSize: screenSize,
+                  data: data,
                 ),
-                Expanded(
-                    child: SellerPropertiesTilesWidget(
+                SellerPropertiesTilesWidget(
                   screenSize: screenSize,
                   sellerData: data,
-                )),
+                ),
+                SizedBox(
+                  height: screenSize.height / 14,
+                ),
                 SellerLogoutWidget(
                   screenSize: screenSize,
                   sellerProfileBloc: sellerProfileBloc,
                 ),
-                SizedBox(height: screenSize.height/14,)
               ],
             ),
           ),

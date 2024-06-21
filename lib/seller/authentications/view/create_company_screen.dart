@@ -31,47 +31,47 @@ class CreateCompanyScreen extends StatelessWidget {
         }
         if (state is CreateCompanyButtonClickedActionState) {
           createSellerAccount(
-            companyName: companyNameController.text,
-            location: locationController.text,
-            phoneNumber: phoneNumberController.text,
-            context: context,
-            sellerSignupFormkey: sellerSignupFormkey,
-            sellerAuthenticationBloc: sellerAuthenticationBloc,
-            screenSize: screenSize
-          );
+              companyName: companyNameController.text,
+              location: locationController.text,
+              phoneNumber: phoneNumberController.text,
+              context: context,
+              sellerSignupFormkey: sellerSignupFormkey,
+              sellerAuthenticationBloc: sellerAuthenticationBloc,
+              screenSize: screenSize);
         }
       },
       builder: (context, state) {
         return Scaffold(
-          resizeToAvoidBottomInset: false,
           backgroundColor: const Color.fromARGB(255, 255, 255, 255),
           body: SafeArea(
-              child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [                
-                CreateAccountWelcomeScreen(
-                  screenSize: screenSize,
-                ),
-                SellerProfile(),
-                CreateSectionWidget(
-                  sellerSignupFormkey: sellerSignupFormkey,
-                  phoneNumberController: phoneNumberController,
-                  screenSize: screenSize,
-                  companyNameController: companyNameController,
-                  locationController: locationController,
-                ),
-                CreateButtonWidget(
-                  screenSize: screenSize,
-                  sellerAuthenticationBloc: sellerAuthenticationBloc,
-                ),
-                SizedBox(
-                  height: screenSize.height / 50,
-                ),
-                AlreadyASellerLoginWidget(
-                  sellerAuthenticationBloc: sellerAuthenticationBloc,
-                )
-              ],
+              child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  CreateAccountWelcomeScreen(
+                    screenSize: screenSize,
+                  ),
+                  const SellerProfile(),
+                  CreateSectionWidget(
+                    sellerSignupFormkey: sellerSignupFormkey,
+                    phoneNumberController: phoneNumberController,
+                    screenSize: screenSize,
+                    companyNameController: companyNameController,
+                    locationController: locationController,
+                  ),
+                  CreateButtonWidget(
+                    screenSize: screenSize,
+                    sellerAuthenticationBloc: sellerAuthenticationBloc,
+                  ),
+                  SizedBox(
+                    height: screenSize.height / 50,
+                  ),
+                  AlreadyASellerLoginWidget(
+                    sellerAuthenticationBloc: sellerAuthenticationBloc,
+                  )
+                ],
+              ),
             ),
           )),
         );

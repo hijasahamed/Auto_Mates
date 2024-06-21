@@ -12,18 +12,19 @@ class SingleCarDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(55),
         child: NormalAppBar(title: 'Car Details',isFromSeller: true,sellerHomeScreenBloc: sellerHomeScreenBloc,data: data,screenSize: screenSize,),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            CarDetailsWidget(screenSize: screenSize, data: data,fromSeller: true,)
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: CarDetailsWidget(screenSize: screenSize, data: data,fromSeller: true,),
         ),
       ),
       bottomNavigationBar: BottomAppBar(
+        color: Colors.white,
         height: screenSize.height/11,
         child: Ink(
           decoration: BoxDecoration(
