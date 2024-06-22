@@ -1,6 +1,7 @@
 import 'package:auto_mates/user/commonwidgets/shimmer_effect/shimmer_effect.dart';
 import 'package:flutter/material.dart';
 
+
 class NewsScreen extends StatelessWidget {
   const NewsScreen({super.key});
   

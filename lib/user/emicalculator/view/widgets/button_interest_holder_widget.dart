@@ -20,6 +20,8 @@ class ButtonAndInterestHolderWidget extends StatelessWidget {
         ),
         SizedBox(height: screenSize.height/75,),
         Card(
+          color: Colors.white,
+          shadowColor: Colors.orangeAccent,
           elevation: 5,
           child: SizedBox(
             height: screenSize.height/6,

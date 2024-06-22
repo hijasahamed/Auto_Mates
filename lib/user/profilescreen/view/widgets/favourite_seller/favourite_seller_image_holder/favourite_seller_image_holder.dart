@@ -10,14 +10,25 @@ class FavouriteSellerImageHolder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          height: screenSize.height / 8,
-          decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(5), topRight: Radius.circular(5)),
-              image: DecorationImage(
-                  image: NetworkImage(data['sellerProfile']),
-                  fit: BoxFit.cover)),
+        ClipRRect(
+          borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(5), topRight: Radius.circular(5)),
+          child: FadeInImage(
+              fadeInDuration: const Duration(milliseconds: 500),
+              height: screenSize.height / 8,
+              width: screenSize.width,
+              placeholder: const AssetImage(
+                'assets/images/image placeholder.jpeg',
+              ),
+              placeholderFit: BoxFit.cover,
+              imageErrorBuilder: (context, error, stackTrace) {
+                return const CircularProgressIndicator(
+                  color: Colors.blue,
+                );
+              },
+              image: NetworkImage(data['sellerProfile']),
+              fit: BoxFit.cover,
+              filterQuality: FilterQuality.high),
         ),
         Positioned(
             top: 0,

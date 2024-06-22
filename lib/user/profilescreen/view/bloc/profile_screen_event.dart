@@ -19,3 +19,5 @@ class InterestedCarOnTapEvent extends ProfileScreenEvent {
 class FavouriteSellerContainerClickedEvent extends ProfileScreenEvent {}
 
 class FavouriteSellerOnTappedEvent extends ProfileScreenEvent {}
+
+class EmiCalculatorConatinerClickedEvent extends ProfileScreenEvent {}

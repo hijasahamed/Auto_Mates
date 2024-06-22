@@ -23,3 +23,5 @@ class InterestedCarOnTapActionState extends ProfileScreenActionState{
 class FavouriteSellerContainerClickedState extends ProfileScreenActionState{}
 
 class FavouriteSellerOnTappedState extends ProfileScreenActionState{}
+
+class EmiCalculatorConatinerClickedState extends ProfileScreenActionState{}

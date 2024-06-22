@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:auto_mates/user/appbarbottombar/view/appbar_bottombar_screen.dart';
 import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
@@ -47,8 +48,9 @@ class FirebaseAuthService {
   }
 }
 
-void loginButtonClicked(email, password, authenticationBloc, formkey) async {
+void loginButtonClicked(email, password, authenticationBloc, formkey,context) async {
   if (formkey.currentState!.validate()) {
+    authenticationBloc.add(UserLoginLoadingStartEvent());    
     User? user = await auth.userLogin(email, password);
     if (user != null) {
       final sharedPref = await SharedPreferences.getInstance();
@@ -60,12 +62,14 @@ void loginButtonClicked(email, password, authenticationBloc, formkey) async {
       await sharedPref.setString('userName', userData.userName);
       await sharedPref.setString('mobile', userData.mobile);
       await sharedPref.setString('location', userData.location); 
-      userEmailStorer=userData.email;
-      authenticationBloc.add(LoginButtonClickedEvent());     
+      userEmailStorer=userData.email;                
+      authenticationBloc.add(LoginButtonClickedEvent());
+      authenticationBloc.add(UserLogedinEvent());
     } else {
+      authenticationBloc.add(UserLoginLoadingStopEvent());
       authenticationBloc.add(LoginNotSuccessfullEvent());
-    }
-  }
+    }          
+  }  
 }
 
 class UserData {

@@ -21,6 +21,9 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     on<ForgetPasswordButtonClickedEvent>(forgetPasswordButtonClickedEvent);
     on<ResetPasswordButtonClickedEvent>(resetPasswordButtonClickedEvent);
     on<UserProfileRefreshEvent>(userProfileRefreshEvent);
+    on<UserLoginLoadingStartEvent>(userLoginLoadingStartEvent);
+    on<UserLoginLoadingStopEvent>(userLoginLoadingStopEvent);
+    on<UserLogedinEvent>(userLogedinEvent);
   }
 
   FutureOr<void> navigateToSignupPageEvent(
@@ -81,6 +84,21 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   FutureOr<void> userProfileRefreshEvent(
     UserProfileRefreshEvent event, Emitter<AuthenticationState> emit) {
       emit(UserProfileRefreshState());
+  }
+
+  FutureOr<void> userLoginLoadingStartEvent(
+    UserLoginLoadingStartEvent event, Emitter<AuthenticationState> emit) {
+      emit(UserLoginLoadingStartState());
+  }
+
+  FutureOr<void> userLoginLoadingStopEvent(
+    UserLoginLoadingStopEvent event, Emitter<AuthenticationState> emit) {
+      emit(UserLoginLoadingStopState());
+  }
+
+  FutureOr<void> userLogedinEvent(
+    UserLogedinEvent event, Emitter<AuthenticationState> emit) {
+      emit(UserLogedinState());
   }
 }
 

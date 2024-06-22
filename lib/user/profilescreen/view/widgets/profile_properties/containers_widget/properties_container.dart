@@ -51,6 +51,9 @@ class PropertiesContainer extends StatelessWidget {
           if(isCompareCar==true){
             
           }
+          if(isEmiCalculator==true){
+            profileScreenBloc.add(EmiCalculatorConatinerClickedEvent());
+          }
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

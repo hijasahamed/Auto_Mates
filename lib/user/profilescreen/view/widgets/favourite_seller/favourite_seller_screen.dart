@@ -1,5 +1,4 @@
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
-import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_error_placeholder.dart';
 import 'package:auto_mates/user/commonwidgets/shimmer_effect/shimmer_effect.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
@@ -8,7 +7,6 @@ import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favo
 import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_image_holder/favourite_seller_image_holder.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_more_cars/favourite_seller_more_cars.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_animated_text/favourite_seller_animated_text.dart';
-import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_remove_button/favourite_seller_remove_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

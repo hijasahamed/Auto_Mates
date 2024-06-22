@@ -1,7 +1,9 @@
 import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/authentications/view/widgets/login_signup_buttonshape/login_signup_button_shape.dart';
+import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginButtonWidget extends StatelessWidget {
   const LoginButtonWidget(
@@ -18,26 +20,51 @@ class LoginButtonWidget extends StatelessWidget {
   final GlobalKey userLoginformkey;
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        return loginButtonClicked(
-            emailController.text, passwordController.text, authenticationBloc,userLoginformkey);
-      },
-      child: ClipPath(
-        clipper: Customshape(),
-        child: Container(
-          color: const Color(0XFF143A42),         
-          height: screenSize.height / 10,
-          child: const Center(
-              child: Text(
-            'Login',
-            style: TextStyle(
-                fontSize: 28, fontWeight: FontWeight.w600, color: Colors.white),
-          )),
+    return BlocProvider(
+      create: (context) => authenticationBloc,
+      child: BlocListener<AuthenticationBloc,AuthenticationState>(
+        bloc: authenticationBloc,
+        listener: (context, state) {
+          if(state is UserLoginLoadingStartState){
+            showDialog(
+              context: context,
+              barrierDismissible: false, 
+              builder: (context) {
+              return const Center(child: CircularProgressIndicator(color: Colors.blue,),);
+            },);
+          }
+          else if(state is UserLoginLoadingStopState){            
+            Navigator.pop(context);
+          }
+          else if(state is UserLogedinState){
+            snackbarWidget('Loged In', context, Colors.green, Colors.white, SnackBarBehavior.floating);
+          }
+        },
+        child: BlocBuilder<AuthenticationBloc,AuthenticationState>(
+          bloc: authenticationBloc,
+          builder: (context, state) {
+            return InkWell(
+              onTap: () {                
+                loginButtonClicked(emailController.text, passwordController.text, authenticationBloc,userLoginformkey,context);
+                
+              },
+              child: ClipPath(
+                clipper: Customshape(),
+                child: Container(
+                  color: const Color(0XFF143A42),         
+                  height: screenSize.height / 10,
+                  child: const Center(
+                      child: Text(
+                    'Login',
+                    style: TextStyle(
+                        fontSize: 28, fontWeight: FontWeight.w600, color: Colors.white),
+                  )),
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
   }
 }
-
-

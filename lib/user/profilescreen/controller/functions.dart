@@ -1,7 +1,6 @@
 
 // ignore_for_file: avoid_print
 
-import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';

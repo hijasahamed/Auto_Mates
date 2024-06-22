@@ -3,10 +3,10 @@
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/commonwidgets/custom_alertdialog/custom_alert_dialog.dart';
 import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_error_placeholder.dart';
+import 'package:auto_mates/user/emicalculator/view/emi_calculator_screen.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/favourite_screen/favourite_screen/favourite_screen.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
-import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_more_cars/favourite_seller_more_cars.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_screen.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/interested_cars/interested_cars_screen.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/profile_properties/profile_properties_screen.dart';
@@ -70,6 +70,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             builder: (context) => FavouriteSellerScreen(screenSize: widget.screenSize,userContact: userData!.mobile,)
           ));
         }
+        else if(state is EmiCalculatorConatinerClickedState){
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => EmiCalculatorScreen(screenSize: widget.screenSize)
+          ));
+        }
       },
       builder: (context, state) {
         return FutureBuilder(
@@ -94,8 +99,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         screenSize: widget.screenSize,
                         user: user,
                       ),
-                      ProfilePropertiesScreen(screenSize: widget.screenSize,profileScreenBloc: profileScreenBloc,),
-                      
+                      ProfilePropertiesScreen(screenSize: widget.screenSize,profileScreenBloc: profileScreenBloc,),                     
                     ],
                   ),
                 ),

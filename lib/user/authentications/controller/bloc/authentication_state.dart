@@ -33,3 +33,8 @@ class ResetPasswordButtonClickedActionState extends AuthenticationActionState{}
 
 class UserProfileRefreshState extends AuthenticationActionState{}
 
+class UserLoginLoadingStartState extends AuthenticationState {}
+
+class UserLoginLoadingStopState extends AuthenticationState {}
+
+class UserLogedinState extends AuthenticationState {}
