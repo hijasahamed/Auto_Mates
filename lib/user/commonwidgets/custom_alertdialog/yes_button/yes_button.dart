@@ -1,6 +1,8 @@
 import 'package:auto_mates/seller/seller_profile_screen/controllers/functions.dart';
+import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
+import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +34,11 @@ class YesButton extends StatelessWidget {
         (isSellerCalling==true)
         ? makeCall(context: context,mobileNumber: sellerData.mobile)
         : (isUserLogout==true)
-        ? profileScreenBloc!.add(ConfirmLogoutEvent())
+        ? confirmUserLogout(context: context).then((value) {
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => UserLoginScreen(),
+          ));
+        },)
         : (isUsersInterestRemoving==true)
         ? removeUsersInterest(context: context,docId: userInterestedData.id)
         : (removeFavSeller==true)

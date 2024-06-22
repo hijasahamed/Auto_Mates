@@ -36,22 +36,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return BlocConsumer<ProfileScreenBloc, ProfileScreenState>(
       bloc: profileScreenBloc,
       listener: (context, state)async {
-        if (state is LogoutButtonClickedActionState) {
-          showDialog(
-            barrierDismissible: false,
-            context: context, 
-            builder: (context) => CustomAlertDialog(
-              image: 'assets/images/logout.png',
-              title: 'Logout',
-              subtitle: 'Do you want to Logout from AutoMates',
-              screenSize: widget.screenSize,
-              isUserLogout: true,
-              profileScreenBloc: profileScreenBloc,
-            ),
-          );   
-        } else if (state is ConfirmLogoutActionState) {
-            confirmUserLogout(context: context);
-        }else if (state is FavouriteConatinerClickedActionState){
+        if (state is FavouriteConatinerClickedActionState){
           UserData? userData = await fetchUserDetails();
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => FavouriteScreen(screenSize: widget.screenSize,userContact: userData!.mobile,),

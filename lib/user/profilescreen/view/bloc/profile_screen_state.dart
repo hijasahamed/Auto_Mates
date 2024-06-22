@@ -7,9 +7,9 @@ abstract class ProfileScreenActionState extends ProfileScreenState {}
 
 final class ProfileScreenInitial extends ProfileScreenState {}
 
-class LogoutButtonClickedActionState extends ProfileScreenActionState{}
+// class LogoutButtonClickedActionState extends ProfileScreenActionState{}
 
-class ConfirmLogoutActionState extends ProfileScreenActionState{}
+// class ConfirmLogoutActionState extends ProfileScreenActionState{}
 
 class FavouriteConatinerClickedActionState extends ProfileScreenActionState{}
 

@@ -8,8 +8,8 @@ part 'profile_screen_state.dart';
 
 class ProfileScreenBloc extends Bloc<ProfileScreenEvent, ProfileScreenState> {
   ProfileScreenBloc() : super(ProfileScreenInitial()) {
-    on<LogoutButtonClickedEvent>(logoutButtonClickedEvent);
-    on<ConfirmLogoutEvent>(confirmLogoutEvent);
+    // on<LogoutButtonClickedEvent>(logoutButtonClickedEvent);
+    // on<ConfirmLogoutEvent>(confirmLogoutEvent);
     on<FavouriteConatinerClickedEvent>(favouriteConatinerClickedEvent);
     on<InterestedCarConatinerClickedEvent>(interestedCarConatinerClickedEvent);
     on<InterestedCarOnTapEvent>(interestedCarOnTapEvent);
@@ -18,15 +18,15 @@ class ProfileScreenBloc extends Bloc<ProfileScreenEvent, ProfileScreenState> {
     on<EmiCalculatorConatinerClickedEvent>(emiCalculatorConatinerClickedEvent);
   }
 
-  FutureOr<void> logoutButtonClickedEvent(
-    LogoutButtonClickedEvent event, Emitter<ProfileScreenState> emit) {
-      emit(LogoutButtonClickedActionState());
-  }
+  // FutureOr<void> logoutButtonClickedEvent(
+  //   LogoutButtonClickedEvent event, Emitter<ProfileScreenState> emit) {
+  //     emit(LogoutButtonClickedActionState());
+  // }
 
-  FutureOr<void> confirmLogoutEvent(
-    ConfirmLogoutEvent event, Emitter<ProfileScreenState> emit){
-      emit(ConfirmLogoutActionState());      
-  }
+  // FutureOr<void> confirmLogoutEvent(
+  //   ConfirmLogoutEvent event, Emitter<ProfileScreenState> emit){
+  //     emit(ConfirmLogoutActionState());      
+  // }
 
 
   FutureOr<void> favouriteConatinerClickedEvent(

@@ -24,7 +24,7 @@ Future<void> goToLoginScreen(context) async {
 
 Future<void> goToUserScreen(context) async {
   Navigator.of(context).pushReplacement(MaterialPageRoute(
-  builder: (ctx) => const AppbarBottomTabSwitchScreen(isAccountCreated: false,)));
+  builder: (ctx) => const AppbarBottomTabSwitchScreen()));
 }
 
 Future<void> goToSellerScreen(context) async {

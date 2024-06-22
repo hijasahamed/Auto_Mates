@@ -27,22 +27,14 @@ class UserSignupScreen extends StatelessWidget {
       bloc: authenticationBloc,
       listenWhen: (previous, current) => current is AuthenticationActionState,
       buildWhen: (previous, current) => current is! AuthenticationActionState,
-      listener: (context, state) {
-        if (state is SignupButtonClickedActionState){          
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => const AppbarBottomTabSwitchScreen(isAccountCreated: true,),
-          ));
-        }
-         else if (state is AlreadyHaveAccountButtonClickedActionState) {
+      listener: (context, state) {        
+        if (state is AlreadyHaveAccountButtonClickedActionState) {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (context) => UserLoginScreen(),
           ));
         }
-        else if(state is SignupSuccessfullAndAccountCreatedActionState){
-          snackbarWidget('User Account Created Successfully.Welcome to AutoMates', context,Colors.blue,Colors.white,SnackBarBehavior.floating);
-        }
         else if (state is SignupNotSuccessfullActionState){
-          snackbarWidget('User account not created.Provide Correct Details', context,Colors.blue,Colors.white,SnackBarBehavior.floating);
+          snackbarWidget('User account creation failed. Provide Correct Details', context,Colors.blue,Colors.white,SnackBarBehavior.floating);
         }
       },
       builder: (context, state) {

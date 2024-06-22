@@ -1,8 +1,11 @@
+import 'package:auto_mates/user/appbarbottombar/view/appbar_bottombar_screen.dart';
 import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/authentications/view/widgets/login_signup_buttonshape/login_signup_button_shape.dart';
+import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
 class SignupButtonWidget extends StatelessWidget {
   const SignupButtonWidget(
@@ -29,42 +32,68 @@ class SignupButtonWidget extends StatelessWidget {
   final FirebaseAuthService auth;
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthenticationBloc, AuthenticationState>(
-      builder: (context, state) {
-        return Ink(
-          child: InkWell(
-            onTap: () {
-              signupButtonClicked(
+    AuthenticationBloc authblocInstance = AuthenticationBloc();
+    return BlocProvider(
+      create: (context) => authblocInstance,
+      child: BlocListener<AuthenticationBloc,AuthenticationState>(
+        bloc: authblocInstance,
+        listener: (context, state) {
+          if(state is UserLoginLoadingStartState){
+            showDialog(
+              context: context,
+              barrierDismissible: false, 
+              builder: (context) {
+              return Center(child: LottieBuilder.asset(
+                    'assets/animations/loading_animation.json',
+                    height: screenSize.height / 8,
+                    width: screenSize.width / 4,
+                    repeat: true,
+                  ),);
+            },);
+          }
+          else if(state is UserLoginLoadingStopState){            
+            Navigator.pop(context);
+          }
+          else if(state is UserLogedinState){
+            Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => const AppbarBottomTabSwitchScreen(),
+          ));
+            snackbarWidget('Account created', context, Colors.green, Colors.white, SnackBarBehavior.floating);
+          }
+        },
+        child: BlocBuilder<AuthenticationBloc,AuthenticationState>(
+          bloc: authblocInstance,
+          builder: (context, state) {
+            return InkWell(
+              onTap: () {                
+                  signupButtonClicked(
                   location: locationController.text,
                   mobile: mobileController.text,
                   userName: userNameController.text,
                   recheckPassword: reChekPasswordController.text,
                   email: emailController.text,
                   password: passwordController.text,
-                  authenticationBloc: authenticationBloc,
+                  authblocInstance: authblocInstance,
                   formkey: userSignupFormkey,
-                  context: context);
-            },
-            child: ClipPath(
-              clipper: Customshape(),
-              child: Container(
-                color: const Color(0XFF143A42),
-                height: screenSize.height / 10,
-                child: const Center(
-                  child: Text(
-                          'Signup',
-                          style: TextStyle(
-                            fontSize: 28,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                          ),
-                        ),
+                  context: context);             
+              },
+              child: ClipPath(
+                clipper: Customshape(),
+                child: Container(
+                  color: const Color(0XFF143A42),         
+                  height: screenSize.height / 10,
+                  child: const Center(
+                      child: Text(
+                    'Signup',
+                    style: TextStyle(
+                        fontSize: 28, fontWeight: FontWeight.w600, color: Colors.white),
+                  )),
                 ),
               ),
-            ),
-          ),
-        );
-      },
+            );
+          },
+        ),
+      ),
     );
   }
 }

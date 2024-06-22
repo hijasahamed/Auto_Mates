@@ -1,5 +1,5 @@
 
-// ignore_for_file: avoid_print
+
 
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
@@ -9,6 +9,7 @@ import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/splashscreen/controllers/functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -30,9 +31,6 @@ Future<void> confirmUserLogout({context}) async {
   await FirebaseAuth.instance.signOut();
   final sharedPref = await SharedPreferences.getInstance();
   await sharedPref.setBool(logedInKey, false); 
-  Navigator.of(context).pushReplacement(MaterialPageRoute(
-    builder: (context) => UserLoginScreen(),
-  ));
 }
 
 
@@ -98,7 +96,9 @@ Future<List<DocumentSnapshot>> getFavouriteSellersAllCars({sellerId}) async {
 
     return documents;
   } catch (e) {
-    print('Error getting documents: $e');
+    if (kDebugMode) {
+      print('Error getting documents: $e');
+    }
     return [];
   }
 }

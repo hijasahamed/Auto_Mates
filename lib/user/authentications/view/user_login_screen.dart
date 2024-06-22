@@ -37,10 +37,6 @@ class UserLoginScreen extends StatelessWidget {
             builder: (context) => UserSignupScreen(
                 screenSize: screenSize, authenticationBloc: authenticationBloc),
           ));
-        } else if (state is LoginButtonClickedActionState) {
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => const AppbarBottomTabSwitchScreen(isAccountCreated: false,),
-          ));
         } else if (state is NavigateToDealerLoginPageActionState) {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (context) => const SellerLoginScreen(),
@@ -51,7 +47,7 @@ class UserLoginScreen extends StatelessWidget {
         }        
         else if(state is LoginWithGoogleButtonSuccessfulNavigateToScreenActionState){
           Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) =>  const AppbarBottomTabSwitchScreen(isAccountCreated: false,),
+            builder: (context) =>  const AppbarBottomTabSwitchScreen(),
           ));
         }
         else if(state is ForgetPasswordButtonClickedActionState){

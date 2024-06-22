@@ -1,5 +1,7 @@
 
+import 'package:auto_mates/user/commonwidgets/custom_alertdialog/custom_alert_dialog.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
+import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -40,7 +42,18 @@ class PropertiesContainer extends StatelessWidget {
             profileScreenBloc.add(FavouriteConatinerClickedEvent());
           }
           if(isLogout==true){
-            profileScreenBloc.add(LogoutButtonClickedEvent());  
+            showDialog(
+            barrierDismissible: false,
+            context: context, 
+            builder: (context) => CustomAlertDialog(
+              image: 'assets/images/logout.png',
+              title: 'Logout',
+              subtitle: 'Do you want to Logout from AutoMates',
+              screenSize: screenSize,
+              isUserLogout: true,
+              profileScreenBloc: profileScreenBloc,
+            ),
+          );
           }
           if(isInterestedCar==true){
             profileScreenBloc.add(InterestedCarConatinerClickedEvent());

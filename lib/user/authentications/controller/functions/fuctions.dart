@@ -62,8 +62,8 @@ void loginButtonClicked(email, password, authenticationBloc, formkey,context) as
       await sharedPref.setString('userName', userData.userName);
       await sharedPref.setString('mobile', userData.mobile);
       await sharedPref.setString('location', userData.location); 
-      userEmailStorer=userData.email;                
-      authenticationBloc.add(LoginButtonClickedEvent());
+      userEmailStorer=userData.email;
+      authenticationBloc.add(UserLoginLoadingStopEvent());      
       authenticationBloc.add(UserLogedinEvent());
     } else {
       authenticationBloc.add(UserLoginLoadingStopEvent());
@@ -113,14 +113,16 @@ void signupButtonClicked(
     email,
     password,
     recheckPassword,
-    authenticationBloc,
+    authblocInstance,
     formkey,
     context}) async {
   if (formkey.currentState!.validate()) {
     if (password == recheckPassword) {
+      authblocInstance.add(UserLoginLoadingStartEvent());
       try {
         UserData? existingUser = await checkIfUserAvailable(email);
         if (existingUser != null) {
+          authblocInstance.add(UserLoginLoadingStopEvent());  
           snackbarWidget(
               'This email is already registerd with AutoMates.Please try agian with another email',
               context,
@@ -131,7 +133,6 @@ void signupButtonClicked(
           User? user = await auth.userSignup(email, password);
           if (user != null) {
             await addUserSignupDatatoDb(username: userName,email: email,location: location,mobile: mobile);
-            authenticationBloc.add(SignupButtonClickedEvent());
             final sharedPref = await SharedPreferences.getInstance();
             await sharedPref.setBool(logedInKey, true);
             dynamic userData = await checkIfUserAvailable(email);
@@ -141,10 +142,11 @@ void signupButtonClicked(
             await sharedPref.setString('userName', userData.userName); 
             await sharedPref.setString('mobile', userData.mobile);
             await sharedPref.setString('location', userData.location);         
-            Future.delayed(const Duration(seconds: 3));
-            authenticationBloc.add(SignupSuccessfullAndAccountCreatedEvent());
+            authblocInstance.add(UserLoginLoadingStopEvent());  
+            authblocInstance.add(UserLogedinEvent());
           } else {
-            authenticationBloc.add(SignupNotSuccessfullEvent());
+            authblocInstance.add(UserLoginLoadingStopEvent());
+            authblocInstance.add(SignupNotSuccessfullEvent());
           }
         }
       } catch (e) {
