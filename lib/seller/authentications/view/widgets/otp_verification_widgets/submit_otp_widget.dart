@@ -1,14 +1,21 @@
 import 'package:auto_mates/seller/authentications/controllers/functions.dart';
 import 'package:auto_mates/seller/authentications/view/bloc/seller_authentication_bloc.dart';
+import 'package:auto_mates/seller/authentications/view/widgets/otp_verification_widgets/otp_submit_button.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
 class SubmitOtpWidget extends StatelessWidget {
-  const SubmitOtpWidget({super.key, required this.screenSize,required this.sellerAuthenticationBloc,required this.phoneNumber});
+  const SubmitOtpWidget(
+      {super.key,
+      required this.screenSize,
+      required this.verifyOtpBlocInstance,
+      required this.phoneNumber,
+      required this.sellerAuthenticationBloc});
   final Size screenSize;
+  final SellerAuthenticationBloc verifyOtpBlocInstance;
   final SellerAuthenticationBloc sellerAuthenticationBloc;
-  final String phoneNumber;  
+  final String phoneNumber;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -43,29 +50,19 @@ class SubmitOtpWidget extends StatelessWidget {
               focusedPinTheme: focusedPinTheme,
               submittedPinTheme: submittedPinTheme,
               onChanged: (value) {
-                otpSmsCode=value;
+                otpSmsCode = value;
               },
             ),
           ),
           SizedBox(
             height: screenSize.height / 40,
           ),
-          ElevatedButton(
-              style: const ButtonStyle(
-                backgroundColor: WidgetStatePropertyAll(Colors.blue),
-                minimumSize: WidgetStatePropertyAll(Size(double.infinity, 55)),
-              ),
-              onPressed: () {
-                sellerAuthenticationBloc.add(SubmitOtpButtonClickedEvent(code: otpSmsCode));
-              },
-              child: const MyTextWidget(
-                  text: 'Submit OTP',
-                  color: Colors.white,
-                  size: 20,
-                  weight: FontWeight.bold))
+          OtpSubmitButton(
+            verifyOtpBlocInstance: verifyOtpBlocInstance,
+            sellerAuthenticationBloc: sellerAuthenticationBloc,
+          )
         ],
       ),
     );
   }
 }
-

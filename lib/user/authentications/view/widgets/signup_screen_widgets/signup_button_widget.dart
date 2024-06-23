@@ -43,12 +43,7 @@ class SignupButtonWidget extends StatelessWidget {
               context: context,
               barrierDismissible: false, 
               builder: (context) {
-              return Center(child: LottieBuilder.asset(
-                    'assets/animations/loading_animation.json',
-                    height: screenSize.height / 8,
-                    width: screenSize.width / 4,
-                    repeat: true,
-                  ),);
+              return const Center(child: CircularProgressIndicator(color: Colors.blue,));
             },);
           }
           else if(state is UserLoginLoadingStopState){            

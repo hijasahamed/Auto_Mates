@@ -1,4 +1,3 @@
-
 import 'package:auto_mates/seller/seller_profile_screen/view/bloc/seller_profile_bloc.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
@@ -14,62 +13,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 sellerLogout({
   context,
 }) async {
-  await Future.delayed(const Duration(milliseconds: 2500));
   final sharedPref = await SharedPreferences.getInstance();
   await sharedPref.setBool(sellerLogedInKey, false);
-  Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => UserLoginScreen()));
-}
-
-sellerLogoutAlertDialoge({context,screenSize,sellerProfileBloc}) {
-  return showDialog(
-    barrierColor: Colors.black54,
-    context: context,
-    barrierDismissible: false,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const MyTextWidget(
-            text: 'Logout',
-            color: Color(0xFF424141),
-            size: 26,
-            weight: FontWeight.bold),
-        content: const MyTextWidget(
-            text: 'Do you want to Logout from AutoMates',
-            color: Color(0xFF424141),
-            size: 15,
-            weight: FontWeight.bold),
-        actions: [
-          ElevatedButton(
-              style: const ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.black26)),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const MyTextWidget(
-                  text: 'Back',
-                  color: Colors.white,
-                  size: 12,
-                  weight: FontWeight.bold)),
-          ElevatedButton(
-              style: const ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.red)),
-              onPressed: () {
-               sellerProfileBloc.add(SellerLogoutConfirmButtonClickedEvent());
-              },
-              child: const MyTextWidget(
-                  text: 'Logout',
-                  color: Colors.white,
-                  size: 12,
-                  weight: FontWeight.bold)),
-        ],
-      );
-    },
+  Navigator.of(context).pushAndRemoveUntil(
+    MaterialPageRoute(builder: (context) => UserLoginScreen()),
+    (Route<dynamic> route) => false,
   );
 }
 
-removeUserInterestAlertDialog({context,docId}){
+removeUserInterestAlertDialog({context, docId}) {
   return showDialog(
-    context: context, 
+    context: context,
     builder: (context) {
       return AlertDialog(
         title: const MyTextWidget(
@@ -98,7 +52,7 @@ removeUserInterestAlertDialog({context,docId}){
               style: const ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(Colors.red)),
               onPressed: () {
-                removeUsersInterest(context: context,docId: docId);
+                removeUsersInterest(context: context, docId: docId);
               },
               child: const MyTextWidget(
                   text: 'Remove',
@@ -111,70 +65,96 @@ removeUserInterestAlertDialog({context,docId}){
   );
 }
 
-Stream<QuerySnapshot> getUsersInterestsWithSellerId(sellerId){  
+Stream<QuerySnapshot> getUsersInterestsWithSellerId(sellerId) {
   return FirebaseFirestore.instance
-  .collection('userInterestMarked')
-  .where('carSellerId',isEqualTo: sellerId)
-  .snapshots();
+      .collection('userInterestMarked')
+      .where('carSellerId', isEqualTo: sellerId)
+      .snapshots();
 }
 
-removeUsersInterest({context,docId,noData}){
+removeUsersInterest({context, docId, noData}) {
   Navigator.pop(context);
   userInterestMarked.doc(docId).delete();
-  if(noData==true){
-    snackbarWidget('Sorry this car is removed by the seller', context,Colors.red, Colors.white, SnackBarBehavior.floating);
-  }else{
-    snackbarWidget('User interest removed', context,Colors.red, Colors.white, SnackBarBehavior.floating);
+  if (noData == true) {
+    snackbarWidget('Sorry this car is removed by the seller', context,
+        Colors.red, Colors.white, SnackBarBehavior.floating);
+  } else {
+    snackbarWidget('User interest removed', context, Colors.red, Colors.white,
+        SnackBarBehavior.floating);
   }
   buyScreenBloc.add(InterstButtonClickedRebuildUiEvent());
 }
 
-callCarInterestedCustomer({context,data,screenSize}){
+callCarInterestedCustomer({context, data, screenSize}) {
   return showDialog(
-    context: context, 
+    context: context,
     builder: (context) {
       return AlertDialog(
         backgroundColor: Colors.white,
         title: Container(
-          height: screenSize.height/6,
-          width: screenSize.width/6,
+          height: screenSize.height / 6,
+          width: screenSize.width / 6,
           decoration: BoxDecoration(
-            image: DecorationImage(image: NetworkImage(data['carImage']),fit: BoxFit.cover),
-            borderRadius: BorderRadius.circular(10)
-          ),         
+              image: DecorationImage(
+                  image: NetworkImage(data['carImage']), fit: BoxFit.cover),
+              borderRadius: BorderRadius.circular(10)),
         ),
         content: SizedBox(
-          height: screenSize.height/5,
+          height: screenSize.height / 5,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              MyTextWidget(text: 'Car model : ${data['carName']}', color: Colors.black, size: 18, weight: FontWeight.bold),
+              MyTextWidget(
+                  text: 'Car model : ${data['carName']}',
+                  color: Colors.black,
+                  size: 18,
+                  weight: FontWeight.bold),
               const Spacer(),
               MyTextWidget(
-                text: '${data['userName']} from ${data['userLocation']} has marked a interest on this car with Registration number ${data['carNumber']}', 
-                color: Colors.black, 
-                size: 14, weight:FontWeight.bold,
-                maxline: true,),
-                const Spacer(),
-              const MyTextWidget(text: 'To make a deal with this customer contact in the below number', color: Colors.blue, size: 15, weight: FontWeight.bold,maxline: true,)
+                text:
+                    '${data['userName']} from ${data['userLocation']} has marked a interest on this car with Registration number ${data['carNumber']}',
+                color: Colors.black,
+                size: 14,
+                weight: FontWeight.bold,
+                maxline: true,
+              ),
+              const Spacer(),
+              const MyTextWidget(
+                text:
+                    'To make a deal with this customer contact in the below number',
+                color: Colors.blue,
+                size: 15,
+                weight: FontWeight.bold,
+                maxline: true,
+              )
             ],
           ),
         ),
         actions: [
           ElevatedButton(
-            onPressed: () {
-              makeCall(context: context,mobileNumber: data['userContact']);
-            }, 
-            style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.green)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const MyTextWidget(text: 'Call', color: Colors.white, size: 16, weight: FontWeight.bold),
-                SizedBox(width: screenSize.width/50,),
-                MyTextWidget(text: '+91 ${data['userContact']}', color: Colors.white, size: 16, weight: FontWeight.bold)
-              ],
-            )
-          )
+              onPressed: () {
+                makeCall(context: context, mobileNumber: data['userContact']);
+              },
+              style: const ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(Colors.green)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const MyTextWidget(
+                      text: 'Call',
+                      color: Colors.white,
+                      size: 16,
+                      weight: FontWeight.bold),
+                  SizedBox(
+                    width: screenSize.width / 50,
+                  ),
+                  MyTextWidget(
+                      text: '+91 ${data['userContact']}',
+                      color: Colors.white,
+                      size: 16,
+                      weight: FontWeight.bold)
+                ],
+              ))
         ],
       );
     },

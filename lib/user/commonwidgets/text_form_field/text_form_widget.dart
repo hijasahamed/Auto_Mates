@@ -27,6 +27,7 @@ class MyTextFormWidget extends StatelessWidget {
     this.sunroof,
     this.transmission,
     this.brandName,
+    this.length,
     required this.labelTextColor,
     required this.enabledBorderColor,
     required this.focusedBorderColor,
@@ -50,6 +51,7 @@ class MyTextFormWidget extends StatelessWidget {
   final bool? infotainment;
   final bool? sunroof;
   final bool? transmission;
+  final bool? length;
   final bool? brandName;
   final Color labelTextColor;
   final Color enabledBorderColor;
@@ -79,6 +81,7 @@ class MyTextFormWidget extends StatelessWidget {
         
       },
       obscuringCharacter: '*',
+      maxLength: (length ==true)?10 :null,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       style: TextStyle(
           color: valueTextColor, fontWeight: FontWeight.w500),

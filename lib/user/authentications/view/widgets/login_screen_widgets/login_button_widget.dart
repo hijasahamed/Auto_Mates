@@ -5,7 +5,6 @@ import 'package:auto_mates/user/authentications/view/widgets/login_signup_button
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
 
 class LoginButtonWidget extends StatelessWidget {
   const LoginButtonWidget(
@@ -32,12 +31,7 @@ class LoginButtonWidget extends StatelessWidget {
               context: context,
               barrierDismissible: false, 
               builder: (context) {
-              return Center(child: LottieBuilder.asset(
-                    'assets/animations/loading_animation.json',
-                    height: screenSize.height / 8,
-                    width: screenSize.width / 4,
-                    repeat: true,
-                  ),);
+              return const Center(child: CircularProgressIndicator(color: Colors.blue,));
             },);
           }
           else if(state is UserLoginLoadingStopState){            

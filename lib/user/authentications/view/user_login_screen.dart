@@ -39,7 +39,7 @@ class UserLoginScreen extends StatelessWidget {
           ));
         } else if (state is NavigateToDealerLoginPageActionState) {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => const SellerLoginScreen(),
+            builder: (context) => SellerLoginScreen(),
           ));
         }
         else if (state is LoginNotSuccessfullActionState){

@@ -22,12 +22,13 @@ class CreateCompanyScreen extends StatelessWidget {
   final GlobalKey<FormState> sellerSignupFormkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    SellerAuthenticationBloc createCompanyBlocInstance =SellerAuthenticationBloc();
     return BlocConsumer<SellerAuthenticationBloc, SellerAuthenticationState>(
       bloc: sellerAuthenticationBloc,
       listener: (context, state) {
         if (state is AlreadyASellerLoginToYourAccountButtonClickedActionState) {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => const SellerLoginScreen()));
+              builder: (context) => SellerLoginScreen()));
         }
         if (state is CreateCompanyButtonClickedActionState) {
           createSellerAccount(
@@ -37,6 +38,7 @@ class CreateCompanyScreen extends StatelessWidget {
               context: context,
               sellerSignupFormkey: sellerSignupFormkey,
               sellerAuthenticationBloc: sellerAuthenticationBloc,
+              createCompanyBlocInstance: createCompanyBlocInstance,
               screenSize: screenSize);
         }
       },
@@ -63,6 +65,7 @@ class CreateCompanyScreen extends StatelessWidget {
                   CreateButtonWidget(
                     screenSize: screenSize,
                     sellerAuthenticationBloc: sellerAuthenticationBloc,
+                    createCompanyBlocInstance: createCompanyBlocInstance,
                   ),
                   SizedBox(
                     height: screenSize.height / 50,

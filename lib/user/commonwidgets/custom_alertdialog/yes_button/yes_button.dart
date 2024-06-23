@@ -1,4 +1,5 @@
 import 'package:auto_mates/seller/seller_profile_screen/controllers/functions.dart';
+import 'package:auto_mates/seller/seller_profile_screen/view/bloc/seller_profile_bloc.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
@@ -17,6 +18,8 @@ class YesButton extends StatelessWidget {
       this.userInterestedData,
       this.removeFavSeller,
       this.favSellerData,
+      this.sellerProfileBloc,
+      this.isSellerLogout,
       this.sellerData});
   final Size screenSize;
   final bool? isSellerCalling;
@@ -27,6 +30,8 @@ class YesButton extends StatelessWidget {
   final dynamic userInterestedData;
   final bool? removeFavSeller;
   final dynamic favSellerData;
+  final SellerProfileBloc? sellerProfileBloc;
+  final bool? isSellerLogout;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -35,14 +40,17 @@ class YesButton extends StatelessWidget {
         ? makeCall(context: context,mobileNumber: sellerData.mobile)
         : (isUserLogout==true)
         ? confirmUserLogout(context: context).then((value) {
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => UserLoginScreen(),
-          ));
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => UserLoginScreen()),
+            (Route<dynamic> route) => false,
+          );
         },)
         : (isUsersInterestRemoving==true)
         ? removeUsersInterest(context: context,docId: userInterestedData.id)
         : (removeFavSeller==true)
         ? removeSellerFromFavourites(context: context, docId: favSellerData.id,backNavigation: true)
+        : (isSellerLogout==true)
+        ? sellerLogout(context: context)
         : null;
       },
       child: Container(

@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/seller/authentications/view/bloc/seller_authentication_bloc.dart';
-import 'package:auto_mates/seller/seller_appbar_bottombar/view/seller_appbar_bottombar_screen.dart';
 import 'package:auto_mates/seller/authentications/view/otp_verification_screen.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/splashscreen/controllers/functions.dart';
@@ -28,33 +27,29 @@ sellerPhoneVerification(
     screenSize,
     sellerAuthenticationBloc,
     contryCode}) async {
-      SellerData? existingSeller =
-          await checkIfSellerAccountAvailable(mobileNumber: phoneNumber);
-      if (existingSeller != null) {       
-        await getOtpButtonClicked(
-            formkey: formkey,
-            context: context,
-            contryCode: contryCode,
-            phoneNumber: phoneNumber,
-            screenSize: screenSize,
-            sellerAuthenticationBloc: sellerAuthenticationBloc);
-        final sharedPref = await SharedPreferences.getInstance();
-        sharedPref.setBool(sellerLogedInKey, true);
-        await sharedPref.setString('sellerProfile', existingSeller.sellerProfile);
-        await sharedPref.setString('sellerId', existingSeller.id);
-        await sharedPref.setString('sellerCompanyName', existingSeller.companyName);
-        await sharedPref.setString('sellerLocation', existingSeller.location);
-        await sharedPref.setString('sellerMobile', existingSeller.mobile);
-      }
-      else if(existingSeller == null){
-        snackbarWidget(
-        'Seller not registerd. Create an account',
-        context,
-        Colors.blue,
-        Colors.white,
-        SnackBarBehavior.floating);
-      }      
+  SellerData? existingSeller =
+      await checkIfSellerAccountAvailable(mobileNumber: phoneNumber);
+  if (existingSeller != null) {
+    await getOtpButtonClicked(
+        formkey: formkey,
+        context: context,
+        contryCode: contryCode,
+        phoneNumber: phoneNumber,
+        screenSize: screenSize,
+        sellerAuthenticationBloc: sellerAuthenticationBloc);
+    final sharedPref = await SharedPreferences.getInstance();
+    sharedPref.setBool(sellerLogedInKey, true);
+    await sharedPref.setString('sellerProfile', existingSeller.sellerProfile);
+    await sharedPref.setString('sellerId', existingSeller.id);
+    await sharedPref.setString('sellerCompanyName', existingSeller.companyName);
+    await sharedPref.setString('sellerLocation', existingSeller.location);
+    await sharedPref.setString('sellerMobile', existingSeller.mobile);
+  } else if (existingSeller == null) {
+    sellerAuthenticationBloc.add(GetOtpClickedStopLoadingEvent());
+    snackbarWidget('Seller not registerd. Create an account', context,
+        Colors.red, Colors.white, SnackBarBehavior.floating);
   }
+}
 
 Future<void> getOtpButtonClicked(
     {required GlobalKey<FormState> formkey,
@@ -63,34 +58,47 @@ Future<void> getOtpButtonClicked(
     screenSize,
     sellerAuthenticationBloc,
     contryCode}) async {
-  await FirebaseAuth.instance.verifyPhoneNumber(
-      verificationCompleted: (phoneAuthCredential) {},
-      verificationFailed: (FirebaseAuthException ex) {},
-      codeSent: (String verificationId, forceResendingToken) {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => OtpVerificationScreen(
-                  sellerAuthenticationBloc: sellerAuthenticationBloc,
-                  screenSize: screenSize,
-                  verificationId: verificationId,
-                  phoneNumber: phoneNumber,
-                )));
-      },
-      codeAutoRetrievalTimeout: (String verificationId) {},
-      phoneNumber: '${contryCode + phoneNumber.toString()}');
+  try {
+    await FirebaseAuth.instance
+        .verifyPhoneNumber(
+            verificationCompleted: (phoneAuthCredential) {},
+            verificationFailed: (FirebaseAuthException ex) {},
+            codeSent: (String verificationId, forceResendingToken) {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => OtpVerificationScreen(
+                        sellerAuthenticationBloc: sellerAuthenticationBloc,
+                        screenSize: screenSize,
+                        verificationId: verificationId,
+                        phoneNumber: phoneNumber,
+                      )));
+            },
+            codeAutoRetrievalTimeout: (String verificationId) {},
+            phoneNumber: '${contryCode + phoneNumber.toString()}')
+        .catchError((e) {
+      sellerAuthenticationBloc.add(GetOtpClickedStopLoadingEvent());
+      snackbarWidget('OTP not deliverd. Somthing issue', context, Colors.red,
+          Colors.white, SnackBarBehavior.floating);
+    });
+  } catch (e) {
+    sellerAuthenticationBloc.add(GetOtpClickedStopLoadingEvent());
+  }
 }
 
-Future<void> submitOtp(verificationId, smsCode, context) async {
+Future<void> submitOtp(
+    verificationId, smsCode, context, verifyOtpBlocInstance) async {
   try {
+    verifyOtpBlocInstance.add(SubmitOtpClickedLoadingEvent());
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: verificationId, smsCode: smsCode);
     FirebaseAuth.instance.signInWithCredential(credential).then(
       (value) async {
         final sharedPref = await SharedPreferences.getInstance();
         await sharedPref.setBool(sellerLogedInKey, true);
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => const Sellerappbarbottombar()));
+        verifyOtpBlocInstance.add(SubmitOtpClickedStopLoadingEvent());
+        verifyOtpBlocInstance.add(SubmitOtpButtonClickedSuccessEvent());
       },
     ).catchError((e) {
+      verifyOtpBlocInstance.add(SubmitOtpClickedStopLoadingEvent());
       snackbarWidget('Invalid OTP', context, Colors.red, Colors.white,
           SnackBarBehavior.floating);
     });
@@ -108,56 +116,73 @@ createSellerAccount(
     phoneNumber,
     sellerSignupFormkey,
     screenSize,
-    sellerAuthenticationBloc}) async {
-  if (sellerSignupFormkey.currentState!.validate()) {
-    try {
-      SellerData? existingSeller =
-          await checkIfSellerAccountAvailable(mobileNumber: phoneNumber);
-      if (existingSeller != null) {
-        snackbarWidget(
-            'This phone number is already registerd with AutoMates.Please try agian with another',
-            context,
-            Colors.blue,
-            Colors.white,
-            SnackBarBehavior.floating);
-      } else {               
-        await getOtpButtonClicked(
-          formkey: sellerSignupFormkey,
-          context: context,
-          contryCode: countrryCode,
-          phoneNumber: phoneNumber,
-          screenSize: screenSize,
-          sellerAuthenticationBloc: sellerAuthenticationBloc,
-        );
-        await addSellerDetailsToDb(
-            companyName: companyName,
-            location: location,
-            phoneNumber: phoneNumber);
-        SellerData? sellerData = await checkIfSellerAccountAvailable(mobileNumber: phoneNumber); 
-        final sharedPref = await SharedPreferences.getInstance();
-        sharedPref.setBool(sellerLogedInKey, true);
-        await sharedPref.setString('sellerProfile', sellerData!.sellerProfile);
-        await sharedPref.setString('sellerId', sellerData.id);
-        await sharedPref.setString('sellerCompanyName', sellerData.companyName);
-        await sharedPref.setString('sellerLocation', sellerData.location);
-        await sharedPref.setString('sellerMobile', sellerData.mobile);
+    sellerAuthenticationBloc,
+    createCompanyBlocInstance}) async {
+  if (sellerSignupFormkey.currentState!.validate() &&
+      sellerProfileImage != null) {
+    if (phoneNumber.length == 10) {
+      try {
+        SellerData? existingSeller =
+            await checkIfSellerAccountAvailable(mobileNumber: phoneNumber);
+        if (existingSeller != null) {
+          createCompanyBlocInstance.add(CreateCompanyButtonStopLoadingEvent());
+          snackbarWidget(
+              'This phone number is already registerd with AutoMates.Please try agian with another',
+              context,
+              Colors.red,
+              Colors.white,
+              SnackBarBehavior.floating);
+        } else {
+          await getOtpButtonClicked(
+            formkey: sellerSignupFormkey,
+            context: context,
+            contryCode: countrryCode,
+            phoneNumber: phoneNumber,
+            screenSize: screenSize,
+            sellerAuthenticationBloc: sellerAuthenticationBloc,
+          );
+          print('adding seller details to db');
+          await addSellerDetailsToDb(
+              companyName: companyName,
+              location: location,
+              phoneNumber: phoneNumber);
+          SellerData? sellerData =
+              await checkIfSellerAccountAvailable(mobileNumber: phoneNumber);
+          final sharedPref = await SharedPreferences.getInstance();
+          sharedPref.setBool(sellerLogedInKey, true);
+          await sharedPref.setString(
+              'sellerProfile', sellerData!.sellerProfile);
+          await sharedPref.setString('sellerId', sellerData.id);
+          await sharedPref.setString(
+              'sellerCompanyName', sellerData.companyName);
+          await sharedPref.setString('sellerLocation', sellerData.location);
+          await sharedPref.setString('sellerMobile', sellerData.mobile);
+        }
+      } catch (e) {
+        if (kDebugMode) {
+          print(e);
+        }
       }
-    } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
+    } else {
+      createCompanyBlocInstance.add(CreateCompanyButtonStopLoadingEvent());
+      snackbarWidget('Phone Number not valid ', context, Colors.red,
+          Colors.white, SnackBarBehavior.floating);
     }
+  } else {
+    createCompanyBlocInstance.add(CreateCompanyButtonStopLoadingEvent());
+    snackbarWidget('Please Provide All Details', context, Colors.red,
+        Colors.white, SnackBarBehavior.floating);
   }
 }
 
 String? sellerProfileImage;
 
-addSellerProfileImage({bloc})async{
+addSellerProfileImage({bloc}) async {
   final file = await ImagePicker().pickImage(source: ImageSource.gallery);
-  if(file==null){
+  if (file == null) {
     return;
   }
-  sellerProfileImage=file.path;
+  sellerProfileImage = file.path;
   bloc.add(SellerProfileImageRefreshEvent());
 }
 
@@ -170,11 +195,11 @@ Future<String?> addSellerProfileToDb() async {
   Reference referenceRoot = FirebaseStorage.instance.ref();
   Reference referenceDireImages = referenceRoot.child('images');
   Reference referenceImageToUpload = referenceDireImages.child(fileName);
-  
+
   try {
     await referenceImageToUpload.putFile(File(sellerProfileImage!));
     String imageUrl = await referenceImageToUpload.getDownloadURL();
-    sellerProfileImage==null;
+    sellerProfileImage == null;
     return imageUrl;
   } catch (e) {
     if (kDebugMode) {
@@ -184,12 +209,12 @@ Future<String?> addSellerProfileToDb() async {
   }
 }
 
-addSellerDetailsToDb({companyName, location, phoneNumber})async {
+addSellerDetailsToDb({companyName, location, phoneNumber}) async {
   final CollectionReference sellerSignupFirebaseObject =
       FirebaseFirestore.instance.collection('sellerSignupData');
-      String? imageUrl = await addSellerProfileToDb();
+  String? imageUrl = await addSellerProfileToDb();
   final data = {
-    'sellerProfile':imageUrl,
+    'sellerProfile': imageUrl,
     'companyName': companyName,
     'location': location,
     'mobile': phoneNumber,
@@ -207,7 +232,7 @@ checkIfSellerAccountAvailable({mobileNumber}) async {
     if (querySnapshot.docs.isNotEmpty) {
       QueryDocumentSnapshot doc = querySnapshot.docs.first;
       SellerData sellerData = SellerData(
-          sellerProfile:doc['sellerProfile'],
+          sellerProfile: doc['sellerProfile'],
           id: doc.id,
           companyName: doc['companyName'],
           location: doc['location'],
@@ -222,8 +247,6 @@ checkIfSellerAccountAvailable({mobileNumber}) async {
     }
   }
 }
-
-
 
 Future<void> resendOtp(phoneNumberController) async {
   await FirebaseAuth.instance.verifyPhoneNumber(

@@ -19,3 +19,14 @@ class SubmitOtpButtonClickedEvent extends SellerAuthenticationEvent{
 class ResendOtpButtonClickedEvent extends SellerAuthenticationEvent{}
 
 class SellerProfileImageRefreshEvent extends SellerAuthenticationEvent{}
+
+class SubmitOtpClickedLoadingEvent extends SellerAuthenticationEvent{}
+class SubmitOtpClickedStopLoadingEvent extends SellerAuthenticationEvent{}
+class SubmitOtpButtonClickedSuccessEvent extends SellerAuthenticationEvent{}
+
+
+class GetOtpClickedLoadingEvent extends SellerAuthenticationEvent{}
+class GetOtpClickedStopLoadingEvent extends SellerAuthenticationEvent{}
+
+class CreateCompanyButtonLoadingEvent extends SellerAuthenticationEvent{}
+class CreateCompanyButtonStopLoadingEvent extends SellerAuthenticationEvent{}

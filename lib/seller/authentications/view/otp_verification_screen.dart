@@ -8,20 +8,26 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OtpVerificationScreen extends StatelessWidget {
   const OtpVerificationScreen(
-      {super.key, required this.screenSize, required this.verificationId,required this.sellerAuthenticationBloc,required this.phoneNumber});
+      {super.key,
+      required this.screenSize,
+      required this.verificationId,
+      required this.sellerAuthenticationBloc,
+      required this.phoneNumber});
   final Size screenSize;
   final String verificationId;
   final SellerAuthenticationBloc sellerAuthenticationBloc;
   final String phoneNumber;
   @override
   Widget build(BuildContext context) {
+    final SellerAuthenticationBloc verifyOtpBlocInstance =
+        SellerAuthenticationBloc();
     return BlocConsumer<SellerAuthenticationBloc, SellerAuthenticationState>(
       bloc: sellerAuthenticationBloc,
       listener: (context, state) {
-        if(state is SubmitOtpButtonClickedActionState){
-          submitOtp(verificationId, state.code, context);
+        if (state is SubmitOtpButtonClickedActionState) {
+          submitOtp(verificationId, state.code, context, verifyOtpBlocInstance);
         }
-        if(state is ResendOtpButtonClickedAction){
+        if (state is ResendOtpButtonClickedAction) {
           resendOtp(phoneNumber);
         }
       },
@@ -42,10 +48,14 @@ class OtpVerificationScreen extends StatelessWidget {
                     ),
                     SubmitOtpWidget(
                       screenSize: screenSize,
+                      verifyOtpBlocInstance: verifyOtpBlocInstance,
                       sellerAuthenticationBloc: sellerAuthenticationBloc,
                       phoneNumber: phoneNumber,
                     ),
-                    ResendOtpWidget(phoneNumber: phoneNumber,sellerAuthenticationBloc: sellerAuthenticationBloc,),
+                    ResendOtpWidget(
+                      phoneNumber: phoneNumber,
+                      sellerAuthenticationBloc: sellerAuthenticationBloc,
+                    ),
                   ],
                 ),
               ),

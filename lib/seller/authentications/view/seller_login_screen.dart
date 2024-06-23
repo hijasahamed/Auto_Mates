@@ -4,30 +4,17 @@ import 'package:auto_mates/seller/authentications/view/widgets/login_screen_widg
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
 
-class SellerLoginScreen extends StatefulWidget {
-  const SellerLoginScreen({
+class SellerLoginScreen extends StatelessWidget {
+  SellerLoginScreen({
     super.key,
   });
 
-  @override
-  State<SellerLoginScreen> createState() => _SellerLoginScreenState();
-}
-
-class _SellerLoginScreenState extends State<SellerLoginScreen> {
   final GlobalKey<FormState> sellerFormKey = GlobalKey<FormState>();
 
   final TextEditingController phoneNumber = TextEditingController();
 
-  final SellerAuthenticationBloc sellerAuthenticationBloc =
-      SellerAuthenticationBloc();
-
-  @override
-  void initState() {
-    sellerAuthenticationBloc.add(SellerAuthenticationInitialEvent());
-    super.initState();
-  }
+  final SellerAuthenticationBloc sellerAuthenticationBloc = SellerAuthenticationBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -44,20 +31,7 @@ class _SellerLoginScreenState extends State<SellerLoginScreen> {
         }
       },
       builder: (context, state) {
-        switch (state.runtimeType) {
-          case const (SellerAuthenticationLoadingState):
-            return Scaffold(
-              backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-              body: Center(
-                  child: LottieBuilder.asset(
-                'assets/animations/loading_animation.json',
-                height: screenSize.height / 10,
-                width: screenSize.width / 5,
-                repeat: true,
-              )),
-            );
-          case const (SellerAuthenticationLoadedSuccessState):
-            return Scaffold(
+        return Scaffold(
                 backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                 resizeToAvoidBottomInset: false,
                 body: SafeArea(
@@ -93,9 +67,6 @@ class _SellerLoginScreenState extends State<SellerLoginScreen> {
                     ],
                   ),
                 )));
-          default:
-            return const SizedBox();
-        }
       },
     );
   }

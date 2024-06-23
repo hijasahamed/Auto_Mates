@@ -27,3 +27,14 @@ class SubmitOtpButtonClickedActionState extends SellerAuthenticationActionState{
 class ResendOtpButtonClickedAction extends SellerAuthenticationActionState{}
 
 class SellerProfileImageRefreshState extends SellerAuthenticationActionState{}
+
+class SubmitOtpClickedLoadingState extends SellerAuthenticationState {}
+class SubmitOtpClickedStopLoadingState extends SellerAuthenticationState {}
+class SubmitOtpButtonClickedSuccessState extends SellerAuthenticationState {}
+
+
+class GetOtpClickedLoadingState extends SellerAuthenticationState {}
+class GetOtpClickedStopLoadingState extends SellerAuthenticationState {}
+
+class CreateCompanyButtonLoadingState extends SellerAuthenticationState {}
+class CreateCompanyButtonStopLoadingState extends SellerAuthenticationState {}

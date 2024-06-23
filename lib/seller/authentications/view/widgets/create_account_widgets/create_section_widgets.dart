@@ -68,6 +68,7 @@ class CreateSectionWidget extends StatelessWidget {
                     fillColor: const Color.fromARGB(255, 240, 240, 240),
                     controller: phoneNumberController,
                     warning: 'Enter a valid Phone Numbe',
+                    length: true,
                     obscure: false,
                     keyBoardType: TextInputType.phone,
                     textCapitalization: TextCapitalization.none),

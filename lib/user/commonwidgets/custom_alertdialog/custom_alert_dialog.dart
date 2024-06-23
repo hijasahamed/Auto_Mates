@@ -1,3 +1,4 @@
+import 'package:auto_mates/seller/seller_profile_screen/view/bloc/seller_profile_bloc.dart';
 import 'package:auto_mates/user/commonwidgets/custom_alertdialog/cancel_button/cancel_button.dart';
 import 'package:auto_mates/user/commonwidgets/custom_alertdialog/yes_button/yes_button.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
@@ -18,6 +19,8 @@ class CustomAlertDialog extends StatelessWidget {
       this.profileScreenBloc,
       this.removeFavSeller,
       this.favSellerData,
+      this.sellerProfileBloc,
+      this.isSellerLogout,
       required this.screenSize});
   final String image;
   final String title;
@@ -31,6 +34,8 @@ class CustomAlertDialog extends StatelessWidget {
   final dynamic userInterestedData;
   final bool? removeFavSeller;
   final dynamic favSellerData;
+  final SellerProfileBloc? sellerProfileBloc;
+  final bool? isSellerLogout;
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -84,6 +89,8 @@ class CustomAlertDialog extends StatelessWidget {
                   userInterestedData: userInterestedData,
                   removeFavSeller: removeFavSeller,
                   favSellerData: favSellerData,
+                  isSellerLogout: isSellerLogout,
+                  sellerProfileBloc: sellerProfileBloc,
                 )
               ],
             )

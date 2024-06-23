@@ -1,6 +1,5 @@
-import 'package:auto_mates/seller/authentications/controllers/functions.dart';
 import 'package:auto_mates/seller/authentications/view/bloc/seller_authentication_bloc.dart';
-import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
+import 'package:auto_mates/seller/authentications/view/widgets/login_screen_widgets/generate_otp_button.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
@@ -67,43 +66,7 @@ class SellerGetOtpWidget extends StatelessWidget {
                   ),
                 ),
               )),
-          Container(
-            height: screenSize.height / 16,
-            width: screenSize.width / 1.5,
-            color: Colors.transparent,
-            child: Material(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              color: Colors.redAccent,
-              child: InkWell(
-                  onTap: ()async {
-                    if (phoneNumber.text == '') {
-                      snackbarWidget(
-                          'Please enter a valid phone number',
-                          context,
-                          Colors.blue,
-                          Colors.white,
-                          SnackBarBehavior.floating);
-                    } else if (formKey.currentState!.validate()) {
-                      await sellerPhoneVerification(
-                          formkey: formKey,
-                          context: context,
-                          contryCode: countrryCode,
-                          phoneNumber: phoneNumber.text,
-                          screenSize: screenSize,
-                          sellerAuthenticationBloc: sellerAuthenticationBloc);
-                    }
-                  },
-                  child: const Center(
-                    child: MyTextWidget(
-                        text: 'Generate OTP',
-                        color: Colors.white,
-                        size: 17,
-                        weight: FontWeight.bold),
-                  )),
-            ),
-          ),
+          GenerateOtpButton(screenSize: screenSize, phoneNumber: phoneNumber, formKey: formKey, sellerAuthenticationBloc: sellerAuthenticationBloc),
           const Spacer(),
           Padding(
             padding: const EdgeInsets.all(8.0),
