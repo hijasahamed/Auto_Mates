@@ -1,9 +1,10 @@
 import 'package:auto_mates/user/buyscreentab/model/buyscreen_model.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
-import 'package:auto_mates/user/buyscreentab/view/buy_screen/filter_car_screen/car_brands/filter_with_car_brands.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/filter_car_screen/filter_screen.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 
 class PriceContainersWidget extends StatelessWidget {
   PriceContainersWidget({super.key, required this.screenSize});
@@ -11,6 +12,7 @@ class PriceContainersWidget extends StatelessWidget {
   final BuyScreenBloc budgetSelectbloc = BuyScreenBloc();
   @override
   Widget build(BuildContext context) {
+    int check=0;
     return Container(
       height: screenSize.height / 3.25,
       width: screenSize.width,
@@ -37,7 +39,7 @@ class PriceContainersWidget extends StatelessWidget {
                 return GestureDetector(
                   onTap: () {
                     budgetSelectbloc
-                        .add(CarBudgetFilterStateRefreshEvent(index: index,budgetText: budgetText));
+                        .add(CarBudgetFilterStateRefreshEvent(index: index,budgetText: budgetText));                        
                   },
                   child: Container(
                     height: screenSize.height / 30,

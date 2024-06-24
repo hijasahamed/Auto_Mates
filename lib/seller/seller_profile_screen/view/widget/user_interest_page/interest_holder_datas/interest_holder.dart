@@ -27,7 +27,7 @@ class InterestHolder extends StatelessWidget {
               IntrestedCarPhoto(screenSize: screenSize, data: data),
               CarAndUserDetails(data: data),
               const Spacer(),
-              UserInterestCloseButton(data: data)
+              UserInterestCloseButton(data: data,screenSize: screenSize,)
             ],
           ),
         ),

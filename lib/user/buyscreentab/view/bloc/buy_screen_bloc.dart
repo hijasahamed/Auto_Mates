@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbuttons/car_brand_drop_down.dart';
+import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/model/buyscreen_model.dart';
-import 'package:auto_mates/user/buyscreentab/view/buy_screen/filter_car_screen/car_brands/filter_with_car_brands.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/filter_car_screen/filter_screen.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
@@ -26,6 +27,8 @@ class BuyScreenBloc extends Bloc<BuyScreenEvent, BuyScreenState> {
     on<ImageZoomingScreenNavigateEvent>(imageZoomingScreenNavigateEvent);
     on<TabBarViewRefreshEvent>(tabBarViewRefreshEvent);
     on<SellerAddedToFavouriteButtonRefreshEvent>(sellerAddedToFavouriteButtonRefreshEvent);
+    on<FilterdCarDropdownButtonRefreshEvent>(filterdCarDropdownButtonRefreshEvent);
+    on<ApplyFilterButtonTextRefreshEvent>(applyFilterButtonTextRefreshEvent);
   }
 
   FutureOr<void> interestedCarConatinerClickedEvent(
@@ -46,6 +49,7 @@ class BuyScreenBloc extends Bloc<BuyScreenEvent, BuyScreenState> {
   FutureOr<void> carBrandFilterStateRefreshEvent(
     CarBrandFilterStateRefreshEvent event, Emitter<BuyScreenState> emit) {
       emit(CarBrandFilterStateRefreshState(selectedCar: event.selectedCar,index: event.index));
+      filterCars(value: event.selectedCar, carToSellField: 'brand', filterdCarList: filterdCarList);
         if(!selectedCarFilterdList.contains(carBrands[event.index])){
           selectedCarFilterdList.add(event.selectedCar); 
         }else{
@@ -62,6 +66,7 @@ class BuyScreenBloc extends Bloc<BuyScreenEvent, BuyScreenState> {
   FutureOr<void> carFuelFilterStateRefreshEvent(
     CarFuelFilterStateRefreshEvent event, Emitter<BuyScreenState> emit) {
       emit(CarFuelFilterStateRefreshState(index: event.index,selectedFuel: event.selectedFuel));
+      filterCars(value: event.selectedFuel, carToSellField: 'fuel', filterdCarList: filterdCarList);
       if(!selectedCarFilterdList.contains(fuelTypes[event.index].fuelType)){
         selectedCarFilterdList.add(event.selectedFuel);
       }else{
@@ -122,5 +127,15 @@ class BuyScreenBloc extends Bloc<BuyScreenEvent, BuyScreenState> {
   FutureOr<void> sellerAddedToFavouriteButtonRefreshEvent(
     SellerAddedToFavouriteButtonRefreshEvent event, Emitter<BuyScreenState> emit) {
       emit(SellerAddedToFavouriteButtonRefreshState());
+  }
+
+  FutureOr<void> filterdCarDropdownButtonRefreshEvent(
+    FilterdCarDropdownButtonRefreshEvent event, Emitter<BuyScreenState> emit) {
+      emit(FilterdCarDropdownButtonRefreshState(isDropdownVisible: event.isDropdownVisible,index: event.index));
+  }
+
+  FutureOr<void> applyFilterButtonTextRefreshEvent(
+    ApplyFilterButtonTextRefreshEvent event, Emitter<BuyScreenState> emit) {
+      emit(ApplyFilterButtonTextRefreshState());
   }
 }

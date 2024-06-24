@@ -57,3 +57,11 @@ class ImageZoomingScreenNavigateEvent extends BuyScreenEvent{
 class TabBarViewRefreshEvent extends BuyScreenEvent{}
 
 class SellerAddedToFavouriteButtonRefreshEvent extends BuyScreenEvent{}
+
+class FilterdCarDropdownButtonRefreshEvent extends BuyScreenEvent {
+ final bool isDropdownVisible;
+ final int index;
+ FilterdCarDropdownButtonRefreshEvent({required this.isDropdownVisible,required this.index});
+}
+
+class ApplyFilterButtonTextRefreshEvent extends BuyScreenEvent{}

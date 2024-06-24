@@ -100,7 +100,7 @@ postNewCar(
     snackbarWidget('Car Posted Successfully', context, Colors.blue,Colors.white, SnackBarBehavior.floating);
     refreshAllCarToSellInstance.add(AllCarsTOSellEvent());   
   } else {
-    snackbarWidget('Car details not completed', context, Colors.blue,
+    snackbarWidget('Car details not completed', context, Colors.red,
         Colors.white, SnackBarBehavior.floating);
   }
   sellerHomeScreenBloc.add(PostingCarStopLoadingEvent());

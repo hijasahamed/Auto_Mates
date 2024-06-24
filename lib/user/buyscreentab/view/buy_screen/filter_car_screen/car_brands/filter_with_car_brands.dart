@@ -1,10 +1,10 @@
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbuttons/car_brand_drop_down.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/filter_car_screen/filter_screen.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-final List<String> selectedCarFilterdList = [];
 
 class FilterWithCarBrands extends StatelessWidget {
  FilterWithCarBrands({super.key, required this.screenSize});
@@ -46,7 +46,7 @@ class FilterWithCarBrands extends StatelessWidget {
                       builder: (context, state) {
                         return GestureDetector(
                           onTap: () {
-                            carBrandSelectbloc.add(CarBrandFilterStateRefreshEvent(selectedCar: carBrands[index],index: index));                    
+                            carBrandSelectbloc.add(CarBrandFilterStateRefreshEvent(selectedCar: carBrands[index],index: index));                                                
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -58,7 +58,7 @@ class FilterWithCarBrands extends StatelessWidget {
                                 child: MyTextWidget(
                                     text: carBrands[index],
                                     color: selectedCarFilterdList.contains(carBrands[index]) ? Colors.white : Colors.grey,
-                                    size: 12,
+                                    size: screenSize.width/40,
                                     weight: FontWeight.w700,
                                     
                                     ),

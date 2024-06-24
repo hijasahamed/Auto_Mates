@@ -20,6 +20,8 @@ class YesButton extends StatelessWidget {
       this.favSellerData,
       this.sellerProfileBloc,
       this.isSellerLogout,
+      this.isSellerRemovingInterestedCar,
+      this.interestedDataIdInSeller,
       this.sellerData});
   final Size screenSize;
   final bool? isSellerCalling;
@@ -32,6 +34,8 @@ class YesButton extends StatelessWidget {
   final dynamic favSellerData;
   final SellerProfileBloc? sellerProfileBloc;
   final bool? isSellerLogout;
+  final bool? isSellerRemovingInterestedCar;
+  final dynamic interestedDataIdInSeller;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -51,7 +55,9 @@ class YesButton extends StatelessWidget {
         ? removeSellerFromFavourites(context: context, docId: favSellerData.id,backNavigation: true)
         : (isSellerLogout==true)
         ? sellerLogout(context: context)
-        : null;
+        : (isSellerRemovingInterestedCar==true)
+        ? removeUsersInterest(context: context,docId: interestedDataIdInSeller)
+        : null;        
       },
       child: Container(
         height: screenSize.height / 20,

@@ -2,10 +2,8 @@
 
 import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
-import 'package:auto_mates/user/buyscreentab/model/buyscreen_model.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/buy_screen.dart';
-import 'package:auto_mates/user/buyscreentab/view/buy_screen/filter_car_screen/car_brands/filter_with_car_brands.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -216,15 +214,6 @@ Future<List<Map<String, dynamic>>> isCarToSellInUserFavourite({
   }
 }
 
-String getSelectedFuelType() {
-  for (var fuel in fuelTypes) {
-    if (selectedCarFilterdList.contains(fuel.fuelType)) {
-      return fuel.fuelType;
-    }
-  }
-  return 'Fuel Types';
-}
-
 
 Future<List<DocumentSnapshot>> findCarForRelatedCars({required dynamic data,required carNumber}) async {
   QuerySnapshot querySnapshot = await FirebaseFirestore.instance
@@ -305,3 +294,25 @@ removeSellerFromFavourites({context,docId,sellerFavIconBlocInstance, bool? backN
   snackbarWidget('Seller removed from favourites', context, Colors.red, Colors.white, SnackBarBehavior.floating);
 }
 
+
+
+final List<Map<String, dynamic>> filterdCarList = [];
+BuyScreenBloc filterCarLengthBlocInstance = BuyScreenBloc();
+Future<void> filterCars({
+  required String value,
+  required String carToSellField,
+  required List<Map<String, dynamic>> filterdCarList,
+}) async {
+  final CollectionReference carsCollection = FirebaseFirestore.instance.collection('carstosell');
+  Query query = carsCollection.where(carToSellField, isEqualTo: value);
+  QuerySnapshot querySnapshot = await query.get();
+
+  for (var doc in querySnapshot.docs) {
+    Map<String, dynamic> carData = doc.data() as Map<String, dynamic>;
+    bool exists = filterdCarList.any((car) => car['regNumber'] == carData['regNumber']);
+    if (!exists) {
+      filterdCarList.add(carData);
+    }
+  }
+  filterCarLengthBlocInstance.add(ApplyFilterButtonTextRefreshEvent());
+}

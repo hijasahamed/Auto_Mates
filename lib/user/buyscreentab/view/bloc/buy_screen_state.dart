@@ -59,3 +59,11 @@ class ImageZoomingScreenNavigateState extends BuyScreenState{
 class TabBarViewRefreshState extends BuyScreenState{}
 
 class SellerAddedToFavouriteButtonRefreshState extends BuyScreenState{}
+
+class FilterdCarDropdownButtonRefreshState extends BuyScreenState {
+  final bool isDropdownVisible;
+  final int index;
+  FilterdCarDropdownButtonRefreshState({required this.isDropdownVisible,required this.index});
+}
+
+class ApplyFilterButtonTextRefreshState extends BuyScreenState{}

@@ -76,7 +76,7 @@ removeUsersInterest({context, docId, noData}) {
   Navigator.pop(context);
   userInterestMarked.doc(docId).delete();
   if (noData == true) {
-    snackbarWidget('Sorry this car is removed by the seller', context,
+    snackbarWidget('Sorry this car is been sold or removed by the seller', context,
         Colors.red, Colors.white, SnackBarBehavior.floating);
   } else {
     snackbarWidget('User interest removed', context, Colors.red, Colors.white,
