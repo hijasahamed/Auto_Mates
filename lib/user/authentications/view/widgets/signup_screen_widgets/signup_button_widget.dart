@@ -5,7 +5,6 @@ import 'package:auto_mates/user/authentications/view/widgets/login_signup_button
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
 
 class SignupButtonWidget extends StatelessWidget {
   const SignupButtonWidget(

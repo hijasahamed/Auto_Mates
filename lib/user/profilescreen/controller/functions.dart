@@ -2,7 +2,6 @@
 
 
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
-import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';

@@ -77,6 +77,7 @@ class BuyScreenBloc extends Bloc<BuyScreenEvent, BuyScreenState> {
   FutureOr<void> carTransmissionFilterStateRefreshEvent(
     CarTransmissionFilterStateRefreshEvent event, Emitter<BuyScreenState> emit) {
       emit(CarTransmissionFilterStateRefreshState(selectedTransmission: event.selectedTransmission, index: event.index));
+      filterCars(value: event.selectedTransmission, carToSellField: 'transmission', filterdCarList: filterdCarList);
       if(!selectedCarFilterdList.contains(transmissionTypes[event.index].transmissionType)){
         selectedCarFilterdList.add(event.selectedTransmission);
       }else{
@@ -86,7 +87,8 @@ class BuyScreenBloc extends Bloc<BuyScreenEvent, BuyScreenState> {
 
   FutureOr<void> carSeatFilterStateRefreshEvent(
     CarSeatFilterStateRefreshEvent event, Emitter<BuyScreenState> emit) {
-      emit(CarSeatFilterStateRefreshState(index: event.index));
+      emit(CarSeatFilterStateRefreshState(index: event.index,seat: event.seat));
+      filterCarsWithSeat(value: event.seat, carToSellField: 'seat', filterdCarList: filterdCarList);
       if(!selectedCarFilterdList.contains(seatCapacity[event.index])){
         selectedCarFilterdList.add(seatCapacity[event.index]);
       }else{
@@ -97,6 +99,7 @@ class BuyScreenBloc extends Bloc<BuyScreenEvent, BuyScreenState> {
   FutureOr<void> carBudgetFilterStateRefreshEvent(
     CarBudgetFilterStateRefreshEvent event, Emitter<BuyScreenState> emit) {
       emit(CarBudgetFilterStateRefreshState(index: event.index,budgetText: event.budgetText));
+      filterCarsWithBudget(value: event.budgetText, carToSellField: 'price', filterdCarList: filterdCarList);
       if(!selectedCarFilterdList.contains(event.budgetText)){
         selectedCarFilterdList.add(event.budgetText);
       }else{

@@ -1,4 +1,3 @@
-import 'package:auto_mates/user/appbarbottombar/view/appbar_bottombar_screen.dart';
 import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';

@@ -1,7 +1,6 @@
 
 import 'package:auto_mates/user/commonwidgets/custom_alertdialog/custom_alert_dialog.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
-import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
 import 'package:flutter/material.dart';
 

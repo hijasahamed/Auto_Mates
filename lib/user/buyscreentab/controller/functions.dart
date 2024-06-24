@@ -298,6 +298,7 @@ removeSellerFromFavourites({context,docId,sellerFavIconBlocInstance, bool? backN
 
 final List<Map<String, dynamic>> filterdCarList = [];
 BuyScreenBloc filterCarLengthBlocInstance = BuyScreenBloc();
+
 Future<void> filterCars({
   required String value,
   required String carToSellField,
@@ -312,6 +313,55 @@ Future<void> filterCars({
     bool exists = filterdCarList.any((car) => car['regNumber'] == carData['regNumber']);
     if (!exists) {
       filterdCarList.add(carData);
+    }
+  }
+  filterCarLengthBlocInstance.add(ApplyFilterButtonTextRefreshEvent());
+}
+
+Future<void> filterCarsWithSeat({
+  required String value,
+  required String carToSellField,
+  required List<Map<String, dynamic>> filterdCarList,
+}) async {
+  int? valInt = int.tryParse(value);
+  final CollectionReference carsCollection = FirebaseFirestore.instance.collection('carstosell');
+ QuerySnapshot querySnapshot = await carsCollection.get();
+
+  for (var doc in querySnapshot.docs) {
+    Map<String, dynamic> carData = doc.data() as Map<String, dynamic>;
+    String fieldValueStr = carData[carToSellField].toString();
+    int? fieldValueInt = int.tryParse(fieldValueStr);
+
+    if (fieldValueInt != null && fieldValueInt == valInt) {
+      bool exists = filterdCarList.any((car) => car['regNumber'] == carData['regNumber']);
+      if (!exists) {
+        filterdCarList.add(carData);
+      }
+    }
+  }
+  filterCarLengthBlocInstance.add(ApplyFilterButtonTextRefreshEvent());
+}
+
+Future<void> filterCarsWithBudget({
+  required String value,
+  required String carToSellField,
+  required List<Map<String, dynamic>> filterdCarList,
+}) async {
+  dynamic budget = value.split(' ').last;
+  dynamic valInt = int.tryParse(budget);
+  final CollectionReference carsCollection = FirebaseFirestore.instance.collection('carstosell');
+ QuerySnapshot querySnapshot = await carsCollection.get();
+
+  for (var doc in querySnapshot.docs) {
+    Map<String, dynamic> carData = doc.data() as Map<String, dynamic>;
+    String fieldValueStr = carData[carToSellField].toString();
+    dynamic intbudget = fieldValueStr.split('.').first;
+    int? fieldValueInt = int.tryParse(intbudget);
+    if (fieldValueInt != null && fieldValueInt < valInt) {
+      bool exists = filterdCarList.any((car) => car['regNumber'] == carData['regNumber']);
+      if (!exists) {
+        filterdCarList.add(carData);
+      }
     }
   }
   filterCarLengthBlocInstance.add(ApplyFilterButtonTextRefreshEvent());

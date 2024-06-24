@@ -39,6 +39,7 @@ class NormalAppBar extends StatelessWidget {
             }
             else if(isFromFilterPage==true){
               selectedCarFilterdList.clear();
+              filterdCarList.clear();
               Navigator.pop(context);
             } else {
               Navigator.pop(context);

@@ -38,7 +38,8 @@ class CarTransmissionFilterStateRefreshState extends BuyScreenState {
 
 class CarSeatFilterStateRefreshState extends BuyScreenState{
   final int index;
-  CarSeatFilterStateRefreshState({required this.index});
+  final String seat;
+  CarSeatFilterStateRefreshState({required this.index,required this.seat});
 }
 
 class CarBudgetFilterStateRefreshState extends BuyScreenState{

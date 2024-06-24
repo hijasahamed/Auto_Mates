@@ -1,7 +1,6 @@
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
-import 'package:auto_mates/user/buyscreentab/view/buy_screen/buy_screen.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/filter_car_screen/car_brands/filter_with_car_brands.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/filter_car_screen/fuel_types/filter_with_fuel_type.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/filter_car_screen/price/filter_with_price.dart';
@@ -26,6 +25,7 @@ class FilterScreen extends StatelessWidget {
           preferredSize: Size.fromHeight(50),
           child: NormalAppBar(
             title: 'Filter',
+            isFromFilterPage: true,
           )),
       body: SingleChildScrollView(
         child: Padding(
@@ -75,9 +75,10 @@ class FilterScreen extends StatelessWidget {
                 child: BlocBuilder<BuyScreenBloc, BuyScreenState>(
                   bloc: filterCarLengthBlocInstance,
                   builder: (context, state) {
+                    int carListLength = filterdCarList.length;
                     return Center(
                       child: MyTextWidget(
-                          text: 'Apply Filters (${filterdCarList.length})',
+                          text: carListLength>0?'Apply Filters (${filterdCarList.length} ${carListLength>1?'Cars':'Car'} Available)':'Apply Filters',
                           color: Colors.white,
                           size: 16,
                           weight: FontWeight.w600),

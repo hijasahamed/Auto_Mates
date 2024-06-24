@@ -12,7 +12,6 @@ class PriceContainersWidget extends StatelessWidget {
   final BuyScreenBloc budgetSelectbloc = BuyScreenBloc();
   @override
   Widget build(BuildContext context) {
-    int check=0;
     return Container(
       height: screenSize.height / 3.25,
       width: screenSize.width,

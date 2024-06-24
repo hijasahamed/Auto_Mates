@@ -35,7 +35,7 @@ class SeatCapacityContainerWidget extends StatelessWidget {
                 return GestureDetector(
                   onTap: () {
                     seatCapacitySelectbloc
-                        .add(CarSeatFilterStateRefreshEvent(index: index));
+                        .add(CarSeatFilterStateRefreshEvent(index: index,seat: seatCapacity[index]));
                   },
                   child: Container(
                     height: screenSize.height / 20,

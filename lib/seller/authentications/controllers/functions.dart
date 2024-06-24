@@ -141,7 +141,6 @@ createSellerAccount(
             screenSize: screenSize,
             sellerAuthenticationBloc: sellerAuthenticationBloc,
           );
-          print('adding seller details to db');
           await addSellerDetailsToDb(
               companyName: companyName,
               location: location,

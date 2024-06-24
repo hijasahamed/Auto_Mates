@@ -38,7 +38,6 @@ class _SellerappbarbottombarState extends State<Sellerappbarbottombar> {
 
   @override
   void initState() {
-    print('seller home screen loaded');
     fetch = fetchSellerDetails();
     super.initState();
   }

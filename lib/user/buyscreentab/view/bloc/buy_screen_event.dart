@@ -36,7 +36,8 @@ class CarTransmissionFilterStateRefreshEvent extends BuyScreenEvent {
 
 class CarSeatFilterStateRefreshEvent extends BuyScreenEvent {
   final int index;
-  CarSeatFilterStateRefreshEvent({required this.index});
+  final String seat;
+  CarSeatFilterStateRefreshEvent({required this.index,required this.seat});
 }
 
 class CarBudgetFilterStateRefreshEvent extends BuyScreenEvent {
