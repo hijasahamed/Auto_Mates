@@ -12,29 +12,37 @@ class EmiCalculatorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-        appBar: const PreferredSize(
-            preferredSize: Size.fromHeight(50),
-            child: NormalAppBar(title: 'Emi Calculator')),
-        body: SizedBox(
-          height: screenSize.height,
-          width: screenSize.width,
-          child: Padding(
-            padding: const EdgeInsets.all(5),
-            child: Column(
-              children: [
-                EmiScreenOpeningTextWidget(
+      appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(50),
+          child: NormalAppBar(
+            title: 'Emi Calculator',
+            isFromEmi: true,
+          )),
+      body: SizedBox(
+        height: screenSize.height,
+        width: screenSize.width,
+        child: Padding(
+          padding: const EdgeInsets.all(5),
+          child: Column(
+            children: [
+              Card(
+                elevation: 4,
+                color: Colors.white,
+                child: EmiScreenOpeningTextWidget(
                   screenSize: screenSize,
                 ),
-                EmiAmountSliderHolderWidget(
-                  screenSize: screenSize,
-                ),
-                EmiTenureInterestWidget(
-                  screenSize: screenSize,
-                ),
-                ButtonAndInterestHolderWidget(screenSize: screenSize)
-              ],
-            ),
+              ),
+              EmiAmountSliderHolderWidget(
+                screenSize: screenSize,
+              ),
+              EmiTenureInterestWidget(
+                screenSize: screenSize,
+              ),
+              ButtonAndInterestHolderWidget(screenSize: screenSize),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

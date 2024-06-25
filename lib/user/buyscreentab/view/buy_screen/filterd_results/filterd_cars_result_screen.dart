@@ -2,6 +2,7 @@ import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/norm
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/filterd_results/filterd_cars_dropdown_details/filterd_details_dropdown_details.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/filterd_results/filterd_cars_image_name_holder/filterd_cars_image_name_holder.dart';
+import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/on_tap_car_more_details.dart';
 import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_error_placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,26 +44,34 @@ class FilterResultsScreen extends StatelessWidget {
                     final car = filterdCarList[index];
                     return Padding(
                       padding: const EdgeInsets.all(6),
-                      child: Card(
-                        elevation: 5,
-                        color: const Color.fromARGB(255, 246, 246, 246),
-                        child: Column(
-                          children: [
-                            FilterdCarsImageNameHolder(
-                                screenSize: screenSize,
-                                car: car,
-                                dropdownblocInstance: dropdownblocInstance,
-                                isDropdownVisible: isDropdownVisible,
-                                index: index),
-                            if (isDropdownVisible == true &&
-                                indexofButton == index)
-                              FilterdDetailsDropdownDetails(
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                            return OnTapCarMoreDetailsCarScreen(screenSize: screenSize, data: car,isFromSearch: true,);
+                          },));
+                        },
+                        child: Card(
+                          elevation: 5,
+                          color: const Color.fromARGB(255, 246, 246, 246),
+                          child: Column(
+                            children: [
+                              FilterdCarsImageNameHolder(
                                   screenSize: screenSize,
                                   car: car,
                                   dropdownblocInstance: dropdownblocInstance,
                                   isDropdownVisible: isDropdownVisible,
-                                  index: index)
-                          ],
+                                  indexofButton: indexofButton,
+                                  index: index),
+                              if (isDropdownVisible == true &&
+                                  indexofButton == index)
+                                FilterdDetailsDropdownDetails(
+                                    screenSize: screenSize,
+                                    car: car,
+                                    dropdownblocInstance: dropdownblocInstance,
+                                    isDropdownVisible: isDropdownVisible,
+                                    index: index)
+                            ],
+                          ),
                         ),
                       ),
                     );

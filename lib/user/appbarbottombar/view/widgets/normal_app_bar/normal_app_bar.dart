@@ -4,6 +4,7 @@ import 'package:auto_mates/user/appbarbottombar/view/widgets/app_bar_gradient_co
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/filter_car_screen/filter_screen.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
+import 'package:auto_mates/user/emicalculator/controllers/function.dart';
 import 'package:flutter/material.dart';
 
 class NormalAppBar extends StatelessWidget {
@@ -16,6 +17,7 @@ class NormalAppBar extends StatelessWidget {
       this.data,
       this.isFromFilterResultPage,
       this.isFromFilterPage,
+      this.isFromEmi,
       });
   final String title;
   final bool? isFromSeller;
@@ -24,6 +26,7 @@ class NormalAppBar extends StatelessWidget {
   final dynamic data;
   final bool? isFromFilterResultPage;
   final bool? isFromFilterPage;
+  final bool? isFromEmi;
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -41,7 +44,14 @@ class NormalAppBar extends StatelessWidget {
               selectedCarFilterdList.clear();
               filterdCarList.clear();
               Navigator.pop(context);
-            } else {
+            } 
+            else if(isFromEmi==true){
+              loanAmount=0;
+              tenure=0;
+              interest=0;
+              Navigator.pop(context);
+            }
+            else {
               Navigator.pop(context);
             }
           },

@@ -1,3 +1,4 @@
+import 'package:auto_mates/user/commonwidgets/animated_text/animated_text_widget.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -11,26 +12,27 @@ class EmiScreenOpeningTextWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const MyTextWidget(
+          MyTextWidget(
               text: 'Car Loan Emi Calculator - Calculate Car EMI in Minutes',
               color: Colors.black,
-              size: 18,
+              size: screenSize.width / 28,
               maxline: true,
               weight: FontWeight.bold),
           SizedBox(
             height: screenSize.height / 500,
           ),
-          const MyTextWidget(
+          MyTextWidget(
               text:
                   'Check EMI for cars at Auto Mates and get instant car loan for your dream car',
               color: Colors.black,
-              size: 17,
+              size: screenSize.width / 28,
               maxline: true,
               weight: FontWeight.bold),
-          const MyTextWidget(
-              text: 'Customize Car Loan EMI ',
-              color: Colors.black,
-              size: 21,
+          AnimatedTextWidget(textTitle: 'NB: Auto Mates is currently not providing personal loans', beginColor: const Color.fromARGB(255, 254, 254, 254), endColor: const Color.fromARGB(255, 255, 17, 0),textSize: screenSize.width/35,),
+          MyTextWidget(
+              text: 'Check EMI of your car Loan Amount',
+              color: const Color.fromARGB(255, 58, 58, 58),
+              size: screenSize.width / 22,
               weight: FontWeight.bold)
         ],
       ),

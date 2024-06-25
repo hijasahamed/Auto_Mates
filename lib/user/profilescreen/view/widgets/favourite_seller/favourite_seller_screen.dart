@@ -6,7 +6,7 @@ import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart
 import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_details_holder/favourite_seller_details_holder.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_image_holder/favourite_seller_image_holder.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_more_cars/favourite_seller_more_cars.dart';
-import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_animated_text/favourite_seller_animated_text.dart';
+import 'package:auto_mates/user/commonwidgets/animated_text/animated_text_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -79,7 +79,10 @@ class FavouriteSellerScreen extends StatelessWidget {
                                   children: [
                                     FavouriteSellerImageHolder(data: data, screenSize: screenSize),
                                     FavouriteSellerDetailsHolder(data: data, screenSize: screenSize),
-                                    const FavouriteSellerAnimatedText()
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 6),
+                                      child: AnimatedTextWidget(textTitle: 'tap to see more cars from this seller', beginColor: Colors.black, endColor: Colors.blue,textSize: screenSize.width/50,),
+                                    )
                                   ],
                                 ),
                               ),

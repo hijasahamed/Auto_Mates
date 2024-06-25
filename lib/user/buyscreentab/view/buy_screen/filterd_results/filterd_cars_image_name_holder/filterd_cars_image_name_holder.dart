@@ -9,12 +9,14 @@ class FilterdCarsImageNameHolder extends StatelessWidget {
       required this.car,
       required this.dropdownblocInstance,
       required this.isDropdownVisible,
+      required this.indexofButton,
       required this.index});
   final Size screenSize;
   final dynamic car;
   final BuyScreenBloc dropdownblocInstance;
   final bool isDropdownVisible;
   final int index;
+  final int? indexofButton;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -56,7 +58,7 @@ class FilterdCarsImageNameHolder extends StatelessWidget {
                     isDropdownVisible: !isDropdownVisible, index: index));
               },
               icon: Icon(
-                (isDropdownVisible == true)
+                (isDropdownVisible == true && indexofButton == index)
                     ? Icons.arrow_drop_up_rounded
                     : Icons.arrow_drop_down_rounded,
                 size: 35,

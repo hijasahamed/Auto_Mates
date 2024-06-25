@@ -1,51 +1,93 @@
-
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
+import 'package:auto_mates/user/emicalculator/controllers/function.dart';
+import 'package:auto_mates/user/emicalculator/view/bloc/emi_calculator_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EmiAmountSliderHolderWidget extends StatelessWidget {
-  const EmiAmountSliderHolderWidget({super.key,required this.screenSize});
+  const EmiAmountSliderHolderWidget({super.key, required this.screenSize});
   final Size screenSize;
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(top: 5,left: 10,right: 10,bottom: 15),
-            child: Divider(
-              thickness: 5,
-              color: Colors.green,
-            ),
-          ),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    EmiCalculatorBloc loanAmountSliderBloc = EmiCalculatorBloc();
+    return BlocBuilder<EmiCalculatorBloc, EmiCalculatorState>(
+      bloc: loanAmountSliderBloc,
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
             children: [
-              Column(
+              Slider(
+                activeColor: Colors.green,
+                inactiveColor: Colors.grey,
+                thumbColor: Colors.green,
+                value: loanAmount,
+                min: 0,
+                max: 1000000,
+                divisions: 20,
+                label: '₹${loanAmount.toStringAsFixed(0)}',
+                onChanged: (double value) {
+                  loanAmount = value;
+                  loanAmountSliderBloc.add(LoanAmountSliderRefreshEvent());
+                },
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  MyTextWidget(text: '₹1,00,00', color: Color.fromARGB(255, 91, 91, 91), size: 12, weight: FontWeight.bold),
-                  MyTextWidget(text: 'Min.Loan Amount', color: Color.fromARGB(255, 91, 91, 91), size: 12, weight: FontWeight.bold),
+                  Column(
+                    children: [
+                      MyTextWidget(
+                          text: '₹1,00,000',
+                          color: const Color.fromARGB(255, 91, 91, 91),
+                          size: screenSize.width/35,
+                          weight: FontWeight.bold),
+                      MyTextWidget(
+                          text: 'Min.Loan Amount',
+                          color: const Color.fromARGB(255, 91, 91, 91),
+                          size: screenSize.width/35,
+                          weight: FontWeight.bold),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      MyTextWidget(
+                          text: '₹10,00,000',
+                          color: const Color.fromARGB(255, 91, 91, 91),
+                          size: screenSize.width/35,
+                          weight: FontWeight.bold),
+                      MyTextWidget(
+                          text: 'Min.Loan Amount',
+                          color: const Color.fromARGB(255, 91, 91, 91),
+                          size: screenSize.width/35,
+                          weight: FontWeight.bold),
+                    ],
+                  ),
                 ],
               ),
-              Column(
-                children: [
-                  MyTextWidget(text: '₹1,00,00', color: Color.fromARGB(255, 91, 91, 91), size: 12, weight: FontWeight.bold),
-                  MyTextWidget(text: 'Min.Loan Amount', color: Color.fromARGB(255, 91, 91, 91), size: 12, weight: FontWeight.bold),
-                ],
+              SizedBox(
+                height: screenSize.height / 40,
+                child: const MyTextWidget(text: 'Loan Amount', color: Colors.black, size: 15, weight: FontWeight.bold),
+              ),
+              Container(
+                height: screenSize.height / 17,
+                width: screenSize.width / 1.3,
+                decoration: BoxDecoration(
+                    border: Border.all(
+                        width: 2, color: const Color.fromARGB(255, 210, 210, 210)),
+                    borderRadius: BorderRadius.circular(5),
+                    color: const Color.fromARGB(255, 241, 241, 241)),
+                child: Center(
+                    child: MyTextWidget(
+                        text: '₹${loanAmount.toInt()}',
+                        color: Colors.black,
+                        size: screenSize.width/15,
+                        weight: FontWeight.bold)),
               ),
             ],
           ),
-          SizedBox(height: screenSize.height/40,),
-          Container(
-            height: screenSize.height/15,
-            width: screenSize.width/1.3,
-            decoration: BoxDecoration(
-              border: Border.all(width: 2,color: const Color.fromARGB(255, 141, 140, 140)),
-            ),
-            child: const Center(child: MyTextWidget(text: '₹3,50,000', color: Colors.black, size: 27, weight: FontWeight.bold)),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
