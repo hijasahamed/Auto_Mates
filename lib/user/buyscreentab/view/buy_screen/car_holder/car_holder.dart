@@ -27,8 +27,7 @@ class CarHolder extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         (isFromSeller == true)
-            ? sellerHomeScreenBloc
-                ?.add(NavigateToSingleCarDetailsPageEvent(data: data))
+            ? sellerHomeScreenBloc?.add(NavigateToSingleCarDetailsPageEvent(data: data))
             : Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) {
                   return OnTapCarMoreDetailsCarScreen(

@@ -17,14 +17,6 @@ class AddedThumbnailImage extends StatelessWidget {
                 image: FileImage(File(thumbnailImage!)), fit: BoxFit.cover),
             borderRadius: BorderRadius.circular(5),
             border: Border.all(
-                width: .5, color: const Color.fromARGB(255, 189, 189, 189))),
-        child: const Center(
-            child: ColoredBox(
-                color: Colors.black54,
-                child: MyTextWidget(
-                    text: 'Thumbnail',
-                    color: Colors.white,
-                    size: 15,
-                    weight: FontWeight.bold))));
+              width: .5, color: const Color.fromARGB(255, 189, 189, 189))),);
   }
 }

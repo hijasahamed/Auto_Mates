@@ -16,80 +16,109 @@ class ThumbnailImagesHolder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Container(
-          height: screenSize.height / 6,
-          width: screenSize.width,
-          color: Colors.transparent,
-          child: Row(
-            children: [
-              BlocBuilder<SellerHomeScreenBloc, SellerHomeScreenState>(
-                bloc: homescreenBloc,
-                builder: (context, state) {
-                  return Expanded(
-                    child: Ink(
-                      height: screenSize.height / 6,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: const Color(0XFFDBEDF5),
-                      ),
-                      child: InkWell(
-                          onTap: () {
-                            addCarThumbnail(bloc: homescreenBloc);
-                          },
-                          child: thumbnailImage == null
-                              ? const Center(
-                                  child: MyTextWidget(
-                                      text: 'Add Thumbnail',
-                                      color: Colors.grey,
-                                      size: 15,
-                                      weight: FontWeight.w600))
-                              : AddedThumbnailImage(screenSize: screenSize)),
-                    ),
-                  );
-                },
-              ),
-              SizedBox(
-                width: screenSize.width / 110,
-              ),
-              BlocBuilder<SellerHomeScreenBloc, SellerHomeScreenState>(
-                bloc: homescreenBloc,
-                builder: (context, state) {
-                  return Expanded(
-                    child: Ink(
-                      height: screenSize.height / 6,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: const Color(0XFFDBEDF5),
-                      ),
-                      child: InkWell(
-                          onTap: () {
-                            addMultipleImages(bloc: homescreenBloc);
-                          },
-                          onLongPress: () {
-                            Navigator.push(context, MaterialPageRoute(
-                              builder: (context) {
-                                return PreviewCarsWidget(
-                                  screenSize: screenSize,
-                                );
+        child: Column(
+          children: [
+            BlocBuilder<SellerHomeScreenBloc, SellerHomeScreenState>(
+              bloc: homescreenBloc,
+              builder: (context, state) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    thumbnailImage != null
+                        ? MyTextWidget(
+                            text: '  Thumbnail',
+                            color: Colors.grey,
+                            size: screenSize.width / 35,
+                            weight: FontWeight.bold)
+                        : const SizedBox.shrink(),
+                    selectedImages.isNotEmpty
+                        ? MyTextWidget(
+                            text: 'Long press to see images   ',
+                            color: Colors.grey,
+                            size: screenSize.width / 35,
+                            weight: FontWeight.bold)
+                        : const SizedBox.shrink(),
+                  ],
+                );
+              },
+            ),
+            Container(
+              height: screenSize.height / 6,
+              width: screenSize.width,
+              color: Colors.transparent,
+              child: Row(
+                children: [
+                  BlocBuilder<SellerHomeScreenBloc, SellerHomeScreenState>(
+                    bloc: homescreenBloc,
+                    builder: (context, state) {
+                      return Expanded(
+                        child: Ink(
+                          height: screenSize.height / 6,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: const Color(0XFFDBEDF5),
+                          ),
+                          child: InkWell(
+                              onTap: () {
+                                addCarThumbnail(bloc: homescreenBloc);
                               },
-                            ));
-                          },
-                          child: selectedImages.isEmpty
-                              ? const Center(
-                                  child: MyTextWidget(
-                                      text: 'Add Car Images',
-                                      color: Colors.grey,
-                                      size: 15,
-                                      weight: FontWeight.w600))
-                              : AddedCarImages(
-                                  sellerHomeScreenBloc: homescreenBloc,
-                                )),
-                    ),
-                  );
-                },
+                              child: thumbnailImage == null
+                                  ? const Center(
+                                      child: MyTextWidget(
+                                          text: 'Add Thumbnail',
+                                          color: Colors.grey,
+                                          size: 15,
+                                          weight: FontWeight.w600))
+                                  : AddedThumbnailImage(
+                                      screenSize: screenSize)),
+                        ),
+                      );
+                    },
+                  ),
+                  SizedBox(
+                    width: screenSize.width / 110,
+                  ),
+                  BlocBuilder<SellerHomeScreenBloc, SellerHomeScreenState>(
+                    bloc: homescreenBloc,
+                    builder: (context, state) {
+                      return Expanded(
+                        child: Ink(
+                          height: screenSize.height / 6,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: const Color(0XFFDBEDF5),
+                          ),
+                          child: InkWell(
+                              onTap: () {
+                                addMultipleImages(bloc: homescreenBloc);
+                              },
+                              onLongPress: () {
+                                Navigator.push(context, MaterialPageRoute(
+                                  builder: (context) {
+                                    return PreviewCarsWidget(
+                                      screenSize: screenSize,
+                                    );
+                                  },
+                                ));
+                              },
+                              child: selectedImages.isEmpty
+                                  ? const Center(
+                                      child: MyTextWidget(
+                                          text: 'Add Car Images',
+                                          color: Colors.grey,
+                                          size: 15,
+                                          weight: FontWeight.w600))
+                                  : AddedCarImages(
+                                      sellerHomeScreenBloc: homescreenBloc,
+                                    )),
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ));
   }
 }

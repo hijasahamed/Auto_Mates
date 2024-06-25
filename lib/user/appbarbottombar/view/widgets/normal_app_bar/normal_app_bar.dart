@@ -12,6 +12,7 @@ class NormalAppBar extends StatelessWidget {
       {super.key,
       required this.title,
       this.isFromSeller,
+      this.isFromCarDetailsAppBar,
       this.sellerHomeScreenBloc,
       this.screenSize,
       this.data,
@@ -21,6 +22,7 @@ class NormalAppBar extends StatelessWidget {
       });
   final String title;
   final bool? isFromSeller;
+  final bool? isFromCarDetailsAppBar;
   final SellerHomeScreenBloc? sellerHomeScreenBloc;
   final Size? screenSize;
   final dynamic data;
@@ -72,7 +74,7 @@ class NormalAppBar extends StatelessWidget {
                 screenSize: screenSize,
                 data: data,
                 sellerHomeScreenBloc: sellerHomeScreenBloc,
-                isFromCarDetailsAppBar: true,
+                isFromCarDetailsAppBar: isFromCarDetailsAppBar,
               )
             : const SizedBox()
       ],

@@ -1,3 +1,4 @@
+import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/bloc/seller_profile_bloc.dart';
 import 'package:auto_mates/user/commonwidgets/custom_alertdialog/cancel_button/cancel_button.dart';
 import 'package:auto_mates/user/commonwidgets/custom_alertdialog/yes_button/yes_button.dart';
@@ -23,6 +24,12 @@ class CustomAlertDialog extends StatelessWidget {
       this.isSellerRemovingInterestedCar,
       this.interestedDataIdInSeller,
       this.isSellerLogout,
+      this.markCarAsSold,
+      this.markCarAsSoldData,
+      this.sellerCarDelete,
+      this.sellerCarData,
+      this.sellerHomeScreenBloc,
+      this.isSellerCarDetailsAppbarDelete,
       required this.screenSize});
   final String image;
   final String title;
@@ -40,6 +47,12 @@ class CustomAlertDialog extends StatelessWidget {
   final bool? isSellerLogout;
   final bool? isSellerRemovingInterestedCar;
   final dynamic interestedDataIdInSeller;
+  final bool? markCarAsSold;
+  final dynamic markCarAsSoldData;
+  final bool? sellerCarDelete;
+  final dynamic sellerCarData;
+  final SellerHomeScreenBloc? sellerHomeScreenBloc;
+  final bool? isSellerCarDetailsAppbarDelete;
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -97,6 +110,12 @@ class CustomAlertDialog extends StatelessWidget {
                   sellerProfileBloc: sellerProfileBloc,
                   isSellerRemovingInterestedCar: isSellerRemovingInterestedCar,
                   interestedDataIdInSeller: interestedDataIdInSeller,
+                  markCarAsSold: markCarAsSold,
+                  markCarAsSoldData: markCarAsSoldData,
+                  sellerCarDelete: sellerCarDelete,
+                  sellerCarData: sellerCarData,
+                  sellerHomeScreenBloc: sellerHomeScreenBloc,
+                  isSellerCarDetailsAppbarDelete: isSellerCarDetailsAppbarDelete,
                 )
               ],
             )

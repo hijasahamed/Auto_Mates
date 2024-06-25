@@ -6,12 +6,10 @@ import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/seller/seller_appbar_bottombar/controllers/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
-import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 final CollectionReference firebaseObject =
@@ -108,11 +106,16 @@ postNewCar(
 
 deleteCarToSell(docId,context,sellerHomeScreenBloc,isFromCarDetailsAppBar)async {
  firebaseObject.doc(docId).delete();
+ Navigator.of(context).pop();
  if(isFromCarDetailsAppBar==true){
   Navigator.of(context).pop();
  }
   sellerHomeScreenBloc.add(AllCarsTOSellEvent());
   snackbarWidget('Car details removed', context,Colors.red, Colors.white, SnackBarBehavior.floating);
+}
+
+markCarAsSold({carData}){
+  
 }
 
 
@@ -256,62 +259,6 @@ Future<List<dynamic>> addMultiImagesToDb()async{
   }
   selectedImages.clear();
   return imagesToDb;
-}
-
-deleteAlertDialogwidget(
-   {
-  context,
-  sellerhomescreenbloc ,
-  docId,
-  isFromCarDetailsAppBar
-}) {
-  return showDialog(
-    context: context,
-    builder: (context) {
-      return BlocBuilder<SellerHomeScreenBloc, SellerHomeScreenState>(
-        builder: (context, state) {
-          return AlertDialog(
-            backgroundColor: Colors.white,
-            title: const MyTextWidget(
-                text: 'Remove Car',
-                color: Color(0xFF424141),
-                size: 25,
-                weight: FontWeight.bold),
-            content: const MyTextWidget(
-                text: 'Do you want to remove this car',
-                color: Color(0xFF424141),
-                size: 15,
-                weight: FontWeight.w500),
-            actions: [
-              ElevatedButton(
-                  style: const ButtonStyle(
-                      backgroundColor: WidgetStatePropertyAll(Colors.black12)),
-                  onPressed: () {
-                    sellerhomescreenbloc?.add(BackArrowClickedEvent());
-                  },
-                  child: const MyTextWidget(
-                      text: 'Back',
-                      color: Colors.white,
-                      size: 12,
-                      weight: FontWeight.bold)),
-              ElevatedButton(
-                  style: const ButtonStyle(
-                      backgroundColor: WidgetStatePropertyAll(Colors.red)),
-                  onPressed: () {
-                    Navigator.of(context).pop();                   
-                    deleteCarToSell(docId,context,sellerhomescreenbloc,isFromCarDetailsAppBar); 
-                  },
-                  child: const MyTextWidget(
-                      text: 'Delete',
-                      color: Colors.white,
-                      size: 12,
-                      weight: FontWeight.bold)),
-            ],
-          );
-        },
-      );
-    },
-  );
 }
 
 

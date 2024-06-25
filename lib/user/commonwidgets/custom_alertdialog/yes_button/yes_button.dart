@@ -1,3 +1,5 @@
+import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
 import 'package:auto_mates/seller/seller_profile_screen/controllers/functions.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/bloc/seller_profile_bloc.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
@@ -22,6 +24,12 @@ class YesButton extends StatelessWidget {
       this.isSellerLogout,
       this.isSellerRemovingInterestedCar,
       this.interestedDataIdInSeller,
+      this.markCarAsSold,
+      this.markCarAsSoldData,
+      this.sellerCarDelete,
+      this.sellerCarData,
+      this.sellerHomeScreenBloc,
+      this.isSellerCarDetailsAppbarDelete,
       this.sellerData});
   final Size screenSize;
   final bool? isSellerCalling;
@@ -36,6 +44,12 @@ class YesButton extends StatelessWidget {
   final bool? isSellerLogout;
   final bool? isSellerRemovingInterestedCar;
   final dynamic interestedDataIdInSeller;
+  final bool? markCarAsSold;
+  final dynamic markCarAsSoldData;
+  final bool? sellerCarDelete;
+  final dynamic sellerCarData;
+  final SellerHomeScreenBloc? sellerHomeScreenBloc;
+  final bool? isSellerCarDetailsAppbarDelete;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -57,6 +71,10 @@ class YesButton extends StatelessWidget {
         ? sellerLogout(context: context)
         : (isSellerRemovingInterestedCar==true)
         ? removeUsersInterest(context: context,docId: interestedDataIdInSeller)
+        : (markCarAsSold==true)
+        ? print('Mark car as sold function working')
+        : (sellerCarDelete==true)
+        ? deleteCarToSell(sellerCarData.id, context, sellerHomeScreenBloc, isSellerCarDetailsAppbarDelete)
         : null;        
       },
       child: Container(

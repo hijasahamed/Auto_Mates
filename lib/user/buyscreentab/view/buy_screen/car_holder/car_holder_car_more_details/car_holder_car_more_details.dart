@@ -32,7 +32,7 @@ class CarHolderCarMoreDetails extends StatelessWidget {
           child: Row(
             children: [
               MyTextWidget(
-                  text: 'Rs. ${data['price']}',
+                  text: 'Rs.${data['price']}',
                   color: const Color.fromARGB(255, 10, 104, 12),
                   size: 15,
                   weight: FontWeight.bold),
