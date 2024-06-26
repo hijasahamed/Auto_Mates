@@ -2,7 +2,6 @@ import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart
 import 'package:auto_mates/user/emicalculator/controllers/function.dart';
 import 'package:auto_mates/user/emicalculator/view/bloc/emi_calculator_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ButtonAndInterestHolderWidget extends StatelessWidget {

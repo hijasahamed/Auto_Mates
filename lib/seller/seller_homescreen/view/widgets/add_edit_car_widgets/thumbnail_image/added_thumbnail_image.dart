@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
-import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 
 class AddedThumbnailImage extends StatelessWidget {

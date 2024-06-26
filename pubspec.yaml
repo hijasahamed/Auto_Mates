@@ -121,6 +121,7 @@ flutter:
     - assets/images/bin.png
     - assets/images/compare.png
     - assets/images/login blackimage.jpg
+    - assets/images/sold-out.png
     #animations
     - assets/animations/loading_animation.json
     - assets/animations/splash_animation_jeep.json

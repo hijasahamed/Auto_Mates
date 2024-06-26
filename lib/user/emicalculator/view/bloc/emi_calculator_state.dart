@@ -10,6 +10,7 @@ final class EmiCalculatorInitial extends EmiCalculatorState {}
 class LoanAmountSliderRefreshState extends EmiCalculatorState {}
 
 class EmiPerMonthValueRefreshState extends EmiCalculatorState {
+  @override
   final double emiPayable;
   EmiPerMonthValueRefreshState({required this.emiPayable});
 }

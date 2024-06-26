@@ -38,7 +38,7 @@ class SingleCarDetailsScreen extends StatelessWidget {
                 barrierDismissible: false,
                 context: context, 
                 builder: (context) => CustomAlertDialog(
-                  image: 'assets/images/bin.png',
+                  image: 'assets/images/sold-out.png',
                   title: 'Mark Car To Sold',
                   subtitle: 'Do you want to mark this car as sold. This will remove the car for buyers',
                   screenSize: screenSize,
