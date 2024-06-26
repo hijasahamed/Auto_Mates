@@ -1,6 +1,7 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, avoid_print
 
 import 'dart:io';
+import 'dart:math';
 
 import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/seller/seller_appbar_bottombar/controllers/functions.dart';
@@ -114,8 +115,28 @@ deleteCarToSell(docId,context,sellerHomeScreenBloc,isFromCarDetailsAppBar)async 
   snackbarWidget('Car details removed', context,Colors.red, Colors.white, SnackBarBehavior.floating);
 }
 
-markCarAsSold({carData}){
-  
+Future<void> markSellerCarToSold({carData,markCarsoldBloc,context})async{
+  try{
+    Navigator.pop(context);
+    markCarsoldBloc.add(MarkCarSoldLoadingEvent());
+    DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance.collection('carstosell').doc(carData.id).get();
+    if(documentSnapshot.exists){
+      Map<String, dynamic>? carDataToDb = documentSnapshot.data() as Map<String, dynamic>?;
+      if(carDataToDb != null){
+        await FirebaseFirestore.instance.collection('soldcars').add(carDataToDb); 
+      }
+      await FirebaseFirestore.instance.collection('carstosell').doc(carData.id).delete();
+      markCarsoldBloc.add(MarkCarSoldStopLoadingEvent());
+      Navigator.pop(context);
+      Navigator.pop(context);
+      refreshAllCarToSellInstance.add(AllCarsTOSellEvent());
+    }else{
+      Navigator.pop(context);
+      snackbarWidget('Someting went wrong', context, Colors.red, Colors.white,SnackBarBehavior.floating);      
+    }
+  }catch (e){
+    print(e);
+  }
 }
 
 

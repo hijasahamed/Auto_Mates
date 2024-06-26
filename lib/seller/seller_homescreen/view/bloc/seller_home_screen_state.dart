@@ -86,3 +86,6 @@ class ReloadPageAfterAddingImagesState extends SellerHomeScreenState {}
 
 class PostingCarLoadingState extends SellerHomeScreenState {}
 class PostingCarStopLoadingState extends SellerHomeScreenState {}
+
+class MarkCarSoldLoadingState extends SellerHomeScreenState {}
+class MarkCarSoldStopLoadingState extends SellerHomeScreenState {}

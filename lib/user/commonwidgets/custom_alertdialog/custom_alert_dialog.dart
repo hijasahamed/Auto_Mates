@@ -25,6 +25,7 @@ class CustomAlertDialog extends StatelessWidget {
       this.interestedDataIdInSeller,
       this.isSellerLogout,
       this.markCarAsSold,
+      this.markCarsoldBloc,
       this.markCarAsSoldData,
       this.sellerCarDelete,
       this.sellerCarData,
@@ -48,6 +49,7 @@ class CustomAlertDialog extends StatelessWidget {
   final bool? isSellerRemovingInterestedCar;
   final dynamic interestedDataIdInSeller;
   final bool? markCarAsSold;
+  final SellerHomeScreenBloc? markCarsoldBloc;
   final dynamic markCarAsSoldData;
   final bool? sellerCarDelete;
   final dynamic sellerCarData;
@@ -111,6 +113,7 @@ class CustomAlertDialog extends StatelessWidget {
                   isSellerRemovingInterestedCar: isSellerRemovingInterestedCar,
                   interestedDataIdInSeller: interestedDataIdInSeller,
                   markCarAsSold: markCarAsSold,
+                  markCarsoldBloc: markCarsoldBloc,
                   markCarAsSoldData: markCarAsSoldData,
                   sellerCarDelete: sellerCarDelete,
                   sellerCarData: sellerCarData,

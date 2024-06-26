@@ -25,6 +25,7 @@ class YesButton extends StatelessWidget {
       this.isSellerRemovingInterestedCar,
       this.interestedDataIdInSeller,
       this.markCarAsSold,
+      this.markCarsoldBloc,
       this.markCarAsSoldData,
       this.sellerCarDelete,
       this.sellerCarData,
@@ -45,6 +46,7 @@ class YesButton extends StatelessWidget {
   final bool? isSellerRemovingInterestedCar;
   final dynamic interestedDataIdInSeller;
   final bool? markCarAsSold;
+  final SellerHomeScreenBloc? markCarsoldBloc;
   final dynamic markCarAsSoldData;
   final bool? sellerCarDelete;
   final dynamic sellerCarData;
@@ -72,7 +74,7 @@ class YesButton extends StatelessWidget {
         : (isSellerRemovingInterestedCar==true)
         ? removeUsersInterest(context: context,docId: interestedDataIdInSeller)
         : (markCarAsSold==true)
-        ? print('Mark car as sold function working')
+        ? markSellerCarToSold(carData: markCarAsSoldData,context: context,markCarsoldBloc: markCarsoldBloc,)
         : (sellerCarDelete==true)
         ? deleteCarToSell(sellerCarData.id, context, sellerHomeScreenBloc, isSellerCarDetailsAppbarDelete)
         : null;        
