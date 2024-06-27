@@ -76,7 +76,8 @@ class YesButton extends StatelessWidget {
         : (isSellerRemovingInterestedCar==true)
         ? removeUsersInterest(context: context,docId: interestedDataIdInSeller)
         : (markCarAsSold==true)
-        ? markSellerCarToSold(carData: markCarAsSoldData,context: context,markCarsoldBloc: markCarsoldBloc,screenSize: screenSize)         
+        // ? markSellerCarToSold(carData: markCarAsSoldData,context: context,markCarsoldBloc: markCarsoldBloc,screenSize: screenSize)
+        ? getCarSoldPrice(context: context,screenSize: screenSize)         
         : (sellerCarDelete==true)
         ? deleteCarToSell(sellerCarData.id, context, sellerHomeScreenBloc, isSellerCarDetailsAppbarDelete)
         : null;        

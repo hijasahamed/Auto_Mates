@@ -116,8 +116,40 @@ deleteCarToSell(docId,context,sellerHomeScreenBloc,isFromCarDetailsAppBar)async 
   snackbarWidget('Car details removed', context,Colors.red, Colors.white, SnackBarBehavior.floating);
 }
 
-getCarSoldPrice(){
-  
+TextEditingController soldAmount = TextEditingController();
+
+getCarSoldPrice({context,screenSize}){
+  Navigator.of(context).pop();
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: Colors.white,
+        title: MyTextWidget(text: 'Enter sold amount of the car', color: Colors.black, size: screenSize.width/35, weight: FontWeight.bold),
+        content: TextField(
+          controller: soldAmount,
+          keyboardType: TextInputType.number,
+          decoration: const InputDecoration(
+            labelText: 'Sold Price',
+            border: OutlineInputBorder(),
+          ),
+        ),
+        actions: [         
+          ElevatedButton(
+            onPressed: () {
+              if (soldAmount.text.isNotEmpty) {
+                print(soldAmount.text); 
+                Navigator.of(context).pop();
+              } else {
+                print('Please enter a price');
+              }
+            },
+            child: MyTextWidget(text: 'Submit', color: Colors.black, size: screenSize.width/35, weight: FontWeight.bold),
+          ),
+        ],
+      );
+    },
+  );
 }
 
 Future<void> markSellerCarToSold({carData,markCarsoldBloc,context,screenSize,})async{

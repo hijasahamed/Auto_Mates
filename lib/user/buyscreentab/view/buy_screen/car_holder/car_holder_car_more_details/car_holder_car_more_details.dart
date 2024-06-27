@@ -40,7 +40,7 @@ class CarHolderCarMoreDetails extends StatelessWidget {
                 width: screenSize.width / 120,
               ),
               const MyTextWidget(
-                  text: 'Lakhs onwards',
+                  text: 'Lakhs',
                   color: Colors.black,
                   size: 12,
                   weight: FontWeight.w500)
