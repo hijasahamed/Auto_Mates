@@ -53,16 +53,13 @@ class SingleCarDetailsScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     MyTextWidget(text: 'Marking Car As Sold', color: Colors.white, size: screenSize.width/25, weight: FontWeight.bold),
-                    SizedBox(height: screenSize.height/12,),
+                    SizedBox(height: screenSize.height/25,),
                     const CircularProgressIndicator(color: Colors.blue,)
                   ],
                 );
               },
             );
-          }
-          else if(state is MarkCarSoldStopLoadingState){
-            return Navigator.pop(context);
-          }
+          }          
         },
         builder: (context, state) {
           return BottomAppBar(

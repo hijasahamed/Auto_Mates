@@ -1,12 +1,13 @@
 // ignore_for_file: use_build_context_synchronously, avoid_print
 
 import 'dart:io';
-import 'dart:math';
 
 import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/seller/seller_appbar_bottombar/controllers/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
+import 'package:auto_mates/seller/seller_profile_screen/view/widget/sold_cars_page/sold_cars.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
@@ -96,7 +97,7 @@ postNewCar(
   if (postCarFormkey.currentState!.validate()){
     firebaseObject.add(data);
     Navigator.of(context).pop();
-    snackbarWidget('Car Posted Successfully', context, Colors.blue,Colors.white, SnackBarBehavior.floating);
+    snackbarWidget('Car Posted Successfully', context, Colors.green,Colors.white, SnackBarBehavior.floating);
     refreshAllCarToSellInstance.add(AllCarsTOSellEvent());   
   } else {
     snackbarWidget('Car details not completed', context, Colors.red,
@@ -115,30 +116,27 @@ deleteCarToSell(docId,context,sellerHomeScreenBloc,isFromCarDetailsAppBar)async 
   snackbarWidget('Car details removed', context,Colors.red, Colors.white, SnackBarBehavior.floating);
 }
 
-Future<void> markSellerCarToSold({carData,markCarsoldBloc,context})async{
-  try{
-    Navigator.pop(context);
+getCarSoldPrice(){
+  
+}
+
+Future<void> markSellerCarToSold({carData,markCarsoldBloc,context,screenSize,})async{
+   Navigator.pop(context);
+   Navigator.pop(context);
     markCarsoldBloc.add(MarkCarSoldLoadingEvent());
     DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance.collection('carstosell').doc(carData.id).get();
     if(documentSnapshot.exists){
       Map<String, dynamic>? carDataToDb = documentSnapshot.data() as Map<String, dynamic>?;
       if(carDataToDb != null){
         await FirebaseFirestore.instance.collection('soldcars').add(carDataToDb); 
-      }
+      }     
       await FirebaseFirestore.instance.collection('carstosell').doc(carData.id).delete();
-      markCarsoldBloc.add(MarkCarSoldStopLoadingEvent());
-      Navigator.pop(context);
-      Navigator.pop(context);
       refreshAllCarToSellInstance.add(AllCarsTOSellEvent());
+      refreshAllCarToSellInstance.add(MarkCarSoldStopLoadingEvent());                
     }else{
       Navigator.pop(context);
-      snackbarWidget('Someting went wrong', context, Colors.red, Colors.white,SnackBarBehavior.floating);      
     }
-  }catch (e){
-    print(e);
-  }
 }
-
 
 updateCarDetails(
    { context,

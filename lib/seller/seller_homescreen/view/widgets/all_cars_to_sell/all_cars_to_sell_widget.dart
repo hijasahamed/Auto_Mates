@@ -20,8 +20,13 @@ class AllCarsToSellWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SellerHomeScreenBloc, SellerHomeScreenState>(
-      bloc: refreshAllCarToSellInstance,      
+    return BlocConsumer<SellerHomeScreenBloc, SellerHomeScreenState>(
+      bloc: refreshAllCarToSellInstance,
+      listener: (context, state) {
+        if(state is MarkCarSoldStopLoadingState){
+          return Navigator.pop(context);
+        }
+      },      
       builder: (context, state) {
         return FutureBuilder<List>(
           future: getCarsBySellerId(sellerId: sellerId),

@@ -71,6 +71,14 @@ Stream<QuerySnapshot> getUsersInterestsWithSellerId(sellerId) {
       .snapshots();
 }
 
+Stream<QuerySnapshot> getSellersSoldCars(sellerData) {
+  return FirebaseFirestore.instance
+      .collection('soldcars')
+      .where('sellerPhone', isEqualTo: sellerData.mobile)
+      .where('sellerName', isEqualTo: sellerData.companyName)
+      .snapshots();
+}
+
 removeUsersInterest({context, docId, noData}) {
   Navigator.pop(context);
   userInterestMarked.doc(docId).delete();

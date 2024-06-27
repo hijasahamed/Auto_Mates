@@ -11,7 +11,7 @@ class SellerPropertiesTilesWidget extends StatelessWidget {
       padding: const EdgeInsets.only(top: 5,left: 5,right: 5),
       child: Column(        
         children: [
-          TileWidget(screenSize: screenSize, title: 'Sold Cars',),
+          TileWidget(screenSize: screenSize, title: 'Sold Cars',soldCars: true,sellerData: sellerData,),
           SizedBox(height: screenSize.height/120,),
           TileWidget(screenSize: screenSize, title: 'User Interest',isUserInterest: true,sellerData: sellerData,),
            SizedBox(height: screenSize.height/120,),

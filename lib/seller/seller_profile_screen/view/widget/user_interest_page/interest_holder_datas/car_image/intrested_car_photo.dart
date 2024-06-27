@@ -25,7 +25,7 @@ class IntrestedCarPhoto extends StatelessWidget {
               ),
             );
           },
-          image: NetworkImage(data['carImage']),
+          image: NetworkImage(data['thumbnail']),
           fit: BoxFit.cover,
           filterQuality: FilterQuality.high),
     );

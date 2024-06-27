@@ -4,9 +4,11 @@ import 'package:auto_mates/seller/seller_profile_screen/controllers/functions.da
 import 'package:auto_mates/seller/seller_profile_screen/view/bloc/seller_profile_bloc.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
+import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class YesButton extends StatelessWidget {
@@ -74,7 +76,7 @@ class YesButton extends StatelessWidget {
         : (isSellerRemovingInterestedCar==true)
         ? removeUsersInterest(context: context,docId: interestedDataIdInSeller)
         : (markCarAsSold==true)
-        ? markSellerCarToSold(carData: markCarAsSoldData,context: context,markCarsoldBloc: markCarsoldBloc,)
+        ? markSellerCarToSold(carData: markCarAsSoldData,context: context,markCarsoldBloc: markCarsoldBloc,screenSize: screenSize)         
         : (sellerCarDelete==true)
         ? deleteCarToSell(sellerCarData.id, context, sellerHomeScreenBloc, isSellerCarDetailsAppbarDelete)
         : null;        
