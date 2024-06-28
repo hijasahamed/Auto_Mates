@@ -1,5 +1,6 @@
 import 'package:auto_mates/seller/seller_profile_screen/controllers/functions.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/widget/sold_cars_page/sold_car_holder/sold_car_holder.dart';
+import 'package:auto_mates/seller/seller_profile_screen/view/widget/sold_cars_page/sold_cars_bottom_bar/sold_cars_bottom_nav_bar.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_error_placeholder.dart';
@@ -43,18 +44,7 @@ class SoldCars extends StatelessWidget {
           }
         },
       ),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.white,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.green
-          ),
-          child: const Center(
-            child: MyTextWidget(text: 'Total Profit: 125478', color: Colors.white, size: 16, weight: FontWeight.bold),
-          ),
-        ),
-      ),
+      bottomNavigationBar: const SoldCarsBottomNavBar()
     );
   }
 }

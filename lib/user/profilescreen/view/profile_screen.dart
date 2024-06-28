@@ -3,6 +3,7 @@
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_error_placeholder.dart';
 import 'package:auto_mates/user/emicalculator/view/emi_calculator_screen.dart';
+import 'package:auto_mates/user/profilescreen/view/widgets/compare_car/compare_cars.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/favourite_screen/favourite_screen/favourite_screen.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
@@ -57,6 +58,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
         else if(state is EmiCalculatorConatinerClickedState){
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => EmiCalculatorScreen(screenSize: widget.screenSize)
+          ));
+        }
+        else if(state is CompareCarsContainerClickedState){
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => CompareCars(screenSize: widget.screenSize,)
           ));
         }
       },

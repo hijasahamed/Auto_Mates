@@ -7,9 +7,6 @@ abstract class ProfileScreenActionState extends ProfileScreenState {}
 
 final class ProfileScreenInitial extends ProfileScreenState {}
 
-// class LogoutButtonClickedActionState extends ProfileScreenActionState{}
-
-// class ConfirmLogoutActionState extends ProfileScreenActionState{}
 
 class FavouriteConatinerClickedActionState extends ProfileScreenActionState{}
 
@@ -25,3 +22,5 @@ class FavouriteSellerContainerClickedState extends ProfileScreenActionState{}
 class FavouriteSellerOnTappedState extends ProfileScreenActionState{}
 
 class EmiCalculatorConatinerClickedState extends ProfileScreenActionState{}
+
+class CompareCarsContainerClickedState extends ProfileScreenActionState{}

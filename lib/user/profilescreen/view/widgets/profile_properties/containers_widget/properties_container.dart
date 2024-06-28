@@ -61,7 +61,7 @@ class PropertiesContainer extends StatelessWidget {
             profileScreenBloc.add(FavouriteSellerContainerClickedEvent());
           }
           if(isCompareCar==true){
-            
+            profileScreenBloc.add(CompareCarsContainerClickedEvent());
           }
           if(isEmiCalculator==true){
             profileScreenBloc.add(EmiCalculatorConatinerClickedEvent());

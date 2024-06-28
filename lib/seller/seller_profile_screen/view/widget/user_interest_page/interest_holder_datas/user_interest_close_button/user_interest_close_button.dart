@@ -13,14 +13,13 @@ class UserInterestCloseButton extends StatelessWidget {
       children: [
         IconButton(
             onPressed: () {
-              // removeUserInterestAlertDialog(context: context, docId: data.id);
             showDialog(
             barrierDismissible: false,
             context: context, 
             builder: (context) => CustomAlertDialog(
-              image: 'assets/images/logout.png',
-              title: 'Logout',
-              subtitle: 'Do you want to Logout from AutoMates',
+              image: 'assets/images/bin.png',
+              title: 'Remove Interest',
+              subtitle: 'Do you want to remove the interest? This will be removed for the client also.',
               screenSize: screenSize,
               isSellerRemovingInterestedCar: true,
               interestedDataIdInSeller: data.id,              

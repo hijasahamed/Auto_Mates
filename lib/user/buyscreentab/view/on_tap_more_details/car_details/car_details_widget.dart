@@ -65,13 +65,27 @@ class CarDetailsWidget extends StatelessWidget {
                 MyTextWidget(
                     text: data['brand'],
                     color: Colors.blueGrey,
-                    size: 23,
+                    size: screenSize.width/17,
                     weight: FontWeight.bold),
                 MyTextWidget(
                     text: data['modelName'],
                     color: const Color(0xFF424141),
-                    size: 17,
+                    size: screenSize.width/22,
                     weight: FontWeight.bold),
+                Row(
+                  children: [
+                    MyTextWidget(
+                        text: '₹${data['price']}',
+                        color: Colors.green,
+                        size: screenSize.width/18,
+                        weight: FontWeight.bold),
+                    MyTextWidget(
+                        text: ' Lakh',
+                        color: Colors.black,
+                        size: screenSize.width/26,
+                        weight: FontWeight.w500),
+                  ],
+                ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10,top: 10),
                   child: DetailsContainer(screenSize: screenSize, data: data),

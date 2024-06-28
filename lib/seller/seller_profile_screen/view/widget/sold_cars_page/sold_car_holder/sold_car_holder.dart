@@ -48,6 +48,12 @@ class SoldCarHolder extends StatelessWidget {
               ),
               MyTextWidget(text: car['regNumber'], color: const Color(0xff424141), size: screenSize.width/35, weight: FontWeight.bold),
               MyTextWidget(text: '₹${car['price']} Lakh', color: const Color(0xff424141), size: screenSize.width/35, weight: FontWeight.bold),
+              Row(
+                children: [
+                  MyTextWidget(text: 'Sold For: ₹${car['soldAmount']}', color: Colors.green, size: screenSize.width/30, weight: FontWeight.bold),
+                  MyTextWidget(text: ' Lakh', color: const Color(0xff424141), size: screenSize.width/40, weight: FontWeight.bold),
+                ],
+              ),
             ],
           )
         ],

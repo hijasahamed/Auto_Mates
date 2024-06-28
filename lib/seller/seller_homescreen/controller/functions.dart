@@ -5,7 +5,6 @@ import 'dart:io';
 import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/seller/seller_appbar_bottombar/controllers/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
-import 'package:auto_mates/seller/seller_profile_screen/view/widget/sold_cars_page/sold_cars.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -116,37 +115,95 @@ deleteCarToSell(docId,context,sellerHomeScreenBloc,isFromCarDetailsAppBar)async 
   snackbarWidget('Car details removed', context,Colors.red, Colors.white, SnackBarBehavior.floating);
 }
 
-TextEditingController soldAmount = TextEditingController();
+TextEditingController soldAmountController = TextEditingController();
 
-getCarSoldPrice({context,screenSize}){
+getCarSoldPrice({carData,markCarsoldBloc,context,screenSize,}){
   Navigator.of(context).pop();
   return showDialog<void>(
     context: context,
+    barrierDismissible: false,
     builder: (BuildContext context) {
-      return AlertDialog(
-        backgroundColor: Colors.white,
-        title: MyTextWidget(text: 'Enter sold amount of the car', color: Colors.black, size: screenSize.width/35, weight: FontWeight.bold),
-        content: TextField(
-          controller: soldAmount,
-          keyboardType: TextInputType.number,
-          decoration: const InputDecoration(
-            labelText: 'Sold Price',
-            border: OutlineInputBorder(),
+      return Dialog(
+        backgroundColor: Colors.transparent,
+        child: Container(
+          width: screenSize.width/2,
+          height: screenSize.height/2.8,
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 255, 255, 255),
+            borderRadius: BorderRadius.circular(12)),
+          child: Column(
+            children: [
+              Stack(
+                children: [
+                  Container(
+                    height: screenSize.height/9,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(image: AssetImage('assets/images/money-stack.png'))
+                    ),
+                  ),
+                   Positioned(
+                    top: 0,right: 0,
+                    child: IconButton(onPressed: () {
+                      Navigator.pop(context);
+                      soldAmountController.clear();
+                    }, icon: const Icon(Icons.close,color: Colors.red,))
+                  )
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: Column(
+                  children: [
+                    MyTextWidget(
+                      text: 'Enter the amount for which the car was sold', 
+                      color: Colors.black, 
+                      size: screenSize.width/25, 
+                      weight: FontWeight.bold,
+                      maxline: true,
+                      alignTextCenter: true,
+                    ),
+                    SizedBox(height: screenSize.height/90,),
+                    TextField(
+                      controller: soldAmountController,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        labelText: 'Sold Price',
+                        labelStyle: const TextStyle(color: Colors.green,fontWeight: FontWeight.bold),
+                        fillColor: const Color.fromARGB(255, 238, 238, 238),
+                        filled: true,
+                        enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.all(Radius.circular(10))),
+                        focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.all(Radius.circular(10))),
+                        border: OutlineInputBorder(          
+                          borderRadius: BorderRadius.circular(10),
+                        ),                  
+                      ),
+                    ),
+                    SizedBox(height: screenSize.height/50,),
+                    GestureDetector(
+                      onTap: () {
+                        markSellerCarToSold(carData: carData,context: context,markCarsoldBloc: markCarsoldBloc,screenSize: screenSize);
+                      },
+                      child: Container(
+                        height: screenSize.height/18,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: Colors.green
+                        ),
+                        child: Center(
+                          child: MyTextWidget(text: 'Submit & Remove This Car', color: Colors.white, size: screenSize.width/30, weight: FontWeight.bold),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
           ),
         ),
-        actions: [         
-          ElevatedButton(
-            onPressed: () {
-              if (soldAmount.text.isNotEmpty) {
-                print(soldAmount.text); 
-                Navigator.of(context).pop();
-              } else {
-                print('Please enter a price');
-              }
-            },
-            child: MyTextWidget(text: 'Submit', color: Colors.black, size: screenSize.width/35, weight: FontWeight.bold),
-          ),
-        ],
       );
     },
   );
@@ -160,7 +217,9 @@ Future<void> markSellerCarToSold({carData,markCarsoldBloc,context,screenSize,})a
     if(documentSnapshot.exists){
       Map<String, dynamic>? carDataToDb = documentSnapshot.data() as Map<String, dynamic>?;
       if(carDataToDb != null){
-        await FirebaseFirestore.instance.collection('soldcars').add(carDataToDb); 
+        carDataToDb['soldAmount'] = soldAmountController.text;
+        await FirebaseFirestore.instance.collection('soldcars').add(carDataToDb);
+        soldAmountController.clear(); 
       }     
       await FirebaseFirestore.instance.collection('carstosell').doc(carData.id).delete();
       refreshAllCarToSellInstance.add(AllCarsTOSellEvent());

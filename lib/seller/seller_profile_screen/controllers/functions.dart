@@ -20,50 +20,6 @@ sellerLogout({
   );
 }
 
-removeUserInterestAlertDialog({context, docId}) {
-  return showDialog(
-    context: context,
-    builder: (context) {
-      return AlertDialog(
-        title: const MyTextWidget(
-            text: 'Remove Interest',
-            color: Color(0xFF424141),
-            size: 20,
-            weight: FontWeight.bold),
-        content: const MyTextWidget(
-            text: "Permenently remove this user's interest",
-            color: Color(0xFF424141),
-            size: 13,
-            weight: FontWeight.bold),
-        actions: [
-          ElevatedButton(
-              style: const ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.black26)),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const MyTextWidget(
-                  text: 'Back',
-                  color: Colors.white,
-                  size: 12,
-                  weight: FontWeight.bold)),
-          ElevatedButton(
-              style: const ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.red)),
-              onPressed: () {
-                removeUsersInterest(context: context, docId: docId);
-              },
-              child: const MyTextWidget(
-                  text: 'Remove',
-                  color: Colors.white,
-                  size: 12,
-                  weight: FontWeight.bold)),
-        ],
-      );
-    },
-  );
-}
-
 Stream<QuerySnapshot> getUsersInterestsWithSellerId(sellerId) {
   return FirebaseFirestore.instance
       .collection('userInterestMarked')
@@ -77,6 +33,19 @@ Stream<QuerySnapshot> getSellersSoldCars(sellerData) {
       .where('sellerPhone', isEqualTo: sellerData.mobile)
       .where('sellerName', isEqualTo: sellerData.companyName)
       .snapshots();
+}
+
+Future<int> getTotalSalesAmount() async {
+  int totalSalesAmount = 0;
+  
+  QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('soldcars').get();
+  for (QueryDocumentSnapshot doc in querySnapshot.docs) {
+    String soldAmountString = doc['soldAmount'];
+    int soldAmount = int.tryParse(soldAmountString) ?? 0;
+    totalSalesAmount += soldAmount;
+  }
+  
+  return totalSalesAmount;
 }
 
 removeUsersInterest({context, docId, noData}) {
