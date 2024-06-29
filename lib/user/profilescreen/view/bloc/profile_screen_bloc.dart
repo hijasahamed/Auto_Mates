@@ -15,6 +15,8 @@ class ProfileScreenBloc extends Bloc<ProfileScreenEvent, ProfileScreenState> {
     on<FavouriteSellerOnTappedEvent>(favouriteSellerOnTappedEvent);
     on<EmiCalculatorConatinerClickedEvent>(emiCalculatorConatinerClickedEvent);
     on<CompareCarsContainerClickedEvent>(compareCarsContainerClickedEvent);
+    on<NavigateToSelectCarForComaparingPageEvent>(navigateToSelectCarForComaparingPageEvent);
+    on<CompareCarScreenRefreshEvent>(compareCarScreenRefreshEvent);
   }
 
   FutureOr<void> favouriteConatinerClickedEvent(
@@ -50,5 +52,15 @@ class ProfileScreenBloc extends Bloc<ProfileScreenEvent, ProfileScreenState> {
   FutureOr<void> compareCarsContainerClickedEvent(
     CompareCarsContainerClickedEvent event, Emitter<ProfileScreenState> emit) {
       emit(CompareCarsContainerClickedState());
+  }
+
+  FutureOr<void> navigateToSelectCarForComaparingPageEvent(
+    NavigateToSelectCarForComaparingPageEvent event, Emitter<ProfileScreenState> emit) {
+      emit(NavigateToSelectCarForComaparingPageState(boolVal: event.boolVal));
+  }
+
+  FutureOr<void> compareCarScreenRefreshEvent(
+    CompareCarScreenRefreshEvent event, Emitter<ProfileScreenState> emit) {
+      emit(CompareCarScreenRefreshState());
   }
 }

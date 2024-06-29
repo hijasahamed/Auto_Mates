@@ -122,6 +122,7 @@ flutter:
     - assets/images/compare.png
     - assets/images/sold-out.png
     - assets/images/money-stack.png
+    - assets/images/cpmpare car.png
     #animations
     - assets/animations/loading_animation.json
     - assets/animations/splash_animation_jeep.json

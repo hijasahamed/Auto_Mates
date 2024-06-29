@@ -24,3 +24,10 @@ class FavouriteSellerOnTappedState extends ProfileScreenActionState{}
 class EmiCalculatorConatinerClickedState extends ProfileScreenActionState{}
 
 class CompareCarsContainerClickedState extends ProfileScreenActionState{}
+
+class NavigateToSelectCarForComaparingPageState extends ProfileScreenActionState{
+  final bool boolVal;
+ NavigateToSelectCarForComaparingPageState({required this.boolVal});
+}
+
+class CompareCarScreenRefreshState extends ProfileScreenActionState{}

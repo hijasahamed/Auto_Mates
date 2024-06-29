@@ -1,6 +1,4 @@
 
-
-
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
@@ -101,3 +99,18 @@ Future<List<DocumentSnapshot>> getFavouriteSellersAllCars({sellerId}) async {
     return [];
   }
 }
+
+
+// compare cars 
+
+Future<List<Map<String, dynamic>>> fetchAllCarsForComparing() async {
+  try {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('carstosell').get();
+    return querySnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+  } catch (e) {
+    return [];
+  }
+}
+
+List<Map<String, dynamic>> carForComparing1 = [];
+List<Map<String, dynamic>> carForComparing2 = [];
