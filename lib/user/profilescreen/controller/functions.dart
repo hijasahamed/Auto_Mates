@@ -114,3 +114,5 @@ Future<List<Map<String, dynamic>>> fetchAllCarsForComparing() async {
 
 List<Map<String, dynamic>> carForComparing1 = [];
 List<Map<String, dynamic>> carForComparing2 = [];
+
+List<Map<String, dynamic>> previousComparisonList = [];

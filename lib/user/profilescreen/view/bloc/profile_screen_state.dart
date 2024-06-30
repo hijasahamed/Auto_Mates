@@ -31,3 +31,7 @@ class NavigateToSelectCarForComaparingPageState extends ProfileScreenActionState
 }
 
 class CompareCarScreenRefreshState extends ProfileScreenActionState{}
+
+class NavigateToComparedScreenState extends ProfileScreenActionState{}
+
+class PreviousCompareCarScreenRefreshState extends ProfileScreenActionState{}

@@ -20,7 +20,7 @@ class EmiAmountSliderHolderWidget extends StatelessWidget {
             children: [
               Slider(
                 activeColor: Colors.green,
-                inactiveColor: Colors.grey,
+                inactiveColor: const Color.fromARGB(255, 237, 237, 237),
                 thumbColor: Colors.green,
                 value: loanAmount,
                 min: 0,

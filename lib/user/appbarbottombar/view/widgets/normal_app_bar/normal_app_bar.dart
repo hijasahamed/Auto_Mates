@@ -5,6 +5,9 @@ import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/filter_car_screen/filter_screen.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/emicalculator/controllers/function.dart';
+import 'package:auto_mates/user/emicalculator/view/widgets/emi_screen_opening_text_widget.dart';
+import 'package:auto_mates/user/profilescreen/controller/functions.dart';
+import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
 import 'package:flutter/material.dart';
 
 class NormalAppBar extends StatelessWidget {
@@ -19,6 +22,8 @@ class NormalAppBar extends StatelessWidget {
       this.isFromFilterResultPage,
       this.isFromFilterPage,
       this.isFromEmi,
+      this.isCompare,
+      this.compareCarsBlocInstance,this.previousComparisonBlocInstance
       });
   final String title;
   final bool? isFromSeller;
@@ -29,12 +34,15 @@ class NormalAppBar extends StatelessWidget {
   final bool? isFromFilterResultPage;
   final bool? isFromFilterPage;
   final bool? isFromEmi;
+  final bool? isCompare;
+  final ProfileScreenBloc? compareCarsBlocInstance;
+  final ProfileScreenBloc? previousComparisonBlocInstance;
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.white,
       flexibleSpace:
-          (isFromFilterResultPage == true) ? null : const AppBarGradientColor(),
+          (isFromFilterResultPage == true) ? null : (isFromEmi==true) ? const EmiScreenAppBar() : const AppBarGradientColor(),
       leading: IconButton(
           onPressed: () {
             if (isFromFilterResultPage == true) {
@@ -51,6 +59,15 @@ class NormalAppBar extends StatelessWidget {
               loanAmount=0;
               tenure=0;
               interest=0;
+              Navigator.pop(context);
+            }
+            else if(isCompare==true){
+              previousComparisonList=[];
+              previousComparisonList=[...carForComparing1,...carForComparing2];
+              carForComparing1.clear();
+              carForComparing2.clear();
+              compareCarsBlocInstance!.add(CompareCarScreenRefreshEvent());
+              previousComparisonBlocInstance!.add(PreviousCompareCarScreenRefreshEvent());
               Navigator.pop(context);
             }
             else {
@@ -78,6 +95,26 @@ class NormalAppBar extends StatelessWidget {
               )
             : const SizedBox()
       ],
+    );
+  }
+}
+
+class EmiScreenAppBar extends StatelessWidget {
+  const EmiScreenAppBar({super.key,});
+  @override
+  Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    return Container(     
+      decoration: const BoxDecoration(
+        color: Colors.green,
+        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(60))
+      ),
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: EmiScreenOpeningTextWidget(screenSize: screenSize),
+        )
+      ),
     );
   }
 }

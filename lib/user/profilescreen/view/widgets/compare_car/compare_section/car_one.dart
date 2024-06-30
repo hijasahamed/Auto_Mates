@@ -26,12 +26,13 @@ class CarOne extends StatelessWidget {
                         backgroundColor: Colors.white,
                         radius: 35,
                         backgroundImage:
-                            AssetImage('assets/images/cpmpare car.png'),
+                            AssetImage('assets/images/compare car.png'),
                       ),
+                      SizedBox(height: screenSize.height/100,),
                       MyTextWidget(
                           text: 'Select car',
                           color: Colors.grey,
-                          size: screenSize.width / 33,
+                          size: screenSize.width / 28,
                           weight: FontWeight.bold)
                     ],
                   )

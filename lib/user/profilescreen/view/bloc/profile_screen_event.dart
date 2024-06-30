@@ -26,3 +26,7 @@ class NavigateToSelectCarForComaparingPageEvent extends ProfileScreenEvent {
 }
 
 class CompareCarScreenRefreshEvent extends ProfileScreenEvent {}
+
+class NavigateToComparedScreenEvent extends ProfileScreenEvent {}
+
+class PreviousCompareCarScreenRefreshEvent extends ProfileScreenEvent {}

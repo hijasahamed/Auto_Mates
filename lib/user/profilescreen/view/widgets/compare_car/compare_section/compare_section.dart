@@ -1,5 +1,4 @@
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
-import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/compare_car/all_cars_to_select/all_cars_to_select.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/compare_car/compare_section/car_one.dart';
@@ -8,11 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CompareSection extends StatelessWidget {
-  const CompareSection({super.key, required this.screenSize});
+  const CompareSection({super.key, required this.screenSize,required this.compareCarsBlocInstance});
   final Size screenSize;
+  final ProfileScreenBloc compareCarsBlocInstance;
   @override
   Widget build(BuildContext context) {
-    final ProfileScreenBloc compareCarsBlocInstance = ProfileScreenBloc();
+    
     return BlocConsumer<ProfileScreenBloc, ProfileScreenState>(
       bloc: compareCarsBlocInstance,
       listener: (context, state) {
@@ -45,7 +45,7 @@ class CompareSection extends StatelessWidget {
                   alignment: Alignment.center,
                   child: CircleAvatar(
                     radius: 17,
-                    backgroundColor: Colors.blueGrey,
+                    backgroundColor: Colors.green,
                     child: CircleAvatar(
                         radius: 16,
                         backgroundColor: Colors.white,

@@ -13,7 +13,7 @@ class EmiCalculatorScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const PreferredSize(
-          preferredSize: Size.fromHeight(50),
+          preferredSize: Size.fromHeight(200),
           child: NormalAppBar(
             title: 'Emi Calculator',
             isFromEmi: true,
@@ -25,13 +25,13 @@ class EmiCalculatorScreen extends StatelessWidget {
           padding: const EdgeInsets.all(5),
           child: Column(
             children: [
-              Card(
-                elevation: 4,
-                color: Colors.white,
-                child: EmiScreenOpeningTextWidget(
-                  screenSize: screenSize,
-                ),
-              ),
+              // Card(
+              //   elevation: 4,
+              //   color: Colors.white,
+              //   child: EmiScreenOpeningTextWidget(
+              //     screenSize: screenSize,
+              //   ),
+              // ),
               EmiAmountSliderHolderWidget(
                 screenSize: screenSize,
               ),

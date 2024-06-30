@@ -11,6 +11,7 @@ class EmiScreenOpeningTextWidget extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           MyTextWidget(
               text: 'Car Loan Emi Calculator - Calculate Car EMI in Minutes',
