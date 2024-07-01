@@ -90,7 +90,7 @@ class ComparisonHolder extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(5),
       child: Container(
-        decoration: BoxDecoration(border: Border.all(width: .9,color: Color.fromARGB(255, 213, 213, 213))),
+        decoration: BoxDecoration(border: Border.all(width: .9,color: const Color.fromARGB(255, 213, 213, 213))),
         child: Padding(
           padding: const EdgeInsets.all(5),
           child: Column(

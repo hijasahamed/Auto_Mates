@@ -30,7 +30,6 @@ class DrawerWidget extends StatelessWidget {
                   UserData user = snapshot.data!;
                   return DrawerHeader(
                     decoration: const BoxDecoration(
-                      // color: Color.fromARGB(255, 22, 190, 118)
                       color: Colors.white
                     ),
                     child: Row(

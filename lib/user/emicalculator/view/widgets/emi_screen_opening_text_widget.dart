@@ -1,4 +1,3 @@
-import 'package:auto_mates/user/commonwidgets/animated_text/animated_text_widget.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 

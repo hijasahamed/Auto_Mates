@@ -1,6 +1,3 @@
-
-import 'package:auto_mates/user/appbarbottombar/controller/bloc/appbottombar_bloc.dart';
-import 'package:auto_mates/user/appbarbottombar/view/appbar_bottombar_screen.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
