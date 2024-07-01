@@ -14,7 +14,7 @@ class ButtonAndInterestHolderWidget extends StatelessWidget {
       children: [
         Material(
           borderRadius: BorderRadius.circular(10),
-          color: Colors.green,
+          color: const Color.fromARGB(255, 22, 190, 118),
           child: InkWell(
             borderRadius: BorderRadius.circular(10),
             onTap: () {

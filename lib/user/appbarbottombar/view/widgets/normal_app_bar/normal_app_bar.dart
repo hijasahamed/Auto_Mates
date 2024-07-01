@@ -1,6 +1,6 @@
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/all_cars_to_sell/pop_up_button/popup_menu_button_widget.dart';
-import 'package:auto_mates/user/appbarbottombar/view/widgets/app_bar_gradient_color.dart';
+import 'package:auto_mates/user/appbarbottombar/view/widgets/appbar/app_bar_gradient_color.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/filter_car_screen/filter_screen.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
@@ -106,7 +106,7 @@ class EmiScreenAppBar extends StatelessWidget {
     final screenSize = MediaQuery.of(context).size;
     return Container(     
       decoration: const BoxDecoration(
-        color: Colors.green,
+        color: Color.fromARGB(255, 22, 190, 118),
         borderRadius: BorderRadius.only(bottomLeft: Radius.circular(60))
       ),
       child: SafeArea(

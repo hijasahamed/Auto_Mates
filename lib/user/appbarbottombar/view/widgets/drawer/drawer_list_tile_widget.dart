@@ -6,16 +6,22 @@ class DrawerListtileWidget extends StatelessWidget {
     super.key,
     required this.leadingIcon,
     required this.title,
-    this.onTap,
+    required this.screenSize,
+    this.termsAndConditons,
+    this.privecyPolicy,
+    this.about,
   });
   final IconData leadingIcon;
   final String title;
-  final VoidCallback? onTap;
+  final Size screenSize;
+  final bool? termsAndConditons;
+  final bool? privecyPolicy;
+  final bool? about;
   @override
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
-        
+
       },
       leading: Icon(
         leadingIcon,

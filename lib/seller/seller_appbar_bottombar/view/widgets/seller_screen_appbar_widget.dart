@@ -1,5 +1,5 @@
 
-import 'package:auto_mates/user/appbarbottombar/view/widgets/app_bar_gradient_color.dart';
+import 'package:auto_mates/user/appbarbottombar/view/widgets/appbar/app_bar_gradient_color.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 

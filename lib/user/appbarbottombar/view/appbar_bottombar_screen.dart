@@ -1,6 +1,6 @@
 import 'package:auto_mates/user/appbarbottombar/controller/bloc/appbottombar_bloc.dart';
-import 'package:auto_mates/user/appbarbottombar/view/widgets/app_bar_widget.dart';
-import 'package:auto_mates/user/appbarbottombar/view/widgets/drawer_widget.dart';
+import 'package:auto_mates/user/appbarbottombar/view/widgets/appbar/app_bar_widget.dart';
+import 'package:auto_mates/user/appbarbottombar/view/widgets/drawer/drawer_widget.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/buy_screen.dart';
 import 'package:auto_mates/user/homescreen/view/home_screen.dart';
 import 'package:auto_mates/user/news/news_screen.dart';

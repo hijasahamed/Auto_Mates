@@ -1,5 +1,5 @@
-import 'package:auto_mates/user/appbarbottombar/view/widgets/app_bar_gradient_color.dart';
-import 'package:auto_mates/user/appbarbottombar/view/widgets/menu_button_widget.dart';
+import 'package:auto_mates/user/appbarbottombar/view/widgets/appbar/app_bar_gradient_color.dart';
+import 'package:auto_mates/user/appbarbottombar/view/widgets/appbar/menu_button_widget.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/filter_button/filter_button.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/search/view/search_page/search_page.dart';

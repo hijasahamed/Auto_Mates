@@ -10,7 +10,7 @@ class UserProfileImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      radius: screenSize.height / 20.5,
+      radius: screenSize.height / 20,
       backgroundColor: Colors.green,
       child: CircleAvatar(
         backgroundColor: Colors.white,

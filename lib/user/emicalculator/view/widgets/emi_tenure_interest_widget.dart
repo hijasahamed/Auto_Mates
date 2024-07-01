@@ -34,9 +34,9 @@ class EmiTenureInterestWidget extends StatelessWidget {
                             size: screenSize.width / 24,
                             weight: FontWeight.bold),
                         Slider(
-                          activeColor: Colors.green,
+                          activeColor: const Color.fromARGB(255, 22, 190, 118),
                           inactiveColor: const Color.fromARGB(255, 237, 237, 237),
-                          thumbColor: Colors.green,
+                          thumbColor: const Color.fromARGB(255, 22, 190, 118),
                           value: tenure,
                           min: 0,
                           max: 5,
@@ -112,9 +112,9 @@ class EmiTenureInterestWidget extends StatelessWidget {
                             size: screenSize.width / 24,
                             weight: FontWeight.bold),
                         Slider(
-                          activeColor: Colors.green,
+                          activeColor: const Color.fromARGB(255, 22, 190, 118),
                           inactiveColor: const Color.fromARGB(255, 237, 237, 237),
-                          thumbColor: Colors.green,
+                          thumbColor: const Color.fromARGB(255, 22, 190, 118),
                           value: interest,
                           min: 0,
                           max: 10,

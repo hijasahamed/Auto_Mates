@@ -8,15 +8,15 @@ class EmiScreenOpeningTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.only(left: 19,bottom: 5,top: 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           MyTextWidget(
               text: 'Car Loan Emi Calculator - Calculate Car EMI in Minutes',
-              color: Colors.black,
-              size: screenSize.width / 28,
+              color: Colors.white,
+              size: screenSize.width / 25,
               maxline: true,
               weight: FontWeight.bold),
           SizedBox(
@@ -25,14 +25,20 @@ class EmiScreenOpeningTextWidget extends StatelessWidget {
           MyTextWidget(
               text:
                   'Check EMI for cars at Auto Mates and get instant car loan for your dream car',
-              color: Colors.black,
+              color: Colors.white,
               size: screenSize.width / 28,
               maxline: true,
               weight: FontWeight.bold),
-          AnimatedTextWidget(textTitle: 'NB: Auto Mates is currently not providing personal loans', beginColor: const Color.fromARGB(255, 254, 254, 254), endColor: const Color.fromARGB(255, 255, 17, 0),textSize: screenSize.width/35,),
+          MyTextWidget(
+              text:
+                  'NB: Auto Mates is currently not providing personal loans',
+              color: Colors.white,
+              size: screenSize.width / 35,
+              maxline: true,
+              weight: FontWeight.bold),
           MyTextWidget(
               text: 'Check EMI of your car Loan Amount',
-              color: const Color.fromARGB(255, 58, 58, 58),
+              color: Colors.white,
               size: screenSize.width / 22,
               weight: FontWeight.bold)
         ],

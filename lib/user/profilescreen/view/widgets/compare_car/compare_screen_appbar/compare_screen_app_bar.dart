@@ -8,6 +8,7 @@ class CompareScreenAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.white,
+      title: MyTextWidget(text: 'Compare Cars', color: Colors.white, size: screenSize.width/22, weight: FontWeight.bold),
       leading: IconButton(
         onPressed: () {
           Navigator.pop(context);
