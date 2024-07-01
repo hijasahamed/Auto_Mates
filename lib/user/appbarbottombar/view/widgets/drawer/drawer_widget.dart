@@ -1,4 +1,4 @@
-import 'package:auto_mates/user/appbarbottombar/view/widgets/drawer/drawer_list_tile_widget.dart';
+import 'package:auto_mates/user/appbarbottombar/view/widgets/drawer/drawer_list_tiles/drawer_list_tile_widget.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
@@ -50,7 +50,7 @@ class DrawerWidget extends StatelessWidget {
                         const Icon(Icons.arrow_forward_ios_rounded,color: Colors.white,),                  
                       ],
                     ),
-                  );
+                  );                  
                 }
               },
             ),

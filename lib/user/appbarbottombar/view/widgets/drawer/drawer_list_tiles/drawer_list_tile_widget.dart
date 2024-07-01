@@ -1,3 +1,6 @@
+import 'package:auto_mates/user/appbarbottombar/view/widgets/drawer/about/about_screen.dart';
+import 'package:auto_mates/user/appbarbottombar/view/widgets/drawer/privacy_policy/privacy_policy_screen.dart';
+import 'package:auto_mates/user/appbarbottombar/view/widgets/drawer/terms_condition/terms_conditions_screen.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +24,19 @@ class DrawerListtileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
-
+        (termsAndConditons==true)
+        ? Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return const TermsConditionsScreen();
+        },))
+        : (privecyPolicy==true)
+        ? Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return const PrivacyPolicyScreen();
+        },))
+        : (about==true)
+        ? Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return const AboutScreen();
+        },))
+        : null;
       },
       leading: Icon(
         leadingIcon,
