@@ -16,7 +16,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key, required this.screenSize,});
+  const ProfileScreen({
+    super.key,
+    required this.screenSize,
+  });
   final Size screenSize;
 
   @override
@@ -27,43 +30,50 @@ class _ProfileScreenState extends State<ProfileScreen> {
   late Future<UserData?> fetch;
   @override
   void initState() {
-    fetch=fetchUserDetails();
+    fetch = fetchUserDetails();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     final ProfileScreenBloc profileScreenBloc = ProfileScreenBloc();
     return BlocConsumer<ProfileScreenBloc, ProfileScreenState>(
       bloc: profileScreenBloc,
-      listener: (context, state)async {
-        if (state is FavouriteConatinerClickedActionState){
+      listener: (context, state) async {
+        if (state is FavouriteConatinerClickedActionState) {
           UserData? userData = await fetchUserDetails();
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => FavouriteScreen(screenSize: widget.screenSize,userContact: userData!.mobile,),
+            builder: (context) => FavouriteScreen(
+              screenSize: widget.screenSize,
+              userContact: userData!.mobile,
+            ),
           ));
-        }
-        else if(state is InterestedCarConatinerClickedActionState){ 
-          final sharedPref=await SharedPreferences.getInstance();
-          dynamic mobile= sharedPref.getString('mobile');         
+        } else if (state is InterestedCarConatinerClickedActionState) {
+          final sharedPref = await SharedPreferences.getInstance();
+          dynamic mobile = sharedPref.getString('mobile');
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => InterestedCarsScreen(userContact: mobile, screenSize: widget.screenSize,profileScreenBloc: profileScreenBloc,),
+            builder: (context) => InterestedCarsScreen(
+              userContact: mobile,
+              screenSize: widget.screenSize,
+              profileScreenBloc: profileScreenBloc,
+            ),
           ));
-        }
-        else if(state is FavouriteSellerContainerClickedState){
+        } else if (state is FavouriteSellerContainerClickedState) {
           UserData? userData = await fetchUserDetails();
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => FavouriteSellerScreen(screenSize: widget.screenSize,userContact: userData!.mobile,)
-          ));
-        }
-        else if(state is EmiCalculatorConatinerClickedState){
+              builder: (context) => FavouriteSellerScreen(
+                    screenSize: widget.screenSize,
+                    userContact: userData!.mobile,
+                  )));
+        } else if (state is EmiCalculatorConatinerClickedState) {
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => EmiCalculatorScreen(screenSize: widget.screenSize)
-          ));
-        }
-        else if(state is CompareCarsContainerClickedState){
+              builder: (context) =>
+                  EmiCalculatorScreen(screenSize: widget.screenSize)));
+        } else if (state is CompareCarsContainerClickedState) {
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => CompareCars(screenSize: widget.screenSize,)
-          ));
+              builder: (context) => CompareCars(
+                    screenSize: widget.screenSize,
+                  )));
         }
       },
       builder: (context, state) {
@@ -73,9 +83,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasError) {
-              return NoDataErrorPlaceholder(screenSize: widget.screenSize, titleText: 'Error Loading State');
+              return NoDataErrorPlaceholder(
+                  screenSize: widget.screenSize,
+                  titleText: 'Error Loading State');
             } else if (!snapshot.hasData || snapshot.data == null) {
-              return NoDataErrorPlaceholder(screenSize: widget.screenSize, titleText: 'Error Loading State');
+              return NoDataErrorPlaceholder(
+                  screenSize: widget.screenSize,
+                  titleText: 'Error Loading State');
             } else {
               UserData user = snapshot.data!;
               return Scaffold(
@@ -84,19 +98,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   padding: const EdgeInsets.all(3),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [                      
+                    children: [
                       ProfileBannerWidget(
                         screenSize: widget.screenSize,
                         user: user,
                       ),
-                      ProfilePropertiesScreen(screenSize: widget.screenSize,profileScreenBloc: profileScreenBloc,),                     
+                      ProfilePropertiesScreen(
+                        screenSize: widget.screenSize,
+                        profileScreenBloc: profileScreenBloc,
+                      ),
                     ],
                   ),
                 ),
               );
             }
           },
-        );     
+        );
       },
     );
   }

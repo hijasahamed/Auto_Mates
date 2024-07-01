@@ -40,9 +40,10 @@ class DrawerListtileWidget extends StatelessWidget {
       },
       leading: Icon(
         leadingIcon,
-        size: 26,
+        size: screenSize.width/13,
+        color: Colors.blueGrey,
       ),
-      title: MyTextWidget(text: title, color: const Color(0xFF424141), size: 15, weight: FontWeight.w600),
+      title: MyTextWidget(text: title, color: Colors.blueGrey, size: 15, weight: FontWeight.w600),
     );
   }
 }

@@ -19,6 +19,8 @@ class ProfileScreenBloc extends Bloc<ProfileScreenEvent, ProfileScreenState> {
     on<CompareCarScreenRefreshEvent>(compareCarScreenRefreshEvent);
     on<NavigateToComparedScreenEvent>(navigateToComparedScreenEvent);
     on<PreviousCompareCarScreenRefreshEvent>(previousCompareCarScreenRefreshEvent);
+    on<EditImageRefreshEvent>(editImageRefreshEvent);
+    on<UpdateUserLoadingEvent>(updateUserLoadingEvent);
   }
 
   FutureOr<void> favouriteConatinerClickedEvent(
@@ -74,5 +76,15 @@ class ProfileScreenBloc extends Bloc<ProfileScreenEvent, ProfileScreenState> {
   FutureOr<void> previousCompareCarScreenRefreshEvent(
     PreviousCompareCarScreenRefreshEvent event, Emitter<ProfileScreenState> emit) {
       emit(PreviousCompareCarScreenRefreshState());
+  }
+
+  FutureOr<void> editImageRefreshEvent(
+    EditImageRefreshEvent event, Emitter<ProfileScreenState> emit) {
+      emit(EditImageRefreshState());
+  }
+
+  FutureOr<void> updateUserLoadingEvent(
+    UpdateUserLoadingEvent event, Emitter<ProfileScreenState> emit) {
+      emit(UpdateUserLoadingState());
   }
 }

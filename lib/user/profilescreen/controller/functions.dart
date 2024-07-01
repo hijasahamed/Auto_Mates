@@ -1,8 +1,11 @@
 
+import 'package:auto_mates/user/appbarbottombar/controller/bloc/appbottombar_bloc.dart';
+import 'package:auto_mates/user/appbarbottombar/view/appbar_bottombar_screen.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
+import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
 import 'package:auto_mates/user/splashscreen/controllers/functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,6 +23,35 @@ Future<UserData?> fetchUserDetails()async{
   dynamic mobile= sharedPref.getString('mobile');
   dynamic userProfile =sharedPref.getString('userProfile');
   return UserData(id: id, email: email, userName: userName,location: location,mobile: mobile,userProfile: userProfile);
+}
+
+updateUserDetails({name,mobile,location,formkey,context,user,updateLoadingBloc})async{
+  final CollectionReference obj = FirebaseFirestore.instance.collection('userSignupData');  
+  if(formkey.currentState!.validate()){
+    updateLoadingBloc.add(UpdateUserLoadingEvent());
+    String? imageUrl = await addUserProfileToDb();
+    final data = {
+      'userProfile':(imageUrl != null)? imageUrl : user.userProfile,
+      'userName': name.text,
+      'mobile': mobile.text,
+      'location': location.text,
+    };
+    obj.doc(user.id).update(data);
+    dynamic userData = await checkIfUserAvailable(user.email);
+    final sharedPref = await SharedPreferences.getInstance();
+    await sharedPref.setString('userProfile', userData.userProfile);           
+    await sharedPref.setString('id', userData.id);
+    await sharedPref.setString('email', userData.email);
+    await sharedPref.setString('userName', userData.userName); 
+    await sharedPref.setString('mobile', userData.mobile);
+    await sharedPref.setString('location', userData.location);
+    userProfileImage = null;
+    Navigator.of(context).pop();
+    snackbarWidget('User Details Updated', context, Colors.green, Colors.white, SnackBarBehavior.floating);   
+  }
+  else{
+    snackbarWidget('User Details Not Updated', context, Colors.red, Colors.white, SnackBarBehavior.floating);
+  }
 }
 
 Future<void> confirmUserLogout({context}) async {

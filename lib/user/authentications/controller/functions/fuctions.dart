@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
+import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
 import 'package:auto_mates/user/splashscreen/controllers/functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -162,13 +163,19 @@ void signupButtonClicked(
 
 String? userProfileImage;
 
-addUserProfileImage({bloc})async{
+addUserProfileImage({bloc,editBloc})async{
   final file = await ImagePicker().pickImage(source: ImageSource.gallery);
   if(file==null){
     return;
   }
   userProfileImage=file.path;
-  bloc.add(UserProfileRefreshEvent());
+  if(bloc != null){
+    bloc.add(UserProfileRefreshEvent());
+  }
+  else if(editBloc != null){
+    editBloc.add(EditImageRefreshEvent());
+  }
+  
 }
 
 Future<String?> addUserProfileToDb() async {

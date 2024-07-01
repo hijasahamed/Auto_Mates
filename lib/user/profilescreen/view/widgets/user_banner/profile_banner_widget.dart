@@ -1,4 +1,3 @@
-
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/user_banner/edit_profile/edit_profile_button.dart';
@@ -12,7 +11,7 @@ class ProfileBannerWidget extends StatelessWidget {
   final Size screenSize;
   final UserData user;
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     return Card(
       elevation: 2,
       child: Container(
@@ -29,13 +28,24 @@ class ProfileBannerWidget extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  MyTextWidget(text: 'My Profile', color: const Color(0xFF424141), size: screenSize.width/25, weight: FontWeight.bold),
-                  SizedBox(height: screenSize.height/125,),
+                  MyTextWidget(
+                      text: 'My Profile',
+                      color: const Color(0xFF424141),
+                      size: screenSize.width / 25,
+                      weight: FontWeight.bold),
+                  SizedBox(
+                    height: screenSize.height / 125,
+                  ),
                   UserProfileImage(screenSize: screenSize, user: user),
-                  const EditProfileButton()
+                  EditProfileButton(
+                    screenSize: screenSize,
+                    user: user,
+                  )
                 ],
               ),
-              SizedBox(width: screenSize.width/15,),
+              SizedBox(
+                width: screenSize.width / 15,
+              ),
               UserDetails(screenSize: screenSize, user: user)
             ],
           ),

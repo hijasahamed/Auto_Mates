@@ -9,5 +9,3 @@ class OntapIndexChangeEvent extends AppbottombarEvent{}
 
 class SearchClickedEvent extends AppbottombarEvent{}
 
-
-

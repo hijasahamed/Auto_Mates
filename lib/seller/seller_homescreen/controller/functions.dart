@@ -303,7 +303,7 @@ updateCarDetails(
       .then(snackbarWidget('Car details updated', context, Colors.blue,
           Colors.white, SnackBarBehavior.floating));
   }else{
-    snackbarWidget('Car details not updated', context, Colors.blue, Colors.white, SnackBarBehavior.floating);
+    snackbarWidget('Car details not updated', context, Colors.red, Colors.white, SnackBarBehavior.floating);
   } 
 }
 

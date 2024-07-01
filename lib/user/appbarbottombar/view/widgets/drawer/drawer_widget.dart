@@ -2,6 +2,7 @@ import 'package:auto_mates/user/appbarbottombar/view/widgets/drawer/drawer_list_
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
+import 'package:auto_mates/user/profilescreen/view/widgets/user_banner/edit_profile/edit_screen/editing_screen.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/user_banner/profile_image/user_profile_image.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,7 @@ class DrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: Colors.white,
         width: screenSize.width/1.22,
         child: Column(
           children: [
@@ -28,7 +30,8 @@ class DrawerWidget extends StatelessWidget {
                   UserData user = snapshot.data!;
                   return DrawerHeader(
                     decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 22, 190, 118)
+                      // color: Color.fromARGB(255, 22, 190, 118)
+                      color: Colors.white
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -41,16 +44,20 @@ class DrawerWidget extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              MyTextWidget(text: 'Hello', color: Colors.white, size: screenSize.width/28, weight: FontWeight.bold),
-                              MyTextWidget(text: user.userName, color: Colors.white, size: screenSize.width/22, weight: FontWeight.bold),
+                              MyTextWidget(text: 'Hello', color: Colors.blueGrey, size: screenSize.width/35, weight: FontWeight.bold),
+                              MyTextWidget(text: user.userName, color: Colors.blueGrey, size: screenSize.width/22, weight: FontWeight.bold),
                             ],
                           ),
                         ),
                         const Spacer(),
-                        const Icon(Icons.arrow_forward_ios_rounded,color: Colors.white,),                  
+                        IconButton(onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                            return EditingScreen(screenSize: screenSize, user: user);
+                          },));
+                        }, icon: const Icon(Icons.edit,color: Colors.blueGrey,)),
                       ],
                     ),
-                  );                  
+                  );
                 }
               },
             ),
@@ -60,7 +67,7 @@ class DrawerWidget extends StatelessWidget {
             const Spacer(),
             SizedBox(
               height: screenSize.height/9,
-              child: const Center(child: Text('Version 1.0.0',style: TextStyle(fontWeight: FontWeight.w600),),),
+              child: Center(child: MyTextWidget(text: 'Version 1.0.0', color: Colors.blueGrey, size: screenSize.width/28, weight: FontWeight.bold),),
             )
           ],
         ),

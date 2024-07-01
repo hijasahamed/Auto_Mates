@@ -30,3 +30,7 @@ class CompareCarScreenRefreshEvent extends ProfileScreenEvent {}
 class NavigateToComparedScreenEvent extends ProfileScreenEvent {}
 
 class PreviousCompareCarScreenRefreshEvent extends ProfileScreenEvent {}
+
+class EditImageRefreshEvent extends ProfileScreenEvent {}
+
+class UpdateUserLoadingEvent extends ProfileScreenEvent {}
