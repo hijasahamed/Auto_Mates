@@ -1,3 +1,4 @@
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 
 class LatestCarUpdatesWidget extends StatelessWidget {
@@ -10,8 +11,8 @@ class LatestCarUpdatesWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text('Latest car updates',style: TextStyle(fontSize: 25,color: Color(0xFF424141),fontWeight: FontWeight.bold),),
-            TextButton(onPressed: (){}, child: const Text('View All',style: TextStyle(fontWeight: FontWeight.w600,color: Colors.blue),), )
+            MyTextWidget(text: 'Latest News', color: const Color(0xff424141), size: screenSize.width/16.5, weight: FontWeight.bold),
+            TextButton(onPressed: (){}, child: MyTextWidget(text: 'View All', color: Colors.blue, size: screenSize.width/35, weight: FontWeight.bold) )
           ],
         ),
         Row(

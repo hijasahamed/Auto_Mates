@@ -25,7 +25,7 @@ class FilterButton extends StatelessWidget {
               buyScreenBloc.add(FilterButtonClickedEvent());
             },
             icon: const Icon(
-              Icons.sort_rounded,
+              Icons.filter_alt_sharp,
               color: Colors.white,
               size: 35,
             ));

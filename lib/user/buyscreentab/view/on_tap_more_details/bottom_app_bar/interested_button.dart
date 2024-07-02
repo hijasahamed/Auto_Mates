@@ -3,6 +3,7 @@ import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/buy_screen.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/bottom_app_bar/auto_back_widget.dart';
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -72,15 +73,8 @@ class InterestedButton extends StatelessWidget {
                   borderRadius: BorderRadius.circular(7),
                   color: isInterested ? Colors.red : Colors.green,
                 ),
-                child: Center(
-                  child: Text(
-                    isInterested ? 'Remove Interest' : 'Interested',
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
+                child: Center(                  
+                  child: MyTextWidget(text: isInterested ? 'Remove Interest' : 'Interested', color: Colors.white, size: screenSize.width/30, weight: FontWeight.bold),
                 ),
               ),
             );

@@ -12,7 +12,7 @@ class SeatCapacityContainerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: screenSize.height / 6.4,
+      height: screenSize.height / 6.0,
       width: screenSize.width,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),

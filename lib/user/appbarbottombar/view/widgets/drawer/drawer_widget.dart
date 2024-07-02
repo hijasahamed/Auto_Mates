@@ -44,11 +44,10 @@ class DrawerWidget extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               MyTextWidget(text: 'Hello', color: Colors.blueGrey, size: screenSize.width/35, weight: FontWeight.bold),
-                              MyTextWidget(text: user.userName, color: Colors.blueGrey, size: screenSize.width/22, weight: FontWeight.bold),
+                              MyTextWidget(text: user.userName, color: Colors.blueGrey, size: screenSize.width/22, weight: FontWeight.bold,maxline: true,),
                             ],
                           ),
                         ),
-                        const Spacer(),
                         IconButton(onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                             return EditingScreen(screenSize: screenSize, user: user);

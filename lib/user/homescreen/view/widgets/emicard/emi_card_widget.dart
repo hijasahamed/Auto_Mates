@@ -1,3 +1,4 @@
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/emicalculator/view/emi_calculator_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,7 @@ class EmiCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: screenSize.height/4.5,
+      height: screenSize.height/4.3,
       width: screenSize.width,
       decoration: BoxDecoration(
         color: const Color.fromARGB(255, 0, 140, 255),
@@ -18,31 +19,31 @@ class EmiCardWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Ready to drive your dream?',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 19),),
-            const Text("Choose your preferred EMI frequency\nand hit the road hassle-free!\n*T&C applied",style: TextStyle(fontWeight: FontWeight.w500,color: Colors.white,fontSize: 10),),
+            MyTextWidget(text: 'Ready to drive your dream?', color: Colors.white, size: screenSize.width/20, weight: FontWeight.bold),
+            Text("Choose your preferred EMI frequency\nand hit the road hassle-free!\n*T&C applied",style: TextStyle(fontWeight: FontWeight.w500,color: Colors.white,fontSize: screenSize.width/38),),
             const Spacer(),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text('0',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 23),),
-                    Text('Down payment',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 13),)
+                    MyTextWidget(text: '0', color: Colors.white, size: screenSize.width/18, weight: FontWeight.bold),
+                    MyTextWidget(text: 'Down payment', color: Colors.white, size: screenSize.width/33, weight: FontWeight.bold),
                   ],
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text('9%',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 23),),
-                    Text('Interest rate',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 13),)
+                    MyTextWidget(text: '9%', color: Colors.white, size: screenSize.width/18, weight: FontWeight.bold),
+                    MyTextWidget(text: 'Interest Rate', color: Colors.white, size: screenSize.width/33, weight: FontWeight.bold),
                   ],
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text('32',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 23),),
-                    Text('Months EMI',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 13),)
+                    MyTextWidget(text: '32', color: Colors.white, size: screenSize.width/18, weight: FontWeight.bold),
+                    MyTextWidget(text: 'Months Emi', color: Colors.white, size: screenSize.width/33, weight: FontWeight.bold),
                   ],
                 ),
               ],
@@ -50,13 +51,14 @@ class EmiCardWidget extends StatelessWidget {
             const Spacer(),
             SizedBox(
               width: screenSize.width,
+              height: screenSize.height/25,
               child: ElevatedButton(
                 onPressed: (){
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => EmiCalculatorScreen(screenSize: screenSize,),
                   ));
                 },
-                child: const Text('CALCULATE & GET OFFERS',style: TextStyle(color: Color(0xFF424141),fontWeight: FontWeight.bold),)
+                child: MyTextWidget(text: 'CALCULATE & GET OFFERS', color: const Color(0xFF424141), size: screenSize.width/30, weight: FontWeight.bold),
               ),
             )
           ],

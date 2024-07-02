@@ -11,74 +11,63 @@ class HomeScreen extends StatelessWidget {
   final Size screenSize;
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
-      backgroundColor: Colors.white,     
+      backgroundColor: const Color(0xFFDBEDF5),    
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Card(
-                elevation: 5,
-                color: const Color(0xFFDBEDF5),
-                child: Container(
-                  height: screenSize.height/4.8,
-                  width: screenSize.width,
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white),
-                  child: CarouselSliderWidget(screenSize: screenSize)
-                ),
+        child: Column(
+          children: [
+            Card(
+              elevation: 5,
+              child: Container(
+                height: screenSize.height/4.8,
+                width: screenSize.width,
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: const Color(0xFFDBEDF5),),
+                child: CarouselSliderWidget(screenSize: screenSize)
               ),
-              Card(
-                elevation: 5,
-                color: const Color(0xFFDBEDF5),
-                child: Padding(
-                  padding: const EdgeInsets.all(3),
-                  child: SizedBox(
-                    height: screenSize.height/4,
-                    width: screenSize.width,                          
-                    child: TopSellersWidget(screenSize: screenSize),
-                  ),
-                ),
-              ),
-              Card(
-                elevation: 5,
-                color: const Color(0xFFDBEDF5),
-                child: Padding(
-                  padding: const EdgeInsets.all(3),
-                  child: SizedBox(
-                    height: screenSize.height/4,
-                    width: screenSize.width,                         
-                    child: FeaturedCarsWidget(screenSize: screenSize),
-                  ),
-                ),
-              ),
-              Card(
-                elevation: 5,
-                color: const Color(0xFFDBEDF5),
+            ),
+            Card(
+              elevation: 5,
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(3),
                 child: SizedBox(
                   height: screenSize.height/4,
+                  width: screenSize.width,                          
+                  child: TopSellersWidget(screenSize: screenSize),
+                ),
+              ),
+            ),
+            Card(
+              elevation: 5,
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(3),
+                child: SizedBox(
+                  height: screenSize.height/4,
+                  width: screenSize.width,                         
+                  child: FeaturedCarsWidget(screenSize: screenSize),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(4.5),
+              child: EmiCardWidget(screenSize: screenSize),
+            ),
+            FavouriteCarsWidget(screenSize: screenSize),
+            Card(
+              elevation: 5,
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(3),
+                child: SizedBox(
+                  height: screenSize.height/2.9,
                   width: screenSize.width,
-                  child:  FavouriteCarsWidget(screenSize: screenSize),
-                ),
-              ),              
-              Padding(
-                padding: const EdgeInsets.all(4.5),
-                child: EmiCardWidget(screenSize: screenSize),
-              ),
-              Card(
-                elevation: 5,
-                color: const Color(0xFFDBEDF5),
-                child: Padding(
-                  padding: const EdgeInsets.all(3),
-                  child: SizedBox(
-                    height: screenSize.height/2.9,
-                    width: screenSize.width,
-                    child: LatestCarUpdatesWidget(screenSize: screenSize),
-                  ),
+                  child: LatestCarUpdatesWidget(screenSize: screenSize),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

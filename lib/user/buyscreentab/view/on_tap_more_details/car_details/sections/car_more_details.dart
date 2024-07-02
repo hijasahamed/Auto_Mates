@@ -25,8 +25,9 @@ class CarMoreDetails extends StatelessWidget {
         ),
         Text(
           text,
-          style: const TextStyle(
-              color: Color.fromARGB(255, 118, 118, 118),
+          style: TextStyle(
+              color: const Color.fromARGB(255, 118, 118, 118),
+              fontSize: screenSize.width/30,
               fontWeight: FontWeight.w500),
         )
       ],

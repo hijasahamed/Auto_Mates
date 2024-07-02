@@ -12,7 +12,7 @@ class AppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  AppBar( 
-      backgroundColor: Colors.white,
+      backgroundColor: tabIndex==0?const Color(0xFFDBEDF5):Colors.white,
       leading: const MenuButtonWidget(),  
       title: Ink(
         height: screenSize.height / 21,

@@ -1,3 +1,4 @@
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +9,58 @@ class CarouselSliderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CarouselSlider(
       items: [
+        Container(
+            height: screenSize.height/4.8,
+            width: screenSize.width,
+            decoration: BoxDecoration(
+              color: const Color(0xFFDBEDF5),
+              borderRadius: BorderRadius.circular(10),
+              image: const DecorationImage(
+                fit: BoxFit.cover,
+                image: NetworkImage('https://img2.wallspic.com/previews/2/0/7/7/3/137702/137702-executive_car-personal_luxury_car-mid_size_car-alpina-sedan-550x310.jpg')
+              )
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black54,
+                borderRadius: BorderRadius.circular(10)
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  MyTextWidget(text: 'AutoMates', color: const Color.fromARGB(255, 10, 226, 237), size: screenSize.width/12, weight: FontWeight.bold),
+                  MyTextWidget(text: 'Buy Your Dream Car', color: Colors.white, size: screenSize.width/18, weight: FontWeight.bold),
+                  MyTextWidget(text: 'Sell Your Car', color: Colors.white, size: screenSize.width/18, weight: FontWeight.bold),
+                ],
+              ),
+            ),
+         ),
+         Container(
+            height: screenSize.height/4.8,
+            width: screenSize.width,
+            decoration: BoxDecoration(
+              color: const Color(0xFFDBEDF5),
+              borderRadius: BorderRadius.circular(10),
+              image: const DecorationImage(
+                fit: BoxFit.cover,
+                image: NetworkImage('https://stimg.cardekho.com/images/carexteriorimages/930x620/Skoda/Slavia/9807/1691643999681/exterior-image-164.jpg')
+              )
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black38,
+                borderRadius: BorderRadius.circular(10)
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  MyTextWidget(text: 'No 1 Online Platform', color: Colors.white, size: screenSize.width/19, weight: FontWeight.bold),
+                  MyTextWidget(text: 'For Best PreUsed cars', color: Colors.white, size: screenSize.width/17, weight: FontWeight.bold),
+                  MyTextWidget(text: 'With over 1 million + Users', color: const Color.fromARGB(255, 10, 226, 237), size: screenSize.width/15, weight: FontWeight.bold),  
+                ],
+              ),
+            ),
+         ),
         Stack(
           children:[
             Container(
@@ -15,7 +68,6 @@ class CarouselSliderWidget extends StatelessWidget {
             width: screenSize.width,
             decoration: BoxDecoration(
               color: Colors.transparent,
-              border: Border.all(width: .5,color: Colors.black),
               borderRadius: BorderRadius.circular(10),
               image: const DecorationImage(
                 fit: BoxFit.cover,
@@ -35,46 +87,6 @@ class CarouselSliderWidget extends StatelessWidget {
             ),
           ]
         ),
-        Container(
-            height: screenSize.height/4.8,
-            width: screenSize.width,
-            decoration: BoxDecoration(
-              color: Colors.transparent,
-              border: Border.all(width: .5,color: Colors.black),
-              borderRadius: BorderRadius.circular(10),
-              image: const DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage('https://img2.wallspic.com/previews/2/0/7/7/3/137702/137702-executive_car-personal_luxury_car-mid_size_car-alpina-sedan-550x310.jpg')
-              )
-            ),
-            child: const Column(
-              children: [
-                Text('Buy IT',style: TextStyle(fontSize: 25,color: Colors.white,fontWeight: FontWeight.bold),),
-                Text('Sell IT',style: TextStyle(fontSize: 25,color: Colors.white,fontWeight: FontWeight.bold),)
-              ],
-            ),
-         ),
-         Container(
-            height: screenSize.height/4.8,
-            width: screenSize.width,
-            decoration: BoxDecoration(
-              color: Colors.transparent,
-              border: Border.all(width: .5,color: Colors.black),
-              borderRadius: BorderRadius.circular(10),
-              image: const DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage('https://stimg.cardekho.com/images/carexteriorimages/930x620/Skoda/Slavia/9807/1691643999681/exterior-image-164.jpg')
-              )
-            ),
-            child: const Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Online Platform',style: TextStyle(fontSize: 25,color: Colors.white,fontWeight: FontWeight.bold),),
-                Text('For Best PreUsed cars',style: TextStyle(fontSize: 22,color: Color.fromRGBO(255, 255, 255, 1),fontWeight: FontWeight.bold),),
-                Text('Over #1 million+ Users',style: TextStyle(fontSize: 25,color: Color.fromARGB(255, 10, 226, 237),fontWeight: FontWeight.bold,backgroundColor: Colors.black38),),   
-              ],
-            ),
-         ),
       ], 
       options: CarouselOptions(
         scrollDirection: Axis.horizontal,

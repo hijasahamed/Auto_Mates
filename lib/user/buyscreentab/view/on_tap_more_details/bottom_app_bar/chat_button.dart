@@ -1,3 +1,4 @@
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 
 class ChatButton extends StatelessWidget {
@@ -16,23 +17,17 @@ class ChatButton extends StatelessWidget {
         width: screenSize.width / 2.9,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(7), color: Colors.blue),
-        child: const Padding(
-          padding: EdgeInsets.only(left: 35, right: 35),
+        child:Padding(
+          padding: const EdgeInsets.only(left: 35, right: 35),
           child: Row(
             children: [
-              Icon(
+              const Icon(
                 Icons.chat_outlined,
                 size: 25,
                 color: Colors.white,
               ),
-              Spacer(),
-              Text(
-                'Chat',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              )
+              const Spacer(),
+              MyTextWidget(text: 'Chat', color: Colors.white, size: screenSize.width/30, weight: FontWeight.bold)
             ],
           ),
         ),

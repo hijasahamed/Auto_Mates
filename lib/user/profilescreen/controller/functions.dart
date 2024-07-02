@@ -1,3 +1,4 @@
+import 'package:auto_mates/user/appbarbottombar/view/appbar_bottombar_screen.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
@@ -43,7 +44,10 @@ updateUserDetails({name,mobile,location,formkey,context,user,updateLoadingBloc})
     await sharedPref.setString('mobile', userData.mobile);
     await sharedPref.setString('location', userData.location);
     userProfileImage = null;
-    Navigator.of(context).pop();
+    Navigator.of(context).pushAndRemoveUntil(
+    MaterialPageRoute(builder: (context) => const AppbarBottomTabSwitchScreen()),
+    (Route<dynamic> route) => false,
+  );
     snackbarWidget('User Details Updated', context, Colors.green, Colors.white, SnackBarBehavior.floating);   
   }
   else{

@@ -15,25 +15,15 @@ class TabBarViewListTile extends StatelessWidget {
           height: screenSize.width/10,
           child: Padding(
             padding: const EdgeInsets.all(2),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(leading,style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 14,color: Colors.blueGrey)),
-              ],
-            ),
+            child: Text(leading,style: TextStyle(fontWeight: FontWeight.w500,fontSize: screenSize.width/27,color: Colors.blueGrey)),
           )
         ),
         SizedBox(
           width: screenSize.width/3,
           height: screenSize.width/10,
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(title,style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: Colors.blueGrey)),
-              ],
-            ),
+            padding: const EdgeInsets.all(2),
+            child: Text(title,style: TextStyle(fontWeight: FontWeight.w500,fontSize: screenSize.width/27,color: Colors.blueGrey)),
           )
         ),
       ],

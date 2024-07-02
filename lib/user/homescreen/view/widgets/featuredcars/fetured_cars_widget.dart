@@ -1,3 +1,4 @@
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 
 class FeaturedCarsWidget extends StatelessWidget {
@@ -41,17 +42,17 @@ return Column(
           children: [
             Row(
               children: [
-                const Text('Featured cars',style: TextStyle(fontSize: 25,color: Color(0xFF424141),fontWeight: FontWeight.bold),),
+                MyTextWidget(text: 'Featured Cars', color: const Color(0xff424141), size: screenSize.width/16.5, weight: FontWeight.bold), 
                 SizedBox(width: screenSize.width/40,),
                 Container(
-                height: 20,
-                width: 50,
+                height: screenSize.height/40,
+                width: screenSize.width/8,
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.green),
-                child: const Center(child: Text('Promoted',style: TextStyle(fontSize: 9,color: Colors.white,fontWeight: FontWeight.bold),))
+                child: Center(child: MyTextWidget(text: 'Promoted', color: Colors.white, size: screenSize.width/45, weight: FontWeight.bold),)
               ),
               ],
             ),
-            TextButton(onPressed: (){}, child: const Text('View All',style: TextStyle(fontWeight: FontWeight.w600,color: Colors.blue),), )
+            TextButton(onPressed: (){}, child: MyTextWidget(text: 'View All', color: Colors.blue, size: screenSize.width/35, weight: FontWeight.bold) )
           ],
         ),
         SizedBox(
@@ -68,7 +69,7 @@ return Column(
                     padding: const EdgeInsets.only(left: 5),
                     child: Container(  
                       height: screenSize.height/6,                 
-                      width: screenSize.width/2.23,
+                      width: screenSize.width/2.15,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         image: DecorationImage(
@@ -85,8 +86,10 @@ return Column(
                     child: Container(
                       height: 30,
                       width: screenSize.width/2.23,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(50),color: Colors.white),
-                      child:  Center(child: Text(carList[index].price,style: const TextStyle(fontWeight: FontWeight.bold,color: Color(0xFF424141)),)),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(50),color: const Color.fromARGB(255, 238, 238, 238)),
+                      child:  Center(
+                        child:  MyTextWidget(text: carList[index].price, color: Colors.blueGrey, size: screenSize.width/27, weight: FontWeight.bold),
+                      ),
                     )
                   ),
                   Positioned(    
@@ -95,9 +98,9 @@ return Column(
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: Colors.black,
+                        color: Colors.black54,
                       ),
-                      child: Text(carList[index].name,style: const TextStyle(fontSize: 15,color: Colors.white,fontWeight: FontWeight.bold),)
+                      child: Text(' ${carList[index].name} ',style: const TextStyle(fontSize: 15,color: Colors.white,fontWeight: FontWeight.bold),)
                     ),
                   ),
                 ],

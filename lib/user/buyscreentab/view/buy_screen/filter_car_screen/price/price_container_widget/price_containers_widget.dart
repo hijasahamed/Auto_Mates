@@ -13,7 +13,7 @@ class PriceContainersWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: screenSize.height / 3.25,
+      height: screenSize.height / 3.20,
       width: screenSize.width,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),

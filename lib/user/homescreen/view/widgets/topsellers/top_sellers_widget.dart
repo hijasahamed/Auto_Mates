@@ -28,8 +28,8 @@ class TopSellersWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text('Top sellers',style: TextStyle(fontSize: 25,color: Color(0xFF424141),fontWeight: FontWeight.bold),),             
-            TextButton(onPressed: (){}, child: const Text('View All',style: TextStyle(fontWeight: FontWeight.w600,color: Colors.blue),), )
+            MyTextWidget(text: 'Top sellers', color: const Color(0xff424141), size: screenSize.width/16.5, weight: FontWeight.bold),            
+            TextButton(onPressed: (){}, child: MyTextWidget(text: 'View All', color: Colors.blue, size: screenSize.width/35, weight: FontWeight.bold) )
           ],
         ),
         SizedBox(
@@ -44,7 +44,7 @@ class TopSellersWidget extends StatelessWidget {
                 child: Stack(
                   children: [
                     Container(                   
-                      width: screenSize.width/2.2,
+                      width: screenSize.width/2.08,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         image: DecorationImage(
@@ -53,15 +53,15 @@ class TopSellersWidget extends StatelessWidget {
                         )
                       ),
                     ),
-                     Positioned(
+                    Positioned(
                       bottom: 0,
                       child: Container(
-                        width: screenSize.width/2.2,
+                        width: screenSize.width/2.08,
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(bottomLeft: Radius.circular(5),bottomRight: Radius.circular(5)),
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 238, 238, 238),
                         ),
-                        child: Center(child: Text(topSellers[index].name,style: const TextStyle(fontSize: 15,color: Colors.black,fontWeight: FontWeight.bold),))
+                        child: Center(child: MyTextWidget(text: topSellers[index].name, color: Colors.blueGrey, size: screenSize.width/27, weight: FontWeight.bold))
                       ),
                     ),
                     Positioned(
@@ -76,8 +76,8 @@ class TopSellersWidget extends StatelessWidget {
                         ),
                         child: Row(
                           children: [
-                            const Icon(Icons.star,color: Colors.white,),                            
-                            MyTextWidget(text: topSellers[index].rating, color: Colors.white, size: 15, weight: FontWeight.bold)
+                            Icon(Icons.star,color: Colors.white,size: screenSize.width/24,),                            
+                            MyTextWidget(text: topSellers[index].rating, color: Colors.white, size: screenSize.width/24, weight: FontWeight.bold)
                           ],
                         ),
                       )
