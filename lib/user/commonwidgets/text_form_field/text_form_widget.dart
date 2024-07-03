@@ -28,6 +28,7 @@ class MyTextFormWidget extends StatelessWidget {
     this.transmission,
     this.brandName,
     this.length,
+    this.wrapInContainer,
     required this.labelTextColor,
     required this.enabledBorderColor,
     required this.focusedBorderColor,
@@ -53,6 +54,7 @@ class MyTextFormWidget extends StatelessWidget {
   final bool? transmission;
   final bool? length;
   final bool? brandName;
+  final bool? wrapInContainer;
   final Color labelTextColor;
   final Color enabledBorderColor;
   final Color focusedBorderColor;
@@ -60,8 +62,10 @@ class MyTextFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
+    Widget textFormFieldObj = TextFormField(
       controller: controller,
+      expands: (wrapInContainer==true)? true : false,
+      maxLines: (wrapInContainer==true)? null : 1,
       validator: (value) {
         if (value!.isEmpty) {
           return warning;
@@ -95,7 +99,7 @@ class MyTextFormWidget extends StatelessWidget {
                 height: screenSize.height/50,
                 width: screenSize.width/50,
                 child: const Icon(Icons.arrow_drop_down)),onTap: () {
-                showBrandSelectionDialog(context: context,brands: carBrands,controller: controller);
+                showBrandSelectionDialog(context: context,brands: carBrands,controller: controller,screenSize: screenSize);
               },),
             )
             : (transmission==true)? DropDownButtonWidget(controller: controller,isTransmission: true,) 
@@ -120,5 +124,14 @@ class MyTextFormWidget extends StatelessWidget {
         ),
       ),
     );
+
+  return (wrapInContainer==true)
+  ? SizedBox(
+    height: screenSize.height/4,
+    width: screenSize.width,
+    child: textFormFieldObj,
+  )
+  : textFormFieldObj;
+
   }
 }

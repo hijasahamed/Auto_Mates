@@ -11,15 +11,16 @@ final List<String> carBrands=['Maruti Suzuki',
   'Citroen',
   'BYD',];
 
-void showBrandSelectionDialog({required BuildContext context, String? selectedItem, required List<String> brands, required TextEditingController controller}) {
+void showBrandSelectionDialog({required BuildContext context, String? selectedItem, required List<String> brands, required TextEditingController controller,screenSize}) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const MyTextWidget(text: 'Select the Car Brand', color: Colors.black, size: 22, weight: FontWeight.w700),        
+          backgroundColor: Colors.white,
+          title: const MyTextWidget(text: 'Select the Car Brand', color: Colors.blueGrey, size: 22, weight: FontWeight.w700),        
           content: SizedBox(
-          width: 200,
-          height: 200,
+          width: screenSize.width,
+          height: screenSize.height/2,
           child: Scrollbar(
             thumbVisibility: true,
             radius: const Radius.circular(20),

@@ -31,6 +31,8 @@ class YesButton extends StatelessWidget {
       this.sellerCarData,
       this.sellerHomeScreenBloc,
       this.isSellerCarDetailsAppbarDelete,
+      this.isUserFavDelete,
+      this.userFavData,
       this.sellerData});
   final Size screenSize;
   final bool? isSellerCalling;
@@ -52,6 +54,8 @@ class YesButton extends StatelessWidget {
   final dynamic sellerCarData;
   final SellerHomeScreenBloc? sellerHomeScreenBloc;
   final bool? isSellerCarDetailsAppbarDelete;
+  final bool? isUserFavDelete;
+  final dynamic userFavData;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -77,20 +81,22 @@ class YesButton extends StatelessWidget {
         ? getCarSoldPrice(carData: markCarAsSoldData,context: context,markCarsoldBloc: markCarsoldBloc,screenSize: screenSize)         
         : (sellerCarDelete==true)
         ? deleteCarToSell(sellerCarData.id, context, sellerHomeScreenBloc, isSellerCarDetailsAppbarDelete)
+        : (isUserFavDelete==true)
+        ? removeFavoriteCar(docId: userFavData.id, context: context).then((value) => Navigator.of(context).pop(),)
         : null;        
       },
       child: Container(
         height: screenSize.height / 20,
         width: screenSize.width / 4,
         decoration: BoxDecoration(
-          color: Colors.green,
+          color: Colors.red,
           borderRadius: BorderRadius.circular(5),
         ),
-        child: const Center(
+        child: Center(
           child: MyTextWidget(
-              text: 'Yes',
+              text: 'Confirm',
               color: Colors.white,
-              size: 15,
+              size: screenSize.width/30,
               weight: FontWeight.w500),
         ),
       ),

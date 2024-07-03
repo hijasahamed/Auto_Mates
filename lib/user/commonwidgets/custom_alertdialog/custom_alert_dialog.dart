@@ -31,6 +31,8 @@ class CustomAlertDialog extends StatelessWidget {
       this.sellerCarData,
       this.sellerHomeScreenBloc,
       this.isSellerCarDetailsAppbarDelete,
+      this.isUserFavDelete,
+      this.userFavData,
       required this.screenSize});
   final String image;
   final String title;
@@ -55,6 +57,8 @@ class CustomAlertDialog extends StatelessWidget {
   final dynamic sellerCarData;
   final SellerHomeScreenBloc? sellerHomeScreenBloc;
   final bool? isSellerCarDetailsAppbarDelete;
+  final bool? isUserFavDelete;
+  final dynamic userFavData;
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -119,6 +123,8 @@ class CustomAlertDialog extends StatelessWidget {
                   sellerCarData: sellerCarData,
                   sellerHomeScreenBloc: sellerHomeScreenBloc,
                   isSellerCarDetailsAppbarDelete: isSellerCarDetailsAppbarDelete,
+                  isUserFavDelete: isUserFavDelete,
+                  userFavData: userFavData,
                 )
               ],
             )

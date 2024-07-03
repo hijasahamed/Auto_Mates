@@ -45,7 +45,7 @@ class PropertiesContainer extends StatelessWidget {
             barrierDismissible: false,
             context: context, 
             builder: (context) => CustomAlertDialog(
-              image: 'assets/images/logout.png',
+              image: 'assets/images/logout pic.png',
               title: 'Logout',
               subtitle: 'Do you want to Logout from AutoMates',
               screenSize: screenSize,
@@ -78,7 +78,7 @@ class PropertiesContainer extends StatelessWidget {
                     image: (isFavouriteCar==true) ? const AssetImage('assets/images/favourite.png')
                     : (isEmiCalculator==true) ? const AssetImage('assets/images/calculator (1).png')
                     : (isFavouriteSeller==true) ? const AssetImage('assets/images/quality.png')
-                    : (isLogout==true) ? const AssetImage('assets/images/logout.png')
+                    : (isLogout==true) ? const AssetImage('assets/images/logout pic.png')
                     : (isInterestedCar==true)? const AssetImage('assets/images/car-wash.png')
                     : (isCompareCar==true)? const AssetImage('assets/images/compare.png')
                     : const AssetImage('assets/images/placeholder.jpg')

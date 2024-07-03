@@ -145,7 +145,7 @@ class AddEditFormWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: MyTextFormWidget(
               screenSize: screenSize,
-                text: 'Price',
+                text: '₹Price',
                 enabledBorderColor: Colors.white,
                 focusedBorderColor: Colors.red,
                 valueTextColor: Colors.black,
@@ -284,7 +284,7 @@ class AddEditFormWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: MyTextFormWidget(
               screenSize: screenSize,
-                text: 'current Milage',
+                text: 'Current Milage',
                 enabledBorderColor: Colors.white,
                 valueTextColor: Colors.black,
                 focusedBorderColor: Colors.red,
@@ -319,7 +319,7 @@ class AddEditFormWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: MyTextFormWidget(
               screenSize: screenSize,
-                text: 'Bootspace',
+                text: 'Bootspace (Liters)',
                 enabledBorderColor: Colors.white,
                 valueTextColor: Colors.black,
                 focusedBorderColor: Colors.red,
@@ -372,7 +372,7 @@ class AddEditFormWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: MyTextFormWidget(
               screenSize: screenSize,
-                text: 'Car height',
+                text: 'Car Height (mm)',
                 enabledBorderColor: Colors.white,
                 valueTextColor: Colors.black,
                 focusedBorderColor: Colors.red,
@@ -389,7 +389,7 @@ class AddEditFormWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: MyTextFormWidget(
               screenSize: screenSize,
-                text: 'Car width',
+                text: 'Car Width (mm)',
                 enabledBorderColor: Colors.white,
                 valueTextColor: Colors.black,
                 focusedBorderColor: Colors.red,
@@ -406,7 +406,7 @@ class AddEditFormWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: MyTextFormWidget(
               screenSize: screenSize,
-                text: 'Car length',
+                text: 'Car Length (mm)',
                 enabledBorderColor: Colors.white,
                 valueTextColor: Colors.black,
                 focusedBorderColor: Colors.red,
@@ -423,7 +423,7 @@ class AddEditFormWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: MyTextFormWidget(
               screenSize: screenSize,
-                text: 'Ground clearence',
+                text: 'Ground Clearence (mm)',
                 enabledBorderColor: Colors.white,
                 valueTextColor: Colors.black,
                 focusedBorderColor: Colors.red,
@@ -511,7 +511,7 @@ class AddEditFormWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: MyTextFormWidget(
               screenSize: screenSize,
-                text: 'Fuel Tank',
+                text: 'Fuel Tank (Liters)',
                 enabledBorderColor: Colors.white,
                 valueTextColor: Colors.black,
                 focusedBorderColor: Colors.red,
@@ -528,6 +528,7 @@ class AddEditFormWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: MyTextFormWidget(
               screenSize: screenSize,
+              wrapInContainer: true,
                 text: 'Overview',
                 enabledBorderColor: Colors.white,
                 valueTextColor: Colors.black,

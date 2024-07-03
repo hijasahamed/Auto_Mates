@@ -1,3 +1,4 @@
+import 'package:auto_mates/user/commonwidgets/custom_alertdialog/custom_alert_dialog.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:flutter/material.dart';
 
@@ -11,8 +12,7 @@ class UserFavouriteRemoveButton extends StatelessWidget {
     return InkWell(
       highlightColor: const Color(0xFFDBEDF5),
       onTap: () {
-        removeFavoriteCar(context: context,docId: data.id);
-        Navigator.pop(context);
+        removeFavoriteCar(context: context,docId: data.id);        
       },
       child: Ink(
         height: screenSize.height / 20,

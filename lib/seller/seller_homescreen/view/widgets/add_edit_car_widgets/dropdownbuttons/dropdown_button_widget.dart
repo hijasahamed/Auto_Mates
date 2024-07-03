@@ -32,6 +32,8 @@ class DropDownButtonWidget extends StatelessWidget {
       padding: const EdgeInsets.only(right: 10),
       child: DropdownButton<String>(
         underline: const SizedBox(),
+        dropdownColor: Colors.blue,
+        style: const TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
         elevation: 5,
         value: selectedItem,
         items: (isFuel==true) ? 

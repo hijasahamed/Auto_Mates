@@ -7,7 +7,8 @@ Future<void> selectYear(BuildContext context,controller,screenSize) async {
       builder: (BuildContext context) {
         int tempSelectedYear = DateTime.now().year;
         return AlertDialog(
-          title: const MyTextWidget(text: 'Select Year', color: Colors.black, size: 20, weight: FontWeight.bold),
+          backgroundColor: Colors.white,
+          title: MyTextWidget(text: 'Select Manufactur Year', color: Colors.blueGrey, size: screenSize.width/26, weight: FontWeight.bold),
           content: SizedBox(
             width: screenSize.width/2,
             height: screenSize.height/4.5,

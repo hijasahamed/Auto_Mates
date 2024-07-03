@@ -12,14 +12,14 @@ class CancelButton extends StatelessWidget {
         height: screenSize.height / 20,
         width: screenSize.width / 3.9,
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.red),
+          border: Border.all(color: Colors.blueGrey),
           borderRadius: BorderRadius.circular(5),
         ),
-        child: const Center(
+        child: Center(
           child: MyTextWidget(
             text: 'Cancel',
-            color: Colors.red,
-            size: 15,
+            color: Colors.blueGrey,
+            size: screenSize.width/30,
             weight: FontWeight.w500,
           ),
         ),
