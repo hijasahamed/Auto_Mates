@@ -1,3 +1,4 @@
+import 'package:auto_mates/seller/authentications/controllers/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbuttons/car_brand_drop_down.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbuttons/dropdown_button_widget.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/dropdownbuttons/insurence_date_picker.dart';
@@ -29,6 +30,7 @@ class MyTextFormWidget extends StatelessWidget {
     this.brandName,
     this.length,
     this.wrapInContainer,
+    this.fetchLocation,
     required this.labelTextColor,
     required this.enabledBorderColor,
     required this.focusedBorderColor,
@@ -55,6 +57,7 @@ class MyTextFormWidget extends StatelessWidget {
   final bool? length;
   final bool? brandName;
   final bool? wrapInContainer;
+  final bool? fetchLocation;
   final Color labelTextColor;
   final Color enabledBorderColor;
   final Color focusedBorderColor;
@@ -81,6 +84,9 @@ class MyTextFormWidget extends StatelessWidget {
         }
         else if(insurenceDate==true){
           await insurenceDatePicker(context: context,controller: controller);
+        }
+        else if(fetchLocation==true){
+          checkLocationPermission(context: context,locationController: controller);          
         }
         
       },

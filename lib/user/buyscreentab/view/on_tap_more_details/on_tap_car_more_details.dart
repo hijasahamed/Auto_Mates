@@ -36,7 +36,7 @@ class OnTapCarMoreDetailsCarScreen extends StatelessWidget {
             children: [
               SellerDetailsCardWidget(
                 screenSize: screenSize,
-                data: data,
+                sellerData: data,
               ),
               CarDetailsWidget(
                 screenSize: screenSize,

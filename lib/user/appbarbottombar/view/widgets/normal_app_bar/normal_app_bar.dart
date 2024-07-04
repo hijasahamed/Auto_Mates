@@ -23,6 +23,7 @@ class NormalAppBar extends StatelessWidget {
       this.isFromFilterPage,
       this.isFromEmi,
       this.isCompare,
+      this.isMapScreen,
       this.compareCarsBlocInstance,this.previousComparisonBlocInstance
       });
   final String title;
@@ -37,12 +38,13 @@ class NormalAppBar extends StatelessWidget {
   final bool? isCompare;
   final ProfileScreenBloc? compareCarsBlocInstance;
   final ProfileScreenBloc? previousComparisonBlocInstance;
+  final bool? isMapScreen;
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: (isMapScreen == true)? Colors.blue : Colors.white,
       flexibleSpace:
-          (isFromFilterResultPage == true) ? null : (isFromEmi==true) ? const EmiScreenAppBar() : const AppBarGradientColor(),
+          (isFromFilterResultPage == true || isMapScreen==true) ? null : (isFromEmi==true) ? const EmiScreenAppBar() : const AppBarGradientColor(),
       leading: IconButton(
           onPressed: () {
             if (isFromFilterResultPage == true) {

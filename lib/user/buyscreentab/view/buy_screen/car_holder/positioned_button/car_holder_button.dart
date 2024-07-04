@@ -2,7 +2,6 @@ import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/all_cars_to_sell/pop_up_button/popup_menu_button_widget.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/car_holder/fav_icon/favourite_icon.dart';
 import 'package:auto_mates/user/commonwidgets/custom_alertdialog/custom_alert_dialog.dart';
-import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:flutter/material.dart';
 
 class CarHolderButton extends StatelessWidget {
@@ -36,8 +35,7 @@ class CarHolderButton extends StatelessWidget {
                                   )),
                                   constraints: const BoxConstraints(
                                       maxHeight: 30, maxWidth: 30),
-                                  onPressed: () {
-                                    // removeFavoriteCar(docId: data.id, context: context);
+                                  onPressed: () {                                    
                                     showDialog(
                                       barrierDismissible: false,
                                       context: context, 

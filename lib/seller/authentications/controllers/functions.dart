@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/seller/authentications/view/bloc/seller_authentication_bloc.dart';
 import 'package:auto_mates/seller/authentications/view/otp_verification_screen.dart';
+import 'package:auto_mates/user/commonwidgets/map_screen/map_screen.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/splashscreen/controllers/functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,8 +12,10 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:pinput/pinput.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 String otpWarn =
     'Please enter the OTP sent to your registered phone number to complete your verification.';
@@ -213,6 +216,7 @@ addSellerDetailsToDb({companyName, location, phoneNumber}) async {
       FirebaseFirestore.instance.collection('sellerSignupData');
   String? imageUrl = await addSellerProfileToDb();
   final data = {
+    'mapLocation': locationLatLon,
     'sellerProfile': imageUrl,
     'companyName': companyName,
     'location': location,
@@ -281,3 +285,24 @@ final submittedPinTheme = defaultPinTheme.copyWith(
     color: const Color.fromRGBO(234, 239, 243, 1),
   ),
 );
+
+
+// fetching location part logics
+
+dynamic locationLatLon;
+dynamic address;
+
+
+void checkLocationPermission({context,locationController}) async {
+  PermissionStatus locationStatus = await Permission.location.request();
+  if (locationStatus.isGranted) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+      return MapScreen(locationController: locationController,);
+    },));
+  } else if (locationStatus.isDenied) {
+  } else if (locationStatus.isPermanentlyDenied) {
+    openAppSettings();
+  }
+}
+
+

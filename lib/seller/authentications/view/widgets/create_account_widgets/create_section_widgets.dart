@@ -1,3 +1,4 @@
+
 import 'package:auto_mates/user/commonwidgets/text_form_field/text_form_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +47,8 @@ class CreateSectionWidget extends StatelessWidget {
                     SizedBox(height: screenSize.height/60,),
                 MyTextFormWidget(
                   screenSize: screenSize,
-                    text: 'Location',
+                  fetchLocation: true,
+                    text: 'Fetch Location',
                     enabledBorderColor: Colors.white,
                     focusedBorderColor: Colors.red,
                     labelTextColor: Colors.grey,
@@ -55,9 +57,9 @@ class CreateSectionWidget extends StatelessWidget {
                     controller: locationController,
                     warning: 'Enter your company location',
                     obscure: false,
-                    keyBoardType: TextInputType.streetAddress,
+                    keyBoardType: TextInputType.none,
                     textCapitalization: TextCapitalization.words),
-                    SizedBox(height: screenSize.height/60,),
+                SizedBox(height: screenSize.height/60,),               
                 MyTextFormWidget(
                   screenSize: screenSize,
                     text: 'Phone Number',
