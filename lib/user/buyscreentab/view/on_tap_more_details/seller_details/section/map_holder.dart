@@ -1,4 +1,5 @@
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -21,9 +22,20 @@ class MapHolder extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasError) {
-              return const Center(child: Text('Error loading map location'));
+              return Center(child:  MyTextWidget(text: 'No Location Available', color: Colors.blueGrey, size: screenSize.width/30, weight: FontWeight.bold));
             } else if (!snapshot.hasData || snapshot.data == null) {
-              return const Center(child: Text('No Location Available'));
+              return Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(11),
+                  image: const DecorationImage(image: AssetImage('assets/images/gmap.png'),fit: BoxFit.cover)
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(11),
+                    color: Colors.black45
+                  ),
+                  child: Center(child: MyTextWidget(text: 'No Location Available', color: Colors.white, size: screenSize.width/30, weight: FontWeight.bold)))
+              );
             } else {
               final mapLocation = snapshot.data!;
               final lat = mapLocation['lat']!;
@@ -35,7 +47,7 @@ class MapHolder extends StatelessWidget {
                     onTap: (tapPosition, point) {
                       checkLocationPermissionToViewSellerMap(lat, long);
                     },
-                    initialZoom: 5,
+                    initialZoom: 12,
                     initialCenter: LatLng(
                       lat,
                       long

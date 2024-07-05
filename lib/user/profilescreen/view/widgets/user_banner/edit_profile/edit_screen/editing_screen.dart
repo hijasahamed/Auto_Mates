@@ -147,6 +147,7 @@ class _EditingScreenState extends State<EditingScreen> {
               );
             },
             child: BottomAppBar(
+              height: widget.screenSize.height/12.5,
               color: Colors.white,
               child: Container(
                 decoration: BoxDecoration(
@@ -159,10 +160,10 @@ class _EditingScreenState extends State<EditingScreen> {
                       if(state is UpdateUserLoadingState){
                         return const CircularProgressIndicator(color: Colors.white,);
                       }else{
-                        return const MyTextWidget(
+                        return MyTextWidget(
                           text: 'Update User Details',
                           color: Colors.white,
-                          size: 16,
+                          size: widget.screenSize.width/30,
                           weight: FontWeight.bold);
                       }
                     },

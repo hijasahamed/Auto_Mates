@@ -1,5 +1,6 @@
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/car_holder/fav_icon/favourite_icon.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class CarImage extends StatelessWidget {
@@ -18,37 +19,51 @@ class CarImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isImagesNotAvailable = false;
+    CarouselController carouselController = CarouselController();
+    List<String> imageUrls = List<String>.from(data['image']);
     return Stack(
       children: [
         ClipRRect(
-          borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-          child: FadeInImage(
-              fadeInDuration: const Duration(milliseconds: 500),
+          borderRadius: BorderRadius.circular(10),
+          child: CarouselSlider.builder(
+            carouselController: carouselController,
+            itemCount: imageUrls.length,
+            itemBuilder: (BuildContext context, int index, int realIndex) {
+              String imageUrl = imageUrls[index];
+              return SizedBox(
+                width: screenSize.width,
+                child: Image.network(
+                  imageUrl,
+                  fit: BoxFit.cover,
+                  errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                    return const Center(child: Text('No Image'));
+                  },
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if(loadingProgress==null){
+                      return child;
+                    }else{
+                      return Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.blue,
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
+                              : null,
+                        ),
+                      );
+                    }
+                  },
+                ),
+              );
+            },
+            options: CarouselOptions(
+              scrollDirection: Axis.horizontal,
+              viewportFraction: 1,
               height: screenSize.height / 4,
-              width: screenSize.width,
-              placeholder: const AssetImage(
-                'assets/images/image placeholder.jpeg',
-              ),
-              placeholderFit: BoxFit.cover,
-              imageErrorBuilder: (context, error, stackTrace) {
-                isImagesNotAvailable==true;
-                return Container(
-                  height: screenSize.height / 4,
-                  width: screenSize.width,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.grey,width: 1),
-                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10))
-                  ),
-                  child: const Center(
-                    child: MyTextWidget(text: 'No Images', color: Colors.grey, size: 15, weight: FontWeight.w600),
-                  ),
-                );
-              },
-              image: NetworkImage(data['image'][0]),
-              fit: BoxFit.cover,
-              filterQuality: FilterQuality.high),
+              autoPlay: true,
+              enlargeCenterPage: false,
+              enableInfiniteScroll: imageUrls.length > 1,
+            ),
+          ),
         ),
         (isImagesNotAvailable==true)?const SizedBox()
         :  Positioned(

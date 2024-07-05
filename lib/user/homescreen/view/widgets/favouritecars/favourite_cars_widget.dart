@@ -1,6 +1,7 @@
 
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/homescreen/controllers/functions/functions.dart';
+import 'package:auto_mates/user/homescreen/view/widgets/favouritecars/Fav_car_image_holder/fav_car_image_holder.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/favourite_screen/favourite_screen/favourite_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -64,38 +65,11 @@ class _FavouriteCarsWidgetState extends State<FavouriteCarsWidget> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            MyTextWidget(text: 'Favourite cars', color: const Color(0xff424141), size: widget.screenSize.width/16.5, weight: FontWeight.bold), 
+                            MyTextWidget(text: 'My Favourites', color: const Color(0xff424141), size: widget.screenSize.width/16.5, weight: FontWeight.bold), 
                             Stack(
                               alignment: Alignment.center,
                               children: [ 
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: CarouselSlider.builder(
-                                    carouselController: carouselController,
-                                    itemCount: cars.length,
-                                    itemBuilder: (BuildContext context, int index, int realIndex) {
-                                      String imageUrl = cars[index]['thumbnail'];
-                                      return SizedBox(
-                                        width: widget.screenSize.width,
-                                        child: Image.network(
-                                          imageUrl,
-                                          fit: BoxFit.cover,
-                                          errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
-                                            return const Text('No Image');
-                                          },
-                                        ),
-                                      );
-                                    },
-                                    options: CarouselOptions(
-                                      scrollDirection: Axis.horizontal,
-                                      viewportFraction: 1,
-                                      height: widget.screenSize.height / 4.9,
-                                      autoPlay: true,
-                                      enlargeCenterPage: false,
-                                      enableInfiniteScroll: cars.length > 1,
-                                    ),
-                                  ),
-                                ),
+                                FavCarImageHolder(carouselController: carouselController, cars: cars, screenSize: widget.screenSize),
                                 if (cars.length > 1) ...[
                                       Positioned(
                                         left: 10,
