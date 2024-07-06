@@ -11,22 +11,37 @@ class MapHolder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 2,
-      color: Colors.white,
-      child: SizedBox(
+      elevation: 5,
+      color: Colors.transparent,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          border: Border.all(width: .1,color: Colors.grey),
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: const [
+            BoxShadow(
+              color: Color.fromARGB(255, 198, 197, 197),
+              spreadRadius: 2,
+              blurRadius: 5,
+              blurStyle: BlurStyle.normal,
+              offset: Offset(0, 3),
+            ),
+          ],          
+        ),
         height: screenSize.height / 5,
         width: screenSize.width / 2,
         child: FutureBuilder<Map<String, double>?>(
           future: getMapLocationFromSeller(sellerData['sellerId']),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator(color: Colors.white,));
             } else if (snapshot.hasError) {
               return Center(child:  MyTextWidget(text: 'No Location Available', color: Colors.blueGrey, size: screenSize.width/30, weight: FontWeight.bold));
             } else if (!snapshot.hasData || snapshot.data == null) {
               return Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(11),
+                  
                   image: const DecorationImage(image: AssetImage('assets/images/gmap.png'),fit: BoxFit.cover)
                 ),
                 child: Container(

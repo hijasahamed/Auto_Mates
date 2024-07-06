@@ -13,13 +13,18 @@ class BuyScreen extends StatelessWidget {
   const BuyScreen({
     super.key,
   });
+
+  Future<void> refreshData() async {
+    await Future.delayed(const Duration(seconds: 2));
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final controller =  ScrollController();
     controller.addListener(() {
       if(controller.offset == controller.position.maxScrollExtent){
-        snackbarWidget('End of the list.No more cars', context, const Color.fromARGB(255, 126, 126, 126), Colors.white, SnackBarBehavior.fixed);
+        snackbarWidget('No more data to view', context, Colors.red, Colors.white, SnackBarBehavior.floating);
       }
     },) ;
     return StreamBuilder(
@@ -35,29 +40,34 @@ class BuyScreen extends StatelessWidget {
             body: Column(
               children: [
                 Expanded(
-                  child: SizedBox(
-                    child: GridView.builder(
-                      controller: controller,
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      itemCount: snapshot.data!.docs.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        childAspectRatio: .75,
-                        mainAxisSpacing: 3,
-                        crossAxisSpacing: 3,
-                        crossAxisCount: 2,
+                  child: RefreshIndicator(
+                    onRefresh: refreshData,
+                    color: Colors.blue,
+                    backgroundColor: Colors.white,
+                    child: SizedBox(
+                      child: GridView.builder(
+                        controller: controller,
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount: snapshot.data!.docs.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          childAspectRatio: .75,
+                          mainAxisSpacing: 3,
+                          crossAxisSpacing: 3,
+                          crossAxisCount: 2,
+                        ),
+                        itemBuilder: (context, index) {
+                          final DocumentSnapshot data =
+                              snapshot.data.docs[index];
+                          return CarHolder(
+                            screenSize: screenSize,
+                            data: data,
+                            isFromSeller: false,
+                            isFromUser: true,
+                          );
+                        },
                       ),
-                      itemBuilder: (context, index) {
-                        final DocumentSnapshot data =
-                            snapshot.data.docs[index];
-                        return CarHolder(
-                          screenSize: screenSize,
-                          data: data,
-                          isFromSeller: false,
-                          isFromUser: true,
-                        );
-                      },
                     ),
                   ),
                 ),
