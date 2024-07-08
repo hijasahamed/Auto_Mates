@@ -9,19 +9,22 @@ class ChatController extends ChangeNotifier{
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   //Send meddage
-  Future<void> sendMessage(String receiverId, String message)async{
+  Future<void> sendMessage({receiverId, message,senderName})async{
 
     final String currentUserId = firebaseAuth.currentUser!.uid;
     final String currentUserEmail = firebaseAuth.currentUser!.email.toString();
     final Timestamp timestamp = Timestamp.now();
+
 
     Message newMessage = Message(
       senderId: currentUserId, 
       senderEmail: currentUserEmail, 
       receiverId: receiverId, 
       message: message, 
-      timeStamp: timestamp
+      timeStamp: timestamp,
+      senderName: senderName
     );
+
 
     List<String> ids = [currentUserId,receiverId];
     ids.sort();
@@ -31,9 +34,10 @@ class ChatController extends ChangeNotifier{
     .doc(chatRoomId)
     .collection('messages')
     .add(newMessage.toMap());
+  }
 
-    Stream<QuerySnapshot> getMessages(String userId , String otherUserId ){
-      List<String> ids = [userId,otherUserId];
+  getMessages({receiverId ,userId} ){
+      List<String> ids = [receiverId ,userId];
       ids.sort();
       String chatRoomId = ids.join("_");
 
@@ -41,9 +45,8 @@ class ChatController extends ChangeNotifier{
         .collection('chat_room')
         .doc(chatRoomId)
         .collection('messages')
-        .orderBy('timestamp',descending: false)
+        .orderBy('timeStamp',descending: false)
         .snapshots();
-    }
 
   }
 

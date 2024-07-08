@@ -34,7 +34,8 @@ class MyTextFormWidget extends StatelessWidget {
     required this.labelTextColor,
     required this.enabledBorderColor,
     required this.focusedBorderColor,
-    required this.valueTextColor
+    required this.valueTextColor,
+    this.isChat
   });
   final String text;
   final String warning;
@@ -62,6 +63,7 @@ class MyTextFormWidget extends StatelessWidget {
   final Color enabledBorderColor;
   final Color focusedBorderColor;
   final Color valueTextColor;
+  final bool? isChat;
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +73,7 @@ class MyTextFormWidget extends StatelessWidget {
       maxLines: (wrapInContainer==true)? null : 1,
       validator: (value) {
         if (value!.isEmpty) {
-          return warning;
+         return (isChat == true)? null : warning;
         }
         return null;
       },
@@ -113,7 +115,8 @@ class MyTextFormWidget extends StatelessWidget {
             : (infotainment==true) ? DropDownButtonWidget(controller: controller,isInfotainment: true,)
             : (bodyType==true) ? DropDownButtonWidget(controller: controller,isbodyType: true,)  
             : const SizedBox(),
-        labelText: text,
+        hintText: (isChat == true)? 'Message' : null,
+        labelText: (isChat == true) ? null : text,
         labelStyle: TextStyle(
             color: labelTextColor,
             fontWeight: FontWeight.w400),
