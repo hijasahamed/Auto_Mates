@@ -18,10 +18,11 @@ class ChatPage extends StatelessWidget {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   void sendMessage()async{
+    String chat = messageController.text;
+    messageController.clear();
     dynamic userName = await fetchUserDetails();
-    print(userName);
-    if(messageController.text.isNotEmpty){      
-      await chatControllerClass.sendMessage(receiverId: sellerData['sellerId'], message: messageController.text,senderName: userName.userName).then((value) => messageController.clear(),);     
+    if(chat != ''){      
+      await chatControllerClass.sendMessage(receiverId: sellerData['sellerId'], message: chat,senderName: userName.userName).then((value) => chat = '',);     
     }
   }
 

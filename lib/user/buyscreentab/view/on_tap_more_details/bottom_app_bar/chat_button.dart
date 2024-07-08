@@ -1,5 +1,3 @@
-import 'package:auto_mates/seller/authentications/model/model.dart';
-import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/chatscreen/view/chat_page/chat_page.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';

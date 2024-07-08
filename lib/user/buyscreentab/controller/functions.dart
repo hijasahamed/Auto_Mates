@@ -1,5 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:developer';
+
 import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
@@ -411,7 +413,7 @@ Future<Map<String, double>?> getMapLocationFromSeller(String sellerId) async {
       }
     }
   } catch (e) {
-    print('Error fetching map location: $e');
+    log(e.toString());
   }
   return null;
 }
