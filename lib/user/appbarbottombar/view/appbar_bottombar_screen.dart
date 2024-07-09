@@ -2,8 +2,8 @@ import 'package:auto_mates/user/appbarbottombar/controller/bloc/appbottombar_blo
 import 'package:auto_mates/user/appbarbottombar/view/widgets/appbar/app_bar_widget.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/drawer/drawer_widget.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/buy_screen.dart';
+import 'package:auto_mates/user/chatscreen/view/user_chat_screen/chat_screen.dart';
 import 'package:auto_mates/user/homescreen/view/home_screen.dart';
-import 'package:auto_mates/user/news/news_screen.dart';
 import 'package:auto_mates/user/profilescreen/view/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,14 +31,10 @@ class _AppbarBottomTabSwitchScreenState
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     List tabs = [
-      HomeScreen(
-        screenSize: screenSize,
-      ),
+      HomeScreen(screenSize: screenSize,),
       const BuyScreen(),
-      const NewsScreen(),
-      ProfileScreen(
-        screenSize: screenSize,
-      ),
+      UserChatScreen(screenSize: screenSize,),
+      ProfileScreen(screenSize: screenSize,),
     ];
     return BlocConsumer<AppbottombarBloc, AppbottombarState>(
       bloc: appbottombarBloc,
@@ -64,22 +60,22 @@ class _AppbarBottomTabSwitchScreenState
                 BottomNavigationBarItem(
                   backgroundColor: Colors.white,
                   icon: Icon(Icons.home),
-                  label: 'HOME',
+                  label: 'Home',
                 ),
                 BottomNavigationBarItem(
                   backgroundColor: Colors.white,
                   icon: Icon(Icons.car_rental),
-                  label: 'BUY',
+                  label: 'Buy',
                 ),
                 BottomNavigationBarItem(
                   backgroundColor: Colors.white,
                   icon: Icon(Icons.newspaper),
-                  label: 'NEWS',
+                  label: 'Chats',
                 ),
                 BottomNavigationBarItem(
                   backgroundColor: Colors.white,
                   icon: Icon(Icons.person),
-                  label: 'PROFILE',
+                  label: 'Profile',
                 ),
               ],
               selectedItemColor: const Color.fromARGB(255, 76, 207, 239),

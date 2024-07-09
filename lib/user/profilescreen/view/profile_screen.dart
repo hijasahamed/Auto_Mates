@@ -81,7 +81,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           future: fetch,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
+              return const Scaffold(backgroundColor: Colors.white,body: SizedBox.shrink());
             } else if (snapshot.hasError) {
               return NoDataErrorPlaceholder(
                   screenSize: widget.screenSize,

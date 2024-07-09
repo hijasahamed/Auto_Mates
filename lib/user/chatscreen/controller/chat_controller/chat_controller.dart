@@ -47,7 +47,16 @@ class ChatController extends ChangeNotifier{
         .collection('messages')
         .orderBy('timeStamp',descending: false)
         .snapshots();
+  }
 
+  Stream<List<QueryDocumentSnapshot>> getUsersChats({required String currentUserId}) {
+    return firestore.collection('chat_room').snapshots().map((snapshot) {
+      return snapshot.docs.where((doc) {
+        String documentId = doc.id;
+        List<String> parts = documentId.split('_');
+        return parts.contains(currentUserId);
+      }).toList();
+    });
   }
 
 }

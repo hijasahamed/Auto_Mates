@@ -39,3 +39,5 @@ class PreviousCompareCarScreenRefreshState extends ProfileScreenActionState{}
 class EditImageRefreshState extends ProfileScreenActionState{}
 
 class UpdateUserLoadingState extends ProfileScreenActionState{}
+
+class SelectCarForCompareRefreshState extends ProfileScreenActionState{}

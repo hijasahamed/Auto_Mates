@@ -44,19 +44,33 @@ class PreviousComparison extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: Column(
-                                    children: [
+                                    children: [                                     
                                       Expanded(
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                  image: NetworkImage(
-                                                      previousComparisonList[0]
-                                                          ['thumbnail']),
-                                                  fit: BoxFit.cover),
-                                              borderRadius:
-                                                  const BorderRadius.only(
-                                                      topLeft:
-                                                          Radius.circular(6))),
+                                        child: SizedBox(
+                                          width: screenSize.width,
+                                          child: Image.network(
+                                            previousComparisonList[0]['thumbnail'],
+                                            fit: BoxFit.cover,
+                                            loadingBuilder: (context, child, loadingProgress) {
+                                              if (loadingProgress == null) {
+                                                return child;
+                                              } else {
+                                                return Center(
+                                                  child: CircularProgressIndicator(
+                                                    color: Colors.blue,
+                                                    value: loadingProgress.expectedTotalBytes != null
+                                                        ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
+                                                        : null,
+                                                  ),
+                                                );
+                                              }
+                                            },
+                                            errorBuilder: (context, error, stackTrace) {
+                                              return const Center(
+                                                child: Text('Image not available'),
+                                              );
+                                            },
+                                          ),
                                         ),
                                       ),
                                       MyTextWidget(
@@ -79,19 +93,33 @@ class PreviousComparison extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Column(
-                                    children: [
+                                    children: [                                     
                                       Expanded(
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                  image: NetworkImage(
-                                                      previousComparisonList[1]
-                                                          ['thumbnail']),
-                                                  fit: BoxFit.cover),
-                                              borderRadius:
-                                                  const BorderRadius.only(
-                                                      topRight:
-                                                          Radius.circular(6))),
+                                        child: SizedBox(
+                                          width: screenSize.width,
+                                          child: Image.network(
+                                            previousComparisonList[1]['thumbnail'],
+                                            fit: BoxFit.cover,
+                                            loadingBuilder: (context, child, loadingProgress) {
+                                              if (loadingProgress == null) {
+                                                return child;
+                                              } else {
+                                                return Center(
+                                                  child: CircularProgressIndicator(
+                                                    color: Colors.blue,
+                                                    value: loadingProgress.expectedTotalBytes != null
+                                                        ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
+                                                        : null,
+                                                  ),
+                                                );
+                                              }
+                                            },
+                                            errorBuilder: (context, error, stackTrace) {
+                                              return const Center(
+                                                child: Text('Image not available'),
+                                              );
+                                            },
+                                          ),
                                         ),
                                       ),
                                       MyTextWidget(

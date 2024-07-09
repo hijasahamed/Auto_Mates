@@ -24,14 +24,14 @@ class BuyScreen extends StatelessWidget {
     final controller =  ScrollController();
     controller.addListener(() {
       if(controller.offset == controller.position.maxScrollExtent){
-        snackbarWidget('No more data to view', context, Colors.red, Colors.white, SnackBarBehavior.floating);
+        snackbarWidget('End of the list', context, Colors.white, Colors.blueGrey, SnackBarBehavior.fixed);
       }
     },) ;
     return StreamBuilder(
       stream: firebaseObject.orderBy('brand').snapshots(),
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {        
-          return SkelotonIndicatorGrid(screenSize: screenSize,);
+          return Scaffold(body: SkelotonIndicatorGrid(screenSize: screenSize,),backgroundColor: Colors.white,);
         }
         if (snapshot.hasData && snapshot.data.docs.isNotEmpty) {
           return Scaffold(

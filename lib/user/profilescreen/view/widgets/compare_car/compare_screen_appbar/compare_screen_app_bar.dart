@@ -1,4 +1,5 @@
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
+import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:flutter/material.dart';
 
 class CompareScreenAppBar extends StatelessWidget {
@@ -12,6 +13,8 @@ class CompareScreenAppBar extends StatelessWidget {
       leading: IconButton(
         onPressed: () {
           Navigator.pop(context);
+          carForComparing1.clear();
+          carForComparing2.clear();
         }, 
         icon: const Icon(Icons.arrow_back_ios_rounded,color: Colors.white,)
       ),

@@ -47,31 +47,7 @@ class AppBarWidget extends StatelessWidget {
       actions: [
         tabIndex==1?
         FilterButton(screenSize: screenSize)
-        : Stack(
-          children: [
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.notifications,
-                  color: Colors.white,
-                  size: 30,
-                )),
-            const Positioned(
-                right: 11,
-                top: 14,
-                child: CircleAvatar(
-                  radius: 6,
-                  backgroundColor: Color.fromARGB(255, 0, 112, 248),
-                )),
-            const Positioned(
-                right: 13,
-                top: 16,
-                child: CircleAvatar(
-                  radius: 4,
-                  backgroundColor: Colors.green,
-                ))
-          ],
-        )
+        : const SizedBox.shrink()
       ],
       flexibleSpace: const AppBarGradientColor(),
       bottom: tabIndex==1?

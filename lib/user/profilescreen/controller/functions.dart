@@ -145,6 +145,27 @@ Future<List<Map<String, dynamic>>> fetchAllCarsForComparing() async {
   }
 }
 
+addCarToComparingList({ car,context,carSelectionScreen}){
+  if(carForComparing1.isEmpty && !carForComparing2.any((comparedCar) => comparedCar['regNumber'] == car['regNumber'])){
+    carForComparing1.add(car);
+    carSelectionScreen.add(SelectCarForCompareRefreshEvent());
+  }else if(carForComparing2.isEmpty && !carForComparing1.any((comparedCar) => comparedCar['regNumber'] == car['regNumber'])){
+    carForComparing2.add(car);
+    carSelectionScreen.add(SelectCarForCompareRefreshEvent());
+  }
+  else if(carForComparing1.any((comparedCar) => comparedCar['regNumber'] == car['regNumber'])){
+    carForComparing1.clear();
+    carSelectionScreen.add(SelectCarForCompareRefreshEvent());
+  }
+  else if(carForComparing2.any((comparedCar) => comparedCar['regNumber'] == car['regNumber'])){
+    carForComparing2.clear();
+    carSelectionScreen.add(SelectCarForCompareRefreshEvent());
+  }
+  else{
+    snackbarWidget('Only two cars can be selected', context, Colors.white, Colors.blueGrey, SnackBarBehavior.fixed);
+  }
+}
+
 List<Map<String, dynamic>> carForComparing1 = [];
 List<Map<String, dynamic>> carForComparing2 = [];
 
