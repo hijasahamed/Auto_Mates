@@ -298,7 +298,7 @@ removeSellerFromFavourites({context,docId,sellerFavIconBlocInstance, bool? backN
   snackbarWidget('Seller removed from favourites', context, Colors.red, Colors.white, SnackBarBehavior.floating);
 }
 
-
+// Filtering Section
 
 final List<Map<String, dynamic>> filterdCarList = [];
 BuyScreenBloc filterCarLengthBlocInstance = BuyScreenBloc();
@@ -308,6 +308,7 @@ Future<void> filterCars({
   required String carToSellField,
   required List<Map<String, dynamic>> filterdCarList,
 }) async {
+
   final CollectionReference carsCollection = FirebaseFirestore.instance.collection('carstosell');
   Query query = carsCollection.where(carToSellField, isEqualTo: value);
   QuerySnapshot querySnapshot = await query.get();
@@ -317,6 +318,9 @@ Future<void> filterCars({
     bool exists = filterdCarList.any((car) => car['regNumber'] == carData['regNumber']);
     if (!exists) {
       filterdCarList.add(carData);
+    }
+    else{
+      filterdCarList.removeWhere((car) => car['regNumber'] == carData['regNumber']);
     }
   }
   filterCarLengthBlocInstance.add(ApplyFilterButtonTextRefreshEvent());
@@ -340,6 +344,9 @@ Future<void> filterCarsWithSeat({
       bool exists = filterdCarList.any((car) => car['regNumber'] == carData['regNumber']);
       if (!exists) {
         filterdCarList.add(carData);
+      }
+      else{
+      filterdCarList.removeWhere((car) => car['regNumber'] == carData['regNumber']);
       }
     }
   }
@@ -366,10 +373,16 @@ Future<void> filterCarsWithBudget({
       if (!exists) {
         filterdCarList.add(carData);
       }
+      else{
+      filterdCarList.removeWhere((car) => car['regNumber'] == carData['regNumber']);
+      }
     }
   }
   filterCarLengthBlocInstance.add(ApplyFilterButtonTextRefreshEvent());
 }
+
+
+
 
 // show seller loc on map
 

@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class FilterWithCarBrands extends StatelessWidget {
  FilterWithCarBrands({super.key, required this.screenSize});
   final Size screenSize;
-  final BuyScreenBloc carBrandSelectbloc=BuyScreenBloc();
+  final BuyScreenBloc carBrandSelectbloc = BuyScreenBloc();
 
   @override
   Widget build(BuildContext context) {
