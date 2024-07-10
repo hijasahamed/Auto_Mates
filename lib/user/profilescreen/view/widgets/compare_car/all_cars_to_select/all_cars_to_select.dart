@@ -1,7 +1,7 @@
-import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/compare_car/all_cars_to_select/all_cars_to_select_back_button/all_cars_to_select_back_button.dart';
+import 'package:auto_mates/user/profilescreen/view/widgets/compare_car/all_cars_to_select/all_cars_to_select_bottom_bar/all_cars_to_select_bottom_bar.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/compare_car/all_cars_to_select/all_cars_to_select_holder/all_cars_to_select_holder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,7 +24,7 @@ class AllCarsToSelect extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AllCarsToSelectBackButton(screenSize: screenSize),
+              AllCarsToSelectBackButton(screenSize: screenSize,carSelectionScreen: carSelectionScreen,compareCarsBlocInstance: compareCarsBlocInstance,),
               Expanded(
                 child: FutureBuilder(
                   future: fetchAllCarsForComparing(),
@@ -66,7 +66,12 @@ class AllCarsToSelect extends StatelessWidget {
                                         carSelectionScreen: carSelectionScreen,
                                         context: context);
                                   },
-                                  child: AllCarsToSelectHolder(screenSize: screenSize, carContainerColor: carContainerColor, car: car, isSelected: isSelected)
+                                  child: AllCarsToSelectHolder(
+                                    screenSize: screenSize, 
+                                    carContainerColor: carContainerColor, 
+                                    car: car, 
+                                    isSelected: isSelected
+                                  )
                                 ),
                               );
                             },
@@ -80,37 +85,11 @@ class AllCarsToSelect extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: BlocBuilder<ProfileScreenBloc, ProfileScreenState>(
-          bloc: carSelectionScreen,
-          builder: (context, state) {
-            return Visibility(
-                visible:
-                    carForComparing1.isNotEmpty && carForComparing2.isNotEmpty,
-                child: BottomAppBar(
-                  color: Colors.white,
-                  child: InkWell(
-                    onTap: () {
-                      if (carForComparing1.isNotEmpty &&
-                          carForComparing2.isNotEmpty) {
-                        Navigator.of(context).pop(context);
-                        compareCarsBlocInstance
-                            .add(CompareCarScreenRefreshEvent());
-                      }
-                    },
-                    child: Ink(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.green),
-                      child: Center(
-                          child: MyTextWidget(
-                              text: 'Select Cars',
-                              color: Colors.white,
-                              size: screenSize.width / 25,
-                              weight: FontWeight.bold)),
-                    ),
-                  ),
-                ));
-          },
-        ));
+        bottomNavigationBar: AllCarsToSelectBottomBar(
+          screenSize: screenSize, 
+          carSelectionScreen: carSelectionScreen, 
+          compareCarsBlocInstance: compareCarsBlocInstance
+        )
+      );
   }
 }

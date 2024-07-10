@@ -4,6 +4,7 @@ import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
+import 'package:auto_mates/user/search/view/bloc/search_bloc.dart';
 import 'package:auto_mates/user/splashscreen/controllers/functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -145,21 +146,38 @@ Future<List<Map<String, dynamic>>> fetchAllCarsForComparing() async {
   }
 }
 
-addCarToComparingList({ car,context,carSelectionScreen}){
+addCarToComparingList({ car,context,carSelectionScreen,searchBlocObj}){
+  // if(isSearching == true){
+  //   if(carForComparing1.isNotEmpty){
+  //     Navigator.of(context).pop();
+  //   }
+  // }
   if(carForComparing1.isEmpty && !carForComparing2.any((comparedCar) => comparedCar['regNumber'] == car['regNumber'])){
     carForComparing1.add(car);
     carSelectionScreen.add(SelectCarForCompareRefreshEvent());
+    if(searchBlocObj != null){
+      searchBlocObj.add(AddingCarForCompareSearchScreenRefreshEvent());
+    }
   }else if(carForComparing2.isEmpty && !carForComparing1.any((comparedCar) => comparedCar['regNumber'] == car['regNumber'])){
     carForComparing2.add(car);
     carSelectionScreen.add(SelectCarForCompareRefreshEvent());
+    if(searchBlocObj != null){
+      searchBlocObj.add(AddingCarForCompareSearchScreenRefreshEvent());
+    }
   }
   else if(carForComparing1.any((comparedCar) => comparedCar['regNumber'] == car['regNumber'])){
     carForComparing1.clear();
     carSelectionScreen.add(SelectCarForCompareRefreshEvent());
+    if(searchBlocObj != null){
+      searchBlocObj.add(AddingCarForCompareSearchScreenRefreshEvent());
+    }
   }
   else if(carForComparing2.any((comparedCar) => comparedCar['regNumber'] == car['regNumber'])){
     carForComparing2.clear();
     carSelectionScreen.add(SelectCarForCompareRefreshEvent());
+    if(searchBlocObj != null){
+      searchBlocObj.add(AddingCarForCompareSearchScreenRefreshEvent());
+    }
   }
   else{
     snackbarWidget('Only two cars can be selected', context, Colors.white, Colors.blueGrey, SnackBarBehavior.fixed);

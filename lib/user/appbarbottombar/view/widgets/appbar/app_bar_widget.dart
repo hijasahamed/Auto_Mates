@@ -23,7 +23,7 @@ class AppBarWidget extends StatelessWidget {
         child: InkWell(
           onTap: () {
             Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => SearchPage(screenSize: screenSize,)));
+            MaterialPageRoute(builder: (context) => SearchPage(screenSize: screenSize,isFromComaprisonScreen: false,)));
           },
           splashColor: Colors.white10,
           child: Row(
