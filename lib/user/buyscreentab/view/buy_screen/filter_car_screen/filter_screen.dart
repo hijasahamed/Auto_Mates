@@ -63,7 +63,7 @@ class FilterScreen extends StatelessWidget {
               ),
               child: InkWell(
                 onTap: () {
-                  Navigator.pushReplacement(context, MaterialPageRoute(
+                  Navigator.push(context, MaterialPageRoute(
                     builder: (context) {
                       return FilterResultsScreen(
                         filterdCarList: filterdCarList,

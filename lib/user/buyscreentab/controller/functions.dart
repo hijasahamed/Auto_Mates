@@ -301,10 +301,11 @@ removeSellerFromFavourites({context,docId,sellerFavIconBlocInstance, bool? backN
 // Filtering Section
 
 final List<Map<String, dynamic>> filterdCarList = [];
-BuyScreenBloc filterCarLengthBlocInstance = BuyScreenBloc();
+BuyScreenBloc filterCarLengthBlocInstance = BuyScreenBloc(); 
 
 Future<void> filterCars({
   required String value,
+  required String deletionKey,
   required String carToSellField,
   required List<Map<String, dynamic>> filterdCarList,
 }) async {
@@ -315,12 +316,13 @@ Future<void> filterCars({
 
   for (var doc in querySnapshot.docs) {
     Map<String, dynamic> carData = doc.data() as Map<String, dynamic>;
+    carData['deletionKey'] = deletionKey;
     bool exists = filterdCarList.any((car) => car['regNumber'] == carData['regNumber']);
     if (!exists) {
       filterdCarList.add(carData);
     }
     else{
-      filterdCarList.removeWhere((car) => car['regNumber'] == carData['regNumber']);
+      filterdCarList.removeWhere((car) => car['regNumber'] == carData['regNumber'] && car['deletionKey'] == carData['deletionKey']);
     }
   }
   filterCarLengthBlocInstance.add(ApplyFilterButtonTextRefreshEvent());
@@ -337,16 +339,19 @@ Future<void> filterCarsWithSeat({
 
   for (var doc in querySnapshot.docs) {
     Map<String, dynamic> carData = doc.data() as Map<String, dynamic>;
+    carData['seatDeletionKey'] = 'deleteWithSeat';
     String fieldValueStr = carData[carToSellField].toString();
     int? fieldValueInt = int.tryParse(fieldValueStr);
-
     if (fieldValueInt != null && fieldValueInt == valInt) {
       bool exists = filterdCarList.any((car) => car['regNumber'] == carData['regNumber']);
       if (!exists) {
         filterdCarList.add(carData);
       }
       else{
-      filterdCarList.removeWhere((car) => car['regNumber'] == carData['regNumber']);
+        bool containsDeletionKey = filterdCarList.any((car) => car.containsKey('seatDeletionKey'));
+        if(containsDeletionKey){       
+          filterdCarList.removeWhere((car) => car['regNumber'] == carData['regNumber'] && car['seatDeletionKey'] == carData['seatDeletionKey']);
+        }    
       }
     }
   }
@@ -354,6 +359,7 @@ Future<void> filterCarsWithSeat({
 }
 
 Future<void> filterCarsWithBudget({
+  required int index,
   required String value,
   required String carToSellField,
   required List<Map<String, dynamic>> filterdCarList,
@@ -365,16 +371,20 @@ Future<void> filterCarsWithBudget({
 
   for (var doc in querySnapshot.docs) {
     Map<String, dynamic> carData = doc.data() as Map<String, dynamic>;
+    carData['budgetDeletionKey'] = 'deleteWithbudget';
     String fieldValueStr = carData[carToSellField].toString();
     dynamic intbudget = fieldValueStr.split('.').first;
     int? fieldValueInt = int.tryParse(intbudget);
-    if (fieldValueInt != null && fieldValueInt < valInt) {
+    if (index<10?fieldValueInt != null && fieldValueInt < valInt:fieldValueInt != null && fieldValueInt > valInt) {
       bool exists = filterdCarList.any((car) => car['regNumber'] == carData['regNumber']);
       if (!exists) {
         filterdCarList.add(carData);
       }
       else{
-      filterdCarList.removeWhere((car) => car['regNumber'] == carData['regNumber']);
+        bool containsDeletionKey = filterdCarList.any((car) => car.containsKey('budgetDeletionKey'));
+        if(containsDeletionKey){       
+          filterdCarList.removeWhere((car) => car['regNumber'] == carData['regNumber'] && car['budgetDeletionKey'] == carData['budgetDeletionKey']);
+        }
       }
     }
   }

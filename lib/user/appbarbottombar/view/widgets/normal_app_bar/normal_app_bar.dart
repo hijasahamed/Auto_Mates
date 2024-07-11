@@ -50,8 +50,6 @@ class NormalAppBar extends StatelessWidget {
       leading: IconButton(
           onPressed: () {
             if (isFromFilterResultPage == true) {
-              filterdCarList.clear();
-              selectedCarFilterdList.clear();
               Navigator.pop(context);
             }
             else if(isFromFilterPage==true){
