@@ -30,7 +30,7 @@ class ChatController extends ChangeNotifier{
     ids.sort();
     String chatRoomId = ids.join("_");
 
-    await firestore.collection('chat_room')
+    await firestore.collection('chatRoom')
     .doc(chatRoomId)
     .collection('messages')
     .add(newMessage.toMap());
@@ -42,21 +42,26 @@ class ChatController extends ChangeNotifier{
       String chatRoomId = ids.join("_");
 
       return firestore
-        .collection('chat_room')
+        .collection('chatRoom')
         .doc(chatRoomId)
         .collection('messages')
         .orderBy('timeStamp',descending: false)
         .snapshots();
   }
+}
 
-  Stream<List<QueryDocumentSnapshot>> getUsersChats({required String currentUserId}) {
-    return firestore.collection('chat_room').snapshots().map((snapshot) {
-      return snapshot.docs.where((doc) {
-        String documentId = doc.id;
-        List<String> parts = documentId.split('_');
-        return parts.contains(currentUserId);
-      }).toList();
-    });
+
+Future<String?> getUsersChats({required String currentUserId}) async {
+  final CollectionReference chatRoomCollection = FirebaseFirestore.instance.collection('chatRoom');
+
+  QuerySnapshot querySnapshot = await chatRoomCollection.get();
+
+  if (querySnapshot.docs.isNotEmpty) {
+    String firstDocumentId = querySnapshot.docs.first.id;
+    print(firstDocumentId);
+    return firstDocumentId;
+  } else {
+    print('No documents found in chatRoom collection');
+    return null;
   }
-
 }

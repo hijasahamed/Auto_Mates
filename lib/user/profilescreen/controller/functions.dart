@@ -147,11 +147,6 @@ Future<List<Map<String, dynamic>>> fetchAllCarsForComparing() async {
 }
 
 addCarToComparingList({ car,context,carSelectionScreen,searchBlocObj}){
-  // if(isSearching == true){
-  //   if(carForComparing1.isNotEmpty){
-  //     Navigator.of(context).pop();
-  //   }
-  // }
   if(carForComparing1.isEmpty && !carForComparing2.any((comparedCar) => comparedCar['regNumber'] == car['regNumber'])){
     carForComparing1.add(car);
     carSelectionScreen.add(SelectCarForCompareRefreshEvent());
