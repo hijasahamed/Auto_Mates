@@ -50,18 +50,28 @@ class ChatController extends ChangeNotifier{
   }
 }
 
-
-Future<String?> getUsersChats({required String currentUserId}) async {
-  final CollectionReference chatRoomCollection = FirebaseFirestore.instance.collection('chatRoom');
-
-  QuerySnapshot querySnapshot = await chatRoomCollection.get();
-
-  if (querySnapshot.docs.isNotEmpty) {
-    String firstDocumentId = querySnapshot.docs.first.id;
-    print(firstDocumentId);
-    return firstDocumentId;
-  } else {
-    print('No documents found in chatRoom collection');
-    return null;
-  }
+Stream<QuerySnapshot> getUsersChats({required String currentUserId}) {
+  return FirebaseFirestore.instance
+      .collection('chatRoom')
+      .doc()
+      .collection('messages')
+      .where('senderId', isEqualTo: currentUserId)
+      .snapshots();
 }
+
+// Stream<List<DocumentSnapshot>> getUsersChats({required String currentUserId}) async* {
+//   CollectionReference chatRoomCollection = FirebaseFirestore.instance.collection('chatRoom');
+
+//   await for (QuerySnapshot snapshot in chatRoomCollection.snapshots()) {
+//     List<DocumentSnapshot> filteredDocuments = snapshot.docs.where((doc) {
+//       String docId = doc.id;
+//       print(docId);
+//       List<String> splitIds = docId.split('_');
+//       return splitIds.contains(currentUserId);
+//     }).toList();
+
+//     print(filteredDocuments);
+
+//     yield filteredDocuments;
+//   }
+// }
