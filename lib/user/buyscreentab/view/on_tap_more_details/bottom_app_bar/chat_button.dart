@@ -1,3 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/chatscreen/view/chat_page/chat_page.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +14,9 @@ class ChatButton extends StatelessWidget {
     return InkWell(
       highlightColor: const Color(0xFFDBEDF5),
       onTap: () async{
+       dynamic sellerDetails = await getSellerDetailsById(data['sellerId']);
        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-         return ChatPage(sellerData: data,screenSize: screenSize,);
+         return ChatPage(sellerData: sellerDetails,screenSize: screenSize,);
        },));
       },
       child: Ink(

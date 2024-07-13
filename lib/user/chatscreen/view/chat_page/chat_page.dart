@@ -6,7 +6,6 @@ import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 
 class ChatPage extends StatelessWidget {
@@ -22,7 +21,7 @@ class ChatPage extends StatelessWidget {
     messageController.clear();
     dynamic userName = await fetchUserDetails();
     if(chat != ''){      
-      await chatControllerClass.sendMessage(receiverId: sellerData['sellerId'], message: chat,senderName: userName.userName).then((value) => chat = '',);     
+      await chatControllerClass.sendMessage(receiverId: sellerData.id, message: chat,senderName: userName.userName).then((value) => chat = '',);     
     }
   }
 
@@ -32,7 +31,7 @@ class ChatPage extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 241, 241, 241),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50), 
-        child: NormalAppBar(title: sellerData['sellerName'],isChatScreen: true,)
+        child: NormalAppBar(title: sellerData.companyName,isChatScreen: true,)
       ),
       body: Column(
         children: [
@@ -47,7 +46,7 @@ class ChatPage extends StatelessWidget {
 
   Widget buildMessagesection(){
     return StreamBuilder(
-      stream: chatControllerClass.getMessages(receiverId: sellerData['sellerId'],userId: firebaseAuth.currentUser!.uid), 
+      stream: chatControllerClass.getMessages(receiverId: sellerData.id,userId: firebaseAuth.currentUser!.uid), 
       builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {        
         if(snapshot.hasError){
           return Text('Error ${snapshot.error}');
@@ -97,11 +96,6 @@ Widget showMessageItems({document}){
         ),
       ),
     );
-  }
-
-  String formatTimestamp(Timestamp timestamp) {
-  var date = timestamp.toDate();
-  return DateFormat('hh:mm a').format(date);
   }
 
   Widget sendMessageSection(){

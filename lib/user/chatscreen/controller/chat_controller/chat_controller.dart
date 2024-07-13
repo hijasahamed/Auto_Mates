@@ -2,6 +2,7 @@ import 'package:auto_mates/user/chatscreen/model/model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ChatController extends ChangeNotifier{
 
@@ -26,52 +27,58 @@ class ChatController extends ChangeNotifier{
     );
 
 
-    List<String> ids = [currentUserId,receiverId];
-    ids.sort();
-    String chatRoomId = ids.join("_");
+    // List<String> ids = [currentUserId,receiverId];
+    // ids.sort();
+    // String chatRoomId = ids.join("_");
+
+    // await firestore.collection('chatRoom')
+    // .doc(chatRoomId)
+    // .collection('messages')
+    // .add(newMessage.toMap());
 
     await firestore.collection('chatRoom')
-    .doc(chatRoomId)
+    .doc(currentUserId)
     .collection('messages')
     .add(newMessage.toMap());
+
   }
 
-  getMessages({receiverId ,userId} ){
-      List<String> ids = [receiverId ,userId];
-      ids.sort();
-      String chatRoomId = ids.join("_");
-
+  getMessages({receiverId ,userId} ){     
       return firestore
-        .collection('chatRoom')
-        .doc(chatRoomId)
-        .collection('messages')
-        .orderBy('timeStamp',descending: false)
-        .snapshots();
+            .collection('chatRoom')
+            .doc(userId)
+            .collection('messages')
+            .where('senderId',isEqualTo: userId)
+            .where('receiverId',isEqualTo: receiverId)           
+            .snapshots();
   }
 }
 
-Stream<QuerySnapshot> getUsersChats({required String currentUserId}) {
-  return FirebaseFirestore.instance
+Future<List<String>> getUsersChats({required String currentUserId}) async {
+  QuerySnapshot querySnapshot = await FirebaseFirestore.instance
       .collection('chatRoom')
-      .doc()
+      .doc(currentUserId)
       .collection('messages')
       .where('senderId', isEqualTo: currentUserId)
-      .snapshots();
+      .get();
+
+  Set<String> uniqueReceiverIds = querySnapshot.docs
+      .map((doc) => doc['receiverId'] as String)
+      .toSet();
+
+  return uniqueReceiverIds.toList();
 }
 
-// Stream<List<DocumentSnapshot>> getUsersChats({required String currentUserId}) async* {
-//   CollectionReference chatRoomCollection = FirebaseFirestore.instance.collection('chatRoom');
+Future<Map<String, dynamic>> getChattedSellerDetails(String sellerId) async {
+  DocumentSnapshot sellerSnapshot = await FirebaseFirestore.instance
+      .collection('sellerSignupData')
+      .doc(sellerId)
+      .get();
 
-//   await for (QuerySnapshot snapshot in chatRoomCollection.snapshots()) {
-//     List<DocumentSnapshot> filteredDocuments = snapshot.docs.where((doc) {
-//       String docId = doc.id;
-//       print(docId);
-//       List<String> splitIds = docId.split('_');
-//       return splitIds.contains(currentUserId);
-//     }).toList();
+  return sellerSnapshot.data() as Map<String, dynamic>;
+}
 
-//     print(filteredDocuments);
-
-//     yield filteredDocuments;
-//   }
-// }
+String formatTimestamp(Timestamp timestamp) {
+  var date = timestamp.toDate();
+  return DateFormat('hh:mm a').format(date);
+}

@@ -92,3 +92,31 @@ class SkelotonIndicatorGrid extends StatelessWidget {
     );
   }
 }
+
+
+class SkelotonIndicatorListForChats extends StatelessWidget {
+  const SkelotonIndicatorListForChats({super.key,required this.screenSize,required this.itemCount});
+  final Size screenSize;
+  final int itemCount;
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: itemCount,
+      itemBuilder: (context, index) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Skeleton(height: screenSize.height/12.5,width: screenSize.width/5,),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Skeleton(height: screenSize.height/50,width: screenSize.width/1.5,),
+                Skeleton(height: screenSize.height/60,width: screenSize.width/2.1,),
+              ],
+            )
+          ],
+        );
+      },
+    );
+  }
+}
