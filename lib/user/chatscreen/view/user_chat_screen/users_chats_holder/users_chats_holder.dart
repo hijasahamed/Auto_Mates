@@ -54,8 +54,7 @@ class UsersChatsHolder extends StatelessWidget {
                       size: screenSize.width / 25,
                       weight: FontWeight.bold),
                   StreamBuilder<QuerySnapshot>(
-                    stream: chatController.getMessages(
-                        userId: currentUserId, receiverId: receiverId),
+                    stream: chatController.getMessages(receiverId: receiverId),
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
                         return const SizedBox.shrink();

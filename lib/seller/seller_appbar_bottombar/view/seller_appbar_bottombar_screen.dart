@@ -1,5 +1,5 @@
 import 'package:auto_mates/seller/authentications/model/model.dart';
-import 'package:auto_mates/seller/chat_screen/chat_screen.dart';
+import 'package:auto_mates/seller/seller_chat_screen/view/chat_screen.dart';
 import 'package:auto_mates/seller/seller_appbar_bottombar/controllers/functions.dart';
 import 'package:auto_mates/seller/seller_appbar_bottombar/view/bloc/sellerappbottom_bloc.dart';
 import 'package:auto_mates/seller/seller_appbar_bottombar/view/widgets/seller_screen_appbar_widget.dart';
@@ -20,20 +20,9 @@ class Sellerappbarbottombar extends StatefulWidget {
 }
 
 class _SellerappbarbottombarState extends State<Sellerappbarbottombar> {
+
   final SellerappbottomBloc sellerAppBottomBloc = SellerappbottomBloc();
-
   int sellertabIndex = 0;
-
-  List<Widget> buildSellerTabs(SellerData data) {
-    return [
-      SellerHomeScreen(
-        data: data,
-      ),
-      const ChatScreen(),
-      SellerProfileScreen(data: data),
-    ];
-  }
-
   late Future<SellerData?> fetch;
 
   @override
@@ -41,14 +30,21 @@ class _SellerappbarbottombarState extends State<Sellerappbarbottombar> {
     fetch = fetchSellerDetails();
     super.initState();
   }
-
+  
   @override
   Widget build(BuildContext context) {
+     final screenSize = MediaQuery.of(context).size;
+     List<Widget> buildSellerTabs(SellerData data) {
+      return [
+        SellerHomeScreen(data: data,),
+        SellerChatScreen(screenSize: screenSize,currentSellerId: data,),
+        SellerProfileScreen(data: data),
+      ];
+    }
     return BlocConsumer<SellerappbottomBloc, SellerappbottomState>(
       bloc: sellerAppBottomBloc,
       listener: (context, state) {},
-      builder: (context, state) {
-        final screenSize = MediaQuery.of(context).size;
+      builder: (context, state) {       
         return FutureBuilder<SellerData?>(
           future: fetch,
           builder: (context, snapshot) {

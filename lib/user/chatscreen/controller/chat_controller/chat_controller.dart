@@ -28,18 +28,8 @@ class ChatController extends ChangeNotifier{
       senderName: senderName
     );
 
-
-    // List<String> ids = [currentUserId,receiverId];
-    // ids.sort();
-    // String chatRoomId = ids.join("_");
-
-    // await firestore.collection('chatRoom')
-    // .doc(chatRoomId)
-    // .collection('messages')
-    // .add(newMessage.toMap());
-
     await firestore.collection('chatRoom')
-    .doc(currentUserId)
+    .doc('chats')
     .collection('messages')
     .add(newMessage.toMap());
 
@@ -48,7 +38,7 @@ class ChatController extends ChangeNotifier{
   getMessages({receiverId ,userId} ){     
     return firestore
       .collection('chatRoom')
-      .doc(userId)
+      .doc('chats')
       .collection('messages')
       .where('senderId',isEqualTo: userId)
       .where('receiverId',isEqualTo: receiverId)          
@@ -56,28 +46,30 @@ class ChatController extends ChangeNotifier{
   }
 }
 
-Future<List<String>> getUsersChats({required String currentUserId}) async {
-  QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+Stream<List<String>> getUsersChatsWithSellersStream({required String currentUserId}) {
+  return FirebaseFirestore.instance
       .collection('chatRoom')
-      .doc(currentUserId)
+      .doc('chats')
       .collection('messages')
       .where('senderId', isEqualTo: currentUserId)
-      .get();
+      .snapshots()
+      .map((querySnapshot) {
+        List<QueryDocumentSnapshot> sortedDocs = querySnapshot.docs;
+        sortedDocs.sort((b, a) {
+          Timestamp aTimestamp = a['timeStamp'];
+          Timestamp bTimestamp = b['timeStamp'];
+          return aTimestamp.compareTo(bTimestamp);
+        });
 
-  List<QueryDocumentSnapshot> sortedDocs = querySnapshot.docs;
-  sortedDocs.sort((b, a) {
-    Timestamp aTimestamp = a['timeStamp'];
-    Timestamp bTimestamp = b['timeStamp'];
-    return aTimestamp.compareTo(bTimestamp);
-  });
+        LinkedHashSet<String> uniqueReceiverIds = LinkedHashSet();
+        for (var doc in sortedDocs) {
+          uniqueReceiverIds.add(doc['receiverId'] as String);
+        }
 
-  LinkedHashSet<String> uniqueReceiverIds = LinkedHashSet();
-  for (var doc in sortedDocs) {
-    uniqueReceiverIds.add(doc['receiverId'] as String);
-  }
-
-  return uniqueReceiverIds.toList();
+        return uniqueReceiverIds.toList();
+      });
 }
+
 
 String formatTimestamp(Timestamp timestamp) {
   var date = timestamp.toDate();
