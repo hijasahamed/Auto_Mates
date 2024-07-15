@@ -120,3 +120,25 @@ class SkelotonIndicatorListForChats extends StatelessWidget {
     );
   }
 }
+
+
+class SkelotonChatLoader extends StatelessWidget {
+  const SkelotonChatLoader({super.key,required this.screenSize});
+  final Size screenSize;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Skeleton(height: screenSize.height/12.5,width: screenSize.width/5,),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Skeleton(height: screenSize.height/50,width: screenSize.width/1.5,),
+            Skeleton(height: screenSize.height/60,width: screenSize.width/2.1,),
+          ],
+        )
+      ],
+    );
+  }
+}

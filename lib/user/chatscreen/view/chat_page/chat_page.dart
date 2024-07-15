@@ -54,9 +54,15 @@ class ChatPage extends StatelessWidget {
         else if(snapshot.connectionState == ConnectionState.waiting){
           return const Center(child: CircularProgressIndicator(color: Colors.blue,),);
         }
-        else{          
+        else{
+          List<DocumentSnapshot> sortedDocs = snapshot.data!.docs;
+          sortedDocs.sort((a, b) {
+            Timestamp aTimestamp = a['timeStamp'];
+            Timestamp bTimestamp = b['timeStamp'];
+            return aTimestamp.compareTo(bTimestamp);
+          });          
           return ListView(
-          children: snapshot.data!.docs.map((document) {
+          children: sortedDocs.map((document) {
             return showMessageItems(document: document);
           }).toList(),
         );
@@ -75,24 +81,28 @@ Widget showMessageItems({document}){
 
     return Container(
       alignment: alignment,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            MyTextWidget(text: data['senderName'], color: Colors.blueGrey, size: screenSize.width/45, weight: FontWeight.bold),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.blue
+      child: Container(
+        alignment: alignment,
+        width: screenSize.width/1.5,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              MyTextWidget(text: data['senderName'], color: Colors.blueGrey, size: screenSize.width/45, weight: FontWeight.bold),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.blue
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: MyTextWidget(text: data['message'], color: Colors.white, size: screenSize.width/30, weight: FontWeight.bold,maxline: true,),
+                )
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: MyTextWidget(text: data['message'], color: Colors.white, size: screenSize.width/30, weight: FontWeight.bold),
-              )
-            ),
-            MyTextWidget(text: formatTimestamp(data['timeStamp']), color: Colors.blueGrey, size: screenSize.width/45, weight: FontWeight.bold),
-          ],
+              MyTextWidget(text: formatTimestamp(data['timeStamp']), color: Colors.blueGrey, size: screenSize.width/45, weight: FontWeight.bold),
+            ],
+          ),
         ),
       ),
     );

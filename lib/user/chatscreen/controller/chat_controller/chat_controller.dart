@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:auto_mates/user/chatscreen/model/model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -44,13 +46,13 @@ class ChatController extends ChangeNotifier{
   }
 
   getMessages({receiverId ,userId} ){     
-      return firestore
-            .collection('chatRoom')
-            .doc(userId)
-            .collection('messages')
-            .where('senderId',isEqualTo: userId)
-            .where('receiverId',isEqualTo: receiverId)           
-            .snapshots();
+    return firestore
+      .collection('chatRoom')
+      .doc(userId)
+      .collection('messages')
+      .where('senderId',isEqualTo: userId)
+      .where('receiverId',isEqualTo: receiverId)          
+      .snapshots();
   }
 }
 
@@ -62,20 +64,19 @@ Future<List<String>> getUsersChats({required String currentUserId}) async {
       .where('senderId', isEqualTo: currentUserId)
       .get();
 
-  Set<String> uniqueReceiverIds = querySnapshot.docs
-      .map((doc) => doc['receiverId'] as String)
-      .toSet();
+  List<QueryDocumentSnapshot> sortedDocs = querySnapshot.docs;
+  sortedDocs.sort((b, a) {
+    Timestamp aTimestamp = a['timeStamp'];
+    Timestamp bTimestamp = b['timeStamp'];
+    return aTimestamp.compareTo(bTimestamp);
+  });
+
+  LinkedHashSet<String> uniqueReceiverIds = LinkedHashSet();
+  for (var doc in sortedDocs) {
+    uniqueReceiverIds.add(doc['receiverId'] as String);
+  }
 
   return uniqueReceiverIds.toList();
-}
-
-Future<Map<String, dynamic>> getChattedSellerDetails(String sellerId) async {
-  DocumentSnapshot sellerSnapshot = await FirebaseFirestore.instance
-      .collection('sellerSignupData')
-      .doc(sellerId)
-      .get();
-
-  return sellerSnapshot.data() as Map<String, dynamic>;
 }
 
 String formatTimestamp(Timestamp timestamp) {
