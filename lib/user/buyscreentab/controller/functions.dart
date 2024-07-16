@@ -145,7 +145,6 @@ Future<void> markUserInterest({context, car, isFromSearch}) async {
 }
 
 Future<SellerData?> getSellerDetailsById(String sellerId) async {
-  await Future.delayed(const Duration(milliseconds: 400));
   final CollectionReference sellerSignupFirebaseObject =
       FirebaseFirestore.instance.collection('sellerSignupData');
   try {

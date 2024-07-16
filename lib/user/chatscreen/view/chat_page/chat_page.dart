@@ -21,7 +21,7 @@ class ChatPage extends StatelessWidget {
     messageController.clear();
     dynamic userName = await fetchUserDetails();
     if(chat != ''){      
-      await chatControllerClass.sendMessage(receiverId: sellerData.id, message: chat,senderName: userName.userName).then((value) => chat = '',);     
+      await chatControllerClass.sendMessage(receiverId: sellerData.id, message: chat,senderName: userName.userName,userId: userName.id).then((value) => chat = '',);     
     }
   }
 

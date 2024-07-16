@@ -1,5 +1,5 @@
 import 'package:auto_mates/seller/authentications/model/model.dart';
-import 'package:auto_mates/seller/seller_chat_screen/controller/functions.dart';
+import 'package:auto_mates/seller/seller_chat_screen/controller/seller_chat_controller.dart';
 import 'package:auto_mates/user/chatscreen/view/user_chat_screen/users_no_chat_display/users_no_chat_display.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/commonwidgets/shimmer_effect/shimmer_effect.dart';
@@ -22,7 +22,7 @@ class SellerChatScreen extends StatelessWidget {
             return Center(
               child: MyTextWidget(
                 text: 'Something Went Wrong',
-                color: Colors.black,
+                color: Colors.blueGrey,
                 size: screenSize.width / 30,
                 weight: FontWeight.bold,
               ),
@@ -31,25 +31,29 @@ class SellerChatScreen extends StatelessWidget {
             return UsersNoChatDisplay(screenSize: screenSize);
           }
           else{
-            var usersIds = snapshot.data!;
-            // return FutureBuilder(
-            //   future: future, 
-            //   builder: (context, snapshot) {
-            //     if (snapshot.connectionState == ConnectionState.waiting) {
-            //       return SkelotonChatLoader(screenSize: screenSize);                      
-            //     } else if (snapshot.hasError) {
-            //       return const ListTile(
-            //         title: Text('Error loading seller details'),
-            //       );
-            //     } else if (!snapshot.hasData) {
-            //       return const SizedBox.shrink();
-            //     }else{
-
-            //     }
-            //   },
-            // );
+            var usersIds = snapshot.data!;            
+            return ListView.builder(
+              itemCount: usersIds.length,
+              itemBuilder: (context, index) {
+                var id = usersIds[index];
+                return FutureBuilder(
+                  future: getUserDetailsByUid(id), 
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return SkelotonChatLoader(screenSize: screenSize);                      
+                    } else if (snapshot.hasError) {
+                      return const SizedBox.shrink();
+                    } else if (!snapshot.hasData) {
+                      return const SizedBox.shrink();
+                    }else{
+                      var userData = snapshot.data!;
+                      return Text(userData.userName);
+                    }
+                  },
+                );
+              },
+            );
           }
-          return Text('hi');
         },
       ),
     );

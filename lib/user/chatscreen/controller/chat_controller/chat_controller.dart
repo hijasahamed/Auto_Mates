@@ -12,7 +12,7 @@ class ChatController extends ChangeNotifier{
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   //Send meddage
-  Future<void> sendMessage({receiverId, message,senderName})async{
+  Future<void> sendMessage({receiverId, message,senderName,userId})async{
 
     final String currentUserId = firebaseAuth.currentUser!.uid;
     final String currentUserEmail = firebaseAuth.currentUser!.email.toString();
@@ -20,7 +20,8 @@ class ChatController extends ChangeNotifier{
 
 
     Message newMessage = Message(
-      senderId: currentUserId, 
+      senderId: currentUserId,
+      userId:userId, 
       senderEmail: currentUserEmail, 
       receiverId: receiverId, 
       message: message, 

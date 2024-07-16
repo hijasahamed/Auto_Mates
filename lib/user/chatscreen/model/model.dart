@@ -4,6 +4,7 @@ class Message{
 
   final String senderId;
   final String senderEmail;
+  final String userId;
   final String receiverId;
   final String message;
   final Timestamp timeStamp;
@@ -12,6 +13,7 @@ class Message{
   Message({
     required this.senderId,
     required this.senderEmail,
+    required this.userId,
     required this.receiverId,
     required this.message,
     required this.timeStamp,
@@ -22,6 +24,7 @@ class Message{
     return{
       'senderId' : senderId,
       'senderEmail' : senderEmail,
+      'userId' : userId,
       'receiverId' : receiverId,
       'message' : message,
       'timeStamp' : timeStamp,
