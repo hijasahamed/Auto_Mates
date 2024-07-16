@@ -1,5 +1,6 @@
 import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/seller/seller_chat_screen/controller/seller_chat_controller.dart';
+import 'package:auto_mates/seller/seller_chat_screen/view/sellers_chat_screen/seller_chat_screen_chats_holder/seller_chat_screen_chats_holder.dart';
 import 'package:auto_mates/user/chatscreen/view/user_chat_screen/users_no_chat_display/users_no_chat_display.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/commonwidgets/shimmer_effect/shimmer_effect.dart';
@@ -37,7 +38,7 @@ class SellerChatScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 var id = usersIds[index];
                 return FutureBuilder(
-                  future: getUserDetailsByUid(id), 
+                  future: getUserDetailsById(id), 
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return SkelotonChatLoader(screenSize: screenSize);                      
@@ -47,7 +48,7 @@ class SellerChatScreen extends StatelessWidget {
                       return const SizedBox.shrink();
                     }else{
                       var userData = snapshot.data!;
-                      return Text(userData.userName);
+                      return SellerChatScreenChatsHolder(screenSize: screenSize,userdata: userData,currentSellerId: currentSellerId,);
                     }
                   },
                 );

@@ -28,7 +28,7 @@ Stream<List<String>> getSellersChatsWithUsersStream(
   });
 }
 
-Future<UserData?> getUserDetailsByUid(String userId) async {
+Future<UserData?> getUserDetailsById(String userId) async {
   final CollectionReference sellerSignupFirebaseObject =
       FirebaseFirestore.instance.collection('userSignupData');
   try {

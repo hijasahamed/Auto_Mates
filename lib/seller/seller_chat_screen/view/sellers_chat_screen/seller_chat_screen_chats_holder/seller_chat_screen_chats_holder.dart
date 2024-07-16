@@ -1,29 +1,24 @@
+import 'package:auto_mates/seller/authentications/model/model.dart';
+import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/chatscreen/controller/chat_controller/chat_controller.dart';
 import 'package:auto_mates/user/chatscreen/view/chat_page/chat_page.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class UsersChatsHolder extends StatelessWidget {
-  const UsersChatsHolder(
-      {super.key,
-      required this.screenSize,
-      required this.sellerData,
-      required this.chatController,
-      required this.currentUserId,
-      required this.receiverId});
+class SellerChatScreenChatsHolder extends StatelessWidget {
+  const SellerChatScreenChatsHolder({super.key,required this.screenSize,required this.userdata,required this.currentSellerId});
   final Size screenSize;
-  final dynamic sellerData;
-  final ChatController chatController;
-  final String currentUserId;
-  final String receiverId;
+  final UserData userdata;
+  final SellerData currentSellerId;
   @override
   Widget build(BuildContext context) {
+    ChatController chatController = ChatController();
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(
+       Navigator.of(context).push(MaterialPageRoute(
           builder: (context) {
-            return ChatPage(sellerData: sellerData, screenSize: screenSize,isFromSeller: false,);
+            return ChatPage(screenSize: screenSize,isFromSeller: true,);
           },
         ));
       },
@@ -34,11 +29,11 @@ class UsersChatsHolder extends StatelessWidget {
             children: [
               ClipOval(
                 child: Container(
-                  height: screenSize.height / 13,
-                  width: screenSize.height / 13,
+                  height: screenSize.height / 14,
+                  width: screenSize.height / 14,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage(sellerData.sellerProfile),
+                          image: NetworkImage(userdata.userProfile),
                           fit: BoxFit.cover)),
                 ),
               ),
@@ -49,12 +44,13 @@ class UsersChatsHolder extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   MyTextWidget(
-                      text: sellerData.companyName,
-                      color: Colors.blueGrey,
-                      size: screenSize.width / 25,
-                      weight: FontWeight.bold),
+                    text: userdata.userName,
+                    color: Colors.blueGrey,
+                    size: screenSize.width / 25,
+                    weight: FontWeight.bold
+                  ),
                   StreamBuilder<QuerySnapshot>(
-                    stream: chatController.getMessages(receiverId: receiverId,userId: currentUserId,isSeller: false),
+                    stream: chatController.getMessages(receiverId: currentSellerId.id,userId: userdata.id,isSeller: true),
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
                         return const SizedBox.shrink();
@@ -62,14 +58,14 @@ class UsersChatsHolder extends StatelessWidget {
                           ConnectionState.waiting) {
                         return const SizedBox.shrink();
                       } else {
-                        List<DocumentSnapshot> sortedDocs = snapshot.data!.docs;
-                        sortedDocs.sort((a, b) {
+                        List<DocumentSnapshot> sortedChats = snapshot.data!.docs;
+                        sortedChats.sort((a, b) {
                           Timestamp aTimestamp = a['timeStamp'];
                           Timestamp bTimestamp = b['timeStamp'];
                           return aTimestamp.compareTo(bTimestamp);
                         }); 
-                        var lastMessage = sortedDocs.last['message'];
-                        var timestamp = sortedDocs.last['timeStamp'];
+                        var lastMessage = sortedChats.last['message'];
+                        var timestamp = sortedChats.last['timeStamp'];
                         var formattedTimestamp = timestamp as Timestamp;
                         return SizedBox(
                           width: screenSize.width / 1.3,
@@ -97,7 +93,7 @@ class UsersChatsHolder extends StatelessWidget {
                     },
                   )
                 ],
-              ),
+              )
             ],
           ),
         ),

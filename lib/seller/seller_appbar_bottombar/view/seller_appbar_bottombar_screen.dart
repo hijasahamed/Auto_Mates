@@ -1,5 +1,5 @@
 import 'package:auto_mates/seller/authentications/model/model.dart';
-import 'package:auto_mates/seller/seller_chat_screen/view/seller_chat_screen.dart';
+import 'package:auto_mates/seller/seller_chat_screen/view/sellers_chat_screen/seller_chat_screen.dart';
 import 'package:auto_mates/seller/seller_appbar_bottombar/controllers/functions.dart';
 import 'package:auto_mates/seller/seller_appbar_bottombar/view/bloc/sellerappbottom_bloc.dart';
 import 'package:auto_mates/seller/seller_appbar_bottombar/view/widgets/seller_screen_appbar_widget.dart';

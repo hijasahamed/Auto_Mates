@@ -1,4 +1,6 @@
+import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
+import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/chatscreen/controller/chat_controller/chat_controller.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/commonwidgets/text_form_field/text_form_widget.dart';
@@ -9,9 +11,11 @@ import 'package:flutter/material.dart';
 
 
 class ChatPage extends StatelessWidget {
-  ChatPage({super.key,required this.sellerData,required this.screenSize});
-  final dynamic sellerData;
+  ChatPage({super.key,this.sellerData,required this.screenSize,required this.isFromSeller,this.userData});
+  final SellerData? sellerData;
+  final UserData? userData;
   final Size screenSize;
+  final bool isFromSeller;
   final TextEditingController messageController = TextEditingController();
   final ChatController chatControllerClass = ChatController();
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
@@ -21,7 +25,7 @@ class ChatPage extends StatelessWidget {
     messageController.clear();
     dynamic userName = await fetchUserDetails();
     if(chat != ''){      
-      await chatControllerClass.sendMessage(receiverId: sellerData.id, message: chat,senderName: userName.userName,userId: userName.id).then((value) => chat = '',);     
+      await chatControllerClass.sendMessage(receiverId: sellerData!.id, message: chat,senderName: userName.userName,userId: userName.id).then((value) => chat = '',);     
     }
   }
 
@@ -31,7 +35,7 @@ class ChatPage extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 241, 241, 241),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50), 
-        child: NormalAppBar(title: sellerData.companyName,isChatScreen: true,)
+        child: NormalAppBar(title: sellerData!.companyName,isChatScreen: true,)
       ),
       body: Column(
         children: [
@@ -46,7 +50,7 @@ class ChatPage extends StatelessWidget {
 
   Widget buildMessagesection(){
     return StreamBuilder(
-      stream: chatControllerClass.getMessages(receiverId: sellerData.id,userId: firebaseAuth.currentUser!.uid), 
+      stream: chatControllerClass.getMessages(receiverId: sellerData!.id,userId: firebaseAuth.currentUser!.uid,isSeller: false), 
       builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {        
         if(snapshot.hasError){
           return Text('Error ${snapshot.error}');
