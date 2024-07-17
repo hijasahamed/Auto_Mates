@@ -7,15 +7,15 @@ import 'package:auto_mates/user/commonwidgets/shimmer_effect/shimmer_effect.dart
 import 'package:flutter/material.dart';
 
 class SellerChatScreen extends StatelessWidget {
-  const SellerChatScreen({super.key,required this.screenSize,required this.currentSellerId});
+  const SellerChatScreen({super.key,required this.screenSize,required this.currentSeller});
   final Size screenSize;
-  final SellerData currentSellerId;
+  final SellerData currentSeller;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: StreamBuilder<List<String>>(
-        stream: getSellersChatsWithUsersStream(currentSellerId: currentSellerId.id), 
+        stream: getSellersChatsWithUsersStream(currentSellerId: currentSeller.id), 
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator(color: Colors.blue,),);
@@ -48,7 +48,7 @@ class SellerChatScreen extends StatelessWidget {
                       return const SizedBox.shrink();
                     }else{
                       var userData = snapshot.data!;
-                      return SellerChatScreenChatsHolder(screenSize: screenSize,userdata: userData,currentSellerId: currentSellerId,);
+                      return SellerChatScreenChatsHolder(screenSize: screenSize,userdata: userData,currentSeller: currentSeller,);
                     }
                   },
                 );

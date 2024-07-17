@@ -1,6 +1,7 @@
 import 'package:auto_mates/user/chatscreen/controller/chat_controller/chat_controller.dart';
 import 'package:auto_mates/user/chatscreen/view/chat_page/chat_page.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,7 @@ class UsersChatsHolder extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) {
-            return ChatPage(sellerData: sellerData, screenSize: screenSize,isFromSeller: false,);
+            return ChatPage(sellerData: sellerData, screenSize: screenSize,);
           },
         ));
       },
@@ -32,14 +33,25 @@ class UsersChatsHolder extends StatelessWidget {
           padding: const EdgeInsets.only(top: 10, left: 10, bottom: 10),
           child: Row(
             children: [
-              ClipOval(
-                child: Container(
-                  height: screenSize.height / 13,
-                  width: screenSize.height / 13,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage(sellerData.sellerProfile),
-                          fit: BoxFit.cover)),
+              CircleAvatar(
+                backgroundColor: Colors.white,
+                radius: screenSize.height / 30,
+                child: ClipOval(
+                  child: CachedNetworkImage(
+                    imageUrl: sellerData.sellerProfile,
+                    placeholder: (context, url) => const CircularProgressIndicator(
+                      color: Colors.blue,
+                    ),
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                    imageBuilder: (context, imageProvider) => Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
               SizedBox(

@@ -16,7 +16,7 @@ class ChatButton extends StatelessWidget {
       onTap: () async{
        dynamic sellerDetails = await getSellerDetailsById(data['sellerId']);
        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-         return ChatPage(sellerData: sellerDetails,screenSize: screenSize,isFromSeller: false,);
+         return ChatPage(sellerData: sellerDetails,screenSize: screenSize,);
        },));
       },
       child: Ink(

@@ -11,7 +11,7 @@ class ChatController extends ChangeNotifier{
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  //Send meddage
+
   Future<void> sendMessage({receiverId, message,senderName,userId})async{
 
     final String currentUserId = firebaseAuth.currentUser!.uid;
@@ -55,7 +55,7 @@ class ChatController extends ChangeNotifier{
   
 }
 
-Stream<List<String>> getUsersChatsWithSellersStream({required String currentUserId}) {
+Stream<List<String>> getChatsListOfUsersWithSellers({required String currentUserId}) {
   return FirebaseFirestore.instance
       .collection('chatRoom')
       .doc('chats')

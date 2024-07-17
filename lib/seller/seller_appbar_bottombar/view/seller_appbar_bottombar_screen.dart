@@ -37,7 +37,7 @@ class _SellerappbarbottombarState extends State<Sellerappbarbottombar> {
      List<Widget> buildSellerTabs(SellerData data) {
       return [
         SellerHomeScreen(data: data,),
-        SellerChatScreen(screenSize: screenSize,currentSellerId: data,),
+        SellerChatScreen(screenSize: screenSize,currentSeller: data,),
         SellerProfileScreen(data: data),
       ];
     }
