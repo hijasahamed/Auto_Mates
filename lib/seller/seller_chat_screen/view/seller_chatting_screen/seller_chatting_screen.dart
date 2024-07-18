@@ -8,17 +8,20 @@ import 'package:auto_mates/user/commonwidgets/text_form_field/text_form_widget.d
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class SellerChattingScreen extends StatelessWidget {
   SellerChattingScreen({super.key,required this.screenSize,required this.userdata,required this.currentSeller});
   final Size screenSize;
   final UserData userdata;
   final SellerData currentSeller;
-  
+
   final TextEditingController sellersMessageController = TextEditingController();
+
   final ChatController chatControllerClass = ChatController();
+
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,33 +41,81 @@ class SellerChattingScreen extends StatelessWidget {
     );
   }
 
-  Widget buildMessagesection(){
+  Widget buildMessagesection() {
     return StreamBuilder<List<QueryDocumentSnapshot>>(
       stream: getAllMessagesInChattingScreen(receiverId: userdata.id, userId: currentSeller.id),
-      builder: (context, snapshot) {        
-        if(snapshot.hasError){
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
           return Text('Error ${snapshot.error}');
-        }
-        else if(snapshot.connectionState == ConnectionState.waiting){
+        } else if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator(color: Colors.blue,),);
-        }
-        else{
+        } else {
           List<DocumentSnapshot> sortedDocs = snapshot.data!;
           sortedDocs.sort((a, b) {
             Timestamp aTimestamp = a['timeStamp'];
             Timestamp bTimestamp = b['timeStamp'];
             return aTimestamp.compareTo(bTimestamp);
-          });   
-          WidgetsBinding.instance.addPostFrameCallback((_) => scrollToEnd());         
+          });
+          WidgetsBinding.instance.addPostFrameCallback((_) => scrollToEnd());
+
+          Map<String, List<DocumentSnapshot>> groupedMessages = groupMessagesByDate(sortedDocs);
+
           return ListView(
             controller: screenScrollController,
-          children: sortedDocs.map((document) {
-            return showMessageItems(document: document);
-          }).toList(),
-        );
+            children: groupedMessages.entries.map((entry) {
+              String dateLabel = entry.key;
+              List<DocumentSnapshot> messages = entry.value;
+              return Scrollbar(
+                controller: screenScrollController,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: screenSize.width,
+                      color: const Color.fromARGB(255, 237, 237, 237),
+                      child: Center(child: MyTextWidget(text: dateLabel, color: Colors.blueGrey, size: screenSize.width/35, weight: FontWeight.bold)),
+                    ),
+                    ...messages.map((document) => showMessageItems(document: document)),
+                  ],
+                ),
+              );
+            }).toList(),
+          );
         }
       },
     );
+  }
+
+  Map<String, List<DocumentSnapshot>> groupMessagesByDate(List<DocumentSnapshot> sortedDocs) {
+    final Map<String, List<DocumentSnapshot>> groupedMessages = {};
+    final DateTime now = DateTime.now();
+
+    for (var doc in sortedDocs) {
+      final Timestamp timestamp = doc['timeStamp'];
+      final DateTime messageDate = timestamp.toDate();
+
+      String dateLabel;
+
+      if (isSameDay(messageDate, now)) {
+        dateLabel = 'Today';
+      } else if (isSameDay(messageDate, now.subtract(const Duration(days: 1)))) {
+        dateLabel = 'Yesterday';
+      } else {
+        dateLabel = DateFormat('dd MMM yyyy').format(messageDate);
+      }
+
+      if (!groupedMessages.containsKey(dateLabel)) {
+        groupedMessages[dateLabel] = [];
+      }
+
+      groupedMessages[dateLabel]!.add(doc);
+    }
+
+    return groupedMessages;
+  }
+
+  bool isSameDay(DateTime date1, DateTime date2) {
+    return date1.year == date2.year && date1.month == date2.month && date1.day == date2.day;
   }
 
   Widget showMessageItems({document}){
@@ -142,5 +193,4 @@ class SellerChattingScreen extends StatelessWidget {
       ),
     );
   }
-
 }

@@ -6,6 +6,7 @@ import 'package:auto_mates/user/chatscreen/controller/chat_controller/chat_contr
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SellerChatScreenChatsHolder extends StatelessWidget {
@@ -15,6 +16,8 @@ class SellerChatScreenChatsHolder extends StatelessWidget {
   final SellerData currentSeller;
   @override
   Widget build(BuildContext context) {
+    bool hasNewMessage;
+    int newMsgCount;
     return InkWell(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
@@ -52,64 +55,83 @@ class SellerChatScreenChatsHolder extends StatelessWidget {
               SizedBox(
                 width: screenSize.width / 50,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  MyTextWidget(
-                    text: userdata.userName,
-                    color: Colors.blueGrey,
-                    size: screenSize.width / 25,
-                    weight: FontWeight.bold
-                  ),
-                  StreamBuilder<List<QueryDocumentSnapshot>>(
-                    stream: getAllMessagesInChattingScreen(receiverId: currentSeller.id, userId: userdata.id),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasError) {
-                        return const SizedBox.shrink();
-                      } else if (snapshot.connectionState ==
-                          ConnectionState.waiting) {
-                        return const SizedBox.shrink();
-                      } else {
-                        List<DocumentSnapshot> sortedChats = snapshot.data!;
-                        sortedChats.sort((a, b) {
-                          Timestamp aTimestamp = a['timeStamp'];
-                          Timestamp bTimestamp = b['timeStamp'];
-                          return aTimestamp.compareTo(bTimestamp);
-                        }); 
-                        var lastMessage = sortedChats.last['message'];
-                        var timestamp = sortedChats.last['timeStamp'];
-                        var formattedTimestamp = timestamp as Timestamp;
-                        return SizedBox(
-                          width: screenSize.width / 1.3,
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                  width: screenSize.width / 1.8,
-                                  child: MyTextWidget(
-                                      text: lastMessage,
-                                      color: const Color.fromARGB(
-                                          255, 126, 126, 126),
-                                      size: screenSize.width / 30,
-                                      weight: FontWeight.w500)),
-                              const Spacer(),
-                              MyTextWidget(
-                                  text: formatTimestamp(formattedTimestamp),
-                                  color:
-                                      const Color.fromARGB(255, 126, 126, 126),
-                                  size: screenSize.width / 30,
-                                  weight: FontWeight.w500)
-                            ],
-                          ),
-                        );
-                      }
-                    },
-                  )
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    MyTextWidget(
+                      text: userdata.userName,
+                      color: Colors.blueGrey,
+                      size: screenSize.width / 25,
+                      weight: FontWeight.bold
+                    ),
+                    StreamBuilder<List<QueryDocumentSnapshot>>(
+                      stream: getAllMessagesInChattingScreen(receiverId: currentSeller.id, userId: userdata.id),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasError) {
+                          return const SizedBox.shrink();
+                        } else if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const SizedBox.shrink();
+                        } else {
+                          List<DocumentSnapshot> sortedChats = snapshot.data!;
+                          sortedChats.sort((a, b) {
+                            Timestamp aTimestamp = a['timeStamp'];
+                            Timestamp bTimestamp = b['timeStamp'];
+                            return aTimestamp.compareTo(bTimestamp);
+                          }); 
+                          var lastMessage = sortedChats.last['message'];
+                          var timestamp = sortedChats.last['timeStamp'];
+                          var formattedTimestamp = timestamp as Timestamp;
+                          
+                          final String currentSellerUid = FirebaseAuth.instance.currentUser!.uid;
+                          hasNewMessage = checkForNewMessage(sortedChats: sortedChats,currentId: currentSellerUid);
+                          newMsgCount = countNewMessages(sortedChats);
+
+                          return SizedBox(
+                            width: screenSize.width / 1.3,
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                    width: screenSize.width / 1.8,
+                                    child: MyTextWidget(
+                                        text: lastMessage,
+                                        color: const Color.fromARGB(
+                                            255, 126, 126, 126),
+                                        size: screenSize.width / 30,
+                                        weight: FontWeight.w500)),
+                                const Spacer(),
+                                MyTextWidget(
+                                    text: formatTimestamp(formattedTimestamp),
+                                    color:
+                                        const Color.fromARGB(255, 126, 126, 126),
+                                    size: screenSize.width / 30,
+                                    weight: FontWeight.w500
+                                ),
+                                if(hasNewMessage==true && newMsgCount>0)
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 5,left: 5),
+                                  child: CircleAvatar(
+                                    radius: 8,
+                                    backgroundColor: Colors.green,
+                                    child: Center(
+                                      child: MyTextWidget(text: newMsgCount.toString(), color: Colors.white, size: screenSize.width/40, weight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        }
+                      },
+                    )
+                  ],
+                ),
               )
             ],
           ),
         ),
       ),
     );
-  }
+  } 
 }

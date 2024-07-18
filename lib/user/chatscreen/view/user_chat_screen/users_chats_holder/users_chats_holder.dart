@@ -24,6 +24,8 @@ class UsersChatsHolder extends StatelessWidget {
   final UserData userData;
   @override
   Widget build(BuildContext context) {
+    bool hasNewMessage;
+    int newMsgCount;
     return InkWell(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
@@ -87,6 +89,10 @@ class UsersChatsHolder extends StatelessWidget {
                         var lastMessage = sortedDocs.last['message'];
                         var timestamp = sortedDocs.last['timeStamp'];
                         var formattedTimestamp = timestamp as Timestamp;
+
+                        hasNewMessage = checkForNewMessage(sortedChats: sortedDocs,currentId: currentUserId);
+                        newMsgCount = countNewMessages(sortedDocs);
+
                         return SizedBox(
                           width: screenSize.width / 1.3,
                           child: Row(
@@ -105,7 +111,18 @@ class UsersChatsHolder extends StatelessWidget {
                                   color:
                                       const Color.fromARGB(255, 126, 126, 126),
                                   size: screenSize.width / 30,
-                                  weight: FontWeight.w500)
+                                  weight: FontWeight.w500),
+                              if(hasNewMessage==true && newMsgCount>0)
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 5,left: 5),
+                                  child: CircleAvatar(
+                                    radius: 8,
+                                    backgroundColor: Colors.green,
+                                    child: Center(
+                                      child: MyTextWidget(text: newMsgCount.toString(), color: Colors.white, size: screenSize.width/40, weight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
                             ],
                           ),
                         );
