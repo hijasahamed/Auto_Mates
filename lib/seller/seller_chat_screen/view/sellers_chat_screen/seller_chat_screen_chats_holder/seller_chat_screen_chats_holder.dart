@@ -1,4 +1,5 @@
 import 'package:auto_mates/seller/authentications/model/model.dart';
+import 'package:auto_mates/seller/seller_chat_screen/controller/seller_chat_controller.dart';
 import 'package:auto_mates/seller/seller_chat_screen/view/seller_chatting_screen/seller_chatting_screen.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/chatscreen/controller/chat_controller/chat_controller.dart';
@@ -14,7 +15,6 @@ class SellerChatScreenChatsHolder extends StatelessWidget {
   final SellerData currentSeller;
   @override
   Widget build(BuildContext context) {
-    ChatController chatController = ChatController();
     return InkWell(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
@@ -61,8 +61,8 @@ class SellerChatScreenChatsHolder extends StatelessWidget {
                     size: screenSize.width / 25,
                     weight: FontWeight.bold
                   ),
-                  StreamBuilder<QuerySnapshot>(
-                    stream: chatController.getMessages(receiverId: currentSeller.id,userId: userdata.id,isSeller: true),
+                  StreamBuilder<List<QueryDocumentSnapshot>>(
+                    stream: getAllMessagesInChattingScreen(receiverId: currentSeller.id, userId: userdata.id),
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
                         return const SizedBox.shrink();
@@ -70,7 +70,7 @@ class SellerChatScreenChatsHolder extends StatelessWidget {
                           ConnectionState.waiting) {
                         return const SizedBox.shrink();
                       } else {
-                        List<DocumentSnapshot> sortedChats = snapshot.data!.docs;
+                        List<DocumentSnapshot> sortedChats = snapshot.data!;
                         sortedChats.sort((a, b) {
                           Timestamp aTimestamp = a['timeStamp'];
                           Timestamp bTimestamp = b['timeStamp'];

@@ -1,3 +1,4 @@
+import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/chatscreen/controller/chat_controller/chat_controller.dart';
 import 'package:auto_mates/user/chatscreen/view/user_chat_screen/users_chats_holder/users_chats_holder.dart';
@@ -8,9 +9,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class UserChatScreen extends StatelessWidget {
-  const UserChatScreen({super.key, required this.screenSize});
+  const UserChatScreen({super.key, required this.screenSize,required this.userData});
   final Size screenSize;
-
+  final UserData userData;
   @override
   Widget build(BuildContext context) {
     final String currentUserId = FirebaseAuth.instance.currentUser!.uid;
@@ -57,7 +58,8 @@ class UserChatScreen extends StatelessWidget {
                         sellerData: sellerData, 
                         chatController: chatController, 
                         currentUserId: currentUserId, 
-                        receiverId: receiverId
+                        receiverId: receiverId,
+                        userData: userData,
                       );
                     }
                   },

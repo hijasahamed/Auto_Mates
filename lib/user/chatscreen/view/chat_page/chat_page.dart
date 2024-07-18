@@ -1,29 +1,38 @@
 import 'package:auto_mates/seller/authentications/model/model.dart';
+import 'package:auto_mates/seller/seller_chat_screen/controller/seller_chat_controller.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
+import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/chatscreen/controller/chat_controller/chat_controller.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/commonwidgets/text_form_field/text_form_widget.dart';
-import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 
 class ChatPage extends StatelessWidget {
-  ChatPage({super.key,required this.sellerData,required this.screenSize,});
+  ChatPage({super.key,required this.sellerData,required this.screenSize,required this.userData});
   final SellerData sellerData;
   final Size screenSize;
+  final UserData userData;
 
   final TextEditingController messageController = TextEditingController();
   final ChatController chatControllerClass = ChatController();
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  final ScrollController screenScrollController = ScrollController();
 
   void sendMessage()async{
     String chat = messageController.text;
     messageController.clear();
-    dynamic userName = await fetchUserDetails();
     if(chat != ''){      
-      await chatControllerClass.sendMessage(receiverId: sellerData.id, message: chat,senderName: userName.userName,userId: userName.id).then((value) => chat = '',);     
+      await chatControllerClass.sendMessage(receiverId: sellerData.id, message: chat,senderName: userData.userName,userId: userData.id).then((value) => chat = '',); 
+      scrollToEnd();    
+    }
+  }
+
+  void scrollToEnd() { 
+    if (screenScrollController.hasClients) {
+      screenScrollController.jumpTo(screenScrollController.position.maxScrollExtent);
     }
   }
 
@@ -47,9 +56,9 @@ class ChatPage extends StatelessWidget {
   }
 
   Widget buildMessagesection(){
-    return StreamBuilder(
-      stream: chatControllerClass.getMessages(receiverId: sellerData.id,userId: firebaseAuth.currentUser!.uid,isSeller: false), 
-      builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {        
+    return StreamBuilder<List<QueryDocumentSnapshot>>(
+      stream: getAllMessagesInChattingScreen(receiverId: userData.id, userId: sellerData.id), 
+      builder: (context,snapshot) {        
         if(snapshot.hasError){
           return Text('Error ${snapshot.error}');
         }
@@ -57,17 +66,19 @@ class ChatPage extends StatelessWidget {
           return const Center(child: CircularProgressIndicator(color: Colors.blue,),);
         }
         else{
-          List<DocumentSnapshot> sortedDocs = snapshot.data!.docs;
+          List<DocumentSnapshot> sortedDocs = snapshot.data!;
           sortedDocs.sort((a, b) {
             Timestamp aTimestamp = a['timeStamp'];
             Timestamp bTimestamp = b['timeStamp'];
             return aTimestamp.compareTo(bTimestamp);
-          });          
+          });  
+          WidgetsBinding.instance.addPostFrameCallback((_) => scrollToEnd());         
           return ListView(
-          children: sortedDocs.map((document) {
-            return showMessageItems(document: document);
-          }).toList(),
-        );
+            controller: screenScrollController,
+            children: sortedDocs.map((document) {
+              return showMessageItems(document: document);
+            }).toList(),
+          );
         }
       },
     );

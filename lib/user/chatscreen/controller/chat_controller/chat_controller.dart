@@ -35,23 +35,6 @@ class ChatController extends ChangeNotifier{
     .add(newMessage.toMap());
 
   }
-
-  Stream<QuerySnapshot> getMessages({required String receiverId, required String userId, required bool isSeller}) {
-    Query query = FirebaseFirestore.instance
-        .collection('chatRoom')
-        .doc('chats')
-        .collection('messages')
-        .where('receiverId', isEqualTo: receiverId);
-
-    if (isSeller) {
-      query = query.where('userId', isEqualTo: userId);
-    } else {
-      query = query.where('senderId', isEqualTo: userId);
-    }
-
-    return query.snapshots();
-  }
-
   
 }
 

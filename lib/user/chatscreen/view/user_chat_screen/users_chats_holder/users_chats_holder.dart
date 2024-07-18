@@ -1,3 +1,5 @@
+import 'package:auto_mates/seller/seller_chat_screen/controller/seller_chat_controller.dart';
+import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/chatscreen/controller/chat_controller/chat_controller.dart';
 import 'package:auto_mates/user/chatscreen/view/chat_page/chat_page.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
@@ -12,19 +14,21 @@ class UsersChatsHolder extends StatelessWidget {
       required this.sellerData,
       required this.chatController,
       required this.currentUserId,
+      required this.userData,
       required this.receiverId});
   final Size screenSize;
   final dynamic sellerData;
   final ChatController chatController;
   final String currentUserId;
   final String receiverId;
+  final UserData userData;
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) {
-            return ChatPage(sellerData: sellerData, screenSize: screenSize,);
+            return ChatPage(sellerData: sellerData, screenSize: screenSize,userData: userData,);
           },
         ));
       },
@@ -65,8 +69,8 @@ class UsersChatsHolder extends StatelessWidget {
                       color: Colors.blueGrey,
                       size: screenSize.width / 25,
                       weight: FontWeight.bold),
-                  StreamBuilder<QuerySnapshot>(
-                    stream: chatController.getMessages(receiverId: receiverId,userId: currentUserId,isSeller: false),
+                  StreamBuilder<List<QueryDocumentSnapshot>>(
+                    stream: getAllMessagesInChattingScreen(receiverId: userData.id, userId: sellerData.id), 
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
                         return const SizedBox.shrink();
@@ -74,7 +78,7 @@ class UsersChatsHolder extends StatelessWidget {
                           ConnectionState.waiting) {
                         return const SizedBox.shrink();
                       } else {
-                        List<DocumentSnapshot> sortedDocs = snapshot.data!.docs;
+                        List<DocumentSnapshot> sortedDocs = snapshot.data!;
                         sortedDocs.sort((a, b) {
                           Timestamp aTimestamp = a['timeStamp'];
                           Timestamp bTimestamp = b['timeStamp'];

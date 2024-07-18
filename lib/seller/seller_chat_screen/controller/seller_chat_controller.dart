@@ -53,18 +53,6 @@ Future<UserData?> getUserDetailsById(String userId) async {
   return null;
 }
 
-// Stream<QuerySnapshot> getAllMessages({required String receiverId, required String userId,}) {
-//     Query query = FirebaseFirestore.instance
-//         .collection('chatRoom')
-//         .doc('chats')
-//         .collection('messages')
-//         .where('receiverId', isEqualTo: receiverId)
-//         .where('userId',isEqualTo: userId)
-//         .where('receiverId', isEqualTo: userId)
-//         .where('userId',isEqualTo: receiverId);    
-//      return query.snapshots();
-// }
-
 
 Stream<List<QueryDocumentSnapshot>> getAllMessagesInChattingScreen({required String receiverId, required String userId}) {
   Query query1 = FirebaseFirestore.instance
