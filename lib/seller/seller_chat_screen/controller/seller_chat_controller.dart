@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
 Stream<List<String>> getSellersChatsWithUsersStream({required String currentSellerId}) {
@@ -78,4 +79,24 @@ Stream<List<QueryDocumentSnapshot>> getAllMessagesInChattingScreen({required Str
     combinedList.addAll(snapshot2.docs);
     return combinedList;
   });
+}
+
+
+//chatting page 
+
+final ScrollController screenScrollController = ScrollController();
+
+void scrollToEnd() { 
+  if (screenScrollController.hasClients) {
+    screenScrollController.jumpTo(screenScrollController.position.maxScrollExtent);
+  }
+}
+
+void sellersSendMessage({sellersMessageController,chatControllerClass,userdata,currentSeller})async{
+  String chat = sellersMessageController.text;
+  sellersMessageController.clear();
+  if(chat != ''){      
+    await chatControllerClass.sendMessage(receiverId: userdata.id, message: chat,senderName: currentSeller.companyName,userId: currentSeller.id).then((value) => chat = '',);
+    scrollToEnd();     
+  }
 }

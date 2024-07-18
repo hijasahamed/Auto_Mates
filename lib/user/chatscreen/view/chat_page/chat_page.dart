@@ -19,22 +19,6 @@ class ChatPage extends StatelessWidget {
   final TextEditingController messageController = TextEditingController();
   final ChatController chatControllerClass = ChatController();
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-  final ScrollController screenScrollController = ScrollController();
-
-  void sendMessage()async{
-    String chat = messageController.text;
-    messageController.clear();
-    if(chat != ''){      
-      await chatControllerClass.sendMessage(receiverId: sellerData.id, message: chat,senderName: userData.userName,userId: userData.id).then((value) => chat = '',); 
-      scrollToEnd();    
-    }
-  }
-
-  void scrollToEnd() { 
-    if (screenScrollController.hasClients) {
-      screenScrollController.jumpTo(screenScrollController.position.maxScrollExtent);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +133,7 @@ Widget showMessageItems({document}){
             backgroundColor: Colors.green,
             child: IconButton(
               onPressed: () {
-              sendMessage();
+              usersSendMessage(chatControllerClass: chatControllerClass,messageController: messageController,sellerData: sellerData,userData: userData);
               }, 
               icon: Icon(Icons.send,color: Colors.white,size: screenSize.width/14,)
             ),

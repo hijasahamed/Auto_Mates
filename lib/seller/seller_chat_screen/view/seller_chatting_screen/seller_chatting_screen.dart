@@ -18,23 +18,7 @@ class SellerChattingScreen extends StatelessWidget {
   final TextEditingController sellersMessageController = TextEditingController();
   final ChatController chatControllerClass = ChatController();
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-  final ScrollController screenScrollController = ScrollController();
-
- void scrollToEnd() { 
-    if (screenScrollController.hasClients) {
-      screenScrollController.jumpTo(screenScrollController.position.maxScrollExtent);
-    }
-  }
-
-  void sendMessage()async{
-    String chat = sellersMessageController.text;
-    sellersMessageController.clear();
-    if(chat != ''){      
-      await chatControllerClass.sendMessage(receiverId: userdata.id, message: chat,senderName: currentSeller.companyName,userId: currentSeller.id).then((value) => chat = '',);
-      scrollToEnd();     
-    }
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,7 +67,7 @@ class SellerChattingScreen extends StatelessWidget {
     );
   }
 
-Widget showMessageItems({document}){
+  Widget showMessageItems({document}){
 
     Map<String,dynamic> data = document.data() as Map<String,dynamic>;
 
@@ -149,7 +133,7 @@ Widget showMessageItems({document}){
             backgroundColor: Colors.green,
             child: IconButton(
               onPressed: () {
-              sendMessage();
+              sellersSendMessage(chatControllerClass: chatControllerClass,currentSeller: currentSeller,sellersMessageController: sellersMessageController,userdata: userdata,);
               }, 
               icon: Icon(Icons.send,color: Colors.white,size: screenSize.width/14,)
             ),

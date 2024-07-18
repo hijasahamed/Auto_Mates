@@ -1,5 +1,6 @@
 import 'dart:collection';
 
+import 'package:auto_mates/seller/seller_chat_screen/controller/seller_chat_controller.dart';
 import 'package:auto_mates/user/chatscreen/model/model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -66,4 +67,13 @@ Stream<List<String>> getChatsListOfUsersWithSellers({required String currentUser
 String formatTimestamp(Timestamp timestamp) {
   var date = timestamp.toDate();
   return DateFormat('hh:mm a').format(date);
+}
+
+void usersSendMessage({messageController,chatControllerClass,sellerData,userData})async{
+  String chat = messageController.text;
+  messageController.clear();
+  if(chat != ''){      
+    await chatControllerClass.sendMessage(receiverId: sellerData.id, message: chat,senderName: userData.userName,userId: userData.id).then((value) => chat = '',); 
+    scrollToEnd();    
+  }
 }
