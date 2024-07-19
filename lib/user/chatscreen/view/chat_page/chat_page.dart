@@ -182,7 +182,7 @@ class ChatPage extends StatelessWidget {
             backgroundColor: Colors.green,
             child: IconButton(
               onPressed: () {
-              usersSendMessage(chatControllerClass: chatControllerClass,messageController: messageController,sellerData: sellerData,userData: userData);
+              usersSendMessage(chatControllerClass: chatControllerClass,messageController: messageController,sellerData: sellerData,userData: userData,);
               }, 
               icon: Icon(Icons.send,color: Colors.white,size: screenSize.width/14,)
             ),

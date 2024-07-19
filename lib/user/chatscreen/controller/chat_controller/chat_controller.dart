@@ -13,10 +13,10 @@ class ChatController extends ChangeNotifier{
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
 
-  Future<void> sendMessage({receiverId, message,senderName,userId})async{
+  Future<void> sendMessage({receiverId, message,senderName,userId,sellersMessage,})async{
 
     final String currentUserId = firebaseAuth.currentUser!.uid;
-    final String currentUserEmail = firebaseAuth.currentUser!.email.toString();
+     final String currentUserEmail = firebaseAuth.currentUser!.email.toString();    
     final Timestamp timestamp = Timestamp.now();
 
 
@@ -77,11 +77,11 @@ String formatTimestamp(Timestamp timestamp) {
   }
 }
 
-void usersSendMessage({messageController,chatControllerClass,sellerData,userData})async{
+void usersSendMessage({messageController,chatControllerClass,sellerData,userData,})async{
   String chat = messageController.text;
   messageController.clear();
   if(chat != ''){      
-    await chatControllerClass.sendMessage(receiverId: sellerData.id, message: chat,senderName: userData.userName,userId: userData.id).then((value) => chat = '',); 
+    await chatControllerClass.sendMessage(receiverId: sellerData.id, message: chat,senderName: userData.userName,userId: userData.id,).then((value) => chat = '',); 
     scrollToEnd();    
   }
 }

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
 Stream<List<String>> getTheCurrentSellersChatsWithUsers({required String currentSellerId}) {
-  print('seller chats checking');
   return FirebaseFirestore.instance
       .collection('chatRoom')
       .doc('chats')
@@ -30,8 +29,31 @@ Stream<List<String>> getTheCurrentSellersChatsWithUsers({required String current
   });
 }
 
+// Stream<List<QueryDocumentSnapshot>> hijasSample({currentSellerId,}) {
+//   Query query1 = FirebaseFirestore.instance
+//       .collection('chatRoom')
+//       .doc('chats')
+//       .collection('messages')
+//       .where('receiverId', isEqualTo: currentSellerId);
+
+//   Query query2 = FirebaseFirestore.instance
+//       .collection('chatRoom')
+//       .doc('chats')
+//       .collection('messages')
+//       .where('senderEmail', isEqualTo: "" );
+
+//   Stream<QuerySnapshot> stream1 = query1.snapshots();
+//   Stream<QuerySnapshot> stream2 = query2.snapshots();
+
+//   return Rx.combineLatest2(stream1, stream2, (QuerySnapshot snapshot1, QuerySnapshot snapshot2) {
+//     List<QueryDocumentSnapshot> combinedList = [];
+//     combinedList.addAll(snapshot1.docs);
+//     combinedList.addAll(snapshot2.docs);
+//     return combinedList;
+//   });
+// }
+
 Future<UserData?> getUserDetailsById(String userId) async {
-  print('fetching user details with id for chats');
   final CollectionReference sellerSignupFirebaseObject =
       FirebaseFirestore.instance.collection('userSignupData');
   try {
@@ -94,11 +116,11 @@ void scrollToEnd() {
   }
 }
 
-void sellersSendMessage({sellersMessageController,chatControllerClass,userdata,currentSeller})async{
+void sellersSendMessage({sellersMessageController,chatControllerClass,userdata,currentSeller,})async{
   String chat = sellersMessageController.text;
   sellersMessageController.clear();
   if(chat != ''){      
-    await chatControllerClass.sendMessage(receiverId: userdata.id, message: chat,senderName: currentSeller.companyName,userId: currentSeller.id).then((value) => chat = '',);
+    await chatControllerClass.sendMessage(receiverId: userdata.id, message: chat,senderName: currentSeller.companyName,userId: currentSeller.id,).then((value) => chat = '',);
     scrollToEnd();     
   }
 }
