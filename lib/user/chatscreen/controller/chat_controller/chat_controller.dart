@@ -39,7 +39,7 @@ class ChatController extends ChangeNotifier{
   
 }
 
-Stream<List<String>> getChatsListOfUsersWithSellers({required String currentUserId}) {
+Stream<List<String>> getTheCurrentUsersChatsWithSellers({required String currentUserId}) {
   return FirebaseFirestore.instance
       .collection('chatRoom')
       .doc('chats')
@@ -65,8 +65,16 @@ Stream<List<String>> getChatsListOfUsersWithSellers({required String currentUser
 
 
 String formatTimestamp(Timestamp timestamp) {
-  var date = timestamp.toDate();
-  return DateFormat('hh:mm a').format(date);
+  DateTime date = timestamp.toDate();
+  DateTime now = DateTime.now();
+
+  if (date.year == now.year && date.month == now.month && date.day == now.day) {
+    return DateFormat('hh:mm a').format(date);
+  } else if (date.year == now.year && date.month == now.month && date.day == now.day - 1) {
+    return 'Yesterday';
+  } else {
+    return DateFormat('yyyy-MM-dd').format(date);
+  }
 }
 
 void usersSendMessage({messageController,chatControllerClass,sellerData,userData})async{

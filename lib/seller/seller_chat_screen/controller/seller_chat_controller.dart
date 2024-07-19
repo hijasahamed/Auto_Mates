@@ -5,7 +5,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
-Stream<List<String>> getSellersChatsWithUsersStream({required String currentSellerId}) {
+Stream<List<String>> getTheCurrentSellersChatsWithUsers({required String currentSellerId}) {
+  print('seller chats checking');
   return FirebaseFirestore.instance
       .collection('chatRoom')
       .doc('chats')
@@ -30,6 +31,7 @@ Stream<List<String>> getSellersChatsWithUsersStream({required String currentSell
 }
 
 Future<UserData?> getUserDetailsById(String userId) async {
+  print('fetching user details with id for chats');
   final CollectionReference sellerSignupFirebaseObject =
       FirebaseFirestore.instance.collection('userSignupData');
   try {

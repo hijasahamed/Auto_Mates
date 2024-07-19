@@ -37,8 +37,12 @@ class SellerChatScreenChatsHolder extends StatelessWidget {
                 child: ClipOval(
                   child: CachedNetworkImage(
                     imageUrl: userdata.userProfile,
-                    placeholder: (context, url) => const CircularProgressIndicator(
-                      color: Colors.blue,
+                    placeholder: (context, url) => CircleAvatar(
+                      radius: screenSize.height / 30,
+                      backgroundColor: const Color.fromARGB(255, 239, 239, 239),
+                      child: const CircularProgressIndicator(
+                        color: Colors.blue,
+                      ),
                     ),
                     errorWidget: (context, url, error) => const Icon(Icons.error),
                     imageBuilder: (context, imageProvider) => Container(
@@ -81,6 +85,7 @@ class SellerChatScreenChatsHolder extends StatelessWidget {
                             return aTimestamp.compareTo(bTimestamp);
                           }); 
                           var lastMessage = sortedChats.last['message'];
+                          var lastMessager = sortedChats.last['senderId'];
                           var timestamp = sortedChats.last['timeStamp'];
                           var formattedTimestamp = timestamp as Timestamp;
                           
@@ -92,6 +97,8 @@ class SellerChatScreenChatsHolder extends StatelessWidget {
                             width: screenSize.width / 1.3,
                             child: Row(
                               children: [
+                                if(lastMessager == currentSellerUid)
+                                Icon(Icons.check,size: screenSize.width/30,color: Colors.blueGrey,),
                                 SizedBox(
                                     width: screenSize.width / 1.8,
                                     child: MyTextWidget(

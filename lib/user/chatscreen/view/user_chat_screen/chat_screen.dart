@@ -19,7 +19,7 @@ class UserChatScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: StreamBuilder<List<String>>(
-        stream: getChatsListOfUsersWithSellers(currentUserId: currentUserId,),
+        stream: getTheCurrentUsersChatsWithSellers(currentUserId: currentUserId,),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator(color: Colors.blue,),);

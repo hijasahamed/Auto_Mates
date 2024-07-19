@@ -61,7 +61,7 @@ class HomeScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(3),
                 child: SizedBox(
-                  height: screenSize.height/2.9,
+                  height: screenSize.height/2.7,
                   width: screenSize.width,
                   child: LatestCarUpdatesWidget(screenSize: screenSize),
                 ),

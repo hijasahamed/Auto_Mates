@@ -5,6 +5,7 @@ import 'package:auto_mates/user/chatscreen/view/chat_page/chat_page.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class UsersChatsHolder extends StatelessWidget {
@@ -45,8 +46,12 @@ class UsersChatsHolder extends StatelessWidget {
                 child: ClipOval(
                   child: CachedNetworkImage(
                     imageUrl: sellerData.sellerProfile,
-                    placeholder: (context, url) => const CircularProgressIndicator(
-                      color: Colors.blue,
+                    placeholder: (context, url) => CircleAvatar(
+                      radius: screenSize.height / 30,
+                      backgroundColor: const Color.fromARGB(255, 239, 239, 239),
+                      child: const CircularProgressIndicator(
+                        color: Colors.blue,
+                      ),
                     ),
                     errorWidget: (context, url, error) => const Icon(Icons.error),
                     imageBuilder: (context, imageProvider) => Container(
@@ -87,8 +92,9 @@ class UsersChatsHolder extends StatelessWidget {
                           return aTimestamp.compareTo(bTimestamp);
                         }); 
                         var lastMessage = sortedDocs.last['message'];
-                        var timestamp = sortedDocs.last['timeStamp'];
-                        var formattedTimestamp = timestamp as Timestamp;
+                        var lastMessager = sortedDocs.last['senderId'];
+                        var lastMessageTimestamp = sortedDocs.last['timeStamp'];
+                        final String currentUserUid = FirebaseAuth.instance.currentUser!.uid;
 
                         hasNewMessage = checkForNewMessage(sortedChats: sortedDocs,currentId: currentUserId);
                         newMsgCount = countNewMessages(sortedDocs);
@@ -97,6 +103,8 @@ class UsersChatsHolder extends StatelessWidget {
                           width: screenSize.width / 1.3,
                           child: Row(
                             children: [
+                              if(lastMessager == currentUserUid)
+                                Icon(Icons.check,size: screenSize.width/30,color: Colors.blueGrey,),
                               SizedBox(
                                   width: screenSize.width / 1.8,
                                   child: MyTextWidget(
@@ -107,7 +115,7 @@ class UsersChatsHolder extends StatelessWidget {
                                       weight: FontWeight.w500)),
                               const Spacer(),
                               MyTextWidget(
-                                  text: formatTimestamp(formattedTimestamp),
+                                  text: formatTimestamp(lastMessageTimestamp),
                                   color:
                                       const Color.fromARGB(255, 126, 126, 126),
                                   size: screenSize.width / 30,
