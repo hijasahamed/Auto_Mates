@@ -92,7 +92,7 @@ class UsersChatsHolder extends StatelessWidget {
                           return aTimestamp.compareTo(bTimestamp);
                         }); 
                         var lastMessage = sortedDocs.last['message'];
-                        var lastMessager = sortedDocs.last['senderId'];
+                        var lastMessager = sortedDocs.last['senderUid'];
                         var lastMessageTimestamp = sortedDocs.last['timeStamp'];
                         final String currentUserUid = FirebaseAuth.instance.currentUser!.uid;
 

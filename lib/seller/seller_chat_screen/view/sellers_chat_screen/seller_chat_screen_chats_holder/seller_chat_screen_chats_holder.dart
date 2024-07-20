@@ -85,7 +85,7 @@ class SellerChatScreenChatsHolder extends StatelessWidget {
                             return aTimestamp.compareTo(bTimestamp);
                           }); 
                           var lastMessage = sortedChats.last['message'];
-                          var lastMessager = sortedChats.last['senderId'];
+                          var lastMessager = sortedChats.last['senderUid'];
                           var timestamp = sortedChats.last['timeStamp'];
                           var formattedTimestamp = timestamp as Timestamp;
                           

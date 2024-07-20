@@ -1,57 +1,77 @@
 import 'dart:collection';
 
+import 'package:auto_mates/seller/seller_chat_screen/view/bloc/seller_chat_bloc.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
-Stream<List<String>> getTheCurrentSellersChatsWithUsers({required String currentSellerId}) {
-  return FirebaseFirestore.instance
+// Stream<List<String>> getTheCurrentSellersChatsWithUsers({required SellerData currentSellerId}) {
+//   return FirebaseFirestore.instance
+//       .collection('chatRoom')
+//       .doc('chats')
+//       .collection('messages')
+//       .where('receiverId', isEqualTo: currentSellerId.id)
+//       .snapshots()
+//       .map((querySnapshot) {
+//     List<QueryDocumentSnapshot> sortedDocs = querySnapshot.docs;
+//     sortedDocs.sort((b, a) {
+//       Timestamp aTimestamp = a['timeStamp'];
+//       Timestamp bTimestamp = b['timeStamp'];
+//       return aTimestamp.compareTo(bTimestamp);
+//     });
+
+//     LinkedHashSet<String> uniqueReceiverIds = LinkedHashSet();
+//     for (var doc in sortedDocs) {
+//       uniqueReceiverIds.add(doc['senderId'] as String);
+//     }
+
+//     return uniqueReceiverIds.toList();
+//   });
+// }
+
+Stream<List<String>> hijasSample({required currentSeller}) {
+  Query query1 = FirebaseFirestore.instance
       .collection('chatRoom')
       .doc('chats')
       .collection('messages')
-      .where('receiverId', isEqualTo: currentSellerId)
-      .snapshots()
-      .map((querySnapshot) {
-    List<QueryDocumentSnapshot> sortedDocs = querySnapshot.docs;
-    sortedDocs.sort((b, a) {
+      .where('receiverId', isEqualTo: currentSeller.id);
+
+  Query query2 = FirebaseFirestore.instance
+      .collection('chatRoom')
+      .doc('chats')
+      .collection('messages')
+      .where('senderId', isEqualTo: currentSeller.id)
+      .where('senderName', isEqualTo: currentSeller.companyName);
+
+  Stream<QuerySnapshot> stream1 = query1.snapshots();
+  Stream<QuerySnapshot> stream2 = query2.snapshots();
+
+  return Rx.combineLatest2(stream1, stream2, (QuerySnapshot snapshot1, QuerySnapshot snapshot2) {
+    List<QueryDocumentSnapshot> combinedList = [];
+    combinedList.addAll(snapshot1.docs);
+    combinedList.addAll(snapshot2.docs);
+
+    combinedList.sort((b, a) {
       Timestamp aTimestamp = a['timeStamp'];
       Timestamp bTimestamp = b['timeStamp'];
       return aTimestamp.compareTo(bTimestamp);
     });
 
     LinkedHashSet<String> uniqueReceiverIds = LinkedHashSet();
-    for (var doc in sortedDocs) {
-      uniqueReceiverIds.add(doc['userId'] as String);
-    }
+    List<String> filteredSenderIds = [];
 
-    return uniqueReceiverIds.toList();
+    for (var doc in combinedList) {
+      String senderId = doc['senderId'] as String;
+      if (!uniqueReceiverIds.contains(senderId) && senderId != currentSeller.id) {
+        uniqueReceiverIds.add(senderId);
+        filteredSenderIds.add(senderId);
+      }
+    }
+    return filteredSenderIds;
   });
 }
 
-// Stream<List<QueryDocumentSnapshot>> hijasSample({currentSellerId,}) {
-//   Query query1 = FirebaseFirestore.instance
-//       .collection('chatRoom')
-//       .doc('chats')
-//       .collection('messages')
-//       .where('receiverId', isEqualTo: currentSellerId);
-
-//   Query query2 = FirebaseFirestore.instance
-//       .collection('chatRoom')
-//       .doc('chats')
-//       .collection('messages')
-//       .where('senderEmail', isEqualTo: "" );
-
-//   Stream<QuerySnapshot> stream1 = query1.snapshots();
-//   Stream<QuerySnapshot> stream2 = query2.snapshots();
-
-//   return Rx.combineLatest2(stream1, stream2, (QuerySnapshot snapshot1, QuerySnapshot snapshot2) {
-//     List<QueryDocumentSnapshot> combinedList = [];
-//     combinedList.addAll(snapshot1.docs);
-//     combinedList.addAll(snapshot2.docs);
-//     return combinedList;
-//   });
-// }
 
 Future<UserData?> getUserDetailsById(String userId) async {
   final CollectionReference sellerSignupFirebaseObject =
@@ -85,14 +105,14 @@ Stream<List<QueryDocumentSnapshot>> getAllMessagesInChattingScreen({required Str
       .doc('chats')
       .collection('messages')
       .where('receiverId', isEqualTo: receiverId)
-      .where('userId', isEqualTo: userId);
+      .where('senderId', isEqualTo: userId);
 
   Query query2 = FirebaseFirestore.instance
       .collection('chatRoom')
       .doc('chats')
       .collection('messages')
       .where('receiverId', isEqualTo: userId)
-      .where('userId', isEqualTo: receiverId);
+      .where('senderId', isEqualTo: receiverId);
 
   Stream<QuerySnapshot> stream1 = query1.snapshots();
   Stream<QuerySnapshot> stream2 = query2.snapshots();
@@ -120,7 +140,7 @@ void sellersSendMessage({sellersMessageController,chatControllerClass,userdata,c
   String chat = sellersMessageController.text;
   sellersMessageController.clear();
   if(chat != ''){      
-    await chatControllerClass.sendMessage(receiverId: userdata.id, message: chat,senderName: currentSeller.companyName,userId: currentSeller.id,).then((value) => chat = '',);
+    await chatControllerClass.sendMessage(receiverId: userdata.id, message: chat,senderName: currentSeller.companyName,senderId: currentSeller.id,).then((value) => chat = '',);
     scrollToEnd();     
   }
 }
@@ -131,7 +151,7 @@ bool checkForNewMessage({sortedChats,currentId}) {
 
   for (var chat in sortedChats) {
     final DateTime messageTime = (chat['timeStamp'] as Timestamp).toDate();
-    final String senderId = chat['senderId'];
+    final String senderId = chat['senderUid'];
 
     if (senderId != currentId && now.difference(messageTime).inMinutes < 1) {
       return true;
@@ -152,5 +172,5 @@ int countNewMessages(List<DocumentSnapshot> sortedChats) {
     }
   }
 
-  return newMessageCount;
+  return newMessageCount; 
 }

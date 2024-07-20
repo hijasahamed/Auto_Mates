@@ -13,16 +13,19 @@ class ChatController extends ChangeNotifier{
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
 
-  Future<void> sendMessage({receiverId, message,senderName,userId,sellersMessage,})async{
+  Future<void> sendMessage({receiverId, message,senderName,senderId,sellersMessage})async{
 
-    final String currentUserId = firebaseAuth.currentUser!.uid;
-     final String currentUserEmail = firebaseAuth.currentUser!.email.toString();    
+    final String currentUserUid = firebaseAuth.currentUser!.uid;
+    final String currentUserEmail = firebaseAuth.currentUser!.email.toString();    
     final Timestamp timestamp = Timestamp.now();
 
+    // List<String> chatRoomId = [senderId, receiverId] ;
+    // chatRoomId.sort();
+    // String chatRoomIdName = chatRoomId.join('_');
 
     Message newMessage = Message(
-      senderId: currentUserId,
-      userId:userId, 
+      senderUid: currentUserUid,
+      senderId:senderId, 
       senderEmail: currentUserEmail, 
       receiverId: receiverId, 
       message: message, 
@@ -44,7 +47,7 @@ Stream<List<String>> getTheCurrentUsersChatsWithSellers({required String current
       .collection('chatRoom')
       .doc('chats')
       .collection('messages')
-      .where('senderId', isEqualTo: currentUserId)
+      .where('senderUid', isEqualTo: currentUserId)
       .snapshots()
       .map((querySnapshot) {
         List<QueryDocumentSnapshot> sortedDocs = querySnapshot.docs;
@@ -81,7 +84,7 @@ void usersSendMessage({messageController,chatControllerClass,sellerData,userData
   String chat = messageController.text;
   messageController.clear();
   if(chat != ''){      
-    await chatControllerClass.sendMessage(receiverId: sellerData.id, message: chat,senderName: userData.userName,userId: userData.id,).then((value) => chat = '',); 
+    await chatControllerClass.sendMessage(receiverId: sellerData.id, message: chat,senderName: userData.userName,senderId: userData.id).then((value) => chat = '',); 
     scrollToEnd();    
   }
 }

@@ -121,7 +121,7 @@ class ChatPage extends StatelessWidget {
 
     Map<String,dynamic> data = document.data() as Map<String,dynamic>;
 
-    var alignment = (data['senderId'] == firebaseAuth.currentUser!.uid)
+    var alignment = (data['senderUid'] == firebaseAuth.currentUser!.uid)
     ? Alignment.centerRight
     : Alignment.centerLeft;
 
