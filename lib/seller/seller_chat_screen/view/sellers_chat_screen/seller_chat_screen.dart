@@ -1,12 +1,10 @@
 import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/seller/seller_chat_screen/controller/seller_chat_controller.dart';
-import 'package:auto_mates/seller/seller_chat_screen/view/bloc/seller_chat_bloc.dart';
 import 'package:auto_mates/seller/seller_chat_screen/view/sellers_chat_screen/seller_chat_screen_chats_holder/seller_chat_screen_chats_holder.dart';
 import 'package:auto_mates/user/chatscreen/view/user_chat_screen/users_no_chat_display/users_no_chat_display.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/commonwidgets/shimmer_effect/shimmer_effect.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SellerChatScreen extends StatelessWidget {
   const SellerChatScreen(

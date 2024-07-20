@@ -1,6 +1,5 @@
 import 'dart:collection';
 
-import 'package:auto_mates/seller/seller_chat_screen/view/bloc/seller_chat_bloc.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';

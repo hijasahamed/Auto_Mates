@@ -1,6 +1,5 @@
 import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/seller/seller_chat_screen/controller/seller_chat_controller.dart';
-import 'package:auto_mates/seller/seller_chat_screen/view/bloc/seller_chat_bloc.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/chatscreen/controller/chat_controller/chat_controller.dart';

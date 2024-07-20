@@ -11,7 +11,5 @@ class SellerChatBloc extends Bloc<SellerChatEvent, SellerChatState> {
     on<SellerChatScreenRebuildEvent>(sellerChatScreenRebuildEvent);
   }
 
-  FutureOr<void> sellerChatScreenRebuildEvent(SellerChatScreenRebuildEvent event, Emitter<SellerChatState> emit) {
-    print('Refresh Ayi');
-  }
+  FutureOr<void> sellerChatScreenRebuildEvent(SellerChatScreenRebuildEvent event, Emitter<SellerChatState> emit) {}
 }
