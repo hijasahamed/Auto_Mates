@@ -48,8 +48,11 @@ Future<int> getTotalSalesAmount() async {
   return totalSalesAmount;
 }
 
-removeUsersInterestedCar({context, docId, noData,}) {
+removeUsersInterestedCar({context, docId, noData,isNavBack}) {
   userInterestMarked.doc(docId).delete();
+  if(isNavBack==true){
+    Navigator.of(context).pop();
+  }
   if (noData == true) {
     snackbarWidget('Sorry this car is been sold or removed by the seller', context,
         Colors.red, Colors.white, SnackBarBehavior.floating);

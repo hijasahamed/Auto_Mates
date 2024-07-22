@@ -70,7 +70,7 @@ class YesButton extends StatelessWidget {
           );
         },)
         : (isUsersInterestRemoving==true)
-        ? removeUsersInterestedCar(context: context,docId: userInterestedData.id).then((value) => Navigator.of(context).pop(),)
+        ? removeUsersInterestedCar(context: context,docId: userInterestedData.id,isNavBack: true)
         : (removeFavSeller==true)
         ? removeSellerFromFavourites(context: context, docId: favSellerData.id,backNavigation: true)
         : (isSellerLogout==true)

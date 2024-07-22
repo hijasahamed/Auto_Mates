@@ -19,10 +19,6 @@ class ChatController extends ChangeNotifier{
     final String currentUserEmail = firebaseAuth.currentUser!.email.toString();    
     final Timestamp timestamp = Timestamp.now();
 
-    // List<String> chatRoomId = [senderId, receiverId] ;
-    // chatRoomId.sort();
-    // String chatRoomIdName = chatRoomId.join('_');
-
     Message newMessage = Message(
       senderUid: currentUserUid,
       senderId:senderId, 
@@ -80,11 +76,15 @@ String formatTimestamp(Timestamp timestamp) {
   }
 }
 
-void usersSendMessage({messageController,chatControllerClass,sellerData,userData,})async{
+int sendedMessageCount = 0;
+
+void usersSendMessage({messageController,chatControllerClass,sellerData,userData,sendedMessageCount})async{
   String chat = messageController.text;
   messageController.clear();
   if(chat != ''){      
     await chatControllerClass.sendMessage(receiverId: sellerData.id, message: chat,senderName: userData.userName,senderId: userData.id).then((value) => chat = '',); 
-    scrollToEnd();    
+    scrollToEnd();
+    sendedMessageCount ++;
+    print(sendedMessageCount);    
   }
 }

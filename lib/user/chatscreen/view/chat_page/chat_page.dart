@@ -22,7 +22,7 @@ class ChatPage extends StatelessWidget {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {    
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 241, 241, 241),
       appBar: PreferredSize(
@@ -182,7 +182,13 @@ class ChatPage extends StatelessWidget {
             backgroundColor: Colors.green,
             child: IconButton(
               onPressed: () {
-              usersSendMessage(chatControllerClass: chatControllerClass,messageController: messageController,sellerData: sellerData,userData: userData,);
+              usersSendMessage(
+                chatControllerClass: chatControllerClass,
+                messageController: messageController,
+                sellerData: sellerData,
+                userData: userData,
+                sendedMessageCount: sendedMessageCount
+              );
               }, 
               icon: Icon(Icons.send,color: Colors.white,size: screenSize.width/14,)
             ),
