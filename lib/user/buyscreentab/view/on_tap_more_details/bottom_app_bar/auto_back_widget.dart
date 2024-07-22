@@ -64,24 +64,7 @@ class _AutoBackWidgetState extends State<AutoBackWidget> {
       actions: <Widget>[
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                markUserInterest(
-                    context: context,
-                    isFromSearch: widget.isFromSearch,
-                    car: widget.data);
-              },
-              style: const ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.green)),
-              child: const Text(
-                'Mark a Intrest',
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
-            ),
+          children: [            
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
@@ -91,11 +74,7 @@ class _AutoBackWidgetState extends State<AutoBackWidget> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Back',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
-                  ),
+                  MyTextWidget(text: 'Back', color: Colors.white, size: widget.screenSize.width/30, weight: FontWeight.bold),
                   SizedBox(
                     width: widget.screenSize.width / 35,
                   ),
@@ -110,6 +89,17 @@ class _AutoBackWidgetState extends State<AutoBackWidget> {
                   )
                 ],
               ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                markUserInterest(
+                    context: context,
+                    isFromSearch: widget.isFromSearch,
+                    car: widget.data);
+              },
+              style: const ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(Colors.green)),
+              child: MyTextWidget(text: 'Mark as Intrested', color: Colors.white, size: widget.screenSize.width/30, weight: FontWeight.bold)
             ),
           ],
         )

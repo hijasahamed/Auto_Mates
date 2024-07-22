@@ -76,7 +76,7 @@ String formatTimestamp(Timestamp timestamp) {
   } else if (date.year == now.year && date.month == now.month && date.day == now.day - 1) {
     return 'Yesterday';
   } else {
-    return DateFormat('yyyy-MM-dd').format(date);
+    return DateFormat('dd MMM yyyy').format(date);
   }
 }
 

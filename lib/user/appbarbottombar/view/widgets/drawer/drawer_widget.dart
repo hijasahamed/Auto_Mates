@@ -1,4 +1,5 @@
 import 'package:auto_mates/user/appbarbottombar/view/widgets/drawer/drawer_list_tiles/drawer_list_tile_widget.dart';
+import 'package:auto_mates/user/appbarbottombar/view/widgets/drawer/social_media_section/social_media_section.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/drawer/toll_free_number/toll_free_number.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
@@ -65,10 +66,7 @@ class DrawerWidget extends StatelessWidget {
             DrawerListtileWidget(leadingIcon: Icons.info_outline, title: 'About',screenSize: screenSize,about: true,),
             const Spacer(),
             TollFreeNumber(screenSize: screenSize),
-            SizedBox(
-              height: screenSize.height/16,
-              child: Center(child: MyTextWidget(text: 'Version 1.0.0', color: Colors.blueGrey, size: screenSize.width/28, weight: FontWeight.bold),),
-            )
+            SocialMediaSection(screenSize: screenSize)
           ],
         ),
       );

@@ -53,7 +53,7 @@ class InterestedButton extends StatelessWidget {
               highlightColor: const Color(0xFFDBEDF5),
               onTap: () {
                 isInterested
-                    ? removeUsersInterest(context: context, docId: docId)
+                    ? removeUsersInterestedCar(context: context, docId: docId)
                     : showDialog(
                         context: context,
                         barrierDismissible: false,

@@ -82,7 +82,7 @@ class InterestedCarsScreen extends StatelessWidget {
                                     profileScreenBloc
                                         .add(InterestedCarOnTapEvent(data: carDetails));
                                   }else{                                    
-                                    removeUsersInterest(context: context,docId: car.id,noData: true);
+                                    removeUsersInterestedCar(context: context,docId: car.id,noData: true);
                                   }
                                 },
                                 child: Row(

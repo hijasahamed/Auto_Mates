@@ -118,7 +118,7 @@ class UsersChatsHolder extends StatelessWidget {
                                   text: formatTimestamp(lastMessageTimestamp),
                                   color:
                                       const Color.fromARGB(255, 126, 126, 126),
-                                  size: screenSize.width / 30,
+                                  size: screenSize.width / 35,
                                   weight: FontWeight.w500),
                               if(hasNewMessage==true && newMsgCount>0)
                                 Padding(

@@ -13,8 +13,8 @@ class PrivacyPolicyScreen extends StatelessWidget {
         child: NormalAppBar(title: 'Privacy Policy')
       ),
       body: Center(
-        child: Text('Privacy Policy'),
-      ),
+        child: Text('privacy policy'),
+      )
     );
   }
 }
