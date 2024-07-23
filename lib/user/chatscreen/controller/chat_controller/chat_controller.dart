@@ -112,7 +112,7 @@ void showRatingPopup({context, screenSize, sellerData}) {
 }
 
 final UserChatBloc userChatBloc = UserChatBloc();
-
+dynamic ratingValue=0;
 String emoji = '😞';
 
 String getEmojiForRating(double rating) {
@@ -127,4 +127,14 @@ String getEmojiForRating(double rating) {
   } else {
     return '😞';
   }
+}
+
+
+void addRating({sellerData,rating,context}){
+  int intRating = rating.toInt();
+  final CollectionReference obj = FirebaseFirestore.instance.collection('sellerSignupData');  
+  obj.doc(sellerData.id).update({
+    'rating': FieldValue.arrayUnion([intRating])
+  });
+  Navigator.of(context).pop();
 }

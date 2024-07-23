@@ -1,3 +1,4 @@
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 
 class SellersDetail extends StatelessWidget {
@@ -12,12 +13,8 @@ class SellersDetail extends StatelessWidget {
       child: Row(
         children: [
           Icon(icon),
-          SizedBox(width: screenSize.width/75,),
-          Text(
-            data,
-            style: const TextStyle(
-                fontWeight: FontWeight.w600, color: Color(0xFF424141)),
-          )
+          SizedBox(width: screenSize.width/75,),          
+          MyTextWidget(text: data, color: const Color(0xFF424141), size: screenSize.width/30, weight: FontWeight.w600)
         ],
       ),
     );

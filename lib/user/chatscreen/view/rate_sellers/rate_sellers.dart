@@ -27,6 +27,8 @@ class RateSellers extends StatelessWidget {
                 ratingBar(),
                 SizedBox(height: screenSize.height / 100,),
                 emojis(),
+                SizedBox(height: screenSize.height / 100,),
+                ratingButtons(context)
               ],
             ),
           ),
@@ -64,6 +66,7 @@ class RateSellers extends StatelessWidget {
         color: Colors.amber,
       ),
       onRatingUpdate: (rating) {
+        ratingValue = rating;
         emoji = getEmojiForRating(rating);
         userChatBloc.add(RatingEmojiRefreshEvent());
       },
@@ -81,6 +84,43 @@ class RateSellers extends StatelessWidget {
           alignTextCenter: true,
         );
       },
+    );
+  }
+  Widget ratingButtons(context){
+    return Row(
+      children: [
+        Expanded(
+          child: InkWell(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: Ink(
+              height: screenSize.height/17,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(width: .4,color: Colors.blueGrey)
+              ),
+              child: Center(child: MyTextWidget(text: 'Skip Now', color: Colors.blueGrey, size: screenSize.width/33, weight: FontWeight.bold)),
+            ),
+          )
+        ),
+        SizedBox(width: screenSize.width/50,),
+        Expanded(
+          child: InkWell(
+            onTap: () {
+              addRating(rating: ratingValue,sellerData: sellerData,context: context);
+            },
+            child: Ink(
+              height: screenSize.height/17,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(width: .4,color: Colors.blueGrey)
+              ),
+              child: Center(child: MyTextWidget(text: 'Add Rating', color: Colors.blueGrey, size: screenSize.width/33, weight: FontWeight.bold)),
+            ),
+          )
+        ),
+      ],
     );
   }
 }
