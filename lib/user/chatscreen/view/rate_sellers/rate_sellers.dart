@@ -20,61 +20,67 @@ class RateSellers extends StatelessWidget {
             padding: const EdgeInsets.all(12),
             child: Column(
               children: [
-                MyTextWidget(
-                  text:
-                      'Satisfied with the responses of ${sellerData.companyName}',
-                  color: Colors.blueGrey,
-                  size: screenSize.width / 22,
-                  weight: FontWeight.bold,
-                  maxline: true,
-                  alignTextCenter: true,
-                ),
-                SizedBox(
-                  height: screenSize.height / 100,
-                ),
-                MyTextWidget(
-                    text: 'Provide rating for the seller',
-                    color: Colors.blueGrey,
-                    size: screenSize.width / 30,
-                    weight: FontWeight.w400),
-                SizedBox(
-                  height: screenSize.height / 100,
-                ),
-                RatingBar.builder(
-                  initialRating: 1,
-                  minRating: 1,
-                  direction: Axis.horizontal,
-                  allowHalfRating: false,
-                  itemCount: 5,
-                  itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-                  itemBuilder: (context, _) => const Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                  ),
-                  onRatingUpdate: (rating) {
-                    emoji = getEmojiForRating(rating);
-                    userChatBloc.add(RatingEmojiRefreshEvent());
-                  },
-                ),
-                SizedBox(
-                  height: screenSize.height / 100,
-                ),
-                BlocBuilder<UserChatBloc, UserChatState>(
-                  bloc: userChatBloc,
-                  builder: (context, state) {
-                    return MyTextWidget(
-                      text: emoji,
-                      color: Colors.blueGrey,
-                      size: screenSize.width / 10,
-                      weight: FontWeight.bold,
-                      alignTextCenter: true,
-                    );
-                  },
-                ),
+                rateText(),
+                SizedBox(height: screenSize.height / 100,),
+                rateSubText(),
+                SizedBox(height: screenSize.height / 100,),
+                ratingBar(),
+                SizedBox(height: screenSize.height / 100,),
+                emojis(),
               ],
             ),
           ),
         ),
       );
+  }
+  Widget rateText(){
+    return MyTextWidget(
+      text:
+          'Satisfied with the responses of ${sellerData.companyName}',
+      color: Colors.blueGrey,
+      size: screenSize.width / 22,
+      weight: FontWeight.bold,
+      maxline: true,
+      alignTextCenter: true,
+    );
+  }
+  Widget rateSubText(){
+    return MyTextWidget(
+      text: 'Provide rating for the seller',
+      color: Colors.blueGrey,
+      size: screenSize.width / 30,
+      weight: FontWeight.w400);
+  }
+  Widget ratingBar(){
+    return RatingBar.builder(
+      initialRating: 1,
+      minRating: 1,
+      direction: Axis.horizontal,
+      allowHalfRating: false,
+      itemCount: 5,
+      itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+      itemBuilder: (context, _) => const Icon(
+        Icons.star,
+        color: Colors.amber,
+      ),
+      onRatingUpdate: (rating) {
+        emoji = getEmojiForRating(rating);
+        userChatBloc.add(RatingEmojiRefreshEvent());
+      },
+    );
+  }
+  Widget emojis(){
+    return BlocBuilder<UserChatBloc, UserChatState>(
+      bloc: userChatBloc,
+      builder: (context, state) {
+        return MyTextWidget(
+          text: emoji,
+          color: Colors.blueGrey,
+          size: screenSize.width / 10,
+          weight: FontWeight.bold,
+          alignTextCenter: true,
+        );
+      },
+    );
   }
 }
