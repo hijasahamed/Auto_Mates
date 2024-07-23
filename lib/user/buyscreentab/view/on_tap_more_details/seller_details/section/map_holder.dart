@@ -28,8 +28,8 @@ class MapHolder extends StatelessWidget {
             ),
           ],          
         ),
-        height: screenSize.height / 5,
-        width: screenSize.width / 2,
+        height: screenSize.height / 6,
+        width: screenSize.width / 2.1,
         child: FutureBuilder<Map<String, double>?>(
           future: getMapLocationFromSeller(sellerData['sellerId']),
           builder: (context, snapshot) {

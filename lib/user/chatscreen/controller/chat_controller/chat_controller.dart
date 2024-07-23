@@ -149,7 +149,7 @@ void addRating({required sellerData, required double rating, required BuildConte
         'rating': currentRatings
       }, SetOptions(merge: true)).then((_) {
         Navigator.of(context).pop();
-        snackbarWidget('Your rating is marked', context, Colors.green, Colors.white, SnackBarBehavior.floating);
+        snackbarWidget('Your rating is marked', context, Colors.green, Colors.white, SnackBarBehavior.fixed);
       }).catchError((error) {
         log(error.toString());
       });

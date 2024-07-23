@@ -440,8 +440,9 @@ Future<Map<String, double>?> getMapLocationFromSeller(String sellerId) async {
   return null;
 }
 
+// seller rating section
 
-Stream<double> getAverageRating(String documentId) async* {
+Stream<double> getAverageRating({required String documentId}) async* {
   final CollectionReference collection = FirebaseFirestore.instance.collection('sellerSignupData');
   
   yield* collection.doc(documentId).snapshots().map((snapshot) {
@@ -452,9 +453,27 @@ Stream<double> getAverageRating(String documentId) async* {
       if (ratings.isNotEmpty) {
         List doubleRatings = ratings.map((e) => e.toDouble()).toList();
         double sum = doubleRatings.fold(0.0, (previousValue, element) => previousValue + element);
-        return sum / doubleRatings.length;
+        double average = sum / doubleRatings.length;
+        return double.parse((average).toStringAsFixed(1));
       }
     }
     return 0.0;
+  });
+}
+
+Stream<int> getNumberOfRating({required String documentId}) async* {
+  final CollectionReference collection = FirebaseFirestore.instance.collection('sellerSignupData');
+  
+  yield* collection.doc(documentId).snapshots().map((snapshot) {
+    if (snapshot.exists) {
+      final data = snapshot.data() as Map<String, dynamic>;
+      List<dynamic> ratings = data['rating'] ?? [];
+      
+      if (ratings.isNotEmpty) {
+        List doubleRatings = ratings.map((e) => e.toDouble()).toList();
+        return doubleRatings.length;
+      }
+    }
+    return 0;
   });
 }
