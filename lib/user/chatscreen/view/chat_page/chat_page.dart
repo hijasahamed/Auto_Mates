@@ -34,7 +34,7 @@ class ChatPage extends StatelessWidget {
           Expanded(
             child: buildMessagesection(),
           ),
-          sendMessageSection()
+          sendMessageSection(context)
         ],
       ),
     );
@@ -50,6 +50,12 @@ class ChatPage extends StatelessWidget {
           return const Center(child: CircularProgressIndicator(color: Colors.blue,),);
         } else {
           List<DocumentSnapshot> sortedDocs = snapshot.data!;
+          int sendedMessageCount = sortedDocs.length;
+          if (sendedMessageCount > 3) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              showRatingPopup(context: context,screenSize: screenSize,sellerData: sellerData);
+            });
+          }
           sortedDocs.sort((a, b) {
             Timestamp aTimestamp = a['timeStamp'];
             Timestamp bTimestamp = b['timeStamp'];
@@ -154,7 +160,7 @@ class ChatPage extends StatelessWidget {
     );
   }
 
-  Widget sendMessageSection(){
+  Widget sendMessageSection(context){
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
@@ -187,7 +193,6 @@ class ChatPage extends StatelessWidget {
                 messageController: messageController,
                 sellerData: sellerData,
                 userData: userData,
-                sendedMessageCount: sendedMessageCount
               );
               }, 
               icon: Icon(Icons.send,color: Colors.white,size: screenSize.width/14,)
