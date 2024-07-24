@@ -2,7 +2,6 @@ import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/norm
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/on_tap_car_more_details.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/seller_details/seller_details_widget.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
-import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_error_placeholder.dart';
 import 'package:auto_mates/user/commonwidgets/shimmer_effect/shimmer_effect.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_more_cars/fav_seller_more_car_details/favourite_seller_more_car_details.dart';
