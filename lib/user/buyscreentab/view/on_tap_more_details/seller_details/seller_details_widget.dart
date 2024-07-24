@@ -11,13 +11,14 @@ import 'package:auto_mates/user/commonwidgets/shimmer_effect/shimmer_effect.dart
 import 'package:flutter/material.dart';
 
 class SellerDetailsCardWidget extends StatelessWidget {
-  const SellerDetailsCardWidget({super.key, required this.screenSize,required this.sellerData});
+  const SellerDetailsCardWidget({super.key, required this.screenSize,required this.sellerData,this.isfromTopSellers});
   final Size screenSize;
   final dynamic sellerData;
+  final bool? isfromTopSellers;
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(       
-      future: getSellerDetailsById(sellerData['sellerId']), 
+      future: getSellerDetailsById((isfromTopSellers==true)? sellerData['id']:sellerData['sellerId']), 
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
             return SizedBox(
@@ -63,7 +64,7 @@ class SellerDetailsCardWidget extends StatelessWidget {
                             ContactSellerButton(screenSize: screenSize, data: data)
                           ],
                         ),
-                        MapHolder(screenSize: screenSize,sellerData: sellerData,)
+                        MapHolder(screenSize: screenSize,sellerData: sellerData,isfromTopSellers: isfromTopSellers,)
                       ],
                     ),
                   ],

@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     
     return Scaffold(
-      backgroundColor: const Color(0xFFDBEDF5),    
+      backgroundColor: const Color.fromARGB(255, 228, 234, 236),    
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -32,9 +32,9 @@ class HomeScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(3),
                 child: SizedBox(
-                  height: screenSize.height/3.5,
-                  width: screenSize.width,                          
-                  child: TopSellersWidget(screenSize: screenSize),
+                  height: screenSize.height/4,
+                  width: screenSize.width,                         
+                  child: FeaturedCarsWidget(screenSize: screenSize),
                 ),
               ),
             ),
@@ -44,9 +44,9 @@ class HomeScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(3),
                 child: SizedBox(
-                  height: screenSize.height/4,
-                  width: screenSize.width,                         
-                  child: FeaturedCarsWidget(screenSize: screenSize),
+                  height: screenSize.height/3.7,
+                  width: screenSize.width,                          
+                  child: TopSellersWidget(screenSize: screenSize),
                 ),
               ),
             ),

@@ -142,3 +142,60 @@ class SkelotonChatLoader extends StatelessWidget {
     );
   }
 }
+
+class SkelotonIndicatorForSellerAllCars extends StatelessWidget {
+  const SkelotonIndicatorForSellerAllCars({super.key,required this.screenSize});
+  final Size screenSize;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          SizedBox(
+            height: screenSize.height/4.2,
+            width: screenSize.width,
+            child: Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Skeleton(height: screenSize.height/50,width: screenSize.width/2.5,),
+                    Skeleton(height: screenSize.height/50,width: screenSize.width/2.8,),
+                    Skeleton(height: screenSize.height/50,width: screenSize.width/3,),
+                    Skeleton(height: screenSize.height/50,width: screenSize.width/2.3),
+                    Skeleton(height: screenSize.height/50,width: screenSize.width/2.6,),
+                    Skeleton(height: screenSize.height/50,width: screenSize.width/2.2,),
+                  ],
+                ),
+                const Spacer(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Skeleton(height: screenSize.height/50,width: screenSize.width/10),
+                    Skeleton(height: screenSize.height/7,width: screenSize.width/2.5),
+                  ],
+                )
+              ],
+            ),
+          ),
+          SizedBox(height: screenSize.height/100,),
+          Skeleton(height: screenSize.height/50,width: screenSize.width/1.5),
+          SizedBox(height: screenSize.height/100,),
+          SizedBox(
+            height: screenSize.height/2,
+            width: screenSize.width,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Skeleton(height: screenSize.height/5,width: screenSize.width),
+                Skeleton(height: screenSize.height/50,width: screenSize.width/2.5,),
+                Skeleton(height: screenSize.height/50,width: screenSize.width/2.8,),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}

@@ -26,7 +26,7 @@ class TopSellersWidget extends StatelessWidget {
           children: [
             TopsellersTopBar(screenSize: screenSize,homescreenBloc: homescreenBloc,),
             SizedBox(
-              height: screenSize.height / 4.4,
+              height: screenSize.height / 4.7,
               width: screenSize.width,
               child: StreamBuilder<List<Map<String, dynamic>>>(
                 stream: findTopRatedSellers(),
@@ -40,8 +40,7 @@ class TopSellersWidget extends StatelessWidget {
                     return const Center(child: Text('No sellers found'));
                   } else {
                     List<Map<String, dynamic>> sellers = snapshot.data!;
-                    return TopsellersListHolder(
-                        screenSize: screenSize, sellers: sellers);
+                    return TopsellersListHolder(screenSize: screenSize, sellers: sellers);
                   }
                 },
               ),

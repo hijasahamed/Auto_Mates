@@ -35,9 +35,13 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => SellerProfileBloc(),),
         BlocProvider(create: (context) => BuyScreenBloc(),),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: SplashScreen(),        
+        theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+        useMaterial3: true,
+      ),
+        home: const SplashScreen(),        
       ),
     );
   }

@@ -5,9 +5,10 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
 class MapHolder extends StatelessWidget {
-  const MapHolder({super.key, required this.screenSize,required this.sellerData});
+  const MapHolder({super.key, required this.screenSize,required this.sellerData,this.isfromTopSellers});
   final Size screenSize;
   final dynamic sellerData;
+  final bool? isfromTopSellers;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -31,7 +32,7 @@ class MapHolder extends StatelessWidget {
         height: screenSize.height / 6,
         width: screenSize.width / 2.1,
         child: FutureBuilder<Map<String, double>?>(
-          future: getMapLocationFromSeller(sellerData['sellerId']),
+          future: getMapLocationFromSeller((isfromTopSellers==true)? sellerData['id']:sellerData['sellerId']),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator(color: Colors.white,));

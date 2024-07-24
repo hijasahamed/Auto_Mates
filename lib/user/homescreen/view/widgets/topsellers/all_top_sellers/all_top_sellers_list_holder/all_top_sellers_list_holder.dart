@@ -1,5 +1,6 @@
 import 'package:auto_mates/user/homescreen/view/widgets/topsellers/all_top_sellers/all_top_sellers_list_holder/all_top_sellers_details/all_top_sellers_details.dart';
 import 'package:auto_mates/user/homescreen/view/widgets/topsellers/all_top_sellers/all_top_sellers_list_holder/all_topsellers_profile_rating_holder_stack/all_topsellers_profile_rating_holder_stack.dart';
+import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_more_cars/favourite_seller_more_cars.dart';
 import 'package:flutter/material.dart';
 
 class AllTopSellersListHolder extends StatelessWidget {
@@ -24,12 +25,13 @@ class AllTopSellersListHolder extends StatelessWidget {
         itemBuilder: (context, index) {
           final seller = sellers[index];
           final sellerData = seller['data'];
+          sellerData['id'] = seller['id'];
           final rating = seller['sumRating'];
           return GestureDetector(
             onTap: () {
-              // Navigator.of(context).push(MaterialPageRoute(
-              //   builder: (context) => FavouriteSellerMoreCars(sellerData: data,screenSize: screenSize,)
-              // ));
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => FavouriteSellerMoreCars(sellerData: sellerData,screenSize: screenSize,isfromTopSellers: true,)
+              ));
             },
             child: Container(
               decoration: BoxDecoration(

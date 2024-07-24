@@ -20,7 +20,7 @@ class EmiCardWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             MyTextWidget(text: 'Ready to drive your dream?', color: Colors.white, size: screenSize.width/20, weight: FontWeight.bold),
-            Text("Choose your preferred EMI frequency\nand hit the road hassle-free!\n*T&C applied",style: TextStyle(fontWeight: FontWeight.w500,color: Colors.white,fontSize: screenSize.width/38),),
+            Text("Check out for your preferred EMI frequency\nand hit the road hassle-free!\n*T&C applied",style: TextStyle(fontWeight: FontWeight.w500,color: Colors.white,fontSize: screenSize.width/38),),
             const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -58,7 +58,10 @@ class EmiCardWidget extends StatelessWidget {
                     builder: (context) => EmiCalculatorScreen(screenSize: screenSize,),
                   ));
                 },
-                child: MyTextWidget(text: 'CALCULATE & GET OFFERS', color: const Color(0xFF424141), size: screenSize.width/30, weight: FontWeight.bold),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                ),
+                child: MyTextWidget(text: 'CALCULATE & GET EMI', color: Colors.blueGrey, size: screenSize.width/30, weight: FontWeight.bold),
               ),
             )
           ],

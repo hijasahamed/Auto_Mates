@@ -23,18 +23,15 @@ class FavouriteSellerMoreCars extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50),
-        child: NormalAppBar(title: '${sellerData['sellerName']}'),
+        child: NormalAppBar(title: (isfromTopSellers==true)? '${sellerData['companyName']}' :  '${sellerData['sellerName']}' ),
       ),
       body: FutureBuilder(
-        future: getFavouriteSellersAllCars(sellerId: sellerData['sellerId']),
+        future: getFavouriteSellersAllCars(sellerId: (isfromTopSellers==true)? sellerData['id'] : sellerData['sellerId']),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Scaffold(
               backgroundColor: Colors.white,
-              body: SkelotonIndicatorList(
-                itemCount: 7,
-                screenSize: screenSize,
-              ),
+              body: SkelotonIndicatorForSellerAllCars(screenSize: screenSize,)
             );
           } else if (snapshot.hasError) {
             return Scaffold(
@@ -44,9 +41,19 @@ class FavouriteSellerMoreCars extends StatelessWidget {
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return Scaffold(
               backgroundColor: Colors.white,
-              body: NoDataErrorPlaceholder(
-                screenSize: screenSize,
-                titleText: 'No cars from this seller',
+              body: Column(
+                children: [
+                  SellerDetailsCardWidget(
+                    screenSize: screenSize,
+                    sellerData: sellerData,
+                    isfromTopSellers: isfromTopSellers,
+                  ),
+                  Expanded(
+                    child: Center(
+                      child: MyTextWidget(text: 'No cars from this seller', color: Colors.blueGrey, size: screenSize.width/30, weight: FontWeight.bold),
+                    )
+                  )
+                ],
               ),
             );
           } else {
@@ -57,6 +64,7 @@ class FavouriteSellerMoreCars extends StatelessWidget {
                   child: SellerDetailsCardWidget(
                     screenSize: screenSize,
                     sellerData: sellerData,
+                    isfromTopSellers: isfromTopSellers,
                   ),
                 ),
                 SliverPersistentHeader(
@@ -68,7 +76,7 @@ class FavouriteSellerMoreCars extends StatelessWidget {
                       color: Colors.white,
                       child: Center(
                         child: MyTextWidget(
-                          text: 'More Cars From ${sellerData['sellerName']}',
+                          text: 'More Cars From ${(isfromTopSellers==true)? sellerData['companyName']:sellerData['sellerName']}',
                           color: Colors.blueGrey,
                           size: screenSize.width / 25,
                           weight: FontWeight.bold,
