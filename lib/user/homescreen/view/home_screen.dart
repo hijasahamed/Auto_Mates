@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(3),
                 child: SizedBox(
-                  height: screenSize.height/4,
+                  height: screenSize.height/3.5,
                   width: screenSize.width,                          
                   child: TopSellersWidget(screenSize: screenSize),
                 ),

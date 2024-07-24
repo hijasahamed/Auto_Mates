@@ -12,9 +12,10 @@ import 'package:flutter/material.dart';
 
 class FavouriteSellerMoreCars extends StatelessWidget {
   const FavouriteSellerMoreCars(
-      {super.key, required this.sellerData, required this.screenSize});
+    {super.key, required this.sellerData, required this.screenSize,this.isfromTopSellers});
   final dynamic sellerData;
   final Size screenSize;
+  final bool? isfromTopSellers;
 
   @override
   Widget build(BuildContext context) {

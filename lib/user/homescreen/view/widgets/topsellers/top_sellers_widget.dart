@@ -1,105 +1,54 @@
-import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
+import 'package:auto_mates/user/homescreen/controllers/functions/functions.dart';
+import 'package:auto_mates/user/homescreen/view/bloc/homescreen_bloc.dart';
+import 'package:auto_mates/user/homescreen/view/widgets/topsellers/all_top_sellers/all_top_sellers.dart';
+import 'package:auto_mates/user/homescreen/view/widgets/topsellers/topsellers_list_holder/topsellers_list_holder.dart';
+import 'package:auto_mates/user/homescreen/view/widgets/topsellers/topsellers_top_bar/topsellers_top_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TopSellersWidget extends StatelessWidget {
-  TopSellersWidget({super.key,required this.screenSize});
+  const TopSellersWidget({super.key, required this.screenSize});
   final Size screenSize;
-  final List topSellers=[
-    TopSellers(
-      'https://67cdn.co.uk/90/6/167300977163b81a6bc69c9_ccs-revisedhome.jpg?width=479&height=251&crop=auto',
-      "CCS Cars",
-      '4.5'
-    ),
-    TopSellers(
-      'https://www.spyne.ai/blogs/wp-content/uploads/2023/02/used-car-dealership-fi.jpg',
-      "Sini's Automates",
-      '4.1'
-    ),
-    TopSellers(
-      'https://etimg.etb2bimg.com/photo/74218074.cms',
-      "J&J Motors",
-      '3.8'
-    ),    
-  ];
   @override
   Widget build(BuildContext context) {
-    return  Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    HomescreenBloc homescreenBloc = HomescreenBloc();
+    return BlocConsumer<HomescreenBloc, HomescreenState>(
+      bloc: homescreenBloc,
+      listener: (context, state) {
+        if(state is TopSellersAllListNavigateState){
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+            return AllTopSellers(screenSize: screenSize,);
+          },));
+        }
+      },
+      builder: (context, state) {
+        return Column(
           children: [
-            MyTextWidget(text: 'Top sellers', color: const Color(0xff424141), size: screenSize.width/16.5, weight: FontWeight.bold),            
-            TextButton(onPressed: (){}, child: MyTextWidget(text: 'View All', color: Colors.blue, size: screenSize.width/35, weight: FontWeight.bold) )
+            TopsellersTopBar(screenSize: screenSize,homescreenBloc: homescreenBloc,),
+            SizedBox(
+              height: screenSize.height / 4.4,
+              width: screenSize.width,
+              child: StreamBuilder<List<Map<String, dynamic>>>(
+                stream: findTopRatedSellers(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasError) {
+                    return const Center(
+                        child: Text('Error loading top-rated sellers'));
+                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return const Center(child: Text('No sellers found'));
+                  } else {
+                    List<Map<String, dynamic>> sellers = snapshot.data!;
+                    return TopsellersListHolder(
+                        screenSize: screenSize, sellers: sellers);
+                  }
+                },
+              ),
+            )
           ],
-        ),
-        SizedBox(
-          height: screenSize.height/5.5,
-          width: screenSize.width,
-          child: ListView.builder(
-            itemCount: topSellers.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context,index) {
-              return Padding(
-                padding: const EdgeInsets.all(2.5),
-                child: Stack(
-                  children: [
-                    Container(                   
-                      width: screenSize.width/2.08,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        image: DecorationImage(
-                          image: NetworkImage(topSellers[index].imageUrl),
-                          fit: BoxFit.cover
-                        )
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      child: Container(
-                        width: screenSize.width/2.08,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(5),bottomRight: Radius.circular(5)),
-                          color: Color.fromARGB(255, 238, 238, 238),
-                        ),
-                        child: Center(child: MyTextWidget(text: topSellers[index].name, color: Colors.blueGrey, size: screenSize.width/27, weight: FontWeight.bold))
-                      ),
-                    ),
-                    Positioned(
-                      top: 9,
-                      left: 5,
-                      child: Container(
-                        height: screenSize.height/32,
-                        width: screenSize.width/8,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF1888FE),
-                          borderRadius: BorderRadius.circular(5)
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(Icons.star,color: Colors.white,size: screenSize.width/24,),                            
-                            MyTextWidget(text: topSellers[index].rating, color: Colors.white, size: screenSize.width/24, weight: FontWeight.bold)
-                          ],
-                        ),
-                      )
-                    )
-                  ],
-                ),
-              );
-            },
-          ),
-        )
-      ],
+        );
+      },
     );
   }
 }
-
-class TopSellers{
-  final String imageUrl;
-  final String name;
-  final String rating;
-
-  TopSellers(this.imageUrl,this.name,this.rating);
-}
-
-
-

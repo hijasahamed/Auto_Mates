@@ -17,13 +17,19 @@ Stream<List<Map<String, dynamic>>> findTopRatedSellers() async* {
     for (var doc in snapshot.docs) {
       final data = doc.data() as Map<String, dynamic>;
       List<dynamic> ratings = data['rating'] ?? [];
+      double selleresRating = 0.0;
 
-      double sum = ratings.fold(0.0, (previousValue, element) => previousValue + (element is num ? element.toDouble() : 0.0));
+      if (ratings.isNotEmpty) {
+        List doubleRatings = ratings.map((e) => e.toDouble()).toList();
+        double sum = doubleRatings.fold(0.0, (previousValue, element) => previousValue + element);
+        double average = sum / doubleRatings.length;
+        selleresRating = double.parse((average).toStringAsFixed(1));
+      }
 
       sellers.add({
         'id': doc.id,
         'data': data,
-        'sumRating': sum,
+        'sumRating': selleresRating,
       });
     }
 
