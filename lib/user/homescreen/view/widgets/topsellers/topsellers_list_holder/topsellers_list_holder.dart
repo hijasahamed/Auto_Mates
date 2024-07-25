@@ -20,7 +20,7 @@ class TopsellersListHolder extends StatelessWidget {
         sellerData['id'] = seller['id'];
         final rating = seller['sumRating'];
         return Padding(
-          padding: const EdgeInsets.all(2.5),
+          padding: EdgeInsets.all(screenSize.width/150),
           child: GestureDetector(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
@@ -30,7 +30,7 @@ class TopsellersListHolder extends StatelessWidget {
             child: Stack(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(screenSize.width/100),
                   child: FadeInImage(
                       fadeInDuration: const Duration(milliseconds: 500),
                       width: screenSize.width/2.1,
@@ -58,9 +58,9 @@ class TopsellersListHolder extends StatelessWidget {
                   bottom: 0,
                   child: Container(
                     width: screenSize.width/2.1,
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(5),bottomRight: Radius.circular(5)),
-                      color: Color.fromARGB(255, 238, 238, 238),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(screenSize.width/100),bottomRight: Radius.circular(screenSize.width/100)),
+                      color: const Color.fromARGB(255, 238, 238, 238),
                     ),
                     child: Center(child: MyTextWidget(text: sellerData['companyName'], color: Colors.blueGrey, size: screenSize.width/27, weight: FontWeight.bold))
                   ),
@@ -73,7 +73,7 @@ class TopsellersListHolder extends StatelessWidget {
                     width: screenSize.width/8,
                     decoration: BoxDecoration(
                       color: const Color(0xFF1888FE),
-                      borderRadius: BorderRadius.circular(5)
+                      borderRadius: BorderRadius.circular(screenSize.width/100)
                     ),
                     child: Row(
                       children: [
