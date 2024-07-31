@@ -1,10 +1,10 @@
 // ignore_for_file: use_build_context_synchronously, avoid_print
-
 import 'dart:io';
-
 import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/seller/seller_appbar_bottombar/controllers/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/floating_button/floating_button_widget.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/premium_bottomsheet/premium_bottomsheet.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -13,10 +13,31 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-final CollectionReference firebaseObject =
-    FirebaseFirestore.instance.collection('carstosell');
+final CollectionReference firebaseObject = FirebaseFirestore.instance.collection('carstosell');
 
 SellerHomeScreenBloc refreshAllCarToSellInstance = SellerHomeScreenBloc();
+
+
+void checkSellerisPremium({required String sellerId,required SellerHomeScreenBloc sellerHomeScreenBloc,context,screenSize}) async {
+  try {
+    final querySnapshot = await FirebaseFirestore.instance
+        .collection('carstosell')
+        .where('sellerId', isEqualTo: sellerId)
+        .get();
+
+    final count = querySnapshot.docs.length;
+
+    if (count < 1) {
+      sellerHomeScreenBloc.add(FloatingButtonClickedEvent());
+    } else {
+      showBottomSheetForPremium(context: context,screenSize: screenSize);
+    }
+
+  } catch (e) {
+    print('Error checking seller status: $e');
+  }
+}
+
 
 postNewCar(
     {required
@@ -307,7 +328,7 @@ updateCarDetails(
   } 
 }
 
-
+// add seller profile
 String? thumbnailImage;
 
 addCarThumbnail({bloc})async{

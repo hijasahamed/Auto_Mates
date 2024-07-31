@@ -92,7 +92,7 @@ class SellerHomeScreen extends StatelessWidget {
                 Positioned(
                     bottom: 50,
                     right: 20,
-                    child: FloatingButtonWidget(screenSize: screenSize,sellerHomeScreenBloc: sellerHomeScreenBloc,))
+                    child: FloatingButtonWidget(screenSize: screenSize,sellerHomeScreenBloc: sellerHomeScreenBloc,data: data,))
               ],
             ),
           ),

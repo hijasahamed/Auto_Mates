@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SellerProfile extends StatelessWidget {
-  const SellerProfile({super.key});
-
+  const SellerProfile({super.key,required this.screenSize});
+  final Size screenSize;
   @override
   Widget build(BuildContext context) {
     SellerAuthenticationBloc blocInstance = SellerAuthenticationBloc();
@@ -39,13 +39,13 @@ class SellerProfile extends StatelessWidget {
                   onTap: () {
                     addSellerProfileImage(bloc: blocInstance);
                   },
-                  child: const CircleAvatar(
+                  child: CircleAvatar(
                     radius: 18,
                     backgroundColor: Colors.blue,
                     child: Icon(
                       Icons.add_a_photo,
                       color: Colors.white,
-                      size: 18,
+                      size: screenSize.width/25,
                     ),
                   ),
                 )),

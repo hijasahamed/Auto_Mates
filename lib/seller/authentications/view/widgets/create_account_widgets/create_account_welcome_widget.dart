@@ -6,25 +6,13 @@ class CreateAccountWelcomeScreen extends StatelessWidget {
   final Size screenSize;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: screenSize.height / 4.8,
-          width: screenSize.width / 2,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('assets/images/create a account.webp'),
-                  fit: BoxFit.cover)),
-        ),
-        const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: MyTextWidget(
-              text: 'Sell Cars Easily With AutoMates',
-              color: Colors.black,
-              size: 15,
-              weight: FontWeight.bold),
-        )
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(15),
+      child: MyTextWidget(
+          text: 'Sell Cars Easily With AutoMates',
+          color: Colors.blueGrey,
+          size: screenSize.width/20,
+          weight: FontWeight.bold),
     );
   }
 }

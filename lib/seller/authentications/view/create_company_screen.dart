@@ -54,7 +54,7 @@ class CreateCompanyScreen extends StatelessWidget {
                   CreateAccountWelcomeScreen(
                     screenSize: screenSize,
                   ),
-                  const SellerProfile(),
+                  SellerProfile(screenSize: screenSize,),
                   CreateSectionWidget(
                     sellerSignupFormkey: sellerSignupFormkey,
                     phoneNumberController: phoneNumberController,
