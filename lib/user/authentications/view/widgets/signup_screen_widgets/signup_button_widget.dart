@@ -3,6 +3,7 @@ import 'package:auto_mates/user/authentications/controller/bloc/authentication_b
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/authentications/view/widgets/login_signup_buttonshape/login_signup_button_shape.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -59,8 +60,8 @@ class SignupButtonWidget extends StatelessWidget {
           bloc: authblocInstance,
           builder: (context, state) {
             return InkWell(
-              onTap: () {                
-                  signupButtonClicked(
+              onTap: () {
+                signupButtonClicked(
                   location: locationController.text,
                   mobile: mobileController.text,
                   userName: userNameController.text,
@@ -69,20 +70,44 @@ class SignupButtonWidget extends StatelessWidget {
                   password: passwordController.text,
                   authblocInstance: authblocInstance,
                   formkey: userSignupFormkey,
-                  context: context);             
+                  context: context); 
               },
-              child: ClipPath(
-                clipper: Customshape(),
-                child: Container(
-                  color: const Color(0XFF143A42),         
-                  height: screenSize.height / 10,
-                  child: const Center(
-                      child: Text(
-                    'Signup',
-                    style: TextStyle(
-                        fontSize: 28, fontWeight: FontWeight.w600, color: Colors.white),
-                  )),
-                ),
+              child: Stack(
+                children: [
+                  ClipPath(
+                    clipper: Customshape(),
+                    child: Container(
+                      color: const Color(0XFF143A42),
+                      height: screenSize.height / 10,                      
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: screenSize.width/25),
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: MyTextWidget(text: 'Signup', color: Colors.white, size: screenSize.width/17, weight: FontWeight.w500),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned.fill(
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: () {
+                          signupButtonClicked(
+                            location: locationController.text,
+                            mobile: mobileController.text,
+                            userName: userNameController.text,
+                            recheckPassword: reChekPasswordController.text,
+                            email: emailController.text,
+                            password: passwordController.text,
+                            authblocInstance: authblocInstance,
+                            formkey: userSignupFormkey,
+                            context: context);  
+                        },
+                      ),
+                    ),
+                  ),
+                ],
               ),
             );
           },

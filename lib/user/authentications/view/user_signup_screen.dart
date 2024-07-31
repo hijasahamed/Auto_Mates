@@ -63,7 +63,7 @@ class UserSignupScreen extends StatelessWidget {
                             reChekPasswordController: reChekPasswordController,
                             userSignupFormkey: userSignupFormkey),
                       ),
-                      BackToLoginScreenWidget(authenticationBloc: authenticationBloc),
+                      BackToLoginScreenWidget(authenticationBloc: authenticationBloc,screenSize: screenSize,),
                       SignupButtonWidget(
                         screenSize: screenSize,
                         authenticationBloc: authenticationBloc,

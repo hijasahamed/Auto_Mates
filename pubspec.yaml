@@ -130,6 +130,7 @@ flutter:
     - assets/images/money-stack.png
     - assets/images/compare car.png
     - assets/images/previous_compare.webp
+    - assets/images/avatar_image.webp
     #animations
     - assets/animations/loading_animation.json
     - assets/animations/splash_animation_jeep.json

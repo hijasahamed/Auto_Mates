@@ -16,7 +16,7 @@ class UserImage extends StatelessWidget {
       builder: (context, state) {
         ImageProvider? imageProvider;
         if (userProfileImage == null || userProfileImage!.isEmpty) {
-          imageProvider = const AssetImage('assets/images/avatar.png');
+          imageProvider = const AssetImage('assets/images/avatar_image.webp');
         } else {
           Uri uri = Uri.parse(userProfileImage!);
           if (uri.isAbsolute) {
