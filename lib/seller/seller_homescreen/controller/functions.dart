@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/seller/seller_appbar_bottombar/controllers/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
-import 'package:auto_mates/seller/seller_homescreen/view/widgets/floating_button/floating_button_widget.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/premium_bottomsheet/premium_bottomsheet.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';

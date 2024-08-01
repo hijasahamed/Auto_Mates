@@ -72,26 +72,32 @@ showBottomSheetForPremium({context,screenSize}){
             ],
           ),
           SizedBox(height: screenSize.height/50,),
-          Material(
-              color: Colors.transparent,
-              child: InkWell(
-                onTap: () {
-                  
-                },
-                borderRadius: BorderRadius.circular(screenSize.width / 25),
-                child: Ink(
-                  height: screenSize.height / 18,
-                  width: screenSize.width,
-                  decoration: BoxDecoration(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              MyTextWidget(text: 'Unlock Exciting Features', color: Colors.blueGrey, size: screenSize.width/35, weight: FontWeight.bold),
+              Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: () {
+                      
+                    },
                     borderRadius: BorderRadius.circular(screenSize.width / 25),
-                    color: Colors.red,
+                    child: Ink(
+                      height: screenSize.height / 18,
+                      width: screenSize.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(screenSize.width / 25),
+                        color: Colors.red,
+                      ),
+                      child: Center(
+                        child: MyTextWidget(text: 'Get Premium with ₹1499 yearly', color: Colors.white, size: screenSize.width / 25, weight: FontWeight.bold),
+                      ),
+                    ),
                   ),
-                  child: Center(
-                    child: MyTextWidget(text: 'Get Premium with ₹1499 yearly', color: Colors.white, size: screenSize.width / 25, weight: FontWeight.bold),
-                  ),
-                ),
               ),
-            ),
+            ],
+          ),
         ],
       ),
     );
