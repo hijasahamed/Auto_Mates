@@ -1,3 +1,4 @@
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/homescreen/controllers/functions/functions.dart';
 import 'package:auto_mates/user/homescreen/view/bloc/homescreen_bloc.dart';
 import 'package:auto_mates/user/homescreen/view/widgets/topsellers/all_top_sellers/all_top_sellers.dart';
@@ -34,8 +35,10 @@ class TopSellersWidget extends StatelessWidget {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());
                   } else if (snapshot.hasError) {
-                    return const Center(
-                        child: Text('Error loading top-rated sellers'));
+                    return Center(child: MyTextWidget(
+                      text: 'No seller is been rated by the buyers.We will show the top rated sellers once the buyers start rating the sellers.', 
+                      color: Colors.blueGrey,maxline: true,alignTextCenter: true, 
+                      size: screenSize.width/31, weight: FontWeight.bold)); 
                   } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
                     return const Center(child: Text('No sellers found'));
                   } else {

@@ -1,11 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:collection';
 import 'dart:developer';
-
 import 'package:auto_mates/seller/seller_chat_screen/controller/seller_chat_controller.dart';
 import 'package:auto_mates/user/chatscreen/model/model.dart';
 import 'package:auto_mates/user/chatscreen/view/bloc/user_chat_bloc.dart';
 import 'package:auto_mates/user/chatscreen/view/rate_sellers/rate_sellers.dart';
-import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -132,10 +132,10 @@ String getEmojiForRating(double rating) {
 }
 
 
-void addRating({required sellerData, required double rating, required BuildContext context}) {
+void addRating({required sellerData, required double rating, required BuildContext context,required UserChatBloc userRates}) async{
+  userRates.add(UserRatedTheSellerLoadingEvent());
   int intRating = rating.toInt();
   final CollectionReference collection = FirebaseFirestore.instance.collection('sellerSignupData');
-
   collection.doc(sellerData.id).get().then((doc) {
     if (doc.exists) {
       Map<String, dynamic>? data = doc.data() as Map<String, dynamic>?;
@@ -147,9 +147,11 @@ void addRating({required sellerData, required double rating, required BuildConte
 
       collection.doc(sellerData.id).set({
         'rating': currentRatings
-      }, SetOptions(merge: true)).then((_) {
+      }, SetOptions(merge: true)).then((_)async {
+        userRates.add(UserRatedTheSellerEvent());
+        await Future.delayed(const Duration(milliseconds: 1500));
         Navigator.of(context).pop();
-        snackbarWidget('Your rating is marked', context, Colors.green, Colors.white, SnackBarBehavior.fixed);
+        
       }).catchError((error) {
         log(error.toString());
       });

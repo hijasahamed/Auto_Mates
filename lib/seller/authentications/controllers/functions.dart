@@ -220,7 +220,7 @@ addSellerDetailsToDb({companyName, location, phoneNumber}) async {
     'companyName': companyName,
     'location': location,
     'mobile': phoneNumber,
-    'rating': '',
+    'rating': [],
   };
   sellerSignupFirebaseObject.add(data);
 }

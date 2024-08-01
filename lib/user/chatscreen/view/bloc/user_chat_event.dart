@@ -4,3 +4,7 @@ part of 'user_chat_bloc.dart';
 sealed class UserChatEvent {}
 
 class RatingEmojiRefreshEvent extends UserChatEvent {}
+
+class UserRatedTheSellerLoadingEvent extends UserChatEvent {}
+
+class UserRatedTheSellerEvent extends UserChatEvent {}

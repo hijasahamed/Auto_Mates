@@ -1,4 +1,5 @@
 import 'package:auto_mates/seller/authentications/view/bloc/seller_authentication_bloc.dart';
+import 'package:auto_mates/seller/seller_homescreen/controller/payments_services.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/bloc/seller_profile_bloc.dart';
 import 'package:auto_mates/user/appbarbottombar/controller/bloc/appbottombar_bloc.dart';
@@ -11,9 +12,11 @@ import 'package:auto_mates/user/splashscreen/view/splash_screen/splash_screen.da
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey = stripePublishableKey;
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

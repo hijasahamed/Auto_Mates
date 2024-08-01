@@ -1,3 +1,4 @@
+import 'package:auto_mates/seller/seller_homescreen/controller/payments_services.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -80,7 +81,7 @@ showBottomSheetForPremium({context,screenSize}){
                   color: Colors.transparent,
                   child: InkWell(
                     onTap: () {
-                      
+                      StripeService.instance.makePayment();
                     },
                     borderRadius: BorderRadius.circular(screenSize.width / 25),
                     child: Ink(
