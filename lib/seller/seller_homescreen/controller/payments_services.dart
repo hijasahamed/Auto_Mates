@@ -6,10 +6,10 @@ const String stripePublishableKey = 'pk_test_51PeCtkJKQ0ZhTvhb3fJaXwajZVZC804zK8
 const String stripeSecretKey = 'sk_test_51PeCtkJKQ0ZhTvhbpXmz2vTVQ6JNeeQmnWt89hWP27swajFcwXgYNLVLSlKaO3k8ouAQ8ReG2BrysaOi0tF1KJ5u0056EXjJUP';
 
 
-class StripeService{
-  StripeService._();
+class StripePaymentService{
+  StripePaymentService._();
 
-  static final StripeService instance = StripeService._();
+  static final StripePaymentService instance = StripePaymentService._();
 
   Future<void> makePayment()async{
     try{

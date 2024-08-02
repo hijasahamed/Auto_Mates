@@ -81,7 +81,7 @@ showBottomSheetForPremium({context,screenSize}){
                   color: Colors.transparent,
                   child: InkWell(
                     onTap: () {
-                      StripeService.instance.makePayment();
+                      StripePaymentService.instance.makePayment();
                     },
                     borderRadius: BorderRadius.circular(screenSize.width / 25),
                     child: Ink(

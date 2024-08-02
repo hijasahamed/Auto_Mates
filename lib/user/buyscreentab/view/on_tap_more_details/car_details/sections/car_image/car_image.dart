@@ -1,6 +1,6 @@
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/car_holder/fav_icon/favourite_icon.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/car_image/car_details_image_holder/car_details_image_holder.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/car_image/car_image_count/car_image_count.dart';
+import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/car_image/image_count/car_image_count.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
