@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:auto_mates/seller/seller_homescreen/controller/payments_services.dart';
 import 'package:auto_mates/seller/seller_homescreen/controller/subscription_services.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
@@ -117,7 +116,8 @@ class _AutoBackWidgetState extends State<AutoBackWidget> {
                     text: 'Mark as Intrested',
                     color: Colors.white,
                     size: widget.screenSize.width / 30,
-                    weight: FontWeight.bold)),
+                    weight: FontWeight.bold)
+            ),
           ],
         )
       ],

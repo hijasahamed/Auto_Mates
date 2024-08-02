@@ -67,10 +67,9 @@ class StripeSubscriptionService {
       Map<String, dynamic> data = {
         'customer': customerId,
         'items': [
-          {'price': 'price_1Hh1t5FzK76r8D0eQgV9y9f7'}, // Replace with your actual price ID
+          {'plan': 'price_1PiwOIJKQ0ZhTvhbgrsQcPTl'},
         ],
       };
-      print('Data: $data');
       var response = await dio.post(
         'https://api.stripe.com/v1/subscriptions',
         data: data,
