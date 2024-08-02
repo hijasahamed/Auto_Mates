@@ -72,8 +72,10 @@ class FavouriteSellerMoreCars extends StatelessWidget {
                     minHeight: screenSize.height/20,
                     maxHeight: screenSize.height/20,
                     child: Container(
+                      padding: EdgeInsets.all(screenSize.width/100),
                       color: Colors.white,
-                      child: Center(
+                      child: Align(
+                        alignment: Alignment.centerLeft,
                         child: MyTextWidget(
                           text: 'More Cars From ${(isfromTopSellers==true)? sellerData['companyName']:sellerData['sellerName']}',
                           color: Colors.blueGrey,

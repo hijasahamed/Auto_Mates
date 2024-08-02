@@ -1,6 +1,6 @@
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/all_images/all_images_screen.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/car_image.dart';
+import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/car_image/car_image.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/car_overview.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/details_container.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/related_cars/related_cars.dart';

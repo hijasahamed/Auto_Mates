@@ -1,12 +1,17 @@
 import 'dart:async';
 
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
+import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AutoBackWidget extends StatefulWidget {
   const AutoBackWidget(
-      {super.key, required this.screenSize, required this.data,this.isFromSearch});
+      {super.key,
+      required this.screenSize,
+      required this.data,
+      this.isFromSearch});
   final Size screenSize;
   final dynamic data;
   final bool? isFromSearch;
@@ -17,20 +22,20 @@ class AutoBackWidget extends StatefulWidget {
 class _AutoBackWidgetState extends State<AutoBackWidget> {
   late int secondsLeft;
   late Timer timer;
+  BuyScreenBloc refreshTimerBlocObj = BuyScreenBloc();
 
   @override
   void initState() {
     super.initState();
     secondsLeft = 10;
-    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        if (secondsLeft > 0) {
-          secondsLeft--;
-        } else {
-          Navigator.of(context).pop();
-          timer.cancel();
-        }
-      });
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {      
+      if (secondsLeft > 0) {
+        secondsLeft--;
+        refreshTimerBlocObj.add(RefreshIntrestedAutoTimerEvent());
+      } else {
+        Navigator.of(context).pop();
+        timer.cancel();
+      }
     });
   }
 
@@ -64,7 +69,7 @@ class _AutoBackWidgetState extends State<AutoBackWidget> {
       actions: <Widget>[
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [            
+          children: [
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
@@ -74,33 +79,45 @@ class _AutoBackWidgetState extends State<AutoBackWidget> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  MyTextWidget(text: 'Back', color: Colors.white, size: widget.screenSize.width/30, weight: FontWeight.bold),
+                  MyTextWidget(
+                      text: 'Back',
+                      color: Colors.white,
+                      size: widget.screenSize.width / 30,
+                      weight: FontWeight.bold),
                   SizedBox(
                     width: widget.screenSize.width / 35,
                   ),
                   CircleAvatar(
                     backgroundColor: Colors.white,
                     radius: 14,
-                    child: MyTextWidget(
-                        text: secondsLeft.toString(),
-                        color: Colors.black,
-                        size: 15,
-                        weight: FontWeight.w600),
+                    child: BlocBuilder<BuyScreenBloc, BuyScreenState>(
+                      bloc: refreshTimerBlocObj,
+                      builder: (context, state) {
+                        return MyTextWidget(
+                            text: secondsLeft.toString(),
+                            color: Colors.black,
+                            size: 15,
+                            weight: FontWeight.w600);
+                      },
+                    ),
                   )
                 ],
               ),
             ),
             ElevatedButton(
-              onPressed: () {
-                markUserInterest(
-                    context: context,
-                    isFromSearch: widget.isFromSearch,
-                    car: widget.data);
-              },
-              style: const ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.green)),
-              child: MyTextWidget(text: 'Mark as Intrested', color: Colors.white, size: widget.screenSize.width/30, weight: FontWeight.bold)
-            ),
+                onPressed: () {
+                  markUserInterest(
+                      context: context,
+                      isFromSearch: widget.isFromSearch,
+                      car: widget.data);
+                },
+                style: const ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.green)),
+                child: MyTextWidget(
+                    text: 'Mark as Intrested',
+                    color: Colors.white,
+                    size: widget.screenSize.width / 30,
+                    weight: FontWeight.bold)),
           ],
         )
       ],

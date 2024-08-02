@@ -89,12 +89,14 @@ class YesButton extends StatelessWidget {
         height: screenSize.height / 20,
         width: screenSize.width / 4,
         decoration: BoxDecoration(
-          color: Colors.red,
+          color: (isSellerCalling == true)? Colors.green : Colors.red,
           borderRadius: BorderRadius.circular(5),
         ),
         child: Center(
           child: MyTextWidget(
-              text: 'Confirm',
+              text: (isSellerCalling == true)? 'Call'
+              : (isSellerLogout == true || isUserLogout == true)? 'Logout'
+              : 'confirm',
               color: Colors.white,
               size: screenSize.width/30,
               weight: FontWeight.w500),

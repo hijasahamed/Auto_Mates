@@ -66,3 +66,5 @@ class FilterdCarDropdownButtonRefreshEvent extends BuyScreenEvent {
 }
 
 class ApplyFilterButtonTextRefreshEvent extends BuyScreenEvent{}
+
+class RefreshIntrestedAutoTimerEvent extends BuyScreenEvent{}

@@ -68,3 +68,5 @@ class FilterdCarDropdownButtonRefreshState extends BuyScreenState {
 }
 
 class ApplyFilterButtonTextRefreshState extends BuyScreenState{}
+
+class RefreshIntrestedAutoTimerState extends BuyScreenState{}

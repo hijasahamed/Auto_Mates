@@ -8,6 +8,7 @@ import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/seller_det
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/seller_details/section/sellers_rating.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/commonwidgets/shimmer_effect/shimmer_effect.dart';
+import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_more_cars/favourite_seller_more_cars.dart';
 import 'package:flutter/material.dart';
 
 class SellerDetailsCardWidget extends StatelessWidget {
@@ -36,38 +37,47 @@ class SellerDetailsCardWidget extends StatelessWidget {
               color: Colors.white,
               elevation: 5,
               shadowColor: Colors.blueGrey,
-              child: Padding(
-                padding: const EdgeInsets.all(5),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [                                     
-                    Row(
-                      children: [
-                        const MyTextWidget(text: 'Seller informations', color: Color(0xFF424141), size: 17, weight: FontWeight.bold),                     
-                        const Spacer(),
-                        SellerFavButton(sellerData: data,)
-                      ],
-                    ),
-                    SizedBox(height: screenSize.height/175,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SellersDetail(icon: Icons.person, data: data.companyName,screenSize: screenSize,),                              
-                            SellersDetail(icon: Icons.call, data: data.mobile,screenSize: screenSize,),                           
-                            SellersRating(screenSize: screenSize, sellerData: data),
-                            SellersDetail(icon: Icons.place, data: data.location,screenSize: screenSize,),
-                            ContactSellerButton(screenSize: screenSize, data: data)
-                          ],
-                        ),
-                        MapHolder(screenSize: screenSize,sellerData: sellerData,isfromTopSellers: isfromTopSellers,)
-                      ],
-                    ),
-                  ],
+              child: InkWell(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => FavouriteSellerMoreCars(
+                      sellerData: sellerData,screenSize: screenSize,isfromTopSellers: false,) ,
+                    )
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [                                     
+                      Row(
+                        children: [
+                          const MyTextWidget(text: 'Seller informations', color: Color(0xFF424141), size: 17, weight: FontWeight.bold),                     
+                          const Spacer(),
+                          SellerFavButton(sellerData: data,)
+                        ],
+                      ),
+                      SizedBox(height: screenSize.height/175,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SellersDetail(icon: Icons.person, data: data.companyName,screenSize: screenSize,),                              
+                              SellersDetail(icon: Icons.call, data: data.mobile,screenSize: screenSize,),                           
+                              SellersRating(screenSize: screenSize, sellerData: data),
+                              SellersDetail(icon: Icons.place, data: data.location,screenSize: screenSize,),
+                              ContactSellerButton(screenSize: screenSize, data: data)
+                            ],
+                          ),
+                          MapHolder(screenSize: screenSize,sellerData: sellerData,isfromTopSellers: isfromTopSellers,)
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );
