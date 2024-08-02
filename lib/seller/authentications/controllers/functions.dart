@@ -304,5 +304,3 @@ void checkLocationPermission({context,locationController}) async {
     openAppSettings();
   }
 }
-
-

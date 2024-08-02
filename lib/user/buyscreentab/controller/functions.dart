@@ -130,7 +130,7 @@ Future<void> markUserInterest({context, car, isFromSearch}) async {
     };
     userInterestMarked.add(data);
     buyScreenBloc.add(InterstButtonClickedRebuildUiEvent());
-    snackbarWidget('Your interest is been marked', context, Colors.blue,
+    snackbarWidget('Your interest is been marked', context, Colors.green,
         Colors.white, SnackBarBehavior.floating);
     Navigator.of(context).pop();
   } else {
@@ -408,7 +408,7 @@ void checkLocationPermissionToViewSellerMap(double lat, double lng) async {
 TileLayer get openmap => TileLayer(
       urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
       userAgentPackageName: 'dev.fleaflet.flutter_map.example',
-    );
+  );
 
 
 Future<void> openGoogleMaps(double lat, double lng) async {
