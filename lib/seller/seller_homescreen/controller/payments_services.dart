@@ -11,15 +11,17 @@ class StripePaymentService{
 
   static final StripePaymentService instance = StripePaymentService._();
 
-  Future<void> makePayment()async{
+  Future makePayment()async{
     try{
-      String? paymentIntentClientSecret = await createPaymentIntent(10, 'USD');
+      String? paymentIntentClientSecret = await createPaymentIntent(999, 'INR');
       if(paymentIntentClientSecret == null) return;
       await Stripe.instance.initPaymentSheet(paymentSheetParameters: SetupPaymentSheetParameters(
         paymentIntentClientSecret: paymentIntentClientSecret,
         merchantDisplayName: 'Auto Mates'
       ));
-      await processPayment();
+      return await processPayment().then((value) {
+        return value==true? true : false;
+      },).catchError((err){return false;}); 
     }
     catch (e){
       if (kDebugMode) {
@@ -64,9 +66,9 @@ class StripePaymentService{
     return calculatedAmount.toString();
   }
 
-  Future<void> processPayment()async{
+  Future processPayment()async{
     try{
-      await Stripe.instance.presentPaymentSheet();
+     return await Stripe.instance.presentPaymentSheet().then((value) { return true; }).catchError((err){ return false;});
     }catch (e){
       if(kDebugMode){
         print(e);

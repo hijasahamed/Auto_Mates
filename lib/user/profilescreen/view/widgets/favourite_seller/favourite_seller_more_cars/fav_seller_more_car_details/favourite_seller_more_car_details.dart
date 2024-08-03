@@ -27,11 +27,22 @@ class FavouriteSellerMoreCarDetails extends StatelessWidget {
           SizedBox(
             height: screenSize.height / 100,
           ),
-          MyTextWidget(
-              text: '₹${car['price']}Lakh',
-              color: const Color(0xFF424141),
-              size: 19,
-              weight: FontWeight.w500)
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              MyTextWidget(
+                  text: '₹${car['price']}',
+                  color: Colors.green,
+                  size: screenSize.width/25,
+                  weight: FontWeight.bold),
+                  SizedBox(width: screenSize.width/100,),
+              MyTextWidget(
+                  text: 'Lakh',
+                  color: Colors.blueGrey,
+                  size: screenSize.width/40,
+                  weight: FontWeight.w500),
+            ],
+          )
         ],
       ),
     );

@@ -30,6 +30,8 @@ class BuyScreenBloc extends Bloc<BuyScreenEvent, BuyScreenState> {
     on<FilterdCarDropdownButtonRefreshEvent>(filterdCarDropdownButtonRefreshEvent);
     on<ApplyFilterButtonTextRefreshEvent>(applyFilterButtonTextRefreshEvent);
     on<RefreshIntrestedAutoTimerEvent>(refreshIntrestedAutoTimerEvent);
+    on<InterestButtoncircularLoaderEvent>(interestButtoncircularLoaderEvent);
+    on<CarAddingToFeaturedEvent>(carAddingToFeaturedEvent);
   }
 
   FutureOr<void> interestedCarConatinerClickedEvent(
@@ -146,5 +148,15 @@ class BuyScreenBloc extends Bloc<BuyScreenEvent, BuyScreenState> {
   FutureOr<void> refreshIntrestedAutoTimerEvent(
     RefreshIntrestedAutoTimerEvent event, Emitter<BuyScreenState> emit) {
       emit(RefreshIntrestedAutoTimerState());
+  }
+
+  FutureOr<void> interestButtoncircularLoaderEvent(
+    InterestButtoncircularLoaderEvent event, Emitter<BuyScreenState> emit) {
+      emit(InterestButtoncircularLoaderState());
+  }
+
+  FutureOr<void> carAddingToFeaturedEvent(
+    CarAddingToFeaturedEvent event, Emitter<BuyScreenState> emit) {
+      emit(CarAddingToFeaturedState());
   }
 }

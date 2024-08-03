@@ -77,9 +77,9 @@ class FavouriteSellerMoreCars extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: MyTextWidget(
-                          text: 'More Cars From ${(isfromTopSellers==true)? sellerData['companyName']:sellerData['sellerName']}',
+                          text: 'Available Cars From ${(isfromTopSellers==true)? sellerData['companyName']:sellerData['sellerName']}',
                           color: Colors.blueGrey,
-                          size: screenSize.width / 25,
+                          size: screenSize.width / 30,
                           weight: FontWeight.bold,
                         ),
                       ),
