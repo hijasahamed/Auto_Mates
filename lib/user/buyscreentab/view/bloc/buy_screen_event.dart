@@ -71,4 +71,4 @@ class RefreshIntrestedAutoTimerEvent extends BuyScreenEvent{}
 
 class InterestButtoncircularLoaderEvent extends BuyScreenEvent{}
 
-class CarAddingToFeaturedEvent extends BuyScreenEvent{}
+class CarAddingToInterestedEvent extends BuyScreenEvent{}

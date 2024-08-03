@@ -73,4 +73,4 @@ class RefreshIntrestedAutoTimerState extends BuyScreenState{}
 
 class InterestButtoncircularLoaderState extends BuyScreenState{}
 
-class CarAddingToFeaturedState extends BuyScreenState{}
+class CarAddingToInterestedState extends BuyScreenState{}
