@@ -18,6 +18,7 @@ class YesButton extends StatelessWidget {
       this.profileScreenBloc,
       this.isUsersInterestRemoving,
       this.userInterestedData,
+      this.deleteInterestFromCarsPage,
       this.removeFavSeller,
       this.favSellerData,
       this.sellerProfileBloc,
@@ -41,6 +42,7 @@ class YesButton extends StatelessWidget {
   final ProfileScreenBloc? profileScreenBloc;
   final bool? isUsersInterestRemoving;
   final dynamic userInterestedData;
+  final bool? deleteInterestFromCarsPage;
   final bool? removeFavSeller;
   final dynamic favSellerData;
   final SellerProfileBloc? sellerProfileBloc;
@@ -70,7 +72,7 @@ class YesButton extends StatelessWidget {
           );
         },)
         : (isUsersInterestRemoving==true)
-        ? removeUsersInterestedCar(context: context,docId: userInterestedData.id,isNavBack: true)
+        ? removeUsersInterestedCar(context: context,docId: (deleteInterestFromCarsPage == true)? userInterestedData : userInterestedData.id,isNavBack: true)
         : (removeFavSeller==true)
         ? removeSellerFromFavourites(context: context, docId: favSellerData.id,backNavigation: true)
         : (isSellerLogout==true)

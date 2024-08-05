@@ -1,8 +1,8 @@
-import 'package:auto_mates/seller/seller_profile_screen/controllers/functions.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/buy_screen.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/bottom_app_bar/interested_button/auto_back_widget/auto_back_widget.dart';
+import 'package:auto_mates/user/commonwidgets/custom_alertdialog/custom_alert_dialog.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,7 +54,19 @@ class InterestedButton extends StatelessWidget {
               highlightColor: const Color(0xFFDBEDF5),
               onTap: () {
                 isInterested
-                    ? removeUsersInterestedCar(context: context, docId: docId)
+                    ? showDialog(
+                        barrierDismissible: false,
+                        context: context, 
+                        builder: (context) => CustomAlertDialog(
+                          image: 'assets/images/bin.png',
+                          title: 'Remove Interest',
+                          subtitle: 'Do you want to remove the interest? This will be removed for the seller also. NOTE: The amount you paid will not be refunded.',
+                          screenSize: screenSize,
+                          isUsersInterestRemoving: true,
+                          deleteInterestFromCarsPage: true,
+                          userInterestedData: docId,              
+                        ),
+                      )
                     : showDialog(
                         context: context,
                         barrierDismissible: false,

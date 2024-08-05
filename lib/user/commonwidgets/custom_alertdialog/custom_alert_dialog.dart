@@ -17,6 +17,7 @@ class CustomAlertDialog extends StatelessWidget {
       this.isUserLogout,
       this.isUsersInterestRemoving,
       this.userInterestedData,
+      this.deleteInterestFromCarsPage,
       this.profileScreenBloc,
       this.removeFavSeller,
       this.favSellerData,
@@ -44,6 +45,7 @@ class CustomAlertDialog extends StatelessWidget {
   final ProfileScreenBloc? profileScreenBloc;
   final bool? isUsersInterestRemoving;
   final dynamic userInterestedData;
+  final bool? deleteInterestFromCarsPage;
   final bool? removeFavSeller;
   final dynamic favSellerData;
   final SellerProfileBloc? sellerProfileBloc;
@@ -110,6 +112,7 @@ class CustomAlertDialog extends StatelessWidget {
                   profileScreenBloc: profileScreenBloc,
                   isUsersInterestRemoving: isUsersInterestRemoving,
                   userInterestedData: userInterestedData,
+                  deleteInterestFromCarsPage: deleteInterestFromCarsPage,
                   removeFavSeller: removeFavSeller,
                   favSellerData: favSellerData,
                   isSellerLogout: isSellerLogout,

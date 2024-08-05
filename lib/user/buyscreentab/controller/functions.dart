@@ -106,16 +106,18 @@ Future<void> markUserInterest({context, car, isFromSearch}) async {
   String userName = userData!.userName;
   String userContact = userData.mobile;
   String userLocation = userData.location;
+  String userId = userData.id;
 
   final sellerDetails = await getSellerDetailsById(car['sellerId']);
 
   final QuerySnapshot existingDocs = await userInterestMarked
-      .where('userContact', isEqualTo: userContact)
+      .where('userId', isEqualTo: userId)
       .where('carId', isEqualTo: (isFromSearch == true) ? car['id'] : car.id)
       .get();
 
   if (existingDocs.docs.isEmpty) {
     final data = {
+      'userId' : userId,
       'userName': userName,
       'userContact': userContact,
       'userLocation': userLocation,
@@ -134,13 +136,7 @@ Future<void> markUserInterest({context, car, isFromSearch}) async {
         Colors.white, SnackBarBehavior.floating);
     Navigator.of(context).pop();
   } else {
-    snackbarWidget(
-        'Interest already marked for this car. Seller will contact you in short',
-        context,
-        Colors.blue,
-        Colors.white,
-        SnackBarBehavior.floating);
-    Navigator.of(context).pop();
+    return;
   }
 }
 

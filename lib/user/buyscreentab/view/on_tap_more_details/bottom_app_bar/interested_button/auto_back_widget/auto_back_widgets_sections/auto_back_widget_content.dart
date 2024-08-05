@@ -66,10 +66,10 @@ class AutoBackWidgetContent extends StatelessWidget {
             return Visibility(
                 visible: fillCheckedBox,
                 child: MyTextWidget(
-                    text: 'Fill the Terms & Conditions',
+                    text: 'Fill the Terms & Conditions.',
                     color: Colors.red,
                     size: screenSize.width / 30,
-                    weight: FontWeight.w300));
+                    weight: FontWeight.w700));
           },
         )
       ],

@@ -18,7 +18,7 @@ class UserInterestedCarRemoveButton extends StatelessWidget {
                 builder: (context) => CustomAlertDialog(
                   image: 'assets/images/bin.png',
                   title: 'Remove Interest',
-                  subtitle: 'Do you want to remove the interest? This will be removed for the seller also.',
+                  subtitle: 'Do you want to remove the interest? This will be removed for the seller also. NOTE: The amount you paid will not be refunded.',
                   screenSize: screenSize,
                   isUsersInterestRemoving: true,
                   userInterestedData: data,              

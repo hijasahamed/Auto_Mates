@@ -1,6 +1,4 @@
 // ignore_for_file: use_build_context_synchronously
-
-import 'dart:async';
 import 'package:auto_mates/seller/seller_homescreen/controller/payments_services.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/bottom_app_bar/interested_button/auto_back_widget/auto_back_widgets_sections/auto_back_widget_back_button.dart';
@@ -31,31 +29,12 @@ bool isChecked = false;
 bool fillCheckedBox = false;
 
 class _AutoBackWidgetState extends State<AutoBackWidget> {
-  late int secondsLeft;
-  late Timer timer;
-  BuyScreenBloc refreshTimerBlocObj = BuyScreenBloc();
   BuyScreenBloc interestButtonLoaderObj = BuyScreenBloc();
   BuyScreenBloc checkBoxRefreshObj = BuyScreenBloc();
   BuyScreenBloc fillCheckedBoxAlertRefreshObj = BuyScreenBloc();
 
   @override
-  void initState() {
-    super.initState();
-    secondsLeft = 300;
-    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (secondsLeft > 0) {
-        secondsLeft--;
-        refreshTimerBlocObj.add(RefreshIntrestedAutoTimerEvent());
-      } else {
-        Navigator.of(context).pop();
-        timer.cancel();
-      }
-    });
-  }
-
-  @override
   void dispose() {
-    timer.cancel();
     isChecked = false;
     fillCheckedBox = false;
     super.dispose();
@@ -75,20 +54,12 @@ class _AutoBackWidgetState extends State<AutoBackWidget> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            BlocBuilder<BuyScreenBloc, BuyScreenState>(
-              bloc: refreshTimerBlocObj,
-              builder: (context, state) {
-                return AutoBackWidgetBackButton(
-                    refreshTimerBlocObj: refreshTimerBlocObj,
-                    screenSize: widget.screenSize,
-                    secondsLeft: secondsLeft);
-              },
-            ),
+            AutoBackWidgetBackButton(screenSize: widget.screenSize,),
             BlocBuilder<BuyScreenBloc, BuyScreenState>(
               bloc: checkBoxRefreshObj,
               builder: (context, state) {
                 return SizedBox(
-                  width: widget.screenSize.width / 2.6,
+                  width: widget.screenSize.width / 2.3,
                   child: ElevatedButton(
                       onPressed: () async {
                         if (isChecked == true) {
