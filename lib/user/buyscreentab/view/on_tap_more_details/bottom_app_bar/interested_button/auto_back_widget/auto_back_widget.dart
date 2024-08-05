@@ -27,11 +27,16 @@ class AutoBackWidget extends StatefulWidget {
   State<AutoBackWidget> createState() => _AutoBackWidgetState();
 }
 
+bool isChecked = false;
+bool fillCheckedBox = false;
+
 class _AutoBackWidgetState extends State<AutoBackWidget> {
   late int secondsLeft;
   late Timer timer;
   BuyScreenBloc refreshTimerBlocObj = BuyScreenBloc();
   BuyScreenBloc interestButtonLoaderObj = BuyScreenBloc();
+  BuyScreenBloc checkBoxRefreshObj = BuyScreenBloc();
+  BuyScreenBloc fillCheckedBoxAlertRefreshObj = BuyScreenBloc();
 
   @override
   void initState() {
@@ -51,6 +56,8 @@ class _AutoBackWidgetState extends State<AutoBackWidget> {
   @override
   void dispose() {
     timer.cancel();
+    isChecked = false;
+    fillCheckedBox = false;
     super.dispose();
   }
 
@@ -59,7 +66,11 @@ class _AutoBackWidgetState extends State<AutoBackWidget> {
     return AlertDialog(
       backgroundColor: Colors.white,
       title: AutoBackWidgetTitle(screenSize: widget.screenSize),
-      content: AutoBackWidgetContent(screenSize: widget.screenSize),
+      content: AutoBackWidgetContent(
+        screenSize: widget.screenSize,
+        checkBoxRefreshObj: checkBoxRefreshObj,
+        fillCheckedBoxAlertRefreshObj: fillCheckedBoxAlertRefreshObj,
+      ),
       actions: <Widget>[
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,44 +84,60 @@ class _AutoBackWidgetState extends State<AutoBackWidget> {
                     secondsLeft: secondsLeft);
               },
             ),
-            BlocBuilder(
-              bloc: interestButtonLoaderObj,
+            BlocBuilder<BuyScreenBloc, BuyScreenState>(
+              bloc: checkBoxRefreshObj,
               builder: (context, state) {
-                if (state is InterestButtoncircularLoaderState) {
-                  return AutoBackWidgetInterestedLoader(
-                      screenSize: widget.screenSize);
-                } else {
-                  return ElevatedButton(
+                return SizedBox(
+                  width: widget.screenSize.width / 2.6,
+                  child: ElevatedButton(
                       onPressed: () async {
-                        interestButtonLoaderObj
-                            .add(InterestButtoncircularLoaderEvent());
-                        dynamic pay = await StripePaymentService.instance
-                            .makePayment()
-                            .then((value) => value == true ? true : false);
-                        pay == true
-                            ? {                                
-                                Navigator.of(context).pop(),
-                                widget.carAddingToInterestedLoader.add(CarAddingToInterestedEvent()),                                
-                              }
-                            : {
-                                snackbarWidget(
-                                    'Payment Failed',
-                                    context,
-                                    Colors.red,
-                                    Colors.white,
-                                    SnackBarBehavior.fixed),
-                                Navigator.of(context).pop()
-                              };
+                        if (isChecked == true) {
+                          interestButtonLoaderObj.add(InterestButtoncircularLoaderEvent());
+                          dynamic pay = await StripePaymentService.instance
+                              .makePayment()
+                              .then((value) => value == true ? true : false);
+                          pay == true
+                              ? {
+                                  Navigator.of(context).pop(),
+                                  widget.carAddingToInterestedLoader
+                                      .add(CarAddingToInterestedEvent()),
+                                }
+                              : {
+                                  Navigator.of(context).pop(),
+                                  snackbarWidget(
+                                      'Payment Failed',
+                                      context,
+                                      Colors.red,
+                                      Colors.white,
+                                      SnackBarBehavior.fixed),
+                                };
+                        } else {
+                          fillCheckedBox = true;
+                          checkBoxRefreshObj
+                              .add(FillCheckedBoxAlertRefreshEvent());
+                          fillCheckedBoxAlertRefreshObj
+                              .add(FillCheckedBoxAlertRefreshEvent());
+                        }
                       },
-                      style: const ButtonStyle(
-                          backgroundColor:
-                              WidgetStatePropertyAll(Colors.green)),
-                      child: MyTextWidget(
-                          text: 'Mark as Intrested',
-                          color: Colors.white,
-                          size: widget.screenSize.width / 30,
-                          weight: FontWeight.bold));
-                }
+                      style: ButtonStyle(
+                          backgroundColor: WidgetStatePropertyAll(
+                        isChecked ? Colors.green : Colors.green[200],
+                      )),
+                      child: BlocBuilder<BuyScreenBloc, BuyScreenState>(
+                        bloc: interestButtonLoaderObj,
+                        builder: (context, state) {
+                          if (state is InterestButtoncircularLoaderState) {
+                            return AutoBackWidgetInterestedLoader(screenSize: widget.screenSize);
+                          } else {
+                            return MyTextWidget(
+                                text: 'Mark as Intrested',
+                                color: Colors.white,
+                                size: widget.screenSize.width / 30,
+                                weight: FontWeight.bold);
+                          }
+                        },
+                      )),
+                );
               },
             )
           ],
