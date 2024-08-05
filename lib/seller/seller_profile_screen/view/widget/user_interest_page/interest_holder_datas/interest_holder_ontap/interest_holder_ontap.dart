@@ -1,3 +1,10 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:auto_mates/seller/authentications/model/model.dart';
+import 'package:auto_mates/seller/seller_appbar_bottombar/controllers/functions.dart';
+import 'package:auto_mates/seller/seller_chat_screen/controller/seller_chat_controller.dart';
+import 'package:auto_mates/seller/seller_chat_screen/view/seller_chatting_screen/seller_chatting_screen.dart';
+import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
@@ -84,8 +91,12 @@ class InterestHolderOntap{
                 ),
                 SizedBox(height: screenSize.height/100,),
                 InkWell(
-                  onTap: () {
-                    
+                  onTap: () async {
+                    UserData? userdata = await getUserDetailsById(data['userId']);
+                    SellerData? sellerdata = await fetchSellerDetails();
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {                      
+                      return SellerChattingScreen(screenSize: screenSize, userdata: userdata!, currentSeller: sellerdata!);
+                    },)); 
                   },
                   child: Ink(
                     height: screenSize.width/8.5,
@@ -94,12 +105,23 @@ class InterestHolderOntap{
                       borderRadius: BorderRadius.circular(screenSize.width/90),
                       color: Colors.blueGrey
                     ),
-                    child: Center(
-                      child: MyTextWidget(
-                            text: 'Chat',
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        MyTextWidget(
+                            text: 'Chat with',
                             color: Colors.white,
                             size: screenSize.width/28,
                             weight: FontWeight.bold),
+                        SizedBox(
+                          width: screenSize.width / 100,
+                        ),
+                        MyTextWidget(
+                            text: '${data['userName']}',
+                            color: Colors.white,
+                            size: screenSize.width/28,
+                            weight: FontWeight.bold)
+                      ],
                     )
                   ),
                 )

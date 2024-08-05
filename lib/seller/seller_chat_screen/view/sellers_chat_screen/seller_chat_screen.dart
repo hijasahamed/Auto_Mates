@@ -17,7 +17,7 @@ class SellerChatScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: StreamBuilder<List<String>>(
-        stream: hijasSample(currentSeller: currentSeller),
+        stream: getTheCurrentSellersChatsWithUsers(currentSeller: currentSeller),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(

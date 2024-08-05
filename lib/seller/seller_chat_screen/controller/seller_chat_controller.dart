@@ -29,7 +29,7 @@ import 'package:rxdart/rxdart.dart';
 //   });
 // }
 
-Stream<List<String>> hijasSample({required currentSeller}) {
+Stream<List<String>> getTheCurrentSellersChatsWithUsers({required currentSeller}) {
   Query query1 = FirebaseFirestore.instance
       .collection('chatRoom')
       .doc('chats')
@@ -80,7 +80,7 @@ Future<UserData?> getUserDetailsById(String userId) async {
     for (var doc in querySnapshot.docs) {
       if (doc.id == userId) {
         Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-        UserData sellerDetails = UserData(
+        UserData details = UserData(
           userProfile: data['userProfile'],
           userName: data['userName'],
           email: data['email'],
@@ -88,7 +88,7 @@ Future<UserData?> getUserDetailsById(String userId) async {
           mobile: data['mobile'],
           id: doc.id
         );
-        return sellerDetails;
+        return details;
       }
     }
   } catch (e) {
