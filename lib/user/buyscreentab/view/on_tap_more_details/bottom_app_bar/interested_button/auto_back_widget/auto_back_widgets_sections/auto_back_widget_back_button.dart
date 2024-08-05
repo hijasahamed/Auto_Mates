@@ -1,7 +1,6 @@
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AutoBackWidgetBackButton extends StatelessWidget {
   const AutoBackWidgetBackButton(

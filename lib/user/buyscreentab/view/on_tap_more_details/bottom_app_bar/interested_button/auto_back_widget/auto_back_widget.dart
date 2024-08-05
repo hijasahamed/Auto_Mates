@@ -1,14 +1,12 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:async';
-
 import 'package:auto_mates/seller/seller_homescreen/controller/payments_services.dart';
-import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/bottom_app_bar/auto_back_widget/auto_back_widgets_sections/auto_back_widget_back_button.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/bottom_app_bar/auto_back_widget/auto_back_widgets_sections/auto_back_widget_content.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/bottom_app_bar/auto_back_widget/auto_back_widgets_sections/auto_back_widget_interested_loader.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/bottom_app_bar/auto_back_widget/auto_back_widgets_sections/auto_back_widget_title.dart';
+import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/bottom_app_bar/interested_button/auto_back_widget/auto_back_widgets_sections/auto_back_widget_back_button.dart';
+import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/bottom_app_bar/interested_button/auto_back_widget/auto_back_widgets_sections/auto_back_widget_content.dart';
+import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/bottom_app_bar/interested_button/auto_back_widget/auto_back_widgets_sections/auto_back_widget_interested_loader.dart';
+import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/bottom_app_bar/interested_button/auto_back_widget/auto_back_widgets_sections/auto_back_widget_title.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
