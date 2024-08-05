@@ -15,14 +15,24 @@ class UserInterestedNotify extends StatelessWidget {
         }
         if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
           final data=snapshot.data!.docs;
-          return Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: CircleAvatar(
-              radius: 10,
-              backgroundColor: Colors.green,
-              child: MyTextWidget(text: data.length.toString(), color: Colors.white, size: 12, weight: FontWeight.w400),
-            ),
-          );
+          final int notViewedCount = data.where((doc) => doc['sellerViewed'] == 'no').length;
+          if (notViewedCount > 0) {
+            return Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: CircleAvatar(
+                radius: 10,
+                backgroundColor: Colors.green,
+                child: MyTextWidget(
+                  text: notViewedCount.toString(),
+                  color: Colors.white,
+                  size: 12,
+                  weight: FontWeight.w400,
+                ),
+              ),
+            );
+          } else {
+            return const SizedBox.shrink();
+          }
         } else {
           return const SizedBox.shrink();
         }
