@@ -1,6 +1,7 @@
 import 'package:auto_mates/seller/seller_profile_screen/controllers/functions.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/widget/user_interest_page/interest_holder_datas/car_and_user_details/car_and_user_details.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/widget/user_interest_page/interest_holder_datas/car_image/intrested_car_photo.dart';
+import 'package:auto_mates/seller/seller_profile_screen/view/widget/user_interest_page/interest_holder_datas/interest_holder_ontap/interest_holder_ontap.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/widget/user_interest_page/interest_holder_datas/user_interest_close_button/user_interest_close_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,8 @@ class InterestHolder extends StatelessWidget {
       width: screenSize.width,
       child: GestureDetector(
         onTap: () {
-          callCarInterestedCustomer(context: context,data: data,screenSize: screenSize);
+          updateTheSellerViewdStatus(docId: data.id);
+          InterestHolderOntap().callAndChatCarInterestedCustomer(context: context,data: data,screenSize: screenSize);
         },
         child: Card(
           color: const Color.fromARGB(255, 243, 243, 243),

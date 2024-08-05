@@ -64,7 +64,7 @@ class OnTapCarMoreDetailsCarScreen extends StatelessWidget {
                 );
               },
             );
-            await Future.delayed(const Duration(seconds: 2));
+            await Future.delayed(const Duration(seconds: 3));
             markUserInterest(
               context: context,
               isFromSearch: isFromSearch,

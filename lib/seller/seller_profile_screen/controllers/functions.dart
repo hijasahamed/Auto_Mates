@@ -1,9 +1,10 @@
+import 'dart:developer';
+
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/buy_screen.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
-import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/splashscreen/controllers/functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -63,78 +64,15 @@ removeUsersInterestedCar({context, docId, noData,isNavBack}) {
   buyScreenBloc.add(InterstButtonClickedRebuildUiEvent());
 }
 
-callCarInterestedCustomer({context, data, screenSize}) {
-  return showDialog(
-    context: context,
-    builder: (context) {
-      return AlertDialog(
-        backgroundColor: Colors.white,
-        title: Container(
-          height: screenSize.height / 6,
-          width: screenSize.width / 6,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage(data['carImage']), fit: BoxFit.cover),
-              borderRadius: BorderRadius.circular(10)),
-        ),
-        content: SizedBox(
-          height: screenSize.height / 5,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              MyTextWidget(
-                  text: 'Car model : ${data['carName']}',
-                  color: Colors.black,
-                  size: 18,
-                  weight: FontWeight.bold),
-              const Spacer(),
-              MyTextWidget(
-                text:
-                    '${data['userName']} from ${data['userLocation']} has marked a interest on this car with Registration number ${data['carNumber']}',
-                color: Colors.black,
-                size: 14,
-                weight: FontWeight.bold,
-                maxline: true,
-              ),
-              const Spacer(),
-              const MyTextWidget(
-                text:
-                    'To make a deal with this customer contact in the below number',
-                color: Colors.blue,
-                size: 15,
-                weight: FontWeight.bold,
-                maxline: true,
-              )
-            ],
-          ),
-        ),
-        actions: [
-          ElevatedButton(
-              onPressed: () {
-                makeCall(context: context, mobileNumber: data['userContact']);
-              },
-              style: const ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.green)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const MyTextWidget(
-                      text: 'Call',
-                      color: Colors.white,
-                      size: 16,
-                      weight: FontWeight.bold),
-                  SizedBox(
-                    width: screenSize.width / 50,
-                  ),
-                  MyTextWidget(
-                      text: '+91 ${data['userContact']}',
-                      color: Colors.white,
-                      size: 16,
-                      weight: FontWeight.bold)
-                ],
-              ))
-        ],
-      );
-    },
-  );
+
+updateTheSellerViewdStatus({docId})async{
+  try{
+     await FirebaseFirestore.instance
+        .collection('userInterestMarked')
+        .doc(docId)
+        .update({'sellerViewed': 'yes'});
+  }
+  catch (e){
+    log(e.toString());
+  }
 }

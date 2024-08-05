@@ -3,6 +3,7 @@
 import 'package:auto_mates/seller/seller_profile_screen/controllers/functions.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/on_tap_car_more_details.dart';
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_error_placeholder.dart';
 import 'package:auto_mates/user/commonwidgets/shimmer_effect/shimmer_effect.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
@@ -79,27 +80,59 @@ class InterestedCarsScreen extends StatelessWidget {
                                   final carDetails= await getCarDetailFromInterestedCarsList(carNumber: car['carNumber']);
                                   
                                   if(carDetails != null){                              
-                                    profileScreenBloc
-                                        .add(InterestedCarOnTapEvent(data: carDetails));
+                                    profileScreenBloc.add(InterestedCarOnTapEvent(data: carDetails));
                                   }else{                                    
                                     removeUsersInterestedCar(context: context,docId: car.id,noData: true);
                                   }
                                 },
-                                child: Row(
+                                child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    UserInterestedCarHolder(
-                                        screenSize: screenSize, car: car),
-                                    SizedBox(
-                                      width: screenSize.width / 40,
+                                    Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        UserInterestedCarHolder(
+                                            screenSize: screenSize, car: car),
+                                        SizedBox(
+                                          width: screenSize.width / 40,
+                                        ),
+                                        UserInterestedDetailsHolder(
+                                            screenSize: screenSize, car: car),
+                                        const Spacer(),
+                                        UserInterestedCarRemoveButton(
+                                          data: car,
+                                          screenSize: screenSize,
+                                        )
+                                      ],
                                     ),
-                                    UserInterestedDetailsHolder(
-                                        screenSize: screenSize, car: car),
-                                    const Spacer(),
-                                    UserInterestedCarRemoveButton(
-                                      data: car,
-                                      screenSize: screenSize,
-                                    )
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 5,bottom: 4),
+                                      child: StreamBuilder(
+                                        stream: FirebaseFirestore.instance
+                                            .collection('userInterestMarked')
+                                            .doc(car.id)
+                                            .snapshots(),
+                                        builder: (context, snapshot) {
+                                          if (snapshot.connectionState == ConnectionState.waiting) {
+                                            return const SizedBox.shrink();
+                                          } else if (snapshot.hasError) {
+                                            return const SizedBox.shrink();
+                                          } else if (!snapshot.hasData || !snapshot.data!.exists) {
+                                            return const SizedBox.shrink();
+                                          } else {
+                                            var sellerViewed = snapshot.data!['sellerViewed'];
+                                            return MyTextWidget(
+                                              text: sellerViewed == 'no'
+                                                  ? 'Waiting for the seller to see your interest'
+                                                  : 'Seller viewed your interest',
+                                              color: sellerViewed == 'no' ? Colors.grey:Colors.blue,
+                                              size: screenSize.width / 32,
+                                              weight: FontWeight.bold,
+                                            );
+                                          }
+                                        },
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),

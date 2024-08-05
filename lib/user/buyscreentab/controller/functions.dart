@@ -121,6 +121,7 @@ Future<void> markUserInterest({context, car, isFromSearch}) async {
       'userName': userName,
       'userContact': userContact,
       'userLocation': userLocation,
+      'sellerViewed' : 'no',
       'carImage': car['thumbnail'],
       'carName': car['modelName'],
       'CarBrand': car['brand'],
