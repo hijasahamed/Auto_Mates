@@ -9,6 +9,7 @@ import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_screen.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/interested_cars/interested_cars_screen.dart';
+import 'package:auto_mates/user/profilescreen/view/widgets/points_card/points_card.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/profile_properties/profile_properties_screen.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/user_banner/profile_banner_widget.dart';
 import 'package:flutter/material.dart';
@@ -51,8 +52,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
         } else if (state is InterestedCarConatinerClickedActionState) {
           final sharedPref = await SharedPreferences.getInstance();
           dynamic mobile = sharedPref.getString('mobile');
+          UserData? userData = await fetchUserDetails();
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => InterestedCarsScreen(
+              userId: userData!.id,
               userContact: mobile,
               screenSize: widget.screenSize,
               profileScreenBloc: profileScreenBloc,
@@ -98,11 +101,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   padding: const EdgeInsets.all(3),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    children: [                     
                       ProfileBannerWidget(
                         screenSize: widget.screenSize,
                         user: user,
                       ),
+                      PointsCard(screenSize: widget.screenSize,user: user,),
                       ProfilePropertiesScreen(
                         screenSize: widget.screenSize,
                         profileScreenBloc: profileScreenBloc,

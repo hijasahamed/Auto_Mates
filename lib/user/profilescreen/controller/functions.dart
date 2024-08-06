@@ -183,3 +183,19 @@ List<Map<String, dynamic>> carForComparing1 = [];
 List<Map<String, dynamic>> carForComparing2 = [];
 
 List<Map<String, dynamic>> previousComparisonList = [];
+
+
+// user coins fetching
+Stream<int> getUserCoins(String userId) {
+    return FirebaseFirestore.instance
+        .collection('userSignupData')
+        .doc(userId)
+        .snapshots()
+        .map((snapshot) {
+      if (snapshot.exists) {
+        return snapshot.data()?['autoMatesCoin'] ?? 0;
+      } else {
+        return 0;
+      }
+    });
+}

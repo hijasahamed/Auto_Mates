@@ -20,8 +20,10 @@ class InterestedCarsScreen extends StatelessWidget {
       {super.key,
       required this.userContact,
       required this.screenSize,
+      required this.userId,
       required this.profileScreenBloc});
   final String userContact;
+  final String userId;
   final Size screenSize;
   final ProfileScreenBloc profileScreenBloc;
   @override
@@ -82,7 +84,7 @@ class InterestedCarsScreen extends StatelessWidget {
                                   if(carDetails != null){                              
                                     profileScreenBloc.add(InterestedCarOnTapEvent(data: carDetails));
                                   }else{                                    
-                                    removeUsersInterestedCar(context: context,docId: car.id,noData: true);
+                                    removeUsersInterestedCar(context: context,docId: car.id,noData: true,);
                                   }
                                 },
                                 child: Column(
@@ -125,8 +127,8 @@ class InterestedCarsScreen extends StatelessWidget {
                                               text: sellerViewed == 'no'
                                                   ? 'Waiting for the seller to see your interest'
                                                   : 'Seller viewed your interest',
-                                              color: sellerViewed == 'no' ? Colors.grey:Colors.blue,
-                                              size: screenSize.width / 32,
+                                              color: sellerViewed == 'no' ? Colors.grey:Colors.blueGrey,
+                                              size: screenSize.width / 40,
                                               weight: FontWeight.bold,
                                             );
                                           }

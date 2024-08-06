@@ -210,6 +210,7 @@ addUserSignupDatatoDb({username, email,mobile,location}) async{
     'userName': username, 
     'email': email,
     'mobile':mobile,
+    'autoMatesCoin' : 0,
     'location':location,
     };
   signupFirebaseObject.add(data);
