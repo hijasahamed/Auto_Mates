@@ -27,6 +27,8 @@ class AutoBackWidget extends StatefulWidget {
 
 bool isChecked = false;
 bool fillCheckedBox = false;
+int amountToMarkInterest = 999;
+bool deductingPoints = false;
 
 class _AutoBackWidgetState extends State<AutoBackWidget> {
   BuyScreenBloc interestButtonLoaderObj = BuyScreenBloc();
@@ -101,7 +103,7 @@ class _AutoBackWidgetState extends State<AutoBackWidget> {
                             return AutoBackWidgetInterestedLoader(screenSize: widget.screenSize);
                           } else {
                             return MyTextWidget(
-                                text: 'Mark as Intrested',
+                                text: 'Pay ₹$amountToMarkInterest',
                                 color: Colors.white,
                                 size: widget.screenSize.width / 30,
                                 weight: FontWeight.bold);

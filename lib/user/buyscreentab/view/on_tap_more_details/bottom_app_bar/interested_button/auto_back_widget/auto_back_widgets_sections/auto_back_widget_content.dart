@@ -1,6 +1,8 @@
+import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/bottom_app_bar/interested_button/auto_back_widget/auto_back_widget.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
+import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -70,12 +72,52 @@ class AutoBackWidgetContent extends StatelessWidget {
           },
         ),
         SizedBox(height: screenSize.height / 50,),
-        // StreamBuilder(
-        //   stream: getUserCoins(user.id), 
-        //   builder: (context, snapshot) {
-            
-        //   },
-        // )
+        FutureBuilder(
+          future: fetchUserDetails(), 
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const SizedBox.shrink();
+            } else if (snapshot.hasError) {
+              return const SizedBox.shrink();
+            } else if (!snapshot.hasData || snapshot.data == null) {
+              return const SizedBox.shrink();
+            } else {
+              UserData? userData = snapshot.data;
+              if (userData != null) {
+                return StreamBuilder(
+                  stream: getUserCoins(userData.id), 
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const SizedBox.shrink();
+                    } else {
+                      return Row(
+                        children: [
+                          Checkbox(
+                            value: deductingPoints,
+                            onChanged: (bool? value) {
+                              
+                            },
+                          ),
+                          Expanded(
+                            child: MyTextWidget(
+                              text: 'You have ${snapshot.data.toString()} points to Redeem', 
+                              color: Colors.black, 
+                              size: screenSize.width / 28, 
+                              weight: FontWeight.bold,
+                              maxline: true,
+                            ),
+                          )
+                        ],
+                      );
+                    }
+                  },
+                );
+              } else {
+                return const SizedBox.shrink();
+              }
+            }
+          },
+        )
       ],
     );
   }

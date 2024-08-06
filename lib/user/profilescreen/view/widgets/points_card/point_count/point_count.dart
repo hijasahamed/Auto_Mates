@@ -12,21 +12,22 @@ class PointCount extends StatelessWidget {
     return Row(
       children: [
         StreamBuilder<Object>(
-            stream: getUserCoins(user.id),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CircularProgressIndicator(
-                  color: Colors.blue,
-                );
-              } else {
-                return MyTextWidget(
-                  text: snapshot.data.toString(),
-                  color: Colors.grey,
-                  size: screenSize.width / 15,
-                  weight: FontWeight.bold,
-                );
-              }
-            }),
+          stream: getUserCoins(user.id),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator(
+                color: Colors.blue,
+              );
+            } else {
+              return MyTextWidget(
+                text: snapshot.data.toString(),
+                color: Colors.grey,
+                size: screenSize.width / 15,
+                weight: FontWeight.bold,
+              );
+            }
+          }
+        ),
         SizedBox(
           width: screenSize.width / 75,
         ),
