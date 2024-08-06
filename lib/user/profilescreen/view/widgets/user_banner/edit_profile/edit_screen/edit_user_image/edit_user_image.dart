@@ -18,7 +18,7 @@ class EditUserImage extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(100),
           child: FadeInImage(
-              fadeInDuration: const Duration(milliseconds: 750),
+              fadeInDuration: const Duration(milliseconds: 500),
               height: screenSize.height / 6.5,
               width: screenSize.width / 3,
               placeholder: const AssetImage(

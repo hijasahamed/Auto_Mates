@@ -474,3 +474,32 @@ Stream<int> getNumberOfRating({required String documentId}) async* {
     return 0;
   });
 }
+
+
+// update automates coin after deduction
+
+Future<void> updatePointsAfterDeduction(String userId, int deductedAmt) async {
+  try {
+    DocumentSnapshot userDoc = await FirebaseFirestore.instance
+        .collection('userSignupData')
+        .doc(userId)
+        .get();
+
+    if (userDoc.exists) {
+      var data = userDoc.data() as Map<String, dynamic>;
+      int currentCoins = data['autoMatesCoin'] ?? 0;
+
+      int updatedCoins = currentCoins - deductedAmt;
+
+      await FirebaseFirestore.instance
+          .collection('userSignupData')
+          .doc(userId)
+          .update({'autoMatesCoin': updatedCoins});
+
+    } else {
+      return;
+    }
+  } catch (e) {
+    return;
+  }
+}

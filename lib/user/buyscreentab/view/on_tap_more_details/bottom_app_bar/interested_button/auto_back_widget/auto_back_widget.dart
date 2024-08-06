@@ -28,7 +28,8 @@ class AutoBackWidget extends StatefulWidget {
 bool isChecked = false;
 bool fillCheckedBox = false;
 int amountToMarkInterest = 999;
-bool deductingPoints = false;
+bool isdeductingPoints = false;
+int deductedAmount = 0;
 
 class _AutoBackWidgetState extends State<AutoBackWidget> {
   BuyScreenBloc interestButtonLoaderObj = BuyScreenBloc();
@@ -39,6 +40,8 @@ class _AutoBackWidgetState extends State<AutoBackWidget> {
   void dispose() {
     isChecked = false;
     fillCheckedBox = false;
+    amountToMarkInterest = 999;
+    isdeductingPoints = false;
     super.dispose();
   }
 
@@ -67,16 +70,16 @@ class _AutoBackWidgetState extends State<AutoBackWidget> {
                         if (isChecked == true) {
                           interestButtonLoaderObj.add(InterestButtoncircularLoaderEvent());
                           dynamic pay = await StripePaymentService.instance
-                              .makePayment()
+                              .makePayment(amountToPay: amountToMarkInterest)
                               .then((value) => value == true ? true : false);
                           pay == true
                               ? {
                                   Navigator.of(context).pop(),
-                                  widget.carAddingToInterestedLoader
-                                      .add(CarAddingToInterestedEvent()),
+                                  widget.carAddingToInterestedLoader.add(CarAddingToInterestedEvent()),
                                 }
                               : {
                                   Navigator.of(context).pop(),
+                                  amountToMarkInterest = 999,
                                   snackbarWidget(
                                       'Payment Failed',
                                       context,

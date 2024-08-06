@@ -8,7 +8,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AutoBackWidgetContent extends StatelessWidget {
   const AutoBackWidgetContent(
-      {super.key, required this.screenSize, required this.checkBoxRefreshObj,required this.fillCheckedBoxAlertRefreshObj});
+      {super.key,
+      required this.screenSize,
+      required this.checkBoxRefreshObj,
+      required this.fillCheckedBoxAlertRefreshObj});
   final Size screenSize;
   final BuyScreenBloc checkBoxRefreshObj;
   final BuyScreenBloc fillCheckedBoxAlertRefreshObj;
@@ -29,36 +32,10 @@ class AutoBackWidgetContent extends StatelessWidget {
         SizedBox(
           height: screenSize.height / 100,
         ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            BlocBuilder<BuyScreenBloc, BuyScreenState>(
-              bloc: checkBoxRefreshObj,
-              builder: (context, state) {
-                return Checkbox(
-                  value: isChecked,
-                  onChanged: (bool? value) {
-                    isChecked = value ?? false;
-                    fillCheckedBox = false;
-                    checkBoxRefreshObj.add(CheckBoxRefreshEvent());
-                    fillCheckedBoxAlertRefreshObj.add(FillCheckedBoxAlertRefreshEvent());
-                  },
-                );
-              },
-            ),
-            Expanded(
-              child: MyTextWidget(
-                text:
-                    'Rs 999/- is charged for Marking Interest. This amount is not refundable.Are you sure to mark interest?',
-                color: const Color.fromARGB(255, 47, 47, 47),
-                size: screenSize.width / 28,
-                weight: FontWeight.bold,
-                maxline: true,
-              ),
-            ),
-          ],
+        termsAndConditionCheckedBox(),
+        SizedBox(
+          height: screenSize.height / 50,
         ),
-        SizedBox(height: screenSize.height / 50,),
         BlocBuilder<BuyScreenBloc, BuyScreenState>(
           bloc: fillCheckedBoxAlertRefreshObj,
           builder: (context, state) {
@@ -71,54 +48,111 @@ class AutoBackWidgetContent extends StatelessWidget {
                     weight: FontWeight.w700));
           },
         ),
-        SizedBox(height: screenSize.height / 50,),
-        FutureBuilder(
-          future: fetchUserDetails(), 
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const SizedBox.shrink();
-            } else if (snapshot.hasError) {
-              return const SizedBox.shrink();
-            } else if (!snapshot.hasData || snapshot.data == null) {
-              return const SizedBox.shrink();
-            } else {
-              UserData? userData = snapshot.data;
-              if (userData != null) {
-                return StreamBuilder(
-                  stream: getUserCoins(userData.id), 
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const SizedBox.shrink();
-                    } else {
-                      return Row(
-                        children: [
-                          Checkbox(
-                            value: deductingPoints,
-                            onChanged: (bool? value) {
-                              
-                            },
-                          ),
-                          Expanded(
-                            child: MyTextWidget(
-                              text: 'You have ${snapshot.data.toString()} points to Redeem', 
-                              color: Colors.black, 
-                              size: screenSize.width / 28, 
-                              weight: FontWeight.bold,
-                              maxline: true,
-                            ),
-                          )
-                        ],
-                      );
-                    }
-                  },
-                );
-              } else {
-                return const SizedBox.shrink();
-              }
-            }
-          },
-        )
+        SizedBox(
+          height: screenSize.height / 50,
+        ),
+        redeemPoints()
       ],
     );
+  }
+
+  Row termsAndConditionCheckedBox() {
+    return Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          BlocBuilder<BuyScreenBloc, BuyScreenState>(
+            bloc: checkBoxRefreshObj,
+            builder: (context, state) {
+              return Checkbox(
+                value: isChecked,
+                onChanged: (bool? value) {
+                  isChecked = value ?? false;
+                  fillCheckedBox = false;
+                  checkBoxRefreshObj.add(CheckBoxRefreshEvent());
+                  fillCheckedBoxAlertRefreshObj.add(FillCheckedBoxAlertRefreshEvent());
+                },
+              );
+            },
+          ),
+          Expanded(
+            child: MyTextWidget(
+              text:
+                  'Rs 999/- is charged for Marking Interest. This amount is not refundable.Are you sure to mark interest?',
+              color: const Color.fromARGB(255, 47, 47, 47),
+              size: screenSize.width / 28,
+              weight: FontWeight.bold,
+              maxline: true,
+            ),
+          ),
+        ],
+      );
+  }
+
+  FutureBuilder<UserData?> redeemPoints() {
+    return FutureBuilder(
+        future: fetchUserDetails(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const SizedBox.shrink();
+          } else if (snapshot.hasError) {
+            return const SizedBox.shrink();
+          } else if (!snapshot.hasData || snapshot.data == null) {
+            return const SizedBox.shrink();
+          } else {
+            UserData? userData = snapshot.data;
+            if (userData != null) {
+              return StreamBuilder(
+                stream: getUserCoins(userData.id),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const SizedBox.shrink();
+                  } else {
+                    int pointAmount = snapshot.data!.toInt();
+                    return Row(
+                      children: [
+                        BlocBuilder<BuyScreenBloc, BuyScreenState>(
+                          bloc: checkBoxRefreshObj,
+                          builder: (context, state) {
+                            return Checkbox(
+                              value: isdeductingPoints,
+                              onChanged: (bool? value) {
+                                isdeductingPoints = value ?? false;                                 
+                                  if(isdeductingPoints == true){
+                                    if(pointAmount>500){
+                                        amountToMarkInterest = amountToMarkInterest - 500;
+                                        deductedAmount = 500;
+                                    }else if(pointAmount<500){
+                                    amountToMarkInterest = amountToMarkInterest - pointAmount;
+                                    deductedAmount = pointAmount;
+                                    }
+                                  }else{
+                                    amountToMarkInterest = 999;
+                                  }
+                                checkBoxRefreshObj.add(CheckBoxRefreshEvent());
+                              },
+                            );
+                          },
+                        ),
+                        Expanded(
+                          child: MyTextWidget(
+                            text:
+                                'You have ${snapshot.data.toString()} points to Redeem. Maximum of 500 points can be redeemed.',
+                            color: Colors.black,
+                            size: screenSize.width / 28,
+                            weight: FontWeight.bold,
+                            maxline: true,
+                          ),
+                        )
+                      ],
+                    );
+                  }
+                },
+              );
+            } else {
+              return const SizedBox.shrink();
+            }
+          }
+        },
+      );
   }
 }
