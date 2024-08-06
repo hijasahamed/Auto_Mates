@@ -10,7 +10,6 @@ class AutoBackWidgetContent extends StatelessWidget {
   final Size screenSize;
   final BuyScreenBloc checkBoxRefreshObj;
   final BuyScreenBloc fillCheckedBoxAlertRefreshObj;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -57,9 +56,7 @@ class AutoBackWidgetContent extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(
-          height: screenSize.height / 50,
-        ),
+        SizedBox(height: screenSize.height / 50,),
         BlocBuilder<BuyScreenBloc, BuyScreenState>(
           bloc: fillCheckedBoxAlertRefreshObj,
           builder: (context, state) {
@@ -71,7 +68,14 @@ class AutoBackWidgetContent extends StatelessWidget {
                     size: screenSize.width / 30,
                     weight: FontWeight.w700));
           },
-        )
+        ),
+        SizedBox(height: screenSize.height / 50,),
+        // StreamBuilder(
+        //   stream: getUserCoins(user.id), 
+        //   builder: (context, snapshot) {
+            
+        //   },
+        // )
       ],
     );
   }
