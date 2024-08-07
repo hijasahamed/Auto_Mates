@@ -22,7 +22,7 @@ class InterestHolder extends StatelessWidget {
           InterestHolderOntap().callAndChatCarInterestedCustomer(context: context,data: data,screenSize: screenSize);
         },
         child: Card(
-          color: const Color.fromARGB(255, 243, 243, 243),
+          color: data['sellerViewed'] == 'yes'? const Color.fromARGB(255, 243, 243, 243) : const Color.fromARGB(255, 212, 224, 233),
           elevation: 6,
           child: Row(
             children: [

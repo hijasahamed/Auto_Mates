@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:auto_mates/seller/seller_profile_screen/view/widget/user_interest_page/interest_holder_datas/interest_holder_ontap/interest_holder_ontap.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
@@ -52,6 +53,9 @@ Future<int> getTotalSalesAmount() async {
 }
 
 removeUsersInterestedCar({context, docId,noData,isNavBack,isSellerRemovingInterestedCar,removeInterestBySeller})async {
+  if(isNavBack==true){
+    Navigator.of(context).pop();
+  }
   userInterestMarked.doc(docId).delete();
   if(isSellerRemovingInterestedCar == true){
     DocumentSnapshot userDoc = await FirebaseFirestore.instance
@@ -70,6 +74,10 @@ removeUsersInterestedCar({context, docId,noData,isNavBack,isSellerRemovingIntere
             .doc(removeInterestBySeller['userId'])
             .update({'autoMatesCoin': updatedCoins});
       }
+    launchWhatsApp(
+      phoneNumber: removeInterestBySeller['userContact'], 
+      message: 'Hello ${removeInterestBySeller['userName']} ✋.We have Removed the interest for ${removeInterestBySeller['CarBrand']} ${removeInterestBySeller['carName']} with RegNo. ${removeInterestBySeller['carNumber']}. Your payment will be Refunded to AutoMates Coin.'
+    );
   }else{
     UserData? user = await fetchUserDetails();
     if (user != null) {
@@ -90,10 +98,6 @@ removeUsersInterestedCar({context, docId,noData,isNavBack,isSellerRemovingIntere
             .update({'autoMatesCoin': updatedCoins});
       }
     }
-  }
-
-  if(isNavBack==true){
-    Navigator.of(context).pop();
   }
   if (noData == true) {
     snackbarWidget('Sorry this car is been sold or removed by the seller', context,

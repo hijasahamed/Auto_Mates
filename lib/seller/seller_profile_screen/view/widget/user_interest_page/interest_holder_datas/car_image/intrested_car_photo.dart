@@ -7,27 +7,28 @@ class IntrestedCarPhoto extends StatelessWidget {
   final dynamic data;
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(10), bottomLeft: Radius.circular(10)),
-      child: FadeInImage(
-          fadeInDuration: const Duration(milliseconds: 800),
-          height: screenSize.height / 1,
-          width: screenSize.width / 2.8,
-          placeholder: const AssetImage(
-            'assets/images/image placeholder.jpeg',
-          ),
-          placeholderFit: BoxFit.cover,
-          imageErrorBuilder: (context, error, stackTrace) {
-            return const Center(
-              child: CircularProgressIndicator(
-                color: Colors.blue,
-              ),
-            );
-          },
-          image: NetworkImage(data['carImage']),
-          fit: BoxFit.cover,
-          filterQuality: FilterQuality.high),
+    return Padding(
+      padding: EdgeInsets.all(screenSize.width/100),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(screenSize.width/100),
+        child: FadeInImage(
+            fadeInDuration: const Duration(milliseconds: 800),
+            width: screenSize.width / 2.8,
+            placeholder: const AssetImage(
+              'assets/images/image placeholder.jpeg',
+            ),
+            placeholderFit: BoxFit.cover,
+            imageErrorBuilder: (context, error, stackTrace) {
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: Colors.blue,
+                ),
+              );
+            },
+            image: NetworkImage(data['carImage']),
+            fit: BoxFit.cover,
+            filterQuality: FilterQuality.high),
+      ),
     );
   }
 }

@@ -52,7 +52,7 @@ class UserInterestsPage extends StatelessWidget {
                 child: NormalAppBar(title: 'User Interest')
               ),
               body: NoDataErrorPlaceholder(screenSize: screenSize, titleText: 'No User Interests'),
-            );         
+            );
           }
         },
       ),
