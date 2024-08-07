@@ -134,6 +134,7 @@ flutter:
     - assets/images/previous_compare.webp
     - assets/images/avatar_image.webp
     - assets/images/Paymentsuccessful.png
+    - assets/images/company avatar.png
     #animations
     - assets/animations/loading_animation.json
     - assets/animations/splash_animation_jeep.json

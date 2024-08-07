@@ -16,7 +16,7 @@ class SellerProfile extends StatelessWidget {
       builder: (context, state) {
         ImageProvider? imageProvider;
         if (sellerProfileImage == null || sellerProfileImage!.isEmpty) {
-          imageProvider = const AssetImage('assets/images/avatar.png');
+          imageProvider = const AssetImage('assets/images/company avatar.png');
         } else {
           Uri uri = Uri.parse(sellerProfileImage!);
           if (uri.isAbsolute) {
@@ -29,7 +29,7 @@ class SellerProfile extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 50,
-              backgroundColor: Colors.blue,
+              backgroundColor: const Color.fromARGB(255, 218, 218, 218),
               backgroundImage: imageProvider,
             ),
             Positioned(

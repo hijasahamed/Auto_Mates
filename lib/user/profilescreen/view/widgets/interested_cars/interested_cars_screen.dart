@@ -79,8 +79,7 @@ class InterestedCarsScreen extends StatelessWidget {
                               color: const Color.fromARGB(255, 231, 231, 231),
                               child: InkWell(
                                 onTap: () async{
-                                  final carDetails= await getCarDetailFromInterestedCarsList(carNumber: car['carNumber']);
-                                  
+                                  final carDetails= await getCarDetailFromInterestedCarsList(carNumber: car['carNumber']);                                  
                                   if(carDetails != null){                              
                                     profileScreenBloc.add(InterestedCarOnTapEvent(data: carDetails));
                                   }else{                                    

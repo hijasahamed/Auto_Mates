@@ -51,26 +51,44 @@ Future<int> getTotalSalesAmount() async {
   return totalSalesAmount;
 }
 
-removeUsersInterestedCar({context, docId,noData,isNavBack})async {
+removeUsersInterestedCar({context, docId,noData,isNavBack,isSellerRemovingInterestedCar,removeInterestBySeller})async {
   userInterestMarked.doc(docId).delete();
-  UserData? user = await fetchUserDetails();
-
-  if (user != null) {
+  if(isSellerRemovingInterestedCar == true){
     DocumentSnapshot userDoc = await FirebaseFirestore.instance
-        .collection('userSignupData')
-        .doc(user.id)
-        .get();
+          .collection('userSignupData')
+          .doc(removeInterestBySeller['userId'])
+          .get();
 
-    if (userDoc.exists) {
-      var data = userDoc.data() as Map<String, dynamic>;
-      int currentCoins = data['autoMatesCoin'];
+      if (userDoc.exists) {
+        var data = userDoc.data() as Map<String, dynamic>;
+        int currentCoins = data['autoMatesCoin'];
 
-      int updatedCoins = currentCoins + 399;
+        int updatedCoins = currentCoins + 999;
 
-      await FirebaseFirestore.instance
+        await FirebaseFirestore.instance
+            .collection('userSignupData')
+            .doc(removeInterestBySeller['userId'])
+            .update({'autoMatesCoin': updatedCoins});
+      }
+  }else{
+    UserData? user = await fetchUserDetails();
+    if (user != null) {
+      DocumentSnapshot userDoc = await FirebaseFirestore.instance
           .collection('userSignupData')
           .doc(user.id)
-          .update({'autoMatesCoin': updatedCoins});
+          .get();
+
+      if (userDoc.exists) {
+        var data = userDoc.data() as Map<String, dynamic>;
+        int currentCoins = data['autoMatesCoin'];
+
+        int updatedCoins = currentCoins + 399;
+
+        await FirebaseFirestore.instance
+            .collection('userSignupData')
+            .doc(user.id)
+            .update({'autoMatesCoin': updatedCoins});
+      }
     }
   }
 

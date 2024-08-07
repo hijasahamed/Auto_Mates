@@ -25,8 +25,8 @@ class InterestHolderOntap{
                 borderRadius: BorderRadius.circular(10)),
           ),
           content: SizedBox(
-            height: screenSize.height / 5,
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 MyTextWidget(
@@ -34,7 +34,6 @@ class InterestHolderOntap{
                     color: Colors.black,
                     size: 18,
                     weight: FontWeight.bold),
-                const Spacer(),
                 MyTextWidget(
                   text:
                       '${data['userName']} from ${data['userLocation']} has marked a interest on this car with Registration number ${data['carNumber']}',
@@ -43,7 +42,7 @@ class InterestHolderOntap{
                   weight: FontWeight.bold,
                   maxline: true,
                 ),
-                const Spacer(),
+                SizedBox(height: screenSize.height/100,),
                 const MyTextWidget(
                   text:
                       'To make a deal with this customer contact in the below number',
@@ -91,7 +90,7 @@ class InterestHolderOntap{
                 ),
                 SizedBox(height: screenSize.height/100,),
                 InkWell(
-                  onTap: () async {
+                  onTap: () async {                    
                     UserData? userdata = await getUserDetailsById(data['userId']);
                     SellerData? sellerdata = await fetchSellerDetails();
                     Navigator.push(context, MaterialPageRoute(builder: (context) {                      

@@ -22,7 +22,7 @@ class UserInterestCloseButton extends StatelessWidget {
               subtitle: 'Do you want to remove the interest? This will be removed for the client also.',
               screenSize: screenSize,
               isSellerRemovingInterestedCar: true,
-              interestedDataIdInSeller: data.id,              
+              interestedDataIdInSeller: data,              
             ),
           );
             },

@@ -158,6 +158,7 @@ createSellerAccount(
               'sellerCompanyName', sellerData.companyName);
           await sharedPref.setString('sellerLocation', sellerData.location);
           await sharedPref.setString('sellerMobile', sellerData.mobile);
+          sellerProfileImage = null;
         }
       } catch (e) {
         if (kDebugMode) {

@@ -108,7 +108,8 @@ class AutoBackWidgetContent extends StatelessWidget {
                     return const SizedBox.shrink();
                   } else {
                     int pointAmount = snapshot.data!.toInt();
-                    return Row(
+                   return pointAmount>0
+                    ? Row(
                       children: [
                         BlocBuilder<BuyScreenBloc, BuyScreenState>(
                           bloc: checkBoxRefreshObj,
@@ -144,7 +145,8 @@ class AutoBackWidgetContent extends StatelessWidget {
                           ),
                         )
                       ],
-                    );
+                    )
+                    : const SizedBox.shrink();
                   }
                 },
               );
