@@ -1,4 +1,5 @@
 // ignore_for_file: use_build_context_synchronously, avoid_print
+import 'dart:developer';
 import 'dart:io';
 import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/seller/seller_appbar_bottombar/controllers/functions.dart';
@@ -404,5 +405,23 @@ Future<List> getCarsBySellerId({sellerId}) async {
     return result;
   } catch (e) {
     return [];
+  }
+}
+
+
+Future<void> addCarToFeatured({
+  required DocumentSnapshot carDocumentSnapshot,
+  context,screenSize
+}) async {
+  DateTime startDate = DateTime.now();
+  DateTime endDate = startDate.add(const Duration(days: 30));
+  try {
+    Map<String, dynamic>? carData = carDocumentSnapshot.data() as Map<String, dynamic>?;
+    CollectionReference featuredCars = FirebaseFirestore.instance.collection('featuredCars');
+    carData!['startDate'] = startDate;
+    carData['endDate'] = endDate;
+    await featuredCars.add(carData);   
+  } catch (e) {
+    log(e.toString());
   }
 }

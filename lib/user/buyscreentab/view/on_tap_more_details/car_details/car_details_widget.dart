@@ -39,7 +39,7 @@ class CarDetailsWidget extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
+            (fromSeller== true)? SizedBox(height: screenSize.height/80,) : const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: MyTextWidget(
                     text: 'Car Details',
@@ -101,7 +101,7 @@ class CarDetailsWidget extends StatelessWidget {
                   ),
                 ),
                 CarOverview(data: data),
-                RelatedCars(data: data,screenSize: screenSize,)
+                (fromSeller == true)? const SizedBox.shrink() : RelatedCars(data: data,screenSize: screenSize,)
               ],
             ),
           ],

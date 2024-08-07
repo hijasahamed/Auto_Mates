@@ -1,8 +1,10 @@
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/single_car_details/feature_the_car/feature_the_car.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/car_details_widget.dart';
 import 'package:auto_mates/user/commonwidgets/custom_alertdialog/custom_alert_dialog.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -34,10 +36,35 @@ class SingleCarDetailsScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: CarDetailsWidget(
-            screenSize: screenSize,
-            data: data,
-            fromSeller: true,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [   
+              StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection('featuredCars')
+                    .where('regNumber', isEqualTo: data['regNumber'])
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const SizedBox.shrink();
+                  }
+                  if (snapshot.hasError) {
+                    return const SizedBox.shrink();
+                  }
+                  if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
+                    return MyTextWidget(text: 'Featured Car', color: Colors.green, size: screenSize.width/30, weight: FontWeight.bold);
+                  } else {
+                    return FeatureTheCar(screenSize: screenSize, carData: data);                    
+                  }
+                },
+              ),
+              CarDetailsWidget(
+                screenSize: screenSize,
+                data: data,
+                fromSeller: true,
+              ),
+              
+            ],
           ),
         ),
       ),
