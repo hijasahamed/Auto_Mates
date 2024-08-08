@@ -1,5 +1,4 @@
 import 'package:auto_mates/seller/authentications/model/model.dart';
-import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +16,8 @@ class FloatingButtonWidget extends StatelessWidget {
     return FloatingActionButton(
       backgroundColor: Colors.redAccent,
       onPressed: () {
-          checkSellerisPremium(sellerId: data.id,sellerHomeScreenBloc: sellerHomeScreenBloc,context: context,screenSize: screenSize); 
+          // checkSellerisPremium(sellerId: data.id,sellerHomeScreenBloc: sellerHomeScreenBloc,context: context,screenSize: screenSize); 
+          sellerHomeScreenBloc.add(FloatingButtonClickedEvent());
       },
       child: const Icon(Icons.add,color: Colors.white,size: 40,)
     );

@@ -44,7 +44,7 @@ class FeatureTheCar extends StatelessWidget {
                       SizedBox(height: screenSize.height/50,),
                       MyTextWidget(text: "payment Successfull", color: Colors.grey, size: screenSize.width/25, weight: FontWeight.bold),
                       SizedBox(height: screenSize.height/100,),
-                      MyTextWidget(text: "Amount Paid ₹9,999 /-", color: Colors.green, size: screenSize.width/27, weight: FontWeight.bold),
+                      MyTextWidget(text: "Amount Paid ₹10,000 /-", color: Colors.green, size: screenSize.width/27, weight: FontWeight.bold),
                       SizedBox(height: screenSize.height/25,),
                       MyTextWidget(text: 'This Car is Added to the Featured Cars', color: Colors.blueGrey, size: screenSize.width/17, weight: FontWeight.bold,maxline: true,alignTextCenter: true,),
                     ],
