@@ -47,9 +47,9 @@ class HomeScreen extends StatelessWidget {
               elevation: 5,
               color: Colors.white,
               child: Padding(
-                padding: EdgeInsets.all(screenSize.width/120),
+                padding: EdgeInsets.all(screenSize.width/100),
                 child: SizedBox(
-                  height: screenSize.height/2.7,
+                  height: screenSize.height/3.1,
                   width: screenSize.width,
                   child: LatestCarNews(screenSize: screenSize),
                 ),
