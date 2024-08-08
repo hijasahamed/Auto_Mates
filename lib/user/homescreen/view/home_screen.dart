@@ -26,18 +26,7 @@ class HomeScreen extends StatelessWidget {
                 child: CarouselSliderWidget(screenSize: screenSize)
               ),
             ),
-            Card(
-              elevation: 5,
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(3),
-                child: SizedBox(
-                  height: screenSize.height/4,
-                  width: screenSize.width,                         
-                  child: FeaturedCarsWidget(screenSize: screenSize),
-                ),
-              ),
-            ),
+            FeaturedCarsWidget(screenSize: screenSize),
             Card(
               elevation: 5,
               color: Colors.white,
