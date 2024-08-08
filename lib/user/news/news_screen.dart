@@ -1,6 +1,9 @@
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
+import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
+import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_error_placeholder.dart';
 import 'package:auto_mates/user/homescreen/controllers/news_api_controllers/news_api_controllers.dart';
 import 'package:auto_mates/user/homescreen/model/news_model.dart';
+import 'package:auto_mates/user/news/news_read_screen/news_read_screen.dart';
 import 'package:flutter/material.dart';
 
 
@@ -31,14 +34,14 @@ class _NewsScreenState extends State<NewsScreen> {
       body: Center(
         child: carNewsArticleList == null
             ? const CircularProgressIndicator()
-            : buildNewsList(),
+            : buildNewsList(screenSize: widget.screenSize),
       ),
     );
   }
 
   
 
-  Widget buildNewsList() {
+  Widget buildNewsList({screenSize}) {
     return FutureBuilder<List<NewsArticle>>(
       future: carNewsArticleList!,
       builder: (context, snapshot) {
@@ -49,23 +52,32 @@ class _NewsScreenState extends State<NewsScreen> {
             itemBuilder: (context, index) {
               final article = articles[index];
               return Card(
-                child: ListTile(
-                  title: Text(article.title),
-                  subtitle: Text(article.description ?? 'No description'),
-                  trailing: article.urlToImage != null
-                      ? Image.network(
-                          article.urlToImage!,
-                          width: 50.0,
-                          height: 50.0,
-                          fit: BoxFit.cover,
-                        )
-                      : null,
+                color: Colors.white,
+                elevation: 2,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                      return NewsReadScreen(screenSize: widget.screenSize,article: article,);
+                    },));
+                  },
+                  child: ListTile(
+                    title: MyTextWidget(text: article.title, color: Colors.blueGrey, size: screenSize.width/30, weight: FontWeight.bold,maxline: true,),
+                    subtitle: MyTextWidget(text: article.description ?? 'No description', color: Colors.black, size: screenSize.width/27, weight: FontWeight.normal,maxline: true,),
+                    trailing: article.urlToImage != null
+                        ? Image.network(
+                            article.urlToImage!,
+                            width: screenSize.width/5,
+                            height: screenSize.width/5,
+                            fit: BoxFit.cover,
+                          )
+                        : null,
+                  ),
                 ),
               );
             },
           );
         } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
+          return NoDataErrorPlaceholder(screenSize: screenSize, titleText: 'No News Fetched');
         }
         return const CircularProgressIndicator();
       },
