@@ -1,5 +1,6 @@
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/single_car_details/feature_the_car/feature_the_car.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/single_car_details/featured_car_countdown/featured_car_countdown.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/car_details_widget.dart';
 import 'package:auto_mates/user/commonwidgets/custom_alertdialog/custom_alert_dialog.dart';
@@ -52,7 +53,10 @@ class SingleCarDetailsScreen extends StatelessWidget {
                     return const SizedBox.shrink();
                   }
                   if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
-                    return MyTextWidget(text: 'Featured Car', color: Colors.green, size: screenSize.width/30, weight: FontWeight.bold);
+                    var carData = snapshot.data!.docs.first.data() as Map<String, dynamic>;
+                    var startTime = (carData['startDate'] as Timestamp).toDate();
+                    var endTime = (carData['endDate'] as Timestamp).toDate();
+                    return FeaturedCarCountdown(startTime: startTime, endTime: endTime,screenSize: screenSize,carData: data,);
                   } else {
                     return FeatureTheCar(screenSize: screenSize, carData: data);                    
                   }

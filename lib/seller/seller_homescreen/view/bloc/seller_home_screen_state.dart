@@ -89,3 +89,5 @@ class PostingCarStopLoadingState extends SellerHomeScreenState {}
 
 class MarkCarSoldLoadingState extends SellerHomeScreenState {}
 class MarkCarSoldStopLoadingState extends SellerHomeScreenState {}
+
+class FeaturedCarsRemainingTimeState extends SellerHomeScreenState {}

@@ -85,7 +85,7 @@ class FeatureTheCar extends StatelessWidget {
                 height: screenSize.height / 150,
               ),
               MyTextWidget(
-                  text: '₹9999 /- Monthly',
+                  text: '₹9999 /- Month',
                   color: Colors.green,
                   size: screenSize.width / 20,
                   weight: FontWeight.bold),

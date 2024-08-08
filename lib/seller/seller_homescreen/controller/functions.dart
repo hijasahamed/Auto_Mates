@@ -244,7 +244,8 @@ Future<void> markSellerCarToSold({carData,markCarsoldBloc,context,screenSize,})a
       }     
       await FirebaseFirestore.instance.collection('carstosell').doc(carData.id).delete();
       refreshAllCarToSellInstance.add(AllCarsTOSellEvent());
-      refreshAllCarToSellInstance.add(MarkCarSoldStopLoadingEvent());                
+      refreshAllCarToSellInstance.add(MarkCarSoldStopLoadingEvent());
+      await deleteExpiredFeaturedCar(carData['regNumber']);                
     }else{
       Navigator.pop(context);
     }
@@ -423,5 +424,25 @@ Future<void> addCarToFeatured({
     await featuredCars.add(carData);   
   } catch (e) {
     log(e.toString());
+  }
+}
+
+Future<void> deleteExpiredFeaturedCar(String carNumber) async {
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  try {
+    QuerySnapshot querySnapshot = await firestore
+        .collection('featuredCars')
+        .where('regNumber', isEqualTo: carNumber)
+        .get();
+
+    if (querySnapshot.docs.isNotEmpty) {
+      String docId = querySnapshot.docs.first.id;
+      await firestore.collection('featuredCars').doc(docId).delete();
+    } else {
+      return;
+    }
+  } catch (e) {
+    print('Error deleting document: $e');
   }
 }
