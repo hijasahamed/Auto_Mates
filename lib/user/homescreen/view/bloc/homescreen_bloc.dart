@@ -10,6 +10,7 @@ class HomescreenBloc extends Bloc<HomescreenEvent, HomescreenState> {
   HomescreenBloc() : super(HomescreenInitial()) {
     on<TopSellersAllListNavigateEvent>(topSellersAllListNavigateEvent);
     on<FeaturedCarsAllListNavigationEvent>(featuredCarsAllListNavigationEvent);
+    on<RefreshFavouriteCarosalEvent>(refreshFavouriteCarosalEvent);
   }
 
   FutureOr<void> topSellersAllListNavigateEvent(
@@ -20,5 +21,10 @@ class HomescreenBloc extends Bloc<HomescreenEvent, HomescreenState> {
   FutureOr<void> featuredCarsAllListNavigationEvent(
     FeaturedCarsAllListNavigationEvent event, Emitter<HomescreenState> emit) {
       emit(FeaturedCarsAllListNavigationState());
+  }
+
+  FutureOr<void> refreshFavouriteCarosalEvent(
+    RefreshFavouriteCarosalEvent event, Emitter<HomescreenState> emit) {
+      emit(RefreshFavouriteCarosalState());
   }
 }

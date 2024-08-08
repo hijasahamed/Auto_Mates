@@ -10,3 +10,5 @@ class HomescreenInitial extends HomescreenState {}
 class TopSellersAllListNavigateState extends HomescreenState {}
 
 class FeaturedCarsAllListNavigationState extends HomescreenState {}
+
+class RefreshFavouriteCarosalState extends HomescreenState {}

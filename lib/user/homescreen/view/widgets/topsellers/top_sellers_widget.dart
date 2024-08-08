@@ -1,5 +1,5 @@
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
-import 'package:auto_mates/user/homescreen/controllers/functions/functions.dart';
+import 'package:auto_mates/user/homescreen/controllers/home_screen_controller/functions.dart';
 import 'package:auto_mates/user/homescreen/view/bloc/homescreen_bloc.dart';
 import 'package:auto_mates/user/homescreen/view/widgets/topsellers/all_top_sellers/all_top_sellers.dart';
 import 'package:auto_mates/user/homescreen/view/widgets/topsellers/topsellers_list_holder/topsellers_list_holder.dart';

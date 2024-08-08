@@ -1,5 +1,5 @@
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
-import 'package:auto_mates/user/homescreen/controllers/functions/functions.dart';
+import 'package:auto_mates/user/homescreen/controllers/home_screen_controller/functions.dart';
 import 'package:auto_mates/user/homescreen/view/widgets/topsellers/all_top_sellers/all_top_sellers_list_holder/all_top_sellers_list_holder.dart';
 import 'package:flutter/material.dart';
 

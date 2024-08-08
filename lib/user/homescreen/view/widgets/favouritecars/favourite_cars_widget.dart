@@ -1,6 +1,6 @@
 
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
-import 'package:auto_mates/user/homescreen/controllers/functions/functions.dart';
+import 'package:auto_mates/user/homescreen/controllers/home_screen_controller/functions.dart';
 import 'package:auto_mates/user/homescreen/view/widgets/favouritecars/Fav_car_image_holder/fav_car_image_holder.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/favourite_screen/favourite_screen/favourite_screen.dart';

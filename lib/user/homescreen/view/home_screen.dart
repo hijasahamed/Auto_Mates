@@ -1,6 +1,6 @@
 import 'package:auto_mates/user/homescreen/view/widgets/emicard/emi_card_widget.dart';
 import 'package:auto_mates/user/homescreen/view/widgets/favouritecars/favourite_cars_widget.dart';
-import 'package:auto_mates/user/homescreen/view/widgets/latestcarupdates/latest_car_updates_widget.dart';
+import 'package:auto_mates/user/homescreen/view/widgets/latest_car_news/latest_car_news.dart';
 import 'package:auto_mates/user/homescreen/view/widgets/topsellers/top_sellers_widget.dart';
 import 'package:auto_mates/user/homescreen/view/widgets/carouselslider/carousal_slider_widget.dart';
 import 'package:auto_mates/user/homescreen/view/widgets/featuredcars/fetured_cars_widget.dart';
@@ -10,8 +10,7 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key,required this.screenSize});
   final Size screenSize;
   @override
-  Widget build(BuildContext context) {
-    
+  Widget build(BuildContext context) {   
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 228, 234, 236),    
       body: SingleChildScrollView(
@@ -48,11 +47,11 @@ class HomeScreen extends StatelessWidget {
               elevation: 5,
               color: Colors.white,
               child: Padding(
-                padding: const EdgeInsets.all(3),
+                padding: EdgeInsets.all(screenSize.width/120),
                 child: SizedBox(
                   height: screenSize.height/2.7,
                   width: screenSize.width,
-                  child: LatestCarUpdatesWidget(screenSize: screenSize),
+                  child: LatestCarNews(screenSize: screenSize),
                 ),
               ),
             ),
