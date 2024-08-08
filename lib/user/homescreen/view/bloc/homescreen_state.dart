@@ -8,3 +8,5 @@ abstract class HomeScreenActionState extends HomescreenState {}
 class HomescreenInitial extends HomescreenState {}
 
 class TopSellersAllListNavigateState extends HomescreenState {}
+
+class FeaturedCarsAllListNavigationState extends HomescreenState {}

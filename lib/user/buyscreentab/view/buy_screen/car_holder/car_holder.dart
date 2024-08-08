@@ -4,6 +4,7 @@ import 'package:auto_mates/user/buyscreentab/view/buy_screen/car_holder/car_hold
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/car_holder/car_image/car_holder_car_image.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/car_holder/positioned_button/car_holder_button.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/on_tap_car_more_details.dart';
+import 'package:auto_mates/user/homescreen/view/widgets/featuredcars/featured_list_title_and_view_more_button/featured_list_title_and_view_more_button.dart';
 import 'package:flutter/material.dart';
 
 class CarHolder extends StatelessWidget {
@@ -14,6 +15,7 @@ class CarHolder extends StatelessWidget {
       this.sellerHomeScreenBloc,
       this.isFromUser,
       this.isUserFavScreen,
+      this.isFeaturedCars,
       this.isFromSeller});
   final Size screenSize;
   final dynamic data;
@@ -21,6 +23,7 @@ class CarHolder extends StatelessWidget {
   final SellerHomeScreenBloc? sellerHomeScreenBloc;
   final bool? isFromUser;
   final bool? isUserFavScreen;
+  final bool? isFeaturedCars;
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +55,12 @@ class CarHolder extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  CarHolderCarImage(screenSize: screenSize, data: data),
-                  CarHolderButton(data: data, screenSize: screenSize,isFromSeller: isFromSeller,isFromUser: isFromUser,sellerHomeScreenBloc: sellerHomeScreenBloc,)
+                  CarHolderCarImage(screenSize: screenSize, data: data,),
+                  CarHolderButton(data: data, screenSize: screenSize,isFromSeller: isFromSeller,isFromUser: isFromUser,sellerHomeScreenBloc: sellerHomeScreenBloc,),
+                  Padding(
+                    padding: EdgeInsets.all(screenSize.width/120),
+                    child: (isFeaturedCars==true)? GlitterContainer(screenSize: screenSize) : const SizedBox.shrink(),
+                  )
                 ],
               ),
               CarHolderCarNameBrand(screenSize: screenSize, data: data),

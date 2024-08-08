@@ -8,21 +8,28 @@ class TopsellersTopBar extends StatelessWidget {
   final HomescreenBloc homescreenBloc;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        MyTextWidget(
-          text: 'Top sellers', 
-          color: const Color(0xff424141), 
-          size: screenSize.width/16.5,
-            weight: FontWeight.bold
-        ),
-        TextButton(
-          onPressed: (){
-            homescreenBloc.add(TopSellersAllListNavigateEvent());
-          }, 
-          child: MyTextWidget(text: 'View All', color: Colors.blue, size: screenSize.width/35, weight: FontWeight.bold) )
-      ],
+    return Padding(
+      padding: EdgeInsets.only(left: screenSize.width/150),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          MyTextWidget(
+            text: 'Top sellers', 
+            color: const Color(0xff424141), 
+            size: screenSize.width/16.5,
+              weight: FontWeight.bold
+          ),
+          TextButton(
+            onPressed: (){
+              homescreenBloc.add(TopSellersAllListNavigateEvent());
+            }, 
+            child: MyTextWidget(
+                  text: 'See More',
+                  color: Colors.blue,
+                  size: screenSize.width / 38,
+                  weight: FontWeight.bold))
+        ],
+      ),
     );
   }
 }

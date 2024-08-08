@@ -79,7 +79,7 @@ class FavouriteSellerMoreCars extends StatelessWidget {
                         child: MyTextWidget(
                           text: 'Available Cars From ${(isfromTopSellers==true)? sellerData['companyName']:sellerData['sellerName']}',
                           color: Colors.blueGrey,
-                          size: screenSize.width / 30,
+                          size: screenSize.width / 32,
                           weight: FontWeight.bold,
                         ),
                       ),

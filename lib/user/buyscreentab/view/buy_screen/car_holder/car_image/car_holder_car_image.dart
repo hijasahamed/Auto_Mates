@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CarHolderCarImage extends StatelessWidget {
   const CarHolderCarImage(
-      {super.key, required this.screenSize, required this.data});
+      {super.key, required this.screenSize, required this.data,});
   final Size screenSize;
   final dynamic data;
   @override

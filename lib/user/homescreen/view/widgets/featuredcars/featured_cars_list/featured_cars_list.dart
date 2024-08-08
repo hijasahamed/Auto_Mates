@@ -1,3 +1,4 @@
+import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/on_tap_car_more_details.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/homescreen/view/widgets/featuredcars/featured_cars_list/featured_car_image/featured_car_image.dart';
 import 'package:auto_mates/user/homescreen/view/widgets/featuredcars/featured_cars_list/featured_car_name_container/featured_car_name_container.dart';
@@ -35,12 +36,19 @@ class FeaturedCarsList extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 dynamic car =featuredCars[index];
-                return Stack(
-                  children: [
-                    FeaturedCarImage(screenSize: screenSize, car: car),
-                    FeaturedCarPriceContainer(screenSize: screenSize, car: car),
-                    FeaturedCarNameContainer(screenSize: screenSize, car: car)
-                  ],
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => OnTapCarMoreDetailsCarScreen(screenSize: screenSize, data: car)
+                    ));
+                  },
+                  child: Stack(
+                    children: [
+                      FeaturedCarImage(screenSize: screenSize, car: car),
+                      FeaturedCarPriceContainer(screenSize: screenSize, car: car),
+                      FeaturedCarNameContainer(screenSize: screenSize, car: car)
+                    ],
+                  ),
                 );
               },
             ),

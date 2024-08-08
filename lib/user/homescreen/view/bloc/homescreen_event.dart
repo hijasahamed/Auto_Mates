@@ -6,3 +6,5 @@ abstract class HomescreenEvent {}
 class  HomeScreenInitialEvent extends HomescreenEvent {}
 
 class TopSellersAllListNavigateEvent extends HomescreenEvent {}
+
+class FeaturedCarsAllListNavigationEvent extends HomescreenEvent {}
