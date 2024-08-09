@@ -24,7 +24,7 @@ class BuyScreen extends StatelessWidget {
     final controller =  ScrollController();
     controller.addListener(() {
       if(controller.offset == controller.position.maxScrollExtent){
-        snackbarWidget('End of the list', context, Colors.white, Colors.blueGrey, SnackBarBehavior.fixed);
+        snackbarWidget('End of the list', context, Colors.transparent, Colors.white, SnackBarBehavior.fixed);
       }
     },) ;
     return StreamBuilder(

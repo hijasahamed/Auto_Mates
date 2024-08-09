@@ -9,7 +9,7 @@ snackbarWidget(String text, context, Color color, Color textColor,SnackBarBehavi
     content: Text(
       text,
       textAlign: TextAlign.center,
-      style: TextStyle(color: textColor, fontWeight: FontWeight.w500),
+      style: TextStyle(color: textColor, fontWeight: FontWeight.w600),
     ),
   ));
 }
