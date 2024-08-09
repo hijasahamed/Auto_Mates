@@ -1,11 +1,13 @@
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/homescreen/controllers/news_api_controllers/news_api_controllers.dart';
 import 'package:auto_mates/user/homescreen/model/news_model.dart';
+import 'package:auto_mates/user/homescreen/view/bloc/homescreen_bloc.dart';
 import 'package:flutter/material.dart';
 
 class LatestCarNewsBanners extends StatelessWidget {
-  const LatestCarNewsBanners({super.key, required this.screenSize});
+  const LatestCarNewsBanners({super.key, required this.screenSize,required this.articleBannerNavBlocInstance});
   final Size screenSize;
+  final HomescreenBloc articleBannerNavBlocInstance;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -28,13 +30,23 @@ class LatestCarNewsBanners extends StatelessWidget {
                   Expanded(
                     child: Padding(
                       padding: EdgeInsets.only(right: screenSize.width/120),
-                      child: buildNewsBanner(news: articles[0]),
+                      child: GestureDetector(
+                        onTap: () {
+                          articleBannerNavBlocInstance.add(NavigateLatestNewsBannerToReadScreenEvent(article: articles[0]));
+                        },
+                        child: buildNewsBanner(news: articles[0])
+                      ),
                     )
                   ),
                   Expanded(
                     child: Padding(
                       padding: EdgeInsets.only(left: screenSize.width/120),
-                      child: buildNewsBanner(news: articles[1]),
+                      child: GestureDetector(
+                        onTap: () {
+                          articleBannerNavBlocInstance.add(NavigateLatestNewsBannerToReadScreenEvent(article: articles[1]));
+                        },
+                        child: buildNewsBanner(news: articles[1])
+                      ),
                     )
                   ),
                 ],

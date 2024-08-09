@@ -202,7 +202,7 @@ Future<List<Map<String, dynamic>>> isCarToSellInUserFavourite({
   dynamic mobile = sharedPref.getString('mobile');
   try {
     QuerySnapshot isFavourite = await userFavouriteCars
-        .where('carToSellId', isEqualTo: carToSellId)
+        .where('regNumber', isEqualTo: carToSellId)
         .where('userContact', isEqualTo: mobile)
         .get();
     for (var doc in isFavourite.docs) {

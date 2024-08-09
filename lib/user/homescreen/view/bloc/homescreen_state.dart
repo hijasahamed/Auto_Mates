@@ -12,3 +12,8 @@ class TopSellersAllListNavigateState extends HomescreenState {}
 class FeaturedCarsAllListNavigationState extends HomescreenState {}
 
 class RefreshFavouriteCarosalState extends HomescreenState {}
+
+class NavigateLatestNewsBannerToReadScreenState  extends HomescreenState {
+  final dynamic article;
+  NavigateLatestNewsBannerToReadScreenState({required this.article});
+}

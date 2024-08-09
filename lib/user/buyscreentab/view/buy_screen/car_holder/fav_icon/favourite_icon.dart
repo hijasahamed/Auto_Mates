@@ -20,7 +20,7 @@ class FavouriteIcon extends StatelessWidget {
       builder: (context, state) {
         return FutureBuilder(
           future: isCarToSellInUserFavourite(
-            carToSellId: (isFromSearch==true)?data['id']:data.id
+            carToSellId: (isFromSearch==true)?data['regNumber']:data['regNumber']
           ),
           builder: (context, snapshot) {            
             final List favouriteData = snapshot.data ?? [];

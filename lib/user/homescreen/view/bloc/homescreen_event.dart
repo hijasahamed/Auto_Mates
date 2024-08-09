@@ -10,3 +10,8 @@ class TopSellersAllListNavigateEvent extends HomescreenEvent {}
 class FeaturedCarsAllListNavigationEvent extends HomescreenEvent {}
 
 class RefreshFavouriteCarosalEvent extends HomescreenEvent {}
+
+class NavigateLatestNewsBannerToReadScreenEvent  extends HomescreenEvent {
+  final dynamic article;
+  NavigateLatestNewsBannerToReadScreenEvent({required this.article});
+}

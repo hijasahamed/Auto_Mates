@@ -11,6 +11,7 @@ class HomescreenBloc extends Bloc<HomescreenEvent, HomescreenState> {
     on<TopSellersAllListNavigateEvent>(topSellersAllListNavigateEvent);
     on<FeaturedCarsAllListNavigationEvent>(featuredCarsAllListNavigationEvent);
     on<RefreshFavouriteCarosalEvent>(refreshFavouriteCarosalEvent);
+    on<NavigateLatestNewsBannerToReadScreenEvent>(navigateLatestNewsBannerToReadScreenEvent);
   }
 
   FutureOr<void> topSellersAllListNavigateEvent(
@@ -26,5 +27,10 @@ class HomescreenBloc extends Bloc<HomescreenEvent, HomescreenState> {
   FutureOr<void> refreshFavouriteCarosalEvent(
     RefreshFavouriteCarosalEvent event, Emitter<HomescreenState> emit) {
       emit(RefreshFavouriteCarosalState());
+  }
+
+  FutureOr<void> navigateLatestNewsBannerToReadScreenEvent(
+    NavigateLatestNewsBannerToReadScreenEvent event, Emitter<HomescreenState> emit) {
+      emit(NavigateLatestNewsBannerToReadScreenState(article: event.article));
   }
 }
