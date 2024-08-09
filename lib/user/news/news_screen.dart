@@ -64,13 +64,35 @@ class _NewsScreenState extends State<NewsScreen> {
                     title: MyTextWidget(text: article.title, color: Colors.blueGrey, size: screenSize.width/30, weight: FontWeight.bold,maxline: true,),
                     subtitle: MyTextWidget(text: article.description ?? 'No description', color: Colors.black, size: screenSize.width/27, weight: FontWeight.normal,maxline: true,),
                     trailing: article.urlToImage != null
-                        ? Image.network(
+                      ? SizedBox(
+                          width: screenSize.width / 5,
+                          height: screenSize.width / 5,
+                          child: Image.network(
                             article.urlToImage!,
-                            width: screenSize.width/5,
-                            height: screenSize.width/5,
                             fit: BoxFit.cover,
-                          )
-                        : null,
+                            loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                              if (loadingProgress == null) {
+                                return child;
+                              } else {
+                                return Center(
+                                  child: CircularProgressIndicator(
+                                    color: Colors.blue,
+                                    value: loadingProgress.expectedTotalBytes != null
+                                        ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
+                                        : null,
+                                  ),
+                                );
+                              }
+                            },
+                          ),
+                        )
+                      : Container(
+                        width: screenSize.width / 5,
+                        height: screenSize.width / 5,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(image: AssetImage('assets/images/photo placeholder.webp'))
+                        ),
+                      )
                   ),
                 ),
               );
@@ -79,7 +101,7 @@ class _NewsScreenState extends State<NewsScreen> {
         } else if (snapshot.hasError) {
           return NoDataErrorPlaceholder(screenSize: screenSize, titleText: 'No News Fetched');
         }
-        return const CircularProgressIndicator();
+        return const CircularProgressIndicator(color: Colors.blue,);
       },
     );
   }
