@@ -284,6 +284,7 @@ updateCarDetails(
   required TextEditingController overViewController,
   } 
   )async {
+    
   List<dynamic> imageUrls = await addMultiImagesToDb();
   String? thumbnailUrl = await addThumbnailToDb();
   final data = {
@@ -320,11 +321,9 @@ updateCarDetails(
   if(postCarFormkey.currentState!.validate()){
     firebaseObject
       .doc(docId)
-      .update(data)      
-      .then(snackbarWidget('Car details updated', context, Colors.blue,
-          Colors.white, SnackBarBehavior.floating)).then(
-        (value) => Navigator.of(context).pop(),
-      );
+      .update(data);
+    snackbarWidget('Car details updated', context,Colors.blue,Colors.white, SnackBarBehavior.floating); 
+    Navigator.of(context).pop();                    
   }else{
     snackbarWidget('Car details not updated', context, Colors.red, Colors.white, SnackBarBehavior.floating);
   } 

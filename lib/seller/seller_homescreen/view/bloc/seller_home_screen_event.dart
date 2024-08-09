@@ -89,3 +89,5 @@ class MarkCarSoldLoadingEvent extends SellerHomeScreenEvent {}
 class MarkCarSoldStopLoadingEvent extends SellerHomeScreenEvent {}
 
 class FeaturedCarsRemainingTimeEvent extends SellerHomeScreenEvent {}
+
+class EditingCarDataEditButtonCircleIndicatorEvent extends SellerHomeScreenEvent {}

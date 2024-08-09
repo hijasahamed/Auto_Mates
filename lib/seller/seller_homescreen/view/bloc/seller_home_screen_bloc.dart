@@ -20,6 +20,7 @@ class SellerHomeScreenBloc extends Bloc<SellerHomeScreenEvent, SellerHomeScreenS
     on<MarkCarSoldLoadingEvent>(markCarSoldLoadingEvent);
     on<MarkCarSoldStopLoadingEvent>(markCarSoldStopLoadingEvent);
     on<FeaturedCarsRemainingTimeEvent>(featuredCarsRemainingTimeEvent);
+    on<EditingCarDataEditButtonCircleIndicatorEvent>(editingCarDataEditButtonCircleIndicatorEvent);
   }
 
   FutureOr<void> floatingButtonClickedEvent(
@@ -108,5 +109,10 @@ class SellerHomeScreenBloc extends Bloc<SellerHomeScreenEvent, SellerHomeScreenS
   FutureOr<void> featuredCarsRemainingTimeEvent(
     FeaturedCarsRemainingTimeEvent event, Emitter<SellerHomeScreenState> emit) {
       emit(FeaturedCarsRemainingTimeState());
+  }
+
+  FutureOr<void> editingCarDataEditButtonCircleIndicatorEvent(
+    EditingCarDataEditButtonCircleIndicatorEvent event, Emitter<SellerHomeScreenState> emit) {
+      emit(EditingCarDataEditButtonCircleIndicatorState());
   }
 }
