@@ -72,8 +72,36 @@ class LatestCarNewsBanners extends StatelessWidget {
         Expanded(
           child: Container(
             decoration: BoxDecoration(
-              image: DecorationImage(image: NetworkImage(news.urlToImage),fit: BoxFit.cover,filterQuality: FilterQuality.high),
-              borderRadius: BorderRadius.only(topLeft: Radius.circular(screenSize.width/100),topRight: Radius.circular(screenSize.width/100))
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(screenSize.width / 100),
+                topRight: Radius.circular(screenSize.width / 100),
+              ),
+              border: Border.all(width: .2,color: Colors.grey)
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(screenSize.width / 100),
+                topRight: Radius.circular(screenSize.width / 100),
+              ),
+              child: Image.network(
+                news.urlToImage,
+                fit: BoxFit.cover,
+                filterQuality: FilterQuality.high,
+                loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                  if (loadingProgress == null) {
+                    return child;
+                  } else {
+                    return Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.blue,
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
+                            : null,
+                      ),
+                    );
+                  }
+                },
+              ),
             ),
           ),
         ),
