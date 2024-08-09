@@ -17,11 +17,15 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             Card(
-              elevation: 5,
+              elevation: 4,
               child: Container(
                 height: screenSize.height/4.8,
                 width: screenSize.width,
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: const Color(0xFFDBEDF5),),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                  border: Border.all(width: .2,color: Colors.grey)
+                ),
                 child: CarouselSliderWidget(screenSize: screenSize)
               ),
             ),

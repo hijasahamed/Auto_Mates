@@ -23,10 +23,10 @@ class InterestedButton extends StatelessWidget {
         return FutureBuilder<List>(
           future: (isFromSearch==true)
           ? checkIfUserInterestedCar(
-            carId: data['id'],
+            data: data['carNumber'],
           )
           : checkIfUserInterestedCar(
-            carId: data.id,
+            data: data['regNumber'],
           ),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {

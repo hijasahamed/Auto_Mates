@@ -176,13 +176,13 @@ makeCall({mobileNumber, context}) async {
   }
 }
 
-Future<List<Map<String, dynamic>>> checkIfUserInterestedCar({carId}) async {
+Future<List<Map<String, dynamic>>> checkIfUserInterestedCar({data}) async {
   List<Map<String, dynamic>> result = [];
   final sharedPref = await SharedPreferences.getInstance();
   dynamic mobile = sharedPref.getString('mobile');
   try {
     QuerySnapshot existingCarInterested = await userInterestMarked
-        .where('carId', isEqualTo: carId)
+        .where('carNumber', isEqualTo: data)
         .where('userContact', isEqualTo: mobile)
         .get();
     for (var doc in existingCarInterested.docs) {
