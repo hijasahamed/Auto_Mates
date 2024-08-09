@@ -1,6 +1,5 @@
 import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/widget/seller_banner/seller_details/seller_details.dart';
-import 'package:auto_mates/seller/seller_profile_screen/view/widget/seller_banner/seller_edit_button/seller_edit_button.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/widget/seller_banner/seller_profile/seller_profile.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +29,6 @@ class BannerCardWidget extends StatelessWidget {
                 children: [
                   MyTextWidget(text: 'My Profile', color: Colors.blueGrey, size: screenSize.width/25, weight: FontWeight.bold),            
                   SellerProfileWidget(screenSize: screenSize, data: data),
-                  SellerEditButton(screenSize: screenSize)
                 ],
               ),
               SizedBox(width: screenSize.width/50,),
