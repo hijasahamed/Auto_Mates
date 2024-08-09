@@ -1,5 +1,6 @@
 import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/car_edit_page_thumbnail_images/car_edit_page_thumbnail_images.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/car_thumnail_images_holder/thumbnail_images_holder.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/post_car_banner/post_car_banner.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/textformfields/add_edit_form_widget.dart';
@@ -119,27 +120,7 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
                   children: [
                     PostCarBanner(screenSize: widget.screenSize),
                     widget.isEditPage
-                        ? Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: GestureDetector(
-                              onTap: () {},
-                              child: Container(
-                                height: widget.screenSize.height / 6,
-                                width: widget.screenSize.width,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image:
-                                            NetworkImage(widget.data!['image']),
-                                        fit: BoxFit.cover)),
-                                child: const Center(
-                                    child: MyTextWidget(
-                                        text: 'Change Photo',
-                                        color: Colors.white,
-                                        size: 15,
-                                        weight: FontWeight.bold)),
-                              ),
-                            ),
-                          )
+                        ? CarEditPageThumbnailImages(screenSize: widget.screenSize, data: widget.data)
                         : ThumbnailImagesHolder(
                             screenSize: widget.screenSize,
                             homescreenBloc: homescreenBloc),

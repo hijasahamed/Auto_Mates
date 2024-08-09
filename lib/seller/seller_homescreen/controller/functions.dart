@@ -282,11 +282,13 @@ updateCarDetails(
   required TextEditingController bodyTypeController,
   required TextEditingController fuelTankController,
   required TextEditingController overViewController,
-  }
-    
-  ) {
+  } 
+  )async {
+  List<dynamic> imageUrls = await addMultiImagesToDb();
+  String? thumbnailUrl = await addThumbnailToDb();
   final data = {
-    'image':'',
+    'thumbnail':thumbnailUrl,
+    'image':imageUrls,
     'brand': carBrandController.text,
     'modelName': carModelNameController.text,
     'color': carColorController.text,
@@ -294,8 +296,8 @@ updateCarDetails(
     'price': carPriceController.text,
     'fuel': carFuelController.text,
     'kilometer': carKilometerController.text,
-    'reg.number': regNumberController.text,
-    'no.of.owners':numOfOwnerController.text,
+    'regNumber': regNumberController.text,
+    'noOfOwners':numOfOwnerController.text,
     'transmission':transmissionController.text,
     'insurance':insuranceController.text,
     'seat':seatCapacityController.text,
@@ -318,16 +320,16 @@ updateCarDetails(
   if(postCarFormkey.currentState!.validate()){
     firebaseObject
       .doc(docId)
-      .update(data)
-      .then(
-        (value) => Navigator.of(context).pop(),
-      )
+      .update(data)      
       .then(snackbarWidget('Car details updated', context, Colors.blue,
-          Colors.white, SnackBarBehavior.floating));
+          Colors.white, SnackBarBehavior.floating)).then(
+        (value) => Navigator.of(context).pop(),
+      );
   }else{
     snackbarWidget('Car details not updated', context, Colors.red, Colors.white, SnackBarBehavior.floating);
   } 
 }
+
 
 // add seller profile
 String? thumbnailImage;
