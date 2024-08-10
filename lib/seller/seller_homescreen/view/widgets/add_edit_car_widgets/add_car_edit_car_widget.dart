@@ -168,92 +168,95 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
           bottomNavigationBar: BottomAppBar(
             color: Colors.white,
             child: widget.isEditPage
-                ? Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: widget.screenSize.height / 17,
-                      width: widget.screenSize.width / 1.5,
-                      color: Colors.transparent,
-                      child: Material(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        color: Colors.blue,
-                        child: InkWell(
-                            onTap: () {
-                              editButtonCircleLoaderBlocObj.add(EditingCarDataEditButtonCircleIndicatorEvent());
-                              if (thumbnailImage == null &&
-                                  selectedImages.isEmpty) {
-                                thumbnailImage = widget.data['thumbnail'];
-                                if (widget.data['image'] != null &&
-                                    widget.data['image'] is List) {
-                                  selectedImages.addAll(
-                                      List<File>.from(widget.data['image'])
-                                          as Iterable<File>);
-                                }
-                              }
-                              updateCarDetails(
-                                  context: context,
-                                  docId: widget.data!.id,
-                                  postCarFormkey: postCarFormkey,
-                                  carBrandController: carBrandController,
-                                  carColorController: carColorController,
-                                  carFuelController: carFuelController,
-                                  carKilometerController:
-                                      carKilometerController,
-                                  carModelNameController:
-                                      carModelNameController,
-                                  carPriceController: carPriceController,
-                                  carYearController: carYearController,
-                                  regNumberController: regNumberController,
-                                  numOfOwnerController: numOfOwnerController,
-                                  transmissionController:
-                                      transmissionController,
-                                  insuranceController: insuranceController,
-                                  seatCapacityController:
-                                      seatCapacityController,
-                                  milageController: milageController,
-                                  sunroofController: sunroofController,
-                                  bootspaceController: bootspaceController,
-                                  infotainmentSystemController:
-                                      infotainmentSystemController,
-                                  alloyWheelController: alloyWheelController,
-                                  carHeightController: carheightController,
-                                  carWidthController: carWidthController,
-                                  carLengthController: carLengthController,
-                                  groundClearanceController:
-                                      groundClearenceController,
-                                  airBagController: airBagController,
-                                  airConditionerController:
-                                      airConditionerController,
-                                  powerWindowController: powerWindowController,
-                                  bodyTypeController: bodyTypeController,
-                                  fuelTankController: fuelTankController,
-                                  overViewController: overViewController);
-                            },
-                            child: Center(
-                              child: BlocConsumer<SellerHomeScreenBloc, SellerHomeScreenState>(
-                                bloc: editButtonCircleLoaderBlocObj,
-                                listener: (context, state) {},
-                                builder: (context, state) {
-                                  if(state is EditingCarDataEditButtonCircleIndicatorState){
-                                    return SizedBox(
-                                      height: widget.screenSize.width/10,
-                                      width: widget.screenSize.width/10,
-                                      child: const CircularProgressIndicator(color: Colors.white,)
-                                    );
-                                  }
-                                  return const MyTextWidget(
-                                      text: 'Edit Car Details',
-                                      color: Colors.white,
-                                      size: 17,
-                                      weight: FontWeight.bold);
-                                },
-                              ),
-                            )),
-                      ),
+                ? Container(
+                  width: widget.screenSize.width / 1.5,
+                  color: Colors.transparent,
+                  child: Material(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                  )
+                    color: Colors.blue,
+                    child: InkWell(
+                        onTap: () {
+                          editButtonCircleLoaderBlocObj.add(EditingCarDataEditButtonCircleIndicatorEvent());
+                          if (thumbnailImage == null &&
+                              selectedImages.isEmpty) {
+                            thumbnailImage = widget.data['thumbnail'];
+                            if (widget.data['image'] != null &&
+                                widget.data['image'] is List) {
+                              selectedImages.addAll(
+                                  List<File>.from(widget.data['image'])
+                                      as Iterable<File>);
+                            }
+                          }
+                          updateCarDetails(
+                              context: context,
+                              docId: widget.data!.id,
+                              postCarFormkey: postCarFormkey,
+                              carBrandController: carBrandController,
+                              carColorController: carColorController,
+                              carFuelController: carFuelController,
+                              carKilometerController:
+                                  carKilometerController,
+                              carModelNameController:
+                                  carModelNameController,
+                              carPriceController: carPriceController,
+                              carYearController: carYearController,
+                              regNumberController: regNumberController,
+                              numOfOwnerController: numOfOwnerController,
+                              transmissionController:
+                                  transmissionController,
+                              insuranceController: insuranceController,
+                              seatCapacityController:
+                                  seatCapacityController,
+                              milageController: milageController,
+                              sunroofController: sunroofController,
+                              bootspaceController: bootspaceController,
+                              infotainmentSystemController:
+                                  infotainmentSystemController,
+                              alloyWheelController: alloyWheelController,
+                              carHeightController: carheightController,
+                              carWidthController: carWidthController,
+                              carLengthController: carLengthController,
+                              groundClearanceController:
+                                  groundClearenceController,
+                              airBagController: airBagController,
+                              airConditionerController:
+                                  airConditionerController,
+                              powerWindowController: powerWindowController,
+                              bodyTypeController: bodyTypeController,
+                              fuelTankController: fuelTankController,
+                              overViewController: overViewController);
+                        },
+                        child: Center(
+                          child: BlocConsumer<SellerHomeScreenBloc, SellerHomeScreenState>(
+                            bloc: editButtonCircleLoaderBlocObj,
+                            listener: (context, state) {},
+                            builder: (context, state) {
+                              if(state is EditingCarDataEditButtonCircleIndicatorState){
+                                return Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    MyTextWidget(text: 'Updating Details', color: Colors.white, size: widget.screenSize.width/30, weight: FontWeight.bold),
+                                    SizedBox(width: widget.screenSize.width/40,),
+                                    SizedBox(
+                                      height: widget.screenSize.width/17,
+                                      width: widget.screenSize.width/17,
+                                      child: CircularProgressIndicator(color: Colors.white,strokeWidth: widget.screenSize.width/130,)
+                                    ),
+                                  ],
+                                );
+                              }
+                              return MyTextWidget(
+                                  text: 'Edit Car Details',
+                                  color: Colors.white,
+                                  size: widget.screenSize.width/30,
+                                  weight: FontWeight.bold);
+                            },
+                          ),
+                        )),
+                  ),
+                )
                 : BlocProvider(
                     create: (context) => widget.sellerHomeScreenBloc,
                     child: BlocListener<SellerHomeScreenBloc,
@@ -280,82 +283,79 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
                           SellerHomeScreenState>(
                         bloc: widget.sellerHomeScreenBloc,
                         builder: (context, state) {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              color: Colors.transparent,
-                              child: Material(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                color: Colors.redAccent,
-                                child: InkWell(
-                                    onTap: () {
-                                      widget.sellerHomeScreenBloc
-                                          .add(PostingCarLoadingEvent());
-                                      postNewCar(
-                                          context: context,
-                                          postCarFormkey: postCarFormkey,
-                                          carBrandController:
-                                              carBrandController,
-                                          carModelNameController:
-                                              carModelNameController,
-                                          carColorController:
-                                              carColorController,
-                                          carYearController: carYearController,
-                                          carPriceController:
-                                              carPriceController,
-                                          carFuelController: carFuelController,
-                                          carKilometerController:
-                                              carKilometerController,
-                                          regNumberController:
-                                              regNumberController,
-                                          numOfOwnerController:
-                                              numOfOwnerController,
-                                          transmissionController:
-                                              transmissionController,
-                                          insuranceController:
-                                              insuranceController,
-                                          seatCapacityController:
-                                              seatCapacityController,
-                                          milageController: milageController,
-                                          sunroofController: sunroofController,
-                                          bootspaceController:
-                                              bootspaceController,
-                                          infotainmentSystemController:
-                                              infotainmentSystemController,
-                                          alloyWheelController:
-                                              alloyWheelController,
-                                          carHeightController:
-                                              carheightController,
-                                          carWidthController:
-                                              carWidthController,
-                                          carLengthController:
-                                              carLengthController,
-                                          groundClearanceController:
-                                              groundClearenceController,
-                                          airBagController: airBagController,
-                                          airConditionerController:
-                                              airConditionerController,
-                                          powerWindowController:
-                                              powerWindowController,
-                                          bodyTypeController:
-                                              bodyTypeController,
-                                          fuelTankController:
-                                              fuelTankController,
-                                          overViewController:
-                                              overViewController,
-                                          sellerHomeScreenBloc:
-                                              widget.sellerHomeScreenBloc);
-                                    },
-                                    child: const Center(
-                                      child: MyTextWidget(
-                                          text: 'Post New Car',
-                                          color: Colors.white,
-                                          size: 17,
-                                          weight: FontWeight.bold),
-                                    )),
+                          return Container(
+                            color: Colors.transparent,
+                            child: Material(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
                               ),
+                              color: Colors.green,
+                              child: InkWell(
+                                  onTap: () {
+                                    widget.sellerHomeScreenBloc
+                                        .add(PostingCarLoadingEvent());
+                                    postNewCar(
+                                        context: context,
+                                        postCarFormkey: postCarFormkey,
+                                        carBrandController:
+                                            carBrandController,
+                                        carModelNameController:
+                                            carModelNameController,
+                                        carColorController:
+                                            carColorController,
+                                        carYearController: carYearController,
+                                        carPriceController:
+                                            carPriceController,
+                                        carFuelController: carFuelController,
+                                        carKilometerController:
+                                            carKilometerController,
+                                        regNumberController:
+                                            regNumberController,
+                                        numOfOwnerController:
+                                            numOfOwnerController,
+                                        transmissionController:
+                                            transmissionController,
+                                        insuranceController:
+                                            insuranceController,
+                                        seatCapacityController:
+                                            seatCapacityController,
+                                        milageController: milageController,
+                                        sunroofController: sunroofController,
+                                        bootspaceController:
+                                            bootspaceController,
+                                        infotainmentSystemController:
+                                            infotainmentSystemController,
+                                        alloyWheelController:
+                                            alloyWheelController,
+                                        carHeightController:
+                                            carheightController,
+                                        carWidthController:
+                                            carWidthController,
+                                        carLengthController:
+                                            carLengthController,
+                                        groundClearanceController:
+                                            groundClearenceController,
+                                        airBagController: airBagController,
+                                        airConditionerController:
+                                            airConditionerController,
+                                        powerWindowController:
+                                            powerWindowController,
+                                        bodyTypeController:
+                                            bodyTypeController,
+                                        fuelTankController:
+                                            fuelTankController,
+                                        overViewController:
+                                            overViewController,
+                                        sellerHomeScreenBloc:
+                                            widget.sellerHomeScreenBloc);
+                                  },
+                                  child: Center(
+                                    child: MyTextWidget(
+                                        text: 'Post New Car',
+                                        color: Colors.white,
+                                        size: widget.screenSize.width/30,
+                                        weight: FontWeight.bold),
+                                  )),
                             ),
                           );
                         },

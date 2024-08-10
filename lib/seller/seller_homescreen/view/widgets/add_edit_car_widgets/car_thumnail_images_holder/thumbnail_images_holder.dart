@@ -22,21 +22,21 @@ class ThumbnailImagesHolder extends StatelessWidget {
               bloc: homescreenBloc,
               builder: (context, state) {
                 return Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     thumbnailImage != null
                         ? MyTextWidget(
-                            text: '  Thumbnail',
-                            color: Colors.grey,
+                            text: 'Thumbnail',
+                            color: Colors.blueGrey,
                             size: screenSize.width / 35,
-                            weight: FontWeight.bold)
+                            weight: FontWeight.w400)
                         : const SizedBox.shrink(),
+                    SizedBox(width: screenSize.width/3,),
                     selectedImages.isNotEmpty
                         ? MyTextWidget(
-                            text: 'Long press to see images   ',
-                            color: Colors.grey,
+                            text: 'Long press to see images',
+                            color: Colors.blueGrey,
                             size: screenSize.width / 35,
-                            weight: FontWeight.bold)
+                            weight: FontWeight.w400)
                         : const SizedBox.shrink(),
                   ],
                 );
@@ -55,20 +55,20 @@ class ThumbnailImagesHolder extends StatelessWidget {
                         child: Ink(
                           height: screenSize.height / 6,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: const Color(0XFFDBEDF5),
+                            borderRadius: BorderRadius.circular(screenSize.width/100),
+                            color: const Color.fromARGB(255, 243, 243, 243),
                           ),
                           child: InkWell(
                               onTap: () {
                                 addCarThumbnail(bloc: homescreenBloc);
                               },
                               child: thumbnailImage == null
-                                  ? const Center(
+                                  ? Center(
                                       child: MyTextWidget(
                                           text: 'Add Thumbnail',
-                                          color: Colors.grey,
-                                          size: 15,
-                                          weight: FontWeight.w600))
+                                          color: Colors.black,
+                                          size: screenSize.width/32,
+                                          weight: FontWeight.w300))
                                   : AddedThumbnailImage(
                                       screenSize: screenSize)),
                         ),
@@ -86,7 +86,7 @@ class ThumbnailImagesHolder extends StatelessWidget {
                           height: screenSize.height / 6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
-                            color: const Color(0XFFDBEDF5),
+                            color: const Color.fromARGB(255, 243, 243, 243),
                           ),
                           child: InkWell(
                               onTap: () {
@@ -102,12 +102,12 @@ class ThumbnailImagesHolder extends StatelessWidget {
                                 ));
                               },
                               child: selectedImages.isEmpty
-                                  ? const Center(
+                                  ? Center(
                                       child: MyTextWidget(
                                           text: 'Add Car Images',
-                                          color: Colors.grey,
-                                          size: 15,
-                                          weight: FontWeight.w600))
+                                          color: Colors.black,
+                                          size: screenSize.width/32,
+                                          weight: FontWeight.w300))
                                   : AddedCarImages(
                                       sellerHomeScreenBloc: homescreenBloc,
                                     )),

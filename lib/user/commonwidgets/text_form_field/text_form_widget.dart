@@ -95,8 +95,8 @@ class MyTextFormWidget extends StatelessWidget {
       obscuringCharacter: '*',
       maxLength: (length ==true)?10 :null,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      style: TextStyle(
-          color: valueTextColor, fontWeight: FontWeight.w500),
+      style: const TextStyle(
+          color: Colors.blueGrey, fontWeight: FontWeight.w500),
       decoration: InputDecoration(
         suffixIcon: (fuel == true)
             ? DropDownButtonWidget (controller: controller,isFuel: true,) 
@@ -117,10 +117,10 @@ class MyTextFormWidget extends StatelessWidget {
             : const SizedBox(),
         hintText: (isChat == true)? 'Message' : null,
         labelText: (isChat == true) ? null : text,
-        labelStyle: TextStyle(
-            color: labelTextColor,
-            fontWeight: FontWeight.w400),
-        fillColor: fillColor,
+        labelStyle: const TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.w200),
+        fillColor: const Color.fromARGB(255, 243, 243, 243),
         filled: true,
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: enabledBorderColor),
