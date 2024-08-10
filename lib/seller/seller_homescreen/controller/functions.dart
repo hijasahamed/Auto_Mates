@@ -335,7 +335,7 @@ updateCarDetails(
 }
 
 
-// add seller profile
+// add car thumbnail
 String? thumbnailImage;
 
 addCarThumbnail({bloc})async{
@@ -371,6 +371,7 @@ Future<String?> addThumbnailToDb() async {
   }
 }
 
+// add multiple images
 List<File> selectedImages = [];
 
 addMultipleImages({bloc})async{

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/car_edit_page_thumbnail_images/car_edit_page_thumbnail_images.dart';
@@ -7,6 +5,7 @@ import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_wi
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/post_car_banner/post_car_banner.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_widgets/textformfields/add_edit_form_widget.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
+import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -179,19 +178,12 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
                     ),
                     color: Colors.blue,
                     child: InkWell(
-                        onTap: () {
-                          editButtonCircleLoaderBlocObj.add(EditingCarDataEditButtonCircleIndicatorEvent());
-                          if (thumbnailImage == null &&
-                              selectedImages.isEmpty) {
-                            thumbnailImage = widget.data['thumbnail'];
-                            if (widget.data['image'] != null &&
-                                widget.data['image'] is List) {
-                              selectedImages.addAll(
-                                  List<File>.from(widget.data['image'])
-                                      as Iterable<File>);
-                            }
-                          }
-                          updateCarDetails(
+                        onTap: () { 
+                          if(thumbnailImage == null || selectedImages.isEmpty){
+                            snackbarWidget('Thumbnail & Images are empty. So this car details cant be edited', context, Colors.red, Colors.white, SnackBarBehavior.fixed);
+                          }else{
+                            editButtonCircleLoaderBlocObj.add(EditingCarDataEditButtonCircleIndicatorEvent());                          
+                            updateCarDetails(
                               context: context,
                               isFromCarDetailsAppBar: widget.isFromCarDetailsAppBar,
                               docId: widget.data!.id,
@@ -230,6 +222,7 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
                               bodyTypeController: bodyTypeController,
                               fuelTankController: fuelTankController,
                               overViewController: overViewController);
+                           }
                         },
                         child: Center(
                           child: BlocConsumer<SellerHomeScreenBloc, SellerHomeScreenState>(

@@ -34,11 +34,9 @@ class CarEditPageThumbnailImages extends StatelessWidget {
                   weight: FontWeight.bold),
             ],
           ),
-          Container(
+          SizedBox(
             height: screenSize.height / 6,
             width: screenSize.width,
-            decoration: BoxDecoration(
-                border: Border.all(width: .2, color: Colors.grey)),
             child: BlocBuilder<SellerHomeScreenBloc, SellerHomeScreenState>(
               bloc: editImageBloc,
               builder: (context, state) {
@@ -51,6 +49,7 @@ class CarEditPageThumbnailImages extends StatelessWidget {
                       },
                       child: Container(
                         decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(screenSize.width/80),
                           image: DecorationImage(
                             image: thumbnailImage == null
                                 ? NetworkImage(data['thumbnail'])
@@ -63,13 +62,13 @@ class CarEditPageThumbnailImages extends StatelessWidget {
                         child: Center(
                           child: thumbnailImage == null 
                           ? ColoredBox(
-                            color: Colors.black45,
+                            color: Colors.black54,
                             child: MyTextWidget(text: 'Change Thumbnail', color: Colors.white, size: screenSize.width/30, weight: FontWeight.bold))
                           : null
                         ),
                       ),
                     )),
-                    SizedBox(width: screenSize.width/175,),
+                    SizedBox(width: screenSize.width/150,),
                     Expanded(
                       child: InkWell(
                         onTap: () {
@@ -78,34 +77,38 @@ class CarEditPageThumbnailImages extends StatelessWidget {
                         child: Container(
                           decoration: BoxDecoration(
                             border: Border.all(width: .2, color: Colors.grey),
+                            borderRadius: BorderRadius.circular(screenSize.width/80)
                           ),
-                          child: selectedImages.isEmpty
-                              ? data['image'] != null && data['image'].isNotEmpty
-                                  ? GridView.builder(
-                                      scrollDirection: Axis.horizontal,
-                                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        crossAxisSpacing: 2,
-                                        mainAxisSpacing: 2,
-                                        childAspectRatio: 1,
-                                      ),
-                                      itemCount: data['image'].length,
-                                      itemBuilder: (context, index) {
-                                        return Container(
-                                          decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                              image: NetworkImage(data['image'][index],),
-                                              fit: BoxFit.cover,
+                          child: Padding(
+                            padding: EdgeInsets.all(screenSize.width/150),
+                            child: selectedImages.isEmpty
+                                ? data['image'] != null && data['image'].isNotEmpty
+                                    ? GridView.builder(
+                                        scrollDirection: Axis.horizontal,
+                                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 2,
+                                          crossAxisSpacing: 2,
+                                          mainAxisSpacing: 2,
+                                          childAspectRatio: 1,
+                                        ),
+                                        itemCount: data['image'].length,
+                                        itemBuilder: (context, index) {
+                                          return Container(
+                                            decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                image: NetworkImage(data['image'][index],),
+                                                fit: BoxFit.cover,
+                                              ),
+                                              borderRadius: BorderRadius.circular(5),
                                             ),
-                                            borderRadius: BorderRadius.circular(5),
-                                          ),
-                                        );
-                                      },
-                                    )
-                                  : Center(
-                                      child: MyTextWidget(text: 'Images Unavailable', color: Colors.red, size: screenSize.width/32, weight: FontWeight.bold)
-                                    )
-                              : AddedCarImages(sellerHomeScreenBloc: editImageBloc)
+                                          );
+                                        },
+                                      )
+                                    : Center(
+                                        child: MyTextWidget(text: 'Images Unavailable', color: Colors.red, size: screenSize.width/32, weight: FontWeight.bold)
+                                      )
+                                : AddedCarImages(sellerHomeScreenBloc: editImageBloc),
+                          )
                         ),
                       ),
                     ),
