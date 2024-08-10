@@ -17,11 +17,13 @@ class AddCarEditCarWidget extends StatefulWidget {
       required this.screenSize,
       required this.sellerHomeScreenBloc,
       required this.isEditPage,
+      this.isFromCarDetailsAppBar,
       this.data});
   final Size screenSize;
   final SellerHomeScreenBloc sellerHomeScreenBloc;
   final bool isEditPage;
   final dynamic data;
+  final bool? isFromCarDetailsAppBar;
   @override
   State<AddCarEditCarWidget> createState() => _AddCarEditCarWidgetState();
 }
@@ -191,6 +193,7 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
                           }
                           updateCarDetails(
                               context: context,
+                              isFromCarDetailsAppBar: widget.isFromCarDetailsAppBar,
                               docId: widget.data!.id,
                               postCarFormkey: postCarFormkey,
                               carBrandController: carBrandController,

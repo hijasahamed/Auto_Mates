@@ -17,7 +17,7 @@ class PopupMenuButtonWidget extends StatelessWidget {
       onSelected: (value) {
         if (value == 'edit') {
            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => AddCarEditCarWidget(screenSize: screenSize,sellerHomeScreenBloc: sellerHomeScreenBloc,isEditPage: true,data: data,)));
+              builder: (context) => AddCarEditCarWidget(screenSize: screenSize,sellerHomeScreenBloc: sellerHomeScreenBloc,isEditPage: true,data: data,isFromCarDetailsAppBar: isFromCarDetailsAppBar,)));
         } 
         else if (value == 'delete') {
           showDialog(

@@ -254,6 +254,7 @@ Future<void> markSellerCarToSold({carData,markCarsoldBloc,context,screenSize,})a
 updateCarDetails(
    { context,
     docId,
+    isFromCarDetailsAppBar,
     postCarFormkey,
     required TextEditingController carBrandController,
   required TextEditingController carModelNameController,
@@ -324,7 +325,10 @@ updateCarDetails(
       .update(data);
     snackbarWidget('Car details updated', context,Colors.blue,Colors.white, SnackBarBehavior.floating); 
     Navigator.of(context).pop();
-    refreshAllCarToSellInstance.add(AllCarsTOSellEvent());                   
+    refreshAllCarToSellInstance.add(AllCarsTOSellEvent());
+    if(isFromCarDetailsAppBar== true){
+      Navigator.of(context).pop();
+    }                   
   }else{
     snackbarWidget('Car details not updated', context, Colors.red, Colors.white, SnackBarBehavior.floating);
   } 
