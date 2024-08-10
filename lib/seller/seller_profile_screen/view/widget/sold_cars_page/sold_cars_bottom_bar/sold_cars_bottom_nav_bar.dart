@@ -7,8 +7,8 @@ class SoldCarsBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<int>(
-      future: getTotalSalesAmount(),
+    return StreamBuilder<int>(
+      stream: getTotalSalesAmountStream(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return BottomAppBar(
@@ -36,7 +36,12 @@ class SoldCarsBottomNavBar extends StatelessWidget {
                 color: Colors.green,
               ),
               child: const Center(
-                child: MyTextWidget(text: 'Something went wrong', color: Colors.white, size: 16, weight: FontWeight.bold),
+                child: MyTextWidget(
+                  text: 'Something went wrong',
+                  color: Colors.white,
+                  size: 16,
+                  weight: FontWeight.bold,
+                ),
               ),
             ),
           );
@@ -64,4 +69,4 @@ class SoldCarsBottomNavBar extends StatelessWidget {
       },
     );
   }
-  }
+}

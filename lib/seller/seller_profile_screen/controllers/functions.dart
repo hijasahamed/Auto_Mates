@@ -39,17 +39,16 @@ Stream<QuerySnapshot> getSellersSoldCars(sellerData) {
       .snapshots();
 }
 
-Future<int> getTotalSalesAmount() async {
-  int totalSalesAmount = 0;
-  
-  QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('soldcars').get();
-  for (QueryDocumentSnapshot doc in querySnapshot.docs) {
-    String soldAmountString = doc['soldAmount'];
-    int soldAmount = int.tryParse(soldAmountString) ?? 0;
-    totalSalesAmount += soldAmount;
-  }
-  
-  return totalSalesAmount;
+Stream<int> getTotalSalesAmountStream() {
+  return FirebaseFirestore.instance.collection('soldcars').snapshots().map((querySnapshot) {
+    int totalSalesAmount = 0;
+    for (QueryDocumentSnapshot doc in querySnapshot.docs) {
+      String soldAmountString = doc['soldAmount'];
+      int soldAmount = int.tryParse(soldAmountString) ?? 0;
+      totalSalesAmount += soldAmount;
+    }
+    return totalSalesAmount;
+  });
 }
 
 removeUsersInterestedCar({context, docId,noData,isNavBack,isSellerRemovingInterestedCar,removeInterestBySeller})async {
@@ -118,6 +117,17 @@ updateTheSellerViewdStatus({docId})async{
         .update({'sellerViewed': 'yes'});
   }
   catch (e){
+    log(e.toString());
+  }
+}
+
+Future<void> deleteSoldCar({String? documentId}) async {
+  try {
+    await FirebaseFirestore.instance
+        .collection('soldcars')
+        .doc(documentId)
+        .delete();
+  } catch (e) {
     log(e.toString());
   }
 }

@@ -1,3 +1,4 @@
+import 'package:auto_mates/seller/seller_profile_screen/controllers/functions.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -38,6 +39,7 @@ class SoldCarHolder extends StatelessWidget {
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Row(
                 children: [
@@ -55,6 +57,13 @@ class SoldCarHolder extends StatelessWidget {
                 ],
               ),
             ],
+          ),
+          const Spacer(),
+          IconButton(
+            onPressed: () {
+              deleteSoldCar(documentId: car.id);
+            }, 
+            icon: const Icon(Icons.close)
           )
         ],
       ),
