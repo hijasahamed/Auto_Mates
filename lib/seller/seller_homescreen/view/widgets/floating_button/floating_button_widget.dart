@@ -15,6 +15,7 @@ class FloatingButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       backgroundColor: Colors.redAccent,
+      shape: const CircleBorder(),
       onPressed: () {
           // checkSellerisPremium(sellerId: data.id,sellerHomeScreenBloc: sellerHomeScreenBloc,context: context,screenSize: screenSize); 
           sellerHomeScreenBloc.add(FloatingButtonClickedEvent());
