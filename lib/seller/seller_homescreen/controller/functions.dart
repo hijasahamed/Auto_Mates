@@ -324,7 +324,7 @@ updateCarDetails(
       .update(data);
     snackbarWidget('Car details updated', context,Colors.blue,Colors.white, SnackBarBehavior.floating); 
     Navigator.of(context).pop();
-    refreshAllCarToSellInstance.add(AllCarsTOSellEvent());                    
+    refreshAllCarToSellInstance.add(AllCarsTOSellEvent());                   
   }else{
     snackbarWidget('Car details not updated', context, Colors.red, Colors.white, SnackBarBehavior.floating);
   } 

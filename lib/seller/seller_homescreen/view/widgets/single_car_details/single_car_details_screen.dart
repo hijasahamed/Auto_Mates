@@ -39,7 +39,7 @@ class SingleCarDetailsScreen extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [   
+            children: [
               StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
                     .collection('featuredCars')
@@ -67,7 +67,6 @@ class SingleCarDetailsScreen extends StatelessWidget {
                 data: data,
                 fromSeller: true,
               ),
-              
             ],
           ),
         ),
