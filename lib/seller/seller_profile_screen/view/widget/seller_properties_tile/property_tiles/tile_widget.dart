@@ -64,7 +64,7 @@ class TileWidget extends StatelessWidget {
               children: [
                 MyTextWidget(
                     text: title,
-                    color: const Color(0XFF424141),
+                    color: Colors.blueGrey,
                     size: 15,
                     weight: FontWeight.w500),
                     const Spacer(),

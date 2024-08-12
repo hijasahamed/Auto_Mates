@@ -17,19 +17,19 @@ class SellerDetails extends StatelessWidget {
         ),
         MyTextWidget(
             text: 'Name: ${data.companyName}',
-            color: Colors.black,
+            color: Colors.blueGrey,
             size: screenSize.width / 21,
             maxline: true,
             weight: FontWeight.w700),
         MyTextWidget(
             text: 'Mobile: ${data.mobile}',
-            color: Colors.black,
+            color: Colors.blueGrey,
             size: screenSize.width / 25,
             maxline: true,
             weight: FontWeight.w700),
         MyTextWidget(
             text: 'Place: ${data.location}',
-            color: Colors.black,
+            color: Colors.blueGrey,
             size: screenSize.width / 25,
             maxline: true,
             weight: FontWeight.w700),
