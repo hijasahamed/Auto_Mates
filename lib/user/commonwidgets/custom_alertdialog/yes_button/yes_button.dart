@@ -34,7 +34,10 @@ class YesButton extends StatelessWidget {
       this.isSellerCarDetailsAppbarDelete,
       this.isUserFavDelete,
       this.userFavData,
-      this.sellerData});
+      this.sellerData,
+      this.isSoldcarRemoving,
+      this.soldCardata
+      });
   final Size screenSize;
   final bool? isSellerCalling;
   final dynamic sellerData;
@@ -58,6 +61,8 @@ class YesButton extends StatelessWidget {
   final bool? isSellerCarDetailsAppbarDelete;
   final bool? isUserFavDelete;
   final dynamic userFavData;
+  final bool? isSoldcarRemoving;
+  final dynamic soldCardata;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -85,6 +90,8 @@ class YesButton extends StatelessWidget {
         ? deleteCarToSell(sellerCarData.id, context, sellerHomeScreenBloc, isSellerCarDetailsAppbarDelete)
         : (isUserFavDelete==true)
         ? removeFavoriteCar(docId: userFavData.id, context: context).then((value) => Navigator.of(context).pop(),)
+        : (isSoldcarRemoving == true)
+        ? deleteSoldCar(documentId: soldCardata.id).then((value) => Navigator.of(context).pop(),)
         : null;        
       },
       child: Container(

@@ -43,9 +43,13 @@ Stream<int> getTotalSalesAmountStream() {
   return FirebaseFirestore.instance.collection('soldcars').snapshots().map((querySnapshot) {
     int totalSalesAmount = 0;
     for (QueryDocumentSnapshot doc in querySnapshot.docs) {
-      String soldAmountString = doc['soldAmount'];
-      int soldAmount = int.tryParse(soldAmountString) ?? 0;
-      totalSalesAmount += soldAmount;
+      final data = doc.data() as Map<String, dynamic>?;
+      if (data != null && data.containsKey('soldAmount')) {
+        String soldAmountString = data['soldAmount'];
+        String cleanedAmountString = soldAmountString.replaceAll(RegExp(r'[^0-9]'), '');
+        int soldAmount = int.tryParse(cleanedAmountString) ?? 0; 
+        totalSalesAmount += soldAmount;
+      }
     }
     return totalSalesAmount;
   });

@@ -148,11 +148,11 @@ getCarSoldPrice({carData,markCarsoldBloc,context,screenSize,}){
         backgroundColor: Colors.transparent,
         child: Container(
           width: screenSize.width/2,
-          height: screenSize.height/2.8,
           decoration: BoxDecoration(
             color: const Color.fromARGB(255, 255, 255, 255),
             borderRadius: BorderRadius.circular(12)),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Stack(
                 children: [
@@ -174,11 +174,20 @@ getCarSoldPrice({carData,markCarsoldBloc,context,screenSize,}){
               Padding(
                 padding: const EdgeInsets.all(12),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     MyTextWidget(
-                      text: 'Enter the amount for which the car was sold', 
+                      text: 'Enter the amount for which the car was sold.', 
                       color: Colors.black, 
-                      size: screenSize.width/25, 
+                      size: screenSize.width/28, 
+                      weight: FontWeight.bold,
+                      maxline: true,
+                      alignTextCenter: false,
+                    ),
+                    MyTextWidget(
+                      text: 'Car Actual Price: ₹${carData['price']}.', 
+                      color: Colors.green, 
+                      size: screenSize.width/30, 
                       weight: FontWeight.bold,
                       maxline: true,
                       alignTextCenter: true,
@@ -188,10 +197,8 @@ getCarSoldPrice({carData,markCarsoldBloc,context,screenSize,}){
                       controller: soldAmountController,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        labelText: 'Sold Price',
-                        labelStyle: const TextStyle(color: Colors.green,fontWeight: FontWeight.bold),
-                        fillColor: const Color.fromARGB(255, 238, 238, 238),
-                        filled: true,
+                        labelText: 'Enter the sold price',
+                        labelStyle: TextStyle(color: Colors.blueGrey,fontWeight: FontWeight.bold,fontSize: screenSize.width/32),
                         enabledBorder: const OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.grey),
                             borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -212,10 +219,11 @@ getCarSoldPrice({carData,markCarsoldBloc,context,screenSize,}){
                         height: screenSize.height/18,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
-                          color: Colors.green
+                          border: Border.all(width: .8,color: Colors.grey),
+                          color: Colors.white
                         ),
                         child: Center(
-                          child: MyTextWidget(text: 'Submit & Remove This Car', color: Colors.white, size: screenSize.width/30, weight: FontWeight.bold),
+                          child: MyTextWidget(text: 'Submit & Remove The Car', color: Colors.red, size: screenSize.width/30, weight: FontWeight.w500),
                         ),
                       ),
                     )
