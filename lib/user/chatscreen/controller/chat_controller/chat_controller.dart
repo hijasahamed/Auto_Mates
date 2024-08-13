@@ -169,7 +169,7 @@ void addRating({required sellerData, required double rating, required BuildConte
   });
 }
 
-Future<bool> isUserRatedSeller({
+isUserRatedSeller({ // function is not used now
   required String sellerId,
   required String userId,
 }) async {

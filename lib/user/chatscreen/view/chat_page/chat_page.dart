@@ -40,7 +40,7 @@ class ChatPage extends StatelessWidget {
     );
   }
 
-  Widget buildMessagesection() {
+  Widget buildMessagesection(){
     return StreamBuilder<List<QueryDocumentSnapshot>>(
       stream: getAllMessagesInChattingScreen(receiverId: userData.id, userId: sellerData.id),
       builder: (context, snapshot) {
@@ -51,7 +51,8 @@ class ChatPage extends StatelessWidget {
         } else {
           List<DocumentSnapshot> sortedDocs = snapshot.data!;
           int sendedMessageCount = sortedDocs.length;
-          if (sendedMessageCount > 3) {
+
+          if (sendedMessageCount == 3) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               showRatingPopup(context: context,screenSize: screenSize,sellerData: sellerData);
             });
@@ -133,27 +134,45 @@ class ChatPage extends StatelessWidget {
 
     return Container(
       alignment: alignment,
-      child: Container(
-        alignment: alignment,
-        width: screenSize.width/1.5,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              MyTextWidget(text: data['senderName'], color: Colors.blueGrey, size: screenSize.width/45, weight: FontWeight.bold),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.blue
+      child: GestureDetector(
+        onLongPress: () {
+          FirebaseFirestore.instance
+          .collection('chatRoom')
+          .doc('chats')
+          .collection('messages')
+          .where('receiverId', isEqualTo: sellerData.id)
+          .where('senderId', isEqualTo: userData.id)
+          .where('message', isEqualTo: data['message'])
+          .where('timeStamp', isEqualTo: data['timeStamp'])
+          .get()
+          .then((querySnapshot) {
+            for (var doc in querySnapshot.docs) {
+              doc.reference.delete();
+            }
+          });
+        },
+        child: Container(
+          alignment: alignment,
+          width: screenSize.width/1.5,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                MyTextWidget(text: data['senderName'], color: Colors.blueGrey, size: screenSize.width/45, weight: FontWeight.bold),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.blue
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: MyTextWidget(text: data['message'], color: Colors.white, size: screenSize.width/30, weight: FontWeight.bold,maxline: true,),
+                  )
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: MyTextWidget(text: data['message'], color: Colors.white, size: screenSize.width/30, weight: FontWeight.bold,maxline: true,),
-                )
-              ),
-              MyTextWidget(text: formatTimestamp(data['timeStamp']), color: Colors.blueGrey, size: screenSize.width/45, weight: FontWeight.bold),
-            ],
+                MyTextWidget(text: formatTimestamp(data['timeStamp']), color: Colors.blueGrey, size: screenSize.width/45, weight: FontWeight.bold),
+              ],
+            ),
           ),
         ),
       ),
