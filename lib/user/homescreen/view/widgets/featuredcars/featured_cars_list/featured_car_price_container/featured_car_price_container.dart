@@ -12,7 +12,7 @@ class FeaturedCarPriceContainer extends StatelessWidget {
     right: 0,
       child: Container(
         height: 30,
-        width: screenSize.width/2.15,
+        width: screenSize.width/2.14,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(50),color: const Color.fromARGB(255, 238, 238, 238)),
         child:  Center(
           child:  MyTextWidget(text: '₹${car['price']}', color: Colors.blueGrey, size: screenSize.width/27, weight: FontWeight.bold),

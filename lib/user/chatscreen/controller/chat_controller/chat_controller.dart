@@ -142,11 +142,19 @@ void addRating({required sellerData, required double rating, required BuildConte
       List<int> currentRatings = data != null && data.containsKey('rating') 
         ? List<int>.from(data['rating']) 
         : [];
+      List<String> ratedSellers = data != null && data.containsKey('ratedSellers')
+        ? List<String>.from(data['ratedSellers'])
+        : [];
 
       currentRatings.add(intRating);
 
+      if (!ratedSellers.contains(sellerData.id)) {
+        ratedSellers.add(sellerData.id);
+      }
+
       collection.doc(sellerData.id).set({
-        'rating': currentRatings
+        'rating': currentRatings,
+        'ratedSellers': ratedSellers
       }, SetOptions(merge: true)).then((_)async {
         userRates.add(UserRatedTheSellerEvent());
         await Future.delayed(const Duration(milliseconds: 1500));
@@ -159,4 +167,21 @@ void addRating({required sellerData, required double rating, required BuildConte
   }).catchError((error) {
     log(error.toString());
   });
+}
+
+Future<bool> isUserRatedSeller({
+  required String sellerId,
+  required String userId,
+}) async {
+  final DocumentSnapshot sellerSnapshot = await FirebaseFirestore.instance
+      .collection('sellerSignupData')
+      .doc(sellerId)
+      .get();
+
+  if (sellerSnapshot.exists && sellerSnapshot.data() != null) {
+    List<dynamic> ratedSellers = sellerSnapshot['ratedSellers'] ?? [];
+    return ratedSellers.contains(userId);
+  } else {
+    return false;
+  }
 }
