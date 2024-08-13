@@ -3,7 +3,6 @@ import 'package:auto_mates/seller/seller_profile_screen/view/widget/sold_cars_pa
 import 'package:auto_mates/seller/seller_profile_screen/view/widget/sold_cars_page/sold_cars_bottom_bar/sold_cars_bottom_nav_bar.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
 import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_error_placeholder.dart';
-import 'package:auto_mates/user/commonwidgets/shimmer_effect/shimmer_effect.dart';
 import 'package:flutter/material.dart';
 
 class SoldCars extends StatelessWidget {
@@ -22,7 +21,7 @@ class SoldCars extends StatelessWidget {
         stream: getSellersSoldCars(sellerData),  
         builder: (context, AsyncSnapshot snapshot) {
           if(snapshot.connectionState == ConnectionState.waiting){
-            return SkelotonIndicatorList(screenSize: screenSize,itemCount: 6,);
+            return const SizedBox.shrink();
           }
           if(snapshot.hasData && snapshot.data.docs.isNotEmpty){
             final cars= snapshot.data!.docs;
@@ -43,7 +42,7 @@ class SoldCars extends StatelessWidget {
           }
         },
       ),
-      bottomNavigationBar: const SoldCarsBottomNavBar()
+      bottomNavigationBar: SoldCarsBottomNavBar(screenSize: screenSize,)
     );
   }
 }
