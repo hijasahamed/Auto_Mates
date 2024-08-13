@@ -26,15 +26,15 @@ class DrawerListtileWidget extends StatelessWidget {
       onTap: () {
         (termsAndConditons==true)
         ? Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          return const TermsConditionsScreen();
+          return TermsConditionsScreen(screenSize: screenSize,);
         },))
         : (privecyPolicy==true)
         ? Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          return const PrivacyPolicyScreen();
+          return PrivacyPolicyScreen(screenSize: screenSize,);
         },))
         : (about==true)
         ? Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          return const AboutScreen();
+          return AboutScreen(screenSize: screenSize,);
         },))
         : null;
       },
