@@ -203,3 +203,31 @@ deleteUserChat({sellerData,userData,data}){
     }
   });
 }
+
+bool userCheckForNewMessage({sortedChats,currentId}) {
+  final DateTime now = DateTime.now();
+
+  for (var chat in sortedChats) {
+    final DateTime messageTime = (chat['timeStamp'] as Timestamp).toDate();
+    final String senderId = chat['senderUid'];
+
+    if (senderId != currentId && now.difference(messageTime).inMinutes < 1) {
+      return true;
+    }
+  }
+  return false;
+}
+
+int userCountNewMessages(List<DocumentSnapshot> sortedChats,currentId) {
+  final DateTime now = DateTime.now();
+  int newMessageCount = 0;
+
+  for (var chat in sortedChats) {
+    final DateTime messageTime = (chat['timeStamp'] as Timestamp).toDate();
+    final String senderId = chat['senderUid'];
+    if (now.difference(messageTime).inMinutes < 1 && senderId != currentId) {
+      newMessageCount++;
+    }
+  }
+  return newMessageCount; 
+}

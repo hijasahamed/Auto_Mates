@@ -8,3 +8,5 @@ class RatingEmojiRefreshEvent extends UserChatEvent {}
 class UserRatedTheSellerLoadingEvent extends UserChatEvent {}
 
 class UserRatedTheSellerEvent extends UserChatEvent {}
+
+class IsUserRatedTheSellerRefreshEvent extends UserChatEvent {}

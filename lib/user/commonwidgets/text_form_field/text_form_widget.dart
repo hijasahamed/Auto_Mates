@@ -31,6 +31,7 @@ class MyTextFormWidget extends StatelessWidget {
     this.length,
     this.wrapInContainer,
     this.fetchLocation,
+    this.isChattingContainer,
     required this.labelTextColor,
     required this.enabledBorderColor,
     required this.focusedBorderColor,
@@ -64,6 +65,7 @@ class MyTextFormWidget extends StatelessWidget {
   final Color focusedBorderColor;
   final Color valueTextColor;
   final bool? isChat;
+  final bool? isChattingContainer;
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +122,7 @@ class MyTextFormWidget extends StatelessWidget {
         labelStyle: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w200),
-        fillColor: const Color.fromARGB(255, 243, 243, 243),
+        fillColor: isChattingContainer == true ? const Color.fromARGB(255, 255, 255, 255) : const Color.fromARGB(255, 243, 243, 243),
         filled: true,
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: enabledBorderColor),

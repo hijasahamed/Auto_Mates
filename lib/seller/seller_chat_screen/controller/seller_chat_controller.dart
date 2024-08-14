@@ -121,7 +121,7 @@ void sellersSendMessage({sellersMessageController,chatControllerClass,userdata,c
 }
 
 
-bool checkForNewMessage({sortedChats,currentId}) {
+bool sellerCheckForNewMessage({sortedChats,currentId}) {
   final DateTime now = DateTime.now();
 
   for (var chat in sortedChats) {
@@ -132,20 +132,19 @@ bool checkForNewMessage({sortedChats,currentId}) {
       return true;
     }
   }
-
   return false;
 }
 
-int countNewMessages(List<DocumentSnapshot> sortedChats) {
+int sellerCountNewMessages(List<DocumentSnapshot> sortedChats,currentId) {
   final DateTime now = DateTime.now();
   int newMessageCount = 0;
 
   for (var chat in sortedChats) {
     final DateTime messageTime = (chat['timeStamp'] as Timestamp).toDate();
-    if (now.difference(messageTime).inMinutes < 1) {
+    final String senderId = chat['senderUid'];
+    if (now.difference(messageTime).inMinutes < 1 && senderId != currentId) {
       newMessageCount++;
     }
   }
-
   return newMessageCount; 
 }

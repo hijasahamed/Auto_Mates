@@ -96,24 +96,25 @@ class UsersChatsHolder extends StatelessWidget {
                         var lastMessageTimestamp = sortedDocs.last['timeStamp'];
                         final String currentUserUid = FirebaseAuth.instance.currentUser!.uid;
 
-                        hasNewMessage = checkForNewMessage(sortedChats: sortedDocs,currentId: currentUserId);
-                        newMsgCount = countNewMessages(sortedDocs);
+                        hasNewMessage = userCheckForNewMessage(sortedChats: sortedDocs,currentId: currentUserId);
+                        newMsgCount = userCountNewMessages(sortedDocs,currentUserUid);
 
                         return SizedBox(
                           width: screenSize.width / 1.3,
                           child: Row(
                             children: [
-                              if(lastMessager == currentUserUid)
-                                Icon(Icons.check,size: screenSize.width/30,color: Colors.blueGrey,),
-                              SizedBox(
-                                  width: screenSize.width / 1.8,
-                                  child: MyTextWidget(
-                                      text: lastMessage,
-                                      color: const Color.fromARGB(
-                                          255, 126, 126, 126),
-                                      size: screenSize.width / 30,
-                                      weight: FontWeight.w500)),
-                              const Spacer(),
+                              lastMessager == currentUserUid
+                              ? Icon(Icons.check,size: screenSize.width/30,color: Colors.blueGrey,)
+                              : Icon(Icons.person, size: screenSize.width / 30, color: Colors.green),
+                              Expanded(
+                                child: SizedBox(                                    
+                                    child: MyTextWidget(
+                                        text: lastMessage,
+                                        color: const Color.fromARGB(
+                                            255, 126, 126, 126),
+                                        size: screenSize.width / 30,
+                                        weight: FontWeight.w500)),
+                              ),
                               MyTextWidget(
                                   text: formatTimestamp(lastMessageTimestamp),
                                   color:

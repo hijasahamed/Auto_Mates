@@ -11,6 +11,7 @@ class UserChatBloc extends Bloc<UserChatEvent, UserChatState> {
     on<RatingEmojiRefreshEvent>(ratingEmojiRefreshEvent);
     on<UserRatedTheSellerEvent>(userRatedTheSellerEvent);
     on<UserRatedTheSellerLoadingEvent>(userRatedTheSellerLoadingEvent);
+    on<IsUserRatedTheSellerRefreshEvent>(isUserRatedTheSellerRefreshEvent);
   }
 
   FutureOr<void> ratingEmojiRefreshEvent(
@@ -26,5 +27,10 @@ class UserChatBloc extends Bloc<UserChatEvent, UserChatState> {
   FutureOr<void> userRatedTheSellerLoadingEvent(
     UserRatedTheSellerLoadingEvent event, Emitter<UserChatState> emit) {
       emit(UserRatedTheSellerLoadingState());
+  }
+
+  FutureOr<void> isUserRatedTheSellerRefreshEvent(
+    IsUserRatedTheSellerRefreshEvent event, Emitter<UserChatState> emit) {
+      emit(IsUserRatedTheSellerRefreshState());
   }
 }

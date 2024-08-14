@@ -10,3 +10,5 @@ class RatingEmojiRefreshState extends UserChatState {}
 class UserRatedTheSellerLoadingState extends UserChatState {}
 
 class UserRatedTheSellerState extends UserChatState {}
+
+class IsUserRatedTheSellerRefreshState extends UserChatState {}

@@ -89,8 +89,8 @@ class SellerChatScreenChatsHolder extends StatelessWidget {
                         var formattedTimestamp = timestamp as Timestamp;
                         
                         final String currentSellerUid = FirebaseAuth.instance.currentUser!.uid;
-                        hasNewMessage = checkForNewMessage(sortedChats: sortedChats,currentId: currentSellerUid);
-                        newMsgCount = countNewMessages(sortedChats);
+                        hasNewMessage = sellerCheckForNewMessage(sortedChats: sortedChats,currentId: currentSellerUid);
+                        newMsgCount = sellerCountNewMessages(sortedChats,currentSellerUid);
               
                         return Row(
                           children: [

@@ -172,6 +172,7 @@ class SellerChattingScreen extends StatelessWidget {
               labelTextColor: Colors.black,
               controller: sellersMessageController,
               warning: '',
+              isChattingContainer: true,
               obscure: false,
               keyBoardType: TextInputType.name,
               textCapitalization:
