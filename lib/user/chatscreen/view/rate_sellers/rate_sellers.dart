@@ -7,9 +7,10 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class RateSellers extends StatelessWidget {
   const RateSellers(
-      {super.key, required this.screenSize, required this.sellerData});
+      {super.key, required this.screenSize, required this.sellerData,required this.userData});
   final Size screenSize;
   final dynamic sellerData;
+  final dynamic userData;
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -128,7 +129,7 @@ class RateSellers extends StatelessWidget {
             child: InkWell(
           onTap: () {
             addRating(
-                rating: ratingValue, sellerData: sellerData, context: context,userRates: userRates);
+                rating: ratingValue, sellerData: sellerData, context: context,userRates: userRates,userData: userData);
           },
           child: Ink(
             height: screenSize.height / 17,

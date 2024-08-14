@@ -3,6 +3,7 @@ import 'package:auto_mates/seller/seller_chat_screen/controller/seller_chat_cont
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/chatscreen/controller/chat_controller/chat_controller.dart';
+import 'package:auto_mates/user/chatscreen/view/chat_page/user_chat_delete_alert_dialog/user_chat_delete_alert_dialog.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/commonwidgets/text_form_field/text_form_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -52,9 +53,11 @@ class ChatPage extends StatelessWidget {
           List<DocumentSnapshot> sortedDocs = snapshot.data!;
           int sendedMessageCount = sortedDocs.length;
 
-          if (sendedMessageCount == 3) {
+
+
+          if (sendedMessageCount == 6) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              showRatingPopup(context: context,screenSize: screenSize,sellerData: sellerData);
+              showRatingPopup(context: context,screenSize: screenSize,sellerData: sellerData,userData: userData);
             });
           }
           sortedDocs.sort((a, b) {
@@ -81,7 +84,7 @@ class ChatPage extends StatelessWidget {
                       color: const Color.fromARGB(255, 237, 237, 237),
                       child: Center(child: MyTextWidget(text: dateLabel, color: Colors.blueGrey, size: screenSize.width/35, weight: FontWeight.bold)),
                     ),
-                    ...messages.map((document) => showMessageItems(document: document)),
+                    ...messages.map((document) => showMessageItems(document: document,context: context)),
                   ],
                 ),
               );
@@ -124,7 +127,7 @@ class ChatPage extends StatelessWidget {
     return date1.year == date2.year && date1.month == date2.month && date1.day == date2.day;
   }
 
-  Widget showMessageItems({document}){ 
+  Widget showMessageItems({document,context}){ 
 
     Map<String,dynamic> data = document.data() as Map<String,dynamic>;
 
@@ -135,21 +138,20 @@ class ChatPage extends StatelessWidget {
     return Container(
       alignment: alignment,
       child: GestureDetector(
-        onLongPress: () {
-          FirebaseFirestore.instance
-          .collection('chatRoom')
-          .doc('chats')
-          .collection('messages')
-          .where('receiverId', isEqualTo: sellerData.id)
-          .where('senderId', isEqualTo: userData.id)
-          .where('message', isEqualTo: data['message'])
-          .where('timeStamp', isEqualTo: data['timeStamp'])
-          .get()
-          .then((querySnapshot) {
-            for (var doc in querySnapshot.docs) {
-              doc.reference.delete();
-            }
-          });
+        onLongPress: () {          
+          showDialog(
+            context: context, 
+            builder: (context) {
+              return UserChatDeleteAlertDialog(
+                screenSize: screenSize,
+                onConfirm: () {
+                  deleteUserChat(sellerData: sellerData,userData: userData,data: data);
+                  Navigator.of(context).pop();
+                }, 
+                onCancel: () => Navigator.of(context).pop(),
+              );
+            },
+          );
         },
         child: Container(
           alignment: alignment,

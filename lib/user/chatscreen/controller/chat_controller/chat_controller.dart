@@ -103,12 +103,12 @@ void usersSendMessage(
 
 //Rate the seller
 
-void showRatingPopup({context, screenSize, sellerData}) { 
+void showRatingPopup({context, screenSize, sellerData,userData}) { 
   showDialog(
     context: context,
     barrierDismissible: false,
     builder: (BuildContext context) {
-      return RateSellers(screenSize: screenSize, sellerData: sellerData);
+      return RateSellers(screenSize: screenSize, sellerData: sellerData,userData: userData,);
     },
   );
 }
@@ -132,7 +132,7 @@ String getEmojiForRating(double rating) {
 }
 
 
-void addRating({required sellerData, required double rating, required BuildContext context,required UserChatBloc userRates}) async{
+void addRating({required sellerData, required double rating, required BuildContext context,required UserChatBloc userRates,required userData}) async{
   userRates.add(UserRatedTheSellerLoadingEvent());
   int intRating = rating.toInt();
   final CollectionReference collection = FirebaseFirestore.instance.collection('sellerSignupData');
@@ -148,8 +148,8 @@ void addRating({required sellerData, required double rating, required BuildConte
 
       currentRatings.add(intRating);
 
-      if (!ratedSellers.contains(sellerData.id)) {
-        ratedSellers.add(sellerData.id);
+      if (!ratedSellers.contains(userData.id)) {
+        ratedSellers.add(userData.id);
       }
 
       collection.doc(sellerData.id).set({
@@ -169,7 +169,7 @@ void addRating({required sellerData, required double rating, required BuildConte
   });
 }
 
-isUserRatedSeller({ // function is not used now
+isUserRatedSeller({ 
   required String sellerId,
   required String userId,
 }) async {
@@ -184,4 +184,22 @@ isUserRatedSeller({ // function is not used now
   } else {
     return false;
   }
+}
+
+// delete chat 
+deleteUserChat({sellerData,userData,data}){
+  FirebaseFirestore.instance
+  .collection('chatRoom')
+  .doc('chats')
+  .collection('messages')
+  .where('receiverId', isEqualTo: sellerData.id)
+  .where('senderId', isEqualTo: userData.id)
+  .where('message', isEqualTo: data['message'])
+  .where('timeStamp', isEqualTo: data['timeStamp'])
+  .get()
+  .then((querySnapshot) {
+    for (var doc in querySnapshot.docs) {
+      doc.reference.delete();
+    }
+  });
 }
