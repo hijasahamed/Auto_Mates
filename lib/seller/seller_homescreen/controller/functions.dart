@@ -33,13 +33,33 @@ void checkSellerCarCountExeeded({required String sellerId,required SellerHomeScr
     final plan = querySnapshot2.data()?['plan'];
 
     if (count >=1 && plan == 'unSubscribed') {
-      showBottomSheetForPremium(context: context,screenSize: screenSize);      
+      showBottomSheetForPremium(context: context,screenSize: screenSize,sellerId: sellerId);      
     } else {
       sellerHomeScreenBloc.add(FloatingButtonClickedEvent());
     }
 
   } catch (e) {
     print('Error checking seller status: $e');
+  }
+}
+
+Future<void> changeSellerPlan({required String sellerId,context}) async {
+  try {
+    final sellerDocRef = FirebaseFirestore.instance
+        .collection('sellerSignupData')
+        .doc(sellerId);
+
+    final planStartDate = DateTime.now();
+    final planEndDate = planStartDate.add(const Duration(days: 365));
+
+    await sellerDocRef.update({
+      'plan': 'subscribed',
+      'planStartDate': planStartDate,
+      'planEndDate': planEndDate,
+    });
+
+  } catch (e) {
+    snackbarWidget(e.toString(), context, Colors.red, Colors.white, SnackBarBehavior.floating);
   }
 }
 

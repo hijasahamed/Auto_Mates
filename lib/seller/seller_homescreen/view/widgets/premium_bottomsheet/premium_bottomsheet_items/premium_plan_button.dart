@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/controller/payments_services.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/single_car_details/feature_the_car/payment_success_page/payment_success_page.dart';
@@ -11,8 +12,10 @@ class PremiumPlanButton extends StatelessWidget {
   const PremiumPlanButton(
       {super.key,
       required this.screenSize,
+      required this.sellerId,
       required this.subscriptionBlocInstance});
   final Size screenSize;
+  final String sellerId;
   final SellerHomeScreenBloc subscriptionBlocInstance;
   @override
   Widget build(BuildContext context) {
@@ -22,6 +25,7 @@ class PremiumPlanButton extends StatelessWidget {
         UnlockExcitingFeaturesText(screenSize: screenSize),
         PremiumButton(
             subscriptionBlocInstance: subscriptionBlocInstance,
+            sellerId: sellerId,
             screenSize: screenSize),
       ],
     );
@@ -33,11 +37,12 @@ class PremiumButton extends StatelessWidget {
     super.key,
     required this.subscriptionBlocInstance,
     required this.screenSize,
+    required this.sellerId,
   });
 
   final SellerHomeScreenBloc subscriptionBlocInstance;
   final Size screenSize;
-
+  final String sellerId;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -56,6 +61,7 @@ class PremiumButton extends StatelessWidget {
                       paidAmount: 3999,
                       screenSize: screenSize,
                       title: 'Subscription Plan Activated'),
+                  changeSellerPlan(sellerId: sellerId,context: context),
                   await Future.delayed(const Duration(seconds: 3)),
                   Navigator.of(context).pop(),
                   subscriptionBlocInstance.add(SellerSubscribedEvent()),
@@ -115,7 +121,7 @@ class PremiumButtonChangingText extends StatelessWidget {
                       MyTextWidget(
                         text: 'Subscribing',
                         color: Colors.white,
-                        size: screenSize.width / 22,
+                        size: screenSize.width / 25,
                         weight: FontWeight.w500,
                       ),
                       SizedBox(width: screenSize.width / 40),
@@ -134,7 +140,7 @@ class PremiumButtonChangingText extends StatelessWidget {
                       MyTextWidget(
                         text: 'Subscribed',
                         color: Colors.white,
-                        size: screenSize.width / 22,
+                        size: screenSize.width / 25,
                         weight: FontWeight.w500,
                       ),
                       SizedBox(width: screenSize.width / 40),

@@ -7,7 +7,7 @@ import 'package:auto_mates/seller/seller_homescreen/view/widgets/premium_bottoms
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/premium_bottomsheet/premium_bottomsheet_items/upgrade_premium_main_text.dart';
 import 'package:flutter/material.dart';
 
-showBottomSheetForPremium({context, screenSize}) {
+showBottomSheetForPremium({context, screenSize,sellerId}) {
   SellerHomeScreenBloc subscriptionBlocInstance = SellerHomeScreenBloc();
   showModalBottomSheet(
     shape: const RoundedRectangleBorder(
@@ -38,7 +38,7 @@ showBottomSheetForPremium({context, screenSize}) {
             SizedBox(height: screenSize.height / 50,),
             CurrentPlan(screenSize: screenSize),
             SizedBox(height: screenSize.height / 50,),
-            PremiumPlanButton(screenSize: screenSize, subscriptionBlocInstance: subscriptionBlocInstance),
+            PremiumPlanButton(screenSize: screenSize, subscriptionBlocInstance: subscriptionBlocInstance,sellerId: sellerId,),
             SizedBox(height: screenSize.height / 50,)
           ],
         ),
