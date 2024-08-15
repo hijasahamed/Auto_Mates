@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/single_car_details/feature_the_car/payment_success_page/payment_success_page.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
@@ -9,7 +10,6 @@ import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/bottom_app
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/bottom_app_bar/interested_button/interested_button.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/car_details_widget.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/seller_details/seller_details_widget.dart';
-import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/favourite_screen/favourite_screen/fav_remove_button/user_favourite_remove_button.dart';
 import 'package:flutter/material.dart';
@@ -42,31 +42,7 @@ class OnTapCarMoreDetailsCarScreen extends StatelessWidget {
         bloc: carAddingToInterestedLoader,
         listener: (context, state)async {
           if (state is CarAddingToInterestedState) {
-            showDialog(
-              context: context,
-              barrierDismissible: false,
-              barrierColor: Colors.black54,
-              builder: (context) {
-                return Card(
-                  color: Colors.white,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: screenSize.height/3.1,
-                        width: screenSize.width,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(image: AssetImage('assets/images/Paymentsuccessful.png'))
-                        ),
-                      ),
-                      const CircularProgressIndicator(color: Colors.blue),
-                      MyTextWidget(text: 'Marking Your Interest', color: Colors.blueGrey, size: screenSize.width/17, weight: FontWeight.bold),
-                    ],
-                  ),
-                );
-              },
-            );
+            paymentSuccessPage(context: context,paidAmount: 999,screenSize: screenSize,title: 'Car Marking As Interested');
             await Future.delayed(const Duration(seconds: 3));
             markUserInterest(
               context: context,

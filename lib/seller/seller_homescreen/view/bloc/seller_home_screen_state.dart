@@ -32,3 +32,7 @@ class MarkCarSoldStopLoadingState extends SellerHomeScreenState {}
 class FeaturedCarsRemainingTimeState extends SellerHomeScreenState {}
 
 class EditingCarDataEditButtonCircleIndicatorState extends SellerHomeScreenState {}
+
+class SubscriptionPremiumPaymentLoadingState extends SellerHomeScreenState {}
+
+class SellerSubscribedState extends SellerHomeScreenState {}

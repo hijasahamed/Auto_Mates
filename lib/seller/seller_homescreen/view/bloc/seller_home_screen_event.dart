@@ -29,3 +29,7 @@ class MarkCarSoldStopLoadingEvent extends SellerHomeScreenEvent {}
 class FeaturedCarsRemainingTimeEvent extends SellerHomeScreenEvent {}
 
 class EditingCarDataEditButtonCircleIndicatorEvent extends SellerHomeScreenEvent {}
+
+class SubscriptionPremiumPaymentLoadingEvent extends SellerHomeScreenEvent {}
+
+class SellerSubscribedEvent extends SellerHomeScreenEvent {}

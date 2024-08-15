@@ -24,10 +24,15 @@ void checkSellerCarCountExeeded({required String sellerId,required SellerHomeScr
         .collection('carstosell')
         .where('sellerId', isEqualTo: sellerId)
         .get();
+    final count = querySnapshot.docs.length;    
 
-    final count = querySnapshot.docs.length;
+    final querySnapshot2 = await FirebaseFirestore.instance
+        .collection('sellerSignupData')
+        .doc(sellerId)
+        .get();
+    final plan = querySnapshot2.data()?['plan'];
 
-    if (count == 1 || count > 1) {
+    if (count >=1 && plan == 'unSubscribed') {
       showBottomSheetForPremium(context: context,screenSize: screenSize);      
     } else {
       sellerHomeScreenBloc.add(FloatingButtonClickedEvent());
