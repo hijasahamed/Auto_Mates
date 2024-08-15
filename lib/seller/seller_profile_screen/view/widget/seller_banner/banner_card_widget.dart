@@ -27,7 +27,7 @@ class BannerCardWidget extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  MyTextWidget(text: 'My Profile', color: Colors.black, size: screenSize.width/25, weight: FontWeight.bold),            
+                  MyTextWidget(text: 'My Profile', color: const Color.fromARGB(255, 96, 96, 96), size: screenSize.width/25, weight: FontWeight.w500),            
                   SellerProfileWidget(screenSize: screenSize, data: data),
                 ],
               ),

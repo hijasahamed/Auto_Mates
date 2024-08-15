@@ -17,22 +17,22 @@ class SellerDetails extends StatelessWidget {
         ),
         MyTextWidget(
             text: 'Name: ${data.companyName}',
-            color: Colors.blueGrey,
+            color: const Color.fromARGB(255, 96, 96, 96),
             size: screenSize.width / 21,
             maxline: true,
-            weight: FontWeight.w700),
+            weight: FontWeight.w500),
         MyTextWidget(
             text: 'Mobile: ${data.mobile}',
-            color: Colors.blueGrey,
+            color: const Color.fromARGB(255, 96, 96, 96),
             size: screenSize.width / 25,
             maxline: true,
-            weight: FontWeight.w700),
+            weight: FontWeight.w500),
         MyTextWidget(
             text: 'Place: ${data.location}',
-            color: Colors.blueGrey,
+            color: const Color.fromARGB(255, 96, 96, 96),
             size: screenSize.width / 25,
             maxline: true,
-            weight: FontWeight.w700),
+            weight: FontWeight.w500),
       ],
     );
   }

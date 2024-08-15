@@ -14,32 +14,23 @@ class SellerLogoutWidget extends StatelessWidget {
       bloc: sellerProfileBloc,
       builder: (context, state) {
         return Ink(
-          height: screenSize.height / 21,
+          height: screenSize.height / 20,
           width: screenSize.width / 2.4,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10), color: Colors.red),
+            borderRadius: BorderRadius.circular(screenSize.width/100),
+            color: const Color.fromARGB(255, 247, 247, 247),
+            border: Border.all(width: .3,color: Colors.grey)
+          ),
           child: InkWell(
             onTap: () {
               sellerProfileBloc.add(SellerLogoutButtonClickedEvent());
             },
-            child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const MyTextWidget(
-                      text: 'Logout',
-                      color: Colors.white,
-                      size: 18,
-                      weight: FontWeight.bold),
-                  SizedBox(
-                    width: screenSize.width / 70,
-                  ),
-                  const Icon(
-                    Icons.logout,
-                    color: Colors.white,
-                  )
-                ],
-              ),
+            child: const Center(
+              child: MyTextWidget(
+                  text: 'Logout',
+                  color: Colors.red,
+                  size: 18,
+                  weight: FontWeight.w400),
             ),
           ),
         );
