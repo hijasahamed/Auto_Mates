@@ -16,56 +16,59 @@ class SellerChatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: StreamBuilder<List<String>>(
-        stream: getTheCurrentSellersChatsWithUsers(currentSeller: currentSeller),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(
-                color: Colors.blue,
-              ),
-            );
-          } else if (snapshot.hasError) {
-            return Center(
-              child: MyTextWidget(
-                text: 'Something Went Wrong',
-                color: Colors.blueGrey,
-                size: screenSize.width / 30,
-                weight: FontWeight.bold,
-              ),
-            );
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return UsersNoChatDisplay(screenSize: screenSize);
-          } else {
-            var usersIds = snapshot.data!;
-            return ListView.builder(
-              itemCount: usersIds.length,
-              itemBuilder: (context, index) {
-                var id = usersIds[index];
-                return FutureBuilder(
-                  future: getUserDetailsById(id),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState ==
-                        ConnectionState.waiting) {
-                      return SkelotonChatLoader(screenSize: screenSize);
-                    } else if (snapshot.hasError) {
-                      return const SizedBox.shrink();
-                    } else if (!snapshot.hasData) {
-                      return const SizedBox.shrink();
-                    } else {
-                      var userData = snapshot.data!;
-                      return SellerChatScreenChatsHolder(
-                        screenSize: screenSize,
-                        userdata: userData,
-                        currentSeller: currentSeller,
-                      );
-                    }
-                  },
-                );
-              },
-            );
-          }
-        },
+      body: Padding(
+        padding: EdgeInsets.all(screenSize.width/100),
+        child: StreamBuilder<List<String>>(
+          stream: getTheCurrentSellersChatsWithUsers(currentSeller: currentSeller),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: Colors.blue,
+                ),
+              );
+            } else if (snapshot.hasError) {
+              return Center(
+                child: MyTextWidget(
+                  text: 'Something Went Wrong',
+                  color: Colors.blueGrey,
+                  size: screenSize.width / 30,
+                  weight: FontWeight.bold,
+                ),
+              );
+            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+              return UsersNoChatDisplay(screenSize: screenSize);
+            } else {
+              var usersIds = snapshot.data!;
+              return ListView.builder(
+                itemCount: usersIds.length,
+                itemBuilder: (context, index) {
+                  var id = usersIds[index];
+                  return FutureBuilder(
+                    future: getUserDetailsById(id),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState ==
+                          ConnectionState.waiting) {
+                        return SkelotonChatLoader(screenSize: screenSize);
+                      } else if (snapshot.hasError) {
+                        return const SizedBox.shrink();
+                      } else if (!snapshot.hasData) {
+                        return const SizedBox.shrink();
+                      } else {
+                        var userData = snapshot.data!;
+                        return SellerChatScreenChatsHolder(
+                          screenSize: screenSize,
+                          userdata: userData,
+                          currentSeller: currentSeller,
+                        );
+                      }
+                    },
+                  );
+                },
+              );
+            }
+          },
+        ),
       ),
     );
   }
