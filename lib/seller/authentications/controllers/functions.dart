@@ -221,6 +221,7 @@ addSellerDetailsToDb({companyName, location, phoneNumber}) async {
     'companyName': companyName,
     'location': location,
     'mobile': phoneNumber,
+    'plan' : 'unSubscribed',
     'rating': [],
   };
   sellerSignupFirebaseObject.add(data);

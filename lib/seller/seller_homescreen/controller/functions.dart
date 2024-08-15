@@ -18,7 +18,7 @@ final CollectionReference firebaseObject = FirebaseFirestore.instance.collection
 SellerHomeScreenBloc refreshAllCarToSellInstance = SellerHomeScreenBloc();
 
 
-void checkSellerisPremium({required String sellerId,required SellerHomeScreenBloc sellerHomeScreenBloc,context,screenSize}) async {
+void checkSellerCarCountExeeded({required String sellerId,required SellerHomeScreenBloc sellerHomeScreenBloc,context,screenSize}) async {
   try {
     final querySnapshot = await FirebaseFirestore.instance
         .collection('carstosell')
@@ -27,10 +27,10 @@ void checkSellerisPremium({required String sellerId,required SellerHomeScreenBlo
 
     final count = querySnapshot.docs.length;
 
-    if (count < 1) {
-      sellerHomeScreenBloc.add(FloatingButtonClickedEvent());
+    if (count == 1 || count > 1) {
+      showBottomSheetForPremium(context: context,screenSize: screenSize);      
     } else {
-      showBottomSheetForPremium(context: context,screenSize: screenSize);
+      sellerHomeScreenBloc.add(FloatingButtonClickedEvent());
     }
 
   } catch (e) {

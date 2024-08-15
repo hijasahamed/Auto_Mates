@@ -2,6 +2,7 @@
 
 import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/controller/payments_services.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/single_car_details/feature_the_car/payment_success_page/payment_success_page.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
@@ -23,35 +24,7 @@ class FeatureTheCar extends StatelessWidget {
               .then((value) => value == true ? true : false);
           pay == true
           ? {           
-            showDialog(
-              context: context,
-              barrierDismissible: false,
-              barrierColor: Colors.black54,
-              builder: (context) {
-                return Card(
-                  color: Colors.white,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      CircleAvatar(
-                        radius: screenSize.width/4.5,
-                        backgroundColor: Colors.green,
-                        child: Center(
-                          child: Icon(Icons.check,color: Colors.white,size: screenSize.width/6.5,),
-                        ),
-                      ),
-                      SizedBox(height: screenSize.height/50,),
-                      MyTextWidget(text: "payment Successfull", color: Colors.grey, size: screenSize.width/25, weight: FontWeight.bold),
-                      SizedBox(height: screenSize.height/100,),
-                      MyTextWidget(text: "Amount Paid ₹10,000 /-", color: Colors.green, size: screenSize.width/27, weight: FontWeight.bold),
-                      SizedBox(height: screenSize.height/25,),
-                      MyTextWidget(text: 'This Car is Added to the Featured Cars', color: Colors.blueGrey, size: screenSize.width/17, weight: FontWeight.bold,maxline: true,alignTextCenter: true,),
-                    ],
-                  ),
-                );
-              },
-            ),
+            paymentSuccessPage(context: context,paidAmount: 10000,screenSize: screenSize,title: 'This Car is Added to the Featured Cars'),
             await Future.delayed(const Duration(seconds: 3)),
             Navigator.of(context).pop(),
             addCarToFeatured(carDocumentSnapshot: carData,context: context,screenSize: screenSize),

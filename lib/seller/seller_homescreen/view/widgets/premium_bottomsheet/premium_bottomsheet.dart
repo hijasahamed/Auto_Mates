@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:auto_mates/seller/seller_homescreen/controller/payments_services.dart';
+import 'package:auto_mates/seller/seller_homescreen/view/widgets/single_car_details/feature_the_car/payment_success_page/payment_success_page.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -64,7 +67,7 @@ showBottomSheetForPremium({context,screenSize}){
                 width: screenSize.width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(screenSize.width/25),
-                  color: Colors.blue
+                  color: Colors.red
                 ),
                 child: Center(
                   child: MyTextWidget(text: 'Free Plan ₹0', color: Colors.white, size: screenSize.width/25, weight: FontWeight.bold)
@@ -80,8 +83,20 @@ showBottomSheetForPremium({context,screenSize}){
               Material(
                   color: Colors.transparent,
                   child: InkWell(
-                    onTap: () {
-                      StripePaymentService.instance.makePayment();
+                    onTap: ()async {                      
+                      dynamic pay = await StripePaymentService.instance
+                      .makePayment(amountToPay: 3999)
+                      .then((value) => value == true ? true : false);
+                      pay==true
+                      ? {
+                        paymentSuccessPage(context: context,paidAmount: 3999,screenSize: screenSize,title: 'Subscription Plan Activated'),
+                        await Future.delayed(const Duration(seconds: 3)),
+                        Navigator.of(context).pop(),
+                        Navigator.of(context).pop()
+                      }
+                      :{
+                        
+                      };
                     },
                     borderRadius: BorderRadius.circular(screenSize.width / 25),
                     child: Ink(
@@ -89,16 +104,17 @@ showBottomSheetForPremium({context,screenSize}){
                       width: screenSize.width,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(screenSize.width / 25),
-                        color: Colors.red,
+                        color: Colors.green,
                       ),
                       child: Center(
-                        child: MyTextWidget(text: 'Get Premium with ₹1499 yearly', color: Colors.white, size: screenSize.width / 25, weight: FontWeight.bold),
+                        child: MyTextWidget(text: 'Get Premium with ₹3999 per year', color: Colors.white, size: screenSize.width / 25, weight: FontWeight.bold),
                       ),
                     ),
                   ),
               ),
             ],
           ),
+          SizedBox(height: screenSize.height/50,)
         ],
       ),
     );
