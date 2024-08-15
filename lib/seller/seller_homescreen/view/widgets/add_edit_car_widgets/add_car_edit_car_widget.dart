@@ -44,21 +44,19 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
   final TextEditingController milageController = TextEditingController();
   final TextEditingController sunroofController = TextEditingController();
   final TextEditingController bootspaceController = TextEditingController();
-  final TextEditingController infotainmentSystemController =
-      TextEditingController();
+  final TextEditingController infotainmentSystemController = TextEditingController();
   final TextEditingController alloyWheelController = TextEditingController();
   final TextEditingController carheightController = TextEditingController();
   final TextEditingController carWidthController = TextEditingController();
   final TextEditingController carLengthController = TextEditingController();
-  final TextEditingController groundClearenceController =
-      TextEditingController();
+  final TextEditingController groundClearenceController = TextEditingController();
   final TextEditingController airBagController = TextEditingController();
-  final TextEditingController airConditionerController =
-      TextEditingController();
+  final TextEditingController airConditionerController = TextEditingController();
   final TextEditingController powerWindowController = TextEditingController();
   final TextEditingController bodyTypeController = TextEditingController();
   final TextEditingController fuelTankController = TextEditingController();
   final TextEditingController overViewController = TextEditingController();
+  final TextEditingController boughtPriceController = TextEditingController();
 
   @override
   void initState() {
@@ -90,6 +88,7 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
       bodyTypeController.text = widget.data!['bodytype'];
       fuelTankController.text = widget.data!['fueltank'];
       overViewController.text = widget.data!['overview'];
+      boughtPriceController.text = widget.data!['boughtPrice'];
     }
     super.initState();
   }
@@ -147,8 +146,7 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
                       milageController: milageController,
                       sunroofController: sunroofController,
                       bootspaceController: bootspaceController,
-                      infotainmentSystemController:
-                          infotainmentSystemController,
+                      infotainmentSystemController: infotainmentSystemController,
                       alloyWheelController: alloyWheelController,
                       carHeightController: carheightController,
                       carWidthController: carWidthController,
@@ -160,6 +158,7 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
                       bodyTypeController: bodyTypeController,
                       fuelTankController: fuelTankController,
                       overViewController: overViewController,
+                      boughtPriceController: boughtPriceController,
                     ),
                   ],
                 ),
@@ -221,7 +220,9 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
                               powerWindowController: powerWindowController,
                               bodyTypeController: bodyTypeController,
                               fuelTankController: fuelTankController,
-                              overViewController: overViewController);
+                              overViewController: overViewController,
+                              boughtPriceController: boughtPriceController
+                            );
                            }
                         },
                         child: Center(
@@ -342,6 +343,7 @@ class _AddCarEditCarWidgetState extends State<AddCarEditCarWidget> {
                                             fuelTankController,
                                         overViewController:
                                             overViewController,
+                                            boughtPriceController: boughtPriceController,
                                         sellerHomeScreenBloc:
                                             widget.sellerHomeScreenBloc);
                                   },

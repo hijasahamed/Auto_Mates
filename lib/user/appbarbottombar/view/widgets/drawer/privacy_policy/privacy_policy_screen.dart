@@ -13,7 +13,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
           preferredSize: Size.fromHeight(50),
           child: NormalAppBar(title: 'Privacy Policy',)),
       body: Padding(
-        padding: EdgeInsets.all(screenSize.width / 50),
+        padding: EdgeInsets.all(screenSize.width / 40),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceAround,

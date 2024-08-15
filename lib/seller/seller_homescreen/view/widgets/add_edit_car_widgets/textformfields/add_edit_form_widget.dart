@@ -32,7 +32,8 @@ class AddEditFormWidget extends StatelessWidget {
     required this.powerWindowController,
     required this.bodyTypeController,
     required this.fuelTankController,
-    required this.overViewController
+    required this.overViewController,
+    required this.boughtPriceController
   });
   final TextEditingController carBrandController ;
   final TextEditingController carModelNameController;
@@ -63,6 +64,7 @@ class AddEditFormWidget extends StatelessWidget {
   final TextEditingController bodyTypeController;
   final TextEditingController fuelTankController;
   final TextEditingController overViewController;
+  final TextEditingController boughtPriceController;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -152,6 +154,23 @@ class AddEditFormWidget extends StatelessWidget {
                 labelTextColor: Colors.grey,
                 controller: carPriceController,
                 warning: 'Enter the amount of the car to be sold',
+                obscure: false,
+                keyBoardType: TextInputType.number,
+                textCapitalization:
+                    TextCapitalization.words,
+                fillColor: const Color(0XFFDBEDF5)),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: MyTextFormWidget(
+              screenSize: screenSize,
+                text: '₹Bought Price',
+                enabledBorderColor: Colors.white,
+                focusedBorderColor: Colors.red,
+                valueTextColor: Colors.black,
+                labelTextColor: Colors.grey,
+                controller: boughtPriceController,
+                warning: 'Enter the amount of the car when bought',
                 obscure: false,
                 keyBoardType: TextInputType.number,
                 textCapitalization:

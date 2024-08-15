@@ -70,6 +70,7 @@ postNewCar(
   required TextEditingController bodyTypeController,
   required TextEditingController fuelTankController,
   required TextEditingController overViewController,
+  required TextEditingController boughtPriceController,
   sellerHomeScreenBloc
   }) async{
    SellerData? sellerDetails = await fetchSellerDetails();
@@ -112,7 +113,8 @@ postNewCar(
     'powerwindow':powerWindowController.text,
     'bodytype':bodyTypeController.text,
     'fueltank':fuelTankController.text,
-    'overview':overViewController.text
+    'overview':overViewController.text,
+    'boughtPrice':boughtPriceController.text
   };
   if (postCarFormkey.currentState!.validate()){
     firebaseObject.add(data);
@@ -191,6 +193,7 @@ updateCarDetails(
   required TextEditingController bodyTypeController,
   required TextEditingController fuelTankController,
   required TextEditingController overViewController,
+  required TextEditingController boughtPriceController,
   } 
   )async {
     
@@ -225,7 +228,8 @@ updateCarDetails(
     'powerwindow':powerWindowController.text,
     'bodytype':bodyTypeController.text,
     'fueltank':fuelTankController.text,
-    'overview':overViewController.text
+    'overview':overViewController.text,
+    'boughtPrice':boughtPriceController.text
   };
   if(postCarFormkey.currentState!.validate()){
     firebaseObject

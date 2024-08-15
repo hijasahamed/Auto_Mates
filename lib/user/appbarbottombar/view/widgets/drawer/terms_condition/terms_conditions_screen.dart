@@ -14,7 +14,7 @@ class TermsConditionsScreen extends StatelessWidget {
         child: NormalAppBar(title: 'Terms and Conditions')
       ),
       body: Padding(
-        padding: EdgeInsets.all(screenSize.width/50),
+        padding: EdgeInsets.all(screenSize.width/40),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

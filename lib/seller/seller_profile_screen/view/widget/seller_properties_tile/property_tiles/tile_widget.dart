@@ -1,9 +1,9 @@
-import 'package:auto_mates/seller/seller_profile_screen/view/widget/seller_privacy_terms_about/seller_about.dart';
-import 'package:auto_mates/seller/seller_profile_screen/view/widget/seller_privacy_terms_about/seller_privacy_policy.dart';
-import 'package:auto_mates/seller/seller_profile_screen/view/widget/seller_privacy_terms_about/seller_terms_and_conditions.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/widget/seller_properties_tile/user_interested_notification/user_interested_notify.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/widget/sold_cars_page/sold_cars.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/widget/user_interest_page/user_interests_page.dart';
+import 'package:auto_mates/user/appbarbottombar/view/widgets/drawer/about/about_screen.dart';
+import 'package:auto_mates/user/appbarbottombar/view/widgets/drawer/privacy_policy/privacy_policy_screen.dart';
+import 'package:auto_mates/user/appbarbottombar/view/widgets/drawer/terms_condition/terms_conditions_screen.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -42,17 +42,17 @@ class TileWidget extends StatelessWidget {
             }
             else if(privacyPolicy == true){
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return const SellerPrivacyPolicy();
+                return PrivacyPolicyScreen(screenSize: screenSize);
               },));
             }
             else if(termsCondition == true){
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return const SellerTermsAndConditions();
+                return TermsConditionsScreen(screenSize: screenSize);
               },));
             }
             else if(about == true){
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return const SellerAbout();
+                return AboutScreen(screenSize: screenSize);
               },));
             }                  
           },
