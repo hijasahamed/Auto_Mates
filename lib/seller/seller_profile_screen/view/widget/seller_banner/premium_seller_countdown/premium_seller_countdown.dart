@@ -82,6 +82,7 @@ class IsFree extends StatelessWidget {
 }
 
 class IsPremium extends StatelessWidget {
+  
   const IsPremium({
     super.key,
     required this.screenSize,

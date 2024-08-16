@@ -57,6 +57,8 @@ class SellerLogoutPopupMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<String>(
+      color: Colors.white,
+      shape: Border.all(width: .2,color: Colors.grey),
       icon: Icon(
         Icons.more_vert,
         color: Colors.black,
@@ -71,7 +73,13 @@ class SellerLogoutPopupMenu extends StatelessWidget {
         return [
           PopupMenuItem<String>(
             value: 'Logout',
-            child: MyTextWidget(text: 'Logout', color: Colors.red, size: screenSize.width/30, weight: FontWeight.w500),
+            child: Row(
+              children: [
+                MyTextWidget(text: 'Logout', color: Colors.red, size: screenSize.width/30, weight: FontWeight.w500),
+                SizedBox(width: screenSize.width/100,),
+                Icon(Icons.logout,color: Colors.red,size: screenSize.width/25,)
+              ],
+            ),
           ),
         ];
       },
