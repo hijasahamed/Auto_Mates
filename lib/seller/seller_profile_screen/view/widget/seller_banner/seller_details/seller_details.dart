@@ -12,9 +12,6 @@ class SellerDetails extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
-          height: screenSize.height / 22,
-        ),
         MyTextWidget(
             text: 'Name: ${data.companyName}',
             color: const Color.fromARGB(255, 96, 96, 96),

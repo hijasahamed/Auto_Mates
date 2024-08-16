@@ -10,6 +10,7 @@ class SellerProfileBloc extends Bloc<SellerProfileEvent, SellerProfileState> {
   SellerProfileBloc() : super(SellerProfileInitial()) {
     on<SellerLogoutButtonClickedEvent>(sellerLogoutButtonClickedEvent);
     on<SellerLogoutConfirmButtonClickedEvent>(sellerLogoutConfirmButtonClickedEvent);
+    on<PremiumPlanCounterRefreshEvent>(premiumPlanCounterRefreshEvent);
   }
 
   FutureOr<void> sellerLogoutButtonClickedEvent(
@@ -20,5 +21,10 @@ class SellerProfileBloc extends Bloc<SellerProfileEvent, SellerProfileState> {
   FutureOr<void> sellerLogoutConfirmButtonClickedEvent(
     SellerLogoutConfirmButtonClickedEvent event, Emitter<SellerProfileState> emit) {
       emit(SellerLogoutConfirmButtonClickedActionState());
+  }
+
+  FutureOr<void> premiumPlanCounterRefreshEvent(
+    PremiumPlanCounterRefreshEvent event, Emitter<SellerProfileState> emit) {
+      emit(PremiumPlanCounterRefreshState());
   }
 }

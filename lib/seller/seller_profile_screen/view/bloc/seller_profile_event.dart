@@ -6,3 +6,5 @@ abstract class SellerProfileEvent {}
 class SellerLogoutButtonClickedEvent extends SellerProfileEvent {}
 
 class SellerLogoutConfirmButtonClickedEvent extends SellerProfileEvent {}
+
+class PremiumPlanCounterRefreshEvent extends SellerProfileEvent {}

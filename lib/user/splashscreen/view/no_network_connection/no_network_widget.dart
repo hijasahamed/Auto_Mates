@@ -45,12 +45,12 @@ class NoNetworkWidget extends StatelessWidget {
                         weight: FontWeight.w500),
                     const MyTextWidget(
                         text: 'It seems something is wrong with your connection',
-                        color: Colors.grey,
+                        color: Colors.blueGrey,
                         size: 15,
                         weight: FontWeight.w600),
                     const MyTextWidget(
                         text: 'Please connect to the internet and try again',
-                        color: Colors.grey,
+                        color: Colors.blueGrey,
                         size: 15,
                         weight: FontWeight.w600),
                     SizedBox(
@@ -62,16 +62,24 @@ class NoNetworkWidget extends StatelessWidget {
                       },
                       child: Ink(
                         height: screenSize.height / 20,
-                        width: screenSize.width / 2,
+                        width: screenSize.width / 1.5,
                         decoration: BoxDecoration(
-                            color: Colors.green,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: const Center(
-                            child: MyTextWidget(
-                                text: 'Try Again',
-                                color: Colors.white,
-                                size: 17,
-                                weight: FontWeight.bold)),
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(5)),
+                        child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                MyTextWidget(
+                                    text: 'Try Again',
+                                    color: Colors.white,
+                                    size: screenSize.width/30,
+                                    weight: FontWeight.bold
+                                ),
+                                SizedBox(width: screenSize.width/100,),
+                                Icon(Icons.refresh,color: Colors.white,size: screenSize.width/20,)
+                              ],
+                            )),
                       ),
                     )
                   ]),

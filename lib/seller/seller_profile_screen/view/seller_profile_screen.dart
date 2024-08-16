@@ -1,9 +1,7 @@
 import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/seller/seller_profile_screen/controllers/functions.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/bloc/seller_profile_bloc.dart';
-import 'package:auto_mates/seller/seller_profile_screen/view/widget/premium_seller_countdown/premium_seller_countdown.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/widget/seller_banner/banner_card_widget.dart';
-import 'package:auto_mates/seller/seller_profile_screen/view/widget/log_out_widget/seller_logout_widget.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/widget/seller_properties_tile/property_tiles/seller_properties_tiles_widget.dart';
 import 'package:auto_mates/user/commonwidgets/custom_alertdialog/custom_alert_dialog.dart';
 import 'package:flutter/material.dart';
@@ -42,25 +40,15 @@ class SellerProfileScreen extends StatelessWidget {
           body: Padding(
             padding: const EdgeInsets.all(5),
             child: Column(
-              children: [
-                PremiumSellerCountdown(
-                  screenSize: screenSize,
-                  data: data,
-                ),
+              children: [                
                 BannerCardWidget(
                   screenSize: screenSize,
                   data: data,
+                  sellerProfileBloc: sellerProfileBloc,
                 ),
                 SellerPropertiesTilesWidget(
                   screenSize: screenSize,
                   sellerData: data,
-                ),
-                SizedBox(
-                  height: screenSize.height / 14,
-                ),
-                SellerLogoutWidget(
-                  screenSize: screenSize,
-                  sellerProfileBloc: sellerProfileBloc,
                 ),
               ],
             ),
