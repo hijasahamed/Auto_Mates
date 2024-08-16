@@ -10,33 +10,7 @@ class CarouselSliderWidget extends StatelessWidget {
     return CarouselSlider(
         items: [
           firstBanner(),
-          secondBanner(),
-          Stack(
-            children:[
-              Container(
-              height: screenSize.height/4.8,
-              width: screenSize.width,
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(10),
-                image: const DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage('https://www.hyundai.com/content/dam/hyundai/in/en/data/find-a-car/Creta/Highlights/revised/pc_1120x600.jpg')
-                )
-              ),
-             ),
-             Positioned(
-              bottom: 5,
-              right: 5,
-                child: Container(
-                  height: 20,
-                  width: 50,
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.green),
-                  child: const Center(child: Text('Promoted',style: TextStyle(fontSize: 9,color: Colors.white,fontWeight: FontWeight.bold),))
-                ),
-              ),
-            ]
-          ),
+          secondBanner(),          
         ],
         options: CarouselOptions(
           scrollDirection: Axis.horizontal,
@@ -147,7 +121,7 @@ class CarouselSliderWidget extends StatelessWidget {
                 children: [
                   MyTextWidget(text: 'No 1 Online Platform', color: Colors.white, size: screenSize.width/22, weight: FontWeight.bold),
                   MyTextWidget(text: 'For Best PreUsed cars', color: Colors.white, size: screenSize.width/17, weight: FontWeight.bold),
-                  MyTextWidget(text: 'With over 1 million+ Users', color: const Color.fromARGB(255, 10, 226, 237), size: screenSize.width/15, weight: FontWeight.bold),
+                  MyTextWidget(text: 'With over 1 million+ Users', color: const Color.fromARGB(255, 10, 226, 237), size: screenSize.width/25, weight: FontWeight.bold),
                 ],
               ),
             ),

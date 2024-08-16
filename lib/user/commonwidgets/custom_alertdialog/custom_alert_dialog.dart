@@ -93,7 +93,7 @@ class CustomAlertDialog extends StatelessWidget {
             MyTextWidget(
                 text: title,
                 color: const Color.fromARGB(255, 73, 73, 73),
-                size: 18,
+                size: 15,
                 weight: FontWeight.bold),
             MyTextWidget(
                 text: subtitle,

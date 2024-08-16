@@ -71,16 +71,22 @@ class FavouriteSellerMoreCars extends StatelessWidget {
                   delegate: _SliverAppBarDelegate(
                     minHeight: screenSize.height/20,
                     maxHeight: screenSize.height/20,
-                    child: Container(
-                      padding: EdgeInsets.all(screenSize.width/100),
-                      color: Colors.white,
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: MyTextWidget(
-                          text: 'Available Cars From ${(isfromTopSellers==true)? sellerData['companyName']:sellerData['sellerName']}',
-                          color: Colors.blueGrey,
-                          size: screenSize.width / 32,
-                          weight: FontWeight.bold,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: screenSize.width/120),
+                      child: Container(
+                        padding: EdgeInsets.all(screenSize.width/75),
+                        decoration: BoxDecoration(
+                          border: Border.all(width: .4,color: Colors.grey),
+                          color: Colors.white
+                        ),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: MyTextWidget(
+                            text: 'Available Cars From ${(isfromTopSellers==true)? sellerData['companyName']:sellerData['sellerName']}',
+                            color: Colors.blueGrey,
+                            size: screenSize.width / 32,
+                            weight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
