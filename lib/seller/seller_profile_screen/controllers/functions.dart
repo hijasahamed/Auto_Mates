@@ -135,3 +135,16 @@ Future<void> deleteSoldCar({String? documentId}) async {
     log(e.toString());
   }
 }
+
+Future<void> changeSellersSubscriptionPlan({required String sellerId}) async {
+  try {
+    final sellerDocRef = FirebaseFirestore.instance
+        .collection('sellerSignupData')
+        .doc(sellerId);
+    await sellerDocRef.update({
+      'plan': 'unSubscribed',
+    });
+  } catch (e) {
+    log(e.toString());
+  }
+}

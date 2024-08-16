@@ -1,13 +1,15 @@
 import 'dart:async';
+import 'package:auto_mates/seller/seller_profile_screen/controllers/functions.dart';
 import 'package:auto_mates/seller/seller_profile_screen/view/bloc/seller_profile_bloc.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PremiumPlanCounter extends StatefulWidget {
-  const PremiumPlanCounter({super.key,required this.screenSize,required this.endTime});
+  const PremiumPlanCounter({super.key,required this.screenSize,required this.endTime,required this.sellerId});
   final Size screenSize;
   final DateTime endTime;
+  final String sellerId;
   @override
   State<PremiumPlanCounter> createState() => _PremiumPlanCounterState();
 }
@@ -47,7 +49,7 @@ class _PremiumPlanCounterState extends State<PremiumPlanCounter> {
       bloc: premiumCounterBlocInstance,
       builder: (context, state) {
         if (remainingTime.isNegative) {
-          // update subscription 
+          changeSellersSubscriptionPlan(sellerId: widget.sellerId);
           return const SizedBox.shrink();
         } else {
           final days = remainingTime.inDays;

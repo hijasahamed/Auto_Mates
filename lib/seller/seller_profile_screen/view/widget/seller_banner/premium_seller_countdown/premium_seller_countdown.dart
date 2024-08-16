@@ -29,7 +29,7 @@ class PremiumSellerCountdown extends StatelessWidget {
         var plan = snapshot.data!['plan'];
         if (plan == 'subscribed') {
           var endTime = (snapshot.data!['planEndDate'] as Timestamp).toDate();
-          return IsPremium(screenSize: screenSize, endTime: endTime);
+          return IsPremium(screenSize: screenSize, endTime: endTime,sellerId: data.id,);
         } else {
           return IsFree(screenSize: screenSize,sellerId: data.id,);
         }
@@ -82,15 +82,17 @@ class IsFree extends StatelessWidget {
 }
 
 class IsPremium extends StatelessWidget {
-  
+
   const IsPremium({
     super.key,
     required this.screenSize,
     required this.endTime,
+    required this.sellerId
   });
 
   final Size screenSize;
   final DateTime endTime;
+  final String sellerId;
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +108,7 @@ class IsPremium extends StatelessWidget {
             children: [
               MyTextWidget(text: 'PREMIUM', color: Colors.green, size: screenSize.width/25, weight: FontWeight.bold),
               SizedBox(width: screenSize.width/100,),
-              PremiumPlanCounter(screenSize: screenSize,endTime: endTime,),
+              PremiumPlanCounter(screenSize: screenSize,endTime: endTime,sellerId: sellerId,),
             ],
           ),
         ],
