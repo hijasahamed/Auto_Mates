@@ -26,11 +26,13 @@ Stream<List<Map<String, dynamic>>> findTopRatedSellers() async* {
         selleresRating = double.parse((average).toStringAsFixed(1));
       }
 
-      sellers.add({
-        'id': doc.id,
-        'data': data,
-        'sumRating': selleresRating,
-      });
+      if (selleresRating > 0) {
+        sellers.add({
+          'id': doc.id,
+          'data': data,
+          'sumRating': selleresRating,
+        });
+      }
     }
 
     sellers.sort((a, b) => b['sumRating'].compareTo(a['sumRating']));
