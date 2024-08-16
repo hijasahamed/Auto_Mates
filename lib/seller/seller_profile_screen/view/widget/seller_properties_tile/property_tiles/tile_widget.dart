@@ -19,58 +19,55 @@ class TileWidget extends StatelessWidget {
   final bool? about;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Ink(
-        height: screenSize.height / 15,
-        width: screenSize.width,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(width: 0.01),
-            color: const Color.fromARGB(255, 235, 235, 235)),
-        child: InkWell(
-          onTap: () {
-            if(isUserInterest==true){
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return UserInterestsPage(screenSize: screenSize,sellerData: sellerData,);
-              },));
-            }
-            else if(soldCars == true){
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return SoldCars(screenSize: screenSize,sellerData: sellerData,);
-              },));
-            }
-            else if(privacyPolicy == true){
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return PrivacyPolicyScreen(screenSize: screenSize);
-              },));
-            }
-            else if(termsCondition == true){
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return TermsConditionsScreen(screenSize: screenSize);
-              },));
-            }
-            else if(about == true){
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return AboutScreen(screenSize: screenSize);
-              },));
-            }                  
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                MyTextWidget(
-                    text: title,
-                    color: Colors.blueGrey,
-                    size: 15,
-                    weight: FontWeight.w500),
-                    const Spacer(),
-                (isUserInterest==true)? UserInterestedNotify(sellerData: sellerData):const SizedBox.shrink()
-              ],
-            ),
+    return Ink(
+      height: screenSize.height / 15,
+      width: screenSize.width,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(width: 0.2),
+          color: const Color.fromARGB(255, 250, 250, 250)),
+      child: InkWell(
+        onTap: () {
+          if(isUserInterest==true){
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return UserInterestsPage(screenSize: screenSize,sellerData: sellerData,);
+            },));
+          }
+          else if(soldCars == true){
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return SoldCars(screenSize: screenSize,sellerData: sellerData,);
+            },));
+          }
+          else if(privacyPolicy == true){
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return PrivacyPolicyScreen(screenSize: screenSize);
+            },));
+          }
+          else if(termsCondition == true){
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return TermsConditionsScreen(screenSize: screenSize);
+            },));
+          }
+          else if(about == true){
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return AboutScreen(screenSize: screenSize);
+            },));
+          }                  
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              MyTextWidget(
+                  text: title,
+                  color: Colors.blueGrey,
+                  size: 15,
+                  weight: FontWeight.bold),
+                  const Spacer(),
+              (isUserInterest==true)? UserInterestedNotify(sellerData: sellerData):const SizedBox.shrink()
+            ],
           ),
         ),
       ),

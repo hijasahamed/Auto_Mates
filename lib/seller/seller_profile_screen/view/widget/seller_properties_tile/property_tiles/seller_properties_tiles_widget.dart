@@ -8,17 +8,17 @@ class SellerPropertiesTilesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 5,left: 5,right: 5),
+      padding: EdgeInsets.only(top: screenSize.width/25,),
       child: Column(        
         children: [
           TileWidget(screenSize: screenSize, title: 'Sold Cars',soldCars: true,sellerData: sellerData,),
-          SizedBox(height: screenSize.height/120,),
+          SizedBox(height: screenSize.height/50,),
           TileWidget(screenSize: screenSize, title: 'User Interest',isUserInterest: true,sellerData: sellerData,),
-           SizedBox(height: screenSize.height/120,),
+           SizedBox(height: screenSize.height/50,),
           TileWidget(screenSize: screenSize, title: 'Privacy Policy',privacyPolicy: true,),
-           SizedBox(height: screenSize.height/120,),
+           SizedBox(height: screenSize.height/50,),
           TileWidget(screenSize: screenSize, title: 'Terms & Conditions',termsCondition: true,),
-           SizedBox(height: screenSize.height/120,),
+           SizedBox(height: screenSize.height/50,),
           TileWidget(screenSize: screenSize, title: 'About',about: true,),
         ],
       ),

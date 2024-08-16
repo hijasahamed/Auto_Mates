@@ -100,6 +100,7 @@ class IsPremium extends StatelessWidget {
         children: [
           MyTextWidget(text: 'Current Plan', color: Colors.blueGrey, size: screenSize.width/25, weight: FontWeight.bold),
           MyTextWidget(text: 'You are now using the PREMIUM PLAN. Enjoy the exciting features from AutoMates', color: const Color.fromARGB(255, 76, 76, 76), size: screenSize.width/30, weight: FontWeight.w500,maxline: true,),
+          SizedBox(height: screenSize.height/150,),
           Row(
             children: [
               MyTextWidget(text: 'PREMIUM', color: Colors.green, size: screenSize.width/25, weight: FontWeight.bold),

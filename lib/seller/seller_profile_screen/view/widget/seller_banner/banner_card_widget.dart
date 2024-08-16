@@ -13,36 +13,31 @@ class BannerCardWidget extends StatelessWidget {
   final SellerProfileBloc sellerProfileBloc;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      shadowColor: Colors.blueGrey,
-      color: const Color.fromARGB(255, 235, 235, 235),
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(width: 0.05),
-          borderRadius: BorderRadius.circular(10),          
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  SellerProfileWidget(screenSize: screenSize, data: data),
-                  SizedBox(width: screenSize.width/50,),
-                  SellerDetails(screenSize: screenSize, data: data),
-                  const Spacer(),
-                  SellerLogoutPopupMenu(screenSize: screenSize, sellerProfileBloc: sellerProfileBloc),
-                ],
-              ),
-              PremiumSellerCountdown(
-                screenSize: screenSize,
-                data: data,
-              ),
-            ],
-          ),
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(width: 0.2),
+        borderRadius: BorderRadius.circular(10),          
+      ),
+      child: Padding(
+        padding: EdgeInsets.all(screenSize.width/100),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                SellerProfileWidget(screenSize: screenSize, data: data),
+                SizedBox(width: screenSize.width/50,),
+                SellerDetails(screenSize: screenSize, data: data),
+                const Spacer(),
+                SellerLogoutPopupMenu(screenSize: screenSize, sellerProfileBloc: sellerProfileBloc),
+              ],
+            ),
+            PremiumSellerCountdown(
+              screenSize: screenSize,
+              data: data,
+            ),
+          ],
         ),
       ),
     );
