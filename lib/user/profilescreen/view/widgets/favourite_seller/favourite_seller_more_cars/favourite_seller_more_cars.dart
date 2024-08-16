@@ -69,15 +69,15 @@ class FavouriteSellerMoreCars extends StatelessWidget {
                 SliverPersistentHeader(
                   pinned: true,
                   delegate: _SliverAppBarDelegate(
-                    minHeight: screenSize.height/20,
-                    maxHeight: screenSize.height/20,
+                    minHeight: screenSize.height/15,
+                    maxHeight: screenSize.height/15,
                     child: Padding(
-                      padding: EdgeInsets.only(left: screenSize.width/120),
+                      padding: EdgeInsets.only(left: screenSize.width/120,right: screenSize.width/120),
                       child: Container(
                         padding: EdgeInsets.all(screenSize.width/75),
                         decoration: BoxDecoration(
-                          border: Border.all(width: .4,color: Colors.grey),
-                          color: Colors.white
+                          border: Border.all(width: .7,color: Colors.grey),
+                          color: const Color.fromARGB(255, 250, 250, 250)
                         ),
                         child: Align(
                           alignment: Alignment.centerLeft,

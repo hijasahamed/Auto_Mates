@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/commonwidgets/text_form_field/text_form_widget.dart';
@@ -128,7 +127,9 @@ class _EditingScreenState extends State<EditingScreen> {
                                 textCapitalization: TextCapitalization.words,
                                 fillColor: const Color(0XFFDBEDF5)),
                           ],
-                        ))
+                        )),
+                        SizedBox(height: widget.screenSize.height/50,),
+                    MyTextWidget(text: 'The Changes you make will be updated across all the users', color: Colors.grey, size: widget.screenSize.width/30, weight: FontWeight.w600,maxline: true,)    
                   ],
                 ),
               ),

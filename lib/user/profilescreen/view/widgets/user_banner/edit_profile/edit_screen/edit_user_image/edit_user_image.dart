@@ -35,22 +35,23 @@ class EditUserImage extends StatelessWidget {
               filterQuality: FilterQuality.high),
         ),
         Positioned(
-            bottom: 5,
-            right: 5,
-            child: GestureDetector(
-              onTap: () {
-                addUserProfileImage(editBloc: editUserImageBloc, bloc: null);
-              },
-              child: const CircleAvatar(
-                radius: 18,
-                backgroundColor: Colors.blue,
-                child: Icon(
-                  Icons.add_a_photo,
-                  color: Colors.white,
-                  size: 18,
-                ),
+          bottom: 5,
+          right: 5,
+          child: GestureDetector(
+            onTap: () {
+              addUserProfileImage(editBloc: editUserImageBloc, bloc: null);
+            },
+            child: const CircleAvatar(
+              radius: 18,
+              backgroundColor: Colors.blue,
+              child: Icon(
+                Icons.add_a_photo,
+                color: Colors.white,
+                size: 18,
               ),
-            )),
+            ),
+          )
+        ),
       ],
     );
   }
