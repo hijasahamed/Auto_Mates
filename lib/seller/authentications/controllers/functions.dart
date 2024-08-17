@@ -215,6 +215,7 @@ addSellerDetailsToDb({companyName, location, phoneNumber}) async {
   final CollectionReference sellerSignupFirebaseObject =
       FirebaseFirestore.instance.collection('sellerSignupData');
   String? imageUrl = await addSellerProfileToDb();
+  DateTime now = DateTime.now();
   final data = {
     'mapLocation': locationLatLon,
     'sellerProfile': imageUrl,
@@ -222,6 +223,8 @@ addSellerDetailsToDb({companyName, location, phoneNumber}) async {
     'location': location,
     'mobile': phoneNumber,
     'plan' : 'unSubscribed',
+    'planStartDate' : now,
+    'planEndDate' : now,
     'rating': [],
   };
   sellerSignupFirebaseObject.add(data);
