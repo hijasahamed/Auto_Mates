@@ -31,7 +31,7 @@ class PremiumSellerCountdown extends StatelessWidget {
           var endTime = (snapshot.data!['planEndDate'] as Timestamp).toDate();
           return IsPremium(screenSize: screenSize, endTime: endTime,sellerId: data.id,);
         } else {
-          return IsFree(screenSize: screenSize,sellerId: data.id,);
+          return IsFree(screenSize: screenSize,sellerId: data.id,sellerData: data,);
         }
       },
     );
@@ -42,11 +42,13 @@ class IsFree extends StatelessWidget {
   const IsFree({
     super.key,
     required this.screenSize,
-    required this.sellerId
+    required this.sellerId,
+    required this.sellerData
   });
 
   final Size screenSize;
   final String sellerId;
+  final SellerData sellerData;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +62,7 @@ class IsFree extends StatelessWidget {
           SizedBox(height: screenSize.height/120,),
           InkWell(
             onTap: () {
-              showBottomSheetForPremium(context: context,screenSize: screenSize,sellerId: sellerId);
+              showBottomSheetForPremium(context: context,screenSize: screenSize,sellerId: sellerId,sellerData: sellerData);
             },
             child: Ink(
               height: screenSize.height/20,

@@ -18,7 +18,7 @@ final CollectionReference firebaseObject = FirebaseFirestore.instance.collection
 SellerHomeScreenBloc refreshAllCarToSellInstance = SellerHomeScreenBloc();
 
 
-void checkSellerCarCountExeeded({required String sellerId,required SellerHomeScreenBloc sellerHomeScreenBloc,context,screenSize}) async {
+void checkSellerCarCountExeeded({required String sellerId,required SellerHomeScreenBloc sellerHomeScreenBloc,context,screenSize,sellerData}) async {
   try {
     final querySnapshot = await FirebaseFirestore.instance
         .collection('carstosell')
@@ -33,7 +33,7 @@ void checkSellerCarCountExeeded({required String sellerId,required SellerHomeScr
     final plan = querySnapshot2.data()?['plan'];
 
     if (count >=1 && plan == 'unSubscribed') {
-      showBottomSheetForPremium(context: context,screenSize: screenSize,sellerId: sellerId);      
+      showBottomSheetForPremium(context: context,screenSize: screenSize,sellerId: sellerId,sellerData: sellerData);      
     } else {
       sellerHomeScreenBloc.add(FloatingButtonClickedEvent());
     }
@@ -390,3 +390,27 @@ Future<void> deleteExpiredFeaturedCar(String carNumber) async {
     print('Error deleting document: $e');
   }
 }
+
+
+Future<void> addRevenueData({
+  required double amount,
+  required String paidBy,
+  required String paidFor,
+}) async {
+  final CollectionReference revenueCollection =
+      FirebaseFirestore.instance.collection('revenue');
+
+  final data = {
+    'amount': amount,
+    'paidBy': paidBy,
+    'paidFor': paidFor,
+    'paidDateTime': FieldValue.serverTimestamp(),
+  };
+
+  try {
+    await revenueCollection.add(data);
+  } catch (e) {
+    log(e.toString());
+  }
+}
+

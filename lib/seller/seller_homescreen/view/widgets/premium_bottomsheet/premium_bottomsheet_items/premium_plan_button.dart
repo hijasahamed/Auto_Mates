@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/controller/payments_services.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
@@ -13,9 +14,11 @@ class PremiumPlanButton extends StatelessWidget {
       {super.key,
       required this.screenSize,
       required this.sellerId,
+      required this.sellerData,
       required this.subscriptionBlocInstance});
   final Size screenSize;
   final String sellerId;
+  final SellerData sellerData;
   final SellerHomeScreenBloc subscriptionBlocInstance;
   @override
   Widget build(BuildContext context) {
@@ -26,6 +29,7 @@ class PremiumPlanButton extends StatelessWidget {
         PremiumButton(
             subscriptionBlocInstance: subscriptionBlocInstance,
             sellerId: sellerId,
+            sellerData: sellerData,
             screenSize: screenSize),
       ],
     );
@@ -38,11 +42,13 @@ class PremiumButton extends StatelessWidget {
     required this.subscriptionBlocInstance,
     required this.screenSize,
     required this.sellerId,
+    required this.sellerData
   });
 
   final SellerHomeScreenBloc subscriptionBlocInstance;
   final Size screenSize;
   final String sellerId;
+  final SellerData sellerData;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -61,6 +67,7 @@ class PremiumButton extends StatelessWidget {
                       paidAmount: 3999,
                       screenSize: screenSize,
                       title: 'Subscription Plan Activated'),
+                  addRevenueData(amount: 3999, paidBy: sellerData.companyName, paidFor: 'Seller Premium Subscription'),
                   changeSellerPlan(sellerId: sellerId,context: context),
                   await Future.delayed(const Duration(seconds: 3)),
                   Navigator.of(context).pop(),

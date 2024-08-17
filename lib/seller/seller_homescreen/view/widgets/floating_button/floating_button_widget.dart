@@ -18,7 +18,7 @@ class FloatingButtonWidget extends StatelessWidget {
       backgroundColor: Colors.redAccent,
       shape: const CircleBorder(),
       onPressed: () {
-        checkSellerCarCountExeeded(sellerId: data.id,sellerHomeScreenBloc: sellerHomeScreenBloc,context: context,screenSize: screenSize); 
+        checkSellerCarCountExeeded(sellerId: data.id,sellerHomeScreenBloc: sellerHomeScreenBloc,context: context,screenSize: screenSize,sellerData: data); 
       },
       child: const Icon(Icons.add,color: Colors.white,size: 40,)
     );
