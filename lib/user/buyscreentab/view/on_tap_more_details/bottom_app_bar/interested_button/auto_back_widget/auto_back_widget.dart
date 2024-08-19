@@ -1,5 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
+import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/controller/payments_services.dart';
+import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/bottom_app_bar/interested_button/auto_back_widget/auto_back_widgets_sections/auto_back_widget_back_button.dart';
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/bottom_app_bar/interested_button/auto_back_widget/auto_back_widgets_sections/auto_back_widget_content.dart';
@@ -7,6 +9,7 @@ import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/bottom_app
 import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/bottom_app_bar/interested_button/auto_back_widget/auto_back_widgets_sections/auto_back_widget_title.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
+import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -67,13 +70,15 @@ class _AutoBackWidgetState extends State<AutoBackWidget> {
                   width: widget.screenSize.width / 2.3,
                   child: ElevatedButton(
                       onPressed: () async {
+                        UserData? user = await fetchUserDetails();
                         if (isChecked == true) {
                           interestButtonLoaderObj.add(InterestButtoncircularLoaderEvent());
                           dynamic pay = await StripePaymentService.instance
                               .makePayment(amountToPay: amountToMarkInterest)
                               .then((value) => value == true ? true : false);
                           pay == true
-                              ? {
+                              ? {                                   
+                                  addRevenueDataToDataBase(amount: amountToMarkInterest.toDouble(), paidBy: user!.userName, paidFor: 'Marking Interest'),
                                   Navigator.of(context).pop(),
                                   widget.carAddingToInterestedLoader.add(CarAddingToInterestedEvent()),
                                 }
