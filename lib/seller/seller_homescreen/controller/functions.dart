@@ -392,7 +392,7 @@ Future<void> deleteExpiredFeaturedCar(String carNumber) async {
 }
 
 
-Future<void> addRevenueData({
+Future<void> addRevenueDataToDataBase({
   required double amount,
   required String paidBy,
   required String paidFor,

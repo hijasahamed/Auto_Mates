@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/seller/seller_homescreen/controller/functions.dart';
 import 'package:auto_mates/seller/seller_homescreen/controller/payments_services.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/single_car_details/feature_the_car/payment_success_page/payment_success_page.dart';
@@ -9,9 +10,10 @@ import 'package:flutter/material.dart';
 
 class FeatureTheCar extends StatelessWidget {
   const FeatureTheCar(
-      {super.key, required this.screenSize, required this.carData});
+      {super.key, required this.screenSize, required this.carData,required this.sellerData});
   final Size screenSize;
   final dynamic carData;
+  final SellerData sellerData;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -25,6 +27,7 @@ class FeatureTheCar extends StatelessWidget {
           pay == true
           ? {           
             paymentSuccessPage(context: context,paidAmount: 10000,screenSize: screenSize,title: 'This Car is Added to the Featured Cars'),
+            addRevenueDataToDataBase(amount: 10000, paidBy: sellerData.companyName, paidFor: 'Featuring Car'),
             await Future.delayed(const Duration(seconds: 3)),
             Navigator.of(context).pop(),
             addCarToFeatured(carDocumentSnapshot: carData,context: context,screenSize: screenSize),
@@ -58,7 +61,7 @@ class FeatureTheCar extends StatelessWidget {
                 height: screenSize.height / 150,
               ),
               MyTextWidget(
-                  text: '₹9999 /- Month',
+                  text: '₹10000/- Month',
                   color: Colors.green,
                   size: screenSize.width / 20,
                   weight: FontWeight.bold),

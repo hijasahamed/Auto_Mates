@@ -1,3 +1,4 @@
+import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/bloc/seller_home_screen_bloc.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/single_car_details/feature_the_car/feature_the_car.dart';
 import 'package:auto_mates/seller/seller_homescreen/view/widgets/single_car_details/featured_car_countdown/featured_car_countdown.dart';
@@ -14,10 +15,12 @@ class SingleCarDetailsScreen extends StatelessWidget {
       {super.key,
       required this.screenSize,
       required this.data,
+      required this.sellerData,
       required this.sellerHomeScreenBloc});
   final Size screenSize;
   final dynamic data;
   final SellerHomeScreenBloc? sellerHomeScreenBloc;
+  final SellerData sellerData;
   @override
   Widget build(BuildContext context) {
     SellerHomeScreenBloc markCarsoldBloc = SellerHomeScreenBloc();
@@ -58,7 +61,7 @@ class SingleCarDetailsScreen extends StatelessWidget {
                     var endTime = (carData['endDate'] as Timestamp).toDate();
                     return FeaturedCarCountdown(startTime: startTime, endTime: endTime,screenSize: screenSize,carData: data,);
                   } else {
-                    return FeatureTheCar(screenSize: screenSize, carData: data);                    
+                    return FeatureTheCar(screenSize: screenSize, carData: data,sellerData: sellerData,);                    
                   }
                 },
               ),

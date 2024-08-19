@@ -33,6 +33,7 @@ class SellerHomeScreen extends StatelessWidget {
             builder: (context) => SingleCarDetailsScreen(
               screenSize:screenSize,
               data: state.data,
+              sellerData: data,
               sellerHomeScreenBloc: sellerHomeScreenBloc,
           )));
         }

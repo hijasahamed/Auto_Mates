@@ -67,7 +67,7 @@ class PremiumButton extends StatelessWidget {
                       paidAmount: 3999,
                       screenSize: screenSize,
                       title: 'Subscription Plan Activated'),
-                  addRevenueData(amount: 3999, paidBy: sellerData.companyName, paidFor: 'Seller Premium Subscription'),
+                  addRevenueDataToDataBase(amount: 3999, paidBy: sellerData.companyName, paidFor: 'Seller Premium Subscription'),
                   changeSellerPlan(sellerId: sellerId,context: context),
                   await Future.delayed(const Duration(seconds: 3)),
                   Navigator.of(context).pop(),
