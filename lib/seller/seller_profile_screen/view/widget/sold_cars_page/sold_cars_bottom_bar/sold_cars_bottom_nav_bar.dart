@@ -20,7 +20,7 @@ class SoldCarsBottomNavBar extends StatelessWidget {
             color: Colors.green,
           ),
           child: Center(
-            child: StreamBuilder<int>(
+            child: StreamBuilder<String>(
               stream: getTotalSalesAmountStream(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
@@ -35,7 +35,7 @@ class SoldCarsBottomNavBar extends StatelessWidget {
                     weight: FontWeight.bold,
                   );
                 } else {
-                  int totalSalesAmount = snapshot.data ?? 0;
+                  String totalSalesAmount = snapshot.data!;
                   return MyTextWidget(
                     text: 'Total Sales: ₹$totalSalesAmount',
                     color: Colors.white,

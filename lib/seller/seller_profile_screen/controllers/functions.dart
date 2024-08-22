@@ -11,6 +11,7 @@ import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:auto_mates/user/splashscreen/controllers/functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 sellerLogout({
@@ -39,7 +40,7 @@ Stream<QuerySnapshot> getSellersSoldCars(sellerData) {
       .snapshots();
 }
 
-Stream<int> getTotalSalesAmountStream() {
+Stream<String> getTotalSalesAmountStream() {
   return FirebaseFirestore.instance.collection('soldcars').snapshots().map((querySnapshot) {
     int totalSalesAmount = 0;
     for (QueryDocumentSnapshot doc in querySnapshot.docs) {
@@ -51,7 +52,8 @@ Stream<int> getTotalSalesAmountStream() {
         totalSalesAmount += soldAmount;
       }
     }
-    return totalSalesAmount;
+    final formattedAmount = NumberFormat.decimalPattern('en_IN').format(totalSalesAmount);
+    return formattedAmount;
   });
 }
 
@@ -147,4 +149,10 @@ Future<void> changeSellersSubscriptionPlan({required String sellerId}) async {
   } catch (e) {
     log(e.toString());
   }
+}
+
+
+double parsePrice(String priceString) {
+  String cleanedPriceString = priceString.replaceAll(',', '');
+  return double.tryParse(cleanedPriceString) ?? 0.0;
 }
