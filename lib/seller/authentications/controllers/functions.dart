@@ -226,6 +226,7 @@ addSellerDetailsToDb({companyName, location, phoneNumber}) async {
     'planStartDate' : now,
     'planEndDate' : now,
     'rating': [],
+    'ratedSellers' : []
   };
   sellerSignupFirebaseObject.add(data);
 }

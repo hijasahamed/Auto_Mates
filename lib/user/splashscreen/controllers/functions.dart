@@ -43,7 +43,7 @@ Future<void> checkIfUserLogedin(context) async {
   }  
   var connectivityResult = await Connectivity().checkConnectivity();
   if (connectivityResult == ConnectivityResult.none) {
-    await Future.delayed(const Duration(milliseconds: 3150));
+    await Future.delayed(const Duration(milliseconds: 1500));
     await goToNoNetworkWidget(context);
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -51,39 +51,39 @@ Future<void> checkIfUserLogedin(context) async {
       ),
     );
   } else if (isLogedin == null && isSellerLogedIn == null) {
-    await Future.delayed(const Duration(milliseconds: 3150));
+    await Future.delayed(const Duration(milliseconds: 1500));
     await goToLoginScreen(context);
   }
   else if(isLogedin == true && isSellerLogedIn == null){
-    await Future.delayed(const Duration(milliseconds: 3150));
+    await Future.delayed(const Duration(milliseconds: 1500));
     await goToUserScreen(context);
   }
   else if(isLogedin == false && isSellerLogedIn == null){
-    await Future.delayed(const Duration(milliseconds: 3150));
+    await Future.delayed(const Duration(milliseconds: 1500));
     await goToLoginScreen(context);
   }
   else if(isLogedin == null && isSellerLogedIn == true){
-    await Future.delayed(const Duration(milliseconds: 3150));
+    await Future.delayed(const Duration(milliseconds: 1500));
     await goToSellerScreen(context);
   }
   else if(isLogedin == null && isSellerLogedIn == false){
-    await Future.delayed(const Duration(milliseconds: 3150));
+    await Future.delayed(const Duration(milliseconds: 1500));
     await goToLoginScreen(context);
   }
   else if(isLogedin == null && isSellerLogedIn == false){
-    await Future.delayed(const Duration(milliseconds: 3150));
+    await Future.delayed(const Duration(milliseconds: 1500));
     await goToLoginScreen(context);
   }
   else if(isLogedin == true && isSellerLogedIn == false){
-    await Future.delayed(const Duration(milliseconds: 3150));
+    await Future.delayed(const Duration(milliseconds: 1500));
     await goToUserScreen(context);
   }
   else if(isLogedin == false && isSellerLogedIn == true){
-    await Future.delayed(const Duration(milliseconds: 3150));
+    await Future.delayed(const Duration(milliseconds: 1500));
     await goToSellerScreen(context);
   }
   else if(isLogedin == false && isSellerLogedIn == false){
-    await Future.delayed(const Duration(milliseconds: 3150));
+    await Future.delayed(const Duration(milliseconds: 1500));
     await goToLoginScreen(context);
   }
 }
