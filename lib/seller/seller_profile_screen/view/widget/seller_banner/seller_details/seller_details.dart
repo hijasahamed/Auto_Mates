@@ -17,19 +17,19 @@ class SellerDetails extends StatelessWidget {
             color: const Color.fromARGB(255, 96, 96, 96),
             size: screenSize.width / 21,
             maxline: true,
-            weight: FontWeight.w500),
+            weight: FontWeight.bold),
         MyTextWidget(
             text: 'Mobile: ${data.mobile}',
             color: const Color.fromARGB(255, 96, 96, 96),
-            size: screenSize.width / 25,
+            size: screenSize.width / 28,
             maxline: true,
-            weight: FontWeight.w500),
+            weight: FontWeight.w600),
         MyTextWidget(
             text: 'Place: ${data.location}',
             color: const Color.fromARGB(255, 96, 96, 96),
-            size: screenSize.width / 25,
+            size: screenSize.width / 28,
             maxline: true,
-            weight: FontWeight.w500),
+            weight: FontWeight.w600),
       ],
     );
   }
