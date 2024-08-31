@@ -17,7 +17,7 @@ class BackToLoginScreenWidget extends StatelessWidget {
           onPressed: () {
             authenticationBloc.add(AlreadyHaveAccountButtonClickedEvent());
           },
-          child: MyTextWidget(text: 'Login', color: Colors.blue, size: screenSize.width/28, weight: FontWeight.bold),
+          child: MyTextWidget(text: 'Login', color: Colors.blue, size: screenSize.width/31, weight: FontWeight.bold),
         )
       ],
     );
