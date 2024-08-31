@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/seller/seller_chat_screen/controller/seller_chat_controller.dart';
 import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
@@ -13,8 +15,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-class ChatPage extends StatefulWidget {
-  const ChatPage(
+class ChatPage extends StatelessWidget {
+  ChatPage(
       {super.key,
       required this.sellerData,
       required this.screenSize,
@@ -23,31 +25,12 @@ class ChatPage extends StatefulWidget {
   final Size screenSize;
   final UserData userData;
 
-  @override
-  State<ChatPage> createState() => _ChatPageState();
-}
-
-class _ChatPageState extends State<ChatPage> {
   final TextEditingController messageController = TextEditingController();
   final ChatController chatControllerClass = ChatController();
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final UserChatBloc refreshtisRatedBloc = UserChatBloc();
   bool isRated = true;
-
-  @override
-  void initState() {
-    super.initState();
-    checkIfUserRatedSeller();
-  }
-
-  Future<void> checkIfUserRatedSeller() async {
-    bool rated = await isUserRatedSeller(
-      sellerId: widget.sellerData.id,
-      userId: widget.userData.id,
-    );
-    isRated = rated;
-    refreshtisRatedBloc.add(IsUserRatedTheSellerRefreshEvent());
-  }
+  bool ratingCheckPerformed = false; 
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +39,7 @@ class _ChatPageState extends State<ChatPage> {
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(50),
           child: NormalAppBar(
-            title: widget.sellerData.companyName,
+            title: sellerData.companyName,
             isChatScreen: true,
           )),
       body: BlocBuilder<UserChatBloc, UserChatState>(
@@ -78,7 +61,7 @@ class _ChatPageState extends State<ChatPage> {
   Widget buildMessagesection() {
     return StreamBuilder<List<QueryDocumentSnapshot>>(
       stream: getAllMessagesInChattingScreen(
-          receiverId: widget.userData.id, userId: widget.sellerData.id),
+          receiverId: userData.id, userId: sellerData.id),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Text('Error ${snapshot.error}');
@@ -88,20 +71,27 @@ class _ChatPageState extends State<ChatPage> {
           List<DocumentSnapshot> sortedDocs = snapshot.data!;
           int sendedMessageCount = sortedDocs.length;
 
-          if (sendedMessageCount == 3 && isRated == false) {
+          if (sendedMessageCount == 3 && !ratingCheckPerformed) {
+            ratingCheckPerformed = true;
+            checkIfUserRatedSeller();
+          }
+
+          if (sendedMessageCount == 3 && !isRated) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               showRatingPopup(
                   context: context,
-                  screenSize: widget.screenSize,
-                  sellerData: widget.sellerData,
-                  userData: widget.userData);
+                  screenSize: screenSize,
+                  sellerData: sellerData,
+                  userData: userData);
             });
           }
+
           sortedDocs.sort((a, b) {
             Timestamp aTimestamp = a['timeStamp'];
             Timestamp bTimestamp = b['timeStamp'];
             return aTimestamp.compareTo(bTimestamp);
           });
+
           WidgetsBinding.instance.addPostFrameCallback((_) => scrollToEnd());
 
           Map<String, List<DocumentSnapshot>> groupedMessages =
@@ -118,13 +108,13 @@ class _ChatPageState extends State<ChatPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      width: widget.screenSize.width,
+                      width: screenSize.width,
                       color: const Color.fromARGB(255, 237, 237, 237),
                       child: Center(
                           child: MyTextWidget(
                               text: dateLabel,
                               color: Colors.blueGrey,
-                              size: widget.screenSize.width / 35,
+                              size: screenSize.width / 35,
                               weight: FontWeight.bold)),
                     ),
                     ...messages.map((document) =>
@@ -137,6 +127,15 @@ class _ChatPageState extends State<ChatPage> {
         }
       },
     );
+  }
+
+  Future<void> checkIfUserRatedSeller() async {
+    bool rated = await isUserRatedSeller(
+      sellerId: sellerData.id,
+      userId: userData.id,
+    );
+      isRated = rated;
+      refreshtisRatedBloc.add(IsUserRatedTheSellerRefreshEvent());
   }
 
   Map<String, List<DocumentSnapshot>> groupMessagesByDate(
@@ -175,7 +174,7 @@ class _ChatPageState extends State<ChatPage> {
         date1.day == date2.day;
   }
 
-  Widget showMessageItems({document, context}) {
+  Widget showMessageItems({required DocumentSnapshot document, required BuildContext context}) {
     Map<String, dynamic> data = document.data() as Map<String, dynamic>;
 
     var alignment = (data['senderUid'] == firebaseAuth.currentUser!.uid)
@@ -190,11 +189,11 @@ class _ChatPageState extends State<ChatPage> {
             context: context,
             builder: (context) {
               return UserChatDeleteAlertDialog(
-                screenSize: widget.screenSize,
+                screenSize: screenSize,
                 onConfirm: () {
                   deleteUserChat(
-                      sellerData: widget.sellerData,
-                      userData: widget.userData,
+                      sellerData: sellerData,
+                      userData: userData,
                       data: data);
                   Navigator.of(context).pop();
                 },
@@ -205,7 +204,7 @@ class _ChatPageState extends State<ChatPage> {
         },
         child: Container(
           alignment: alignment,
-          width: widget.screenSize.width / 1.5,
+          width: screenSize.width / 1.5,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -223,14 +222,14 @@ class _ChatPageState extends State<ChatPage> {
                           MyTextWidget(
                             text: data['message'],
                             color: Colors.white,
-                            size: widget.screenSize.width / 35,
+                            size: screenSize.width / 35,
                             weight: FontWeight.w500,
                             maxline: true,
                           ),
                           MyTextWidget(
                             text: formatTimestamp(timestamp: data['timeStamp'],chatsScreen: true),
                             color: Colors.white,
-                            size: widget.screenSize.width / 65,
+                            size: screenSize.width / 65,
                             weight: FontWeight.bold),
                         ],
                       ),
@@ -250,7 +249,7 @@ class _ChatPageState extends State<ChatPage> {
         children: [
           Expanded(
             child: MyTextFormWidget(
-                screenSize: widget.screenSize,
+                screenSize: screenSize,
                 isChat: true,
                 text: 'Overview',
                 enabledBorderColor: Colors.transparent,
@@ -266,7 +265,7 @@ class _ChatPageState extends State<ChatPage> {
                 fillColor: const Color.fromARGB(255, 255, 255, 255)),
           ),
           SizedBox(
-            width: widget.screenSize.width / 50,
+            width: screenSize.width / 50,
           ),
           CircleAvatar(
             radius: 25,
@@ -276,14 +275,14 @@ class _ChatPageState extends State<ChatPage> {
                   usersSendMessage(
                     chatControllerClass: chatControllerClass,
                     messageController: messageController,
-                    sellerData: widget.sellerData,
-                    userData: widget.userData,
+                    sellerData: sellerData,
+                    userData: userData,
                   );
                 },
                 icon: Icon(
                   Icons.send,
                   color: Colors.white,
-                  size: widget.screenSize.width / 14,
+                  size: screenSize.width / 14,
                 )),
           )
         ],
