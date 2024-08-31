@@ -171,7 +171,7 @@ void addRating({required sellerData, required double rating, required BuildConte
   });
 }
 
-isUserRatedSeller({ 
+Future<bool> isUserRatedSeller({ 
   required String sellerId,
   required String userId,
 }) async {
