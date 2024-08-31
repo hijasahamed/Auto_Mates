@@ -29,14 +29,14 @@ class SellerGetOtpWidget extends StatelessWidget {
         children: [
           const MyTextWidget(
               text: 'Enter your registerd company number',
-              color: Colors.black87,
+              color: Color.fromARGB(221, 58, 58, 58),
               size: 15,
-              weight: FontWeight.bold),
+              weight: FontWeight.w500),
           const MyTextWidget(
               text: 'to verify your account',
-              color: Colors.black87,
+              color: Color.fromARGB(221, 58, 58, 58),
               size: 15,
-              weight: FontWeight.bold),
+              weight: FontWeight.w500),
           Padding(
               padding: const EdgeInsets.all(10),
               child: Form(
@@ -66,6 +66,7 @@ class SellerGetOtpWidget extends StatelessWidget {
                   ),
                 ),
               )),
+              const Spacer(),
           GenerateOtpButton(screenSize: screenSize, phoneNumber: phoneNumber, formKey: formKey, sellerAuthenticationBloc: sellerAuthenticationBloc),
           const Spacer(),
           Padding(
@@ -77,7 +78,7 @@ class SellerGetOtpWidget extends StatelessWidget {
                     text: 'New to AutoMates?',
                     color: Color.fromARGB(255, 114, 114, 114),
                     size: 15,
-                    weight: FontWeight.bold),
+                    weight: FontWeight.w400),
                 TextButton(
                     onPressed: () {
                       sellerAuthenticationBloc
@@ -87,7 +88,7 @@ class SellerGetOtpWidget extends StatelessWidget {
                         text: 'Click to create company',
                         color: Colors.blue,
                         size: 15,
-                        weight: FontWeight.bold)),
+                        weight: FontWeight.w500)),
               ],
             ),
           )

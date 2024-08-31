@@ -54,7 +54,7 @@ class SellerLoginScreen extends StatelessWidget {
                           text: 'Phone Verification',
                           color: Colors.black,
                           size: 25,
-                          weight: FontWeight.bold),
+                          weight: FontWeight.w700),
                       SizedBox(
                         height: screenSize.height / 70,
                       ),

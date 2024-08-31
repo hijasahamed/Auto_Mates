@@ -47,7 +47,7 @@ class GenerateOtpButton extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-            color: Colors.redAccent,
+            color: Colors.green,
             child: BlocBuilder<SellerAuthenticationBloc, SellerAuthenticationState>(
               bloc: sellerAuthenticationBloc,
               builder: (context, state) {

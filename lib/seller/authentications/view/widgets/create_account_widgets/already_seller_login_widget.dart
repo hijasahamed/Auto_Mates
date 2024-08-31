@@ -12,12 +12,12 @@ class AlreadyASellerLoginWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const MyTextWidget(text: 'Already a Seller? ', color: Color.fromARGB(255, 132, 132, 132), size: 15, weight: FontWeight.bold),
+          const MyTextWidget(text: 'Already a Seller? ', color: Color.fromARGB(255, 132, 132, 132), size: 15, weight: FontWeight.w400),
           TextButton(
             onPressed: () {
               sellerAuthenticationBloc.add(AlreadyASellerLoginToYourAccountButtonClickedEvent());
             }, 
-            child: const MyTextWidget(text: 'Login to your Account', color: Colors.blue, size: 15, weight: FontWeight.bold),
+            child: const MyTextWidget(text: 'Login to your Account', color: Colors.blue, size: 15, weight: FontWeight.w500),
           )
         ],
       ),
