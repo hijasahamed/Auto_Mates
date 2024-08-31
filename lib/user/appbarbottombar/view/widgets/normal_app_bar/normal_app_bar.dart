@@ -25,7 +25,9 @@ class NormalAppBar extends StatelessWidget {
       this.isCompare,
       this.isMapScreen,
       this.isChatScreen,
-      this.compareCarsBlocInstance,this.previousComparisonBlocInstance
+      this.compareCarsBlocInstance,
+      this.previousComparisonBlocInstance,
+      this.isChangePassword
       });
   final String title;
   final bool? isFromSeller;
@@ -41,12 +43,13 @@ class NormalAppBar extends StatelessWidget {
   final ProfileScreenBloc? previousComparisonBlocInstance;
   final bool? isMapScreen;
   final bool? isChatScreen;
+  final bool? isChangePassword;
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: (isMapScreen == true)? Colors.blue : Colors.white,
       flexibleSpace:
-          (isFromFilterResultPage == true || isMapScreen==true || isChatScreen==true) ? null : (isFromEmi==true) ? const EmiScreenAppBar() : const AppBarGradientColor(),
+          (isFromFilterResultPage == true || isMapScreen==true || isChatScreen==true || isChangePassword==true) ? null : (isFromEmi==true) ? const EmiScreenAppBar() : const AppBarGradientColor(),
       leading: IconButton(
           onPressed: () {
             if (isFromFilterResultPage == true) {
@@ -79,7 +82,7 @@ class NormalAppBar extends StatelessWidget {
           icon: Icon(
             Icons.arrow_back_ios_new_rounded,
             color:
-                (isFromFilterResultPage == true || isChatScreen == true) ? Colors.grey : Colors.white,
+                (isFromFilterResultPage == true || isChatScreen == true || isChangePassword==true) ? Colors.grey : Colors.white,
           )),
       title: MyTextWidget(
           text: title,

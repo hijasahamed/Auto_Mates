@@ -28,6 +28,7 @@ class UserSignupScreen extends StatelessWidget {
       buildWhen: (previous, current) => current is! AuthenticationActionState,
       listener: (context, state) {        
         if (state is AlreadyHaveAccountButtonClickedActionState) {
+          userProfileImage = null;         
           Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (context) => UserLoginScreen(),
           ));

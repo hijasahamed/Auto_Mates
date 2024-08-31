@@ -1,3 +1,4 @@
+import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/normal_app_bar.dart';
 import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
@@ -25,8 +26,9 @@ class ForgotPasswordScreen extends StatelessWidget {
         return Scaffold(
           resizeToAvoidBottomInset: false,
           backgroundColor: Colors.white,
-          appBar: AppBar(
-            backgroundColor: Colors.white,
+          appBar: const PreferredSize(
+            preferredSize: Size.fromHeight(50), 
+            child: NormalAppBar(title: '',isChangePassword: true,)
           ),
           body: SizedBox(
             height: screenSize.height,
@@ -46,30 +48,26 @@ class ForgotPasswordScreen extends StatelessWidget {
                 SizedBox(
                   height: screenSize.height / 60,
                 ),
-                const Icon(
+                Icon(
                   Icons.lock,
                   color: Colors.red,
-                  size: 50,
+                  size: screenSize.width/8,
                 ),
-                const MyTextWidget(
+                MyTextWidget(
                     text: 'Reset Password',
-                    color: Color(0xFF424141),
-                    size: 20,
-                    weight: FontWeight.bold),
-                const Padding(
-                  padding: EdgeInsets.only(left: 25, top: 10),
-                  child: MyTextWidget(
-                      text:
-                          'We will send you an email with a link to reset your password please enter the email associated with\nyour account below',
-                      color: Color(0xFF424141),
-                      size: 15,
-                      maxline: true,
-                      alignTextCenter: true,
-                      weight: FontWeight.w600),
-                ),
+                    color: const Color(0xFF424141),
+                    size: screenSize.width/20,
+                    weight: FontWeight.w500),
+                MyTextWidget(
+                    text:
+                        'We will send you an email with a link to reset your password please enter the email associated with\nyour account below',
+                    color: const Color(0xFF424141),
+                    size: screenSize.width/25,
+                    maxline: true,
+                    alignTextCenter: true,
+                    weight: FontWeight.w400),
                 Padding(
-                  padding: const EdgeInsets.only(
-                      left: 25, right: 25, top: 15, bottom: 15),
+                  padding: EdgeInsets.all(screenSize.width/25),
                   child: TextFormField(
                     keyboardType: TextInputType.emailAddress,
                     controller: resetPasswordcontroller,
@@ -88,7 +86,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                       hintStyle: const TextStyle(
                           color: Color.fromARGB(255, 86, 86, 86),
                           fontWeight: FontWeight.normal),
-                      fillColor: const Color(0xFFDBEDF5),
+                      fillColor: const Color.fromARGB(255, 243, 243, 243),
                       filled: true,
                       enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
@@ -104,16 +102,17 @@ class ForgotPasswordScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(height: screenSize.height/35,),
                 InkWell(
                   onTap: ()async {
                     authenticationBloc.add(ResetPasswordButtonClickedEvent());
                   },
-                  child: Container(
-                      width: screenSize.width / 2,
+                  child: Ink(
+                      width: screenSize.width / 1.3,
                       height: screenSize.height / 18,
                       decoration: BoxDecoration(
                           color: Colors.blue,
-                          borderRadius: BorderRadius.circular(10)),
+                          borderRadius: BorderRadius.circular(5)),
                       child: const Center(
                           child: MyTextWidget(
                               text: 'Reset Password',

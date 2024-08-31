@@ -6,6 +6,7 @@ import 'package:auto_mates/seller/seller_homescreen/view/widgets/add_edit_car_wi
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
+
 class MyTextFormWidget extends StatelessWidget {
  const MyTextFormWidget({
     super.key,
@@ -36,7 +37,8 @@ class MyTextFormWidget extends StatelessWidget {
     required this.enabledBorderColor,
     required this.focusedBorderColor,
     required this.valueTextColor,
-    this.isChat
+    this.isChat,
+    this.isAuthenticationFields,
   });
   final String text;
   final String warning;
@@ -66,6 +68,7 @@ class MyTextFormWidget extends StatelessWidget {
   final Color valueTextColor;
   final bool? isChat;
   final bool? isChattingContainer;
+  final bool? isAuthenticationFields;
 
   @override
   Widget build(BuildContext context) {
@@ -97,8 +100,8 @@ class MyTextFormWidget extends StatelessWidget {
       obscuringCharacter: '*',
       maxLength: (length ==true)?10 :null,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      style: const TextStyle(
-          color: Colors.blueGrey, fontWeight: FontWeight.w500),
+      style: TextStyle(
+          color: (isAuthenticationFields == true)? Colors.white : Colors.blueGrey, fontWeight: FontWeight.w300),
       decoration: InputDecoration(
         suffixIcon: (fuel == true)
             ? DropDownButtonWidget (controller: controller,isFuel: true,) 
@@ -119,10 +122,10 @@ class MyTextFormWidget extends StatelessWidget {
             : const SizedBox(),
         hintText: (isChat == true)? 'Message' : null,
         labelText: (isChat == true) ? null : text,
-        labelStyle: const TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.w200),
-        fillColor: isChattingContainer == true ? const Color.fromARGB(255, 255, 255, 255) : const Color.fromARGB(255, 243, 243, 243),
+        labelStyle: TextStyle(
+            color: (isAuthenticationFields == true)?Colors.white : Colors.black,
+            fontWeight: (isAuthenticationFields == true)? FontWeight.w300 : FontWeight.w200),
+        fillColor: isChattingContainer == true ? const Color.fromARGB(255, 255, 255, 255) : isAuthenticationFields == true ? const Color(0XFF143A42) : const Color.fromARGB(255, 243, 243, 243),
         filled: true,
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: enabledBorderColor),
