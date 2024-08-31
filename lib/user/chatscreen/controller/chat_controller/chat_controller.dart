@@ -63,11 +63,13 @@ Stream<List<String>> getTheCurrentUsersChatsWithSellers(
   });
 }
 
-String formatTimestamp(Timestamp timestamp) {
+String formatTimestamp({timestamp,chatsScreen}) {
   DateTime date = timestamp.toDate();
   DateTime now = DateTime.now();
 
   if (date.year == now.year && date.month == now.month && date.day == now.day) {
+    return DateFormat('hh:mm a').format(date);
+  } else if (chatsScreen == true) {
     return DateFormat('hh:mm a').format(date);
   } else if (date.year == now.year &&
       date.month == now.month &&

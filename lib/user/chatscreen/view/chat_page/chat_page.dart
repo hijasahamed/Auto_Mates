@@ -210,31 +210,31 @@ class _ChatPageState extends State<ChatPage> {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                MyTextWidget(
-                    text: data['senderName'],
-                    color: Colors.blueGrey,
-                    size: widget.screenSize.width / 45,
-                    weight: FontWeight.bold),
+              children: [               
                 Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: Colors.blue),
+                        color: data['senderUid'] == firebaseAuth.currentUser!.uid ? Colors.green : Colors.blue),
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: MyTextWidget(
-                        text: data['message'],
-                        color: Colors.white,
-                        size: widget.screenSize.width / 30,
-                        weight: FontWeight.bold,
-                        maxline: true,
+                      padding: const EdgeInsets.all(5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          MyTextWidget(
+                            text: data['message'],
+                            color: Colors.white,
+                            size: widget.screenSize.width / 30,
+                            weight: FontWeight.bold,
+                            maxline: true,
+                          ),
+                          MyTextWidget(
+                            text: formatTimestamp(timestamp: data['timeStamp'],chatsScreen: true),
+                            color: Colors.white,
+                            size: widget.screenSize.width / 65,
+                            weight: FontWeight.bold),
+                        ],
                       ),
                     )),
-                MyTextWidget(
-                    text: formatTimestamp(data['timeStamp']),
-                    color: Colors.blueGrey,
-                    size: widget.screenSize.width / 45,
-                    weight: FontWeight.bold),
               ],
             ),
           ),

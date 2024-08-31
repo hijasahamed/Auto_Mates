@@ -105,7 +105,7 @@ class SellerChatScreenChatsHolder extends StatelessWidget {
                                     size: screenSize.width / 30,
                                     weight: FontWeight.w500)),
                             MyTextWidget(
-                                text: formatTimestamp(formattedTimestamp),
+                                text: formatTimestamp(timestamp: formattedTimestamp,chatsScreen: false),
                                 color:
                                     const Color.fromARGB(255, 126, 126, 126),
                                 size: screenSize.width / 30,

@@ -116,7 +116,7 @@ class UsersChatsHolder extends StatelessWidget {
                                         weight: FontWeight.w500)),
                               ),
                               MyTextWidget(
-                                  text: formatTimestamp(lastMessageTimestamp),
+                                  text: formatTimestamp(timestamp: lastMessageTimestamp,chatsScreen: false),
                                   color:
                                       const Color.fromARGB(255, 126, 126, 126),
                                   size: screenSize.width / 35,

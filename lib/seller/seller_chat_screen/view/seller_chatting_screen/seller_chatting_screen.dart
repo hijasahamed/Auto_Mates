@@ -148,7 +148,7 @@ class SellerChattingScreen extends StatelessWidget {
                   child: MyTextWidget(text: data['message'], color: Colors.white, size: screenSize.width/30, weight: FontWeight.bold,maxline: true,),
                 )
               ),
-              MyTextWidget(text: formatTimestamp(data['timeStamp']), color: Colors.blueGrey, size: screenSize.width/45, weight: FontWeight.bold),
+              MyTextWidget(text: formatTimestamp(timestamp: data['timeStamp'],chatsScreen: true), color: Colors.blueGrey, size: screenSize.width/45, weight: FontWeight.bold),
             ],
           ),
         ),
