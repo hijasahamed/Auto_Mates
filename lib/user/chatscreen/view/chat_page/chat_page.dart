@@ -213,7 +213,7 @@ class _ChatPageState extends State<ChatPage> {
               children: [               
                 Container(
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(7),
                         color: data['senderUid'] == firebaseAuth.currentUser!.uid ? Colors.green : Colors.blue),
                     child: Padding(
                       padding: const EdgeInsets.all(5),
@@ -223,8 +223,8 @@ class _ChatPageState extends State<ChatPage> {
                           MyTextWidget(
                             text: data['message'],
                             color: Colors.white,
-                            size: widget.screenSize.width / 30,
-                            weight: FontWeight.bold,
+                            size: widget.screenSize.width / 35,
+                            weight: FontWeight.w500,
                             maxline: true,
                           ),
                           MyTextWidget(
