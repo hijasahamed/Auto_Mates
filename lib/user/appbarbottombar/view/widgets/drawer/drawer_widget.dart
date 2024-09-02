@@ -65,6 +65,10 @@ class DrawerWidget extends StatelessWidget {
             DrawerListtileWidget(leadingIcon: Icons.privacy_tip_outlined, title: 'Privacy Policy',screenSize: screenSize,privecyPolicy: true,),
             DrawerListtileWidget(leadingIcon: Icons.info_outline, title: 'About',screenSize: screenSize,about: true,),
             const Spacer(),
+            Align(
+              alignment: Alignment.center,
+              child: MyTextWidget(text: 'Version 1.0.0', color: Colors.grey, size: screenSize.width/35, weight: FontWeight.w400),
+            ),
             TollFreeNumber(screenSize: screenSize),
             SocialMediaSection(screenSize: screenSize)
           ],
