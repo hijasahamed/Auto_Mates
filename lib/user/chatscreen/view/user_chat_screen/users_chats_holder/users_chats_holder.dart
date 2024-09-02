@@ -104,7 +104,7 @@ class UsersChatsHolder extends StatelessWidget {
                           child: Row(
                             children: [
                               lastMessager == currentUserUid
-                              ? Icon(Icons.check,size: screenSize.width/30,color: Colors.blueGrey,)
+                              ? Icon(Icons.check,size: screenSize.width/30,color: Colors.blue,)
                               : Icon(Icons.person, size: screenSize.width / 30, color: Colors.green),
                               Expanded(
                                 child: SizedBox(                                    
@@ -115,6 +115,7 @@ class UsersChatsHolder extends StatelessWidget {
                                         size: screenSize.width / 30,
                                         weight: FontWeight.w500)),
                               ),
+                              SizedBox(width: screenSize.width/25,),
                               MyTextWidget(
                                   text: formatTimestamp(timestamp: lastMessageTimestamp,chatsScreen: false),
                                   color:
