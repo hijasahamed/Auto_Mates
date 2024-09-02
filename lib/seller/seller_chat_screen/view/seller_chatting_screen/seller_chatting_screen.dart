@@ -134,22 +134,21 @@ class SellerChattingScreen extends StatelessWidget {
         width: screenSize.width/1.5,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              MyTextWidget(text: data['senderName'], color: Colors.blueGrey, size: screenSize.width/45, weight: FontWeight.bold),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.blue
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: MyTextWidget(text: data['message'], color: Colors.white, size: screenSize.width/30, weight: FontWeight.bold,maxline: true,),
-                )
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              color: data['senderUid'] == firebaseAuth.currentUser!.uid?Colors.green:Colors.blue
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(5),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  MyTextWidget(text: data['message'], color: Colors.white, size: screenSize.width/30, weight: FontWeight.bold,maxline: true,),
+                  MyTextWidget(text: formatTimestamp(timestamp: data['timeStamp'],chatsScreen: true), color: Colors.white, size: screenSize.width/60, weight: FontWeight.bold),
+                ],
               ),
-              MyTextWidget(text: formatTimestamp(timestamp: data['timeStamp'],chatsScreen: true), color: Colors.blueGrey, size: screenSize.width/45, weight: FontWeight.bold),
-            ],
+            )
           ),
         ),
       ),
