@@ -93,9 +93,9 @@ class SellerChatScreenChatsHolder extends StatelessWidget {
                         newMsgCount = sellerCountNewMessages(sortedChats,currentSellerUid);
               
                         return Row(
-                          children: [
-                            if(lastMessager == currentSellerUid)
-                            Icon(Icons.check,size: screenSize.width/30,color: Colors.blueGrey,),
+                          children: [                          
+                            lastMessager == currentSellerUid? Icon(Icons.check,size: screenSize.width/30,color: Colors.blue,)
+                            :Icon(Icons.person,size: screenSize.width/30,color: Colors.green,),
                             SizedBox(
                                 width: screenSize.width / 1.8,
                                 child: MyTextWidget(
