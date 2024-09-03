@@ -38,14 +38,15 @@ sellerPhoneVerification(
         contryCode: contryCode,
         phoneNumber: phoneNumber,
         screenSize: screenSize,
-        sellerAuthenticationBloc: sellerAuthenticationBloc);
-    final sharedPref = await SharedPreferences.getInstance();
-    sharedPref.setBool(sellerLogedInKey, true);
-    await sharedPref.setString('sellerProfile', existingSeller.sellerProfile);
-    await sharedPref.setString('sellerId', existingSeller.id);
-    await sharedPref.setString('sellerCompanyName', existingSeller.companyName);
-    await sharedPref.setString('sellerLocation', existingSeller.location);
-    await sharedPref.setString('sellerMobile', existingSeller.mobile);
+        sellerAuthenticationBloc: sellerAuthenticationBloc).then((value)async {
+          final sharedPref = await SharedPreferences.getInstance();
+            sharedPref.setBool(sellerLogedInKey, true);
+            await sharedPref.setString('sellerProfile', existingSeller.sellerProfile);
+            await sharedPref.setString('sellerId', existingSeller.id);
+            await sharedPref.setString('sellerCompanyName', existingSeller.companyName);
+            await sharedPref.setString('sellerLocation', existingSeller.location);
+            await sharedPref.setString('sellerMobile', existingSeller.mobile);
+        },);   
   } else if (existingSeller == null) {
     sellerAuthenticationBloc.add(GetOtpClickedStopLoadingEvent());
     snackbarWidget('Seller not registerd. Create an account', context,
@@ -61,9 +62,9 @@ Future<void> getOtpButtonClicked(
     sellerAuthenticationBloc,
     contryCode}) async {
   try {
-    await FirebaseAuth.instance
-        .verifyPhoneNumber(
-            verificationCompleted: (phoneAuthCredential) {},
+    await FirebaseAuth.instance.verifyPhoneNumber(
+            verificationCompleted: (phoneAuthCredential) {
+            },
             verificationFailed: (FirebaseAuthException ex) {},
             codeSent: (String verificationId, forceResendingToken) {
               Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -82,6 +83,9 @@ Future<void> getOtpButtonClicked(
           Colors.white, SnackBarBehavior.floating);
     });
   } catch (e) {
+    if (kDebugMode) {
+      print(e);
+    }
     sellerAuthenticationBloc.add(GetOtpClickedStopLoadingEvent());
   }
 }
@@ -142,23 +146,21 @@ createSellerAccount(
             phoneNumber: phoneNumber,
             screenSize: screenSize,
             sellerAuthenticationBloc: sellerAuthenticationBloc,
-          );
-          await addSellerDetailsToDb(
+          ).then((value) async{
+            await addSellerDetailsToDb(
               companyName: companyName,
               location: location,
               phoneNumber: phoneNumber);
-          SellerData? sellerData =
-              await checkIfSellerAccountAvailable(mobileNumber: phoneNumber);
+          SellerData? sellerData = await checkIfSellerAccountAvailable(mobileNumber: phoneNumber);
           final sharedPref = await SharedPreferences.getInstance();
           sharedPref.setBool(sellerLogedInKey, true);
-          await sharedPref.setString(
-              'sellerProfile', sellerData!.sellerProfile);
+          await sharedPref.setString('sellerProfile', sellerData!.sellerProfile);
           await sharedPref.setString('sellerId', sellerData.id);
-          await sharedPref.setString(
-              'sellerCompanyName', sellerData.companyName);
+          await sharedPref.setString('sellerCompanyName', sellerData.companyName);
           await sharedPref.setString('sellerLocation', sellerData.location);
           await sharedPref.setString('sellerMobile', sellerData.mobile);
           sellerProfileImage = null;
+          },);          
         }
       } catch (e) {
         if (kDebugMode) {
