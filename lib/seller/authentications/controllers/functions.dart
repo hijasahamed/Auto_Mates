@@ -98,7 +98,7 @@ Future<void> submitOtp(
         verificationId: verificationId, smsCode: smsCode);
     FirebaseAuth.instance.signInWithCredential(credential).then(
       (value) async {
-        addSellerDetailsToLocalStorage(phoneNumber: phoneNumber);
+        await addSellerDetailsToLocalStorage(phoneNumber: phoneNumber);
         verifyOtpBlocInstance.add(SubmitOtpClickedStopLoadingEvent());
         verifyOtpBlocInstance.add(SubmitOtpButtonClickedSuccessEvent());
       },
