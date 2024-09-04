@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:auto_mates/seller/authentications/controllers/functions.dart';
 import 'package:auto_mates/seller/authentications/view/bloc/seller_authentication_bloc.dart';
 import 'package:auto_mates/seller/authentications/view/widgets/otp_verification_widgets/submit_otp_widget.dart';
@@ -23,9 +25,14 @@ class OtpVerificationScreen extends StatelessWidget {
         SellerAuthenticationBloc();
     return BlocConsumer<SellerAuthenticationBloc, SellerAuthenticationState>(
       bloc: sellerAuthenticationBloc,
-      listener: (context, state) {
+      listener: (context, state)async {
         if (state is SubmitOtpButtonClickedActionState) {
-          submitOtp(verificationId, state.code, context, verifyOtpBlocInstance);
+          bool success = await submitOtp(verificationId, state.code, context, verifyOtpBlocInstance);
+          if (success) {
+            addSellerDetailsToSharedPreference(phoneNumber: phoneNumber);
+          } else {
+            return;
+          }
         }
         if (state is ResendOtpButtonClickedAction) {
           resendOtp(phoneNumber);
