@@ -16,9 +16,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:pinput/pinput.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-String otpWarn =
-    'Please enter the OTP sent to your registered phone number to complete your verification.';
-
+String otpWarn = 'Please enter the OTP sent to your registered phone number to complete your verification.';
 String otpSmsCode = '';
 String countrryCode = '+91';
 
