@@ -21,7 +21,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 String otpWarn = 'Please enter the OTP sent to your registered phone number to complete your verification.';
 String otpSmsCode = '';
 String countrryCode = '+91';
-bool otpResult = false;
 
 sellerPhoneVerification(
     {required GlobalKey<FormState> formkey,
@@ -39,23 +38,20 @@ sellerPhoneVerification(
         contryCode: contryCode,
         phoneNumber: phoneNumber,
         screenSize: screenSize,
-        sellerAuthenticationBloc: sellerAuthenticationBloc);
+        sellerAuthenticationBloc: sellerAuthenticationBloc).then((value)async {
+          final sharedPref = await SharedPreferences.getInstance();
+    sharedPref.setBool(sellerLogedInKey, true);
+    await sharedPref.setString('sellerProfile', existingSeller.sellerProfile);
+    await sharedPref.setString('sellerId', existingSeller.id);
+    await sharedPref.setString('sellerCompanyName', existingSeller.companyName);
+    await sharedPref.setString('sellerLocation', existingSeller.location);
+    await sharedPref.setString('sellerMobile', existingSeller.mobile);
+    },);   
   } else if (existingSeller == null) {
     sellerAuthenticationBloc.add(GetOtpClickedStopLoadingEvent());
     snackbarWidget('Seller not registerd. Create an account', context,
         Colors.red, Colors.white, SnackBarBehavior.floating);
   }
-}
-
-addSellerDetailsToSharedPreference({phoneNumber})async{
-  SellerData? existingSeller = await checkIfSellerAccountAvailable(mobileNumber: phoneNumber);
-  final sharedPref = await SharedPreferences.getInstance();
-  sharedPref.setBool(sellerLogedInKey, true);
-  await sharedPref.setString('sellerProfile', existingSeller!.sellerProfile);
-  await sharedPref.setString('sellerId', existingSeller.id);
-  await sharedPref.setString('sellerCompanyName', existingSeller.companyName);
-  await sharedPref.setString('sellerLocation', existingSeller.location);
-  await sharedPref.setString('sellerMobile', existingSeller.mobile);
 }
 
 Future<void> getOtpButtonClicked(
@@ -68,12 +64,7 @@ Future<void> getOtpButtonClicked(
   try {
     await FirebaseAuth.instance.verifyPhoneNumber(
             verificationCompleted: (phoneAuthCredential) {},
-            verificationFailed: (FirebaseAuthException ex) {
-              sellerAuthenticationBloc.add(GetOtpClickedStopLoadingEvent());
-              snackbarWidget(
-                'OTP not deliverd. Something issue', context, Colors.red,Colors.white, SnackBarBehavior.floating
-              );
-            },
+            verificationFailed: (FirebaseAuthException ex) {},
             codeSent: (String verificationId, forceResendingToken) {
               Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => OtpVerificationScreen(
@@ -84,7 +75,12 @@ Future<void> getOtpButtonClicked(
                       )));
             },
             codeAutoRetrievalTimeout: (String verificationId) {},
-            phoneNumber: '${contryCode + phoneNumber.toString()}');       
+            phoneNumber: '${contryCode + phoneNumber.toString()}')
+        .catchError((e) {
+      sellerAuthenticationBloc.add(GetOtpClickedStopLoadingEvent());
+      snackbarWidget('OTP not deliverd. Somthing issue', context, Colors.red,
+          Colors.white, SnackBarBehavior.floating);
+    });
   } catch (e) {
     if (kDebugMode) {
       print(e);
@@ -93,28 +89,28 @@ Future<void> getOtpButtonClicked(
   }
 }
 
-Future<bool> submitOtp(
-    String verificationId, String smsCode, BuildContext context, SellerAuthenticationBloc verifyOtpBlocInstance) async {
+Future<void> submitOtp(
+    verificationId, smsCode, context, verifyOtpBlocInstance) async {
   try {
     verifyOtpBlocInstance.add(SubmitOtpClickedLoadingEvent());
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: verificationId, smsCode: smsCode);
-    
-    await FirebaseAuth.instance.signInWithCredential(credential);
-    
-    final sharedPref = await SharedPreferences.getInstance();
-    await sharedPref.setBool(sellerLogedInKey, true);
-    
-    verifyOtpBlocInstance.add(SubmitOtpClickedStopLoadingEvent());
-    verifyOtpBlocInstance.add(SubmitOtpButtonClickedSuccessEvent());
-    
-    return true;
-  } catch (e) {
-    verifyOtpBlocInstance.add(SubmitOtpClickedStopLoadingEvent());
-    snackbarWidget('Invalid OTP', context, Colors.red, Colors.white,
-        SnackBarBehavior.floating);
-    
-    return false;
+    FirebaseAuth.instance.signInWithCredential(credential).then(
+      (value) async {
+        final sharedPref = await SharedPreferences.getInstance();
+        await sharedPref.setBool(sellerLogedInKey, true);
+        verifyOtpBlocInstance.add(SubmitOtpClickedStopLoadingEvent());
+        verifyOtpBlocInstance.add(SubmitOtpButtonClickedSuccessEvent());
+      },
+    ).catchError((e) {
+      verifyOtpBlocInstance.add(SubmitOtpClickedStopLoadingEvent());
+      snackbarWidget('Invalid OTP', context, Colors.red, Colors.white,
+          SnackBarBehavior.floating);
+    });
+  } catch (x) {
+    if (kDebugMode) {
+      print(x);
+    }
   }
 }
 
