@@ -53,6 +53,7 @@ addSellerDetailsToLocalStorage({phoneNumber})async{
   await sharedPref.setString('sellerCompanyName', existingSeller.companyName);
   await sharedPref.setString('sellerLocation', existingSeller.location);
   await sharedPref.setString('sellerMobile', existingSeller.mobile);
+  sellerProfileImage = null;
 }
 
 Future<void> getOtpButtonClicked(
@@ -65,7 +66,14 @@ Future<void> getOtpButtonClicked(
   try {
     await FirebaseAuth.instance.verifyPhoneNumber(
             verificationCompleted: (phoneAuthCredential) {},
-            verificationFailed: (FirebaseAuthException ex) {},
+            verificationFailed: (FirebaseAuthException ex) {
+              sellerAuthenticationBloc.add(GetOtpClickedStopLoadingEvent());
+              snackbarWidget(
+                'OTP not delivered. Something went wrong: ${ex.message}',
+                context, Colors.red, Colors.white, 
+                SnackBarBehavior.floating
+              );
+            },
             codeSent: (String verificationId, forceResendingToken) {
               Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => OtpVerificationScreen(
