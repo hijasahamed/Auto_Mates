@@ -36,20 +36,23 @@ sellerPhoneVerification(
         contryCode: contryCode,
         phoneNumber: phoneNumber,
         screenSize: screenSize,
-        sellerAuthenticationBloc: sellerAuthenticationBloc).then((value)async {
-          final sharedPref = await SharedPreferences.getInstance();
-    sharedPref.setBool(sellerLogedInKey, true);
-    await sharedPref.setString('sellerProfile', existingSeller.sellerProfile);
-    await sharedPref.setString('sellerId', existingSeller.id);
-    await sharedPref.setString('sellerCompanyName', existingSeller.companyName);
-    await sharedPref.setString('sellerLocation', existingSeller.location);
-    await sharedPref.setString('sellerMobile', existingSeller.mobile);
-    },);   
+        sellerAuthenticationBloc: sellerAuthenticationBloc);
   } else if (existingSeller == null) {
     sellerAuthenticationBloc.add(GetOtpClickedStopLoadingEvent());
     snackbarWidget('Seller not registerd. Create an account', context,
         Colors.red, Colors.white, SnackBarBehavior.floating);
   }
+}
+
+addSellerDetailsToLocalStorage({phoneNumber})async{
+  SellerData? existingSeller = await checkIfSellerAccountAvailable(mobileNumber: phoneNumber);
+  final sharedPref = await SharedPreferences.getInstance();
+  sharedPref.setBool(sellerLogedInKey, true);
+  await sharedPref.setString('sellerProfile', existingSeller!.sellerProfile);
+  await sharedPref.setString('sellerId', existingSeller.id);
+  await sharedPref.setString('sellerCompanyName', existingSeller.companyName);
+  await sharedPref.setString('sellerLocation', existingSeller.location);
+  await sharedPref.setString('sellerMobile', existingSeller.mobile);
 }
 
 Future<void> getOtpButtonClicked(
@@ -88,15 +91,14 @@ Future<void> getOtpButtonClicked(
 }
 
 Future<void> submitOtp(
-    verificationId, smsCode, context, verifyOtpBlocInstance) async {
+    verificationId, smsCode, context, verifyOtpBlocInstance,phoneNumber) async {
   try {
     verifyOtpBlocInstance.add(SubmitOtpClickedLoadingEvent());
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: verificationId, smsCode: smsCode);
     FirebaseAuth.instance.signInWithCredential(credential).then(
       (value) async {
-        final sharedPref = await SharedPreferences.getInstance();
-        await sharedPref.setBool(sellerLogedInKey, true);
+        addSellerDetailsToLocalStorage(phoneNumber: phoneNumber);
         verifyOtpBlocInstance.add(SubmitOtpClickedStopLoadingEvent());
         verifyOtpBlocInstance.add(SubmitOtpButtonClickedSuccessEvent());
       },

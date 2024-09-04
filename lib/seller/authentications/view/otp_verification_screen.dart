@@ -27,7 +27,7 @@ class OtpVerificationScreen extends StatelessWidget {
       bloc: sellerAuthenticationBloc,
       listener: (context, state) {
         if (state is SubmitOtpButtonClickedActionState) {
-          submitOtp(verificationId, state.code, context, verifyOtpBlocInstance);
+          submitOtp(verificationId, state.code, context, verifyOtpBlocInstance,phoneNumber);
         }
         if (state is ResendOtpButtonClickedAction) {
           resendOtp(phoneNumber);
