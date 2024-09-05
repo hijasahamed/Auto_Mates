@@ -20,7 +20,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 String otpWarn = 'Please enter the OTP sent to your registered phone number to complete your verification.';
 String otpSmsCode = '';
-String countrryCode = '+911';
+String countrryCode = '+91';
 
 sellerPhoneVerification(
     {required GlobalKey<FormState> formkey,
@@ -86,7 +86,7 @@ Future<void> getOtpButtonClicked(
                       )));
             },
             codeAutoRetrievalTimeout: (String verificationId) {},
-            phoneNumber: '${contryCode + phoneNumber.toString()}'
+            phoneNumber: '${contryCode+phoneNumber.toString()}'
           )
         .catchError((e) {
       sellerAuthenticationBloc.add(GetOtpClickedStopLoadingEvent());
