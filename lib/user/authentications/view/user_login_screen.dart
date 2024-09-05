@@ -55,6 +55,14 @@ class UserLoginScreen extends StatelessWidget {
             builder: (context) => ForgotPasswordScreen(screenSize: screenSize,authenticationBloc: authenticationBloc,),
           ));
         }
+        else if(state is LoginWithGoogleLoadingState){
+            showDialog(
+              context: context,
+              barrierDismissible: false, 
+              builder: (context) {
+              return const Center(child: CircularProgressIndicator(color: Colors.blue,));
+            },);
+        }
       },
       builder: (context, state) {
         return Scaffold(

@@ -27,6 +27,8 @@ class SignupSuccessfullAndAccountCreatedActionState extends AuthenticationAction
 
 class LoginWithGoogleButtonSuccessfulNavigateToScreenActionState extends AuthenticationActionState{}
 
+class LoginWithGoogleLoadingState extends AuthenticationActionState{}
+
 class ForgetPasswordButtonClickedActionState extends  AuthenticationActionState{}
 
 class ResetPasswordButtonClickedActionState extends AuthenticationActionState{}

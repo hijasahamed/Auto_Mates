@@ -17,7 +17,7 @@ class UserDetails extends StatelessWidget {
         MyTextWidget(
             text: 'Name: ${user.userName}',
             color: const Color(0xFF424141),
-            size: screenSize.width / 20,
+            size: screenSize.width / 22,
             maxline: true,
             weight: FontWeight.bold),
         MyTextWidget(

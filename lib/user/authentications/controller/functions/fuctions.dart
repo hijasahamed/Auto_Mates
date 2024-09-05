@@ -13,6 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:path_provider/path_provider.dart';
 
 
 final FirebaseAuthService auth = FirebaseAuthService();
@@ -178,7 +180,12 @@ addUserProfileImage({bloc,editBloc})async{
   
 }
 
-Future<String?> addUserProfileToDb() async {
+Future<String?> addUserProfileToDb({fromGoogleSignup}) async {
+
+  if (userProfileImage == null && fromGoogleSignup == true) {
+    userProfileImage = await saveAssetImageToFile('assets/images/avatar_image.webp');
+  }
+
   if (userProfileImage == null) {
     return null;
   }
@@ -201,10 +208,32 @@ Future<String?> addUserProfileToDb() async {
   }
 }
 
+Future<String?> saveAssetImageToFile(String assetPath) async {
+  try {
+    // Load the image from assets
+    final byteData = await rootBundle.load(assetPath);
+
+    // Get the temporary directory
+    final tempDir = await getTemporaryDirectory();
+    final file = File('${tempDir.path}/default_profile_image.png');
+
+    // Write the byte data to the file
+    await file.writeAsBytes(byteData.buffer.asUint8List());
+
+    // Return the file path
+    return file.path;
+  } catch (e) {
+    if (kDebugMode) {
+      print('Error saving asset image to file: $e');
+    }
+    return null;
+  }
+}
+
 addUserSignupDatatoDb({username, email,mobile,location}) async{
   final CollectionReference signupFirebaseObject =
       FirebaseFirestore.instance.collection('userSignupData');
-  String? imageUrl = await addUserProfileToDb();
+  String? imageUrl = await addUserProfileToDb(fromGoogleSignup: true);
   final data = {
     'userProfile':imageUrl,
     'userName': username, 
@@ -223,6 +252,9 @@ logInWithGoogle(authenticationBloc) async {
         await googleSignIn.signIn();
 
     if (googleSignInAccount != null) {
+
+      authenticationBloc.add(LoginWithGoogleLoadingEvent());
+
       final GoogleSignInAuthentication googleSignInAuthentication =
           await googleSignInAccount.authentication;
 
@@ -233,24 +265,24 @@ logInWithGoogle(authenticationBloc) async {
       await FirebaseAuth.instance.signInWithCredential(credential);
 
       String googleEmail=googleSignInAccount.email;
-      String userName = googleEmail.split('@')[0].toUpperCase();
+      String userName = googleEmail.split('@')[0];
       UserData? isExistingUser = await checkIfUserAvailable(googleEmail);
+      
 
-      if(isExistingUser==null){
-        await addUserSignupDatatoDb(email: googleEmail,username: userName,location: googleEmail,mobile: googleEmail);
-        isExistingUser= await checkIfUserAvailable(googleEmail);
+      if(isExistingUser == null){
+        await addUserSignupDatatoDb(email: googleEmail,username: userName,location: 'No Data',mobile: 'No Data');
+        isExistingUser = await checkIfUserAvailable(googleEmail);
       }
 
-      if(isExistingUser != null){
-        authenticationBloc.add(LoginWithGoogleButtonSuccessfulNavigateToScreenEvent());
-        final sharedPref = await SharedPreferences.getInstance();
-        await sharedPref.setBool(logedInKey, true);
-        await sharedPref.setString('id', isExistingUser.id);
-        await sharedPref.setString('email', isExistingUser.email);
-        await sharedPref.setString('userName', isExistingUser.userName); 
-        await sharedPref.setString('mobile', isExistingUser.mobile);
-        await sharedPref.setString('location', isExistingUser.location);
-      }     
+      final sharedPref = await SharedPreferences.getInstance();
+      await sharedPref.setBool(logedInKey, true);
+      await sharedPref.setString('id', isExistingUser!.id);
+      await sharedPref.setString('email', isExistingUser.email);
+      await sharedPref.setString('userName', isExistingUser.userName); 
+      await sharedPref.setString('mobile', isExistingUser.mobile);
+      await sharedPref.setString('location', isExistingUser.location);
+      await sharedPref.setString('userProfile', isExistingUser.userProfile);
+      authenticationBloc.add(LoginWithGoogleButtonSuccessfulNavigateToScreenEvent());
     }
   } catch (e) {
     if (kDebugMode) {

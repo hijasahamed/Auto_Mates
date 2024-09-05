@@ -24,6 +24,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     on<UserLoginLoadingStartEvent>(userLoginLoadingStartEvent);
     on<UserLoginLoadingStopEvent>(userLoginLoadingStopEvent);
     on<UserLogedinEvent>(userLogedinEvent);
+    on<LoginWithGoogleLoadingEvent>(loginWithGoogleLoadingEvent);
   }
 
   FutureOr<void> navigateToSignupPageEvent(
@@ -99,6 +100,11 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   FutureOr<void> userLogedinEvent(
     UserLogedinEvent event, Emitter<AuthenticationState> emit) {
       emit(UserLogedinState());
+  }
+
+  FutureOr<void> loginWithGoogleLoadingEvent(
+    LoginWithGoogleLoadingEvent event, Emitter<AuthenticationState> emit) {
+      emit(LoginWithGoogleLoadingState());
   }
 }
 

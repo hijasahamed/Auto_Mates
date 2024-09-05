@@ -35,7 +35,7 @@ class UserSignupScreen extends StatelessWidget {
         }
         else if (state is SignupNotSuccessfullActionState){
           snackbarWidget('User account creation failed. Provide Correct Details', context,Colors.blue,Colors.white,SnackBarBehavior.floating);
-        }
+        }        
       },
       builder: (context, state) {
         return Scaffold(
