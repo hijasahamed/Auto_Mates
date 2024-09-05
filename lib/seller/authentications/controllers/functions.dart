@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:io';
 
 import 'package:auto_mates/seller/authentications/model/model.dart';
@@ -18,7 +20,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 String otpWarn = 'Please enter the OTP sent to your registered phone number to complete your verification.';
 String otpSmsCode = '';
-String countrryCode = '+91';
+String countrryCode = '+911';
 
 sellerPhoneVerification(
     {required GlobalKey<FormState> formkey,
@@ -69,7 +71,7 @@ Future<void> getOtpButtonClicked(
             verificationFailed: (FirebaseAuthException ex) {
               sellerAuthenticationBloc.add(GetOtpClickedStopLoadingEvent());
               snackbarWidget(
-                'OTP not delivered. Something went wrong: ${ex.message}',
+                'OTP not delivered.',
                 context, Colors.red, Colors.white, 
                 SnackBarBehavior.floating
               );
@@ -84,7 +86,8 @@ Future<void> getOtpButtonClicked(
                       )));
             },
             codeAutoRetrievalTimeout: (String verificationId) {},
-            phoneNumber: '${contryCode + phoneNumber.toString()}')
+            phoneNumber: '${contryCode + phoneNumber.toString()}'
+          )
         .catchError((e) {
       sellerAuthenticationBloc.add(GetOtpClickedStopLoadingEvent());
       snackbarWidget('OTP not deliverd. Somthing issue', context, Colors.red,
