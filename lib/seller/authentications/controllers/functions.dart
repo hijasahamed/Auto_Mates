@@ -70,10 +70,20 @@ Future<void> getOtpButtonClicked(
             verificationCompleted: (phoneAuthCredential) {},
             verificationFailed: (FirebaseAuthException ex) {
               sellerAuthenticationBloc.add(GetOtpClickedStopLoadingEvent());
+              String errorMsg;
+              if (ex.code == 'invalid-phone-number') {
+                errorMsg = 'The phone number entered is invalid.';
+              } else if (ex.code == 'too-many-requests') {
+                errorMsg = 'Too many requests. Try again later.';
+              } else {
+                errorMsg = 'OTP not delivered. Please check your phone number or try again later.';
+              }
               snackbarWidget(
-                'OTP not delivered.',
-                context, Colors.red, Colors.white, 
-                SnackBarBehavior.floating
+                errorMsg,
+                context,
+                Colors.red,
+                Colors.white,
+                SnackBarBehavior.floating,
               );
             },
             codeSent: (String verificationId, forceResendingToken) {

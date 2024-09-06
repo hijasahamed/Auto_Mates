@@ -27,6 +27,7 @@ class CarHolder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return GestureDetector(
       onTap: () {
         (isFromSeller == true)
