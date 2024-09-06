@@ -76,7 +76,7 @@ Future<void> getOtpButtonClicked(
               } else if (ex.code == 'too-many-requests') {
                 errorMsg = 'Too many requests. Try again later.';
               } else {
-                errorMsg = 'OTP not delivered. Please check your phone number or try again later.';
+                errorMsg = 'OTP not delivered.';
               }
               snackbarWidget(
                 errorMsg,
