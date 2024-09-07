@@ -16,8 +16,6 @@ class SellerChatScreenChatsHolder extends StatelessWidget {
   final SellerData currentSeller;
   @override
   Widget build(BuildContext context) {
-    bool hasNewMessage;
-    int newMsgCount;
     return InkWell(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
@@ -84,17 +82,14 @@ class SellerChatScreenChatsHolder extends StatelessWidget {
                           return aTimestamp.compareTo(bTimestamp);
                         }); 
                         var lastMessage = sortedChats.last['message'];
-                        var lastMessager = sortedChats.last['senderUid'];
+                        var lastMessager = sortedChats.last['senderId'];
                         var timestamp = sortedChats.last['timeStamp'];
                         var formattedTimestamp = timestamp as Timestamp;
                         
-                        final String currentSellerUid = FirebaseAuth.instance.currentUser!.uid;
-                        hasNewMessage = sellerCheckForNewMessage(sortedChats: sortedChats,currentId: currentSellerUid);
-                        newMsgCount = sellerCountNewMessages(sortedChats,currentSellerUid);
               
                         return Row(
                           children: [                          
-                            lastMessager == currentSellerUid? Icon(Icons.check,size: screenSize.width/30,color: Colors.blue,)
+                            lastMessager == currentSeller.id? Icon(Icons.check,size: screenSize.width/30,color: Colors.blue,)
                             :Icon(Icons.person,size: screenSize.width/30,color: Colors.green,),
                             SizedBox(
                                 width: screenSize.width / 1.8,
@@ -110,18 +105,7 @@ class SellerChatScreenChatsHolder extends StatelessWidget {
                                     const Color.fromARGB(255, 126, 126, 126),
                                 size: screenSize.width / 30,
                                 weight: FontWeight.w500
-                            ),
-                            if(hasNewMessage==true && newMsgCount>0)
-                            Padding(
-                              padding: const EdgeInsets.only(right: 5,left: 5),
-                              child: CircleAvatar(
-                                radius: 8,
-                                backgroundColor: Colors.green,
-                                child: Center(
-                                  child: MyTextWidget(text: newMsgCount.toString(), color: Colors.white, size: screenSize.width/40, weight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
+                            ),                           
                           ],
                         );
                       }

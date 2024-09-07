@@ -58,6 +58,58 @@ addSellerDetailsToLocalStorage({phoneNumber})async{
   sellerProfileImage = null;
 }
 
+// Future<void> getOtpButtonClicked(
+//     {required GlobalKey<FormState> formkey,
+//     phoneNumber,
+//     context,
+//     screenSize,
+//     sellerAuthenticationBloc,
+//     contryCode}) async {
+//   try {
+//     await FirebaseAuth.instance.verifyPhoneNumber(
+//             verificationCompleted: (phoneAuthCredential) {},
+//             verificationFailed: (FirebaseAuthException ex) {
+//               sellerAuthenticationBloc.add(GetOtpClickedStopLoadingEvent());
+//               String errorMsg;
+//               if (ex.code == 'invalid-phone-number') {
+//                 errorMsg = 'The phone number entered is invalid.';
+//               } else if (ex.code == 'too-many-requests') {
+//                 errorMsg = 'Too many requests. Try again later.';
+//               } else {
+//                 errorMsg = 'OTP not delivered.';
+//               }
+//               snackbarWidget(
+//                 errorMsg,
+//                 context,
+//                 Colors.red,
+//                 Colors.white,
+//                 SnackBarBehavior.floating,
+//               );
+//             },
+//             codeSent: (String verificationId, forceResendingToken) {
+//               Navigator.of(context).pushReplacement(MaterialPageRoute(
+//                   builder: (context) => OtpVerificationScreen(
+//                         sellerAuthenticationBloc: sellerAuthenticationBloc,
+//                         screenSize: screenSize,
+//                         verificationId: verificationId,
+//                         phoneNumber: phoneNumber,
+//                       )));
+//             },
+//             codeAutoRetrievalTimeout: (String verificationId) {},
+//             phoneNumber: '${contryCode+phoneNumber.toString()}'
+//           ) 
+//         .catchError((e) {
+//       sellerAuthenticationBloc.add(GetOtpClickedStopLoadingEvent());
+//       snackbarWidget('OTP not deliverd. Somthing issue', context, Colors.red,
+//           Colors.white, SnackBarBehavior.floating);
+//     });
+//   } catch (e) {
+//     if (kDebugMode) {
+//       print(e);
+//     }
+//     sellerAuthenticationBloc.add(GetOtpClickedStopLoadingEvent());
+//   }
+// }
 Future<void> getOtpButtonClicked(
     {required GlobalKey<FormState> formkey,
     phoneNumber,
@@ -66,43 +118,13 @@ Future<void> getOtpButtonClicked(
     sellerAuthenticationBloc,
     contryCode}) async {
   try {
-    await FirebaseAuth.instance.verifyPhoneNumber(
-            verificationCompleted: (phoneAuthCredential) {},
-            verificationFailed: (FirebaseAuthException ex) {
-              sellerAuthenticationBloc.add(GetOtpClickedStopLoadingEvent());
-              String errorMsg;
-              if (ex.code == 'invalid-phone-number') {
-                errorMsg = 'The phone number entered is invalid.';
-              } else if (ex.code == 'too-many-requests') {
-                errorMsg = 'Too many requests. Try again later.';
-              } else {
-                errorMsg = 'OTP not delivered.';
-              }
-              snackbarWidget(
-                errorMsg,
-                context,
-                Colors.red,
-                Colors.white,
-                SnackBarBehavior.floating,
-              );
-            },
-            codeSent: (String verificationId, forceResendingToken) {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => OtpVerificationScreen(
-                        sellerAuthenticationBloc: sellerAuthenticationBloc,
-                        screenSize: screenSize,
-                        verificationId: verificationId,
-                        phoneNumber: phoneNumber,
-                      )));
-            },
-            codeAutoRetrievalTimeout: (String verificationId) {},
-            phoneNumber: '${contryCode+phoneNumber.toString()}'
-          )
-        .catchError((e) {
-      sellerAuthenticationBloc.add(GetOtpClickedStopLoadingEvent());
-      snackbarWidget('OTP not deliverd. Somthing issue', context, Colors.red,
-          Colors.white, SnackBarBehavior.floating);
-    });
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+    builder: (context) => OtpVerificationScreen(
+          sellerAuthenticationBloc: sellerAuthenticationBloc,
+          screenSize: screenSize,
+          verificationId: 'nodata',
+          phoneNumber: phoneNumber,
+        )));
   } catch (e) {
     if (kDebugMode) {
       print(e);
@@ -111,23 +133,44 @@ Future<void> getOtpButtonClicked(
   }
 }
 
+// Future<void> submitOtp(
+//     verificationId, smsCode, context, verifyOtpBlocInstance,phoneNumber,selfOtp) async {
+//   try {
+//     verifyOtpBlocInstance.add(SubmitOtpClickedLoadingEvent());
+//     PhoneAuthCredential credential = PhoneAuthProvider.credential(
+//         verificationId: verificationId, smsCode: smsCode);
+//     FirebaseAuth.instance.signInWithCredential(credential).then(
+//       (value) async {
+//         await addSellerDetailsToLocalStorage(phoneNumber: phoneNumber);
+//         verifyOtpBlocInstance.add(SubmitOtpClickedStopLoadingEvent());
+//         verifyOtpBlocInstance.add(SubmitOtpButtonClickedSuccessEvent());
+//       },
+//     ).catchError((e) {
+//       verifyOtpBlocInstance.add(SubmitOtpClickedStopLoadingEvent());
+//       snackbarWidget('Invalid OTP', context, Colors.red, Colors.white,
+//           SnackBarBehavior.floating);
+//     });
+//   } catch (x) {
+//     if (kDebugMode) {
+//       print(x);
+//     }
+//   }
+// }
 Future<void> submitOtp(
-    verificationId, smsCode, context, verifyOtpBlocInstance,phoneNumber) async {
+    verificationId, smsCode, context, verifyOtpBlocInstance,phoneNumber,selfOtp) async {
   try {
     verifyOtpBlocInstance.add(SubmitOtpClickedLoadingEvent());
-    PhoneAuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: verificationId, smsCode: smsCode);
-    FirebaseAuth.instance.signInWithCredential(credential).then(
-      (value) async {
+    print('otp is $selfOtp');
+    print('typed otp is $smsCode');
+    if(selfOtp.toString() == smsCode.toString()){
         await addSellerDetailsToLocalStorage(phoneNumber: phoneNumber);
         verifyOtpBlocInstance.add(SubmitOtpClickedStopLoadingEvent());
         verifyOtpBlocInstance.add(SubmitOtpButtonClickedSuccessEvent());
-      },
-    ).catchError((e) {
+    }else{
       verifyOtpBlocInstance.add(SubmitOtpClickedStopLoadingEvent());
       snackbarWidget('Invalid OTP', context, Colors.red, Colors.white,
-          SnackBarBehavior.floating);
-    });
+      SnackBarBehavior.floating);
+    }
   } catch (x) {
     if (kDebugMode) {
       print(x);

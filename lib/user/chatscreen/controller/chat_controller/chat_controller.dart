@@ -6,10 +6,12 @@ import 'package:auto_mates/seller/seller_chat_screen/controller/seller_chat_cont
 import 'package:auto_mates/user/chatscreen/model/model.dart';
 import 'package:auto_mates/user/chatscreen/view/bloc/user_chat_bloc.dart';
 import 'package:auto_mates/user/chatscreen/view/rate_sellers/rate_sellers.dart';
+import 'package:auto_mates/user/splashscreen/controllers/functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ChatController extends ChangeNotifier {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
@@ -17,8 +19,10 @@ class ChatController extends ChangeNotifier {
 
   Future<void> sendMessage(
       {receiverId, message, senderName, senderId, sellersMessage}) async {
-    final String currentUserUid = firebaseAuth.currentUser!.uid;
-    final String currentUserEmail = firebaseAuth.currentUser!.email.toString();
+        final sharedPref = await SharedPreferences.getInstance();
+    final isLogedin = sharedPref.getBool(logedInKey);
+    final String currentUserUid = (isLogedin == true)?firebaseAuth.currentUser!.uid:'noData';
+    final String currentUserEmail = (isLogedin == true)?firebaseAuth.currentUser!.email.toString():'noData';
     final Timestamp timestamp = Timestamp.now();
 
     Message newMessage = Message(

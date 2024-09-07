@@ -123,7 +123,7 @@ class SellerChattingScreen extends StatelessWidget {
     Map<String,dynamic> data = document.data() as Map<String,dynamic>;
 
 
-    var alignment = (data['senderUid'] == firebaseAuth.currentUser!.uid)
+    var alignment = (data['senderId'] == currentSeller.id)
     ? Alignment.centerRight
     : Alignment.centerLeft;
 
@@ -137,7 +137,7 @@ class SellerChattingScreen extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
-              color: data['senderUid'] == firebaseAuth.currentUser!.uid?Colors.green:Colors.blue
+              color: data['senderId'] == currentSeller.id?Colors.green:Colors.blue
             ),
             child: Padding(
               padding: const EdgeInsets.all(5),

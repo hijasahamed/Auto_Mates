@@ -8,6 +8,7 @@ class OtpScreenWelcomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
           height: screenSize.height/4.5,
@@ -21,10 +22,7 @@ class OtpScreenWelcomeWidget extends StatelessWidget {
           padding: EdgeInsets.all(8.0),
           child: MyTextWidget(text: 'OTP Verification', color: Colors.black, size: 30, weight: FontWeight.bold),
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 10,bottom: 5,left: 20,right: 20),
-          child: MyTextWidget(text: otpWarn, color: const Color(0XFFB5B5B5), size: 15, weight: FontWeight.bold),
-        ),
+        MyTextWidget(text: otpWarn, color: const Color(0XFFB5B5B5), size: 15, weight: FontWeight.bold,maxline: true,alignTextCenter: true,),
         
       ],
     );
