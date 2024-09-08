@@ -41,7 +41,6 @@ class _GoogleSignupUpdateDetailsState extends State<GoogleSignupUpdateDetails> {
 
   Future<void> _updateUserData(context) async {
     if (_formKey.currentState!.validate()) {
-      print('updating data');
       await FirebaseFirestore.instance
           .collection('userSignupData')
           .doc(widget.userId)
@@ -49,7 +48,6 @@ class _GoogleSignupUpdateDetailsState extends State<GoogleSignupUpdateDetails> {
         'mobile': _mobileController.text,
         'location': _locationController.text,
       }).then((value)async {
-        print('then working');
         UserData? isExistingUser = await checkIfUserAvailable(widget.googleEmail);
         final sharedPref = await SharedPreferences.getInstance();
         await sharedPref.setBool(logedInKey, true);
