@@ -214,15 +214,6 @@ createSellerAccount(
               companyName: companyName,
               location: location,
               phoneNumber: phoneNumber);
-          SellerData? sellerData = await checkIfSellerAccountAvailable(mobileNumber: phoneNumber);
-          final sharedPref = await SharedPreferences.getInstance();
-          sharedPref.setBool(sellerLogedInKey, true);
-          await sharedPref.setString('sellerProfile', sellerData!.sellerProfile);
-          await sharedPref.setString('sellerId', sellerData.id);
-          await sharedPref.setString('sellerCompanyName', sellerData.companyName);
-          await sharedPref.setString('sellerLocation', sellerData.location);
-          await sharedPref.setString('sellerMobile', sellerData.mobile);
-          sellerProfileImage = null;
           },);          
         }
       } catch (e) {
