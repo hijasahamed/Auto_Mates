@@ -10,7 +10,7 @@ class GoogleLoginwidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        logInWithGoogle(authenticationBloc);
+        logInWithGoogle(authenticationBloc,context,screenSize);
       },
       child: Container(
         decoration: BoxDecoration(

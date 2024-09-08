@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:auto_mates/user/authentications/controller/bloc/authentication_bloc.dart';
 import 'package:auto_mates/user/authentications/view/user_login_screen.dart';
+import 'package:auto_mates/user/authentications/view/widgets/login_screen_widgets/google_signup_update_details.dart';
 import 'package:auto_mates/user/commonwidgets/my_snackbar/my_snackbar.dart';
 import 'package:auto_mates/user/profilescreen/view/bloc/profile_screen_bloc.dart';
 import 'package:auto_mates/user/splashscreen/controllers/functions.dart';
@@ -245,7 +246,7 @@ addUserSignupDatatoDb({username, email,mobile,location}) async{
   signupFirebaseObject.add(data);
 }
 
-logInWithGoogle(authenticationBloc) async {
+logInWithGoogle(authenticationBloc,context,screenSize) async {
   final GoogleSignIn googleSignIn = GoogleSignIn();
   try {
     final GoogleSignInAccount? googleSignInAccount =
@@ -271,18 +272,23 @@ logInWithGoogle(authenticationBloc) async {
 
       if(isExistingUser == null){
         await addUserSignupDatatoDb(email: googleEmail,username: userName,location: 'No Data',mobile: 'No Data');
-        isExistingUser = await checkIfUserAvailable(googleEmail);
+        isExistingUser = await checkIfUserAvailable(googleEmail);        
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
+          return GoogleSignupUpdateDetails(screenSize: screenSize,authenticationBloc: authenticationBloc,userId: isExistingUser!.id,googleEmail: googleEmail,);
+        },));
       }
-
-      final sharedPref = await SharedPreferences.getInstance();
-      await sharedPref.setBool(logedInKey, true);
-      await sharedPref.setString('id', isExistingUser!.id);
-      await sharedPref.setString('email', isExistingUser.email);
-      await sharedPref.setString('userName', isExistingUser.userName); 
-      await sharedPref.setString('mobile', isExistingUser.mobile);
-      await sharedPref.setString('location', isExistingUser.location);
-      await sharedPref.setString('userProfile', isExistingUser.userProfile);
-      authenticationBloc.add(LoginWithGoogleButtonSuccessfulNavigateToScreenEvent());
+      else{
+        final sharedPref = await SharedPreferences.getInstance();
+        await sharedPref.setBool(logedInKey, true);
+        await sharedPref.setString('id', isExistingUser.id);
+        await sharedPref.setString('email', isExistingUser.email);
+        await sharedPref.setString('userName', isExistingUser.userName); 
+        await sharedPref.setString('mobile', isExistingUser.mobile);
+        await sharedPref.setString('location', isExistingUser.location);
+        await sharedPref.setString('userProfile', isExistingUser.userProfile);
+        authenticationBloc.add(LoginWithGoogleButtonSuccessfulNavigateToScreenEvent());
+      }
+      
     }
   } catch (e) {
     if (kDebugMode) {
