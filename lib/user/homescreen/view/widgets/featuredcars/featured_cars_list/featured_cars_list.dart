@@ -1,4 +1,4 @@
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/on_tap_car_more_details.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/on_tap_more_details/on_tap_car_more_details.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/homescreen/view/widgets/featuredcars/featured_cars_list/featured_car_image/featured_car_image.dart';
 import 'package:auto_mates/user/homescreen/view/widgets/featuredcars/featured_cars_list/featured_car_name_container/featured_car_name_container.dart';

@@ -1,7 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/tab_bar_view_list_tile.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/on_tap_more_details/car_details/sections/tab_bar_view_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

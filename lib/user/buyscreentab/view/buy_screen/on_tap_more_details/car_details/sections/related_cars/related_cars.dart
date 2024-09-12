@@ -1,7 +1,7 @@
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/related_cars/related_car_image_and_details/related_car_details_holder.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/related_cars/related_car_image_and_details/related_car_image_holder.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/on_tap_car_more_details.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/on_tap_more_details/car_details/sections/related_cars/related_car_image_and_details/related_car_details_holder.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/on_tap_more_details/car_details/sections/related_cars/related_car_image_and_details/related_car_image_holder.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/on_tap_more_details/on_tap_car_more_details.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/commonwidgets/shimmer_effect/shimmer_effect.dart';
 import 'package:flutter/material.dart';

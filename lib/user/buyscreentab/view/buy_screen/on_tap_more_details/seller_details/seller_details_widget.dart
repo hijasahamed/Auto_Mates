@@ -1,11 +1,11 @@
 
 import 'package:auto_mates/seller/authentications/model/model.dart';
 import 'package:auto_mates/user/buyscreentab/controller/functions.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/seller_details/section/contact_seller_button.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/seller_details/section/map_holder.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/seller_details/section/seller_details.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/seller_details/section/seller_fav_button.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/seller_details/section/sellers_rating.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/on_tap_more_details/seller_details/section/contact_seller_button.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/on_tap_more_details/seller_details/section/map_holder.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/on_tap_more_details/seller_details/section/seller_details.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/on_tap_more_details/seller_details/section/seller_fav_button.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/on_tap_more_details/seller_details/section/sellers_rating.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/commonwidgets/shimmer_effect/shimmer_effect.dart';
 import 'package:auto_mates/user/profilescreen/view/widgets/favourite_seller/favourite_seller_more_cars/favourite_seller_more_cars.dart';

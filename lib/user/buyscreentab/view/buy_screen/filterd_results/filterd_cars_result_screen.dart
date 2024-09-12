@@ -2,7 +2,7 @@ import 'package:auto_mates/user/appbarbottombar/view/widgets/normal_app_bar/norm
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/filterd_results/filterd_cars_dropdown_details/filterd_details_dropdown_details.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/filterd_results/filterd_cars_image_name_holder/filterd_cars_image_name_holder.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/on_tap_car_more_details.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/on_tap_more_details/on_tap_car_more_details.dart';
 import 'package:auto_mates/user/commonwidgets/no_data_error_placeholder/no_data_error_placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

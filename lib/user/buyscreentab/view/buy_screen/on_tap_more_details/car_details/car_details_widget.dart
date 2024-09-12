@@ -1,10 +1,10 @@
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/all_images/all_images_screen.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/car_image/car_image.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/car_overview.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/details_container.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/related_cars/related_cars.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/specification_features_widget.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/on_tap_more_details/car_details/all_images/all_images_screen.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/on_tap_more_details/car_details/sections/car_image/car_image.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/on_tap_more_details/car_details/sections/car_overview.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/on_tap_more_details/car_details/sections/details_container.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/on_tap_more_details/car_details/sections/related_cars/related_cars.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/on_tap_more_details/car_details/sections/specification_features_widget.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

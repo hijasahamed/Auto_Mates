@@ -3,7 +3,7 @@ import 'package:auto_mates/user/buyscreentab/view/buy_screen/car_holder/car_hold
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/car_holder/car_holder_car_name_brand/car_holder_car_name_brand.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/car_holder/car_image/car_holder_car_image.dart';
 import 'package:auto_mates/user/buyscreentab/view/buy_screen/car_holder/positioned_button/car_holder_button.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/on_tap_car_more_details.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/on_tap_more_details/on_tap_car_more_details.dart';
 import 'package:auto_mates/user/homescreen/view/widgets/featuredcars/featured_list_title_and_view_more_button/featured_list_title_and_view_more_button.dart';
 import 'package:flutter/material.dart';
 

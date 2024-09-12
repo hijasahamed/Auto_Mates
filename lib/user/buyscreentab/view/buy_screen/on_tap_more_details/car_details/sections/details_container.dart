@@ -1,4 +1,4 @@
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/car_details/sections/car_more_details.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/on_tap_more_details/car_details/sections/car_more_details.dart';
 import 'package:flutter/material.dart';
 
 class DetailsContainer extends StatelessWidget {

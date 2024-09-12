@@ -1,6 +1,6 @@
 import 'package:auto_mates/user/authentications/controller/functions/fuctions.dart';
 import 'package:auto_mates/user/buyscreentab/view/bloc/buy_screen_bloc.dart';
-import 'package:auto_mates/user/buyscreentab/view/on_tap_more_details/bottom_app_bar/interested_button/auto_back_widget/auto_back_widget.dart';
+import 'package:auto_mates/user/buyscreentab/view/buy_screen/on_tap_more_details/bottom_app_bar/interested_button/auto_back_widget/auto_back_widget.dart';
 import 'package:auto_mates/user/commonwidgets/my_text_widget/my_text_widget.dart';
 import 'package:auto_mates/user/profilescreen/controller/functions.dart';
 import 'package:flutter/material.dart';
