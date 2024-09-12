@@ -7,21 +7,33 @@ class CarouselSliderWidget extends StatelessWidget {
   final Size screenSize;
   @override
   Widget build(BuildContext context) {
-    return CarouselSlider(
-        items: [
-          firstBanner(),
-          secondBanner(),          
-        ],
-        options: CarouselOptions(
-          scrollDirection: Axis.horizontal,
-          height: screenSize.height / 4.8,
-          enlargeCenterPage: true,
-          autoPlay: true,
-          autoPlayCurve: Curves.fastOutSlowIn,          
-          enableInfiniteScroll: true,
-          autoPlayAnimationDuration: const Duration(milliseconds: 900),
-          viewportFraction: 1,
-        ));
+    return Card(
+      elevation: 4,
+      child: Container(
+        height: screenSize.height/4.8,
+        width: screenSize.width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+          border: Border.all(width: .2,color: Colors.grey)
+        ),
+        child: CarouselSlider(
+            items: [
+              firstBanner(),
+              secondBanner(),          
+            ],
+            options: CarouselOptions(
+              scrollDirection: Axis.horizontal,
+              height: screenSize.height / 4.8,
+              enlargeCenterPage: true,
+              autoPlay: true,
+              autoPlayCurve: Curves.fastOutSlowIn,          
+              enableInfiniteScroll: true,
+              autoPlayAnimationDuration: const Duration(milliseconds: 900),
+              viewportFraction: 1,
+            )),
+      ),
+    );
   }
 
   Container firstBanner() {

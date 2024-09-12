@@ -16,49 +16,12 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Card(
-              elevation: 4,
-              child: Container(
-                height: screenSize.height/4.8,
-                width: screenSize.width,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                  border: Border.all(width: .2,color: Colors.grey)
-                ),
-                child: CarouselSliderWidget(screenSize: screenSize)
-              ),
-            ),
+            CarouselSliderWidget(screenSize: screenSize),
             FeaturedCarsWidget(screenSize: screenSize),
-            Card(
-              elevation: 5,
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(3),
-                child: SizedBox(
-                  height: screenSize.height/3.6,
-                  width: screenSize.width,                          
-                  child: TopSellersWidget(screenSize: screenSize),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(4.5),
-              child: EmiCardWidget(screenSize: screenSize),
-            ),
+            TopSellersWidget(screenSize: screenSize),
+            EmiCardWidget(screenSize: screenSize),
             FavouriteCarsWidget(screenSize: screenSize),
-            Card(
-              elevation: 5,
-              color: Colors.white,
-              child: Padding(
-                padding: EdgeInsets.all(screenSize.width/100),
-                child: SizedBox(
-                  height: screenSize.height/3.1,
-                  width: screenSize.width,
-                  child: LatestCarNews(screenSize: screenSize),
-                ),
-              ),
-            ),
+            LatestCarNews(screenSize: screenSize),
           ],
         ),
       ),

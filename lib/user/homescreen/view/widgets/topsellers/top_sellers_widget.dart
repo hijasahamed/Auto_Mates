@@ -23,32 +23,43 @@ class TopSellersWidget extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return Column(
-          children: [
-            TopsellersTopBar(screenSize: screenSize,homescreenBloc: homescreenBloc,),
-            SizedBox(
-              height: screenSize.height / 4.7,
+        return Card(
+          elevation: 5,
+          color: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(3),
+            child: SizedBox(
+              height: screenSize.height/3.6,
               width: screenSize.width,
-              child: StreamBuilder<List<Map<String, dynamic>>>(
-                stream: findTopRatedSellers(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (snapshot.hasError) {
-                    return Center(child: MyTextWidget(
-                      text: 'No seller is been rated by the buyers.We will show the top rated sellers once the buyers start rating the sellers.', 
-                      color: Colors.blueGrey,maxline: true,alignTextCenter: true, 
-                      size: screenSize.width/31, weight: FontWeight.bold)); 
-                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                    return const Center(child: Text('No sellers found'));
-                  } else {
-                    List<Map<String, dynamic>> sellers = snapshot.data!;
-                    return TopsellersListHolder(screenSize: screenSize, sellers: sellers);
-                  }
-                },
+              child: Column(
+                children: [
+                  TopsellersTopBar(screenSize: screenSize,homescreenBloc: homescreenBloc,),
+                  SizedBox(
+                    height: screenSize.height / 4.7,
+                    width: screenSize.width,
+                    child: StreamBuilder<List<Map<String, dynamic>>>(
+                      stream: findTopRatedSellers(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          return const Center(child: CircularProgressIndicator());
+                        } else if (snapshot.hasError) {
+                          return Center(child: MyTextWidget(
+                            text: 'No seller is been rated by the buyers.We will show the top rated sellers once the buyers start rating the sellers.', 
+                            color: Colors.blueGrey,maxline: true,alignTextCenter: true, 
+                            size: screenSize.width/31, weight: FontWeight.bold)); 
+                        } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                          return const Center(child: Text('No sellers found'));
+                        } else {
+                          List<Map<String, dynamic>> sellers = snapshot.data!;
+                          return TopsellersListHolder(screenSize: screenSize, sellers: sellers);
+                        }
+                      },
+                    ),
+                  )
+                ],
               ),
-            )
-          ],
+            ),
+          ),
         );
       },
     );

@@ -21,14 +21,25 @@ class LatestCarNews extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return Column(
-          children: [
-            LatestCarNewsTitleAndMoreButton(screenSize: screenSize),
-            LatestCarNewsBanners(
-              screenSize: screenSize,
-              articleBannerNavBlocInstance: articleBannerNavBlocInstance,
-            )
-          ],
+        return Card(
+          elevation: 5,
+          color: Colors.white,
+          child: Padding(
+            padding: EdgeInsets.all(screenSize.width/100),
+            child: SizedBox(
+              height: screenSize.height/3.1,
+              width: screenSize.width,
+              child: Column(
+                children: [
+                  LatestCarNewsTitleAndMoreButton(screenSize: screenSize),
+                  LatestCarNewsBanners(
+                    screenSize: screenSize,
+                    articleBannerNavBlocInstance: articleBannerNavBlocInstance,
+                  )
+                ],
+              ),
+            ),
+          ),
         );
       },
     );
